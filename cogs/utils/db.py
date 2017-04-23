@@ -33,7 +33,7 @@ class Database(object):
         return json.dumps(data).replace("'", "''")
 
     async def connect(self):
-        self._conn = await asyncpg.connect(user='postgres', password='',
+        self._conn = await asyncpg.connect(user='root', password='root',
                                            database='pokerpg', host='127.0.0.1')
 
     # User functions
@@ -144,5 +144,5 @@ class Database(object):
         if values:
             return values
         else:
-            await self.guild_insert(self.bot.default_servdata)
+            await self.guild_insert(guild, self.bot.default_servdata)
             return await self.get_guild_data(guild)

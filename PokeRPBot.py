@@ -27,12 +27,19 @@ import discord
 import psutil
 import datetime
 import aiohttp
+import asyncio
 import asyncpg
 from discord.ext import commands
 from collections import Counter
 
 import cogs
 from cogs.utils import db, data
+
+try:
+    import uvloop
+    asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+except ImportError:
+    pass
 
 if os.name == "nt":
     sys.argv.append("debug")
@@ -63,7 +70,14 @@ class Bot(commands.Bot):
             self._auth = json.loads(af.read())
 
         self._cogs = {
-            "Admin": cogs.Admin.Admin(self)
+            "Admin": cogs.Admin.Admin(self),
+            "Team": cogs.Team.Team(self),
+            "Economy": cogs.Economy.Economy(self),
+            "Inventory": cogs.Inventory.Inventory(self),
+            "Settings": cogs.Settings.Settings(self),
+            "Misc": cogs.Misc.Misc(self),
+            "Characters": cogs.Characters.Characters(self),
+            "Pokemon": cogs.Pokemon.Pokemon(self)
         }
 
         self.db = db.Database(self)
@@ -77,14 +91,14 @@ class Bot(commands.Bot):
         print(self.user.id)
         print('------')
 
-        self.remove_command("help")
+        # self.remove_command("help")
 
         await self.db.connect()
 
         for cog in self._cogs.values():
             self.add_cog(cog)
 
-        await self.change_presence(game=discord.Game(name=";help for help!"))
+        # await self.change_presence(game=discord.Game(name="pb!help for help!"))
 
         url = "https://bots.discord.pw/api/bots/{}/stats".format(self.user.id)
         payload = json.dumps(dict(server_count=len(self.guilds))).encode()
@@ -126,9 +140,13 @@ class Bot(commands.Bot):
     async def shutdown(self):
         self.session.close()
 
-prefix = 'pb!' if 'debug' not in sys.argv else 'pb$'
+prefix = ['pb!'] if 'debug' not in sys.argv else ['pb$']
 invlink = "https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=322625"
 servinv = "https://discord.gg/UYJb8fQ"
 description = "PokeRP Bot, a little discord bot by Henry#6174\n**Add to your server**: {}\n**Support Server**: {}".format(invlink, servinv)
 
-prp = Bot(command_prefix=prefix, description=description)
+with open("resources/auth") as af:
+    _auth = json.loads(af.read())
+
+prp = Bot(command_prefix=prefix, description=description, pm_help=True)
+prp.run(_auth[0])
