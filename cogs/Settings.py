@@ -23,6 +23,7 @@ from discord.ext import commands
 import discord
 import asyncio
 from .utils.data import ServerItem
+from .utils import checks
 
 class Settings(object):
     def __init__(self, bot):
@@ -83,6 +84,7 @@ class Settings(object):
         embed.set_footer(text=str(ctx.message.created_at))
         await ctx.send(embed=embed)
 
+    @checks.mod_or_permissions()
     @settings.command(no_pm=True)
     async def additem(self, ctx, name: str):
         try:
@@ -90,7 +92,7 @@ class Settings(object):
             item["name"] = name
             check = lambda x: x.channel is ctx.channel and x.author is ctx.author
             await ctx.send("Describe the item (a description for the item)")
-            response = self.bot.wait_for("message", timeout=60, check=check)
+            response = await self.bot.wait_for("message", timeout=60, check=check)
             item["description"] = response.content
             item["meta"] = dict()
 

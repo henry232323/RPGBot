@@ -26,7 +26,7 @@ from discord.ext import commands
 
 Pokemon = namedtuple("Pokemon", ["id", "name", "type", "stats", "meta"])
 ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
-Character = namedtuple("Character", ["name", "owner", "level", "team", "meta"])
+Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
 
 class Converter(commands.MemberConverter):
     def convert(self):
@@ -43,7 +43,8 @@ default_user = {
 default_server = {
     "start": 0,
     "items": dict(),
-    "characters": dict()
+    "characters": dict(),
+    "market_items": list()
 }
 
 example_pokemon = {
@@ -110,7 +111,7 @@ class DataInteraction(object):
 
     async def get_team(self, guild, character):
         gd = await self.bot.db.get_guild_data(guild)
-        character = Character(gd["characters"][character])
+        character = Character(*gd["characters"][character])
         owner = discord.utils.get(guild.members, id=character.owner)
         ud = await self.bot.db.get_user_data(owner)
 
@@ -146,7 +147,7 @@ class DataInteraction(object):
 
     async def get_guild_characters(self, guild):
         ud = await self.bot.db.get_guild_data(guild)
-        return {y: Character(*x) for y,x in ud["items"].items()}
+        return {y: Character(*x) for y,x in ud["characters"].items()}
 
     async def add_pokemon(self, owner, pokemon):
         ud = await self.bot.db.get_user_data(owner)
@@ -158,17 +159,17 @@ class DataInteraction(object):
     async def new_item(self, guild, serveritem):
         gd = await self.bot.db.get_guild_data(guild)
         gd["items"][serveritem.name] = serveritem
-        await self.bot.db.update_user_data(guild, gd)
+        await self.bot.db.update_guild_data(guild, gd)
 
     async def remove_item(self, guild, item):
         gd = await self.bot.db.get_guild_data(guild)
         del gd["items"]
-        await self.bot.db.update_user_data(guild, gd)
+        await self.bot.db.update_guild_data(guild, gd)
 
     async def add_character(self, guild, character):
         gd = await self.bot.db.get_guild_data(guild)
         gd["characters"][character.name] = character
-        await self.bot.db.update_user_data(guild, gd)
+        await self.bot.db.update_guild_data(guild, gd)
 
     async def give_items(self, member, *items):
         ud = await self.bot.db.get_user_data(member)
