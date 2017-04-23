@@ -119,6 +119,11 @@ class Bot(commands.Bot):
         else:
             await ctx.send(f"`{exception}`")
 
+    async def on_guild_join(self, guild):
+        if sum(1 for m in guild.members if m.bot) / guild.member_count >= 3/4:
+            await guild.channels[0].send("This server has too many bots! I'm just going to leave if thats alright")
+            await guild.leave()
+
     async def on_socket_response(self, msg):
         self.socket_stats[msg.get('t')] += 1
 

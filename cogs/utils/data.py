@@ -44,7 +44,7 @@ default_server = {
     "start": 0,
     "items": dict(),
     "characters": dict(),
-    "market_items": list()
+    "market_items": dict()
 }
 
 example_pokemon = {
@@ -142,12 +142,16 @@ class DataInteraction(object):
         return (await self.bot.db.get_guild_data(guild))["start"]
 
     async def get_guild_items(self, guild):
-        ud = await self.bot.db.get_guild_data(guild)
-        return {y: ServerItem(*x) for y,x in ud["items"].items()}
+        gd = await self.bot.db.get_guild_data(guild)
+        return {y: ServerItem(*x) for y,x in gd["items"].items()}
+
+    async def get_guild_market(self, guild):
+        gd = await self.bot.db.get_guild_data(guild)
+        return gd.get("market_items", dict())
 
     async def get_guild_characters(self, guild):
-        ud = await self.bot.db.get_guild_data(guild)
-        return {y: Character(*x) for y,x in ud["characters"].items()}
+        gd = await self.bot.db.get_guild_data(guild)
+        return {y: Character(*x) for y,x in gd["characters"].items()}
 
     async def add_pokemon(self, owner, pokemon):
         ud = await self.bot.db.get_user_data(owner)
@@ -199,6 +203,11 @@ class DataInteraction(object):
         await self.bot.db.update_user_data(member, ud)
         return ud["money"]
 
+    async def set_start(self, guild, amount):
+        gd = await self.bot.db.get_guild_data(guild)
+        gd["start"] = amount
+        return await self.bot.db.update_user_data(guild, gd)
+
     async def add_to_team(self, guild, character, id):
         gd = await self.bot.db.get_guild_data(guild)
         character = gd["characters"][character]
@@ -212,3 +221,8 @@ class DataInteraction(object):
         character = gd["characters"][character]
         character["team"].remove(id)
         await self.bot.db.update_guild_data(guild, gd)
+
+    async def update_guild_market(self, guild, data):
+        gd = await self.bot.db.get_guild_data(guild)
+        gd["market_items"] = data
+        return await self.bot.db.update_guild_data(guild, gd)

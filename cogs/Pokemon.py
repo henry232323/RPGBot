@@ -69,9 +69,10 @@ class Pokemon(object):
                     await ctx.send("Skipping")
                 else:
                     try:
-                        for val in response.content.split(", "):
+                        for val in response.content.split(",").split("\n"):
                             key, value = val.split(": ")
                             key = key.strip().lower()
+                            value = value.strip()
                             if key not in valid_stats:
                                 await ctx.send(f"{key} is not a valid stat! Try again")
                                 break
@@ -92,9 +93,10 @@ class Pokemon(object):
             while True:
                 response = await self.bot.wait_for("message", check=check, timeout=30)
                 try:
-                    for val in response.content.split(", "):
+                    for val in response.content.split(",").split("\n"):
                         key, value = val.split(": ")
                         key = key.strip().lower()
+                        value = value.strip()
                         pokemon["meta"][key] = value
                     else:
                         break
