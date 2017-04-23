@@ -22,6 +22,7 @@
 from discord.ext import commands
 import discord
 from .utils.data import Converter
+from .utils import checks
 
 class Economy(object):
     def __init__(self, bot):
@@ -36,6 +37,7 @@ class Economy(object):
 
         await ctx.send(f"{member.display_name} has {bal} Pokédollars")
 
+    @checks.mod_or_permissions()
     @economy.command(aliases=["set"], no_pm=True)
     async def setbalance(self, ctx, amount: int, *members: Converter):
         if "everyone" in members:
@@ -46,6 +48,7 @@ class Economy(object):
 
         await ctx.send("Balances changed")
 
+    @checks.mod_or_permissions()
     @economy.command(aliases=["give"], no_pm=True)
     async def givemoney(self, ctx, amount: int, *members: Converter):
         if "everyone" in members:
@@ -56,3 +59,9 @@ class Economy(object):
 
         await ctx.send("Money given")
 
+    @commands.command(no_pm=True)
+    async def pay(self, ctx, amount: int, member: discord.Member):
+        amount = abs(amount)
+        await self.bot.di.add_eco(ctx.author, -amount)
+        await self.bot.di.add_eco(member, amount)
+        await ctx.send(f"Successfully paid {amount} Pokédollars to {member}")

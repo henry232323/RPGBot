@@ -22,7 +22,7 @@
 from discord.ext import commands
 import discord
 from .utils.data import Converter
-
+from .utils import checks
 
 class Inventory(object):
     def __init__(self, bot):
@@ -44,6 +44,7 @@ class Inventory(object):
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
         await ctx.send(embed=embed)
 
+    @checks.mod_or_permissions()
     @inventory.command(no_pm=True, aliases=["take"])
     async def takeitem(self, ctx, item: str, num: int, *members: Converter):
         """Remove an item from a person's inventory"""
@@ -54,6 +55,7 @@ class Inventory(object):
         for member in members:
             await self.bot.di.take_items(member, (item, num))
 
+    @checks.mod_or_permissions()
     @inventory.command(no_pm=True)
     async def giveitem(self, ctx, item: str, num: int, *members: Converter):
         """Give an item to a person (Not out of your inventory)"""

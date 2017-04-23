@@ -113,6 +113,12 @@ class Bot(commands.Bot):
 
         await self.process_commands(message)
 
+    async def on_command_error(self, exception, ctx):
+        if isinstance(exception, commands.MissingRequiredArgument):
+            await ctx.send(f"`{exception}`")
+        else:
+            await ctx.send(f"`{exception}`")
+
     async def on_socket_response(self, msg):
         self.socket_stats[msg.get('t')] += 1
 

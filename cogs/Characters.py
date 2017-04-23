@@ -31,7 +31,7 @@ class Characters(object):
     async def characters(self, ctx):
         """List all your characters"""
         characters = await self.bot.di.get_guild_characters(ctx.guild)
-        characters = [x for x in characters.values() if x.owner == ctx.author.id]
+        characters = [x for x, y in characters.items() if y.owner == ctx.author.id]
         if not characters:
             await ctx.send("User has no characters to display")
             return
@@ -46,6 +46,7 @@ class Characters(object):
         characters = await self.bot.di.get_guild_characters(ctx.guild)
         if not characters:
             await ctx.send("No characters to display")
+            return
 
         embed = discord.Embed()
         words = dict()
@@ -66,19 +67,21 @@ class Characters(object):
     async def character(self, ctx, *, name: str):
         """Get info on a character"""
         try:
-            char = await self.bot.di.get_guild_characters(ctx.guild)[name]
+            char = (await self.bot.di.get_guild_characters(ctx.guild))[name]
         except KeyError:
             await ctx.send("Character does not exist!")
             return
 
         owner = discord.utils.get(ctx.guild.members, id=char.owner)
         embed = discord.Embed(description=char.description)
-        embed.set_author(name=char.name, icon_url=char.meta.get("image") or owner.avatar_url)
+        embed.set_author(name=char.name, icon_url=owner.avatar_url)
+        if char.meta.get("image"):
+            embed.set_thumbnail(url=char.meta.get("image"))
         embed.add_field(name="Name", value=char.name)
         embed.add_field(name="Owner", value=str(owner))
         embed.add_field(name="Level", value=char.level)
         team = await self.bot.di.get_team(ctx.guild, char.name)
-        tfmt = "\n".join(p.name for p in team)
+        tfmt = "\n".join(p.name for p in team) if team else "Empty"
         embed.add_field(name="Team", value=tfmt)
         mfmt = "\n".join(f"{x}: {y}" for x, y in char.meta.items())
         embed.add_field(name="Additional Info", value=mfmt)
@@ -89,7 +92,7 @@ class Characters(object):
     async def create(self, ctx, *, name: str):
         """Create a new character"""
         check = lambda x: x.channel is ctx.channel and x.author is ctx.author
-        character = dict(name=name, owner=ctx.author.id, meta=dict())
+        character = dict(name=name, owner=ctx.author.id, meta=dict(), team=list())
         await ctx.send("Describe the character (Relevent character sheet)")
         response = await self.bot.wait_for("message", check=check, timeout=60)
         character["description"] = response.content
@@ -112,3 +115,4 @@ class Characters(object):
                 continue
 
         await self.bot.di.add_character(ctx.guild, Character(**character))
+        await ctx.send("Character created! pb!team addmember to add to your characters team!")
