@@ -38,7 +38,8 @@ class Inventory(object):
         if not inv:
             await ctx.send("This inventory is empty!")
             return
-        fmap = map(lambda x, y: f"{x} x{y}", inv)
+
+        fmap = map(lambda x: f"{x[0]} x{x[1]}", inv.items())
         fmt = "\n".join(fmap)
         embed = discord.Embed(description=fmt)
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
@@ -55,6 +56,8 @@ class Inventory(object):
         for member in members:
             await self.bot.di.take_items(member, (item, num))
 
+        await ctx.send("Items taken!")
+
     @checks.mod_or_permissions()
     @inventory.command(no_pm=True)
     async def giveitem(self, ctx, item: str, num: int, *members: Converter):
@@ -66,6 +69,8 @@ class Inventory(object):
         for member in members:
             await self.bot.di.give_items(member, (item, num))
 
+        await ctx.send("Items given!")
+
     @inventory.command(no_pm=True)
     async def give(self, ctx, other: discord.Member, *items: str):
         """Give items ({item}x{#}) to a member; ie: ;give @Henry#6174 pokeballx3"""
@@ -76,7 +81,7 @@ class Inventory(object):
             fitems.append((split, num))
 
         try:
-            await self.bot.di.take_items(fitems)
-            await self.bot.di.give_items(fitems)
+            await self.bot.di.take_items(ctx.author, fitems)
+            await self.bot.di.give_items(ctx.other, fitems)
         except:
             await ctx.send("You do not have enough to give away!")

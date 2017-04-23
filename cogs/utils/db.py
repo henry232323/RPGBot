@@ -51,10 +51,16 @@ class Database(object):
         response = await self._conn.fetchval(req)
         return json.decode(response) if response else response
 
+    async def user_full_select(self, member):
+        """Select a user's data for a specified server"""
+        req = f"""SELECT info FROM userdata WHERE UUID = {member.id}"""
+        response = await self._conn.fetchval(req)
+        return json.decode(response) if response else response
+
     async def user_update(self, member, data):
         """Update a user's data for a specific server"""
         jd = self.dump(data)
-        req = f"""UPDATE userdata -> '{member.guild.id}'
+        req = f"""UPDATE userdata
         SET info = '{jd}'
         WHERE UUID = {member.id}"""
         response = await self._conn.fetchval(req)
@@ -78,12 +84,14 @@ class Database(object):
             values = await self.user_select(member)
 
         if not values:
-            await self.user_update(member, data)
+            await self.update_user_data(member, data)
 
     async def update_user_data(self, member, data):
         """Update a user's server data"""
-        if await self.user_select(member):
-            await self.user_update(member, data)
+        fs = await self.user_full_select(member)
+        if fs:
+            fs.update({str(member.guild.id): data})
+            await self.user_update(member, fs)
         else:
             await self.user_insert(member, data)
 

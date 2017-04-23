@@ -102,13 +102,18 @@ class Settings(object):
                 response = await self.bot.wait_for("message", timeout=30, check=check)
 
                 try:
-                    for val in response.content.split(", "):
+                    if "\n" in response.content:
+                        res = response.content.split("\n")
+                    else:
+                        res = response.content.split(",")
+                    for val in res:
                         key, value = val.split(": ")
                         key = key.strip().lower()
+                        value = value.strip()
                         item["meta"][key] = value
                     else:
                         break
-                except:
+                except Exception as e:
                     await ctx.send("Invalid syntax, try agian.")
 
             await self.bot.di.new_item(ctx.guild, ServerItem(**item))
@@ -117,3 +122,7 @@ class Settings(object):
         except asyncio.TimeoutError:
             await ctx.send("Timed out! Try again")
 
+    @checks.mod_or_permissions()
+    async def setstart(self, ctx, amount: int):
+        await self.bot.di.set_start(ctx.guild, amount)
+        await ctx.send(f"Starting amount changed to {amount} Pokédollars")

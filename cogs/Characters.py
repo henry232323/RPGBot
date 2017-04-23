@@ -23,6 +23,7 @@ from discord.ext import commands
 import discord
 from .utils.data import Character
 
+
 class Characters(object):
     def __init__(self, bot):
         self.bot = bot
@@ -81,9 +82,9 @@ class Characters(object):
         embed.add_field(name="Owner", value=str(owner))
         embed.add_field(name="Level", value=char.level)
         team = await self.bot.di.get_team(ctx.guild, char.name)
-        tfmt = "\n".join(p.name for p in team) if team else "Empty"
+        tfmt = "\n".join(f"{p.name} ({p.type})" for p in team) if team else "Empty"
         embed.add_field(name="Team", value=tfmt)
-        mfmt = "\n".join(f"{x}: {y}" for x, y in char.meta.items())
+        mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items())
         embed.add_field(name="Additional Info", value=mfmt)
 
         await ctx.send(embed=embed)
@@ -100,13 +101,14 @@ class Characters(object):
         response = await self.bot.wait_for("message", timeout=30, check=check)
         character["level"] = int(response.content)
         await ctx.send("Any additional info? (Add a character image using the image keyword. Formats use regular syntax i.e "
-                       "`image: http://image.com/, hair_color: blond, nickname: Kevin`")
+                       "`image: http://image.com/, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)")
         while True:
             response = await self.bot.wait_for("message", check=check, timeout=60)
             try:
-                for val in response.content.split(", "):
+                for val in response.content.split(",").split("\n"):
                     key, value = val.split(": ")
-                    key = key.strip().lower()
+                    key = key.strip()
+                    value = value.strip()
                     character["meta"][key] = value
                 else:
                     break
