@@ -76,6 +76,7 @@ example_serveritem = {
 example_character = {
     "name": "Ash Ketchum",
     "owner": 166349353999532035,
+    "description": "Likes to catch pokemons",
     "level": 25,
     "team": [0],
     "meta": {
@@ -162,6 +163,11 @@ class DataInteraction(object):
     async def remove_item(self, guild, item):
         gd = await self.bot.db.get_guild_data(guild)
         del gd["items"]
+        await self.bot.db.update_user_data(guild, gd)
+
+    async def add_character(self, guild, character):
+        gd = await self.bot.db.get_guild_data(guild)
+        gd["characters"][character.name] = character
         await self.bot.db.update_user_data(guild, gd)
 
     async def give_items(self, member, *items):
