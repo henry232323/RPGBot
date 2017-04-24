@@ -56,6 +56,7 @@ class Bot(commands.Bot):
         self.server_commands = Counter()
         self.socket_stats = Counter()
         self.shutdowns = []
+        self.lotteries = dict()
 
         self.logger = logging.getLogger('discord')  # Discord Logging
         self.logger.setLevel(logging.INFO)

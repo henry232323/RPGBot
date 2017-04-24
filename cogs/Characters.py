@@ -43,7 +43,7 @@ class Characters(object):
 
     @commands.command(no_pm=True)
     async def allchars(self, ctx):
-        """List all your characters"""
+        """List all guild characters"""
         characters = await self.bot.di.get_guild_characters(ctx.guild)
         if not characters:
             await ctx.send("No characters to display")
