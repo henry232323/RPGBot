@@ -103,21 +103,26 @@ class Settings(object):
                            "Special additional information includes `buy_value` and `sell_value`")
             while True:
                 response = await self.bot.wait_for("message", timeout=30, check=check)
-
-                try:
-                    if "\n" in response.content:
-                        res = response.content.split("\n")
-                    else:
-                        res = response.content.split(",")
-                    for val in res:
-                        key, value = val.split(": ")
-                        key = key.strip().lower()
-                        value = value.strip()
-                        item["meta"][key] = value
-                    else:
-                        break
-                except Exception as e:
-                    await ctx.send("Invalid syntax, try agian.")
+                if response.content.lower() == "cancel":
+                    await ctx.send("Cancelling!")
+                    return
+                elif response.content.lower() == "skip":
+                    await ctx.send("Skipping!")
+                else:
+                    try:
+                        if "\n" in response.content:
+                            res = response.content.split("\n")
+                        else:
+                            res = response.content.split(",")
+                        for val in res:
+                            key, value = val.split(": ")
+                            key = key.strip().lower()
+                            value = value.strip()
+                            item["meta"][key] = value
+                        else:
+                            break
+                    except Exception as e:
+                        await ctx.send("Invalid syntax, try agian.")
 
             await self.bot.di.new_item(ctx.guild, ServerItem(**item))
             await ctx.send("Item successfully created")
