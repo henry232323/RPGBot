@@ -29,6 +29,7 @@ class Pokemon(object):
 
     @commands.group(aliases=["p"], no_pm=True)
     async def pokemon(self, ctx):
+        """Subcommands for Pokemon management, see pb!help pokemon"""
         pass
 
     @pokemon.command(aliases=["new"], no_pm=True)

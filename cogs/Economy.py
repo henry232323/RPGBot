@@ -21,7 +21,10 @@
 
 from discord.ext import commands
 import discord
+
+from random import choice
 import asyncio
+
 from .utils.data import Converter
 from .utils import checks
 
@@ -216,3 +219,141 @@ class Economy(object):
         await self.bot.di.give_items(ctx.author, (item, amount))
         await self.bot.di.update_guild_market(ctx.guild, market)
         await ctx.send("Items successfully bought")
+
+    @commands.group(invoke_without_command=True, aliases=['box'], no_pm=True)
+    async def lootbox(self, ctx):
+        boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
+        if boxes:
+            embed = discord.Embed()
+            embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+            embed.set_thumbnail(
+                url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/196b9d18843737.562d0472d523f.png"
+            )
+            fmt = "{0}: {1:.2f}%"
+            for box, data in boxes.items():
+                total = sum(data["items"].values())
+                value = "Cost: {}\n\t".format(data["cost"]) + "\n\t".join(fmt.format(item, (value/total)*100) for item, value in data["items"].items())
+                embed.add_field(name=box,
+                                value=value)
+
+            embed.set_footer(text=str(ctx.message.created_at))
+
+            await ctx.send(embed=embed)
+        else:
+            await ctx.send("No current lootboxes")
+
+    @checks.mod_or_permissions()
+    @lootbox.command(name="create", aliases=["new"], no_pm=True)
+    async def _create(self, ctx, name: str, cost: int, *items: str):
+        """Create a new lootbox, under the given `name` for the given cost
+        Use {item}x{#} notation to add items with {#} weight
+        Weight being an integer. For example:
+        bananax2 orangex3. The outcome of the box will be
+        Random Choice[banana, banana, orange, orange, orange]"""
+
+        boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
+        if name in boxes:
+            await ctx.send("Lootbox already exists, updating...")
+
+        winitems = {}
+        for item in items:
+            split = item.split('x')
+            split, num = "x".join(split[:-1]), abs(int(split[-1]))
+            winitems.update({split: num})
+
+            boxes[name] = dict(cost=cost, items=winitems)
+
+        await ctx.send("Lootbox successfully created")
+        await self.bot.di.update_guild_lootboxes(ctx.guild, boxes)
+
+    @lootbox.command(name="buy", no_pm=True)
+    async def _buy(self, ctx, name: str):
+        """Buy a lootbox of the given name"""
+        boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
+        try:
+            box = boxes[name]
+        except KeyError:
+            await ctx.send("That is not a valid lootbox")
+            return
+
+        bal = await self.bot.di.get_balance(ctx.author)
+        if bal < box["cost"]:
+            await ctx.send("You cant afford this box")
+            return
+
+        await self.bot.di.add_eco(ctx.author, box["cost"])
+        winitems = []
+        for item, amount in box["items"].items():
+            winitems += [item] * amount
+
+        result = choice(winitems)
+        await self.bot.di.give_items(ctx.author, (result, 1))
+        await ctx.send("You won a(n) {}".format(result))
+
+    @lootbox.command(name="delete", aliases=["remove"], no_pm=True)
+    async def _delete(self, ctx, name: str):
+        """Delete a lootbox with the given name"""
+        boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
+        if name in boxes:
+            del boxes[name]
+            await ctx.send("Loot box removed")
+        else:
+            await ctx.send("Invalid loot box")
+
+            await self.bot.di.update_guild_lootboxes(ctx.guild, boxes)
+
+    @commands.group(invoke_without_command=True, aliases=['lottery'], no_pm=True)
+    async def lotto(self, ctx):
+        """List the currently running lottos."""
+        if ctx.guild.id in self.bot.lotteries:
+            embed = discord.Embed()
+            embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+            embed.set_thumbnail(
+                url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/196b9d18843737.562d0472d523f.png"
+            )
+
+            for lotto, value in self.bot.lotteries[ctx.guild.id].items():
+                embed.add_field(name=lotto,
+                                value="Jackpot: {} Pokédollars\n{} players entered".format(value["jackpot"],
+                                                                                  len(value["players"])))
+            embed.set_footer(text=str(ctx.message.created_at))
+
+            await ctx.send(embed=embed)
+        else:
+            await ctx.send("No lotteries currently running!")
+
+    @checks.mod_or_permissions()
+    @lotto.command(aliases=["create"], no_pm=True)
+    async def new(self, ctx, name: str, jackpot: int, time: int):
+        """Create a new lotto, with jacpot payout lasting time in seconds"""
+        if ctx.guild.id not in self.bot.lotteries:
+            self.bot.lotteries[ctx.guild.id] = dict()
+        if name in self.bot.lotteries[ctx.guild.id]:
+            await ctx.send("A lottery of that name already exists!")
+            return
+        current = dict(jackpot=jackpot, players=list(), channel=ctx.channel)
+        self.bot.lotteries[ctx.guild.id][name] = current
+        await ctx.send("Lottery created!")
+        await asyncio.sleep(time)
+        if current["players"]:
+            winner = choice(current["players"])
+            await self.bot.di.add_eco(winner, current["jackpot"])
+            await current["channel"].send("Lottery {} is now over!\n{} won {}! Congratulations!".format(name, winner.mention, current["jackpot"]))
+        else:
+            await ctx.send("Nobody entered {}! Its over now.".format(name))
+        del self.bot.lotteries[ctx.guild.id][name]
+
+    @lotto.command(aliases=["join"], no_pm=True)
+    async def enter(self, ctx, name: str):
+        """Enter the lottery with the given name."""
+        if ctx.guild.id in self.bot.lotteries:
+            if name in self.bot.lotteries[ctx.guild.id]:
+                if ctx.author not in self.bot.lotteries[ctx.guild.id][name]["players"]:
+                    self.bot.lotteries[ctx.guild.id][name]["players"].append(ctx.author)
+                    await ctx.send("Lotto entered!")
+                else:
+                    await ctx.send("You're already in this lotto!")
+            else:
+                await ctx.send("This server has no lotto by that name! See ;lotto")
+        else:
+            await ctx.send("This server has no lottos currently running!")

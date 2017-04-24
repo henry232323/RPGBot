@@ -28,6 +28,7 @@ Pokemon = namedtuple("Pokemon", ["id", "name", "type", "stats", "meta"])
 ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
 Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
 
+
 class Converter(commands.MemberConverter):
     def convert(self):
         if self.argument == 'everyone' or self.argument == '@everyone':
@@ -44,7 +45,8 @@ default_server = {
     "start": 0,
     "items": dict(),
     "characters": dict(),
-    "market_items": dict()
+    "market_items": dict(),
+    "loot_boxes": dict()
 }
 
 example_pokemon = {
@@ -130,6 +132,7 @@ class DataInteraction(object):
         ud = await self.bot.db.get_user_data(member)
         return ud["items"]
 
+
     async def get_pokemon(self, member, id):
         box = await self.get_box(member)
         for x in box:
@@ -144,6 +147,10 @@ class DataInteraction(object):
     async def get_guild_items(self, guild):
         gd = await self.bot.db.get_guild_data(guild)
         return {y: ServerItem(*x) for y,x in gd["items"].items()}
+
+    async def get_guild_lootboxes(self, guild):
+        gd = await self.bot.db.get_guild_data(guild)
+        return gd.get("lootboxes", dict())
 
     async def get_guild_market(self, guild):
         gd = await self.bot.db.get_guild_data(guild)
@@ -225,4 +232,9 @@ class DataInteraction(object):
     async def update_guild_market(self, guild, data):
         gd = await self.bot.db.get_guild_data(guild)
         gd["market_items"] = data
+        return await self.bot.db.update_guild_data(guild, gd)
+
+    async def update_guild_lootboxes(self, guild, data):
+        gd = await self.bot.db.get_guild_data(guild)
+        gd["lootboxes"] = data
         return await self.bot.db.update_guild_data(guild, gd)
