@@ -114,6 +114,7 @@ class Bot(commands.Bot):
         await self.process_commands(message)
 
     async def on_command_error(self, exception, ctx):
+        logging.info(f"Exception in {ctx.command.qualified_name} ({ctx.channel.name}: {ctx.guild.name}): {exception}")
         if isinstance(exception, commands.MissingRequiredArgument):
             await ctx.send(f"`{exception}`")
         else:
