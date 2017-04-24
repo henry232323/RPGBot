@@ -69,7 +69,11 @@ class Pokemon(object):
                     await ctx.send("Skipping")
                 else:
                     try:
-                        for val in response.content.split(",").split("\n"):
+                        if "\n" in response.content:
+                            res = response.content.split("\n")
+                        else:
+                            res = response.content.split(",")
+                        for val in res:
                             key, value = val.split(": ")
                             key = key.strip().lower()
                             value = value.strip()
@@ -92,17 +96,27 @@ class Pokemon(object):
 
             while True:
                 response = await self.bot.wait_for("message", check=check, timeout=30)
-                try:
-                    for val in response.content.split(",").split("\n"):
-                        key, value = val.split(": ")
-                        key = key.strip().lower()
-                        value = value.strip()
-                        pokemon["meta"][key] = value
-                    else:
-                        break
-                except:
-                    await ctx.send("Invalid formatting! Try again")
-                    continue
+                if response.content.lower() == "cancel":
+                    await ctx.send("Cancelling!")
+                    return
+                elif response.content.lower() == "skip":
+                    await ctx.send("Skipping!")
+                else:
+                    try:
+                        if "\n" in response.content:
+                            res = response.content.split("\n")
+                        else:
+                            res = response.content.split(",")
+                        for val in res:
+                            key, value = val.split(": ")
+                            key = key.strip().lower()
+                            value = value.strip()
+                            pokemon["meta"][key] = value
+                        else:
+                            break
+                    except:
+                        await ctx.send("Invalid formatting! Try again")
+                        continue
 
             id = await self.bot.di.add_pokemon(ctx.author, pokemon)
             await ctx.send(f"Finished! Pokemon has been added to box with ID {id}")

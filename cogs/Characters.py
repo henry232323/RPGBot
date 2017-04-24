@@ -104,17 +104,27 @@ class Characters(object):
                        "`image: http://image.com/, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)")
         while True:
             response = await self.bot.wait_for("message", check=check, timeout=60)
-            try:
-                for val in response.content.split(",").split("\n"):
-                    key, value = val.split(": ")
-                    key = key.strip()
-                    value = value.strip()
-                    character["meta"][key] = value
-                else:
-                    break
-            except:
-                await ctx.send("Invalid formatting! Try again")
-                continue
+            if response.content.lower() == "cancel":
+                await ctx.send("Cancelling!")
+                return
+            elif response.content.lower() == "skip":
+                await ctx.send("Skipping!")
+            else:
+                try:
+                    if "\n" in response.content:
+                        res = response.content.split("\n")
+                    else:
+                        res = response.content.split(",")
+                    for val in res:
+                        key, value = val.split(": ")
+                        key = key.strip()
+                        value = value.strip()
+                        character["meta"][key] = value
+                    else:
+                        break
+                except:
+                    await ctx.send("Invalid formatting! Try again")
+                    continue
 
         await self.bot.di.add_character(ctx.guild, Character(**character))
         await ctx.send("Character created! pb!team addmember to add to your characters team!")
