@@ -25,12 +25,15 @@ import asyncio
 from .utils.data import Converter
 from .utils import checks
 
+
 class Economy(object):
+    """Economy related commands: balance, market, etc"""
     def __init__(self, bot):
         self.bot = bot
 
     @commands.group(aliases=["bal", "balance", "eco", "e"], no_pm=True, invoke_without_command=True)
     async def economy(self, ctx, member: discord.Member=None):
+        """Check your or another users balance"""
         if member is None:
             member = ctx.author
 
@@ -41,6 +44,7 @@ class Economy(object):
     @checks.mod_or_permissions()
     @economy.command(aliases=["set"], no_pm=True)
     async def setbalance(self, ctx, amount: int, *members: Converter):
+        """Set the balance of the given members to an amount"""
         if "everyone" in members:
             members = ctx.guild.members
 
@@ -52,6 +56,7 @@ class Economy(object):
     @checks.mod_or_permissions()
     @economy.command(aliases=["give"], no_pm=True)
     async def givemoney(self, ctx, amount: int, *members: Converter):
+        """Give the members money (Moderators)"""
         if "everyone" in members:
             members = ctx.guild.members
 
@@ -62,13 +67,15 @@ class Economy(object):
 
     @commands.command(no_pm=True)
     async def pay(self, ctx, amount: int, member: discord.Member):
+        """Pay another user money"""
         amount = abs(amount)
         await self.bot.di.add_eco(ctx.author, -amount)
         await self.bot.di.add_eco(member, amount)
         await ctx.send(f"Successfully paid {amount} Pokédollars to {member}")
 
-    @commands.group(no_pm=True, alises=["m"], invoke_without_command=True)
+    @commands.group(no_pm=True, aliases=["m", "pm"], invoke_without_command=True)
     async def market(self, ctx):
+        """View the current market listings"""
         market = list((await self.bot.di.get_guild_market(ctx.guild)).items())
         desc = """
         \u27A1 to see the next page
@@ -99,55 +106,56 @@ class Economy(object):
 
         while True:
             try:
-                r, u = await self.bot.wait_for("reaction_add", check=lambda r, u: r.message is msg, timeout=80)
+                r, u = await self.bot.wait_for("reaction_add", check=lambda r, u: r.message.id == msg.id, timeout=80)
             except asyncio.TimeoutError:
                 await ctx.send("Timed out! Try again")
                 await msg.delete()
                 return
 
-            if u is ctx.guild.me:
+            if u == ctx.guild.me:
                 continue
 
-            if u is not ctx.author or r.emote not in emotes:
+            if u != ctx.author or r.emoji not in emotes:
                 try:
-                    await r.delete()
+                    await msg.remove_reaction(r.emoji, u)
                 except:
                     pass
                 continue
 
-            print('here')
-            print(r.emote)
-            if r.emote == emotes[0]:
+            if r.emoji == emotes[0]:
                 if i == 0:
-                    continue
-                embed.clear_fields()
-                i -= 1
-                for emote in emotes:
-                    await msg.add_reaction(emote)
+                    pass
+                else:
+                    embed.clear_fields()
+                    i -= 1
+                    for emote in emotes:
+                        await msg.add_reaction(emote)
 
-                await msg.edit(embed=embed)
+                    await msg.edit(embed=embed)
 
-            elif r.emote == emotes[1]:
+            elif r.emoji == emotes[1]:
                 if i == max:
-                    continue
-                embed.clear_fields()
-                i += 1
-                for emote in emotes:
-                    await msg.add_reaction(emote)
+                    pass
+                else:
+                    embed.clear_fields()
+                    i += 1
+                    for emote in emotes:
+                        await msg.add_reaction(emote)
 
-                await msg.edit(embed=embed)
+                    await msg.edit(embed=embed)
             else:
                 await msg.delete()
                 await ctx.send("Closing")
                 return
 
             try:
-                await r.delete()
+                await msg.remove_reaction(r.emoji, u)
             except:
                 pass
 
     @market.command(no_pm=True, aliases=["createlisting", "new", "listitem", "list"])
-    async def create(self, ctx, cost: int, amount: int, *, item):
+    async def create(self, ctx, cost: int, amount: int, *, item: str):
+        """Create a new market listing"""
         amount = abs(amount)
         cost = abs(cost)
         market = await self.bot.di.get_guild_market(ctx.guild)
@@ -176,3 +184,35 @@ class Economy(object):
         await self.bot.di.update_guild_market(ctx.guild, market)
 
         await ctx.send("Item listed!")
+
+    @market.command(no_pm=True, aliases=["purchase"])
+    async def buy(self, ctx, amount: int, *, item: str):
+        """Buy a given amount of an item from the player market at the cheapest given price"""
+        amount = abs(amount)
+        market = await self.bot.di.get_guild_market(ctx.guild)
+        items = market.get(item)
+        if not items:
+            await ctx.send("There are none of those on the market! Sorry")
+            return
+
+        fcost = 0
+        remaining = amount
+        while remaining:
+            m = min(items, key=lambda x: x.cost)
+            if m.amount < remaining:
+                items.remove(m)
+                remaining -= m.amount
+                fcost += m.amount * m.cost
+            else:
+                m.amount -= amount
+                fcost += m.cost * amount
+
+        try:
+            await self.bot.di.add_eco(-fcost)
+        except ValueError:
+            await ctx.send("You cant afford this many!")
+            return
+
+        await self.bot.di.give_items(ctx.author, (item, amount))
+        await self.bot.di.update_guild_market(ctx.guild, market)
+        await ctx.send("Items successfully bought")

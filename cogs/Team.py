@@ -29,6 +29,7 @@ class Team(object):
 
     @commands.command(no_pm=True)
     async def box(self, ctx, member: discord.Member=None):
+        """Check the pokemon in your box"""
         if member is None:
             member = ctx.author
         box = await self.bot.di.get_box(member)
@@ -42,6 +43,7 @@ class Team(object):
 
     @commands.group(invoke_without_command=True, no_pm=True)
     async def team(self, ctx, character: str):
+        """Check a character's team"""
         team = await self.bot.di.get_team(ctx.guild, character)
         all_chars = await self.bot.di.get_guild_characters()
         chobj = all_chars[character]
