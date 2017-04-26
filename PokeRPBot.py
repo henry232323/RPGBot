@@ -78,7 +78,9 @@ class Bot(commands.Bot):
             "Settings": cogs.Settings.Settings(self),
             "Misc": cogs.Misc.Misc(self),
             "Characters": cogs.Characters.Characters(self),
-            "Pokemon": cogs.Pokemon.Pokemon(self)
+            "Pokemon": cogs.Pokemon.Pokemon(self),
+            "Guilds": cogs.Guilds.Guilds(self),
+            "User": cogs.User.User(self)
         }
 
         self.db = db.Database(self)

@@ -94,7 +94,7 @@ class Characters(object):
         """Create a new character"""
         check = lambda x: x.channel is ctx.channel and x.author is ctx.author
         character = dict(name=name, owner=ctx.author.id, meta=dict(), team=list())
-        await ctx.send("Describe the character (Relevent character sheet)")
+        await ctx.send("Describe the character (Relevant character sheet)")
         response = await self.bot.wait_for("message", check=check, timeout=60)
         character["description"] = response.content
         await ctx.send("What level is the character?")

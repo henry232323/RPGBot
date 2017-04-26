@@ -220,7 +220,7 @@ class Economy(object):
         await self.bot.di.update_guild_market(ctx.guild, market)
         await ctx.send("Items successfully bought")
 
-    @commands.group(invoke_without_command=True, aliases=['box'], no_pm=True)
+    @commands.group(invoke_without_command=True, aliases=['lb'], no_pm=True)
     async def lootbox(self, ctx):
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
         if boxes:
