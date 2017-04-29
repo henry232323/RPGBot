@@ -37,7 +37,7 @@ class User(object):
         embed.set_author(name=user.display_name, icon_url=user.avatar_url)
         embed.set_thumbnail(url=user.avatar_url)
 
-        ud = self.bot.db.get_user_data(user)
+        ud = await self.bot.db.get_user_data(user)
 
         pokemon = [f"{x.id}: **{x.name}**" for x in ud["box"]]
         boxitems = "\n".join(pokemon)

@@ -245,9 +245,10 @@ class Guilds(object):
             return
         guilds = await self.bot.di.get_guild_guilds(ctx.guild)
         guild = guilds.get(ug)
+        if guild.owner == ctx.author.id:
+            await self.bot.di.remove_guild(ctx.guild, guild.name)
         guild.members.remove(ctx.user.id)
         await self.bot.di.set_guild(ctx.author, None)
-        await self.bot.di.update_guild_guilds(guilds)
         await ctx.send("Guild left.")
 
     @guild.command(no_pm=True)
@@ -308,9 +309,6 @@ class Guilds(object):
 
         if resp.content.lower() == "yes":
             await ctx.send("Alright then!")
-
-        for mid in guild.members:
-            await self.bot.di.set_guild(discord.utils.get(ctx.guild.members, id=mid), None)
 
         await self.bot.di.remove_guild(ctx.guild, guild.name)
         await ctx.send("Guild removed!")
