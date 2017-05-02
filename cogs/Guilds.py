@@ -23,6 +23,7 @@ from discord.ext import commands
 import discord
 
 import asyncio
+from collections import Counter
 
 from .utils.data import Guild
 
@@ -209,12 +210,13 @@ class Guilds(object):
                 guild["icon"] = response.content
 
             guilds[guild["name"]] = Guild(**guild)
-            await self.bot.di.update_guild_guilds(guilds)
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         except asyncio.TimeoutError:
             await ctx.send("Timed out! Try again")
 
     @guild.command(no_pm=True)
     async def join(self, ctx, *, name: str):
+        """Join a guild (if you have an invite for closed guilds)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is not None:
             await ctx.send("You're already in a guild! Leave this guild to create a new one")
@@ -234,11 +236,12 @@ class Guilds(object):
 
         guild.members.add(ctx.author.id)
         await self.bot.di.set_guild(ctx.author, guild.name)
-        await self.bot.di.update_guild_guilds(guilds)
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send("Guild joined!")
 
     @guild.command(no_pm=True)
     async def leave(self, ctx):
+        """Leave your guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send("You aren't in a guild!")
@@ -253,6 +256,7 @@ class Guilds(object):
 
     @guild.command(no_pm=True)
     async def kick(self, ctx, user: discord.Member):
+        """Kick a member from a guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send("You aren't in a guild!")
@@ -269,11 +273,12 @@ class Guilds(object):
 
         guild.members.remove(user.id)
         await self.bot.di.set_guild(user, None)
-        await self.bot.di.update_guild_guilds(guilds)
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send("User kicked")
 
     @guild.command(no_pm=True)
     async def invite(self, ctx, user: discord.Member):
+        """Invite a user your closed guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send("You aren't in a guild!")
@@ -285,11 +290,12 @@ class Guilds(object):
             return
 
         guild.invites.add(user.id)
-        await self.bot.di.update_guild_guilds(guilds)
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send(f"Sent a guild invite to {user}")
 
     @guild.command(no_pm=True)
     async def delete(self, ctx):
+        """Delete your guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send("You aren't in a guild!")
@@ -313,5 +319,140 @@ class Guilds(object):
         await self.bot.di.remove_guild(ctx.guild, guild.name)
         await ctx.send("Guild removed!")
 
+    @guild.command(no_pm=True)
+    async def deposit(self, ctx, amount: int):
+        """Deposit an amount of money into the guild bank"""
+        amount = abs(amount)
+        ug = await self.bot.di.get_user_guild(ctx.author)
+        if ug is None:
+            await ctx.send("You aren't in a guild!")
+            return
+        guilds = await self.bot.get_guild_guilds(ctx.guild)
+        guild = guilds.get(ug)
+        try:
+            await self.bot.di.add_eco(ctx.author, -amount)
+        except ValueError:
+            await ctx.send("You don't have enough to deposit!")
+            return
 
+        guild.bank += amount
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send(f"Successfully deposited {amount} Pokédollars")
 
+    @guild.command(no_pm=True)
+    async def withdraw(self, ctx, amount: int):
+        """Take money from the guild bank"""
+        amount = abs(amount)
+        ug = await self.bot.di.get_user_guild(ctx.author)
+        if ug is None:
+            await ctx.send("You aren't in a guild!")
+            return
+        guilds = await self.bot.get_guild_guilds(ctx.guild)
+        guild = guilds.get(ug)
+        if ctx.author.id not in guild.mods and ctx.author.id != guild.owner:
+            await ctx.send("Only mods can withdraw money!")
+            return
+        try:
+            await self.bot.di.add_eco(ctx.author, -amount)
+        except ValueError:
+            await ctx.send("You don't have enough to deposit!")
+            return
+
+        guild.bank += amount
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send(f"Successfully deposited {amount} Pokédollars")
+
+    @guild.command(no_pm=True)
+    async def setmod(self, ctx, *members: discord.Member):
+        ug = await self.bot.di.get_user_guild(ctx.author)
+        if ug is None:
+            await ctx.send("You aren't in a guild!")
+            return
+        guilds = await self.bot.get_guild_guilds(ctx.guild)
+        guild = guilds.get(ug)
+        if ctx.author.id != guild.owner:
+            await ctx.send("Only the guild owner can add mods")
+            return
+
+        for member in members:
+            if member.id not in guild.members:
+                await ctx.send(f"{member} couldn't be added! Not in guild!")
+            else:
+                guild.mods.add(member.id)
+
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send("Successfully added mods!")
+
+    @guild.command(no_pm=True)
+    async def deposititems(self, ctx, *items: str):
+        """Deposit items into the guild's storage, uses {item}x{#} notation"""
+        ug = await self.bot.di.get_user_guild(ctx.author)
+        if ug is None:
+            await ctx.send("You aren't in a guild!")
+            return
+        guilds = await self.bot.get_guild_guilds(ctx.guild)
+        guild = guilds.get(ug)
+
+        fitems = []
+        for item in items:
+            split = item.split('x')
+            split, num = "x".join(split[:-1]), abs(int(split[-1]))
+            fitems.append((split, num))
+
+        try:
+            await self.bot.di.take_items(ctx.author, items)
+        except ValueError:
+            await ctx.send("You don't have enough to give!")
+            return
+
+        guild.items = Counter(guild.items)
+        guild.items.update(dict(fitems))
+
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send("Successfully deposited items!")
+
+    @guild.command(no_pm=True)
+    async def withdrawitems(self, ctx, *items: str):
+        ug = await self.bot.di.get_user_guild(ctx.author)
+        if ug is None:
+            await ctx.send("You aren't in a guild!")
+            return
+        guilds = await self.bot.get_guild_guilds(ctx.guild)
+        guild = guilds.get(ug)
+
+        if ctx.author.id not in guild.mods and ctx.author.id != guild.owner:
+            await ctx.send("Only mods can withdraw money!")
+            return
+
+        fitems = []
+        for item in items:
+            split = item.split('x')
+            split, num = "x".join(split[:-1]), abs(int(split[-1]))
+            fitems.append((split, num))
+
+        guild.items = Counter(guild.items)
+        guild.items.subtract(dict(fitems))
+
+        if [1 for x in guild.items.values() if x < 0]:
+            await ctx.send("The guild does not have this many items!")
+
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await self.bot.di.give_items(ctx.author, items)
+        await ctx.send("Successfully withdrew items")
+
+    @guild.command(no_pm=True)
+    async def toggleopen(self, ctx):
+        ug = await self.bot.di.get_user_guild(ctx.author)
+        if ug is None:
+            await ctx.send("You aren't in a guild!")
+            return
+        guilds = await self.bot.get_guild_guilds(ctx.guild)
+        guild = guilds.get(ug)
+
+        if ctx.author.id != guild.owner:
+            await ctx.send("Only the owner can toggle this!")
+            return
+
+        guild.open = not guild.open
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send(f"Guild is now {'open' if guild.open else 'closed'}")

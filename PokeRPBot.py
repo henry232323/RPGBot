@@ -116,6 +116,14 @@ class Bot(commands.Bot):
 
         await self.process_commands(message)
 
+    async def on_command(self, ctx):
+        self.commands_used[ctx.command] += 1
+        if isinstance(ctx.author, discord.Member):
+            self.server_commands[ctx.guild.id] += 1
+            if not (self.server_commands[ctx.guild.id] % 50):
+                await ctx.send(
+                    "If you like the utilities this bot provides, consider buying me a coffee https://ko-fi.com/henrys")
+
     async def on_command_error(self, exception, ctx):
         logging.info(f"Exception in {ctx.command} ({ctx.channel.name}: {ctx.guild.name}): {exception}")
         if isinstance(exception, commands.MissingRequiredArgument):

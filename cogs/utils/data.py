@@ -27,7 +27,21 @@ from discord.ext import commands
 Pokemon = namedtuple("Pokemon", ["id", "name", "type", "stats", "meta"])
 ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
 Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
-Guild = namedtuple("Guild", ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites"])
+
+
+class Guild(namedtuple("Guild", ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites", "mods"])):
+    __slots__ = ()
+
+    def __new__(cls, name, owner, description="", members=None, bank=0, items=None, open=False, image=None, icon=None, invites=None, mods=None):
+        if members is None:
+            members = set()
+        if items is None:
+            items = dict()
+        if invites is None:
+            invites = set()
+        if mods is None:
+            mods = set()
+        super(Guild, cls).__new__(cls, name, owner, description, members, bank, items, open, image, icon, invites, mods)
 
 
 class Converter(commands.MemberConverter):
@@ -49,7 +63,8 @@ default_server = {
     "characters": dict(),
     "market_items": dict(),
     "loot_boxes": dict(),
-    "guilds": dict()
+    "guilds": dict(),
+    "shop_items": dict()
 }
 
 example_pokemon = {
@@ -117,15 +132,16 @@ example_guild = {
     "bank": 5123890,
     "items": Counter(bananas=5),
     "open": False,
-    "invites": set(),
+    "invites": {166349353999532035},
     "image": None,
-    "icon": None
+    "icon": None,
+    "mods": {166349353999532035}
 }
 
 class DataInteraction(object):
     def __init__(self, bot):
         self.bot = bot
-        self.db = self.db
+        self.db = self.bot.db
 
     async def get_team(self, guild, character):
         gd = await self.db.get_guild_data(guild)
@@ -183,6 +199,11 @@ class DataInteraction(object):
         """Get the current market of a server"""
         gd = await self.db.get_guild_data(guild)
         return gd.get("market_items", dict())
+
+    async def get_guild_shop(self, guild):
+        """Get the current market of a server"""
+        gd = await self.db.get_guild_data(guild)
+        return gd.get("shop_items", dict())
 
     async def get_guild_characters(self, guild):
         """Get all the characters for a server"""
@@ -242,6 +263,8 @@ class DataInteraction(object):
         """Give (or take) a user('s) money"""
         ud = await self.db.get_user_data(member)
         ud["money"] += amount
+        if ud["money"] < 0:
+            raise ValueError("Cannot take more than user has!")
         await self.db.update_user_data(member, ud)
         return ud["money"]
 
@@ -302,4 +325,10 @@ class DataInteraction(object):
         for mid in gd['members']:
             await self.set_guild(discord.utils.get(guild.members, id=mid), None)
         del gd["guilds"][name]
+        return await self.db.update_guild_data(guild, gd)
+
+    async def update_guild_shop(self, guild, data):
+        """Update a server's market"""
+        gd = await self.db.get_guild_data(guild)
+        gd["shop_items"] = data
         return await self.db.update_guild_data(guild, gd)
