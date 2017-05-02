@@ -99,8 +99,7 @@ class Settings(object):
             item["description"] = response.content
             item["meta"] = dict()
 
-            await ctx.send("Additional information? (Attributes formatted in a list i.e `buy_value: 400, sell_value: 200` "
-                           "Special additional information includes `buy_value` and `sell_value`")
+            await ctx.send("Additional information? (Attributes formatted in a list i.e `color: 400, value: 200` ")
             while True:
                 response = await self.bot.wait_for("message", timeout=30, check=check)
                 if response.content.lower() == "cancel":
