@@ -131,8 +131,11 @@ class Economy(object):
                 else:
                     embed.clear_fields()
                     i -= 1
-                    for emote in emotes:
-                        await msg.add_reaction(emote)
+                    for item, value in chunks[i]:
+                        fmt = "\n".join(str(
+                            discord.utils.get(ctx.guild.members, id=x['user'])) + f": \u20BD{x['cost']} x{x['amount']}"
+                                        for x in value)
+                        embed.add_field(name=item, value=fmt)
 
                     await msg.edit(embed=embed)
 
@@ -142,8 +145,11 @@ class Economy(object):
                 else:
                     embed.clear_fields()
                     i += 1
-                    for emote in emotes:
-                        await msg.add_reaction(emote)
+                    for item, value in chunks[i]:
+                        fmt = "\n".join(str(
+                            discord.utils.get(ctx.guild.members, id=x['user'])) + f": \u20BD{x['cost']} x{x['amount']}"
+                                        for x in value)
+                        embed.add_field(name=item, value=fmt)
 
                     await msg.edit(embed=embed)
             else:
@@ -357,3 +363,150 @@ class Economy(object):
                 await ctx.send("This server has no lotto by that name! See ;lotto")
         else:
             await ctx.send("This server has no lottos currently running!")
+
+    @commands.group(no_pm=True, invoke_without_command=True)
+    async def shop(self, ctx):
+        shop = list((await self.bot.di.get_guild_shop(ctx.guild)).items())
+        desc = """
+                \u27A1 to see the next page
+                \u2B05 to go back
+                \u274C to exit
+                """
+        if not shop:
+            await ctx.send("No items in the shop to display.")
+            return
+        emotes = ("\u2B05", "\u27A1", "\u274C")
+        embed = discord.Embed(description=desc, title="Server Shop")
+        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+
+        chunks = []
+        for i in range(0, len(shop), 25):
+            chunks.append(shop[i:i + 25])
+
+        i = 0
+        for item, value in chunks[i]:
+            fmt = f"Buy Value: {value['buy']}\nSell Value: {value['sell']}"
+            embed.add_field(name=item, value=fmt)
+
+        max = len(chunks) - 1
+
+        msg = await ctx.send(embed=embed)
+        for emote in emotes:
+            await msg.add_reaction(emote)
+
+        while True:
+            try:
+                r, u = await self.bot.wait_for("reaction_add", check=lambda r, u: r.message.id == msg.id, timeout=80)
+            except asyncio.TimeoutError:
+                await ctx.send("Timed out! Try again")
+                await msg.delete()
+                return
+
+            if u == ctx.guild.me:
+                continue
+
+            if u != ctx.author or r.emoji not in emotes:
+                try:
+                    await msg.remove_reaction(r.emoji, u)
+                except:
+                    pass
+                continue
+
+            if r.emoji == emotes[0]:
+                if i == 0:
+                    pass
+                else:
+                    embed.clear_fields()
+                    i -= 1
+                    for item, value in chunks[i]:
+                        fmt = f"Buy Value: {value['buy']}\nSell Value: {value['sell']}"
+                        embed.add_field(name=item, value=fmt)
+
+                    await msg.edit(embed=embed)
+
+            elif r.emoji == emotes[1]:
+                if i == max:
+                    pass
+                else:
+                    embed.clear_fields()
+                    i += 1
+                    for item, value in chunks[i]:
+                        fmt = f"Buy Value: {value['buy']}\nSell Value: {value['sell']}"
+                        embed.add_field(name=item, value=fmt)
+
+                    await msg.edit(embed=embed)
+            else:
+                await msg.delete()
+                await ctx.send("Closing")
+                return
+
+            try:
+                await msg.remove_reaction(r.emoji, u)
+            except:
+                pass
+
+    @shop.command(no_pm=True)
+    @checks.mod_or_permissions()
+    async def additem(self, ctx, name: str, buyvalue: int=0, sellvalue: int=0):
+        """Add an item to the server shop, to make an item unsaleable or unbuyable set their respective values to 0
+        pb!additem Pokeball 0 10
+        Can be sold for 10 and cannot be bought. Must be an existing item!"""
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        if name not in gd.items():
+            await ctx.send("This item doesn't exist!")
+            return
+
+        shop = gd["shop_items"]
+        item = dict(buy=buyvalue, sell=sellvalue)
+        shop[name] = item
+
+        await self.bot.di.update_guild_shop(shop)
+        await ctx.send("Guild shop updated")
+
+    @shop.command(no_pm=True)
+    @checks.mod_or_permissions()
+    async def removeitem(self, ctx, name: str):
+        shop = await self.bot.di.get_guild_shop(ctx.guild)
+        try:
+            del shop[name]
+        except KeyError:
+            await ctx.send("That item isn't listed!")
+            return
+        await self.bot.di.update_guild_shop(shop)
+        await ctx.send("Successfully removed item")
+
+    @shop.command(no_pm=True)
+    async def buy(self, ctx, item: str, amount: int):
+        amount = abs(amount)
+        shop = await self.bot.di.get_guild_shop(ctx.guild)
+        try:
+            item = shop[item]
+            await self.bot.add_eco(ctx.author, -item["buy"] * amount)
+        except KeyError:
+            await ctx.send("This item cannot be bought!")
+            return
+        except ValueError:
+            await ctx.send("You can't afford this many!")
+            return
+
+        await self.bot.di.add_items(ctx.author, (item, amount))
+        await ctx.send(f"Successfully bought {amount} {item}s")
+
+    @shop.command(no_pm=True)
+    async def sell(self, ctx, item: str, amount: int):
+        amount = abs(amount)
+        shop = await self.bot.di.get_guild_shop(ctx.guild)
+        try:
+            item = shop[item]
+            await self.bot.add_eco(ctx.author, item["sell"] * amount)
+        except KeyError:
+            await ctx.send("This item cannot be sold!")
+            return
+
+        try:
+            await self.bot.di.take_items(ctx.author, (item, amount))
+        except ValueError:
+            await ctx.send("You don't have enough to sell")
+            return
+
+        await ctx.send(f"Successfully bought {amount} {item}s")

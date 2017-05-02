@@ -41,19 +41,19 @@ def role_or_permissions(ctx, check, **perms):
 
 def mod_or_inv():
     def predicate(ctx):
-        return role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Inventory'))
+        return role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Inventory'), manage_server=True)
 
     return commands.check(predicate)
 
 def mod_or_permissions(**perms):
     def predicate(ctx):
-        return role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin'), **perms)
+        return role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin'), manage_server=True, **perms)
 
     return commands.check(predicate)
 
 def admin_or_permissions(**perms):
     def predicate(ctx):
-        return role_or_permissions(ctx, lambda r: r.name == 'Bot Admin', **perms)
+        return role_or_permissions(ctx, lambda r: r.name == 'Bot Admin', manage_server=True, **perms)
 
     return commands.check(predicate)
 
