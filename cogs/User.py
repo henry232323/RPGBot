@@ -40,14 +40,23 @@ class User(object):
         ud = await self.bot.db.get_user_data(user)
 
         pokemon = [f"{x.id}: **{x.name}**" for x in ud["box"]]
+        pl = len(pokemon)
+        if pl > 20:
+            pokemon = pokemon[20:]
+            pokemon.append(f"\nand {pl-20} more...")
         boxitems = "\n".join(pokemon)
 
         imap = [f"{x[0]} x{x[1]}" for x in ud["items"].items()]
+        il = len(imap)
+        if il > 20:
+            imap = imap[20:]
+            imap.append(f"\nand {il-20} more...")
         invitems = "\n".join(imap)
 
         embed.add_field(name="Balance", value=f"{ud['money']} Pokédollars")
         embed.add_field(name="Guild", value=ud["guild"] or "None")
         embed.add_field(name="Items", value=invitems)
         embed.add_field(name="Box", value=boxitems)
+        embed.add_field(name="Experience", value=f"Level: {ud['level']}\nExperience: {ud['exp']}/{self.bot.get_exp(ud['level'])}")
 
         await ctx.send(embed)

@@ -54,7 +54,9 @@ default_user = {
     "money": 0,
     "box": [],
     "items": dict(),
-    "guild": None
+    "guild": None,
+    "level": 0,
+    "exp": 0
 }
 
 default_server = {
@@ -172,6 +174,11 @@ class DataInteraction(object):
         ud = await self.db.get_user_data(member)
         return ud.get("guild")
 
+    async def get_user_level(self, member):
+        """Get user's level"""
+        ud = await self.db.get_user_data(member)
+        return (ud.get("level", 0), ud.get("exp", 0))
+
     async def get_pokemon(self, member, id):
         """Get a user's Pokemon with the given ID"""
         box = await self.get_box(member)
@@ -281,6 +288,16 @@ class DataInteraction(object):
         gd["start"] = amount
         return await self.db.update_user_data(guild, gd)
 
+    async def add_exp(self, member, exp):
+        ud = await self.bot.db.get_user_data(member)
+        next = self.bot.get_exp(ud["level"])
+        while ud["exp"] > next:
+            ud["level"] += 1
+            ud["exp"] -= next
+            next = self.bot.get_exp(ud["level"])
+
+        await self.db.update_guild_data(ud)
+
     async def add_to_team(self, guild, character, id):
         """Add a pokemon to a character's team"""
         gd = await self.db.get_guild_data(guild)
@@ -293,6 +310,12 @@ class DataInteraction(object):
     async def set_guild(self, member, name):
         ud = await self.db.get_user_data(member)
         ud["guild"] = name
+        return await self.bot.update_user_data(member, ud)
+
+    async def set_level(self, member, level, exp):
+        ud = await self.db.get_user_data(member)
+        ud["level"] = level
+        ud["exp"] = exp
         return await self.bot.update_user_data(member, ud)
 
     async def remove_from_team(self, guild, character, id):

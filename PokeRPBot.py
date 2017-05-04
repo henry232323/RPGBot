@@ -21,16 +21,19 @@
 
 import os
 import sys
-import json
+import ujson as json
 import logging
 import discord
 import psutil
 import datetime
 import aiohttp
 import asyncio
-import asyncpg
 from discord.ext import commands
 from collections import Counter
+
+from kyoukai import Kyoukai
+from kyoukai.asphalt import HTTPRequestContext, Response
+from werkzeug.exceptions import HTTPException
 
 import cogs
 from cogs.utils import db, data
@@ -122,7 +125,7 @@ class Bot(commands.Bot):
             self.server_commands[ctx.guild.id] += 1
             if not (self.server_commands[ctx.guild.id] % 50):
                 await ctx.send(
-                    "If you like the utilities this bot provides, consider buying me a coffee https://ko-fi.com/henrys")
+                    "This bot costs $130/yr to run. If you like the utilities it provides, consider buying me a coffee https://ko-fi.com/henrys")
 
     async def on_command_error(self, exception, ctx):
         logging.info(f"Exception in {ctx.command} ({ctx.channel.name}: {ctx.guild.name}): {exception}")
@@ -155,13 +158,40 @@ class Bot(commands.Bot):
         return fmt.format(d=days, h=hours, m=minutes, s=seconds)
 
     @staticmethod
+    def get_exp(level):
+        return int(0.2 * level ** 2 + 2 * level + 15)
+
+    @staticmethod
     async def get_ram():
         """Get the bot's RAM usage info."""
         mu = psutil.Process(os.getpid()).memory_info().rss
-        return mu / 1_000_000
+        return mu / 1000000
 
     async def shutdown(self):
         self.session.close()
+
+    async def start_serv(self):
+        self.webapp = Kyoukai(__name__)
+
+        @self.webapp.route("/servers/<int:snowflake>/", methods=["GET"])
+        async def getservinfo(ctx: HTTPRequestContext, snowflake: int):
+            try:
+                req = f"""SELECT info FROM servdata WHERE UUID = {snowflake}"""
+                response = await self.db._conn.fetchval(req)
+                return Response(response if response else json.dumps(self.default_servdata), status=200)
+            except:
+                return HTTPException("Invalid snowflake!", Response("Failed to fetch info!", status=400))
+
+        @self.webapp.route("/users/<int:snowflake>/", methods=["GET"])
+        async def getuserinfo(ctx: HTTPRequestContext, snowflake: int):
+            try:
+                req = f"""SELECT info FROM userdata WHERE UUID = {snowflake}"""
+                response = await self.db._conn.fetchval(req)
+                return Response(response if response else json.dumps(self.default_udata), status=200)
+            except:
+                return HTTPException("Invalid snowflake!", Response("Failed to fetch info!", status=400))
+
+        await self.webapp.start('0.0.0.0', 1441)
 
 prefix = ['pb!'] if 'debug' not in sys.argv else ['pb!']
 invlink = "https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=322625"

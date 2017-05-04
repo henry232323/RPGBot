@@ -24,9 +24,10 @@ from discord.ext import commands
 import datetime
 from collections import Counter
 from random import randint, choice
-from time import time
+from time import monotonic
 import os
 import psutil
+
 
 class Misc(object):
     def __init__(self, bot):
@@ -86,9 +87,9 @@ class Misc(object):
         Test the bot's connection ping
         '''
         msg = "P{0}ng".format(choice("aeiou"))
-        a = time()
+        a = monotonic()
         ping = await ctx.send(msg)
-        b = time()
+        b = monotonic()
         await self.bot.edit_message(ping, " ".join([msg, "`{:.3f}ms`".format((b - a) * 1000)]))
 
     @commands.command()
@@ -172,27 +173,34 @@ class Misc(object):
 
         await ctx.send(final_url)
 
-        @commands.command()
-        async def donate(self, ctx):
-            """Donation information"""
-            await ctx.send("Keeping the bots running takes money, "
-                           "if several people would buy me a coffee each month, "
-                           "I wouldn't have to worry about it coming out of my pocket. "
-                           "If you'd like, you can donate to me here: https://ko-fi.com/henrys")
+    @commands.command()
+    async def donate(self, ctx):
+        """Donation information"""
+        await ctx.send("Keeping the bots running takes money, "
+                       "if several people would buy me a coffee each month, "
+                       "I wouldn't have to worry about it coming out of my pocket. "
+                       "If you'd like, you can donate to me here: https://ko-fi.com/henrys")
 
-        @commands.command()
-        async def feedback(self, ctx, *, feedback):
-            """Give me some feedback on the bot"""
-            with open("feedback.txt", "a+") as f:
-                f.write(feedback + "\n")
-            await ctx.send("Thank you for the feedback!")
+    @commands.command()
+    async def feedback(self, ctx, *, feedback):
+        """Give me some feedback on the bot"""
+        with open("feedback.txt", "a+") as f:
+            f.write(feedback + "\n")
+        await ctx.send("Thank you for the feedback!")
 
-        @commands.command(hidden=True)
-        async def socketstats(self, ctx):
-            delta = datetime.datetime.utcnow() - self.bot.uptime
-            minutes = delta.total_seconds() / 60
-            total = sum(self.bot.socket_stats.values())
-            cpm = total / minutes
+    @commands.command(hidden=True)
+    async def socketstats(self, ctx):
+        delta = datetime.datetime.utcnow() - self.bot.uptime
+        minutes = delta.total_seconds() / 60
+        total = sum(self.bot.socket_stats.values())
+        cpm = total / minutes
 
-            fmt = '%s socket events observed (%.2f/minute):\n%s'
-            await ctx.send(fmt % (total, cpm, self.bot.socket_stats))
+        fmt = '%s socket events observed (%.2f/minute):\n%s'
+        await ctx.send(fmt % (total, cpm, self.bot.socket_stats))
+
+    @commands.command(hidden=True)
+    async def topcmds(self, ctx):
+        embed = discord.Embed()
+        embed.set_author(name=ctx.guild.me.display_name, icon_url=ctx.bot.user.avatar_url)
+        for command, number in self.bot.commands_used.most_common(10):
+            embed.add_field(name=command.name, value=f"Uses: {number}")
