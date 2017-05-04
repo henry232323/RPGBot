@@ -200,7 +200,9 @@ class Misc(object):
 
     @commands.command(hidden=True)
     async def topcmds(self, ctx):
-        embed = discord.Embed()
+        embed = discord.Embed(title="Total Commands Used")
         embed.set_author(name=ctx.guild.me.display_name, icon_url=ctx.bot.user.avatar_url)
         for command, number in self.bot.commands_used.most_common(10):
             embed.add_field(name=command.name, value=f"Uses: {number}")
+
+        await ctx.send(embed)
