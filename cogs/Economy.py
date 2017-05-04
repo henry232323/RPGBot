@@ -384,8 +384,19 @@ class Economy(object):
             chunks.append(shop[i:i + 25])
 
         i = 0
+        def lfmt(v):
+            d = []
+            if value["buy"]:
+                d.append(f"Buy Value: {value['buy']}")
+            if value["sell"]:
+                d.append(f"Sell Value: {value['sell']}")
+            if value["level"]:
+                d.append(f"Level: {value['level']}")
+            return "\n".join(v)
+
+
         for item, value in chunks[i]:
-            fmt = f"Buy Value: {value['buy']}\nSell Value: {value['sell']}"
+            fmt = lfmt(value)
             embed.add_field(name=item, value=fmt)
 
         max = len(chunks) - 1
@@ -419,7 +430,7 @@ class Economy(object):
                     embed.clear_fields()
                     i -= 1
                     for item, value in chunks[i]:
-                        fmt = f"Buy Value: {value['buy']}\nSell Value: {value['sell']}"
+                        fmt = lfmt(value)
                         embed.add_field(name=item, value=fmt)
 
                     await msg.edit(embed=embed)
@@ -431,7 +442,7 @@ class Economy(object):
                     embed.clear_fields()
                     i += 1
                     for item, value in chunks[i]:
-                        fmt = f"Buy Value: {value['buy']}\nSell Value: {value['sell']}"
+                        fmt = lfmt(value)
                         embed.add_field(name=item, value=fmt)
 
                     await msg.edit(embed=embed)
@@ -447,7 +458,7 @@ class Economy(object):
 
     @shop.command(no_pm=True)
     @checks.mod_or_permissions()
-    async def additem(self, ctx, name: str, buyvalue: int=0, sellvalue: int=0):
+    async def additem(self, ctx, name: str):
         """Add an item to the server shop, to make an item unsaleable or unbuyable set their respective values to 0
         pb!additem Pokeball 0 10
         Can be sold for 10 and cannot be bought. Must be an existing item!"""
@@ -457,8 +468,50 @@ class Economy(object):
             return
 
         shop = gd["shop_items"]
-        item = dict(buy=buyvalue, sell=sellvalue)
+        item = dict(buy=0, sell=0, level=0)
         shop[name] = item
+        check = lambda x: x.author is ctx.author and x.channel is ctx.channel
+
+        await ctx.send("Say 'cancel' to cancel or 'skip' to skip a step")
+        try:
+            while True:
+                await ctx.send("How much should this be buyable for? 0 for not buyable")
+                resp = await self.bot.wait_for("message", check=check)
+                try:
+                    item["buy"] = int(resp.content)
+                except ValueError:
+                    await ctx.send("That is not a valid number!")
+                    continue
+                break
+
+            while True:
+                await ctx.send("How much should this be sellable for? 0 for not sellable")
+                resp = await self.bot.wait_for("message", check=check)
+                try:
+                    item["sell"] = int(resp.content)
+                except ValueError:
+                    await ctx.send("That is not a valid number!")
+                    continue
+                break
+
+            while True:
+                await ctx.send("What is the minimum level a user must be for this item? 0 for no minimum")
+                resp = await self.bot.wait_for("message", check=check)
+                try:
+                    item["sell"] = int(resp.content)
+                except ValueError:
+                    await ctx.send("That is not a valid number!")
+                    continue
+                break
+
+            if not sum(item.values()):
+                await ctx.send("You can't make an item with 0 for every value! Cancelling, try again.")
+                return
+
+        except asyncio.TimeoutError:
+            await ctx.send("Timed out! Cancelling")
+            return
+
 
         await self.bot.di.update_guild_shop(shop)
         await ctx.send("Guild shop updated")
@@ -466,6 +519,7 @@ class Economy(object):
     @shop.command(no_pm=True)
     @checks.mod_or_permissions()
     async def removeitem(self, ctx, name: str):
+        """Remove a listed item"""
         shop = await self.bot.di.get_guild_shop(ctx.guild)
         try:
             del shop[name]
@@ -477,14 +531,19 @@ class Economy(object):
 
     @shop.command(no_pm=True)
     async def buy(self, ctx, item: str, amount: int):
+        """Buy an item from the shop"""
         amount = abs(amount)
         shop = await self.bot.di.get_guild_shop(ctx.guild)
+        ulvl, uexp = await self.bot.di.get_user_level(ctx.author)
         try:
             item = shop[item]
+            if not item["buy"]:
+                await ctx.send("This item cannot be bought!")
+                return
+            if item["level"] > ulvl:
+                await ctx.send("You aren't high enough level for this item!")
+                return
             await self.bot.add_eco(ctx.author, -item["buy"] * amount)
-        except KeyError:
-            await ctx.send("This item cannot be bought!")
-            return
         except ValueError:
             await ctx.send("You can't afford this many!")
             return
@@ -494,14 +553,14 @@ class Economy(object):
 
     @shop.command(no_pm=True)
     async def sell(self, ctx, item: str, amount: int):
+        """Sell an item to the shop"""
         amount = abs(amount)
         shop = await self.bot.di.get_guild_shop(ctx.guild)
-        try:
-            item = shop[item]
-            await self.bot.add_eco(ctx.author, item["sell"] * amount)
-        except KeyError:
+        item = shop[item]
+        if not item["sell"]:
             await ctx.send("This item cannot be sold!")
             return
+        await self.bot.add_eco(ctx.author, item["sell"] * amount)
 
         try:
             await self.bot.di.take_items(ctx.author, (item, amount))
@@ -509,4 +568,4 @@ class Economy(object):
             await ctx.send("You don't have enough to sell")
             return
 
-        await ctx.send(f"Successfully bought {amount} {item}s")
+        await ctx.send(f"Successfully sell {amount} {item}s")
