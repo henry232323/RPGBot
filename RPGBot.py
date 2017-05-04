@@ -104,7 +104,7 @@ class Bot(commands.Bot):
         for cog in self._cogs.values():
             self.add_cog(cog)
 
-        await self.change_presence(game=discord.Game(name="pb!help for help!"))
+        await self.change_presence(game=discord.Game(name="rp!help for help!"))
 
         url = "https://bots.discord.pw/api/bots/{}/stats".format(self.user.id)
         payload = json.dumps(dict(server_count=len(self.guilds))).encode()
@@ -193,11 +193,11 @@ class Bot(commands.Bot):
 
         await self.webapp.start('0.0.0.0', 1441)
 
-prefix = ['pb!'] if 'debug' not in sys.argv else ['pb!']
+prefix = ['rp!', 'pb!']
 invlink = "https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=322625"
 servinv = "https://discord.gg/UYJb8fQ"
 sourcelink = "https://github.com/henry232323/RPGBot"
-description = f"RPGBot, a little discord bot by Henry#6174\n**Add to your server**: {invlink}\n**Support Server**: {servlink}\n**Source**: {sourcelink}"
+description = f"RPGBot, a little discord bot by Henry#6174\n**Add to your server**: {invlink}\n**Support Server**: {servinv}\n**Source**: {sourcelink}"
 
 with open("resources/auth") as af:
     _auth = json.loads(af.read())
