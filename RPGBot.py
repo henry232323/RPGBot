@@ -28,6 +28,7 @@ import psutil
 import datetime
 import aiohttp
 import asyncio
+from random import choice
 from discord.ext import commands
 from collections import Counter
 
@@ -125,7 +126,26 @@ class Bot(commands.Bot):
             self.server_commands[ctx.guild.id] += 1
             if not (self.server_commands[ctx.guild.id] % 50):
                 await ctx.send(
-                    "This bot costs $130/yr to run. If you like the utilities it provides, consider buying me a coffee https://ko-fi.com/henrys")
+                    "This bot costs $130/yr to run. If you like the utilities it provides, consider buying me a coffee https://ko-fi.com/henrys"
+                )
+
+            add = choice([0, 0, 0, 0, 0, 0, 1, 1, 2])
+            fpn = ctx.command.full_parent_name
+            if fpn:
+                if fpn == "settings":
+                    return
+                elif fpn == "character":
+                    add += 2
+                elif fpn == "inventory":
+                    add += 1
+                elif fpn == "economy":
+                    add += 1
+                elif fpn == "pokemon":
+                    add += 2
+                elif fpn == "guild":
+                    add += 2
+
+            await self.di.add_exp(ctx.author, add)
 
     async def on_command_error(self, exception, ctx):
         logging.info(f"Exception in {ctx.command} ({ctx.channel.name}: {ctx.guild.name}): {exception}")
@@ -159,7 +179,7 @@ class Bot(commands.Bot):
 
     @staticmethod
     def get_exp(level):
-        return int(0.2 * level ** 2 + 2 * level + 15)
+        return int(0.6 * level ** 2 + 3.5 * level + 4)
 
     @staticmethod
     async def get_ram():
