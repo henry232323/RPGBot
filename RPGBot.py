@@ -196,7 +196,8 @@ class Bot(commands.Bot):
 prefix = ['pb!'] if 'debug' not in sys.argv else ['pb!']
 invlink = "https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=322625"
 servinv = "https://discord.gg/UYJb8fQ"
-description = "PokeRP Bot, a little discord bot by Henry#6174\n**Add to your server**: {}\n**Support Server**: {}".format(invlink, servinv)
+sourcelink = "https://github.com/henry232323/RPGBot"
+description = f"RPGBot, a little discord bot by Henry#6174\n**Add to your server**: {invlink}\n**Support Server**: {servlink}\n**Source**: {sourcelink}"
 
 with open("resources/auth") as af:
     _auth = json.loads(af.read())

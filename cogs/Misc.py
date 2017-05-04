@@ -119,7 +119,7 @@ class Misc(object):
         embed.add_field(name="Memory Usage", value="{0:.2f} MB".format(await self.bot.get_ram()))
         embed.add_field(name="Observed Events", value=sum(self.bot.socket_stats.values()))
 
-        embed.add_field(name="Source", value="[Github](https://github.com/henry232323/PokeRPG-Bot)")
+        embed.add_field(name="Source", value="[Github](https://github.com/henry232323/RPGBot)")
 
         embed.set_footer(text='Made with discord.py', icon_url='http://i.imgur.com/5BFecvA.png')
         embed.set_thumbnail(url=self.bot.user.avatar_url)
@@ -141,7 +141,7 @@ class Misc(object):
         To display the source code of a subcommand you have to separate it by
         periods, e.g. tag.create for the create subcommand of the tag command.
         """
-        source_url = 'https://github.com/henry232323/PokeRPG-Bot'
+        source_url = 'https://github.com/henry232323/RPGBot'
         if command is None:
             await ctx.send(source_url)
             return
