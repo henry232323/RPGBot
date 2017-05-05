@@ -127,11 +127,3 @@ class Admin(object):
             await shutdown()
         await self.bot.logout()
 
-    @commands.command(hidden=True)
-    @checks.is_owner()
-    async def restart(self, ctx):
-        await ctx.send("Restarting!")
-        for shutdown in self.bot.shutdowns:
-            await shutdown()
-        self.bot._shutdown_channel = ctx.channel.id
-        await self.bot.logout()

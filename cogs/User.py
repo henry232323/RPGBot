@@ -57,5 +57,6 @@ class User(object):
         embed.add_field(name="Guild", value=ud.get("guild", "None"))
         embed.add_field(name="Items", value=invitems)
         embed.add_field(name="Box", value=boxitems)
+        embed.add_field(name="Experience", value=f"Level: {ud.get('level', 1)}\nExperience: {ud.get('exp', 0)}/{self.bot.get_exp(ud.get('level', 1))}")
 
         await ctx.send(embed=embed)
