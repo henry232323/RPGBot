@@ -35,8 +35,6 @@ class Database(object):
     async def connect(self):
         self._conn = await asyncpg.create_pool(user='root', password='root',
                                   database='pokerpg', host='127.0.0.1')
-        #self._conn = await asyncpg.connect(user='root', password='root',
-        #                                   database='pokerpg', host='127.0.0.1')
 
     # User functions
     ########################################################################

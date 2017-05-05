@@ -98,6 +98,7 @@ class Bot(commands.Bot):
         print(self.user.id)
         print('------')
 
+        self.loop.create_task(self.start_serv())
         # self.remove_command("help")
 
         await self.db.connect()
@@ -202,7 +203,8 @@ class Bot(commands.Bot):
         async def getservinfo(ctx: HTTPRequestContext, snowflake: int):
             try:
                 req = f"""SELECT info FROM servdata WHERE UUID = {snowflake}"""
-                response = await self.db._conn.fetchval(req)
+                async with self.db._conn.acquire() as connection:
+                    response = await connection.fetchval(req)
                 return Response(response if response else json.dumps(self.default_servdata), status=200)
             except:
                 return HTTPException("Invalid snowflake!", Response("Failed to fetch info!", status=400))
@@ -211,7 +213,8 @@ class Bot(commands.Bot):
         async def getuserinfo(ctx: HTTPRequestContext, snowflake: int):
             try:
                 req = f"""SELECT info FROM userdata WHERE UUID = {snowflake}"""
-                response = await self.db._conn.fetchval(req)
+                async with self.db._conn.acquire() as connection:
+                    response = await connection.fetchval(req)
                 return Response(response if response else json.dumps(self.default_udata), status=200)
             except:
                 return HTTPException("Invalid snowflake!", Response("Failed to fetch info!", status=400))
