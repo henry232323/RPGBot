@@ -33,8 +33,10 @@ class Database(object):
         return json.dumps(data).replace("'", "''")
 
     async def connect(self):
-        self._conn = await asyncpg.connect(user='root', password='root',
-                                           database='pokerpg', host='127.0.0.1')
+        self._conn = await asyncpg.create_pool(user='root', password='root',
+                                  database='pokerpg', host='127.0.0.1')
+        #self._conn = await asyncpg.connect(user='root', password='root',
+        #                                   database='pokerpg', host='127.0.0.1')
 
     # User functions
     ########################################################################
@@ -42,19 +44,22 @@ class Database(object):
         """Create a new user entry with the given data"""
         jd = self.dump({member.guild.id: data})
         req = f"""INSERT INTO userdata (UUID, info) VALUES ({member.id}, '{jd}')"""
-        response = await self._conn.fetchval(req)
-        return json.decode(response) if response else response
+        async with self._conn.acquire() as connection:
+            response = await connection.fetchval(req)
+            return json.decode(response) if response else response
 
     async def user_select(self, member):
         """Select a user's data for a specified server"""
         req = f"""SELECT info -> '{member.guild.id}' FROM userdata WHERE UUID = {member.id}"""
-        response = await self._conn.fetchval(req)
+        async with self._conn.acquire() as connection:
+            response = await connection.fetchval(req)
         return json.decode(response) if response else response
 
     async def user_full_select(self, member):
         """Select a user's data for a specified server"""
         req = f"""SELECT info FROM userdata WHERE UUID = {member.id}"""
-        response = await self._conn.fetchval(req)
+        async with self._conn.acquire() as connection:
+            response = await connection.fetchval(req)
         return json.decode(response) if response else response
 
     async def user_update(self, member, data):
@@ -63,13 +68,15 @@ class Database(object):
         req = f"""UPDATE userdata
         SET info = '{jd}'
         WHERE UUID = {member.id}"""
-        response = await self._conn.fetchval(req)
+        async with self._conn.acquire() as connection:
+            response = await connection.fetchval(req)
         return json.decode(response) if response else response
 
     async def user_exists(self, member):
         """Check if a user has an entry in the db"""
         req = f"""SELECT info FROM userdata WHERE UUID = {member.id}"""
-        return bool(await self._conn.fetchval(req))
+        async with self._conn.acquire() as connection:
+            return bool(await connection.fetchval(req))
 
     async def add_user(self, member, data=None):
         """Add a server to the users json, if the user doesnt exist user_insert to make one"""
@@ -103,7 +110,8 @@ class Database(object):
     async def get_all_user_data(self, member):
         """Get a user's data for all servers"""
         req = f"""SELECT info FROM userdata WHERE UUID = {member.id}"""
-        response = await self._conn.fetchval(req)
+        async with self._conn.acquire() as connection:
+            response = await connection.fetchval(req)
         return json.decode(response) if response else response
 
     # Server functions
