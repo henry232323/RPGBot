@@ -55,7 +55,7 @@ default_user = {
     "box": [],
     "items": dict(),
     "guild": None,
-    "level": 0,
+    "level": 1,
     "exp": 0
 }
 
@@ -177,7 +177,7 @@ class DataInteraction(object):
     async def get_user_level(self, member):
         """Get user's level"""
         ud = await self.db.get_user_data(member)
-        return (ud.get("level", 0), ud.get("exp", 0))
+        return (ud.get("level", 1), ud.get("exp", 0))
 
     async def get_pokemon(self, member, id):
         """Get a user's Pokemon with the given ID"""
@@ -286,17 +286,23 @@ class DataInteraction(object):
         """Set a server's user start balance"""
         gd = await self.db.get_guild_data(guild)
         gd["start"] = amount
-        return await self.db.update_user_data(guild, gd)
+        await self.db.update_user_data(guild, gd)
 
     async def add_exp(self, member, exp):
         ud = await self.bot.db.get_user_data(member)
+        if ud.get("level") is None:
+            ud["level"] = 0
+            ud["exp"] = 0
+        s = ud["level"]
+        ud["exp"] += exp
         next = self.bot.get_exp(ud["level"])
         while ud["exp"] > next:
             ud["level"] += 1
             ud["exp"] -= next
             next = self.bot.get_exp(ud["level"])
 
-        await self.db.update_guild_data(ud)
+        await self.db.update_user_data(member, ud)
+        return ud["level"] if ud["level"] > s else None
 
     async def add_to_team(self, guild, character, id):
         """Add a pokemon to a character's team"""
@@ -310,13 +316,13 @@ class DataInteraction(object):
     async def set_guild(self, member, name):
         ud = await self.db.get_user_data(member)
         ud["guild"] = name
-        return await self.bot.update_user_data(member, ud)
+        return await self.db.update_user_data(member, ud)
 
     async def set_level(self, member, level, exp):
         ud = await self.db.get_user_data(member)
         ud["level"] = level
         ud["exp"] = exp
-        return await self.bot.update_user_data(member, ud)
+        return await self.db.update_user_data(member, ud)
 
     async def remove_from_team(self, guild, character, id):
         """Remove a pokemon from a character's team"""

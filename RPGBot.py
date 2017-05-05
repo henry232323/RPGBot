@@ -107,12 +107,15 @@ class Bot(commands.Bot):
 
         await self.change_presence(game=discord.Game(name="rp!help for help!"))
 
-        url = "https://bots.discord.pw/api/bots/{}/stats".format(self.user.id)
-        payload = json.dumps(dict(server_count=len(self.guilds))).encode()
-        headers = {'authorization': self._auth[1], "Content-Type": "application/json"}
+        while True:
+            url = "https://bots.discord.pw/api/bots/{}/stats".format(self.user.id)
+            payload = json.dumps(dict(server_count=len(self.guilds))).encode()
+            headers = {'authorization': self._auth[1], "Content-Type": "application/json"}
 
-        async with self.session.post(url, data=payload, headers=headers) as response:
-            await response.read()
+            async with self.session.post(url, data=payload, headers=headers) as response:
+                await response.read()
+
+            await asyncio.sleep(14400)
 
     async def on_message(self, message):
         if message.author.bot:
@@ -145,7 +148,9 @@ class Bot(commands.Bot):
                 elif fpn == "guild":
                     add += 2
 
-            await self.di.add_exp(ctx.author, add)
+            r = await self.di.add_exp(ctx.author, add)
+            if r is not None:
+                await ctx.send(f"{ctx.author.mention} is now level {r}!")
 
     async def on_command_error(self, exception, ctx):
         logging.info(f"Exception in {ctx.command} ({ctx.channel.name}: {ctx.guild.name}): {exception}")
@@ -179,7 +184,7 @@ class Bot(commands.Bot):
 
     @staticmethod
     def get_exp(level):
-        return int(0.6 * level ** 2 + 3.5 * level + 4)
+        return int(0.1 * level ** 2 + 5 * level + 4)
 
     @staticmethod
     async def get_ram():

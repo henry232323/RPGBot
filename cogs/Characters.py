@@ -134,7 +134,7 @@ class Characters(object):
     @commands.group(aliases=["exp"], invoke_without_command=True, no_pm=True)
     async def experience(self, ctx, member: discord.Member=None):
         """Get your or another user's level information. Help on this command for experience subcommands
-        EXP is calculated using a 0.6x^2+3.5x+4 where x is equal to the user's current level
+        EXP is calculated using a 0.1x^2+5x+4 where x is equal to the user's current level
         Spamming commands or messages will not earn more exp!"""
         if not member:
             member = ctx.author
