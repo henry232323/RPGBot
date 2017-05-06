@@ -108,15 +108,17 @@ class Bot(commands.Bot):
 
         await self.change_presence(game=discord.Game(name="rp!help for help!"))
 
-        while True:
-            url = "https://bots.discord.pw/api/bots/{}/stats".format(self.user.id)
-            payload = json.dumps(dict(server_count=len(self.guilds))).encode()
-            headers = {'authorization': self._auth[1], "Content-Type": "application/json"}
+        await self.update_stats()
 
-            async with self.session.post(url, data=payload, headers=headers) as response:
-                await response.read()
+    async def update_stats(self):
+        url = "https://bots.discord.pw/api/bots/{}/stats".format(self.user.id)
+        payload = json.dumps(dict(server_count=len(self.guilds))).encode()
+        headers = {'authorization': self._auth[1], "Content-Type": "application/json"}
 
-            await asyncio.sleep(14400)
+        async with self.session.post(url, data=payload, headers=headers) as response:
+            await response.read()
+
+        self.loop.call_later(14400, lambda: asyncio.ensure_future(self.update_stats()))
 
     async def on_message(self, message):
         if message.author.bot:
@@ -154,6 +156,7 @@ class Bot(commands.Bot):
                 await ctx.send(f"{ctx.author.mention} is now level {r}!")
 
     async def on_command_error(self, exception, ctx):
+        logging.info(f"Exception in {ctx.command} {ctx.guild}:{ctx.channel} {exception}")
         if isinstance(exception, commands.MissingRequiredArgument):
             await ctx.send(f"`{exception}`")
         else:
