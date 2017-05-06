@@ -154,7 +154,6 @@ class Bot(commands.Bot):
                 await ctx.send(f"{ctx.author.mention} is now level {r}!")
 
     async def on_command_error(self, exception, ctx):
-        logging.info(f"Exception in {ctx.command} ({ctx.channel.name}: {ctx.guild.name}): {exception}")
         if isinstance(exception, commands.MissingRequiredArgument):
             await ctx.send(f"`{exception}`")
         else:
@@ -205,7 +204,7 @@ class Bot(commands.Bot):
                 req = f"""SELECT info FROM servdata WHERE UUID = {snowflake}"""
                 async with self.db._conn.acquire() as connection:
                     response = await connection.fetchval(req)
-                return Response(response if response else json.dumps(self.default_servdata), status=200)
+                return Response(response if response else json.dumps(self.default_servdata, indent=4), status=200)
             except:
                 return HTTPException("Invalid snowflake!", Response("Failed to fetch info!", status=400))
 
@@ -215,7 +214,7 @@ class Bot(commands.Bot):
                 req = f"""SELECT info FROM userdata WHERE UUID = {snowflake}"""
                 async with self.db._conn.acquire() as connection:
                     response = await connection.fetchval(req)
-                return Response(response if response else json.dumps(self.default_udata), status=200)
+                return Response(response if response else json.dumps(self.default_udata, indent=4), status=200)
             except:
                 return HTTPException("Invalid snowflake!", Response("Failed to fetch info!", status=400))
 
