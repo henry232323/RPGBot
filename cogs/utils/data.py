@@ -157,22 +157,22 @@ class DataInteraction(object):
 
     async def get_box(self, member):
         """Get user's Pokemon box"""
-        ud = await self.db.get_user_data(member)
-        return list(Pokemon(*x) for x in ud["box"])
+        ub = await self.db.user_item(member, "box")
+        return list(Pokemon(*x) for x in ub)
 
     async def get_balance(self, member):
         """Get user's balance"""
-        return (await self.db.get_user_data(member))["money"]
+        return (await self.db.user_item(member, "money"))
 
     async def get_inventory(self, member):
         """Get user's inventory"""
-        ud = await self.db.get_user_data(member)
-        return ud["items"]
+        ui = await self.db.user_item(member, "items")
+        return ui
 
     async def get_user_guild(self, member):
         """Get user's associated guild"""
-        ud = await self.db.get_user_data(member)
-        return ud.get("guild")
+        ud = await self.db.user_item(member, "guild")
+        return ud
 
     async def get_user_level(self, member):
         """Get user's level"""

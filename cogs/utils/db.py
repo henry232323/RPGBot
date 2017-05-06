@@ -118,13 +118,15 @@ class Database(object):
         """Add a new guild to the db"""
         jd = self.dump(data)
         req = f"""INSERT INTO servdata (UUID, info) VALUES ({guild.id}, '{jd}')"""
-        response = await self._conn.fetchval(req)
+        async with self._conn.acquire() as connection:
+            response = await connection.fetchval(req)
         return json.decode(response) if response else response
 
     async def guild_select(self, guild):
         """Get a guild from the db"""
         req = f"""SELECT info FROM servdata WHERE UUID = {guild.id}"""
-        response = await self._conn.fetchval(req)
+        async with self._conn.acquire() as connection:
+            response = await connection.fetchval(req)
         return json.decode(response) if response else response
 
     async def guild_update(self, guild, data):
@@ -133,7 +135,8 @@ class Database(object):
         req = f"""UPDATE servdata
         SET info = '{jd}'
         WHERE UUID = {guild.id}"""
-        response = await self._conn.fetchval(req)
+        async with self._conn.acquire() as connection:
+            response = await connection.fetchval(req)
         return json.decode(response) if response else response
 
     async def add_guild(self, guild, data=None):
@@ -160,3 +163,15 @@ class Database(object):
         else:
             await self.guild_insert(guild, self.bot.default_servdata)
             return await self.get_guild_data(guild)
+
+    async def guild_item(self, guild, name: str):
+        req = f"""SELECT info ->> '{name}' FROM servdata WHERE UUID = {guild.id}"""
+        async with self._conn.acquire() as connection:
+            response = await connection.fetchval(req)
+        return json.decode(response) if response else copy.copy(self.bot.default_udata[name])
+
+    async def user_item(self, member, name: str):
+        req = f"""SELECT info -> '{member.guild.id}' ->> '{name}' FROM userdata WHERE UUID = {member.id}"""
+        async with self._conn.acquire() as connection:
+            response = await connection.fetchval(req)
+        return json.decode(response) if response else copy.copy(self.bot.default_udata[name])
