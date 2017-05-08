@@ -27,6 +27,7 @@ from random import randint, choice
 from time import monotonic
 import os
 import psutil
+from itertools import chain
 
 
 class Misc(object):
@@ -36,16 +37,22 @@ class Misc(object):
     @commands.command(aliases=["rollthedice", "dice"])
     async def rtd(self, ctx, *dice: str):
         """Roll a number of dice with given sides (ndx notation)
-        Example: pb!rtd 3d7 2d4 5d8 +20 <30 Test for success by adding >/<# to the end (optional)"""
+        Example: rp!rtd 3d7 2d4
+        Optional Additions:
+            Test for success by adding a >/<#
+            Grab the top n rolls by adding ^n
+            Add to the final roll by just adding a number (pos or neg)
+            
+            Examples of all:
+                rp!rtd 8d8 -12 15 ^4 >32
+                
+                -> Roll failed (30 > 32) ([8 + 7 + 6 + 6] + -12 + 15) (Grabbed top 4 out of 8)"""
         try:
             dice = list(dice)
             rolls = dict()
             add = []
             rel = None
-            if dice[-1].startswith((">", "<")):
-                rel = dice.pop(-1)
-                val = int(rel.strip("<>"))
-                type = rel[0]
+            pp = None
 
             for die in dice:
                 try:
@@ -53,13 +60,30 @@ class Misc(object):
                     number, sides = int(number), int(sides)
                     rolls[sides] = [randint(1, sides) for x in range(number)]
                 except ValueError:
-                    add.append(int(die))
+                    try:
+                        add.append(int(die))
+                    except ValueError:
+                        if die.startswith((">", "<")):
+                            rel = die
+                            val = int(rel.strip("<>"))
+                            type = rel[0]
+                        elif die.startswith("^"):
+                            pp = int(die.strip("^"))
+
+            if pp:
+                s = list(chain(*rolls.values()))
+                rolls.clear()
+                rolls[0] = list()
+                for d in range(pp):
+                    mx = max(s)
+                    s.remove(mx)
+                    rolls[0].append(mx)
 
             total = sum(sum(x) for x in rolls.values()) + sum(add)
 
             if rel is not None:
                 if type == "<":
-                    if total <  val:
+                    if total < val:
                         succ = "suceeded"
                     else:
                         succ = "failed"
@@ -76,9 +100,14 @@ class Misc(object):
                 fmt = "Rolled **{0}** ([{1}] + {2})" if add else "Rolled **{0}** ([{1}])"
                 all = "] + [".join(" + ".join(map(lambda x: str(x), roll)) for roll in rolls.values())
                 msg = fmt.format(total, all, " + ".join(map(lambda x: str(x), add)))
+
+            if pp:
+                msg += f" (Grabbed top {pp} out of {len(s) + pp})"
+
             await ctx.send(msg)
         except Exception as e:
-            print(e)
+            from traceback import print_exc
+            print_exc()
             await ctx.send("Invalid syntax!")
 
     @commands.command()
@@ -86,11 +115,12 @@ class Misc(object):
         '''
         Test the bot's connection ping
         '''
-        msg = "P{0}ng".format(choice("aeiou"))
         a = monotonic()
-        ping = await ctx.send(msg)
+        await (await self.bot.ws.ping())
         b = monotonic()
-        await self.bot.edit_message(ping, " ".join([msg, "`{:.3f}ms`".format((b - a) * 1000)]))
+        ping = "`{:.3f}ms`".format((b - a) * 1000)
+        msg = f"P{choice('aeiou')}ng {ping}"
+        await ctx.send(msg)
 
     @commands.command()
     async def info(self, ctx):
@@ -115,9 +145,15 @@ class Misc(object):
         embed.add_field(name="Unique Members", value='{}'.format(len(unique_members)))
         embed.add_field(name="Channels", value='{} text channels, {} voice channels'.format(text, voice))
 
+        a = monotonic()
+        await (await self.bot.ws.ping())
+        b = monotonic()
+        ping = "`{:.3f}ms`".format((b - a) * 1000)
+
         embed.add_field(name="CPU Percentage", value="{}%".format(psutil.Process(os.getpid()).cpu_percent()))
         embed.add_field(name="Memory Usage", value="{0:.2f} MB".format(await self.bot.get_ram()))
         embed.add_field(name="Observed Events", value=sum(self.bot.socket_stats.values()))
+        embed.add_field(name="Ping", value=ping)
 
         embed.add_field(name="Source", value="[Github](https://github.com/henry232323/RPGBot)")
 
