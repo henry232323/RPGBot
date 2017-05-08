@@ -168,10 +168,10 @@ class Database(object):
         req = f"""SELECT info ->> '{name}' FROM servdata WHERE UUID = {guild.id}"""
         async with self._conn.acquire() as connection:
             response = await connection.fetchval(req)
-        return json.decode(response) if response else copy.copy(self.bot.default_udata[name])
+        return response if response else copy.copy(self.bot.default_servdata[name])
 
     async def user_item(self, member, name: str):
         req = f"""SELECT info -> '{member.guild.id}' ->> '{name}' FROM userdata WHERE UUID = {member.id}"""
         async with self._conn.acquire() as connection:
             response = await connection.fetchval(req)
-        return json.decode(response) if response else copy.copy(self.bot.default_udata[name])
+        return response if response else copy.copy(self.bot.default_udata[name])

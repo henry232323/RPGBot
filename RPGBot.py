@@ -83,7 +83,7 @@ class Bot(commands.Bot):
             "Misc": cogs.Misc.Misc(self),
             "Characters": cogs.Characters.Characters(self),
             "Pokemon": cogs.Pokemon.Pokemon(self),
-            "Guilds": cogs.Guilds.Guilds(self),
+            "Groups": cogs.Groups.Groups(self),
             "User": cogs.User.User(self)
         }
 
@@ -114,6 +114,13 @@ class Bot(commands.Bot):
         url = "https://bots.discord.pw/api/bots/{}/stats".format(self.user.id)
         payload = json.dumps(dict(server_count=len(self.guilds))).encode()
         headers = {'authorization': self._auth[1], "Content-Type": "application/json"}
+
+        async with self.session.post(url, data=payload, headers=headers) as response:
+            await response.read()
+
+        url = "https://discordbots.org/api/bots/{}/stats".format(self.user.id)
+        payload = json.dumps(dict(server_count=len(self.guilds))).encode()
+        headers = {'authorization': self._auth[2], "Content-Type": "application/json"}
 
         async with self.session.post(url, data=payload, headers=headers) as response:
             await response.read()

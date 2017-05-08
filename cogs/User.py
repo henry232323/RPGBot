@@ -39,7 +39,7 @@ class User(object):
 
         ud = await self.bot.db.get_user_data(user)
 
-        pokemon = [f"{x.id}: **{x.name}**" for x in ud["box"]]
+        pokemon = [f"{x[0]}: **{x[1]}**" for x in ud["box"]]
         pl = len(pokemon)
         if pl > 20:
             pokemon = pokemon[20:]
