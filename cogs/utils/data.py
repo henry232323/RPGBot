@@ -20,7 +20,9 @@
 # DEALINGS IN THE SOFTWARE.
 
 
-from collections import namedtuple, Counter
+from collections import Counter
+from recordclass import recordclass as namedtuple
+import ujson as json
 import discord
 from discord.ext import commands
 
@@ -28,8 +30,8 @@ Pokemon = namedtuple("Pokemon", ["id", "name", "type", "stats", "meta"])
 ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
 Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
 
-
-class Guild(namedtuple("Guild", ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites", "mods"])):
+gc = namedtuple("Guild", ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites", "mods"])
+class Guild(gc):
     __slots__ = ()
 
     def __new__(cls, name, owner, description="", members=None, bank=0, items=None, open=False, image=None, icon=None, invites=None, mods=None):
@@ -41,7 +43,7 @@ class Guild(namedtuple("Guild", ["name", "owner", "description", "members", "ban
             invites = set()
         if mods is None:
             mods = set()
-        super(Guild, cls).__new__(cls, name, owner, description, members, bank, items, open, image, icon, invites, mods)
+        return super().__new__(cls, name, owner, description, members, bank, items, open, image, icon, invites, mods)
 
 
 class Converter(commands.MemberConverter):
@@ -167,7 +169,7 @@ class DataInteraction(object):
     async def get_inventory(self, member):
         """Get user's inventory"""
         ui = await self.db.user_item(member, "items")
-        return ui
+        return json.decode(ui)
 
     async def get_user_guild(self, member):
         """Get user's associated guild"""
@@ -261,8 +263,13 @@ class DataInteraction(object):
         ud = await self.db.get_user_data(member)
         ud["items"] = Counter(ud["items"])
         ud["items"].subtract(dict(items))
-        if [1 for x in ud["items"].values() if x < 0]:
-            raise ValueError("Cannot take more items than the user has!")
+
+        for item, value in ud["items"].items():
+            if value < 0:
+                raise ValueError("Cannot take more items than the user has!")
+            if value == 0:
+                del ud["items"][item]
+
         await self.db.update_user_data(member, ud)
         return ud["items"]
 
@@ -316,7 +323,7 @@ class DataInteraction(object):
     async def set_guild(self, member, name):
         ud = await self.db.get_user_data(member)
         ud["guild"] = name
-        return await self.db.update_user_data(member, ud)
+        await self.db.update_user_data(member, ud)
 
     async def set_level(self, member, level, exp):
         ud = await self.db.get_user_data(member)
@@ -351,7 +358,7 @@ class DataInteraction(object):
 
     async def remove_guild(self, guild, name):
         gd = await self.db.get_guild_data(guild)
-        for mid in gd['members']:
+        for mid in gd["guilds"][name][3]:
             await self.set_guild(discord.utils.get(guild.members, id=mid), None)
         del gd["guilds"][name]
         return await self.db.update_guild_data(guild, gd)

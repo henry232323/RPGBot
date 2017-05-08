@@ -24,6 +24,7 @@ import discord
 from .utils.data import Converter
 from .utils import checks
 
+
 class Inventory(object):
     def __init__(self, bot):
         self.bot = bot
@@ -34,7 +35,7 @@ class Inventory(object):
         if member is None:
             member = ctx.message.author
 
-        inv = (await self.bot.di.get_inventory(member))
+        inv = await self.bot.di.get_inventory(member)
         if not inv:
             await ctx.send("This inventory is empty!")
             return

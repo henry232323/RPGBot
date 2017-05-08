@@ -28,15 +28,51 @@ from collections import Counter
 from .utils.data import Guild
 
 
-class Guilds(object):
+class Groups(object):
     """Commands for guild management"""
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.group(no_pm=True)
-    async def guild(self, ctx):
-        """Subcommands for guild management"""
-        pass
+    @commands.group(no_pm=True, aliases=["g"], invoke_without_command=True)
+    async def guild(self, ctx, member: discord.Member=None):
+        """Get info on a member's guild. Subcommands for guild management"""
+        if member is None:
+            member = ctx.author
+
+        mg = await self.bot.di.get_user_guild(member)
+        if mg is None:
+            await ctx.send("User does not have a guild!")
+            return
+
+        guild = (await self.bot.di.get_guild_guilds(ctx.guild)).get(mg)
+        if guild is None:
+            await ctx.send("That guild doesn't exist here!")
+            return
+
+        members = "\n".join([discord.utils.get(ctx.guild.members, id=x).mention for x in
+                             (guild.members if len(guild.members) <= 20 else ctx.members[20:])])
+        if len(guild.members) > 20:
+            members = members + f"\nAnd {guild.members - 20} more..."
+
+        litems = guild.items.items() if len(guild.items) < 20 else list(guild.items.items())[20:]
+        items = "\n".join(f"{x} x{y}" for x, y in litems)
+
+        embed = discord.Embed(description=guild.description or "This guild doesn't have a description")
+        embed.set_author(name=guild.name, icon_url=guild.icon or ctx.guild.icon_url)
+        if guild.icon is not None:
+            embed.set_thumbnail(url=guild.icon)
+        if guild.image is not None:
+            embed.set_image(url=guild.image)
+
+        owner = discord.utils.get(ctx.guild.members, id=guild.owner)
+
+        embed.add_field(name="Owner", value=owner.mention)
+        embed.add_field(name="Open", value=str(guild.open))
+        embed.add_field(name="Bank Balance", value=f"{guild.bank} Pokédollars")
+        embed.add_field(name="Members", value=members or "None")
+        embed.add_field(name="Items", value=items or "None")
+
+        await ctx.send(embed=embed)
 
     @commands.command(no_pm=True)
     async def guilds(self, ctx):
@@ -56,7 +92,7 @@ class Guilds(object):
         """
 
         emotes = ("\u2B05", "\u27A1", "\u274C")
-        embed = discord.Embed(description=desc, title="Player Market")
+        embed = discord.Embed(description=desc, title="Server Guilds")
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 
         chunks = []
@@ -140,10 +176,10 @@ class Guilds(object):
 
         embed = discord.Embed(description=guild.description or "This guild doesn't have a description")
         embed.set_author(name=guild.name, icon_url=guild.icon or ctx.guild.icon_url)
-        if guild.image is not None:
-            embed.set_thumbnail(url=guild.image)
         if guild.icon is not None:
-            embed.set_image(url=guild.icon)
+            embed.set_thumbnail(url=guild.icon)
+        if guild.image is not None:
+            embed.set_image(url=guild.image)
 
         embed.add_field(name="Owner", value=guild.owner)
         embed.add_field(name="Open", value=str(guild.open))
@@ -155,7 +191,7 @@ class Guilds(object):
     async def create(self, ctx, *, name: str):
         """Create a new guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
+        if ug is not None:
             await ctx.send("You're already in a guild! Leave this guild to create a new one")
             return
         guilds = await self.bot.di.get_guild_guilds(ctx.guild)
@@ -209,8 +245,12 @@ class Guilds(object):
             else:
                 guild["icon"] = response.content
 
-            guilds[guild["name"]] = Guild(**guild)
+            guild["members"].add(ctx.author.id)
+            guilds[name] = Guild(**guild)
             await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await self.bot.di.set_guild(ctx.author, guild["name"])
+
+            await ctx.send("Guild successfully created!")
         except asyncio.TimeoutError:
             await ctx.send("Timed out! Try again")
 
@@ -249,7 +289,15 @@ class Guilds(object):
         guilds = await self.bot.di.get_guild_guilds(ctx.guild)
         guild = guilds.get(ug)
         if guild.owner == ctx.author.id:
-            await self.bot.di.remove_guild(ctx.guild, guild.name)
+            await ctx.send("Guild will be deleted is this alright? {yes / no}")
+            resp = await self.bot.wait_for("message", check=lambda x: x.author is ctx.author and x.channel is ctx.channel)
+            if resp.content == "yes":
+                await ctx.send("Deleting!")
+                await self.bot.di.remove_guild(ctx.guild, guild.name)
+            else:
+                await ctx.send("Cancelling!")
+                return
+
         guild.members.remove(ctx.user.id)
         await self.bot.di.set_guild(ctx.author, None)
         await ctx.send("Guild left.")
@@ -322,22 +370,26 @@ class Guilds(object):
     @guild.command(no_pm=True)
     async def deposit(self, ctx, amount: int):
         """Deposit an amount of money into the guild bank"""
-        amount = abs(amount)
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send("You aren't in a guild!")
-            return
-        guilds = await self.bot.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
         try:
-            await self.bot.di.add_eco(ctx.author, -amount)
-        except ValueError:
-            await ctx.send("You don't have enough to deposit!")
-            return
+            amount = abs(amount)
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is None:
+                await ctx.send("You aren't in a guild!")
+                return
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(ug)
+            try:
+                await self.bot.di.add_eco(ctx.author, -amount)
+            except ValueError:
+                await ctx.send("You don't have enough to deposit!")
+                return
 
-        guild.bank += amount
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(f"Successfully deposited {amount} Pokédollars")
+            guild.bank += amount
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send(f"Successfully deposited {amount} Pokédollars")
+        except:
+            from traceback import print_exc
+            print_exc()
 
     @guild.command(no_pm=True)
     async def withdraw(self, ctx, amount: int):
@@ -347,28 +399,30 @@ class Guilds(object):
         if ug is None:
             await ctx.send("You aren't in a guild!")
             return
-        guilds = await self.bot.get_guild_guilds(ctx.guild)
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
         guild = guilds.get(ug)
         if ctx.author.id not in guild.mods and ctx.author.id != guild.owner:
             await ctx.send("Only mods can withdraw money!")
             return
-        try:
-            await self.bot.di.add_eco(ctx.author, -amount)
-        except ValueError:
-            await ctx.send("You don't have enough to deposit!")
+
+        await self.bot.di.add_eco(ctx.author, amount)
+
+        guild.bank -= amount
+        if guild.bank < 0:
+            await ctx.send("Cannot withdraw more than the guild has!")
             return
 
-        guild.bank += amount
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(f"Successfully deposited {amount} Pokédollars")
+        await ctx.send(f"Successfully withdrew {amount} Pokédollars")
 
     @guild.command(no_pm=True)
     async def setmod(self, ctx, *members: discord.Member):
+        """Give the listed users mod for your guild (guild owner only)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send("You aren't in a guild!")
             return
-        guilds = await self.bot.get_guild_guilds(ctx.guild)
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
         guild = guilds.get(ug)
         if ctx.author.id != guild.owner:
             await ctx.send("Only the guild owner can add mods")
@@ -390,7 +444,7 @@ class Guilds(object):
         if ug is None:
             await ctx.send("You aren't in a guild!")
             return
-        guilds = await self.bot.get_guild_guilds(ctx.guild)
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
         guild = guilds.get(ug)
 
         fitems = []
@@ -400,7 +454,7 @@ class Guilds(object):
             fitems.append((split, num))
 
         try:
-            await self.bot.di.take_items(ctx.author, items)
+            await self.bot.di.take_items(ctx.author, *fitems)
         except ValueError:
             await ctx.send("You don't have enough to give!")
             return
@@ -413,11 +467,12 @@ class Guilds(object):
 
     @guild.command(no_pm=True)
     async def withdrawitems(self, ctx, *items: str):
+        """Withdraw items from the guild (guild mods only)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send("You aren't in a guild!")
             return
-        guilds = await self.bot.get_guild_guilds(ctx.guild)
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
         guild = guilds.get(ug)
 
         if ctx.author.id not in guild.mods and ctx.author.id != guild.owner:
@@ -433,20 +488,25 @@ class Guilds(object):
         guild.items = Counter(guild.items)
         guild.items.subtract(dict(fitems))
 
-        if [1 for x in guild.items.values() if x < 0]:
-            await ctx.send("The guild does not have this many items!")
+        for item, value in guild.items.items():
+            if value < 0:
+                await ctx.send("The guild does not have enough items to take!")
+                return
+            if value == 0:
+                del guild.items[item]
 
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await self.bot.di.give_items(ctx.author, items)
+        await self.bot.di.give_items(ctx.author, *fitems)
         await ctx.send("Successfully withdrew items")
 
     @guild.command(no_pm=True)
     async def toggleopen(self, ctx):
+        """Toggle the Guilds open state"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send("You aren't in a guild!")
             return
-        guilds = await self.bot.get_guild_guilds(ctx.guild)
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
         guild = guilds.get(ug)
 
         if ctx.author.id != guild.owner:
@@ -456,3 +516,57 @@ class Guilds(object):
         guild.open = not guild.open
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send(f"Guild is now {'open' if guild.open else 'closed'}")
+
+    @guild.command(no_pm=True)
+    async def seticon(self, ctx, url: str):
+        """Set the guild's icon"""
+        ug = await self.bot.di.get_user_guild(ctx.author)
+        if ug is None:
+            await ctx.send("You aren't in a guild!")
+            return
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+        guild = guilds.get(ug)
+
+        if ctx.author.id != guild.owner and ctx.author.id not in guild.mods:
+            await ctx.send("Only guild mods may set this!")
+            return
+
+        guild.icon = url
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send("Updated guild icon url!")
+
+    @guild.command(no_pm=True)
+    async def setimage(self, ctx, url: str):
+        """Set the guild's image"""
+        ug = await self.bot.di.get_user_guild(ctx.author)
+        if ug is None:
+            await ctx.send("You aren't in a guild!")
+            return
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+        guild = guilds.get(ug)
+
+        if ctx.author.id != guild.owner and ctx.author.id not in guild.mods:
+            await ctx.send("Only guild mods may set this!")
+            return
+
+        guild.image = url
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send("Updated guild image url!")
+
+    @guild.command(no_pm=True, aliases=["setdesc"])
+    async def setdescription(self, ctx, *, description):
+        """Set the guild's image"""
+        ug = await self.bot.di.get_user_guild(ctx.author)
+        if ug is None:
+            await ctx.send("You aren't in a guild!")
+            return
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+        guild = guilds.get(ug)
+
+        if ctx.author.id != guild.owner and ctx.author.id not in guild.mods:
+            await ctx.send("Only guild mods may set this!")
+            return
+
+        guild.description = description
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send("Updated guild's description!")
