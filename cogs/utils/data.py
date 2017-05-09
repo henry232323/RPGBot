@@ -164,7 +164,7 @@ class DataInteraction(object):
 
     async def get_balance(self, member):
         """Get user's balance"""
-        return (await self.db.user_item(member, "money"))
+        return int(await self.db.user_item(member, "money"))
 
     async def get_inventory(self, member):
         """Get user's inventory"""
@@ -264,7 +264,7 @@ class DataInteraction(object):
         ud["items"] = Counter(ud["items"])
         ud["items"].subtract(dict(items))
 
-        for item, value in ud["items"].items():
+        for item, value in list(ud["items"].items()):
             if value < 0:
                 raise ValueError("Cannot take more items than the user has!")
             if value == 0:

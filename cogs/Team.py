@@ -61,9 +61,11 @@ class Team(object):
 
     @team.command(aliases=["addmember"], no_pm=True)
     async def add(self, ctx, character, id):
+        """Add a Pokemon to a character's team"""
         await self.bot.di.add_to_team(ctx.guild, character, id)
 
     @team.command(aliases=["removemember"], no_pm=True)
     async def remove(self, ctx, character, id):
+        """Remove a Pokemon from a character's team"""
         await self.bot.di.remove_from_team(ctx.guild, character, id)
 
