@@ -22,6 +22,8 @@
 from discord.ext import commands
 import discord
 
+from async_timeout import timeout
+from collections import Counter
 from random import choice
 import asyncio
 
@@ -33,6 +35,7 @@ class Economy(object):
     """Economy related commands: balance, market, etc"""
     def __init__(self, bot):
         self.bot = bot
+        self.bids = list()
 
     @commands.group(aliases=["bal", "balance", "eco", "e"], no_pm=True, invoke_without_command=True)
     async def economy(self, ctx, member: discord.Member=None):
@@ -42,7 +45,7 @@ class Economy(object):
 
         bal = await self.bot.di.get_balance(member)
 
-        await ctx.send(f"{member.display_name} has {bal} Pokédollars")
+        await ctx.send(f"{member.display_name} has ${bal}")
 
     @checks.mod_or_permissions()
     @economy.command(aliases=["set"], no_pm=True)
@@ -74,7 +77,7 @@ class Economy(object):
         amount = abs(amount)
         await self.bot.di.add_eco(ctx.author, -amount)
         await self.bot.di.add_eco(member, amount)
-        await ctx.send(f"Successfully paid {amount} Pokédollars to {member}")
+        await ctx.send(f"Successfully paid ${amount} to {member}")
 
     @commands.group(no_pm=True, aliases=["m", "pm"], invoke_without_command=True)
     async def market(self, ctx):
@@ -228,6 +231,7 @@ class Economy(object):
 
     @commands.group(invoke_without_command=True, aliases=['lb'], no_pm=True)
     async def lootbox(self, ctx):
+        """List the current lootboxes"""
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
         if boxes:
             embed = discord.Embed()
@@ -320,7 +324,7 @@ class Economy(object):
 
             for lotto, value in self.bot.lotteries[ctx.guild.id].items():
                 embed.add_field(name=lotto,
-                                value="Jackpot: {} Pokédollars\n{} players entered".format(value["jackpot"],
+                                value="Jackpot: ${}\n{} players entered".format(value["jackpot"],
                                                                                   len(value["players"])))
             embed.set_footer(text=str(ctx.message.created_at))
 
@@ -366,6 +370,7 @@ class Economy(object):
 
     @commands.group(no_pm=True, invoke_without_command=True)
     async def shop(self, ctx):
+        """Get all items currently listed on the server shop"""
         shop = list((await self.bot.di.get_guild_shop(ctx.guild)).items())
         desc = """
                 \u27A1 to see the next page
@@ -461,7 +466,7 @@ class Economy(object):
     async def additem(self, ctx, name: str):
         """Add an item to the server shop, to make an item unsaleable or unbuyable set their respective values to 0
         pb!additem Pokeball 0 10
-        Can be sold for 10 and cannot be bought. Must be an existing item!"""
+        Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot Moderator or Admin"""
         gd = await self.bot.db.get_guild_data(ctx.guild)
         if name not in gd.items():
             await ctx.send("This item doesn't exist!")
@@ -569,3 +574,62 @@ class Economy(object):
             return
 
         await ctx.send(f"Successfully sell {amount} {item}s")
+
+    @commands.command(no_pm=True)
+    async def startbid(self, ctx, item: str, amount: int, startbid: int):
+        """Start a bid for an item"""
+        if ctx.channel.id in self.bids:
+            await ctx.send("This channel already has a bid going!")
+            return
+
+        amount = abs(amount)
+        try:
+            await self.bot.di.take_items(ctx.author, (item, amount))
+        except ValueError:
+            await ctx.send(f"You do not have x{amount} {item}!")
+            return
+
+        self.bids.append(ctx.channel.id)
+        await ctx.send(f"{ctx.author} Has started a bid for x{amount} {item} starting at ${startbid}\nBid runs for 60 seconds `rp!bid` to place a bid!")
+        cb = Counter()
+
+        try:
+            with timeout(60, loop=self.bot.loop):
+                while True:
+                    resp = await self.bot.wait_for("message", check=lambda x: x.content.startswith("rp!bid") and x.channel == ctx.channel)
+                    try:
+                        bid = abs(int(resp.content[6:]))
+                        if bid < startbid:
+                            continue
+                        cb[resp.author] = bid
+                    except ValueError:
+                        continue
+        except asyncio.TimeoutError:
+            pass
+
+        await ctx.send("Bid over!")
+
+        if not cb:
+            await ctx.send("Nobody bid!")
+            await self.bot.di.give_items(ctx.author, (item, amount))
+            self.bids.remove(ctx.channel.id)
+            return
+
+        for x in range(len(cb)):
+            winner, wamount = cb.most_common(x+1)[x]
+            wb = await self.bot.di.get_balance(winner)
+            if wb >= wamount:
+                await ctx.send(f"{winner} won the bid for ${amount}!")
+                await self.bot.di.add_eco(winner, -wamount)
+                await self.bot.di.add_eco(ctx.author, wamount)
+                await self.bot.di.give_items(winner, (item, amount))
+                break
+        else:
+            await ctx.send("Nobody bid and had enough money to pay for it!")
+            await self.bot.di.give_items(ctx.author, (item, amount))
+
+        self.bids.remove(ctx.channel.id)
+
+    @commands.command()
+    async def bid(self, ctx):
+        """Place a bid on the current bidding item in the channel"""

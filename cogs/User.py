@@ -30,6 +30,7 @@ class User(object):
 
     @commands.command(name="userinfo", aliases=["ui"], no_pm=True)
     async def ui(self, ctx, user: discord.Member=None):
+        """Get info on a user"""
         if user is None:
             user = ctx.author
 
@@ -53,7 +54,7 @@ class User(object):
             imap.append(f"\nand {il-20} more...")
         invitems = "\n".join(imap) or "No Items"
 
-        embed.add_field(name="Balance", value=f"{ud['money']} Pokédollars")
+        embed.add_field(name="Balance", value=f"${ud['money']}")
         embed.add_field(name="Guild", value=ud.get("guild", "None"))
         embed.add_field(name="Items", value=invitems)
         embed.add_field(name="Box", value=boxitems)

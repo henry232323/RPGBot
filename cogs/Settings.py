@@ -35,7 +35,7 @@ class Settings(object):
         settings = await self.bot.db.get_guild_data(ctx.guild)
         embed = discord.Embed()
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-        embed.add_field(name="Starting Money", value=f"{settings['start']} Pokédollars")
+        embed.add_field(name="Starting Money", value=f"${settings['start']}")
         embed.add_field(name="Items", value=f"{len(settings['items'])} items")
         embed.add_field(name="Characters", value=f"{len(settings['characters'])} characters")
         await ctx.send(embed=embed)
@@ -133,4 +133,4 @@ class Settings(object):
     async def setstart(self, ctx, amount: int):
         """Set the money start amount for a guild"""
         await self.bot.di.set_start(ctx.guild, amount)
-        await ctx.send(f"Starting amount changed to {amount} Pokédollars")
+        await ctx.send(f"Starting amount changed to ${amount}")

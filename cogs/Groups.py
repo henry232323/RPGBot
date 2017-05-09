@@ -68,7 +68,7 @@ class Groups(object):
 
         embed.add_field(name="Owner", value=owner.mention)
         embed.add_field(name="Open", value=str(guild.open))
-        embed.add_field(name="Bank Balance", value=f"{guild.bank} Pokédollars")
+        embed.add_field(name="Bank Balance", value=f"${guild.bank}")
         embed.add_field(name="Members", value=members or "None")
         embed.add_field(name="Items", value=items or "None")
 
@@ -183,7 +183,7 @@ class Groups(object):
 
         embed.add_field(name="Owner", value=guild.owner)
         embed.add_field(name="Open", value=str(guild.open))
-        embed.add_field(name="Bank Balance", value=f"{guild.bank} Pokédollars")
+        embed.add_field(name="Bank Balance", value=f"${guild.bank}")
         embed.add_field(name="Members", value=members)
         embed.add_field(name="Items", value=items)
 
@@ -386,7 +386,7 @@ class Groups(object):
 
             guild.bank += amount
             await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-            await ctx.send(f"Successfully deposited {amount} Pokédollars")
+            await ctx.send(f"Successfully deposited ${amount}")
         except:
             from traceback import print_exc
             print_exc()
@@ -413,7 +413,7 @@ class Groups(object):
             return
 
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(f"Successfully withdrew {amount} Pokédollars")
+        await ctx.send(f"Successfully withdrew ${amount}")
 
     @guild.command(no_pm=True)
     async def setmod(self, ctx, *members: discord.Member):
@@ -555,7 +555,7 @@ class Groups(object):
 
     @guild.command(no_pm=True, aliases=["setdesc"])
     async def setdescription(self, ctx, *, description):
-        """Set the guild's image"""
+        """Set the guild's description"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send("You aren't in a guild!")
