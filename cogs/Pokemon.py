@@ -27,12 +27,14 @@ class Pokemon(object):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.group(aliases=["p"], no_pm=True)
+    @commands.group(aliases=["p"])
+    @commands.guild_only()
     async def pokemon(self, ctx):
         """Subcommands for Pokemon management, see pb!help pokemon"""
         pass
 
-    @pokemon.command(aliases=["new"], no_pm=True)
+    @pokemon.command(aliases=["new"])
+    @commands.guild_only()
     async def create(self, ctx):
         """Create a new Pokemon to add to your box"""
         try:
@@ -125,7 +127,8 @@ class Pokemon(object):
         except asyncio.TimeoutError:
             await ctx.send("Timed out! Try again")
 
-    @pokemon.command(no_pm=True)
+    @pokemon.command()
+    @commands.guild_only()
     async def info(self, ctx, id: int):
         """Get info on a Pokemon"""
         pokemon = await self.bot.di.get_pokemon(ctx.author, id)

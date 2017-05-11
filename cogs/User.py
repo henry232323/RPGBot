@@ -28,7 +28,8 @@ class User(object):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="userinfo", aliases=["ui"], no_pm=True)
+    @commands.command(name="userinfo", aliases=["ui"])
+    @commands.guild_only()
     async def ui(self, ctx, user: discord.Member=None):
         """Get info on a user"""
         if user is None:

@@ -33,7 +33,8 @@ class Groups(object):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.group(no_pm=True, aliases=["g"], invoke_without_command=True)
+    @commands.guild_only()
+    @commands.group(aliases=["g"], invoke_without_command=True)
     async def guild(self, ctx, member: discord.Member=None):
         """Get info on a member's guild. Subcommands for guild management"""
         if member is None:
@@ -73,8 +74,8 @@ class Groups(object):
         embed.add_field(name="Items", value=items or "None")
 
         await ctx.send(embed=embed)
-
-    @commands.command(no_pm=True)
+    @commands.guild_only()
+    @commands.command()
     async def guilds(self, ctx):
         """List guilds"""
         guilds = list((await self.bot.di.get_guild_guilds(ctx.guild)).items())
@@ -159,7 +160,7 @@ class Groups(object):
             except:
                 pass
 
-    @guild.command(no_pm=True)
+    @guild.command()
     async def info(self, ctx, *, name: str):
         """Get info on a guild"""
         guild = (await self.bot.di.get_guild_guilds(ctx.guild)).get(name)
@@ -187,7 +188,8 @@ class Groups(object):
         embed.add_field(name="Members", value=members)
         embed.add_field(name="Items", value=items)
 
-    @guild.command(no_pm=True)
+    @commands.guild_only()
+    @guild.command()
     async def create(self, ctx, *, name: str):
         """Create a new guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -254,7 +256,8 @@ class Groups(object):
         except asyncio.TimeoutError:
             await ctx.send("Timed out! Try again")
 
-    @guild.command(no_pm=True)
+    @guild.command()
+    @commands.guild_only()
     async def join(self, ctx, *, name: str):
         """Join a guild (if you have an invite for closed guilds)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -279,7 +282,8 @@ class Groups(object):
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send("Guild joined!")
 
-    @guild.command(no_pm=True)
+    @guild.command()
+    @commands.guild_only()
     async def leave(self, ctx):
         """Leave your guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -302,7 +306,8 @@ class Groups(object):
         await self.bot.di.set_guild(ctx.author, None)
         await ctx.send("Guild left.")
 
-    @guild.command(no_pm=True)
+    @guild.command()
+    @commands.guild_only()
     async def kick(self, ctx, user: discord.Member):
         """Kick a member from a guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -324,7 +329,8 @@ class Groups(object):
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send("User kicked")
 
-    @guild.command(no_pm=True)
+    @guild.command()
+    @commands.guild_only()
     async def invite(self, ctx, user: discord.Member):
         """Invite a user your closed guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -341,7 +347,8 @@ class Groups(object):
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send(f"Sent a guild invite to {user}")
 
-    @guild.command(no_pm=True)
+    @guild.command()
+    @commands.guild_only()
     async def delete(self, ctx):
         """Delete your guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -367,7 +374,8 @@ class Groups(object):
         await self.bot.di.remove_guild(ctx.guild, guild.name)
         await ctx.send("Guild removed!")
 
-    @guild.command(no_pm=True)
+    @guild.command()
+    @commands.guild_only()
     async def deposit(self, ctx, amount: int):
         """Deposit an amount of money into the guild bank"""
         try:
@@ -391,7 +399,8 @@ class Groups(object):
             from traceback import print_exc
             print_exc()
 
-    @guild.command(no_pm=True)
+    @guild.command()
+    @commands.guild_only()
     async def withdraw(self, ctx, amount: int):
         """Take money from the guild bank"""
         amount = abs(amount)
@@ -415,7 +424,8 @@ class Groups(object):
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send(f"Successfully withdrew ${amount}")
 
-    @guild.command(no_pm=True)
+    @guild.command()
+    @commands.guild_only()
     async def setmod(self, ctx, *members: discord.Member):
         """Give the listed users mod for your guild (guild owner only)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -437,7 +447,8 @@ class Groups(object):
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send("Successfully added mods!")
 
-    @guild.command(no_pm=True)
+    @guild.command()
+    @commands.guild_only()
     async def deposititems(self, ctx, *items: str):
         """Deposit items into the guild's storage, uses {item}x{#} notation"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -465,7 +476,8 @@ class Groups(object):
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send("Successfully deposited items!")
 
-    @guild.command(no_pm=True)
+    @guild.command()
+    @commands.guild_only()
     async def withdrawitems(self, ctx, *items: str):
         """Withdraw items from the guild (guild mods only)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -499,7 +511,8 @@ class Groups(object):
         await self.bot.di.give_items(ctx.author, *fitems)
         await ctx.send("Successfully withdrew items")
 
-    @guild.command(no_pm=True)
+    @guild.command()
+    @commands.guild_only()
     async def toggleopen(self, ctx):
         """Toggle the Guilds open state"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -517,7 +530,8 @@ class Groups(object):
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send(f"Guild is now {'open' if guild.open else 'closed'}")
 
-    @guild.command(no_pm=True)
+    @guild.command()
+    @commands.guild_only()
     async def seticon(self, ctx, url: str):
         """Set the guild's icon"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -535,7 +549,8 @@ class Groups(object):
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send("Updated guild icon url!")
 
-    @guild.command(no_pm=True)
+    @guild.command()
+    @commands.guild_only()
     async def setimage(self, ctx, url: str):
         """Set the guild's image"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -553,7 +568,8 @@ class Groups(object):
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send("Updated guild image url!")
 
-    @guild.command(no_pm=True, aliases=["setdesc"])
+    @guild.command(aliases=["setdesc"])
+    @commands.guild_only()
     async def setdescription(self, ctx, *, description):
         """Set the guild's description"""
         ug = await self.bot.di.get_user_guild(ctx.author)
