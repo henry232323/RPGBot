@@ -29,7 +29,8 @@ class Characters(object):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(no_pm=True, aliases=["chars"])
+    @commands.guild_only()
+    @commands.command(aliases=["chars"])
     async def characters(self, ctx):
         """List all your characters"""
         characters = await self.bot.di.get_guild_characters(ctx.guild)
@@ -42,7 +43,8 @@ class Characters(object):
         embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.command(no_pm=True)
+    @commands.guild_only()
+    @commands.command()
     async def allchars(self, ctx):
         """List all guild characters"""
         characters = await self.bot.di.get_guild_characters(ctx.guild)
@@ -65,7 +67,8 @@ class Characters(object):
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
         await ctx.send(embed=embed)
 
-    @commands.group(no_pm=True, invoke_without_command=True, aliases=["c", "char"])
+    @commands.guild_only()
+    @commands.group(invoke_without_command=True, aliases=["c", "char"])
     async def character(self, ctx, *, name: str):
         """Get info on a character"""
         try:
@@ -90,7 +93,8 @@ class Characters(object):
 
         await ctx.send(embed=embed)
 
-    @character.command(no_pm=True, aliases=["new"])
+    @commands.guild_only()
+    @character.command(aliases=["new"])
     async def create(self, ctx, *, name: str):
         """Create a new character"""
         check = lambda x: x.channel is ctx.channel and x.author is ctx.author
@@ -130,8 +134,9 @@ class Characters(object):
         await self.bot.di.add_character(ctx.guild, Character(**character))
         await ctx.send("Character created! pb!team addmember to add to your characters team!")
 
+    @commands.guild_only()
     @checks.mod_or_permissions()
-    @commands.group(aliases=["exp"], invoke_without_command=True, no_pm=True)
+    @commands.group(aliases=["exp"], invoke_without_command=True)
     async def experience(self, ctx, member: discord.Member=None):
         """Get your or another user's level information. Help on this command for experience subcommands
         EXP is calculated using a 0.1x^2+5x+4 where x is equal to the user's current level
@@ -144,16 +149,18 @@ class Characters(object):
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
         await ctx.send(embed)
 
+    @commands.guild_only()
     @checks.mod_or_permissions()
-    @experience.command(no_pm=True)
+    @experience.command()
     async def setlevel(self, ctx, level: int, *members: discord.Member):
         """Set the given members level"""
         for member in members:
             await self.bot.di.set_level(member, level, 0)
         await ctx.send("Set level for members")
 
+    @commands.guild_only()
     @checks.mod_or_inv()
-    @experience.command(no_pm=True)
+    @experience.command()
     async def add(self, ctx, amount: int, *members: discord.Member):
         """Give the given members an amount of experience"""
         for member in members:

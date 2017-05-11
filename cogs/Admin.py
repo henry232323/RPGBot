@@ -112,6 +112,7 @@ class Admin(object):
         for i in range(times):
             await self.bot.process_commands(msg)
 
+    @commands.guild_only()
     @commands.command(hidden=True)
     @checks.owner_or_permissions(manage_messagees=True)
     async def purge(self, ctx, number: int):
