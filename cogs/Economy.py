@@ -27,7 +27,7 @@ from collections import Counter
 from random import choice
 import asyncio
 
-from .utils.data import Converter
+from .utils.data import Converter, get
 from .utils import checks
 
 
@@ -105,9 +105,9 @@ class Economy(object):
             chunks.append(market[i:i + 25])
 
         i = 0
-        for item, value in chunks[i]:
-            fmt = "\n".join(str(discord.utils.get(ctx.guild.members, id=x['user'])) + f": \u20BD{x['cost']} x{x['amount']}" for x in value)
-            embed.add_field(name=item, value=fmt)
+
+        users = get(ctx.guild.members, id=[x["user"] for x in chunks[i]])
+        embed.description = "\n".join(f"{x['id']}: ${x['cost']} for x{x['amount']} {x['item']} from {y}" for x, y in zip(chunks[i], users))
 
         max = len(chunks) - 1
 
@@ -137,13 +137,11 @@ class Economy(object):
                 if i == 0:
                     pass
                 else:
-                    embed.clear_fields()
                     i -= 1
-                    for item, value in chunks[i]:
-                        fmt = "\n".join(str(
-                            discord.utils.get(ctx.guild.members, id=x['user'])) + f": \u20BD{x['cost']} x{x['amount']}"
-                                        for x in value)
-                        embed.add_field(name=item, value=fmt)
+                    users = get(ctx.guild.members, id=[x["user"] for x in chunks[i]])
+                    embed.description = "\n".join(
+                        f"{x['id']}: ${x['cost']} for x{x['amount']} {x['item']} from {y}" for x, y in
+                        zip(chunks[i], users))
 
                     await msg.edit(embed=embed)
 
@@ -153,11 +151,10 @@ class Economy(object):
                 else:
                     embed.clear_fields()
                     i += 1
-                    for item, value in chunks[i]:
-                        fmt = "\n".join(str(
-                            discord.utils.get(ctx.guild.members, id=x['user'])) + f": \u20BD{x['cost']} x{x['amount']}"
-                                        for x in value)
-                        embed.add_field(name=item, value=fmt)
+                    users = get(ctx.guild.members, id=[x["user"] for x in chunks[i]])
+                    embed.description = "\n".join(
+                        f"{x['id']}: ${x['cost']} for x{x['amount']} {x['item']} from {y}" for x, y in
+                        zip(chunks[i], users))
 
                     await msg.edit(embed=embed)
             else:
@@ -179,25 +176,14 @@ class Economy(object):
         market = await self.bot.di.get_guild_market(ctx.guild)
         items = await self.bot.di.get_guild_items(ctx.guild)
 
-        if item not in items:
-            await ctx.send("That is not a valid item!")
-            return
-
-        if item not in market:
-            market[item] = list()
-
         try:
             await self.bot.di.take_items(ctx.author, (item, amount))
         except ValueError:
             await ctx.send("You dont have enough of these to sell!")
             return
 
-        for listing in market[item]:
-            if listing["user"] == ctx.author.id and listing["cost"] == cost:
-                listing["amount"] += amount
-                break
-        else:
-            market[item].append(dict(user=ctx.author.id, cost=cost, amount=amount))
+        id = self.bot.randsample()
+        market[id] = dict(id=id, item=item, user=ctx.author.id, cost=cost, amount=amount)
 
         await self.bot.di.update_guild_market(ctx.guild, market)
 
@@ -205,34 +191,22 @@ class Economy(object):
 
     @commands.guild_only()
     @market.command(aliases=["purchase"])
-    async def buy(self, ctx, amount: int, *, item: str):
+    async def buy(self, ctx, id: str):
         """Buy a given amount of an item from the player market at the cheapest given price"""
-        amount = abs(amount)
         market = await self.bot.di.get_guild_market(ctx.guild)
-        items = market.get(item)
-        if not items:
-            await ctx.send("There are none of those on the market! Sorry")
-            return
+        item = market.get(id)
 
-        fcost = 0
-        remaining = amount
-        while remaining:
-            m = min(items, key=lambda x: x.cost)
-            if m.amount < remaining:
-                items.remove(m)
-                remaining -= m.amount
-                fcost += m.amount * m.cost
-            else:
-                m.amount -= amount
-                fcost += m.cost * amount
+        if not item:
+            await ctx.send("That is not a valid ID!")
+            return
 
         try:
-            await self.bot.di.add_eco(-fcost)
+            await self.bot.di.add_eco(-item['cost'])
         except ValueError:
-            await ctx.send("You cant afford this many!")
+            await ctx.send("You cant afford this item!")
             return
 
-        await self.bot.di.give_items(ctx.author, (item, amount))
+        await self.bot.di.give_items(ctx.author, (item["item"], item["amount"]))
         await self.bot.di.update_guild_market(ctx.guild, market)
         await ctx.send("Items successfully bought")
 
