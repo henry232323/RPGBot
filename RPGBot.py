@@ -28,7 +28,7 @@ import psutil
 import datetime
 import aiohttp
 import asyncio
-from random import choice
+from random import choice, sample
 from discord.ext import commands
 from collections import Counter
 
@@ -91,6 +91,7 @@ class Bot(commands.Bot):
         self.di = data.DataInteraction(self)
         self.default_udata = data.default_user
         self.default_servdata = data.default_server
+        self.rnd = "1234567890abcdefghijklmnopqrstuvwxyz"
 
     async def on_ready(self):
         print('Logged in as')
@@ -162,14 +163,15 @@ class Bot(commands.Bot):
             if r is not None:
                 await ctx.send(f"{ctx.author.mention} is now level {r}!")
 
-    async def on_command_error(self, exception, ctx):
+    async def on_command_error(self, ctx, exception):
         logging.info(f"Exception in {ctx.command} {ctx.guild}:{ctx.channel} {exception}")
         if isinstance(exception, commands.MissingRequiredArgument):
             await ctx.send(f"`{exception}`")
         else:
             await ctx.send(f"`{exception}`")
 
-    async def on_guild_join(self, guild):
+    @staticmethod
+    async def on_guild_join(guild):
         if sum(1 for m in guild.members if m.bot) / guild.member_count >= 3/4:
             await guild.channels[0].send("This server has too many bots! I'm just going to leave if thats alright")
             await guild.leave()
@@ -192,6 +194,9 @@ class Bot(commands.Bot):
 
         return fmt.format(d=days, h=hours, m=minutes, s=seconds)
 
+    def randsample(self):
+        return "".join(sample(self.rnd, 6))
+
     @staticmethod
     def get_exp(level):
         return int(0.1 * level ** 2 + 5 * level + 4)
@@ -211,7 +216,8 @@ class Bot(commands.Bot):
         @self.webapp.route("/servers/<int:snowflake>/", methods=["GET"])
         async def getservinfo(ctx: HTTPRequestContext, snowflake: int):
             try:
-                req = f"""SELECT info FROM servdata WHERE UUID = {snowflake}"""
+                snowflake = int(snowflake)
+                req = f"""SELECT info FROM servdata WHERE UUID = {snowflake};"""
                 async with self.db._conn.acquire() as connection:
                     response = await connection.fetchval(req)
                 return Response(response if response else json.dumps(self.default_servdata, indent=4), status=200)
@@ -221,7 +227,8 @@ class Bot(commands.Bot):
         @self.webapp.route("/users/<int:snowflake>/", methods=["GET"])
         async def getuserinfo(ctx: HTTPRequestContext, snowflake: int):
             try:
-                req = f"""SELECT info FROM userdata WHERE UUID = {snowflake}"""
+                snowflake = int(snowflake)
+                req = f"""SELECT info FROM userdata WHERE UUID = {snowflake};"""
                 async with self.db._conn.acquire() as connection:
                     response = await connection.fetchval(req)
                 return Response(response if response else json.dumps(self.default_udata, indent=4), status=200)

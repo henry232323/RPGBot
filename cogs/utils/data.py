@@ -29,8 +29,9 @@ from discord.ext import commands
 Pokemon = namedtuple("Pokemon", ["id", "name", "type", "stats", "meta"])
 ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
 Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
-
 gc = namedtuple("Guild", ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites", "mods"])
+
+
 class Guild(gc):
     __slots__ = ()
 
@@ -47,10 +48,18 @@ class Guild(gc):
 
 
 class Converter(commands.MemberConverter):
-    def convert(self):
-        if self.argument == 'everyone' or self.argument == '@everyone':
+    async def convert(self, ctx, argument):
+        if argument == 'everyone' or argument == '@everyone':
             return 'everyone'
-        return super().convert()
+        return await super().convert(ctx, argument)
+
+
+def get(iterable, **attrs):
+    attr, val = list(attrs.items())[:1]
+
+    fin = [element for element in iterable if element in val]
+    fin.sort(key=lambda x: val.index(getattr(x, attr)))
+    return None or fin
 
 default_user = {
     "money": 0,
@@ -128,6 +137,10 @@ example_server = {
     }
 }
 
+example_market = {
+    "id": "ab782dgi"
+}
+
 example_guild = {
     "name": "Dank Memers",
     "owner": 166349353999532035,
@@ -141,6 +154,7 @@ example_guild = {
     "icon": None,
     "mods": {166349353999532035}
 }
+
 
 class DataInteraction(object):
     def __init__(self, bot):
