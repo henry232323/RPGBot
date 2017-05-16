@@ -27,7 +27,7 @@ Random Choice[banana, banana, orange, orange, orange]
     - *enter*         Enter the lottery with the given name. `rp!lotto [enter|join] <name>`
     - *new*           Create a new lotto, with jacpot payout lasting time in seconds `rp!lotto [new|create] <name> <jackpot> <time>`
   - *market*     View the current market listings `rp![market|m|pm]`
-    - *buy*           Buy a given amount of an item from the player market at the cheapest given price `rp!market [buy|purchase] <ctx> <amount> <item>`
+    - *buy*           Buy a given amount of an item from the player market at the cheapest given price `rp!market [buy|purchase] <id>`
     - *create*        Create a new market listing `rp!market [create|createlisting|new|listitem|list] <cost> <amount> <item>`
   - *pay*        Pay another user money `rp!pay <amount> <member>`
   - *shop*       Get all items currently listed on the server shop

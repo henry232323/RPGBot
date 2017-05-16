@@ -38,7 +38,7 @@ def role_or_permissions(ctx, check, **perms):
 
     role = discord.utils.find(check, author.roles)
     if role is None:
-        raise commands.CommandError("You need a special role to do this! (You probably want `Bot Moderator`)")
+        raise commands.CommandError("You need a special role to do this! (You probably want 'Bot Moderator')")
     return True
 
 def mod_or_inv():
@@ -72,7 +72,7 @@ def is_lounge_cpp():
 
 def chcreate_or_permissions(**perms):
         def predicate(ctx):
-            return role_or_permissions(ctx, lambda r: r.name == 'Temporary Channel', **perms)
+            return role_or_permissions(ctx, lambda r: r.name == 'Temporary Channel', manage_channels=True, **perms)
 
         return commands.check(predicate)
 
