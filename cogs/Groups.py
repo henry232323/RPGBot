@@ -26,6 +26,7 @@ import asyncio
 from collections import Counter
 
 from .utils.data import Guild
+from .utils import checks
 
 
 class Groups(object):
@@ -33,7 +34,7 @@ class Groups(object):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.group(aliases=["g"], invoke_without_command=True)
     async def guild(self, ctx, member: discord.Member=None):
         """Get info on a member's guild. Subcommands for guild management"""
@@ -74,7 +75,7 @@ class Groups(object):
         embed.add_field(name="Items", value=items or "None")
 
         await ctx.send(embed=embed)
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.command()
     async def guilds(self, ctx):
         """List guilds"""
@@ -188,7 +189,7 @@ class Groups(object):
         embed.add_field(name="Members", value=members)
         embed.add_field(name="Items", value=items)
 
-    @commands.guild_only()
+    @checks.no_pm()
     @guild.command()
     async def create(self, ctx, *, name: str):
         """Create a new guild"""
@@ -257,7 +258,7 @@ class Groups(object):
             await ctx.send("Timed out! Try again")
 
     @guild.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def join(self, ctx, *, name: str):
         """Join a guild (if you have an invite for closed guilds)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -283,7 +284,7 @@ class Groups(object):
         await ctx.send("Guild joined!")
 
     @guild.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def leave(self, ctx):
         """Leave your guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -307,7 +308,7 @@ class Groups(object):
         await ctx.send("Guild left.")
 
     @guild.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def kick(self, ctx, user: discord.Member):
         """Kick a member from a guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -330,7 +331,7 @@ class Groups(object):
         await ctx.send("User kicked")
 
     @guild.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def invite(self, ctx, user: discord.Member):
         """Invite a user your closed guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -348,7 +349,7 @@ class Groups(object):
         await ctx.send(f"Sent a guild invite to {user}")
 
     @guild.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def delete(self, ctx):
         """Delete your guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -375,7 +376,7 @@ class Groups(object):
         await ctx.send("Guild removed!")
 
     @guild.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def deposit(self, ctx, amount: int):
         """Deposit an amount of money into the guild bank"""
         try:
@@ -400,7 +401,7 @@ class Groups(object):
             print_exc()
 
     @guild.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def withdraw(self, ctx, amount: int):
         """Take money from the guild bank"""
         amount = abs(amount)
@@ -425,7 +426,7 @@ class Groups(object):
         await ctx.send(f"Successfully withdrew ${amount}")
 
     @guild.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def setmod(self, ctx, *members: discord.Member):
         """Give the listed users mod for your guild (guild owner only)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -448,7 +449,7 @@ class Groups(object):
         await ctx.send("Successfully added mods!")
 
     @guild.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def deposititems(self, ctx, *items: str):
         """Deposit items into the guild's storage, uses {item}x{#} notation"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -477,7 +478,7 @@ class Groups(object):
         await ctx.send("Successfully deposited items!")
 
     @guild.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def withdrawitems(self, ctx, *items: str):
         """Withdraw items from the guild (guild mods only)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -512,7 +513,7 @@ class Groups(object):
         await ctx.send("Successfully withdrew items")
 
     @guild.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def toggleopen(self, ctx):
         """Toggle the Guilds open state"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -531,7 +532,7 @@ class Groups(object):
         await ctx.send(f"Guild is now {'open' if guild.open else 'closed'}")
 
     @guild.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def seticon(self, ctx, url: str):
         """Set the guild's icon"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -550,7 +551,7 @@ class Groups(object):
         await ctx.send("Updated guild icon url!")
 
     @guild.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def setimage(self, ctx, url: str):
         """Set the guild's image"""
         ug = await self.bot.di.get_user_guild(ctx.author)
@@ -569,7 +570,7 @@ class Groups(object):
         await ctx.send("Updated guild image url!")
 
     @guild.command(aliases=["setdesc"])
-    @commands.guild_only()
+    @checks.no_pm()
     async def setdescription(self, ctx, *, description):
         """Set the guild's description"""
         ug = await self.bot.di.get_user_guild(ctx.author)

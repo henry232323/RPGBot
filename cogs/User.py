@@ -22,6 +22,8 @@
 from discord.ext import commands
 import discord
 
+from .utils import checks
+
 
 class User(object):
     """Commands for guild management"""
@@ -29,7 +31,7 @@ class User(object):
         self.bot = bot
 
     @commands.command(name="userinfo", aliases=["ui"])
-    @commands.guild_only()
+    @checks.no_pm()
     async def ui(self, ctx, user: discord.Member=None):
         """Get info on a user"""
         if user is None:

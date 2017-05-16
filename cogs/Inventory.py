@@ -30,7 +30,7 @@ class Inventory(object):
         self.bot = bot
 
     @commands.group(invoke_without_command=True, aliases=['i', 'inv'])
-    @commands.guild_only()
+    @checks.no_pm()
     async def inventory(self, ctx, *, member: discord.Member=None):
         """Check your or another users inventory."""
         if member is None:
@@ -49,7 +49,7 @@ class Inventory(object):
 
     @checks.mod_or_permissions()
     @inventory.command(aliases=["take"])
-    @commands.guild_only()
+    @checks.no_pm()
     async def takeitem(self, ctx, item: str, num: int, *members: Converter):
         """Remove an item from a person's inventory"""
         if "everyone" in members:
@@ -63,7 +63,7 @@ class Inventory(object):
 
     @checks.mod_or_permissions()
     @inventory.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def giveitem(self, ctx, item: str, num: int, *members: Converter):
         """Give an item to a person (Not out of your inventory)"""
         if "everyone" in members:
@@ -76,7 +76,7 @@ class Inventory(object):
         await ctx.send("Items given!")
 
     @inventory.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def give(self, ctx, other: discord.Member, *items: str):
         """Give items ({item}x{#}) to a member; ie: ;give @Henry#6174 pokeballx3"""
         fitems = []

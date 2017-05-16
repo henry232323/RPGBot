@@ -22,13 +22,14 @@
 from discord.ext import commands
 import discord
 
+from .utils import checks
 
 class Team(object):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def box(self, ctx, member: discord.Member=None):
         """Check the pokemon in your box"""
         if member is None:
@@ -43,7 +44,7 @@ class Team(object):
         await ctx.send(embed=embed)
 
     @commands.group(invoke_without_command=True)
-    @commands.guild_only()
+    @checks.no_pm()
     async def team(self, ctx, character: str):
         """Check a character's team"""
         team = await self.bot.di.get_team(ctx.guild, character)
@@ -62,13 +63,13 @@ class Team(object):
         await ctx.send(embed=embed)
 
     @team.command(aliases=["addmember"])
-    @commands.guild_only()
+    @checks.no_pm()
     async def add(self, ctx, character, id):
         """Add a Pokemon to a character's team"""
         await self.bot.di.add_to_team(ctx.guild, character, id)
 
     @team.command(aliases=["removemember"])
-    @commands.guild_only()
+    @checks.no_pm()
     async def remove(self, ctx, character, id):
         """Remove a Pokemon from a character's team"""
         await self.bot.di.remove_from_team(ctx.guild, character, id)

@@ -37,7 +37,9 @@ def role_or_permissions(ctx, check, **perms):
         return False  # can't have roles in PMs
 
     role = discord.utils.find(check, author.roles)
-    return role is not None
+    if role is None:
+        raise commands.CommandError("You need a special role to do this! (You probably want `Bot Moderator`)")
+    return True
 
 def mod_or_inv():
     def predicate(ctx):

@@ -29,7 +29,7 @@ class Characters(object):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.command(aliases=["chars"])
     async def characters(self, ctx):
         """List all your characters"""
@@ -43,7 +43,7 @@ class Characters(object):
         embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.command()
     async def allchars(self, ctx):
         """List all guild characters"""
@@ -67,7 +67,7 @@ class Characters(object):
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
         await ctx.send(embed=embed)
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=["c", "char"])
     async def character(self, ctx, *, name: str):
         """Get info on a character"""
@@ -93,7 +93,7 @@ class Characters(object):
 
         await ctx.send(embed=embed)
 
-    @commands.guild_only()
+    @checks.no_pm()
     @character.command(aliases=["new"])
     async def create(self, ctx, *, name: str):
         """Create a new character"""
@@ -134,7 +134,7 @@ class Characters(object):
         await self.bot.di.add_character(ctx.guild, Character(**character))
         await ctx.send("Character created! pb!team addmember to add to your characters team!")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @checks.mod_or_permissions()
     @commands.group(aliases=["exp"], invoke_without_command=True)
     async def experience(self, ctx, member: discord.Member=None):
@@ -149,7 +149,7 @@ class Characters(object):
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
         await ctx.send(embed)
 
-    @commands.guild_only()
+    @checks.no_pm()
     @checks.mod_or_permissions()
     @experience.command()
     async def setlevel(self, ctx, level: int, *members: discord.Member):
@@ -158,7 +158,7 @@ class Characters(object):
             await self.bot.di.set_level(member, level, 0)
         await ctx.send("Set level for members")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @checks.mod_or_inv()
     @experience.command()
     async def add(self, ctx, amount: int, *members: discord.Member):

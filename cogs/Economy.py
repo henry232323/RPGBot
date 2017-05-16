@@ -37,7 +37,7 @@ class Economy(object):
         self.bot = bot
         self.bids = list()
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.group(aliases=["bal", "balance", "eco", "e"], invoke_without_command=True)
     async def economy(self, ctx, member: discord.Member=None):
         """Check your or another users balance"""
@@ -48,7 +48,7 @@ class Economy(object):
 
         await ctx.send(f"{member.display_name} has ${bal}")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @checks.mod_or_permissions()
     @economy.command(aliases=["set"])
     async def setbalance(self, ctx, amount: int, *members: Converter):
@@ -61,7 +61,7 @@ class Economy(object):
 
         await ctx.send("Balances changed")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @checks.mod_or_permissions()
     @economy.command(aliases=["give"])
     async def givemoney(self, ctx, amount: int, *members: Converter):
@@ -74,7 +74,7 @@ class Economy(object):
 
         await ctx.send("Money given")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.command()
     async def pay(self, ctx, amount: int, member: discord.Member):
         """Pay another user money"""
@@ -83,11 +83,12 @@ class Economy(object):
         await self.bot.di.add_eco(member, amount)
         await ctx.send(f"Successfully paid ${amount} to {member}")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.group(aliases=["m", "pm"], invoke_without_command=True)
     async def market(self, ctx):
         """View the current market listings"""
-        market = list((await self.bot.di.get_guild_market(ctx.guild)).items())
+        um = await self.bot.di.get_guild_market(ctx.guild)
+        market = list(um.values())
         desc = """
         \u27A1 to see the next page
         \u2B05 to go back
@@ -96,6 +97,7 @@ class Economy(object):
         if not market:
             await ctx.send("No items on the market to display.")
             return
+
         emotes = ("\u2B05", "\u27A1", "\u274C")
         embed = discord.Embed(description=desc, title="Player Market")
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
@@ -105,8 +107,26 @@ class Economy(object):
             chunks.append(market[i:i + 25])
 
         i = 0
+        try:
+            users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
+        except Exception as e:
+            print(e)
+            br = []
+            for listing, data in um.items():
+                if 'item' not in listing:
+                    id = self.bot.randsample()
+                    um[id] = dict(id=id, item=listing, user=ctx.author.id, cost=data['cost'], amount=listing['amount'])
+                    br.append(listing)
 
-        users = get(ctx.guild.members, id=[x["user"] for x in chunks[i]])
+            for i in br:
+                del um[i]
+
+            print(um)
+
+            await self.bot.di.update_guild_market(ctx.guild, um)
+            market = list(um.items())
+            users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
+
         embed.description = "\n".join(f"{x['id']}: ${x['cost']} for x{x['amount']} {x['item']} from {y}" for x, y in zip(chunks[i], users))
 
         max = len(chunks) - 1
@@ -167,14 +187,13 @@ class Economy(object):
             except:
                 pass
 
-    @commands.guild_only()
+    @checks.no_pm()
     @market.command(aliases=["createlisting", "new", "listitem", "list"])
     async def create(self, ctx, cost: int, amount: int, *, item: str):
         """Create a new market listing"""
         amount = abs(amount)
         cost = abs(cost)
         market = await self.bot.di.get_guild_market(ctx.guild)
-        items = await self.bot.di.get_guild_items(ctx.guild)
 
         try:
             await self.bot.di.take_items(ctx.author, (item, amount))
@@ -189,7 +208,7 @@ class Economy(object):
 
         await ctx.send("Item listed!")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @market.command(aliases=["purchase"])
     async def buy(self, ctx, id: str):
         """Buy a given amount of an item from the player market at the cheapest given price"""
@@ -210,7 +229,7 @@ class Economy(object):
         await self.bot.di.update_guild_market(ctx.guild, market)
         await ctx.send("Items successfully bought")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=['lb'])
     async def lootbox(self, ctx):
         """List the current lootboxes"""
@@ -234,7 +253,7 @@ class Economy(object):
         else:
             await ctx.send("No current lootboxes")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @checks.mod_or_permissions()
     @lootbox.command(name="create", aliases=["new"])
     async def _create(self, ctx, name: str, cost: int, *items: str):
@@ -259,7 +278,7 @@ class Economy(object):
         await ctx.send("Lootbox successfully created")
         await self.bot.di.update_guild_lootboxes(ctx.guild, boxes)
 
-    @commands.guild_only()
+    @checks.no_pm()
     @lootbox.command(name="buy")
     async def _buy(self, ctx, name: str):
         """Buy a lootbox of the given name"""
@@ -284,7 +303,7 @@ class Economy(object):
         await self.bot.di.give_items(ctx.author, (result, 1))
         await ctx.send("You won a(n) {}".format(result))
 
-    @commands.guild_only()
+    @checks.no_pm()
     @lootbox.command(name="delete", aliases=["remove"])
     async def _delete(self, ctx, name: str):
         """Delete a lootbox with the given name"""
@@ -297,7 +316,7 @@ class Economy(object):
 
             await self.bot.di.update_guild_lootboxes(ctx.guild, boxes)
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=['lottery'])
     async def lotto(self, ctx):
         """List the currently running lottos."""
@@ -318,7 +337,7 @@ class Economy(object):
         else:
             await ctx.send("No lotteries currently running!")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @checks.mod_or_permissions()
     @lotto.command(aliases=["create"])
     async def new(self, ctx, name: str, jackpot: int, time: int):
@@ -340,7 +359,7 @@ class Economy(object):
             await ctx.send("Nobody entered {}! Its over now.".format(name))
         del self.bot.lotteries[ctx.guild.id][name]
 
-    @commands.guild_only()
+    @checks.no_pm()
     @lotto.command(aliases=["join"])
     async def enter(self, ctx, name: str):
         """Enter the lottery with the given name."""
@@ -356,7 +375,7 @@ class Economy(object):
         else:
             await ctx.send("This server has no lottos currently running!")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.group(invoke_without_command=True)
     async def shop(self, ctx):
         """Get all items currently listed on the server shop"""
@@ -378,16 +397,17 @@ class Economy(object):
             chunks.append(shop[i:i + 25])
 
         i = 0
-        def lfmt(v):
-            d = []
-            if value["buy"]:
-                d.append(f"Buy Value: {value['buy']}")
-            if value["sell"]:
-                d.append(f"Sell Value: {value['sell']}")
-            if value["level"]:
-                d.append(f"Level: {value['level']}")
-            return "\n".join(v)
 
+        def lfmt(v):
+            d = ""
+            if value["buy"]:
+                d += f"Buy Value: {value['buy']}"
+            if value["sell"]:
+                d += f"\nSell Value: {value['sell']}"
+            if value["level"]:
+                d += f"\nLevel: {value['level']}"
+
+            return d
 
         for item, value in chunks[i]:
             fmt = lfmt(value)
@@ -450,19 +470,21 @@ class Economy(object):
             except:
                 pass
 
-    @commands.guild_only()
-    @shop.command()
+    @checks.no_pm()
+    @shop.command(aliases=["add"])
     @checks.mod_or_permissions()
     async def additem(self, ctx, name: str):
         """Add an item to the server shop, to make an item unsaleable or unbuyable set their respective values to 0
-        pb!additem Pokeball 0 10
+        pb!additem Pokeball
+        -> 0
+        -> 10
         Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot Moderator or Admin"""
         gd = await self.bot.db.get_guild_data(ctx.guild)
-        if name not in gd.items():
+        if name not in gd["items"]:
             await ctx.send("This item doesn't exist!")
             return
 
-        shop = gd["shop_items"]
+        shop = gd.get("shop_items", dict())
         item = dict(buy=0, sell=0, level=0)
         shop[name] = item
         check = lambda x: x.author is ctx.author and x.channel is ctx.channel
@@ -493,7 +515,7 @@ class Economy(object):
                 await ctx.send("What is the minimum level a user must be for this item? 0 for no minimum")
                 resp = await self.bot.wait_for("message", check=check)
                 try:
-                    item["sell"] = int(resp.content)
+                    item["level"] = int(resp.content)
                 except ValueError:
                     await ctx.send("That is not a valid number!")
                     continue
@@ -507,11 +529,10 @@ class Economy(object):
             await ctx.send("Timed out! Cancelling")
             return
 
-
-        await self.bot.di.update_guild_shop(shop)
+        await self.bot.di.update_guild_shop(ctx.guild, shop)
         await ctx.send("Guild shop updated")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @shop.command()
     @checks.mod_or_permissions()
     async def removeitem(self, ctx, name: str):
@@ -525,7 +546,7 @@ class Economy(object):
         await self.bot.di.update_guild_shop(shop)
         await ctx.send("Successfully removed item")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @shop.command()
     async def buy(self, ctx, item: str, amount: int):
         """Buy an item from the shop"""
@@ -548,7 +569,7 @@ class Economy(object):
         await self.bot.di.add_items(ctx.author, (item, amount))
         await ctx.send(f"Successfully bought {amount} {item}s")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @shop.command()
     async def sell(self, ctx, item: str, amount: int):
         """Sell an item to the shop"""
@@ -568,7 +589,7 @@ class Economy(object):
 
         await ctx.send(f"Successfully sell {amount} {item}s")
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.command()
     async def startbid(self, ctx, item: str, amount: int, startbid: int):
         """Start a bid for an item"""
@@ -624,7 +645,7 @@ class Economy(object):
 
         self.bids.remove(ctx.channel.id)
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.command()
     async def bid(self, ctx):
         """Place a bid on the current bidding item in the channel"""

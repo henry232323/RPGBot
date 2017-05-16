@@ -23,18 +23,21 @@ from discord.ext import commands
 import discord
 import asyncio
 
+from .utils import checks
+
+
 class Pokemon(object):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.group(aliases=["p"])
-    @commands.guild_only()
+    @commands.group(aliases=["p"], invoke_without_command=True)
+    @checks.no_pm()
     async def pokemon(self, ctx):
         """Subcommands for Pokemon management, see pb!help pokemon"""
         pass
 
     @pokemon.command(aliases=["new"])
-    @commands.guild_only()
+    @checks.no_pm()
     async def create(self, ctx):
         """Create a new Pokemon to add to your box"""
         try:
@@ -128,7 +131,7 @@ class Pokemon(object):
             await ctx.send("Timed out! Try again")
 
     @pokemon.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def info(self, ctx, id: int):
         """Get info on a Pokemon"""
         pokemon = await self.bot.di.get_pokemon(ctx.author, id)
