@@ -30,7 +30,7 @@ class Settings(object):
         self.bot = bot
 
     @commands.group(aliases=["s", "configuration", "conf"], invoke_without_command=True)
-    @commands.guild_only()
+    @checks.no_pm()
     async def settings(self, ctx):
         """Get the current server settings"""
         settings = await self.bot.db.get_guild_data(ctx.guild)
@@ -42,7 +42,7 @@ class Settings(object):
         await ctx.send(embed=embed)
 
     @settings.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def iteminfo(self, ctx, item: str):
         """Get info on a server item"""
         items = await self.bot.di.get_guild_items(ctx.guild)
@@ -63,7 +63,7 @@ class Settings(object):
         await ctx.send(embed=embed)
 
     @settings.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def items(self, ctx):
         """See all items for a guild"""
         items = await self.bot.di.get_guild_items(ctx.guild)
@@ -91,7 +91,7 @@ class Settings(object):
 
     @checks.mod_or_permissions()
     @settings.command()
-    @commands.guild_only()
+    @checks.no_pm()
     async def additem(self, ctx, name: str):
         """Add a custom item"""
         try:
@@ -134,7 +134,7 @@ class Settings(object):
             await ctx.send("Timed out! Try again")
 
     @checks.mod_or_permissions()
-    @commands.guild_only()
+    @checks.no_pm()
     async def setstart(self, ctx, amount: int):
         """Set the money start amount for a guild"""
         await self.bot.di.set_start(ctx.guild, amount)

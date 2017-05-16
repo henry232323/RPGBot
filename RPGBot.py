@@ -47,7 +47,7 @@ except ImportError:
 
 if os.name == "nt":
     sys.argv.append("debug")
-if os.getcwd().endswith("poketest"):
+if os.getcwd().endswith("rpgtest"):
     sys.argv.append("debug")
 
 class Bot(commands.Bot):
@@ -237,7 +237,7 @@ class Bot(commands.Bot):
 
         await self.webapp.start('0.0.0.0', 1441)
 
-prefix = ['rp!', 'pb!']
+prefix = ['rp!', 'pb!'] if "debug" not in sys.argv else 'rp$'
 invlink = "https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=322625"
 servinv = "https://discord.gg/UYJb8fQ"
 sourcelink = "https://github.com/henry232323/RPGBot"
