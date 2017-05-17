@@ -241,10 +241,26 @@ class DataInteraction(object):
     async def add_pokemon(self, owner, pokemon):
         """Create a Pokemon for a user's box"""
         ud = await self.db.get_user_data(owner)
-        id = ud["box"][-1].id + 1 if ud["box"] else 0
-        ud["box"].append(Pokemon(**pokemon, id=id))
+        if not 'id' in pokemon:
+            id = ud["box"][-1].id + 1 if ud["box"] else 0
+            ud["box"].append(Pokemon(**pokemon, id=id))
+        else:
+            id = pokemon['id']
+            ud["box"].append(Pokemon(**pokemon))
         await self.db.update_user_data(owner, ud)
         return id
+
+    async def remove_pokemon(self, owner, id):
+        """Remove a Pokemon from a user's box"""
+        ud = await self.db.get_user_data(owner)
+        for x in ud["box"]:
+            if x["id"] == id:
+                break
+        else:
+            raise ValueError("This is not a valid ID!")
+        ud["box"].remove(x)
+        await self.db.update_user_data(owner, ud)
+        return Pokemon(**x)
 
     async def new_item(self, guild, serveritem):
         """Create a new server item"""

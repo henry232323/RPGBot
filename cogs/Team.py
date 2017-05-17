@@ -28,21 +28,6 @@ class Team(object):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
-    @checks.no_pm()
-    async def box(self, ctx, member: discord.Member=None):
-        """Check the pokemon in your box"""
-        if member is None:
-            member = ctx.author
-        box = await self.bot.di.get_box(member)
-
-        pokemon = [f"{x.id}: **{x.name}**" for x in box]
-        description = "\n".join(pokemon)
-        embed = discord.Embed(description=description, title=f"{member.display_name}'s Pokemon")
-        embed.set_author(name=member.display_name, icon_url=member.avatar_url)
-
-        await ctx.send(embed=embed)
-
     @commands.group(invoke_without_command=True)
     @checks.no_pm()
     async def team(self, ctx, character: str):
