@@ -3,11 +3,6 @@
   - *character*  Get info on a character - `rp![character|c|char] <name>`
     - *create*      Create a new character `rp!character [create|new] <name>`
   - *characters* List all your characters `rp![characters|chars]`
-  - *experience* Get your or another user's level information. Help on this command for experience subcommands
-EXP is calculated using a 0.1x^2+5x+4 where x is equal to the user's current level
-Spamming commands or messages will not earn more exp! `rp![experience|exp] [member]`
-    - *add*         Give the given members an amount of experience `rp!experience add <amount> [members...]`
-    - *setlevel*    Set the given members level `rp!experience setlevel <level> [members...]`
 #### Economy:
   - *bid*        Place a bid on the current bidding item in the channel
   - *economy*    Check your or another users balance `rp![economy|bal|balance|eco|e] [member]
@@ -106,3 +101,8 @@ Optional Additions:
     - *remove*         Remove a Pokemon from a character's team `rp!team [remove|removemember] <character> <id>`
 #### User:
   - *userinfo*   Get info on a user `rp![userinfo|ui] [user]`
+  - *experience* Get your or another user's level information. Help on this command for experience subcommands
+EXP is calculated using a 0.1x^2+5x+4 where x is equal to the user's current level
+Spamming commands or messages will not earn more exp! `rp![experience|exp] [member]`
+    - *add*         Give the given members an amount of experience `rp!experience add <amount> [members...]`
+    - *setlevel*    Set the given members level `rp!experience setlevel <level> [members...]`
