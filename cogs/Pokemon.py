@@ -23,18 +23,43 @@ from discord.ext import commands
 import discord
 import asyncio
 
-from .utils import checks
+from .utils import checks, data
 
 
 class Pokemon(object):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.command()
+    @checks.no_pm()
+    async def box(self, ctx, member: discord.Member=None):
+        """Check the pokemon in your box"""
+        if member is None:
+            member = ctx.author
+        box = await self.bot.di.get_box(member)
+
+        pokemon = [f"{x.id}: **{x.name}**" for x in box]
+        description = "\n".join(pokemon)
+        embed = discord.Embed(description=description, title=f"{member.display_name}'s Pokemon")
+        embed.set_author(name=member.display_name, icon_url=member.avatar_url)
+
+        await ctx.send(embed=embed)
+
     @commands.group(aliases=["p"], invoke_without_command=True)
     @checks.no_pm()
-    async def pokemon(self, ctx):
-        """Subcommands for Pokemon management, see pb!help pokemon"""
-        pass
+    async def pokemon(self, ctx, member: discord.Member=None):
+        """Subcommands for Pokemon management, see rp!help pokemon
+        Same use as rp!box"""
+        if member is None:
+            member = ctx.author
+        box = await self.bot.di.get_box(member)
+
+        pokemon = [f"{x.id}: **{x.name}**" for x in box]
+        description = "\n".join(pokemon)
+        embed = discord.Embed(description=description, title=f"{member.display_name}'s Pokemon")
+        embed.set_author(name=member.display_name, icon_url=member.avatar_url)
+
+        await ctx.send(embed=embed)
 
     @pokemon.command(aliases=["new"])
     @checks.no_pm()
@@ -148,3 +173,61 @@ class Pokemon(object):
         embed.add_field(name="Additional Info", value=meta)
 
         await ctx.send(embed=embed)
+
+    @pokemon.command(aliases=["delete", "rm", "remove"])
+    @checks.no_pm()
+    async def release(self, ctx, id: int):
+        """Release a Pokemon from your box"""
+        pk = await self.bot.di.remove_pokemon(ctx.author, id)
+        await ctx.send(f"This Pokemon has been released! Goodbye {pk.name}!")
+
+    @pokemon.command()
+    @checks.no_pm()
+    async def trade(self, ctx, your_id: int, their_id: int, other: discord.Member):
+        """Offer a trade to a user.
+        `your_id` is the ID of the Pokemon you want to give, `their_id` is the Pokemon you want from them.
+        `other` being the user you want to trade with"""
+
+        await ctx.send("Say rp!accept or rp!decline to respond to the trade!")
+        try:
+            resp = await self.bot.wait_for("message", check=lambda x: x.author == other and x.channel == ctx.channel and ctx.message.content in ["rp!accept", "rp!decline"])
+        except asyncio.TimeoutError:
+            await ctx.send("Failed to respond in time! Cancelling.")
+            return
+
+        if resp.content == "rp!accept":
+            yud = await self.bot.db.get_user_data(ctx.author)
+            tud = await self.bot.db.get_user_data(other)
+
+            for your_pokemon in yud["box"]:
+                if your_pokemon[0] == your_id:
+                    break
+            else:
+                raise KeyError(f"{your_id} is not a valid ID!")
+            yud["box"].remove(your_pokemon)
+            tud["box"].append(your_pokemon)
+
+            for their_pokemon in tud["box"]:
+                if their_pokemon[0] == your_id:
+                    break
+            else:
+                raise KeyError(f"{their_id} is not a valid ID!")
+            tud["box"].remove(their_pokemon)
+            yud["box"].append(their_pokemon)
+
+            your_pokemon["id"], their_pokemon["id"] = their_pokemon["id"], your_pokemon["id"]
+
+            await self.bot.db.update_user_data(ctx.author, yud)
+            await self.bot.db.update_user_data(other, tud)
+            await ctx.send(f"Trade completed! Traded {your_pokemon['name']} for {their_pokemon['name']}!")
+
+        else:
+            await ctx.send("Trade declined! Cancelling.")
+
+    @commands.command(hidden=True)
+    async def accept(self, ctx):
+        pass
+
+    @commands.command(hidden=True)
+    async def decline(self, ctx):
+        pass

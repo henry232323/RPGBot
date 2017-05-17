@@ -148,7 +148,7 @@ class Misc(object):
         a = monotonic()
         await (await self.bot.ws.ping())
         b = monotonic()
-        ping = "`{:.3f}ms`".format((b - a) * 1000)
+        ping = "{:.3f}ms".format((b - a) * 1000)
 
         embed.add_field(name="CPU Percentage", value="{}%".format(psutil.Process(os.getpid()).cpu_percent()))
         embed.add_field(name="Memory Usage", value="{0:.2f} MB".format(await self.bot.get_ram()))
@@ -166,7 +166,7 @@ class Misc(object):
         '''Get totals of commands and their number of uses'''
         embed = discord.Embed()
         embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
-        for val in self.bot.commands_used.items():
+        for val in self.bot.commands_used.most_common(25):
             embed.add_field(name=val[0], value=val[1])
         embed.set_footer(text=str(ctx.message.created_at))
         await ctx.send(embed=embed)
