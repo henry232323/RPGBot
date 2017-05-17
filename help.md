@@ -16,11 +16,11 @@ Spamming commands or messages will not earn more exp! `rp![experience|exp] [memb
     - *setbalance*  Set the balance of the given members to an amount `rp!economy [setbalance|set] <amount> [members...]`
   - *lootbox*    List the current lootboxes `rp![lootbox|lb]`
     - *buy*         Buy a lootbox of the given name `rp!lootbox buy <name>`
-    - *create*      Create a new lootbox, under the given `name` for the given cost
-Use {item}x{#} notation to add items with {#} weight
-Weight being an integer. For example:
-bananax2 orangex3. The outcome of the box will be
-Random Choice[banana, banana, orange, orange, orange]
+    - *create*      Create a new lootbox, under the given `name` for the given cost. 
+Use `{item}x{#}` notation to add items with {#} weight.
+Weight being an integer. For example with
+`bananax2 orangex3`: The outcome of the box will be
+a random choice from [banana, banana, orange, orange, orange]
 `rp!lootbox [create|new] <name> <cost> [items...]`
     - *delete*      Delete a lootbox with the given name `rp!lootbox [delete|remove] <name>`
   - *lotto*      List the currently running lottos. `rp![lotto|lottery]`
@@ -71,30 +71,36 @@ Can be sold for 10 and cannot be bought. Must be an existing item! `rp!shop addi
 Example: rp!rtd 3d7 2d4
 Optional Additions:
     Test for success by adding a >/<#
+
     Grab the top n rolls by adding ^n
+
     Add to the final roll by just adding a number (pos or neg)
 
     Examples of all:
+    
         rp!rtd 8d8 -12 15 ^4 >32
-
         -> Roll failed (30 > 32) ([8 + 7 + 6 + 6] + -12 + 15) (Grabbed top 4 out of 8)
     `rp![rtd|rollthedice|dice] [dice...]`
   - *source*     Displays my full source code or for a specific command.
-To display the source code of a subcommand you have to separate it by
-periods, e.g. tag.create for the create subcommand of the tag command.
+                   To display the source code of a subcommand you have to separate it by
+                   periods, e.g. tag.create for the create subcommand of the tag command.
 `rp!source [command]`
   - *totalcmds*  Get totals of commands and their number of uses
 #### Pokemon:
-  - *pokemon*    Subcommands for Pokemon management `rp![pokemon|p]`
+  - *box*        Check the pokemon in your box `rp!box [member]`
+  - *pokemon*    Subcommands for Pokemon management, see rp!help pokemon. Same use as rp!box `rp![pokemon|p] [member]`
     - *create*         Create a new Pokemon to add to your box `rp!pokemon [create|new]`
     - *info*           Get info on a Pokemon `rp!pokemon info <id>`
+    - *trade*          Offer a trade to a user.
+`your_id` is the ID of the Pokemon you want to give, `their_id` is the Pokemon you want from them.
+`other` being the user you want to trade with `rp!pokemon trade <your_id> <their_id> <other>`
+    - *release*        Release a Pokemon from your box `rp!pokemon [release|delete|rm|remove] <id>`
 #### Settings:
   - *settings*   Get the current server settings `rp![settings|s|configuration|conf]`
     - *additem*        Add a custom item `rp!settings additem <name>`
     - *iteminfo*       Get info on a server item `rp!settings iteminfo <item>`
     - *items*          See all items for a guild
 #### Team:
-  - *box*        Check the pokemon in your box `rp!box [member]`
   - *team*       Check a character's team `rp!team <character>`
     - *add*            Add a Pokemon to a character's team `rp!team [add|addmember] <character> <id>`
     - *remove*         Remove a Pokemon from a character's team `rp!team [remove|removemember] <character> <id>`
