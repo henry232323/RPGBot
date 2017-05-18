@@ -2,6 +2,7 @@
   - *allchars*   List all guild characters
   - *character*  Get info on a character - `rp![character|c|char] <name>`
     - *create*      Create a new character `rp!character [create|new] <name>`
+    - *delete*      Delete a character of the given name (you must be the owner) `rp!character [delete|remove] <name>`
   - *characters* List all your characters `rp![characters|chars]`
 #### Economy:
   - *bid*        Place a bid on the current bidding item in the channel
