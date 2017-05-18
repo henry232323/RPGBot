@@ -303,7 +303,7 @@ class Groups(object):
                 await ctx.send("Cancelling!")
                 return
 
-        guild.members.remove(ctx.user.id)
+        guild.members.remove(ctx.author.id)
         await self.bot.di.set_guild(ctx.author, None)
         await ctx.send("Guild left.")
 
