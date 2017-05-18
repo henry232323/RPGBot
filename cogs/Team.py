@@ -51,11 +51,27 @@ class Team(object):
     @checks.no_pm()
     async def add(self, ctx, character, id):
         """Add a Pokemon to a character's team"""
-        await self.bot.di.add_to_team(ctx.guild, character, id)
+        try:
+            chobj = (await self.bot.di.get_guild_characters(ctx.guild))[character]
+            if chobj.owner != ctx.author.id:
+                await ctx.send("You do not own this character!")
+                return
+
+            await self.bot.di.add_to_team(ctx.guild, character, id)
+        except KeyError:
+            await ctx.send("That character does not exist!")
 
     @team.command(aliases=["removemember"])
     @checks.no_pm()
     async def remove(self, ctx, character, id):
         """Remove a Pokemon from a character's team"""
-        await self.bot.di.remove_from_team(ctx.guild, character, id)
+        try:
+            chobj = (await self.bot.di.get_guild_characters(ctx.guild))[character]
+            if chobj.owner != ctx.author.id:
+                await ctx.send("You do not own this character!")
+                return
+
+            await self.bot.di.remove_from_team(ctx.guild, character, id)
+        except KeyError:
+            await ctx.send("That character does not exist!")
 
