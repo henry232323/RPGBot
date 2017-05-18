@@ -97,6 +97,11 @@ class Characters(object):
     @character.command(aliases=["new"])
     async def create(self, ctx, *, name: str):
         """Create a new character"""
+        characters = await self.bot.di.get_guild_characters(ctx.guild)
+        if name in characters:
+            await ctx.send("A character with this name already exists!")
+            return
+
         check = lambda x: x.channel is ctx.channel and x.author is ctx.author
         character = dict(name=name, owner=ctx.author.id, meta=dict(), team=list())
         await ctx.send("Describe the character (Relevant character sheet)")
@@ -134,3 +139,19 @@ class Characters(object):
         await self.bot.di.add_character(ctx.guild, Character(**character))
         await ctx.send("Character created! pb!team addmember to add to your characters team!")
 
+    @checks.no_pm()
+    @character.command(aliases=["remove"])
+    async def delete(self, ctx, name: str):
+        characters = await self.bot.di.get_guild_characters(ctx.guild)
+        character = characters.get(name)
+        if character is None:
+            await ctx.send("That character doesn't exist!")
+            return
+
+        if character.owner != ctx.author.id:
+            await ctx.send("You do not own this character!")
+            return
+
+        characters.delete(character)
+        await self.bot.di.remove_character(ctx.guild, name)
+        await ctx.send("Character deleted")
