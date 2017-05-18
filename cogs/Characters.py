@@ -142,6 +142,7 @@ class Characters(object):
     @checks.no_pm()
     @character.command(aliases=["remove"])
     async def delete(self, ctx, name: str):
+        """Delete a character of the given name (you must be the owner)"""
         characters = await self.bot.di.get_guild_characters(ctx.guild)
         character = characters.get(name)
         if character is None:
