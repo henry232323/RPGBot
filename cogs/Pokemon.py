@@ -92,7 +92,7 @@ class Pokemon(object):
             pokemon["stats"] = dict()
             valid_stats = ["level", "health", "attack", "defense", "spatk", "spdef"]
             while True:
-                response = await self.bot.wait_for("message", check=check, timeout=30)
+                response = await self.bot.wait_for("message", check=check, timeout=60)
                 if response.content.lower() == "cancel":
                     await ctx.send("Cancelled")
                     return
@@ -126,7 +126,7 @@ class Pokemon(object):
                            "nature: hasty, color: brown)")
 
             while True:
-                response = await self.bot.wait_for("message", check=check, timeout=30)
+                response = await self.bot.wait_for("message", check=check, timeout=60)
                 if response.content.lower() == "cancel":
                     await ctx.send("Cancelling!")
                     return
@@ -190,7 +190,7 @@ class Pokemon(object):
 
         await ctx.send("Say rp!accept or rp!decline to respond to the trade!")
         try:
-            resp = await self.bot.wait_for("message", check=lambda x: x.author == other and x.channel == ctx.channel and ctx.message.content in ["rp!accept", "rp!decline"])
+            resp = await self.bot.wait_for("message", timeout=60, check=lambda x: x.author == other and x.channel == ctx.channel and ctx.message.content in ["rp!accept", "rp!decline"])
         except asyncio.TimeoutError:
             await ctx.send("Failed to respond in time! Cancelling.")
             return
