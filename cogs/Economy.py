@@ -109,25 +109,33 @@ class Economy(object):
         i = 0
         try:
             users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
-        except Exception as e:
-            print(e)
+        except Exception:
             br = []
+            fr = dict()
             for listing, data in um.items():
-                if 'item' not in listing:
-                    id = self.bot.randsample()
-                    um[id] = dict(id=id, item=listing, user=ctx.author.id, cost=data['cost'], amount=listing['amount'])
-                    br.append(listing)
+                for datum in data:
+                    if 'item' not in listing:
+                        id = self.bot.randsample()
+                        fr[id] = dict(id=id, item=listing, user=ctx.author.id, cost=datum['cost'], amount=datum['amount'])
+                br.append(listing)
 
             for i in br:
                 del um[i]
-
-            print(um)
+            um.update(fr)
 
             await self.bot.di.update_guild_market(ctx.guild, um)
             market = list(um.items())
+            chunks = []
+            for i in range(0, len(market), 25):
+                chunks.append(market[i:i + 25])
+
             users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
 
-        embed.description = "\n".join(f"{x['id']}: ${x['cost']} for x{x['amount']} {x['item']} from {y}" for x, y in zip(chunks[i], users))
+        #embed.description = "\n".join(f"{x['id']}: ${x['cost']} for x{x['amount']} {x['item']} from {y.mention}" for x, y in zip(chunks[i], users))
+
+        fin = [[x['id'], f"${x['cost']}", f"x{x['amount']}", x['item'], str(y)] for x, y in zip(chunks[i], users)]
+        fin.insert(0, ["ID", "COST", "NUMBER", "ITEM", "SELLER"])
+        embed.description = "```\n{}\n```".format(self.bot.format_table(fin))
 
         max = len(chunks) - 1
 
@@ -159,9 +167,10 @@ class Economy(object):
                 else:
                     i -= 1
                     users = get(ctx.guild.members, id=[x["user"] for x in chunks[i]])
-                    embed.description = "\n".join(
-                        f"{x['id']}: ${x['cost']} for x{x['amount']} {x['item']} from {y}" for x, y in
-                        zip(chunks[i], users))
+                    fin = [[x['id'], f"${x['cost']}", f"x{x['amount']}", x['item'], str(y)] for x, y in
+                           zip(chunks[i], users)]
+                    fin.insert(0, ["ID", "COST", "NUMBER", "ITEM", "SELLER"])
+                    embed.description = "```\n{}\n```".format(self.bot.format_table(fin))
 
                     await msg.edit(embed=embed)
 
@@ -172,9 +181,10 @@ class Economy(object):
                     embed.clear_fields()
                     i += 1
                     users = get(ctx.guild.members, id=[x["user"] for x in chunks[i]])
-                    embed.description = "\n".join(
-                        f"{x['id']}: ${x['cost']} for x{x['amount']} {x['item']} from {y}" for x, y in
-                        zip(chunks[i], users))
+                    fin = [[x['id'], f"${x['cost']}", f"x{x['amount']}", x['item'], str(y)] for x, y in
+                           zip(chunks[i], users)]
+                    fin.insert(0, ["ID", "COST", "NUMBER", "ITEM", "SELLER"])
+                    embed.description = "```\n{}\n```".format(self.bot.format_table(fin))
 
                     await msg.edit(embed=embed)
             else:
@@ -228,6 +238,122 @@ class Economy(object):
         await self.bot.di.give_items(ctx.author, (item["item"], item["amount"]))
         await self.bot.di.update_guild_market(ctx.guild, market)
         await ctx.send("Items successfully bought")
+
+        await discord.utils.get(ctx.guild.members, id=item["owner"]).send(f"{ctx.author} bought {item['item']} {item['amount']} from you for ${item['cost']} with ID {id} on server {ctx.guild}")
+
+    @checks.no_pm()
+    @market.command()
+    async def search(self, ctx, item: str):
+        """Search the market for an item"""
+        um = await self.bot.di.get_guild_market(ctx.guild)
+        market = [i for i in um.values() if i['item'] == item]
+        desc = """
+        \u27A1 to see the next page
+        \u2B05 to go back
+        \u274C to exit
+        """
+        if not market:
+            await ctx.send("No items on the market to display.")
+            return
+
+        emotes = ("\u2B05", "\u27A1", "\u274C")
+        embed = discord.Embed(description=desc, title="Player Market")
+        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+
+        chunks = []
+        for i in range(0, len(market), 25):
+            chunks.append(market[i:i + 25])
+
+        i = 0
+        try:
+            users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
+        except Exception as e:
+            br = []
+            fr = dict()
+            for listing, data in um.items():
+                for datum in data:
+                    if 'item' not in listing:
+                        id = self.bot.randsample()
+                        fr[id] = dict(id=id, item=listing, user=ctx.author.id, cost=datum['cost'], amount=datum['amount'])
+                br.append(listing)
+
+            for i in br:
+                del um[i]
+            um.update(fr)
+
+            await self.bot.di.update_guild_market(ctx.guild, um)
+            market = list(um.items())
+            chunks = []
+            for i in range(0, len(market), 25):
+                chunks.append(market[i:i + 25])
+
+            users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
+
+        # items = [f"{x['id']}\t| ${x['cost']}\t| x{x['amount']}\t| {x['item']}\t| {y.mention}" for x, y in zip(chunks[i], users)]
+        # items.insert(0, "ID\t\t| COST\t\t| NUMBER\t\t| ITEM\t\t| SELLER")
+        fin = [[x['id'], f"${x['cost']}", f"x{x['amount']}", x['item'], str(y)] for x, y in zip(chunks[i], users)]
+        fin.insert(0, ["ID", "COST", "NUMBER", "ITEM", "SELLER"])
+        embed.description = "```\n{}\n```".format(self.bot.format_table(fin))
+
+        max = len(chunks) - 1
+
+        msg = await ctx.send(embed=embed)
+        for emote in emotes:
+            await msg.add_reaction(emote)
+
+        while True:
+            try:
+                r, u = await self.bot.wait_for("reaction_add", check=lambda r, u: r.message.id == msg.id, timeout=80)
+            except asyncio.TimeoutError:
+                await ctx.send("Timed out! Try again")
+                await msg.delete()
+                return
+
+            if u == ctx.guild.me:
+                continue
+
+            if u != ctx.author or r.emoji not in emotes:
+                try:
+                    await msg.remove_reaction(r.emoji, u)
+                except:
+                    pass
+                continue
+
+            if r.emoji == emotes[0]:
+                if i == 0:
+                    pass
+                else:
+                    i -= 1
+                    users = get(ctx.guild.members, id=[x["user"] for x in chunks[i]])
+                    fin = [[x['id'], f"${x['cost']}", f"x{x['amount']}", x['item'], str(y)] for x, y in
+                           zip(chunks[i], users)]
+                    fin.insert(0, ["ID", "COST", "NUMBER", "ITEM", "SELLER"])
+                    embed.description = "```\n{}\n```".format(self.bot.format_table(fin))
+
+                    await msg.edit(embed=embed)
+
+            elif r.emoji == emotes[1]:
+                if i == max:
+                    pass
+                else:
+                    embed.clear_fields()
+                    i += 1
+                    users = get(ctx.guild.members, id=[x["user"] for x in chunks[i]])
+                    fin = [[x['id'], f"${x['cost']}", f"x{x['amount']}", x['item'], str(y)] for x, y in
+                           zip(chunks[i], users)]
+                    fin.insert(0, ["ID", "COST", "NUMBER", "ITEM", "SELLER"])
+                    embed.description = "```\n{}\n```".format(self.bot.format_table(fin))
+
+                    await msg.edit(embed=embed)
+            else:
+                await msg.delete()
+                await ctx.send("Closing")
+                return
+
+            try:
+                await msg.remove_reaction(r.emoji, u)
+            except:
+                pass
 
     @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=['lb'])
