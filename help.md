@@ -37,6 +37,7 @@ a random choice from [banana, banana, orange, orange, orange]
   - *market*     View the current market listings `rp![market|m|pm]`
     - *buy*           Buy a given amount of an item from the player market at the cheapest given price `rp!market [buy|purchase] <id>`
     - *create*        Create a new market listing `rp!market [create|createlisting|new|listitem|list] <cost> <amount> <item>`
+    - *search*        Search the market for an item `rp!market search <item>`
   - *pay*        Pay another user money `rp!pay <amount> <member>`
   - *shop*       Get all items currently listed on the server shop
     - *additem*       Add an item to the server shop, to make an item unsaleable or unbuyable set their respective values to 0

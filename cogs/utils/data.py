@@ -55,10 +55,16 @@ class Converter(commands.MemberConverter):
 
 
 def get(iterable, **attrs):
-    attr, val = list(attrs.items())[:1]
+    attr, val = list(attrs.items())[0]
 
-    fin = [element for element in iterable if element in val]
+    fin = [element for element in iterable if getattr(element, attr) in val]
     fin.sort(key=lambda x: val.index(getattr(x, attr)))
+
+    if len(fin) < len(val):
+        fin = []
+        for x in val:
+            fin.append(discord.utils.get(iterable, **{attr: x}))
+
     return None or fin
 
 default_user = {
