@@ -137,11 +137,11 @@ class Characters(object):
                     continue
 
         await self.bot.di.add_character(ctx.guild, Character(**character))
-        await ctx.send("Character created! pb!team addmember to add to your characters team!")
+        await ctx.send("Character created! rp!team addmember to add to your characters team!")
 
     @checks.no_pm()
     @character.command(aliases=["remove"])
-    async def delete(self, ctx, name: str):
+    async def delete(self, ctx, *, name: str):
         """Delete a character of the given name (you must be the owner)"""
         characters = await self.bot.di.get_guild_characters(ctx.guild)
         character = characters.get(name)
@@ -153,6 +153,5 @@ class Characters(object):
             await ctx.send("You do not own this character!")
             return
 
-        characters.delete(character)
         await self.bot.di.remove_character(ctx.guild, name)
         await ctx.send("Character deleted")

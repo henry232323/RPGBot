@@ -160,9 +160,11 @@ class Bot(commands.Bot):
                 elif fpn == "guild":
                     add += 2
 
-            r = await self.di.add_exp(ctx.author, add)
-            if r is not None:
-                await ctx.send(f"{ctx.author.mention} is now level {r}!")
+            if add:
+                await asyncio.sleep(3)
+                r = await self.di.add_exp(ctx.author, add)
+                if r is not None:
+                    await ctx.send(f"{ctx.author.mention} is now level {r}!")
 
     async def on_command_error(self, ctx, exception):
         logging.info(f"Exception in {ctx.command} {ctx.guild}:{ctx.channel} {exception}")
@@ -174,8 +176,10 @@ class Bot(commands.Bot):
     @staticmethod
     async def on_guild_join(guild):
         if sum(1 for m in guild.members if m.bot) / guild.member_count >= 3/4:
-            await guild.channels[0].send("This server has too many bots! I'm just going to leave if thats alright")
-            await guild.leave()
+            try:
+                await guild.default_channel.send("This server has too many bots! I'm just going to leave if thats alright")
+            finally:
+                await guild.leave()
 
     async def on_socket_response(self, msg):
         self.socket_stats[msg.get('t')] += 1
@@ -267,7 +271,7 @@ class Bot(commands.Bot):
 
         await self.webapp.start('0.0.0.0', 1441)
 
-prefix = ['rp!', 'pb!'] if "debug" not in sys.argv else 'rp$'
+prefix = ['rp!', 'pb!', '<@305177429612298242> '] if "debug" not in sys.argv else 'rp$'
 invlink = "https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=322625"
 servinv = "https://discord.gg/UYJb8fQ"
 sourcelink = "https://github.com/henry232323/RPGBot"

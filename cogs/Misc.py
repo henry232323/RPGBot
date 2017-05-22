@@ -58,6 +58,10 @@ class Misc(object):
                 try:
                     number, sides = die.split("d")
                     number, sides = int(number), int(sides)
+                    if number > 10:
+                        await ctx.send("Too many dice! Cant roll that many!")
+                        return
+
                     rolls[sides] = [randint(1, sides) for x in range(number)]
                 except ValueError:
                     try:
