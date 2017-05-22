@@ -134,6 +134,17 @@ class Settings(object):
             await ctx.send("Timed out! Try again")
 
     @checks.mod_or_permissions()
+    @settings.command(aliases=["deleteitem"])
+    @checks.no_pm()
+    async def removeitem(self, ctx, name: str):
+        """Remove a custom item"""
+        try:
+            await self.bot.di.remove_item(ctx.guild, name)
+            await ctx.send(f"Successfully removed {name}")
+        except KeyError:
+            await ctx.send("That item doesn't exist")
+
+    @checks.mod_or_permissions()
     @checks.no_pm()
     async def setstart(self, ctx, amount: int):
         """Set the money start amount for a guild"""
