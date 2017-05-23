@@ -36,6 +36,9 @@ from kyoukai import Kyoukai
 from kyoukai.asphalt import HTTPRequestContext, Response
 from werkzeug.exceptions import HTTPException
 
+from datadog import ThreadStats
+from datadog import initialize as init_dd
+
 import cogs
 from cogs.utils import db, data
 
@@ -53,7 +56,7 @@ if os.getcwd().endswith("rpgtest"):
 
 class Bot(commands.Bot):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super().__init__(*args, game=discord.Game(name="rp!help for help!"), **kwargs)
         self.owner_id = 122739797646245899
         self.lounge_id = 166349353999532035
         self.uptime = datetime.datetime.utcnow()
@@ -94,6 +97,10 @@ class Bot(commands.Bot):
         self.default_servdata = data.default_server
         self.rnd = "1234567890abcdefghijklmnopqrstuvwxyz"
 
+        init_dd(self._auth[3], self._auth[4])
+        self.stats = ThreadStats()
+        self.stats.start()
+
     async def on_ready(self):
         print('Logged in as')
         print(self.user.name)
@@ -107,8 +114,6 @@ class Bot(commands.Bot):
 
         for cog in self._cogs.values():
             self.add_cog(cog)
-
-        await self.change_presence(game=discord.Game(name="rp!help for help!"))
 
         await self.update_stats()
 
@@ -136,6 +141,8 @@ class Bot(commands.Bot):
         await self.process_commands(message)
 
     async def on_command(self, ctx):
+        self.stats.increment("RPGBot.commands", tags=["RPGBot:commands"], host="scw-8112e8")
+        self.stats.increment(f"RPGBot.commands.{str(ctx.command).replace(' ', '.')}", tags=["RPGBot:commands"], host="scw-8112e8")
         self.commands_used[ctx.command] += 1
         if isinstance(ctx.author, discord.Member):
             self.server_commands[ctx.guild.id] += 1
@@ -167,19 +174,24 @@ class Bot(commands.Bot):
                     await ctx.send(f"{ctx.author.mention} is now level {r}!")
 
     async def on_command_error(self, ctx, exception):
+        self.stats.increment("RPGBot.errors", tags=["RPGBot:errors"], host="scw-8112e8")
         logging.info(f"Exception in {ctx.command} {ctx.guild}:{ctx.channel} {exception}")
         if isinstance(exception, commands.MissingRequiredArgument):
             await ctx.send(f"`{exception}`")
         else:
             await ctx.send(f"`{exception}`")
 
-    @staticmethod
-    async def on_guild_join(guild):
+    async def on_guild_join(self, guild):
         if sum(1 for m in guild.members if m.bot) / guild.member_count >= 3/4:
             try:
                 await guild.default_channel.send("This server has too many bots! I'm just going to leave if thats alright")
             finally:
                 await guild.leave()
+        else:
+            self.stats.increment("RPGBot.guilds", tags=["RPGBot:guilds"], host="scw-8112e8")
+
+    async def on_guild_leave(self, guild):
+        self.stats.increment("RPGBot.guilds", -1, tags=["RPGBot:guilds"], host="scw-8112e8")
 
     async def on_socket_response(self, msg):
         self.socket_stats[msg.get('t')] += 1
@@ -207,10 +219,10 @@ class Bot(commands.Bot):
         return int(0.1 * level ** 2 + 5 * level + 4)
 
     @staticmethod
-    async def get_ram():
+    def get_ram():
         """Get the bot's RAM usage info."""
-        mu = psutil.Process(os.getpid()).memory_info().rss
-        return mu / 1000000
+        mem = psutil.virtual_memory()
+        return f"{mem.used:.2f}/{mem.total:.2f}GB ({mem.percent}%)"
 
     @staticmethod
     def format_table(lines, separate_head=True):
