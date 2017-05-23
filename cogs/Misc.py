@@ -154,8 +154,8 @@ class Misc(object):
         b = monotonic()
         ping = "{:.3f}ms".format((b - a) * 1000)
 
-        embed.add_field(name="CPU Percentage", value="{}%".format(psutil.Process(os.getpid()).cpu_percent()))
-        embed.add_field(name="Memory Usage", value="{0:.2f} MB".format(await self.bot.get_ram()))
+        embed.add_field(name="CPU Percentage", value="{}%".format(psutil.cpu_percent()))
+        embed.add_field(name="Memory Usage", value=self.bot.get_ram())
         embed.add_field(name="Observed Events", value=sum(self.bot.socket_stats.values()))
         embed.add_field(name="Ping", value=ping)
 
@@ -167,7 +167,7 @@ class Misc(object):
 
     @commands.command()
     async def totalcmds(self, ctx):
-        '''Get totals of commands and their number of uses'''
+        """Get totals of commands and their number of uses"""
         embed = discord.Embed()
         embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
         for val in self.bot.commands_used.most_common(25):
@@ -237,12 +237,3 @@ class Misc(object):
 
         fmt = '%s socket events observed (%.2f/minute):\n%s'
         await ctx.send(fmt % (total, cpm, self.bot.socket_stats))
-
-    @commands.command(hidden=True)
-    async def topcmds(self, ctx):
-        embed = discord.Embed(title="Total Commands Used")
-        embed.set_author(name=ctx.guild.me.display_name, icon_url=ctx.bot.user.avatar_url)
-        for command, number in self.bot.commands_used.most_common(10):
-            embed.add_field(name=command.name, value=f"Uses: {number}")
-
-        await ctx.send(embed)
