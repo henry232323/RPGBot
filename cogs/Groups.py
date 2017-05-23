@@ -271,6 +271,8 @@ class Groups(object):
             await ctx.send("That guild doesnt exist!")
             return
 
+        guild.members = set(guild.members)
+
         if not guild.open and ctx.author.id not in guild.invites:
             await ctx.send("This guild is closed and you don't have an invite!")
             return
@@ -340,6 +342,7 @@ class Groups(object):
             return
         guilds = await self.bot.di.get_guild_guilds(ctx.guild)
         guild = guilds.get(ug)
+        guild.invites = set(guild.invites)
         if guild.owner != ctx.author.id:
             await ctx.send("You do not own this guild!")
             return
@@ -438,7 +441,7 @@ class Groups(object):
         if ctx.author.id != guild.owner:
             await ctx.send("Only the guild owner can add mods")
             return
-
+        guild.mods = set(guild.invites)
         for member in members:
             if member.id not in guild.members:
                 await ctx.send(f"{member} couldn't be added! Not in guild!")
