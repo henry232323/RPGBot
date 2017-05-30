@@ -85,12 +85,12 @@ class Pokemon(object):
             else:
                 pokemon["type"] = response.content
 
-            await ctx.send("In any order, what are its stats? (level, health, attack, defense, spatk, spdef)"
+            await ctx.send("In any order, what are its stats? (level, health, attack, defense, spatk, spdef, speed)"
                            "For example `level: 5, health: 22, attack: 56`"
                            " Type 'skip' to skip.")
 
             pokemon["stats"] = dict()
-            valid_stats = ["level", "health", "attack", "defense", "spatk", "spdef"]
+            valid_stats = ["level", "health", "attack", "defense", "spatk", "spdef", "speed"]
             while True:
                 response = await self.bot.wait_for("message", check=check, timeout=60)
                 if response.content.lower() == "cancel":

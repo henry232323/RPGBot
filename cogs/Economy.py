@@ -356,6 +356,23 @@ class Economy(object):
                 pass
 
     @checks.no_pm()
+    @market.command(aliases=["rm"], name="remove")
+    async def _market_remove(self, ctx, id: str):
+        market = await self.bot.di.get_guild_market(ctx.guild)
+        try:
+            item = market.pop(id)
+        except KeyError:
+            await ctx.send("That is not a valid ID!")
+            return
+
+        if item.owner == ctx.author.id:
+            await self.bot.di.give_items(ctx.author, (item["item"], item["amount"]))
+            market.remove(id)
+            await self.bot.di.update_guild_market(ctx.guild, market)
+        else:
+            await ctx.send("This is not your item to remove!")
+
+    @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=['lb'])
     async def lootbox(self, ctx):
         """List the current lootboxes"""
@@ -669,7 +686,7 @@ class Economy(object):
         except KeyError:
             await ctx.send("That item isn't listed!")
             return
-        await self.bot.di.update_guild_shop(shop)
+        await self.bot.di.update_guild_shop(ctx.guild, shop)
         await ctx.send("Successfully removed item")
 
     @checks.no_pm()

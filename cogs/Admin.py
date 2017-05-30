@@ -116,7 +116,7 @@ class Admin(object):
     @commands.command(hidden=True)
     @checks.owner_or_permissions(manage_messagees=True)
     async def purge(self, ctx, number: int):
-        '''Purge messages'''
+        """Purge messages"""
         await ctx.message.channel.purge(limit=number)
 
     @commands.command(hidden=True)
