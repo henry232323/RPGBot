@@ -32,9 +32,14 @@ class Team(object):
     @checks.no_pm()
     async def team(self, ctx, character: str):
         """Check a character's team"""
+
         team = await self.bot.di.get_team(ctx.guild, character)
-        all_chars = await self.bot.di.get_guild_characters()
-        chobj = all_chars[character]
+        all_chars = await self.bot.di.get_guild_characters(ctx.guild)
+        try:
+            chobj = all_chars[character]
+        except KeyError:
+            await ctx.send("That character doesn't exist!")
+            return
 
         embed = discord.Embed(title=f"{character}'s Pokemon")
         embed.set_author(name=character, icon_url=chobj.meta.get("image"))

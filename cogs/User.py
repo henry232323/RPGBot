@@ -22,7 +22,7 @@
 from discord.ext import commands
 import discord
 
-from .utils import checks
+from .utils import checks, data
 
 
 class User(object):
@@ -32,7 +32,7 @@ class User(object):
 
     @commands.command(name="userinfo", aliases=["ui"])
     @checks.no_pm()
-    async def ui(self, ctx, user: discord.Member=None):
+    async def ui(self, ctx, *, user: discord.Member=None):
         """Get info on a user"""
         if user is None:
             user = ctx.author
@@ -82,8 +82,8 @@ class User(object):
 
     @checks.no_pm()
     @checks.mod_or_permissions()
-    @experience.command()
-    async def setlevel(self, ctx, level: int, *members: discord.Member):
+    @experience.command(aliases=["set"])
+    async def setlevel(self, ctx, level: int, *members: data.Converter):
         """Set the given members level"""
         for member in members:
             await self.bot.di.set_level(member, level, 0)
@@ -92,7 +92,7 @@ class User(object):
     @checks.no_pm()
     @checks.mod_or_inv()
     @experience.command()
-    async def add(self, ctx, amount: int, *members: discord.Member):
+    async def add(self, ctx, amount: int, *members: data.Converter):
         """Give the given members an amount of experience"""
         for member in members:
             await self.bot.di.add_exp(member, amount)

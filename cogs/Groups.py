@@ -75,6 +75,7 @@ class Groups(object):
         embed.add_field(name="Items", value=items or "None")
 
         await ctx.send(embed=embed)
+
     @checks.no_pm()
     @commands.command()
     async def guilds(self, ctx):
