@@ -180,7 +180,7 @@ class DataInteraction(object):
     async def get_box(self, member):
         """Get user's Pokemon box"""
         ub = await self.db.user_item(member, "box")
-        return list(Pokemon(*x) for x in ub)
+        return [Pokemon(*x) for x in json.decode(ub)]
 
     async def get_balance(self, member):
         """Get user's balance"""

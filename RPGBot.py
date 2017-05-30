@@ -79,16 +79,16 @@ class Bot(commands.Bot):
             self._auth = json.loads(af.read())
 
         self._cogs = {
-            "Admin": cogs.Admin.Admin(self),
-            "Team": cogs.Team.Team(self),
-            "Economy": cogs.Economy.Economy(self),
-            "Inventory": cogs.Inventory.Inventory(self),
-            "Settings": cogs.Settings.Settings(self),
-            "Misc": cogs.Misc.Misc(self),
-            "Characters": cogs.Characters.Characters(self),
-            "Pokemon": cogs.Pokemon.Pokemon(self),
-            "Groups": cogs.Groups.Groups(self),
-            "User": cogs.User.User(self)
+            "Admin": cogs.admin.Admin(self),
+            "Team": cogs.team.Team(self),
+            "Economy": cogs.economy.Economy(self),
+            "Inventory": cogs.inventory.Inventory(self),
+            "Settings": cogs.settings.Settings(self),
+            "Misc": cogs.misc.Misc(self),
+            "Characters": cogs.characters.Characters(self),
+            "Pokemon": cogs.pokemon.Pokemon(self),
+            "Groups": cogs.groups.Groups(self),
+            "User": cogs.user.User(self)
         }
 
         self.db = db.Database(self)
@@ -222,7 +222,7 @@ class Bot(commands.Bot):
     def get_ram():
         """Get the bot's RAM usage info."""
         mem = psutil.virtual_memory()
-        return f"{mem.used:.2f}/{mem.total:.2f}GB ({mem.percent}%)"
+        return f"{mem.used / 0x40_000_000:.2f}/{mem.total / 0x40_000_000:.2f}GB ({mem.percent}%)"
 
     @staticmethod
     def format_table(lines, separate_head=True):
@@ -240,7 +240,7 @@ class Bot(commands.Bot):
         print_string = ""
         for i, width in enumerate(widths):
             print_string += "{" + str(i) + ":" + str(width) + "} | "
-        if (len(print_string) == 0):
+        if not len(print_string):
             return
         print_string = print_string[:-3]
 
@@ -248,7 +248,7 @@ class Bot(commands.Bot):
         fin = []
         for i, line in enumerate(lines):
             fin.append(print_string.format(*line))
-            if (i == 0 and separate_head):
+            if i == 0 and separate_head:
                 fin.append("-" * (sum(widths) + 3 * (len(widths) - 1)))
 
         return "\n".join(fin)

@@ -1,2 +1,1 @@
-from . import Admin, Misc, Team, Inventory, Settings, Economy, Characters, Pokemon, Groups, User, utils
-__all__ = ["Admin.py", "Misc.py", "Team.py", "Inventory.py", "Settings.py", "Economy.py", "Characters.py", "Pokemon.py", "Groups.py", "User.py", "utils"]
+from . import admin, misc, team, inventory, settings, economy, characters, pokemon, groups, user, utils
