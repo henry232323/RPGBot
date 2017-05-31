@@ -61,6 +61,9 @@ class Misc(object):
                     if number > 10:
                         await ctx.send("Too many dice! Cant roll that many!")
                         return
+                    if sides > 1000:
+                        await ctx.send("That die has much too many sides!")
+                        return
 
                     rolls[sides] = [randint(1, sides) for x in range(number)]
                 except ValueError:

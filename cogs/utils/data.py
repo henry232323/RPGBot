@@ -47,11 +47,18 @@ class Guild(gc):
         return super().__new__(cls, name, owner, description, members, bank, items, open, image, icon, invites, mods)
 
 
-class Converter(commands.MemberConverter):
+class MemberConverter(commands.MemberConverter):
     async def convert(self, ctx, argument):
         if argument == 'everyone' or argument == '@everyone':
             return 'everyone'
         return await super().convert(ctx, argument)
+
+
+class NumberConverter(commands.Converter):
+    async def convert(self, ctx, argument):
+        if len(argument) > 10:
+            raise commands.BadArgument("That number is much too big! Must be less than 999,999,999")
+        return int(argument)
 
 
 def get(iterable, **attrs):

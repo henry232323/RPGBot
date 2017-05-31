@@ -21,7 +21,7 @@
 
 from discord.ext import commands
 import discord
-from .utils.data import Converter
+from .utils.data import NumberConverter, MemberConverter
 from .utils import checks
 
 
@@ -50,7 +50,7 @@ class Inventory(object):
     @checks.mod_or_permissions()
     @inventory.command(aliases=["take"])
     @checks.no_pm()
-    async def takeitem(self, ctx, item: str, num: int, *members: Converter):
+    async def takeitem(self, ctx, item: str, num: NumberConverter, *members: MemberConverter):
         """Remove an item from a person's inventory"""
         if "everyone" in members:
             members = ctx.guild.members
@@ -64,7 +64,7 @@ class Inventory(object):
     @checks.mod_or_permissions()
     @inventory.command()
     @checks.no_pm()
-    async def giveitem(self, ctx, item: str, num: int, *members: Converter):
+    async def giveitem(self, ctx, item: str, num: NumberConverter, *members: MemberConverter):
         """Give an item to a person (Not out of your inventory)"""
         if "everyone" in members:
             members = ctx.guild.members
