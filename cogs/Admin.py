@@ -117,6 +117,10 @@ class Admin(object):
     @checks.owner_or_permissions(manage_messagees=True)
     async def purge(self, ctx, number: int):
         """Purge messages"""
+        if number > 100:
+            await ctx.send("Cannot purge more than 100 messages!")
+            return
+
         await ctx.message.channel.purge(limit=number)
 
     @commands.command(hidden=True)

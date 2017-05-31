@@ -22,7 +22,7 @@
 from discord.ext import commands
 import discord
 import asyncio
-from .utils.data import ServerItem
+from .utils.data import ServerItem, NumberConverter
 from .utils import checks
 
 class Settings(object):
@@ -146,7 +146,7 @@ class Settings(object):
 
     @checks.mod_or_permissions()
     @checks.no_pm()
-    async def setstart(self, ctx, amount: int):
+    async def setstart(self, ctx, amount: NumberConverter):
         """Set the money start amount for a guild"""
         await self.bot.di.set_start(ctx.guild, amount)
         await ctx.send(f"Starting amount changed to ${amount}")

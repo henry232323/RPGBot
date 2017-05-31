@@ -83,7 +83,7 @@ class User(object):
     @checks.no_pm()
     @checks.mod_or_permissions()
     @experience.command(aliases=["set"])
-    async def setlevel(self, ctx, level: int, *members: data.Converter):
+    async def setlevel(self, ctx, level: data.NumberConverter, *members: data.MemberConverter):
         """Set the given members level"""
         for member in members:
             await self.bot.di.set_level(member, level, 0)
@@ -92,7 +92,7 @@ class User(object):
     @checks.no_pm()
     @checks.mod_or_inv()
     @experience.command()
-    async def add(self, ctx, amount: int, *members: data.Converter):
+    async def add(self, ctx, amount: data.NumberConverter, *members: data.MemberConverter):
         """Give the given members an amount of experience"""
         for member in members:
             await self.bot.di.add_exp(member, amount)

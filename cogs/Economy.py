@@ -27,7 +27,7 @@ from collections import Counter
 from random import choice
 import asyncio
 
-from .utils.data import Converter, get
+from .utils.data import MemberConverter, NumberConverter, get
 from .utils import checks
 
 
@@ -51,7 +51,7 @@ class Economy(object):
     @checks.no_pm()
     @checks.mod_or_permissions()
     @economy.command(aliases=["set"])
-    async def setbalance(self, ctx, amount: int, *members: Converter):
+    async def setbalance(self, ctx, amount: NumberConverter, *members: MemberConverter):
         """Set the balance of the given members to an amount"""
         if "everyone" in members:
             members = ctx.guild.members
@@ -64,7 +64,7 @@ class Economy(object):
     @checks.no_pm()
     @checks.mod_or_permissions()
     @economy.command(aliases=["give"])
-    async def givemoney(self, ctx, amount: int, *members: Converter):
+    async def givemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
         """Give the members money (Moderators)"""
         if "everyone" in members:
             members = ctx.guild.members
@@ -76,7 +76,7 @@ class Economy(object):
 
     @checks.no_pm()
     @commands.command()
-    async def pay(self, ctx, amount: int, member: discord.Member):
+    async def pay(self, ctx, amount: NumberConverter, member: discord.Member):
         """Pay another user money"""
         amount = abs(amount)
         await self.bot.di.add_eco(ctx.author, -amount)
@@ -199,7 +199,7 @@ class Economy(object):
 
     @checks.no_pm()
     @market.command(aliases=["createlisting", "new", "listitem", "list"])
-    async def create(self, ctx, cost: int, amount: int, *, item: str):
+    async def create(self, ctx, cost: NumberConverter, amount: NumberConverter, *, item: str):
         """Create a new market listing"""
         amount = abs(amount)
         cost = abs(cost)
@@ -399,7 +399,7 @@ class Economy(object):
     @checks.no_pm()
     @checks.mod_or_permissions()
     @lootbox.command(name="create", aliases=["new"])
-    async def _create(self, ctx, name: str, cost: int, *items: str):
+    async def _create(self, ctx, name: str, cost: NumberConverter, *items: str):
         """Create a new lootbox, under the given `name` for the given cost
         Use {item}x{#} notation to add items with {#} weight
         Weight being an integer. For example:
@@ -483,7 +483,7 @@ class Economy(object):
     @checks.no_pm()
     @checks.mod_or_permissions()
     @lotto.command(aliases=["create"])
-    async def new(self, ctx, name: str, jackpot: int, time: int):
+    async def new(self, ctx, name: str, jackpot: NumberConverter, time: NumberConverter):
         """Create a new lotto, with jacpot payout lasting time in seconds"""
         if ctx.guild.id not in self.bot.lotteries:
             self.bot.lotteries[ctx.guild.id] = dict()
@@ -691,7 +691,7 @@ class Economy(object):
 
     @checks.no_pm()
     @shop.command()
-    async def buy(self, ctx, item: str, amount: int):
+    async def buy(self, ctx, item: str, amount: NumberConverter):
         """Buy an item from the shop"""
         amount = abs(amount)
         shop = await self.bot.di.get_guild_shop(ctx.guild)
@@ -714,7 +714,7 @@ class Economy(object):
 
     @checks.no_pm()
     @shop.command()
-    async def sell(self, ctx, item: str, amount: int):
+    async def sell(self, ctx, item: str, amount: NumberConverter):
         """Sell an item to the shop"""
         amount = abs(amount)
         shop = await self.bot.di.get_guild_shop(ctx.guild)
@@ -734,7 +734,7 @@ class Economy(object):
 
     @checks.no_pm()
     @commands.command()
-    async def startbid(self, ctx, item: str, amount: int, startbid: int):
+    async def startbid(self, ctx, item: str, amount: NumberConverter, startbid: NumberConverter):
         """Start a bid for an item"""
         if ctx.channel.id in self.bids:
             await ctx.send("This channel already has a bid going!")

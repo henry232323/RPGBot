@@ -157,7 +157,7 @@ class Pokemon(object):
 
     @pokemon.command()
     @checks.no_pm()
-    async def info(self, ctx, id: int):
+    async def info(self, ctx, id: data.NumberConverter):
         """Get info on a Pokemon"""
         pokemon = await self.bot.di.get_pokemon(ctx.author, id)
 
@@ -176,14 +176,14 @@ class Pokemon(object):
 
     @pokemon.command(aliases=["delete", "rm", "remove"])
     @checks.no_pm()
-    async def release(self, ctx, id: int):
+    async def release(self, ctx, id: data.NumberConverter):
         """Release a Pokemon from your box"""
         pk = await self.bot.di.remove_pokemon(ctx.author, id)
         await ctx.send(f"This Pokemon has been released! Goodbye {pk.name}!")
 
     @pokemon.command()
     @checks.no_pm()
-    async def trade(self, ctx, your_id: int, their_id: int, other: discord.Member):
+    async def trade(self, ctx, your_id: data.NumberConverter, their_id: data.NumberConverter, other: discord.Member):
         """Offer a trade to a user.
         `your_id` is the ID of the Pokemon you want to give, `their_id` is the Pokemon you want from them.
         `other` being the user you want to trade with"""

@@ -25,7 +25,7 @@ import discord
 import asyncio
 from collections import Counter
 
-from .utils.data import Guild
+from .utils.data import Guild, NumberConverter
 from .utils import checks
 
 
@@ -381,7 +381,7 @@ class Groups(object):
 
     @guild.command()
     @checks.no_pm()
-    async def deposit(self, ctx, amount: int):
+    async def deposit(self, ctx, amount: NumberConverter):
         """Deposit an amount of money into the guild bank"""
         try:
             amount = abs(amount)
@@ -406,7 +406,7 @@ class Groups(object):
 
     @guild.command()
     @checks.no_pm()
-    async def withdraw(self, ctx, amount: int):
+    async def withdraw(self, ctx, amount: NumberConverter):
         """Take money from the guild bank"""
         amount = abs(amount)
         ug = await self.bot.di.get_user_guild(ctx.author)
