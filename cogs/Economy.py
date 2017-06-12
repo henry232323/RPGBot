@@ -223,23 +223,24 @@ class Economy(object):
     async def buy(self, ctx, id: str):
         """Buy a given amount of an item from the player market at the cheapest given price"""
         market = await self.bot.di.get_guild_market(ctx.guild)
-        item = market.get(id)
+        item = market.pop(id)
 
         if not item:
             await ctx.send("That is not a valid ID!")
             return
 
         try:
-            await self.bot.di.add_eco(-item['cost'])
+            await self.bot.di.add_eco(ctx.author, -item['cost'])
         except ValueError:
             await ctx.send("You cant afford this item!")
             return
 
+        owner = discord.utils.get(ctx.guild.members, id=item["user"])
+        await self.bot.di.add_eco(owner, item['cost'])
         await self.bot.di.give_items(ctx.author, (item["item"], item["amount"]))
         await self.bot.di.update_guild_market(ctx.guild, market)
         await ctx.send("Items successfully bought")
-
-        await discord.utils.get(ctx.guild.members, id=item["owner"]).send(f"{ctx.author} bought {item['item']} {item['amount']} from you for ${item['cost']} with ID {id} on server {ctx.guild}")
+        await owner.send(f"{ctx.author} bought {item['item']} {item['amount']} from you for ${item['cost']} with ID {id} on server {ctx.guild}")
 
     @checks.no_pm()
     @market.command()
@@ -358,6 +359,7 @@ class Economy(object):
     @checks.no_pm()
     @market.command(aliases=["rm"], name="remove")
     async def _market_remove(self, ctx, id: str):
+        """Remove an item from the market"""
         market = await self.bot.di.get_guild_market(ctx.guild)
         try:
             item = market.pop(id)
@@ -365,7 +367,7 @@ class Economy(object):
             await ctx.send("That is not a valid ID!")
             return
 
-        if item.owner == ctx.author.id:
+        if item["user"] == ctx.author.id:
             await self.bot.di.give_items(ctx.author, (item["item"], item["amount"]))
             market.remove(id)
             await self.bot.di.update_guild_market(ctx.guild, market)
@@ -423,7 +425,7 @@ class Economy(object):
 
     @checks.no_pm()
     @lootbox.command(name="buy")
-    async def _buy(self, ctx, name: str):
+    async def _lootbox_buy(self, ctx, name: str):
         """Buy a lootbox of the given name"""
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
         try:
@@ -448,7 +450,7 @@ class Economy(object):
 
     @checks.no_pm()
     @lootbox.command(name="delete", aliases=["remove"])
-    async def _delete(self, ctx, name: str):
+    async def _lootbox_delete(self, ctx, name: str):
         """Delete a lootbox with the given name"""
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
         if name in boxes:
@@ -690,8 +692,8 @@ class Economy(object):
         await ctx.send("Successfully removed item")
 
     @checks.no_pm()
-    @shop.command()
-    async def buy(self, ctx, item: str, amount: NumberConverter):
+    @shop.command(name="buy")
+    async def _buy(self, ctx, item: str, amount: NumberConverter):
         """Buy an item from the shop"""
         amount = abs(amount)
         shop = await self.bot.di.get_guild_shop(ctx.guild)
@@ -704,7 +706,7 @@ class Economy(object):
             if item["level"] > ulvl:
                 await ctx.send("You aren't high enough level for this item!")
                 return
-            await self.bot.add_eco(ctx.author, -item["buy"] * amount)
+            await self.bot.di.add_eco(ctx.author, -item["buy"] * amount)
         except ValueError:
             await ctx.send("You can't afford this many!")
             return
@@ -713,8 +715,8 @@ class Economy(object):
         await ctx.send(f"Successfully bought {amount} {item}s")
 
     @checks.no_pm()
-    @shop.command()
-    async def sell(self, ctx, item: str, amount: NumberConverter):
+    @shop.command(name="sell")
+    async def _sell(self, ctx, item: str, amount: NumberConverter):
         """Sell an item to the shop"""
         amount = abs(amount)
         shop = await self.bot.di.get_guild_shop(ctx.guild)
@@ -722,7 +724,7 @@ class Economy(object):
         if not item["sell"]:
             await ctx.send("This item cannot be sold!")
             return
-        await self.bot.add_eco(ctx.author, item["sell"] * amount)
+        await self.bot.di.add_eco(ctx.author, item["sell"] * amount)
 
         try:
             await self.bot.di.take_items(ctx.author, (item, amount))
