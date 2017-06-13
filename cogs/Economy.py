@@ -711,7 +711,7 @@ class Economy(object):
             await ctx.send("You can't afford this many!")
             return
 
-        await self.bot.di.add_items(ctx.author, (item, amount))
+        await self.bot.di.give_items(ctx.author, (item, amount))
         await ctx.send(f"Successfully bought {amount} {item}s")
 
     @checks.no_pm()
