@@ -699,14 +699,14 @@ class Economy(object):
         shop = await self.bot.di.get_guild_shop(ctx.guild)
         ulvl, uexp = await self.bot.di.get_user_level(ctx.author)
         try:
-            item = shop[item]
-            if not item["buy"]:
+            iobj = shop[item]
+            if not iobj["buy"]:
                 await ctx.send("This item cannot be bought!")
                 return
-            if item["level"] > ulvl:
+            if iobj["level"] > ulvl:
                 await ctx.send("You aren't high enough level for this item!")
                 return
-            await self.bot.di.add_eco(ctx.author, -item["buy"] * amount)
+            await self.bot.di.add_eco(ctx.author, -iobj["buy"] * amount)
         except ValueError:
             await ctx.send("You can't afford this many!")
             return
@@ -720,11 +720,11 @@ class Economy(object):
         """Sell an item to the shop"""
         amount = abs(amount)
         shop = await self.bot.di.get_guild_shop(ctx.guild)
-        item = shop[item]
-        if not item["sell"]:
+        iobj = shop[item]
+        if not iobj["sell"]:
             await ctx.send("This item cannot be sold!")
             return
-        await self.bot.di.add_eco(ctx.author, item["sell"] * amount)
+        await self.bot.di.add_eco(ctx.author, iobj["sell"] * amount)
 
         try:
             await self.bot.di.take_items(ctx.author, (item, amount))
