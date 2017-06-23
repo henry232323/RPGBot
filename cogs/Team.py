@@ -24,18 +24,19 @@ import discord
 
 from .utils import checks
 
+
 class Team(object):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.group(invoke_without_command=True)
     @checks.no_pm()
-    async def team(self, ctx, character: str):
+    async def team(self, ctx, *, character: str):
         """Check a character's team"""
 
-        team = await self.bot.di.get_team(ctx.guild, character)
-        all_chars = await self.bot.di.get_guild_characters(ctx.guild)
         try:
+            team = await self.bot.di.get_team(ctx.guild, character)
+            all_chars = await self.bot.di.get_guild_characters(ctx.guild)
             chobj = all_chars[character]
         except KeyError:
             await ctx.send("That character doesn't exist!")
@@ -61,8 +62,11 @@ class Team(object):
             if chobj.owner != ctx.author.id:
                 await ctx.send("You do not own this character!")
                 return
-
+            if id in chobj.team:
+                await ctx.send("That Pokemon is already a part of the team!")
+                return
             await self.bot.di.add_to_team(ctx.guild, character, id)
+            await ctx.send("Added to team!")
         except KeyError:
             await ctx.send("That character does not exist!")
 
@@ -77,6 +81,7 @@ class Team(object):
                 return
 
             await self.bot.di.remove_from_team(ctx.guild, character, id)
+            await ctx.send("Successfully removed Pokemon!")
         except KeyError:
             await ctx.send("That character does not exist!")
 
