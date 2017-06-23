@@ -363,7 +363,7 @@ class DataInteraction(object):
     async def add_to_team(self, guild, character, id):
         """Add a pokemon to a character's team"""
         gd = await self.db.get_guild_data(guild)
-        character = Character(gd["characters"][character])
+        character = Character(*gd["characters"][character])
         character["team"].append(id)
         if len(character["team"]) > 6:
             raise ValueError("Team is limited to 6!")
