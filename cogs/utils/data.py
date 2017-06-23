@@ -180,7 +180,7 @@ class DataInteraction(object):
         owner = discord.utils.get(guild.members, id=character.owner)
         ud = await self.db.get_user_data(owner)
 
-        pokemon = [Pokemon(x) for x in ud["box"] if x[0] in character.team]
+        pokemon = [Pokemon(*x) for x in ud["box"] if x[0] in character.team]
 
         return pokemon
 
@@ -363,9 +363,9 @@ class DataInteraction(object):
     async def add_to_team(self, guild, character, id):
         """Add a pokemon to a character's team"""
         gd = await self.db.get_guild_data(guild)
-        character = Character(*gd["characters"][character])
-        character["team"].append(id)
-        if len(character["team"]) > 6:
+        character = gd["characters"][character]
+        character[4].append(id)
+        if len(character[4]) > 6:
             raise ValueError("Team is limited to 6!")
         await self.db.update_guild_data(guild, gd)
 
@@ -383,8 +383,8 @@ class DataInteraction(object):
     async def remove_from_team(self, guild, character, id):
         """Remove a pokemon from a character's team"""
         gd = await self.db.get_guild_data(guild)
-        character = gd["characters"][character]
-        character["team"].remove(id)
+        character = gd[4][character]
+        character[4].remove(id)
         await self.db.update_guild_data(guild, gd)
 
     async def update_guild_market(self, guild, data):

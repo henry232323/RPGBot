@@ -119,6 +119,7 @@ class Characters(object):
                 return
             elif response.content.lower() == "skip":
                 await ctx.send("Skipping!")
+                break
             else:
                 try:
                     if "\n" in response.content:
