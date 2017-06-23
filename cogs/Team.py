@@ -54,7 +54,7 @@ class Team(object):
 
     @team.command(aliases=["addmember"])
     @checks.no_pm()
-    async def add(self, ctx, character, id):
+    async def add(self, ctx, character, id: int):
         """Add a Pokemon to a character's team"""
         try:
             chobj = (await self.bot.di.get_guild_characters(ctx.guild))[character]
