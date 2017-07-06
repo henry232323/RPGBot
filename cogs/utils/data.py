@@ -23,6 +23,7 @@
 from collections import Counter
 from recordclass import recordclass as namedtuple
 import ujson as json
+import re
 import discord
 from discord.ext import commands
 
@@ -60,6 +61,15 @@ class NumberConverter(commands.Converter):
             raise commands.BadArgument("That number is much too big! Must be less than 999,999,999")
         return int(argument)
 
+regex = re.compile(
+        r'^(?:http|ftp)s?://'  # http:// or https://
+        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'  # domain...
+        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'  # ...or ip
+        r'(?::\d+)?'  # optional port
+        r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+
+def validate_url(url):
+    return bool(regex.fullmatch(url))
 
 def get(iterable, **attrs):
     attr, val = list(attrs.items())[0]
