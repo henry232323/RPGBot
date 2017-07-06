@@ -53,10 +53,9 @@ if os.name == "nt":
 if os.getcwd().endswith("rpgtest"):
     sys.argv.append("debug")
 
-
-class Bot(commands.Bot):
+class Bot(commands.AutoShardedBot):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, game=discord.Game(name="rp!help for help!"), **kwargs)
+        super().__init__(*args, shard_count=3, game=discord.Game(name="rp!help for help!"), **kwargs)
         self.owner_id = 122739797646245899
         self.lounge_id = 166349353999532035
         self.uptime = datetime.datetime.utcnow()

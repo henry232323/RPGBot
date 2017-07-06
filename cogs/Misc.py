@@ -123,7 +123,7 @@ class Misc(object):
         Test the bot's connection ping
         '''
         a = monotonic()
-        await (await self.bot.ws.ping())
+        await (await ctx.bot.shards[0].ws.ping())
         b = monotonic()
         ping = "`{:.3f}ms`".format((b - a) * 1000)
         msg = f"P{choice('aeiou')}ng {ping}"
@@ -153,7 +153,7 @@ class Misc(object):
         embed.add_field(name="Channels", value='{} text channels, {} voice channels'.format(text, voice))
 
         a = monotonic()
-        await (await self.bot.ws.ping())
+        await (await ctx.bot.shards[0].ws.ping())
         b = monotonic()
         ping = "{:.3f}ms".format((b - a) * 1000)
 
