@@ -1,0 +1,37 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/aiohttp/client_reqrep.py", line 22, in <module>
+    import cchardet as chardet
+ModuleNotFoundError: No module named 'cchardet'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "RPGBot.py", line 26, in <module>
+    import discord
+  File "/usr/local/lib/python3.6/site-packages/discord/__init__.py", line 20, in <module>
+    from .client import Client, AppInfo
+  File "/usr/local/lib/python3.6/site-packages/discord/client.py", line 35, in <module>
+    from .http import HTTPClient
+  File "/usr/local/lib/python3.6/site-packages/discord/http.py", line 27, in <module>
+    import aiohttp
+  File "/usr/local/lib/python3.6/site-packages/aiohttp/__init__.py", line 6, in <module>
+    from .client import *  # noqa
+  File "/usr/local/lib/python3.6/site-packages/aiohttp/client.py", line 15, in <module>
+    from . import connector as connector_mod
+  File "/usr/local/lib/python3.6/site-packages/aiohttp/connector.py", line 16, in <module>
+    from .client_reqrep import ClientRequest
+  File "/usr/local/lib/python3.6/site-packages/aiohttp/client_reqrep.py", line 24, in <module>
+    import chardet
+  File "/usr/local/lib/python3.6/site-packages/chardet/__init__.py", line 20, in <module>
+    from .universaldetector import UniversalDetector
+  File "/usr/local/lib/python3.6/site-packages/chardet/universaldetector.py", line 48, in <module>
+    from .sbcsgroupprober import SBCSGroupProber
+  File "/usr/local/lib/python3.6/site-packages/chardet/sbcsgroupprober.py", line 39, in <module>
+    from .hebrewprober import HebrewProber
+  File "<frozen importlib._bootstrap>", line 961, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 950, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 655, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 764, in get_code
+  File "<frozen importlib._bootstrap_external>", line 833, in get_data
+KeyboardInterrupt

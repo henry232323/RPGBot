@@ -25,7 +25,7 @@ import discord
 import asyncio
 from collections import Counter
 
-from .utils.data import Guild, NumberConverter
+from .utils.data import Guild, NumberConverter, validate_url
 from .utils import checks
 
 
@@ -202,7 +202,7 @@ class Groups(object):
         if name in guilds:
             await ctx.send("A guild with this name already exists!")
             return
-        owner = discord.utils.get(guilds, owner=ctx.author.id)
+        owner = discord.utils.get(guilds.values(), owner=ctx.author.id)
         if owner is not None:
             await ctx.send("You already own a guild!")
             return
@@ -226,28 +226,41 @@ class Groups(object):
                 return
             elif response.content.lower() == "skip":
                 await ctx.send("Skipping!")
+                guild["open"] = False
             else:
                 guild["open"] = True if response.content.lower() == "yes" else False
 
             await ctx.send("If you'd like give a URL to an image for the guild")
-            response = await self.bot.wait_for("message", timeout=30, check=check)
-            if response.content.lower() == "cancel":
-                await ctx.send("Cancelling!")
-                return
-            elif response.content.lower() == "skip":
-                await ctx.send("Skipping!")
-            else:
-                guild["image"] = response.content
+            while True:
+                response = await self.bot.wait_for("message", timeout=30, check=check)
+                if response.content.lower() == "cancel":
+                    await ctx.send("Cancelling!")
+                    return
+                elif response.content.lower() == "skip":
+                    await ctx.send("Skipping!")
+                    break
+                else:
+                    if validate_url(response.content):
+                        guild["image"] = response.content
+                        break
+                    else:
+                        await ctx.send("That isn't a valid URL!")
 
             await ctx.send("Finally, you can also set an icon for the guild")
             response = await self.bot.wait_for("message", timeout=30, check=check)
-            if response.content.lower() == "cancel":
-                await ctx.send("Cancelling!")
-                return
-            elif response.content.lower() == "skip":
-                await ctx.send("Skipping!")
-            else:
-                guild["icon"] = response.content
+            while True:
+                if response.content.lower() == "cancel":
+                    await ctx.send("Cancelling!")
+                    return
+                elif response.content.lower() == "skip":
+                    await ctx.send("Skipping!")
+                    break
+                else:
+                    if validate_url(response.content):
+                        guild["image"] = response.content
+                        break
+                    else:
+                        await ctx.send("That isn't a valid URL!")
 
             guild["members"].add(ctx.author.id)
             guilds[name] = Guild(**guild)

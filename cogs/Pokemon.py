@@ -120,8 +120,6 @@ class Pokemon(object):
                         continue
                     continue
 
-                break
-
             pokemon["meta"] = dict()
             await ctx.send("Any additional data? (Format like the above, for example "
                            "nature: hasty, color: brown)")
@@ -156,6 +154,9 @@ class Pokemon(object):
 
         except asyncio.TimeoutError:
             await ctx.send("Timed out! Try again")
+        except Exception:
+            import traceback
+            traceback.print_exc()
 
     @pokemon.command()
     @checks.no_pm()
