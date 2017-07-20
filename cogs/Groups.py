@@ -52,7 +52,7 @@ class Groups(object):
             return
 
         members = "\n".join([discord.utils.get(ctx.guild.members, id=x).mention for x in
-                             (guild.members if len(guild.members) <= 20 else ctx.members[20:])])
+                             (guild.members if len(guild.members) <= 20 else guild.members[20:])])
         if len(guild.members) > 20:
             members = members + f"\nAnd {guild.members - 20} more..."
 
@@ -104,7 +104,7 @@ class Groups(object):
 
         i = 0
         for item, value in chunks[i]:
-            fmt = f"""Owner: {value.owner}\nMembers: {len(value.members)}\nOpen: {value.open}"""
+            fmt = f"""Owner: {discord.utils.get(ctx.guild.members, id=int(value.owner))}\nMembers: {len(value.members)}\nOpen: {value.open}"""
             embed.add_field(name=item, value=fmt)
 
         max = len(chunks) - 1
@@ -184,11 +184,13 @@ class Groups(object):
         if guild.image is not None:
             embed.set_image(url=guild.image)
 
-        embed.add_field(name="Owner", value=guild.owner)
+        embed.add_field(name="Owner", value=discord.utils.get(ctx.guild.members, id=guild.owner).mention)
         embed.add_field(name="Open", value=str(guild.open))
         embed.add_field(name="Bank Balance", value=f"${guild.bank}")
-        embed.add_field(name="Members", value=members)
-        embed.add_field(name="Items", value=items)
+        embed.add_field(name="Members", value=members or "None")
+        embed.add_field(name="Items", value=items or "None")
+
+        await ctx.send(embed=embed)
 
     @checks.no_pm()
     @guild.command()
@@ -247,8 +249,8 @@ class Groups(object):
                         await ctx.send("That isn't a valid URL!")
 
             await ctx.send("Finally, you can also set an icon for the guild")
-            response = await self.bot.wait_for("message", timeout=30, check=check)
             while True:
+                response = await self.bot.wait_for("message", timeout=30, check=check)
                 if response.content.lower() == "cancel":
                     await ctx.send("Cancelling!")
                     return

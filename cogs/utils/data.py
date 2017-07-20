@@ -68,8 +68,10 @@ regex = re.compile(
         r'(?::\d+)?'  # optional port
         r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
+
 def validate_url(url):
     return bool(regex.fullmatch(url))
+
 
 def get(iterable, **attrs):
     attr, val = list(attrs.items())[0]
@@ -277,7 +279,7 @@ class DataInteraction(object):
         """Remove a Pokemon from a user's box"""
         ud = await self.db.get_user_data(owner)
         for x in ud["box"]:
-            if x["id"] == id:
+            if x[0] == id:
                 break
         else:
             raise ValueError("This is not a valid ID!")

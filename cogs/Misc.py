@@ -123,7 +123,7 @@ class Misc(object):
         Test the bot's connection ping
         '''
         a = monotonic()
-        await (await ctx.bot.shards[0].ws.ping())
+        await (await ctx.bot.shards[getattr(ctx.guild, "shard_id", 0)].ws.ping())
         b = monotonic()
         ping = "`{:.3f}ms`".format((b - a) * 1000)
         msg = f"P{choice('aeiou')}ng {ping}"
@@ -151,9 +151,10 @@ class Misc(object):
         embed.add_field(name="Total Members", value='{} ({} online)'.format(total_members, total_online))
         embed.add_field(name="Unique Members", value='{}'.format(len(unique_members)))
         embed.add_field(name="Channels", value='{} text channels, {} voice channels'.format(text, voice))
+        embed.add_field(name="Shards", value=f'Currently running {ctx.bot.shard_count} shards. This server is on shard {getattr(ctx.guild, "shard_id", 0)}')
 
         a = monotonic()
-        await (await ctx.bot.shards[0].ws.ping())
+        await (await ctx.bot.shards[getattr(ctx.guild, "shard_id", 0)].ws.ping())
         b = monotonic()
         ping = "{:.3f}ms".format((b - a) * 1000)
 
