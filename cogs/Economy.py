@@ -794,3 +794,19 @@ class Economy(object):
     @commands.command()
     async def bid(self, ctx):
         """Place a bid on the current bidding item in the channel"""
+
+    @checks.no_pm()
+    @commands.command()
+    async def baltop(self, ctx):
+        """Get the top 10 server balances"""
+        req = f"""SELECT (UUID, info->'{ctx.guild.id}'->>'money') FROM userdata;"""
+        async with self.bot.db._conn.acquire() as connection:
+            resp = await connection.fetch(req)
+
+        users = [(discord.utils.get(ctx.guild.members, id=int(x["row"][0])), x["row"][1]) for x in resp if
+                 (len(x["row"]) == 2) and (x["row"][1] is not None)]
+        users = [x for x in users if x[0]]
+        users.sort(key=lambda x: -int(x[1]))
+
+        msg = "\n".join(f"{x}: {y[0]} ${y[1]}" for x, y in zip(range(1, 11), users))
+        await ctx.send(f"```\n{msg}\n```")

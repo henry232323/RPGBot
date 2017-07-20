@@ -77,24 +77,29 @@ class Bot(commands.AutoShardedBot):
         with open("resources/auth", 'r') as af:
             self._auth = json.loads(af.read())
 
-        self._cogs = {
-            "Admin": cogs.admin.Admin(self),
-            "Team": cogs.team.Team(self),
-            "Economy": cogs.economy.Economy(self),
-            "Inventory": cogs.inventory.Inventory(self),
-            "Settings": cogs.settings.Settings(self),
-            "Misc": cogs.misc.Misc(self),
-            "Characters": cogs.characters.Characters(self),
-            "Pokemon": cogs.pokemon.Pokemon(self),
-            "Groups": cogs.groups.Groups(self),
-            "User": cogs.user.User(self)
-        }
-
         self.db = db.Database(self)
         self.di = data.DataInteraction(self)
         self.default_udata = data.default_user
         self.default_servdata = data.default_server
         self.rnd = "1234567890abcdefghijklmnopqrstuvwxyz"
+
+        icogs = [
+            cogs.admin.Admin(self),
+            cogs.team.Team(self),
+            cogs.economy.Economy(self),
+            cogs.inventory.Inventory(self),
+            cogs.settings.Settings(self),
+            cogs.misc.Misc(self),
+            cogs.characters.Characters(self),
+            cogs.pokemon.Pokemon(self),
+            cogs.groups.Groups(self),
+            cogs.user.User(self)
+        ]
+        for cog in icogs:
+            self.add_cog(cog)
+
+        self.loop.create_task(self.start_serv())
+        self.loop.create_task(self.db.connect())
 
         init_dd(self._auth[3], self._auth[4])
         self.stats = ThreadStats()
@@ -105,15 +110,6 @@ class Bot(commands.AutoShardedBot):
         print(self.user.name)
         print(self.user.id)
         print('------')
-
-        self.loop.create_task(self.start_serv())
-        # self.remove_command("help")
-
-        await self.db.connect()
-
-        for cog in self._cogs.values():
-            self.add_cog(cog)
-
         await self.update_stats()
 
     async def update_stats(self):
