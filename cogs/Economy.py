@@ -50,7 +50,7 @@ class Economy(object):
 
     @checks.no_pm()
     @checks.mod_or_permissions()
-    @economy.command(aliases=["set"])
+    @commands.command(aliases=["set"])
     async def setbalance(self, ctx, amount: NumberConverter, *members: MemberConverter):
         """Set the balance of the given members to an amount"""
         if "everyone" in members:
@@ -63,7 +63,7 @@ class Economy(object):
 
     @checks.no_pm()
     @checks.mod_or_permissions()
-    @economy.command(aliases=["give"])
+    @commands.command(aliases=["give"])
     async def givemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
         """Give the members money (Moderators)"""
         if "everyone" in members:
