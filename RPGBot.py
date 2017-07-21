@@ -282,7 +282,13 @@ prefix = ['rp!', 'pb!', '<@305177429612298242> '] if "debug" not in sys.argv els
 invlink = "https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=322625"
 servinv = "https://discord.gg/UYJb8fQ"
 sourcelink = "https://github.com/henry232323/RPGBot"
-description = f"RPGBot, a little discord bot by Henry#6174\n**Add to your server**: {invlink}\n**Support Server**: {servinv}\n**Source**: {sourcelink}"
+description = f"A Bot for assisting with RPG made by Henry#6174," \
+               " with a working inventory, market and economy," \
+               " team setups and characters aswell. Each user has a server unique inventory and balance." \
+               " Players may list items on a market for other users to buy." \
+               " Users may create characters with teams from Pokemon in their storage box. " \
+               "Server administrators may add and give items to the server and its users." \
+              f"**Add to your server**: {invlink}\n**Support Server**: {servinv}\n**Source**: {sourcelink}"
 
 with open("resources/auth") as af:
     _auth = json.loads(af.read())

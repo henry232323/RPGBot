@@ -48,7 +48,7 @@ class Inventory(object):
         await ctx.send(embed=embed)
 
     @checks.mod_or_permissions()
-    @inventory.command(aliases=["take"])
+    @commands.command(aliases=["take"])
     @checks.no_pm()
     async def takeitem(self, ctx, item: str, num: NumberConverter, *members: MemberConverter):
         """Remove an item from a person's inventory"""
@@ -62,7 +62,7 @@ class Inventory(object):
         await ctx.send("Items taken!")
 
     @checks.mod_or_permissions()
-    @inventory.command()
+    @commands.command()
     @checks.no_pm()
     async def giveitem(self, ctx, item: str, num: NumberConverter, *members: MemberConverter):
         """Give an item to a person (Not out of your inventory)"""
@@ -75,7 +75,7 @@ class Inventory(object):
 
         await ctx.send("Items given!")
 
-    @inventory.command()
+    @commands.command()
     @checks.no_pm()
     async def give(self, ctx, other: discord.Member, *items: str):
         """Give items ({item}x{#}) to a member; ie: ;give @Henry#6174 pokeballx3"""

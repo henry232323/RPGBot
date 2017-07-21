@@ -126,7 +126,7 @@ class Settings(object):
                         else:
                             break
                     except Exception as e:
-                        await ctx.send("Invalid syntax, try agian.")
+                        await ctx.send("Invalid syntax, try again.")
 
             await self.bot.di.new_item(ctx.guild, ServerItem(**item))
             await ctx.send("Item successfully created")
