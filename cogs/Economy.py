@@ -63,7 +63,7 @@ class Economy(object):
 
     @checks.no_pm()
     @checks.mod_or_permissions()
-    @commands.command(aliases=["give"])
+    @commands.command()
     async def givemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
         """Give the members money (Moderators)"""
         if "everyone" in members:
