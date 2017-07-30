@@ -57,6 +57,9 @@ class MemberConverter(commands.MemberConverter):
 
 class NumberConverter(commands.Converter):
     async def convert(self, ctx, argument):
+        argument = argument.replace(",", "")
+        if not argument.isdigit():
+            raise commands.BadArgument("That is not a number!")
         if len(argument) > 10:
             raise commands.BadArgument("That number is much too big! Must be less than 999,999,999")
         return int(argument)
