@@ -86,7 +86,7 @@ class Inventory(object):
             fitems.append((split, num))
 
         try:
-            await self.bot.di.take_items(ctx.author, fitems)
-            await self.bot.di.give_items(ctx.other, fitems)
+            await self.bot.di.take_items(ctx.author, *fitems)
+            await self.bot.di.give_items(ctx.other, *fitems)
         except:
             await ctx.send("You do not have enough to give away!")
