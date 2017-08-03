@@ -32,6 +32,17 @@ ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
 Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
 gc = namedtuple("Guild", ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites", "mods"])
 
+converters = {
+    discord.Member: commands.MemberConverter,
+    discord.User: commands.UserConverter,
+    discord.TextChannel: commands.TextChannelConverter,
+    discord.VoiceChannel: commands.VoiceChannelConverter,
+    discord.Invite: commands.InviteConverter,
+    discord.Role: commands.RoleConverter,
+    discord.Game: commands.GameConverter,
+    discord.Colour: commands.ColourConverter
+}
+
 
 class Guild(gc):
     __slots__ = ()
@@ -63,6 +74,22 @@ class NumberConverter(commands.Converter):
         if len(argument) > 10:
             raise commands.BadArgument("That number is much too big! Must be less than 999,999,999")
         return int(argument)
+
+
+def union(*classes):
+    class Union(commands.Converter):
+        async def convert(self, ctx, argument):
+            for cls in classes:
+                try:
+                    if cls in converters:
+                        cls = converters[cls]
+                    return await cls.convert(self, ctx, argument)
+                except Exception as e:
+                    pass
+            else:
+                raise e
+
+    return Union
 
 regex = re.compile(
         r'^(?:http|ftp)s?://'  # http:// or https://

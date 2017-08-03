@@ -85,6 +85,8 @@ class User(object):
     @experience.command(aliases=["set"])
     async def setlevel(self, ctx, level: data.NumberConverter, *members: data.MemberConverter):
         """Set the given members level"""
+        if "everyone" in members:
+            members = ctx.guild.members
         for member in members:
             await self.bot.di.set_level(member, level, 0)
         await ctx.send("Set level for members")
@@ -94,6 +96,8 @@ class User(object):
     @experience.command()
     async def add(self, ctx, amount: data.NumberConverter, *members: data.MemberConverter):
         """Give the given members an amount of experience"""
+        if "everyone" in members:
+            members = ctx.guild.members
         for member in members:
             await self.bot.di.add_exp(member, amount)
 
