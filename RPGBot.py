@@ -93,7 +93,8 @@ class Bot(commands.AutoShardedBot):
             cogs.characters.Characters(self),
             cogs.pokemon.Pokemon(self),
             cogs.groups.Groups(self),
-            cogs.user.User(self)
+            cogs.user.User(self),
+            cogs.salary.Salary(self)
         ]
         for cog in icogs:
             self.add_cog(cog)
