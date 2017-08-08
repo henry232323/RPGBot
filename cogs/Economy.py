@@ -434,12 +434,12 @@ class Economy(object):
             await ctx.send("That is not a valid lootbox")
             return
 
-        bal = await self.bot.di.get_balance(ctx.author)
-        if bal < box["cost"]:
+        try:
+            await self.bot.di.add_eco(ctx.author, box["cost"])
+        except:
             await ctx.send("You cant afford this box")
             return
 
-        await self.bot.di.add_eco(ctx.author, box["cost"])
         winitems = []
         for item, amount in box["items"].items():
             winitems += [item] * amount
