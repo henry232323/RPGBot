@@ -77,8 +77,8 @@ class Bot(commands.AutoShardedBot):
         with open("resources/auth", 'r') as af:
             self._auth = json.loads(af.read())
 
-        self.db = db.Database(self)
-        self.di = data.DataInteraction(self)
+        self.db: db.Database = db.Database(self)
+        self.di: data.DataInteraction = data.DataInteraction(self)
         self.default_udata = data.default_user
         self.default_servdata = data.default_server
         self.rnd = "1234567890abcdefghijklmnopqrstuvwxyz"

@@ -31,7 +31,7 @@ class Salary(object):
             self.first = False
             _today = datetime.datetime(*datetime.datetime.utcnow().timetuple()[:3])
             time_until = (_today + datetime.timedelta(days=1)).timestamp() - datetime.datetime.utcnow().timestamp()
-            await asyncio.sleep(round(time_until))
+            await asyncio.sleep(time_until)
             while True:
                 await self.shutdown()
                 for guild, roles in self.guilds.items():
@@ -39,7 +39,7 @@ class Salary(object):
                     for role, amount in roles.items():
                         rob = discord.utils.get(gob.roles, id=role)
                         for member in rob.members:
-                            await self.bot.di.give_eco(gob, member, amount)
+                            await self.bot.di.add_eco(member, amount)
                 await asyncio.sleep(86400)
 
     @commands.command()
