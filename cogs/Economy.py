@@ -75,6 +75,19 @@ class Economy(object):
         await ctx.send("Money given")
 
     @checks.no_pm()
+    @checks.mod_or_permissions()
+    @commands.command()
+    async def takemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
+        """Give the members money (Moderators)"""
+        if "everyone" in members:
+            members = ctx.guild.members
+
+        for member in members:
+            await self.bot.di.add_eco(member, -amount)
+
+        await ctx.send("Money given")
+
+    @checks.no_pm()
     @commands.command()
     async def pay(self, ctx, amount: NumberConverter, member: discord.Member):
         """Pay another user money"""

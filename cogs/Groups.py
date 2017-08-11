@@ -606,3 +606,26 @@ class Groups(object):
         guild.description = description
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send("Updated guild's description!")
+
+    @guild.command()
+    @checks.no_pm()
+    async def transfer(self, ctx, user: discord.Member):
+        """Transfer ownership of a guild to someone else"""
+        ug = await self.bot.di.get_user_guild(ctx.author)
+        if ug is None:
+            await ctx.send("You aren't in a guild!")
+            return
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+        guild = guilds.get(ug)
+        if guild.owner != ctx.author.id:
+            await ctx.send("You do not own this guild!")
+            return
+
+        if user.id not in guild.members:
+            await ctx.send("User isn't in this guild!")
+            return
+
+        guild.owner = user.id
+
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send("Successfully transferred ownership")
