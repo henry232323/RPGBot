@@ -48,7 +48,7 @@ class User(object):
         if pl > 20:
             pokemon = pokemon[20:]
             pokemon.append(f"\nand {pl-20} more...")
-        boxitems = "\n".join(pokemon) or "No Pokemon"
+        boxitems = "\n".join(pokemon)
 
         imap = [f"{x[0]} x{x[1]}" for x in ud["items"].items()]
         il = len(imap)
@@ -60,7 +60,7 @@ class User(object):
         embed.add_field(name="Balance", value=f"${ud['money']}")
         embed.add_field(name="Guild", value=ud.get("guild", "None"))
         embed.add_field(name="Items", value=invitems)
-        embed.add_field(name="Box", value=boxitems)
+        embed.add_field(name="Box", value=boxitems) if boxitems else None
         embed.add_field(name="Experience", value=f"Level: {ud.get('level', 1)}\nExperience: {ud.get('exp', 0)}/{self.bot.get_exp(ud.get('level', 1))}")
 
         await ctx.send(embed=embed)
