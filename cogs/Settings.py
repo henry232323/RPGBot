@@ -57,7 +57,10 @@ class Settings(object):
 
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
         embed.add_field(name="Name", value=item.name)
+        embed.set_thumbnail(url=str(item.meta.get("image")))
         for key, value in item.meta.items():
+            if key == "image":
+                continue
             embed.add_field(name=key, value=value)
 
         await ctx.send(embed=embed)
@@ -103,7 +106,8 @@ class Settings(object):
             item["description"] = response.content
             item["meta"] = dict()
 
-            await ctx.send("Additional information? (Attributes formatted in a list i.e `color: 400, value: 200` ")
+            await ctx.send("Additional information? (Attributes formatted in a list i.e `color: 400, value: 200` "
+                           "Set an image for this item with the `image` key i.e. `image: http://image.com/image.png`")
             while True:
                 response = await self.bot.wait_for("message", timeout=30, check=check)
                 if response.content.lower() == "cancel":
@@ -125,9 +129,8 @@ class Settings(object):
                             item["meta"][key] = value
                         else:
                             break
-                    except Exception as e:
+                    except:
                         await ctx.send("Invalid syntax, try again.")
-
             await self.bot.di.new_item(ctx.guild, ServerItem(**item))
             await ctx.send("Item successfully created")
 
