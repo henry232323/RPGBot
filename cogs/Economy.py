@@ -436,7 +436,7 @@ class Economy(object):
 
         try:
             await self.bot.di.add_eco(ctx.author, -box["cost"])
-        except:
+        except ValueError:
             await ctx.send("You cant afford this box")
             return
 

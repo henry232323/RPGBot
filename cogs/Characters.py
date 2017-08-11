@@ -30,7 +30,7 @@ class Characters(object):
         self.bot = bot
 
     @checks.no_pm()
-    @commands.command(aliases=["chars"])
+    @commands.command(aliases=["chars", "personnages"])
     async def characters(self, ctx):
         """List all your characters"""
         characters = await self.bot.di.get_guild_characters(ctx.guild)
@@ -68,7 +68,7 @@ class Characters(object):
         await ctx.send(embed=embed)
 
     @checks.no_pm()
-    @commands.group(invoke_without_command=True, aliases=["c", "char"])
+    @commands.group(invoke_without_command=True, aliases=["c", "char", "personnage"])
     async def character(self, ctx, *, name: str):
         """Get info on a character"""
         try:
@@ -94,7 +94,7 @@ class Characters(object):
         await ctx.send(embed=embed)
 
     @checks.no_pm()
-    @character.command(aliases=["new"])
+    @character.command(aliases=["new", "nouveau", "creer"])
     async def create(self, ctx, *, name: str):
         """Create a new character"""
         characters = await self.bot.di.get_guild_characters(ctx.guild)
@@ -111,7 +111,7 @@ class Characters(object):
         response = await self.bot.wait_for("message", timeout=30, check=check)
         character["level"] = int(response.content)
         await ctx.send("Any additional info? (Add a character image using the image keyword. Formats use regular syntax i.e "
-                       "`image: http://image.com/, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)")
+                       "`image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)")
         while True:
             response = await self.bot.wait_for("message", check=check, timeout=60)
             if response.content.lower() == "cancel":
@@ -141,7 +141,7 @@ class Characters(object):
         await ctx.send("Character created! rp!team addmember to add to your characters team!")
 
     @checks.no_pm()
-    @character.command(aliases=["remove"])
+    @character.command(aliases=["remove", "supprimer"])
     async def delete(self, ctx, *, name: str):
         """Delete a character of the given name (you must be the owner)"""
         characters = await self.bot.di.get_guild_characters(ctx.guild)

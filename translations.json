@@ -1,0 +1,55 @@
+{
+  "fr": {
+    "Admin": {
+      "repeatcommand": "",
+      "purge": [
+        "",
+        ""
+      ]
+    },
+    "Characters": {
+      "characters": [
+        "Lister tout vos personnages",
+        "Utilisateur n'a aucun personnages à afficher"
+      ],
+      "allchars": [
+        "Lister tout les personnages de la guilde",
+        "Aucun personnages à afficher"
+      ],
+      "character": [
+        "Obtenir les informations sur un personnage",
+        "Cette personnage n'existe pas",
+        "Nom",
+        "Propriateur",
+        "Niveau",
+        "Vide",
+        "Équipe",
+        "Information additionnelle"
+      ],
+      "character.create": [
+        "Créer un nouveau personnage",
+        "Un personnage a ce nom déjà",
+        "Decrivez le personnage (Feuille de personnage pertinente)",
+        "Quel niveau est le personange?",
+        "Information additionnelle? (Ajouter un image du personnage avec le `image` mot de mot-clé, Utilisez syntax regulier: `image: http://image.com/image.jpg, cheveux: brune` (Separer clés avec les virgules ou nouvelle ligne)",
+        "Syntaxe invalide!",
+        "Personnage créé! `rp!team addmember` Pour ajouter à votre équipe de personnages !"
+      ],
+      "character.delete": [
+        "Supprimer un personnage (Vous devez être le propriateur du personnage)",
+        "Ce personnage n'existe pas !",
+        "Vous ne possedez pas ce personnage !",
+        "Personnage supprimé"
+      ]
+    },
+    "Economy": {
+      "economy": "Voir votre ou le solde d'un autre",
+      "setbalance": [
+
+      ],
+      "givemoney": [
+
+      ]
+    }
+  }
+}
