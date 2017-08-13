@@ -57,7 +57,8 @@ class Settings(object):
 
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
         embed.add_field(name="Name", value=item.name)
-        embed.set_thumbnail(url=str(item.meta.get("image")))
+        img = item.meta.get("image")
+        embed.set_thumbnail(url=str(img)) if img else None
         for key, value in item.meta.items():
             if key == "image":
                 continue
