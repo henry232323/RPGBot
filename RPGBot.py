@@ -293,7 +293,7 @@ description = f"A Bot for assisting with RPG made by henry232323," \
                f"**Support Server**: {servinv}\n" \
                f"**Source**: {sourcelink}\n" \
                 "**Help**: http://typheus.me\n" \
-                "**French Help**: http://typheus.me/rpgbot-francais.html"
+                "**Aide français**: http://typheus.me/rpgbot-francais.html"
 
 with open("resources/auth") as af:
     _auth = json.loads(af.read())
