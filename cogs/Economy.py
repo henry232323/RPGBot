@@ -144,8 +144,6 @@ class Economy(object):
 
             users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
 
-        #embed.description = "\n".join(f"{x['id']}: ${x['cost']} for x{x['amount']} {x['item']} from {y.mention}" for x, y in zip(chunks[i], users))
-
         fin = [[x['id'], f"${x['cost']}", f"x{x['amount']}", x['item'], str(y)] for x, y in zip(chunks[i], users)]
         fin.insert(0, ["ID", "COST", "NUMBER", "ITEM", "SELLER"])
         embed.description = "```\n{}\n```".format(self.bot.format_table(fin))

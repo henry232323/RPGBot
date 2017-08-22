@@ -103,14 +103,14 @@ class Settings(object):
             item["name"] = name
             check = lambda x: x.channel is ctx.channel and x.author is ctx.author
             await ctx.send("Describe the item (a description for the item)")
-            response = await self.bot.wait_for("message", timeout=60, check=check)
+            response = await self.bot.wait_for("message", timeout=120, check=check)
             item["description"] = response.content
             item["meta"] = dict()
 
             await ctx.send("Additional information? (Attributes formatted in a list i.e `color: 400, value: 200` "
                            "Set an image for this item with the `image` key i.e. `image: http://image.com/image.png`")
             while True:
-                response = await self.bot.wait_for("message", timeout=30, check=check)
+                response = await self.bot.wait_for("message", timeout=60, check=check)
                 if response.content.lower() == "cancel":
                     await ctx.send("Cancelling!")
                     return

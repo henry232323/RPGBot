@@ -315,7 +315,7 @@ class DataInteraction(object):
             raise ValueError("This is not a valid ID!")
         ud["box"].remove(x)
         await self.db.update_user_data(owner, ud)
-        return Pokemon(**x)
+        return Pokemon(*x)
 
     async def new_item(self, guild, serveritem):
         """Create a new server item"""
