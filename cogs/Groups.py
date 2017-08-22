@@ -210,10 +210,18 @@ class Groups(object):
             return
         try:
             check = lambda x: x.channel is ctx.channel and x.author is ctx.author
-            guild = dict(name=name, owner=ctx.author.id, description="", members=set(), bank=0, items=dict(), open=False, image=None, invites=set())
+            guild = dict(name=name,
+                         owner=ctx.author.id,
+                         description="",
+                         members=set(),
+                         bank=0,
+                         items=dict(),
+                         open=False,
+                         image=None,
+                         invites=set())
             await ctx.send("'cancel' or 'skip' to cancel creation or skip a step")
             await ctx.send("Describe the Guild (guild description)")
-            response = await self.bot.wait_for("message", check=check, timeout=60)
+            response = await self.bot.wait_for("message", check=check, timeout=120)
             if response.content.lower() == "cancel":
                 await ctx.send("Cancelling!")
                 return
@@ -222,7 +230,7 @@ class Groups(object):
             else:
                 guild["description"] = response.content
             await ctx.send("Is this guild open to everyone? Or is an invite necessary? (yes or no, no is assumed)")
-            response = await self.bot.wait_for("message", timeout=30, check=check)
+            response = await self.bot.wait_for("message", timeout=60, check=check)
             if response.content.lower() == "cancel":
                 await ctx.send("Cancelling!")
                 return
@@ -234,7 +242,7 @@ class Groups(object):
 
             await ctx.send("If you'd like give a URL to an image for the guild")
             while True:
-                response = await self.bot.wait_for("message", timeout=30, check=check)
+                response = await self.bot.wait_for("message", timeout=60, check=check)
                 if response.content.lower() == "cancel":
                     await ctx.send("Cancelling!")
                     return
@@ -250,7 +258,7 @@ class Groups(object):
 
             await ctx.send("Finally, you can also set an icon for the guild")
             while True:
-                response = await self.bot.wait_for("message", timeout=30, check=check)
+                response = await self.bot.wait_for("message", timeout=60, check=check)
                 if response.content.lower() == "cancel":
                     await ctx.send("Cancelling!")
                     return
@@ -383,7 +391,7 @@ class Groups(object):
 
         await ctx.send("Are you sure you want to delete the guild? {yes/no}")
         try:
-            resp = await self.bot.wait_for("message", timeout=30, check=lambda x: x.author is ctx.author and x.channel is ctx.channel)
+            resp = await self.bot.wait_for("message", timeout=60, check=lambda x: x.author is ctx.author and x.channel == ctx.channel)
         except asyncio.TimeoutError:
             await ctx.send("Timed out try again!")
             return

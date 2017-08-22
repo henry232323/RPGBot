@@ -105,15 +105,15 @@ class Characters(object):
         check = lambda x: x.channel is ctx.channel and x.author is ctx.author
         character = dict(name=name, owner=ctx.author.id, meta=dict(), team=list())
         await ctx.send("Describe the character (Relevant character sheet)")
-        response = await self.bot.wait_for("message", check=check, timeout=60)
+        response = await self.bot.wait_for("message", check=check, timeout=120)
         character["description"] = response.content
         await ctx.send("What level is the character?")
-        response = await self.bot.wait_for("message", timeout=30, check=check)
+        response = await self.bot.wait_for("message", timeout=60, check=check)
         character["level"] = int(response.content)
         await ctx.send("Any additional info? (Add a character image using the image keyword. Formats use regular syntax i.e "
                        "`image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)")
         while True:
-            response = await self.bot.wait_for("message", check=check, timeout=60)
+            response = await self.bot.wait_for("message", check=check, timeout=120)
             if response.content.lower() == "cancel":
                 await ctx.send("Cancelling!")
                 return

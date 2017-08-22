@@ -70,7 +70,7 @@ class Pokemon(object):
             pokemon = dict()
             await ctx.send("In any step type 'cancel' to cancel")
             await ctx.send("What will its nickname be?")
-            response = await self.bot.wait_for("message", check=check, timeout=30)
+            response = await self.bot.wait_for("message", check=check, timeout=60)
             if response.content.lower() == "cancel":
                 await ctx.send("Cancelled")
                 return
@@ -78,7 +78,7 @@ class Pokemon(object):
                 pokemon["name"] = response.content
 
             await ctx.send("What species of Pokemon is it?")
-            response = await self.bot.wait_for("message", check=check, timeout=30)
+            response = await self.bot.wait_for("message", check=check, timeout=60)
             if response.content.lower() == "cancel":
                 await ctx.send("Cancelled")
                 return
@@ -92,7 +92,7 @@ class Pokemon(object):
             pokemon["stats"] = dict()
             valid_stats = ["level", "health", "attack", "defense", "spatk", "spdef", "speed"]
             while True:
-                response = await self.bot.wait_for("message", check=check, timeout=60)
+                response = await self.bot.wait_for("message", check=check, timeout=120)
                 if response.content.lower() == "cancel":
                     await ctx.send("Cancelled")
                     return
@@ -125,7 +125,7 @@ class Pokemon(object):
                            "nature: hasty, color: brown)")
 
             while True:
-                response = await self.bot.wait_for("message", check=check, timeout=60)
+                response = await self.bot.wait_for("message", check=check, timeout=120)
                 if response.content.lower() == "cancel":
                     await ctx.send("Cancelling!")
                     return
@@ -193,7 +193,7 @@ class Pokemon(object):
 
         await ctx.send("Say rp!accept or rp!decline to respond to the trade!")
         try:
-            resp = await self.bot.wait_for("message", timeout=60, check=lambda x: x.author == other and x.channel == ctx.channel and ctx.message.content in ["rp!accept", "rp!decline"])
+            resp = await self.bot.wait_for("message", timeout=120, check=lambda x: x.author == other and x.channel == ctx.channel and ctx.message.content in ["rp!accept", "rp!decline"])
         except asyncio.TimeoutError:
             await ctx.send("Failed to respond in time! Cancelling.")
             return

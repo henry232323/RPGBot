@@ -27,10 +27,13 @@ class Salary(object):
             gf.write(json.dumps(self.guilds))
 
     async def on_ready(self):
+        self.bot.loop.create_task(self.run_salaries())
+
+    async def run_salaries(self):
         if self.first:
             self.first = False
             _today = datetime.datetime(*datetime.datetime.utcnow().timetuple()[:3])
-            time_until = (_today + datetime.timedelta(days=1)).timestamp() - datetime.datetime.utcnow().timestamp()
+            time_until = 86400 - (_today + datetime.timedelta(days=1)).timestamp() - datetime.datetime.utcnow().timestamp()
             await asyncio.sleep(time_until)
             while True:
                 await self.shutdown()
