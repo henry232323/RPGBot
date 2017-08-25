@@ -38,7 +38,7 @@ def role_or_permissions(ctx, check, **perms):
 
     role = discord.utils.find(check, author.roles)
     if role is None:
-        raise commands.CommandError("You need a special role to do this! (You probably want 'Bot Moderator')")
+        raise commands.CommandError("You need a special role to do this! (A discord role with the name `Bot Mod` or `Bot Admin`)")
     return True
 
 def mod_or_inv():
