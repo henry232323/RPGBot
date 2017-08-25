@@ -144,7 +144,8 @@ class Bot(commands.AutoShardedBot):
             self.server_commands[ctx.guild.id] += 1
             if not (self.server_commands[ctx.guild.id] % 50):
                 await ctx.send(
-                    "This bot costs $130/yr to run. If you like the utilities it provides, consider buying me a coffee https://ko-fi.com/henrys"
+                    "This bot costs $130/yr to run. If you like the utilities it provides,"
+                    " consider buying me a coffee <https://ko-fi.com/henrys>"
                 )
 
             add = choice([0, 0, 0, 0, 0, 0, 1, 1, 2])
@@ -288,7 +289,7 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
                 " team setups and characters as well. Each user has a server unique inventory and balance." \
                 " Players may list items on a market for other users to buy." \
                 " Users may create characters with teams from Pokemon in their storage box. " \
-                "Server administrators may add and give items to the server and its users." \
+                "Server administrators may add and give items to the server and its users.\n" \
                f"**Add to your server**: {invlink}\n" \
                f"**Support Server**: {servinv}\n" \
                f"**Source**: {sourcelink}\n" \
