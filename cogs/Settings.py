@@ -25,6 +25,7 @@ import asyncio
 from .utils.data import ServerItem, NumberConverter
 from .utils import checks
 
+
 class Settings(object):
     def __init__(self, bot):
         self.bot = bot
@@ -43,7 +44,7 @@ class Settings(object):
 
     @settings.command()
     @checks.no_pm()
-    async def iteminfo(self, ctx, item: str):
+    async def iteminfo(self, ctx, *, item: str):
         """Get info on a server item"""
         items = await self.bot.di.get_guild_items(ctx.guild)
         item = items.get(item)
@@ -96,7 +97,7 @@ class Settings(object):
     @checks.mod_or_permissions()
     @settings.command()
     @checks.no_pm()
-    async def additem(self, ctx, name: str):
+    async def additem(self, ctx, *, name: str):
         """Add a custom item"""
         try:
             item = dict()
@@ -141,7 +142,7 @@ class Settings(object):
     @checks.mod_or_permissions()
     @settings.command(aliases=["deleteitem"])
     @checks.no_pm()
-    async def removeitem(self, ctx, name: str):
+    async def removeitem(self, ctx, *, name: str):
         """Remove a custom item"""
         try:
             await self.bot.di.remove_item(ctx.guild, name)
