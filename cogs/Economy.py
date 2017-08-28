@@ -255,7 +255,7 @@ class Economy(object):
 
     @checks.no_pm()
     @market.command()
-    async def search(self, ctx, item: str):
+    async def search(self, ctx, *, item: str):
         """Search the market for an item"""
         um = await self.bot.di.get_guild_market(ctx.guild)
         market = [i for i in um.values() if i['item'] == item]
@@ -436,7 +436,7 @@ class Economy(object):
 
     @checks.no_pm()
     @lootbox.command(name="buy")
-    async def _lootbox_buy(self, ctx, name: str):
+    async def _lootbox_buy(self, ctx, *, name: str):
         """Buy a lootbox of the given name"""
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
         try:
@@ -461,7 +461,7 @@ class Economy(object):
 
     @checks.no_pm()
     @lootbox.command(name="delete", aliases=["remove"])
-    async def _lootbox_delete(self, ctx, name: str):
+    async def _lootbox_delete(self, ctx, *, name: str):
         """Delete a lootbox with the given name"""
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
         if name in boxes:
@@ -517,7 +517,7 @@ class Economy(object):
 
     @checks.no_pm()
     @lotto.command(aliases=["join"])
-    async def enter(self, ctx, name: str):
+    async def enter(self, ctx, *, name: str):
         """Enter the lottery with the given name."""
         if ctx.guild.id in self.bot.lotteries:
             if name in self.bot.lotteries[ctx.guild.id]:
@@ -629,7 +629,7 @@ class Economy(object):
     @checks.no_pm()
     @shop.command(aliases=["add"])
     @checks.mod_or_permissions()
-    async def additem(self, ctx, name: str):
+    async def additem(self, ctx, *, name: str):
         """Add an item to the server shop, to make an item unsaleable or unbuyable set their respective values to 0
         pb!additem Pokeball
         -> 0

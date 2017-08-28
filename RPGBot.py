@@ -151,18 +151,15 @@ class Bot(commands.AutoShardedBot):
             add = choice([0, 0, 0, 0, 0, 0, 1, 1, 2])
             fpn = ctx.command.full_parent_name
             if fpn:
-                if fpn == "settings":
-                    return
-                elif fpn == "character":
-                    add += 2
-                elif fpn == "inventory":
-                    add += 1
-                elif fpn == "economy":
-                    add += 1
-                elif fpn == "pokemon":
-                    add += 2
-                elif fpn == "guild":
-                    add += 2
+                values = {
+                    "character": 2,
+                    "inventory": 1,
+                    "economy": 1,
+                    "pokemon": 2,
+                    "guild": 2,
+                    "team": 1,
+                }
+                add += values.get(fpn, 0)
 
             if add:
                 await asyncio.sleep(3)
