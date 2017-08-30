@@ -36,13 +36,19 @@ class Salary(object):
             time_until = 86400 - (_today + datetime.timedelta(days=1)).timestamp() - datetime.datetime.utcnow().timestamp()
             await asyncio.sleep(time_until)
             while True:
+                dels = []
                 await self.shutdown()
                 for guild, roles in self.guilds.items():
                     gob = self.bot.get_guild(guild)
-                    for role, amount in roles.items():
-                        rob = discord.utils.get(gob.roles, id=role)
-                        for member in rob.members:
-                            await self.bot.di.add_eco(member, amount)
+                    if gob:
+                        for role, amount in roles.items():
+                            rob = discord.utils.get(gob.roles, id=role)
+                            for member in rob.members:
+                                await self.bot.di.add_eco(member, amount)
+                    else:
+                        dels.append(guild)
+                for guild in dels:
+                    del self.guilds[guild]
                 await asyncio.sleep(86400)
 
     @commands.command()
