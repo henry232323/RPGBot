@@ -65,17 +65,30 @@ class Misc(object):
                         await ctx.send("That die has much too many sides!")
                         return
 
-                    rolls[sides] = [randint(1, sides) for x in range(number)]
+                    rolls[sides] = [randint(1, sides) for _ in range(number)]
                 except ValueError:
                     try:
-                        add.append(int(die))
+                        if die.isdigit():
+                            if len(die) <= 5:
+                                add.append(int(die))
+                            else:
+                                await ctx.send(die + " is too big a number!")
+                                return
                     except ValueError:
                         if die.startswith((">", "<")):
                             rel = die
-                            val = int(rel.strip("<>"))
+                            _dir = rel.strip("<>")
+                            if len(_dir) > 5:
+                                await ctx.send(_dir + " is too big a number!")
+                                return
+                            val = int(_dir)
                             type = rel[0]
                         elif die.startswith("^"):
-                            pp = int(die.strip("^"))
+                            _cur = die.strip("^")
+                            if len(_cur) > 5:
+                                await ctx.send(_cur + " is too big a number!")
+                                return
+                            pp = int(_cur)
 
             if pp:
                 s = list(chain(*rolls.values()))

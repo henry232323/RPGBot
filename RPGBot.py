@@ -148,7 +148,7 @@ class Bot(commands.AutoShardedBot):
                     " consider buying me a coffee <https://ko-fi.com/henrys>"
                 )
 
-            add = choice([0, 0, 0, 0, 0, 0, 1, 1, 2])
+            add = choice([0, 0, 0, 0, 0, 1, 1, 2, 3])
             fpn = ctx.command.full_parent_name
             if fpn:
                 values = {
@@ -178,7 +178,7 @@ class Bot(commands.AutoShardedBot):
     async def on_guild_join(self, guild):
         if sum(1 for m in guild.members if m.bot) / guild.member_count >= 3/4:
             try:
-                await guild.default_channel.send("This server has too many bots! I'm just going to leave if thats alright")
+                await guild.channels[0].send("This server has too many bots! I'm just going to leave if thats alright")
             finally:
                 await guild.leave()
         else:
