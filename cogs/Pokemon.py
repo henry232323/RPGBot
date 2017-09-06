@@ -107,7 +107,7 @@ class Pokemon(object):
                             res = response.content.split(",")
                         for val in res:
                             key, value = val.split(": ")
-                            key = key.strip().lower()
+                            key = key.strip().casefold()
                             value = value.strip()
                             if key not in valid_stats:
                                 await ctx.send(f"{key} is not a valid stat! Try again")
@@ -140,7 +140,7 @@ class Pokemon(object):
                             res = response.content.split(",")
                         for val in res:
                             key, value = val.split(": ")
-                            key = key.strip().lower()
+                            key = key.strip().casefold()
                             value = value.strip()
                             pokemon["meta"][key] = value
                         else:

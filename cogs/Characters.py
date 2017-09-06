@@ -55,10 +55,10 @@ class Characters(object):
         embed = discord.Embed()
         words = dict()
         for x in characters.keys():
-            if x[0].lower() in words:
-                words[x[0].lower()].append(x)
+            if x[0].casefold() in words:
+                words[x[0].casefold()].append(x)
             else:
-                words[x[0].lower()] = [x]
+                words[x[0].casefold()] = [x]
 
         for key, value in words.items():
             if value:

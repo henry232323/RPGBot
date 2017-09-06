@@ -81,10 +81,10 @@ class Settings(object):
 
         words = dict()
         for x in items.keys():
-            if x[0].lower() in words:
-                words[x[0].lower()].append(x)
+            if x[0].casefold() in words:
+                words[x[0].casefold()].append(x)
             else:
-                words[x[0].lower()] = [x]
+                words[x[0].casefold()] = [x]
 
         for key, value in words.items():
             if value:
@@ -126,7 +126,7 @@ class Settings(object):
                             res = response.content.split(",")
                         for val in res:
                             key, value = val.split(": ")
-                            key = key.strip().lower()
+                            key = key.strip().casefold()
                             value = value.strip()
                             item["meta"][key] = value
                         else:
