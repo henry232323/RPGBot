@@ -38,7 +38,7 @@ def role_or_permissions(ctx, check, **perms):
 
     role = discord.utils.find(check, author.roles)
     if role is None:
-        raise commands.CommandError("You need a special role to do this! (A discord role with the name `Bot Mod` or `Bot Admin`)")
+        raise commands.CommandError("You need a special role to do this! (A discord role with the name \"Bot Mod\" or \"Bot Admin\")")
     return True
 
 def mod_or_inv():
@@ -83,7 +83,7 @@ def owner_or_permissions(**perms):
 
 def nsfw_channel():
     def predicate(ctx):
-        if not (isinstance(ctx.channel, (discord.DMChannel, discord.GroupChannel)) or "nsfw" in ctx.channel.name.lower()):
+        if not (isinstance(ctx.channel, (discord.DMChannel, discord.GroupChannel)) or "nsfw" in ctx.channel.name.casefold()):
             raise ChannelError("This command can only be used in `nsfw` channels!")
         return True
     return commands.check(predicate)

@@ -297,7 +297,7 @@ class DataInteraction(object):
         """Create a Pokemon for a user's box"""
         ud = await self.db.get_user_data(owner)
         if not 'id' in pokemon:
-            id = ud["box"][-1]["id"] + 1 if ud["box"] else 0
+            id = ud["box"][-1][0] + 1 if ud["box"] else 0
             ud["box"].append(Pokemon(**pokemon, id=id))
         else:
             id = pokemon['id']

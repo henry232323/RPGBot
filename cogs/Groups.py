@@ -238,7 +238,7 @@ class Groups(object):
                 await ctx.send("Skipping!")
                 guild["open"] = False
             else:
-                guild["open"] = True if response.content.lower() == "yes" else False
+                guild["open"] = response.content.lower() == "yes"
 
             await ctx.send("If you'd like give a URL to an image for the guild")
             while True:

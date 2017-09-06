@@ -146,6 +146,7 @@ class Bot(commands.AutoShardedBot):
                 await ctx.send(
                     "This bot costs $130/yr to run. If you like the utilities it provides,"
                     " consider buying me a coffee <https://ko-fi.com/henrys>"
+                    " or subscribe as a Patron <https://www.patreon.com/henry232323>"
                 )
 
             add = choice([0, 0, 0, 0, 0, 1, 1, 2, 3])
@@ -291,7 +292,9 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
                f"**Support Server**: {servinv}\n" \
                f"**Source**: {sourcelink}\n" \
                 "**Help**: http://typheus.me\n" \
-                "**Aide français**: http://typheus.me/rpgbot-francais.html"
+                "**Aide français**: http://typheus.me/rpgbot-francais.html\n" \
+                "**Patreon**: https://www.patreon.com/henry232323\n" \
+                "**Buy Me a Coffee**: https://ko-fi.com/henrys"
 
 with open("resources/auth") as af:
     _auth = json.loads(af.read())
