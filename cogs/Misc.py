@@ -68,13 +68,13 @@ class Misc(object):
                     rolls[sides] = [randint(1, sides) for _ in range(number)]
                 except ValueError:
                     try:
-                        if die.isdigit():
-                            if len(die) <= 5:
-                                add.append(int(die))
-                            else:
-                                await ctx.send(die + " is too big a number!")
-                                return
-                    except ValueError:
+                        die = die.strip("+")
+                        if len(die) <= 5:
+                            add.append(int(die))
+                        else:
+                            await ctx.send(die + " is too big a number!")
+                            return
+                    except:
                         if die.startswith((">", "<")):
                             rel = die
                             _dir = rel.strip("<>")
