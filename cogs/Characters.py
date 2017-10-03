@@ -19,10 +19,11 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-from discord.ext import commands
 import discord
-from .utils.data import Character
+from discord.ext import commands
+
 from .utils import checks
+from .utils.data import Character
 
 
 class Characters(object):
@@ -110,8 +111,9 @@ class Characters(object):
         await ctx.send("What level is the character?")
         response = await self.bot.wait_for("message", timeout=60, check=check)
         character["level"] = int(response.content)
-        await ctx.send("Any additional info? (Add a character image using the image keyword. Formats use regular syntax i.e "
-                       "`image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)")
+        await ctx.send(
+            "Any additional info? (Add a character image using the image keyword. Formats use regular syntax i.e "
+            "`image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)")
         while True:
             response = await self.bot.wait_for("message", check=check, timeout=120)
             if response.content.lower() == "cancel":
@@ -156,3 +158,51 @@ class Characters(object):
 
         await self.bot.di.remove_character(ctx.guild, name)
         await ctx.send("Character deleted")
+
+    @checks.no_pm()
+    @character.command()
+    async def edit(self, ctx, character, attribute, *, value):
+        """Edit a character
+        Usage: rp!character edit John description John likes bananas!
+        Valid values for the [item] (second argument):
+            name: the character's name
+            description: the description of the character
+            level: an integer representing the character's level
+            meta: same usage as the character create command a: b value pairs
+        """
+        attribute = attribute.lower()
+        chars = await self.bot.di.get_guild_characters(ctx.guild)
+        character = chars.get(character)
+        if character is None:
+            await ctx.send("That character doesn't exist!")
+            return
+
+        if not character.owner == ctx.author.id:
+            await ctx.send("This isnt your character!")
+            return
+
+        character = list(character)
+        if attribute == "name":
+            await self.bot.di.remove_character(ctx.guild, character[0])
+            character[0] = value
+        if attribute == "description":
+            character[2] = value
+        elif attribute == "level":
+            character[3] = int(value)
+        elif attribute == "meta":
+            try:
+                if "\n" in value:
+                    res = value.split("\n")
+                else:
+                    res = value.split(",")
+                for val in res:
+                    key, value = val.split(": ")
+                    key = key.strip()
+                    value = value.strip()
+                    character[5][key] = value
+            except:
+                await ctx.send("Invalid formatting try again!")
+        else:
+            await ctx.send("That is not a valid item! Try again")
+
+        await self.bot.di.add_character(ctx.guild, Character(*character))
