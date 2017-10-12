@@ -62,11 +62,11 @@
     },
     "Characters": {
       "characters": [
-        "Zeige eine Liste aller Charaktere",
+        "Zeigt eine Liste aller Charaktere",
         "Benutzer hat keinen Auswählbaren Charakter"
       ],
       "allchars": [
-        "Zeing eine Liste aller Charaktere in der Gilde",
+        "Zeigt eine Liste aller Charaktere in der Gilde",
         "Keine Charaktere anzeigbar"
       ],
       "character": [
