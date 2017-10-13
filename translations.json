@@ -63,7 +63,7 @@
     "Characters": {
       "characters": [
         "Zeigt eine Liste aller Charaktere",
-        "Benutzer hat keinen Auswählbaren Charakter"
+        "Benutzer hat keinen auswählbaren Charakter"
       ],
       "allchars": [
         "Zeigt eine Liste aller Charaktere in der Gilde",
@@ -76,7 +76,7 @@
         "Eigenschaften",
         "Ebene",
         "Leere",
-        "Ausrüsting",
+        "Ausrüstung",
         "Zusätzliche Informationen"
       ],
       "character.create": [
@@ -84,9 +84,9 @@
         "Ein Charakter mit diesem Namen existiert bereits",
         "Beschreibe den Charakter (Steckbrief)",
         "Auf welcher Ebene steht der Charakter?",
-        "Zusätzliche Informationen? (Füge ein Bild des Charakters als Passwort ein, verwende normale Zeichen: `bild: http://image.com/image.jpg, haarfarbe: brune` (Verwende neue Zeilen für jede Eigenschaft)",
+        "Zusätzliche Informationen? (Füge ein Bild des Charakters als Passwort ein, verwende normale Zeichen: `bild: http://image.com/image.jpg, haarfarbe: braun` (Verwende eine neue Zeilen für jede Eigenschaft)",
         "Ungültige Verwendung!",
-        "Charakter Erstellt! Verwende `rp!team addmember` um ihn in dein Team aufzunehmen!"
+        "Charakter erstellt! Verwende `rp!team addmember` um ihn in dein Team aufzunehmen!"
       ],
       "character.delete": [
         "Entfernt einen Charakter (Du musst Besitzer des Charakters sein)",
