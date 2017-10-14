@@ -104,5 +104,58 @@
 
       ]
     }
+  }, 
+  "sv": {
+    "Admin": {
+      "repeatcommand": "",
+      "purge": [
+        "",
+        ""
+      ]
+    },
+    "Characters": {
+      "characters": [
+        "Visa alla dina karaktärer",
+        "Användaren har inga karaktärer att visa"
+      ],
+      "allchars": [
+        "Visa alla karaktärer i en gille",
+        "Det finns inga karaktärer"
+      ],
+      "character": [
+        "Få information om en karaktär",
+        "Denna karaktär finns inte!",
+        "Namn",
+        "Egare",
+        "Nivå",
+        "Tom",
+        "Lag",
+        "Mer information"
+      ],
+      "character.create": [
+        "Skapa en ny karaktär",
+        "Det finns redan en karaktär med detta namn!",
+        "Beskriv karaktären (karaktärblad)",
+        "På vilken nivå är karaktären?",
+        "Mer information? (Lägg till en bild genom att använda image nyckelordet. Skriv på följande sätt: `bild: http://image.com/image.jpg, hair_color: ljus, nickname: Svennis` (separera olika nycklar med kommor eller nya rader)",
+        "Ogiltig formatering! Försök igen",
+        "Karaktär skapad! Använd `rp!team addmember` för att lägga till den i ditt lag!"
+      ],
+      "character.delete": [
+        "Radera a karaktär med detta namn (du måste vara ägaren)",
+        "Denna karaktär finns inte!",
+        "Du ägar inte denna karaktär",
+        "Karaktär raderad"
+      ]
+    },
+    "Economy": {
+      "economy": "Visa din eller någon annans tillgångar",
+      "setbalance": [
+
+      ],
+      "givemoney": [
+
+      ]
+    }
   }
 }
