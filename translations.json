@@ -104,7 +104,60 @@
 
       ]
     }
-  }, 
+  },
+  "pt-br": {
+    "Admin": {
+      "repeatcommand": "",
+      "purge": [
+        "",
+        ""
+      ]
+    },
+    "Characters": {
+      "characters": [
+        "Liste todos os seus personagens",
+        "O usuário não possui nenhum personagem para exibir"
+      ],
+      "allchars": [
+        "Liste todos os personagens da guilda personagens",
+        "Sem personagens para exibir"
+      ],
+      "character": [
+        "Obter informações sobre um personagem",
+        "Esse personagem não existe",
+        "Nome",
+        "Proprietário",
+        "Nível",
+        "Vida",
+        "Equipe",
+        "Informações Adicionais"
+      ],
+      "character.create": [
+        "Crie um novo personagem",
+        "Já existe um personagem com este nome",
+        "Descreva o personagem (Respectiva folha de personagem)",
+        "Qual o nível do personagem?",
+        "Informações adicionais? (Adicione uma imagem do personagem com a palavra chave `image`. Utilize a seguinte sintaxe: `image: http://image.com/image.jpg, cabelo: louro` (Separe as chaves com vírgula ou uma nova linha)",
+        "Sintaxe inválida!",
+        "Personagem criado! `rp!team addmember` Para adicionar a sua guilda de personagens!"
+      ],
+      "character.delete": [
+        "Excluir um personagem (Você precisa ser o proprietário do personagem)",
+        "Este personagem não existe!",
+        "Você não é o dono deste personagem!",
+        "Personagem excluído"
+      ]
+    },
+    "Economy": {
+      "economy": "Veja o seu ou o saldo de outro",
+      "setbalance": [
+
+      ],
+      "givemoney": [
+
+      ]
+    }
+  },
   "sv": {
     "Admin": {
       "repeatcommand": "",
