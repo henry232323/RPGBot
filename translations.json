@@ -14,36 +14,36 @@
       ],
       "allchars": [
         "Lister tout les personnages de la guilde",
-        "Aucun personnages à afficher"
+        "Aucun personnage à afficher"
       ],
       "character": [
         "Obtenir les informations sur un personnage",
-        "Cette personnage n'existe pas",
+        "Ce personnage n'existe pas",
         "Nom",
-        "Propriateur",
+        "Propriétaire",
         "Niveau",
         "Vide",
         "Équipe",
-        "Information additionnelle"
+        "Informations additionnelles"
       ],
       "character.create": [
         "Créer un nouveau personnage",
-        "Un personnage a ce nom déjà",
-        "Decrivez le personnage (Feuille de personnage pertinente)",
-        "Quel niveau est le personange?",
-        "Information additionnelle? (Ajouter un image du personnage avec le `image` mot de mot-clé, Utilisez syntax regulier: `image: http://image.com/image.jpg, cheveux: brune` (Separer clés avec les virgules ou nouvelle ligne)",
+        "Un a déjà ce nom",
+        "Decrivez le personnage",
+        "À quel niveau est le personange?",
+        "Information additionnelle? (Ajouter une image du personnage avec `image` en tant que mot-clé, avec la syntaxe régulière: `image: http://image.com/image.jpg, cheveux: bruns` (Separer les clés avec des virgules ou des nouvelles lignes)",
         "Syntaxe invalide!",
-        "Personnage créé! `rp!team addmember` Pour ajouter à votre équipe de personnages !"
+        "Personnage créé! Éffectuez `rp!team addmember` pour ajouter des personnages à votre équipe!"
       ],
       "character.delete": [
-        "Supprimer un personnage (Vous devez être le propriateur du personnage)",
-        "Ce personnage n'existe pas !",
-        "Vous ne possedez pas ce personnage !",
+        "Supprimer un personnage (Vous devez être le propriétaire du personnage)",
+        "Ce personnage n'existe pas!",
+        "Vous n'êtes pas le propriétaire de ce personnage!",
         "Personnage supprimé"
       ]
     },
     "Economy": {
-      "economy": "Voir votre ou le solde d'un autre",
+      "economy": "Voir vos données ou vendre un objet",
       "setbalance": [
 
       ],
