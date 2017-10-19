@@ -292,7 +292,7 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
                f"**Support Server**: {servinv}\n" \
                f"**Source**: {sourcelink}\n" \
                 "**Help**: http://typheus.me\n" \
-                "**Aide français**: http://typheus.me/rpgbot-francais.html\n" \
+                "**Aide en français**: http://typheus.me/rpgbot-francais.html\n" \
                 "**Patreon**: https://www.patreon.com/henry232323\n" \
                 "**Buy Me a Coffee**: https://ko-fi.com/henrys"
 
