@@ -3,7 +3,7 @@
     "Admin": {
       "repeatcommand": "",
       "purge": [
-        "",
+        "C'est impossible de supprimer plus de 100 messages.",
         ""
       ]
     },
