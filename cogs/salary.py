@@ -24,7 +24,7 @@ class Salary(object):
 
     async def shutdown(self):
         with open("salaries.json", "w") as gf:
-            gf.write(json.dumps(self.guilds))
+            gf.write(json.dumps(self.guilds, indent=4))
 
     async def on_ready(self):
         self.bot.loop.create_task(self.run_salaries())
@@ -39,16 +39,22 @@ class Salary(object):
                 dels = []
                 await self.shutdown()
                 for guild, roles in self.guilds.items():
-                    gob = self.bot.get_guild(guild)
-                    if gob:
-                        for role, amount in roles.items():
-                            rob = discord.utils.get(gob.roles, id=role)
-                            for member in rob.members:
-                                await self.bot.di.add_eco(member, amount)
-                    else:
-                        dels.append(guild)
-                for guild in dels:
-                    del self.guilds[guild]
+                    try:
+                        gob = self.bot.get_guild(guild)
+                        if gob:
+                            for role, amount in roles.items():
+                                rob = discord.utils.get(gob.roles, id=role)
+                                for member in rob.members:
+                                    await self.bot.di.add_eco(member, amount)
+                        else:
+                            dels.append(guild)
+                    except:
+                        pass
+                try:
+                    for guild in dels:
+                        del self.guilds[guild]
+                except:
+                    pass
                 await asyncio.sleep(86400)
 
     @commands.command()
