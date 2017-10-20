@@ -75,7 +75,7 @@ class Characters(object):
         try:
             char = (await self.bot.di.get_guild_characters(ctx.guild))[name]
         except KeyError:
-            await ctx.send("Character does not exist!")
+            await ctx.send(f"Character {name} does not exist!")
             return
 
         owner = discord.utils.get(ctx.guild.members, id=char.owner)
@@ -113,7 +113,8 @@ class Characters(object):
         character["level"] = int(response.content)
         await ctx.send(
             "Any additional info? (Add a character image using the image keyword. Formats use regular syntax i.e "
-            "`image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)")
+            "`image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)"
+        )
         while True:
             response = await self.bot.wait_for("message", check=check, timeout=120)
             if response.content.lower() == "cancel":
@@ -172,6 +173,8 @@ class Characters(object):
         """
         attribute = attribute.lower()
         chars = await self.bot.di.get_guild_characters(ctx.guild)
+        print(chars)
+        print(chars[character])
         character = chars.get(character)
         if character is None:
             await ctx.send("That character doesn't exist!")
@@ -206,4 +209,7 @@ class Characters(object):
             await ctx.send("That is not a valid item! Try again")
 
         await self.bot.di.add_character(ctx.guild, Character(*character))
+<<<<<<< HEAD
         await ctx.send("Character edited!")
+=======
+>>>>>>> origin/master
