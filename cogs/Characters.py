@@ -188,7 +188,7 @@ class Characters(object):
         if attribute == "name":
             await self.bot.di.remove_character(ctx.guild, character[0])
             character[0] = value
-        if attribute == "description":
+        elif attribute == "description":
             character[2] = value
         elif attribute == "level":
             character[3] = int(value)
@@ -207,6 +207,7 @@ class Characters(object):
                 await ctx.send("Invalid formatting try again!")
         else:
             await ctx.send("That is not a valid item! Try again")
+            return
 
         await self.bot.di.add_character(ctx.guild, Character(*character))
         await ctx.send("Character edited!")
