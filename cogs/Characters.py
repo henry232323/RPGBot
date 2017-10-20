@@ -206,3 +206,4 @@ class Characters(object):
             await ctx.send("That is not a valid item! Try again")
 
         await self.bot.di.add_character(ctx.guild, Character(*character))
+        await ctx.send("Character edited!")
