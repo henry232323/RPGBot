@@ -210,5 +210,58 @@
 
       ]
     }
+  },
+  "id": {
+    "Admin": {
+      "repeatcommand": "",
+      "purge": [
+        "Tidak dapat menghapus lebih dari 100 pesan.",
+        ""
+      ]
+    },
+    "Characters": {
+      "characters": [
+        "Daftar seluruh karaktermu",
+        "Kamu tidak mempunyai karakter untuk ditampilkan"
+      ],
+      "allchars": [
+        "Daftar karakter pada guild",
+        "Tidak ada karakter untuk ditampilkan"
+      ],
+      "character": [
+        "Tampilkan informasi karakter",
+        "Karakter tidak ada",
+        "Nama",
+        "Pemilik",
+        "Tingkatan",
+        "Kosong",
+        "Tim",
+        "Informasi tambahan"
+      ],
+      "character.create": [
+        "Membuat karakter baru",
+        "Karakter dengan nama ini sudah ada!",
+        "Deskripsi karakter",
+        "Tingkatan berapa karakter ini?",
+        "Ada informasi tambahan? (Tambahka gambar karakter dengan kata kunci `gambar`. Atur dengan menggunakan format reguler, contoh" "`gambar: http://image.com/image.jpg, warna_rambut: pirang, panggilan: Kevin` (Pisahkan kata kunci dengan koma atau ganti baris)",
+        "Format salah!",
+        "Karakter telah dibuat! rp!team addmember untuk menambah karakter timmu!"
+      ],
+      "character.delete": [
+        "Menghapus karekter dengan nama yang tertera (Kamu harus pemilik karekter)",
+        "Karakter tidak ada!",
+        "Kamu bukan pemilik karakter ini!",
+        "Karakter telah terhapus"
+      ]
+    },
+    "Economy": {
+      "economy": "Lihat data atau jual barang",
+      "setbalance": [
+
+      ],
+      "givemoney": [
+
+      ]
+    }
   }
 }
