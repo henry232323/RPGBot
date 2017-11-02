@@ -105,9 +105,15 @@ class Characters(object):
 
         check = lambda x: x.channel is ctx.channel and x.author is ctx.author
         character = dict(name=name, owner=ctx.author.id, meta=dict(), team=list())
-        await ctx.send("Describe the character (Relevant character sheet)")
-        response = await self.bot.wait_for("message", check=check, timeout=120)
-        character["description"] = response.content
+        await ctx.send("Describe the character (Relevant character sheet) (Say `done` when you're done describing)")
+        content = ""
+        while True:
+            response = await self.bot.wait_for("message", check=check, timeout=120)
+            if response == "done":
+                break
+            else:
+                content += response.content + "\n"
+        character["description"] = content
         await ctx.send("What level is the character?")
         response = await self.bot.wait_for("message", timeout=60, check=check)
         character["level"] = int(response.content)
