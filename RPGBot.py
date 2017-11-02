@@ -19,31 +19,31 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
+import asyncio
+import datetime
+import logging
 import os
 import sys
 import ujson as json
-import logging
+from collections import Counter
+from random import choice, sample
+
+import aiohttp
 import discord
 import psutil
-import datetime
-import aiohttp
-import asyncio
-from random import choice, sample
+from datadog import ThreadStats
+from datadog import initialize as init_dd
 from discord.ext import commands
-from collections import Counter
-
 from kyoukai import Kyoukai
 from kyoukai.asphalt import HTTPRequestContext, Response
 from werkzeug.exceptions import HTTPException
-
-from datadog import ThreadStats
-from datadog import initialize as init_dd
 
 import cogs
 from cogs.utils import db, data
 
 try:
     import uvloop
+
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 except ImportError:
     pass
@@ -52,6 +52,7 @@ if os.name == "nt":
     sys.argv.append("debug")
 if os.getcwd().endswith("rpgtest"):
     sys.argv.append("debug")
+
 
 class Bot(commands.AutoShardedBot):
     def __init__(self, *args, **kwargs):
@@ -67,7 +68,8 @@ class Bot(commands.AutoShardedBot):
 
         self.logger = logging.getLogger('discord')  # Discord Logging
         self.logger.setLevel(logging.INFO)
-        self.handler = logging.FileHandler(filename=os.path.join('resources', 'discord.log'), encoding='utf-8', mode='w')
+        self.handler = logging.FileHandler(filename=os.path.join('resources', 'discord.log'), encoding='utf-8',
+                                           mode='w')
         self.handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
         self.logger.addHandler(self.handler)
 
@@ -138,7 +140,8 @@ class Bot(commands.AutoShardedBot):
 
     async def on_command(self, ctx):
         self.stats.increment("RPGBot.commands", tags=["RPGBot:commands"], host="scw-8112e8")
-        self.stats.increment(f"RPGBot.commands.{str(ctx.command).replace(' ', '.')}", tags=["RPGBot:commands"], host="scw-8112e8")
+        self.stats.increment(f"RPGBot.commands.{str(ctx.command).replace(' ', '.')}", tags=["RPGBot:commands"],
+                             host="scw-8112e8")
         self.commands_used[ctx.command] += 1
         if isinstance(ctx.author, discord.Member):
             self.server_commands[ctx.guild.id] += 1
@@ -177,7 +180,7 @@ class Bot(commands.AutoShardedBot):
             await ctx.send(f"`{exception}`")
 
     async def on_guild_join(self, guild):
-        if sum(1 for m in guild.members if m.bot) / guild.member_count >= 3/4:
+        if sum(1 for m in guild.members if m.bot) / guild.member_count >= 3 / 4:
             try:
                 await guild.channels[0].send("This server has too many bots! I'm just going to leave if thats alright")
             finally:
@@ -278,23 +281,24 @@ class Bot(commands.AutoShardedBot):
 
         await self.webapp.start('0.0.0.0', 1441)
 
+
 prefix = ['rp!', 'pb!', '<@305177429612298242> '] if "debug" not in sys.argv else 'rp$'
 invlink = "https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=322625"
 servinv = "https://discord.gg/UYJb8fQ"
 sourcelink = "https://github.com/henry232323/RPGBot"
 description = f"A Bot for assisting with RPG made by Henry#6174," \
-                " with a working inventory, market and economy," \
-                " team setups and characters as well. Each user has a server unique inventory and balance." \
-                " Players may list items on a market for other users to buy." \
-                " Users may create characters with teams from Pokemon in their storage box. " \
-                "Server administrators may add and give items to the server and its users.\n" \
-               f"**Add to your server**: {invlink}\n" \
-               f"**Support Server**: {servinv}\n" \
-               f"**Source**: {sourcelink}\n" \
-                "**Help**: http://typheus.me\n" \
-                "**Aide en français**: http://typheus.me/rpgbot-francais.html\n" \
-                "**Patreon**: https://www.patreon.com/henry232323\n" \
-                "**Buy Me a Coffee**: https://ko-fi.com/henrys"
+              " with a working inventory, market and economy," \
+              " team setups and characters as well. Each user has a server unique inventory and balance." \
+              " Players may list items on a market for other users to buy." \
+              " Users may create characters with teams from Pokemon in their storage box. " \
+              "Server administrators may add and give items to the server and its users.\n" \
+              f"**Add to your server**: {invlink}\n" \
+              f"**Support Server**: {servinv}\n" \
+              f"**Source**: {sourcelink}\n" \
+              "**Help**: http://typheus.me\n" \
+              "**Aide en français**: http://typheus.me/rpgbot-francais.html\n" \
+              "**Patreon**: https://www.patreon.com/henry232323\n" \
+              "**Buy Me a Coffee**: https://ko-fi.com/henrys"
 
 with open("resources/auth") as af:
     _auth = json.loads(af.read())

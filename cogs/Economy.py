@@ -19,27 +19,28 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-from discord.ext import commands
-import discord
-
-from async_timeout import timeout
+import asyncio
 from collections import Counter
 from random import choice
-import asyncio
 
-from .utils.data import MemberConverter, NumberConverter, get
+import discord
+from async_timeout import timeout
+from discord.ext import commands
+
 from .utils import checks
+from .utils.data import MemberConverter, NumberConverter, get
 
 
 class Economy(object):
     """Economy related commands: balance, market, etc"""
+
     def __init__(self, bot):
         self.bot = bot
         self.bids = list()
 
     @checks.no_pm()
     @commands.group(aliases=["bal", "balance", "eco", "e"], invoke_without_command=True)
-    async def economy(self, ctx, member: discord.Member=None):
+    async def economy(self, ctx, member: discord.Member = None):
         """Check your or another users balance"""
         if member is None:
             member = ctx.author
@@ -129,7 +130,8 @@ class Economy(object):
                 for datum in data:
                     if 'item' not in listing:
                         id = self.bot.randsample()
-                        fr[id] = dict(id=id, item=listing, user=ctx.author.id, cost=datum['cost'], amount=datum['amount'])
+                        fr[id] = dict(id=id, item=listing, user=ctx.author.id, cost=datum['cost'],
+                                      amount=datum['amount'])
                 br.append(listing)
 
             for i in br:
@@ -251,7 +253,8 @@ class Economy(object):
         await self.bot.di.give_items(ctx.author, (item["item"], item["amount"]))
         await self.bot.di.update_guild_market(ctx.guild, market)
         await ctx.send("Items successfully bought")
-        await owner.send(f"{ctx.author} bought {item['item']} {item['amount']} from you for ${item['cost']} with ID {id} on server {ctx.guild}")
+        await owner.send(
+            f"{ctx.author} bought {item['item']} {item['amount']} from you for ${item['cost']} with ID {id} on server {ctx.guild}")
 
     @checks.no_pm()
     @market.command()
@@ -279,14 +282,15 @@ class Economy(object):
         i = 0
         try:
             users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
-        except Exception as e:
+        except Exception:
             br = []
             fr = dict()
             for listing, data in um.items():
                 for datum in data:
                     if 'item' not in listing:
                         id = self.bot.randsample()
-                        fr[id] = dict(id=id, item=listing, user=ctx.author.id, cost=datum['cost'], amount=datum['amount'])
+                        fr[id] = dict(id=id, item=listing, user=ctx.author.id, cost=datum['cost'],
+                                      amount=datum['amount'])
                 br.append(listing)
 
             for i in br:
@@ -399,7 +403,8 @@ class Economy(object):
             fmt = "{0}: {1:.2f}%"
             for box, data in boxes.items():
                 total = sum(data["items"].values())
-                value = "Cost: {}\n\t".format(data["cost"]) + "\n\t".join(fmt.format(item, (value/total)*100) for item, value in data["items"].items())
+                value = "Cost: {}\n\t".format(data["cost"]) + "\n\t".join(
+                    fmt.format(item, (value / total) * 100) for item, value in data["items"].items())
                 embed.add_field(name=box,
                                 value=value)
 
@@ -466,11 +471,10 @@ class Economy(object):
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
         if name in boxes:
             del boxes[name]
-            await ctx.send("Loot box removed")
+            await ctx.send("Lootbox removed")
+            await self.bot.di.update_guild_lootboxes(ctx.guild, boxes)
         else:
             await ctx.send("Invalid loot box")
-
-            await self.bot.di.update_guild_lootboxes(ctx.guild, boxes)
 
     @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=['lottery'])
@@ -486,7 +490,7 @@ class Economy(object):
             for lotto, value in self.bot.lotteries[ctx.guild.id].items():
                 embed.add_field(name=lotto,
                                 value="Jackpot: ${}\n{} players entered".format(value["jackpot"],
-                                                                                  len(value["players"])))
+                                                                                len(value["players"])))
             embed.set_footer(text=str(ctx.message.created_at))
 
             await ctx.send(embed=embed)
@@ -510,7 +514,8 @@ class Economy(object):
         if current["players"]:
             winner = choice(current["players"])
             await self.bot.di.add_eco(winner, current["jackpot"])
-            await current["channel"].send("Lottery {} is now over!\n{} won {}! Congratulations!".format(name, winner.mention, current["jackpot"]))
+            await current["channel"].send(
+                "Lottery {} is now over!\n{} won {}! Congratulations!".format(name, winner.mention, current["jackpot"]))
         else:
             await ctx.send("Nobody entered {}! Its over now.".format(name))
         del self.bot.lotteries[ctx.guild.id][name]
@@ -761,13 +766,15 @@ class Economy(object):
             return
 
         self.bids.append(ctx.channel.id)
-        await ctx.send(f"{ctx.author} Has started a bid for x{amount} {item} starting at ${startbid}\nBid runs for 60 seconds `rp!bid` to place a bid!")
+        await ctx.send(
+            f"{ctx.author} Has started a bid for x{amount} {item} starting at ${startbid}\nBid runs for 60 seconds `rp!bid` to place a bid!")
         cb = Counter()
 
         try:
             with timeout(60, loop=self.bot.loop):
                 while True:
-                    resp = await self.bot.wait_for("message", check=lambda x: x.content.startswith("rp!bid") and x.channel == ctx.channel)
+                    resp = await self.bot.wait_for("message", check=lambda x: x.content.startswith(
+                        "rp!bid") and x.channel == ctx.channel)
                     try:
                         bid = abs(int(resp.content[6:]))
                         if bid < startbid:
@@ -787,7 +794,7 @@ class Economy(object):
             return
 
         for x in range(len(cb)):
-            winner, wamount = cb.most_common(x+1)[x]
+            winner, wamount = cb.most_common(x + 1)[x]
             wb = await self.bot.di.get_balance(winner)
             if wb >= wamount:
                 await ctx.send(f"{winner} won the bid for ${amount}!")
