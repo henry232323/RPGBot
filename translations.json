@@ -29,16 +29,16 @@
       "character.create": [
         "Créer un nouveau personnage",
         "Un a déjà ce nom",
-        "Decrivez le personnage",
-        "À quel niveau est le personange?",
-        "Information additionnelle? (Ajouter une image du personnage avec `image` en tant que mot-clé, avec la syntaxe régulière: `image: http://image.com/image.jpg, cheveux: bruns` (Separer les clés avec des virgules ou des nouvelles lignes)",
-        "Syntaxe invalide!",
-        "Personnage créé! Éffectuez `rp!team addmember` pour ajouter des personnages à votre équipe!"
+        "Décrivez le personnage",
+        "À quel niveau est le personange ?",
+        "Information additionnelle ? (Ajouter une image du personnage avec `image` en tant que mot-clé, avec la syntaxe régulière : `image: http://image.com/image.jpg, cheveux: bruns` (Separer les clés avec des virgules ou des nouvelles lignes)",
+        "Syntaxe invalide !",
+        "Personnage créé ! Effectuez `rp!team addmember` pour ajouter des personnages à votre équipe !"
       ],
       "character.delete": [
         "Supprimer un personnage (Vous devez être le propriétaire du personnage)",
-        "Ce personnage n'existe pas!",
-        "Vous n'êtes pas le propriétaire de ce personnage!",
+        "Ce personnage n'existe pas !",
+        "Vous n'êtes pas le propriétaire de ce personnage !",
         "Personnage supprimé"
       ]
     },
@@ -210,5 +210,111 @@
 
       ]
     }
-  }
+  },
+  "id": {
+    "Admin": {
+      "repeatcommand": "",
+      "purge": [
+        "Tidak dapat menghapus lebih dari 100 pesan.",
+        ""
+      ]
+    },
+    "Characters": {
+      "characters": [
+        "Daftar seluruh karaktermu",
+        "Kamu tidak mempunyai karakter untuk ditampilkan"
+      ],
+      "allchars": [
+        "Daftar karakter pada guild",
+        "Tidak ada karakter untuk ditampilkan"
+      ],
+      "character": [
+        "Tampilkan informasi karakter",
+        "Karakter tidak ada",
+        "Nama",
+        "Pemilik",
+        "Tingkatan",
+        "Kosong",
+        "Tim",
+        "Informasi tambahan"
+      ],
+      "character.create": [
+        "Membuat karakter baru",
+        "Karakter dengan nama ini sudah ada!",
+        "Deskripsi karakter",
+        "Tingkatan berapa karakter ini?",
+        "Ada informasi tambahan? (Tambahka gambar karakter dengan kata kunci `gambar`. Atur dengan menggunakan format reguler, contoh" "`gambar: http://image.com/image.jpg, warna_rambut: pirang, panggilan: Kevin` (Pisahkan kata kunci dengan koma atau ganti baris)",
+        "Format salah!",
+        "Karakter telah dibuat! rp!team addmember untuk menambah karakter timmu!"
+      ],
+      "character.delete": [
+        "Menghapus karekter dengan nama yang tertera (Kamu harus pemilik karekter)",
+        "Karakter tidak ada!",
+        "Kamu bukan pemilik karakter ini!",
+        "Karakter telah terhapus"
+      ]
+    },
+    "Economy": {
+      "economy": "Lihat data atau jual barang",
+      "setbalance": [
+
+      ],
+      "givemoney": [
+
+      ]
+    }
+  },
+  "ru": {
+    "Admin": {
+      "repeatcommand": "",
+      "purge": [
+        "Невозможно удалить более 100 сообщений.",
+        ""
+      ]
+    },
+    "Characters": {
+      "characters": [
+        "Список всех ваших персонажей",
+        "У пользователя нет персонажей для просмотра"
+      ],
+      "allchars": [
+        "Список всех персонажей гильдии",
+        "Нет символов для отображения"
+      ],
+      "character": [
+        "Получить информацию о персонаже",
+        "Этот символ не существует",
+        "Имя",
+        "Владелец",
+        "Уровень",
+        "Пустой",
+        "Команда",
+        "Дополнительная информация"
+      ],
+      "character.create": [
+        "Создать новый символ",
+        "У этого уже есть имя",
+        "Опишите персонажа",
+        "Какого уровня перслнаж?",
+        "Дополнительная информация (Добавьте изображение символа с «изображением» в качестве ключевого слова с помощью регулярного выражения: `image: http://image.com/image.jpg, hair: brown '(Разделяйте ключи запятыми или переносом строки)",
+        "Неверный синтакс!",
+        "Персонаж создан! Выполните команду «rp! Team addmember», чтобы добавить персонажа в вашу команду!"
+      ],
+      "character.delete": [
+        "Удалить символ (вы должны быть владельцем персонажа)",
+        "Этот персонаж не существует!",
+        "Вы не являетесь владельцем этого персонажа!",
+        "Удаленный символ"
+      ]
+    },
+    "Economy": {
+      "economy": "Посмотреть данные или продать объект",
+      "setbalance": [
+
+      ],
+      "givemoney": [
+
+      ]
+    }
+  },
 }
