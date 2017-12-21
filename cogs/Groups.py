@@ -404,16 +404,19 @@ class Groups(object):
 
     @guild.command()
     @checks.no_pm()
-    async def deposit(self, ctx, amount: NumberConverter):
+    async def deposit(self, ctx, amount: NumberConverter, guild_name: str = None):
         """Deposit an amount of money into the guild bank"""
         try:
             amount = abs(amount)
-            ug = await self.bot.di.get_user_guild(ctx.author)
-            if ug is None:
-                await ctx.send("You aren't in a guild!")
-                return
             guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-            guild = guilds.get(ug)
+            if not guild_name:
+                guild_name = await self.bot.di.get_user_guild(ctx.author)
+                if guild_name is None:
+                    await ctx.send("You aren't in a guild!")
+                    return
+
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(guild_name)
             try:
                 await self.bot.di.add_eco(ctx.author, -amount)
             except ValueError:
@@ -422,7 +425,7 @@ class Groups(object):
 
             guild.bank += amount
             await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-            await ctx.send(f"Successfully deposited ${amount}")
+            await ctx.send(f"Successfully deposited ${amount} into {guild_name}'s bank")
         except:
             from traceback import print_exc
             print_exc()
@@ -528,12 +531,15 @@ class Groups(object):
         guild.items = Counter(guild.items)
         guild.items.subtract(dict(fitems))
 
+        nones = []
         for item, value in guild.items.items():
             if value < 0:
                 await ctx.send("The guild does not have enough items to take!")
                 return
-            if value == 0:
-                del guild.items[item]
+            nones.append(item)
+
+        for item in nones:
+            del guild.items[item]
 
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await self.bot.di.give_items(ctx.author, *fitems)

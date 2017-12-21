@@ -109,7 +109,8 @@ class Settings(object):
             item["meta"] = dict()
 
             await ctx.send("Additional information? (Attributes formatted in a list i.e `color: 400, value: 200` "
-                           "Set an image for this item with the `image` key i.e. `image: http://image.com/image.png`")
+                           "Set an image for this item with the `image` key i.e. `image: http://image.com/image.png`"
+                           "Set this item as usable by adding `used` key i.e. `used: You open the jar and the bird flies away`")
             while True:
                 response = await self.bot.wait_for("message", timeout=60, check=check)
                 if response.content.lower() == "cancel":

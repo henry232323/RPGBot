@@ -109,7 +109,7 @@ class Characters(object):
         content = ""
         while True:
             response = await self.bot.wait_for("message", check=check, timeout=120)
-            if response == "done":
+            if response.content == "done":
                 break
             else:
                 content += response.content + "\n"

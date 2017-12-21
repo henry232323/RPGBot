@@ -30,7 +30,9 @@ from discord.ext import commands
 Pokemon = namedtuple("Pokemon", ["id", "name", "type", "stats", "meta"])
 ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
 Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
-gc = namedtuple("Guild", ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites", "mods"])
+gc = namedtuple("Guild",
+                ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites",
+                 "mods"])
 
 converters = {
     discord.Member: commands.MemberConverter,
@@ -47,7 +49,8 @@ converters = {
 class Guild(gc):
     __slots__ = ()
 
-    def __new__(cls, name, owner, description="", members=None, bank=0, items=None, open=False, image=None, icon=None, invites=None, mods=None):
+    def __new__(cls, name, owner, description="", members=None, bank=0, items=None, open=False, image=None, icon=None,
+                invites=None, mods=None):
         if members is None:
             members = set()
         if items is None:
@@ -91,12 +94,13 @@ def union(*classes):
 
     return Union
 
+
 regex = re.compile(
-        r'^(?:http|ftp)s?://'  # http:// or https://
-        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'  # domain...
-        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'  # ...or ip
-        r'(?::\d+)?'  # optional port
-        r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+    r'^(?:http|ftp)s?://'  # http:// or https://
+    r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'  # domain...
+    r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'  # ...or ip
+    r'(?::\d+)?'  # optional port
+    r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
 
 def validate_url(url):
@@ -115,6 +119,7 @@ def get(iterable, **attrs):
             fin.append(discord.utils.get(iterable, **{attr: x}))
 
     return None or fin
+
 
 default_user = {
     "money": 0,
@@ -179,7 +184,7 @@ example_user = {
     "money": 25,
     "box": [
         Pokemon(**example_pokemon)
-        ],
+    ],
     "items": {
         "pokeball": 12
     }
@@ -266,7 +271,7 @@ class DataInteraction(object):
     async def get_guild_items(self, guild):
         """Get all the items available in a server"""
         gd = await self.db.get_guild_data(guild)
-        return {y: ServerItem(*x) for y,x in gd["items"].items()}
+        return {y: ServerItem(*x) for y, x in gd["items"].items()}
 
     async def get_guild_lootboxes(self, guild):
         """Get a server's lootboxes"""
