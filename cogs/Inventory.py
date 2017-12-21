@@ -31,7 +31,7 @@ class Inventory(object):
 
     @commands.group(invoke_without_command=True, aliases=['i', 'inv'])
     @checks.no_pm()
-    async def inventory(self, ctx, *, member: discord.Member=None):
+    async def inventory(self, ctx, *, member: discord.Member = None):
         """Check your or another users inventory."""
         if member is None:
             member = ctx.message.author
@@ -69,6 +69,11 @@ class Inventory(object):
         if "everyone" in members:
             members = ctx.guild.members
 
+        items = await self.bot.di.get_guild_items(ctx.guild)
+        if item not in items:
+            await ctx.send("That is not a valid item!")
+            return
+
         num = abs(num)
         for member in members:
             await self.bot.di.give_items(member, (item, num))
@@ -88,5 +93,33 @@ class Inventory(object):
         try:
             await self.bot.di.take_items(ctx.author, *fitems)
             await self.bot.di.give_items(other, *fitems)
+            await ctx.send(f"Successfully gave {other} {items}")
         except:
             await ctx.send("You do not have enough to give away!")
+
+    @commands.command()
+    @checks.no_pm()
+    async def wipeinv(self, ctx, *members: MemberConverter):
+        if "everyone" in members:
+            members = ctx.guild.members
+
+        for member in members:
+            ud = await self.bot.db.get_user_data(member)
+            ud["items"] = {}
+            await self.bot.db.update_user_data(member, ud)
+
+    @commands.command()
+    @checks.no_pm()
+    async def use(self, ctx, item, number: int = 1):
+        number = abs(number)
+        try:
+            await self.bot.di.take_items(ctx.author, (item, number))
+            items = await self.bot.di.get_guild_items(ctx.guild)
+            msg = items.get(item).meta['used']
+            if msg is None:
+                await ctx.send("This item is not usable!")
+            else:
+                await ctx.send(msg)
+                await ctx.send(f"Used {number} {item}s")
+        except:
+            await ctx.send("You do not have that many to use!")
