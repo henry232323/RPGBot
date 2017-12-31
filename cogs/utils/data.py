@@ -33,6 +33,7 @@ Character = namedtuple("Character", ["name", "owner", "description", "level", "t
 gc = namedtuple("Guild",
                 ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites",
                  "mods"])
+Map = namedtuple("Map", ["tiles", "generators", "spawners"])
 
 converters = {
     discord.Member: commands.MemberConverter,
@@ -215,6 +216,19 @@ example_guild = {
     "mods": {166349353999532035}
 }
 
+example_map = {
+    "tiles": "01233212313132312\n12312312381231231\n",
+    "generators": ["grass", "desert", "dungeon"],
+    "spawners": {
+        "grass": {"dog": 1},
+        "dungeon": {"swordsman": 12},
+        "*": {
+            "horse": 12,
+            "cow": 3
+        }
+    }
+}
+
 
 class DataInteraction(object):
     def __init__(self, bot):
@@ -292,6 +306,14 @@ class DataInteraction(object):
         """Get all the characters for a server"""
         gd = await self.db.get_guild_data(guild)
         return {y: Character(*x) for y, x in gd["characters"].items()}
+
+    async def get_character(self, guild, name):
+        chrs = await self.get_guild_characters(guild)
+        return chrs.get(name)
+
+    async def get_map(self, guild):
+        gd = await self.db.get_guild_data(guild)
+        return gd.get("map")
 
     async def get_guild_guilds(self, guild):
         """Get a server's guilds"""
@@ -389,7 +411,7 @@ class DataInteraction(object):
         """Set a server's user start balance"""
         gd = await self.db.get_guild_data(guild)
         gd["start"] = amount
-        await self.db.update_user_data(guild, gd)
+        await self.db.update_guild_data(guild, gd)
 
     async def add_exp(self, member, exp):
         ud = await self.bot.db.get_user_data(member)
@@ -420,6 +442,11 @@ class DataInteraction(object):
         ud = await self.db.get_user_data(member)
         ud["guild"] = name
         await self.db.update_user_data(member, ud)
+
+    async def set_map(self, guild, map):
+        gd = await self.db.get_guild_data(guild)
+        gd["map"] = map
+        return await self.db.update_guild_data(gd)
 
     async def set_level(self, member, level, exp):
         ud = await self.db.get_user_data(member)

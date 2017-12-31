@@ -153,6 +153,7 @@ class Settings(object):
 
     @checks.mod_or_permissions()
     @checks.no_pm()
+    @commands.command()
     async def setstart(self, ctx, amount: NumberConverter):
         """Set the money start amount for a guild"""
         await self.bot.di.set_start(ctx.guild, amount)

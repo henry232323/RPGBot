@@ -32,16 +32,18 @@ class Characters(object):
 
     @checks.no_pm()
     @commands.command(aliases=["chars", "personnages"])
-    async def characters(self, ctx):
+    async def characters(self, ctx, user: discord.Member = None):
         """List all your characters"""
+        if user is None:
+            user = ctx.author
         characters = await self.bot.di.get_guild_characters(ctx.guild)
-        characters = [x for x, y in characters.items() if y.owner == ctx.author.id]
+        characters = [x for x, y in characters.items() if y.owner == user.id]
         if not characters:
-            await ctx.send("User has no characters to display")
+            await ctx.send(f"{user} has no characters to display")
             return
 
         embed = discord.Embed(description="\n".join(characters))
-        embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
+        embed.set_author(name=user.display_name, icon_url=user.avatar_url)
         await ctx.send(embed=embed)
 
     @checks.no_pm()
@@ -78,33 +80,56 @@ class Characters(object):
             await ctx.send(f"Character {name} does not exist!")
             return
 
-        owner = discord.utils.get(ctx.guild.members, id=char.owner)
-        embed = discord.Embed(description=char.description)
-        embed.set_author(name=char.name, icon_url=owner.avatar_url)
-        if char.meta.get("image"):
-            embed.set_thumbnail(url=char.meta.get("image"))
-        embed.add_field(name="Name", value=char.name)
-        embed.add_field(name="Owner", value=str(owner))
-        embed.add_field(name="Level", value=char.level)
-        team = await self.bot.di.get_team(ctx.guild, char.name)
-        tfmt = "\n".join(f"{p.name} ({p.type})" for p in team) if team else "Empty"
-        embed.add_field(name="Team", value=tfmt)
-        mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items())
-        embed.add_field(name="Additional Info", value=mfmt)
+        try:
+            owner = discord.utils.get(ctx.guild.members, id=char.owner)
+            embed = discord.Embed(description=char.description)
+            embed.set_author(name=char.name, icon_url=owner.avatar_url)
+            if char.meta.get("image"):
+                embed.set_thumbnail(url=char.meta.get("image"))
+            embed.add_field(name="Name", value=char.name)
+            embed.add_field(name="Owner", value=str(owner))
+            embed.add_field(name="Level", value=char.level)
+            team = await self.bot.di.get_team(ctx.guild, char.name)
+            tfmt = "\n".join(f"{p.name} ({p.type})" for p in team) if team else "Empty"
+            embed.add_field(name="Team", value=tfmt)
+            mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items())
+            embed.add_field(name="Additional Info", value=mfmt)
 
-        await ctx.send(embed=embed)
+            await ctx.send(embed=embed)
+        except:
+            owner = discord.utils.get(ctx.guild.members, id=char.owner)
+            embed = discord.Embed(description=char.description)
+            embed.set_author(name=char.name, icon_url=owner.avatar_url)
+            embed.add_field(name="Name", value=char.name)
+            embed.add_field(name="Owner", value=str(owner))
+            embed.add_field(name="Level", value=char.level)
+            team = await self.bot.di.get_team(ctx.guild, char.name)
+            tfmt = "\n".join(f"{p.name} ({p.type})" for p in team) if team else "Empty"
+            embed.add_field(name="Team", value=tfmt)
+            mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items())
+            embed.add_field(name="Additional Info", value=mfmt)
+
+            await ctx.send(embed=embed)
 
     @checks.no_pm()
     @character.command(aliases=["new", "nouveau", "creer"])
-    async def create(self, ctx, *, name: str):
+    async def create(self, ctx, name: str, user: discord.Member = None):
         """Create a new character"""
+        if user is None or user == ctx.author:
+            user = ctx.author
+        else:
+            if not checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                              manage_server=True):
+                await ctx.send("Only Bot Mods/Bot Admins may make characters for other players!")
+                return
+
         characters = await self.bot.di.get_guild_characters(ctx.guild)
         if name in characters:
             await ctx.send("A character with this name already exists!")
             return
 
         check = lambda x: x.channel is ctx.channel and x.author is ctx.author
-        character = dict(name=name, owner=ctx.author.id, meta=dict(), team=list())
+        character = dict(name=name, owner=user.id, meta=dict(), team=list())
         await ctx.send("Describe the character (Relevant character sheet) (Say `done` when you're done describing)")
         content = ""
         while True:
@@ -159,7 +184,9 @@ class Characters(object):
             await ctx.send("That character doesn't exist!")
             return
 
-        if character.owner != ctx.author.id:
+        is_mod = checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                            manage_server=True)
+        if character.owner != ctx.author.id and not is_mod:
             await ctx.send("You do not own this character!")
             return
 
@@ -179,14 +206,14 @@ class Characters(object):
         """
         attribute = attribute.lower()
         chars = await self.bot.di.get_guild_characters(ctx.guild)
-        print(chars)
-        print(chars[character])
         character = chars.get(character)
         if character is None:
             await ctx.send("That character doesn't exist!")
             return
 
-        if not character.owner == ctx.author.id:
+        is_mod = checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                            manage_server=True)
+        if character.owner != ctx.author.id and not is_mod:
             await ctx.send("This isnt your character!")
             return
 
