@@ -52,7 +52,7 @@ class Mapping:
 
         tile = map.generators[tiles[yc - 1][xc - 1]]
         spawners = map.spawners.get(tile)
-        spawned = choices(spawners.keys(), choices.values())
+        spawned = choices(*zip(*spawners.items()))
 
         await ctx.send(f"You are on a {tile} tile. There is {spawned}")
 
