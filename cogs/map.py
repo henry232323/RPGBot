@@ -56,6 +56,7 @@ class Mapping:
 
         await ctx.send(f"You are on a {tile} tile. There is {spawned}")
 
+    @checks.admin_or_permissions()
     @map.command(aliases=["creer", "new", "nouvelle"])
     @checks.no_pm()
     async def create(self, ctx, xsize: int, ysize: int):
@@ -89,4 +90,6 @@ class Mapping:
     @map.command(aliases=["bouger", "aller", "go"])
     @checks.no_pm()
     async def move(self, character: str, direction: str):
-        """Move a character in a direction (valid directions include N/S/E/W for the cardinal directions respectively)"""
+        """Move a character in a direction (valid directions include N/S/E/W for the cardinal directions respectively)
+        (Not yet added)"""
+        pass
