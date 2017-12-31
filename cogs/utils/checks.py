@@ -1,11 +1,14 @@
 from discord.ext import commands
 import discord.utils
 
+
 def is_owner_check(message):
     return message.author.id == 122739797646245899
 
+
 def is_owner():
     return commands.check(lambda ctx: is_owner_check(ctx.message))
+
 
 # The permission system of the bot is based on a "just works" basis
 # You have permissions and the bot has permissions. If you meet the permissions
@@ -27,6 +30,7 @@ def check_permissions(ctx, perms):
     resolved = ch.permissions_for(author)
     return all(getattr(resolved, name, None) == value for name, value in perms.items())
 
+
 def role_or_permissions(ctx, check, **perms):
     if check_permissions(ctx, perms):
         return True
@@ -38,20 +42,26 @@ def role_or_permissions(ctx, check, **perms):
 
     role = discord.utils.find(check, author.roles)
     if role is None:
-        raise commands.CommandError("You need a special role to do this! (A discord role with the name \"Bot Mod\" or \"Bot Admin\")")
+        raise commands.CommandError(
+            "You need a special role to do this! (A discord role with the name \"Bot Mod\" or \"Bot Admin\")")
     return True
+
 
 def mod_or_inv():
     def predicate(ctx):
-        return role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Inventory', 'Bot Moderator'), manage_server=True)
+        return role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Inventory', 'Bot Moderator'),
+                                   manage_server=True)
 
     return commands.check(predicate)
+
 
 def mod_or_permissions(**perms):
     def predicate(ctx):
-        return role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'), manage_server=True, **perms)
+        return role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                   manage_server=True, **perms)
 
     return commands.check(predicate)
+
 
 def admin_or_permissions(**perms):
     def predicate(ctx):
@@ -59,34 +69,44 @@ def admin_or_permissions(**perms):
 
     return commands.check(predicate)
 
+
 def is_in_servers(*server_ids):
     def predicate(ctx):
         server = ctx.message.server
         if server is None:
             return False
         return server.id in server_ids
+
     return commands.check(predicate)
+
 
 def is_lounge_cpp():
     return is_in_servers('153712751779250176')
 
-def chcreate_or_permissions(**perms):
-        def predicate(ctx):
-            return role_or_permissions(ctx, lambda r: r.name == 'Temporary Channel', manage_channels=True, **perms)
 
-        return commands.check(predicate)
+def chcreate_or_permissions(**perms):
+    def predicate(ctx):
+        return role_or_permissions(ctx, lambda r: r.name == 'Temporary Channel', manage_channels=True, **perms)
+
+    return commands.check(predicate)
+
 
 def owner_or_permissions(**perms):
     def predicate(ctx):
         return role_or_permissions(ctx, lambda ctx: is_owner_check(ctx.message))
+
     return commands.check(predicate)
+
 
 def nsfw_channel():
     def predicate(ctx):
-        if not (isinstance(ctx.channel, (discord.DMChannel, discord.GroupChannel)) or "nsfw" in ctx.channel.name.casefold()):
+        if not (isinstance(ctx.channel,
+                           (discord.DMChannel, discord.GroupChannel)) or "nsfw" in ctx.channel.name.casefold()):
             raise ChannelError("This command can only be used in `nsfw` channels!")
         return True
+
     return commands.check(predicate)
+
 
 def no_pm():
     def predicate(ctx):
@@ -95,7 +115,9 @@ def no_pm():
         if ctx.guild is None:
             raise commands.NoPrivateMessage('This command cannot be used in private messages.')
         return True
+
     return commands.check(predicate)
+
 
 class ChannelError(commands.CommandError):
     def __init__(self, message):
