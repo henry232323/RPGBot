@@ -65,8 +65,14 @@ class Salary(object):
         if not self.guilds[ctx.guild.id]:
             await ctx.send("There are no current salaries on this server")
         else:
+            dels = []
             for role, amount in self.guilds[ctx.guild.id].items():
-                embed.add_field(name=discord.utils.get(ctx.guild.roles, id=role).name, value=f"${amount}")
+                try:
+                    embed.add_field(name=discord.utils.get(ctx.guild.roles, id=role).name, value=f"${amount}")
+                except:
+                    dels.append(role)
+            for d in dels:
+                del self.guilds[ctx.guild.id][d]
             embed.set_author(name="Guild salaries", icon_url=ctx.guild.icon_url)
             await ctx.send(embed=embed)
 
@@ -85,8 +91,16 @@ class Salary(object):
     @checks.mod_or_permissions()
     async def create(self, ctx, amount: data.NumberConverter, role: discord.Role):
         """Create a daily salary for a user with the given role.
-         Roles are paid every day at 24:00, every user with the role will receive the amount specified"""
+         Roles are paid every day at 24:00, every user with the role will receive the amount specified.
+         If a role with a salary is deleted, the salary will also be deleted."""
         self.guilds[ctx.guild.id][role.id] = amount
         await ctx.send(f"Successfully created a daily salary of {amount} for {role}")
 
+    @salary.command()
+    @checks.no_pm()
+    @checks.mod_or_permissions()
+    async def delete(self, ctx, role: discord.Role):
+        """Remove a created salary"""
+        del self.guilds[ctx.guild.id][role.id]
+        await ctx.send(f"Successfully deleted the daily salary for {role}")
 
