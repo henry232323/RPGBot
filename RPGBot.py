@@ -39,7 +39,7 @@ from kyoukai.asphalt import HTTPRequestContext, Response
 from werkzeug.exceptions import HTTPException
 
 import cogs
-from cogs.utils import db, data, formatter
+from cogs.utils import db, data
 
 try:
     import uvloop
@@ -108,9 +108,6 @@ class Bot(commands.AutoShardedBot):
         init_dd(self._auth[3], self._auth[4])
         self.stats = ThreadStats()
         self.stats.start()
-
-        #self.default_formatter = self.formatter
-        #self.formatter = formatter.Formatter(False, True, 4000)
 
     async def on_ready(self):
         print('Logged in as')
