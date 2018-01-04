@@ -40,6 +40,7 @@ class Settings(object):
         embed.add_field(name="Starting Money", value=f"${settings['start']}")
         embed.add_field(name="Items", value=f"{len(settings['items'])} items")
         embed.add_field(name="Characters", value=f"{len(settings['characters'])} characters")
+        embed.add_field(name="Maps", value="None" if not settings.get("maps") else "\n\t".join(settings["maps"]))
         await ctx.send(embed=embed)
 
     @settings.command()

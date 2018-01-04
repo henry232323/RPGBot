@@ -21,8 +21,11 @@
 
 from discord.ext import commands
 import discord
-from .utils.data import NumberConverter, MemberConverter
+
+from .utils.data import NumberConverter, MemberConverter, ItemOrNumber
 from .utils import checks
+
+from random import choice
 
 
 class Inventory(object):
@@ -123,3 +126,101 @@ class Inventory(object):
                 await ctx.send(f"Used {number} {item}s")
         except:
             await ctx.send("You do not have that many to use!")
+
+    @checks.no_pm()
+    @commands.group(invoke_without_command=True, aliases=['lb'])
+    async def lootbox(self, ctx):
+        """List the current lootboxes"""
+        boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
+        if boxes:
+            embed = discord.Embed()
+            embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+            embed.set_thumbnail(
+                url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/196b9d18843737.562d0472d523f.png"
+            )
+            fmt = "{0}: {1:.2f}%"
+            for box, data in boxes.items():
+                total = sum(data["items"].values())
+                value = "Cost: {}\n\t".format(data["cost"]) + "\n\t".join(
+                    fmt.format(item, (value / total) * 100) for item, value in data["items"].items())
+                embed.add_field(name=box,
+                                value=value)
+
+            embed.set_footer(text=str(ctx.message.created_at))
+
+            await ctx.send(embed=embed)
+        else:
+            await ctx.send("No current lootboxes")
+
+    @checks.no_pm()
+    @checks.mod_or_permissions()
+    @lootbox.command(name="create", aliases=["new"])
+    async def _create(self, ctx, name: str, cost: ItemOrNumber, *items: str):
+        """Create a new lootbox, under the given `name` for the given cost
+        Use {item}x{#} notation to add items with {#} weight
+        Weight being an integer. For example:
+        bananax2 orangex3. The outcome of the box will be
+        Random Choice[banana, banana, orange, orange, orange]"""
+
+        boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
+        if name in boxes:
+            await ctx.send("Lootbox already exists, updating...")
+
+        winitems = {}
+        for item in items:
+            split = item.split('x')
+            split, num = "x".join(split[:-1]), abs(int(split[-1]))
+            winitems.update({split: num})
+
+            boxes[name] = dict(cost=cost, items=winitems)
+
+        if isinstance(cost, str):
+            await ctx.send(f"Lootbox {name} successfully created and requires one {cost} to open.")
+        else:
+            await ctx.send(f"Lootbox {name} successfully created and requires ${cost} to open")
+        await self.bot.di.update_guild_lootboxes(ctx.guild, boxes)
+
+    @checks.no_pm()
+    @lootbox.command(name="buy")
+    async def _lootbox_buy(self, ctx, *, name: str):
+        """Buy a lootbox of the given name"""
+        boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
+        try:
+            box = boxes[name]
+        except KeyError:
+            await ctx.send("That is not a valid lootbox")
+            return
+
+        cost = box["cost"]
+        if isinstance(cost, str):
+            try:
+                await self.bot.di.take_items(ctx.author, (cost, 1))
+            except ValueError:
+                await ctx.send(f"You do not have 1 {cost}")
+                return
+        else:
+            try:
+                await self.bot.di.add_eco(ctx.author, -cost)
+            except ValueError:
+                await ctx.send("You cant afford this box")
+                return
+
+        winitems = []
+        for item, amount in box["items"].items():
+            winitems += [item] * amount
+
+        result = choice(winitems)
+        await self.bot.di.give_items(ctx.author, (result, 1))
+        await ctx.send("You won a(n) {}".format(result))
+
+    @checks.no_pm()
+    @lootbox.command(name="delete", aliases=["remove"])
+    async def _lootbox_delete(self, ctx, *, name: str):
+        """Delete a lootbox with the given name"""
+        boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
+        if name in boxes:
+            del boxes[name]
+            await ctx.send("Lootbox removed")
+            await self.bot.di.update_guild_lootboxes(ctx.guild, boxes)
+        else:
+            await ctx.send("Invalid loot box")

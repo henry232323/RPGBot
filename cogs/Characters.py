@@ -235,7 +235,8 @@ class Characters(object):
                     key, value = val.split(": ")
                     key = key.strip()
                     value = value.strip()
-                    character[5][key] = value
+                    if key != "maps":
+                        character[5][key] = value
             except:
                 await ctx.send("Invalid formatting try again!")
         else:

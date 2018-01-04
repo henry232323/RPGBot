@@ -28,6 +28,8 @@ from time import monotonic
 import os
 import psutil
 from itertools import chain
+import io
+import inspect
 
 
 class Misc(object):
@@ -148,7 +150,7 @@ class Misc(object):
         me = self.bot.user if not ctx.guild else ctx.guild.me
         appinfo = await self.bot.application_info()
         embed = discord.Embed()
-        embed.set_author(name=me.display_name, icon_url=appinfo.owner.avatar_url, url="https://github.com/henry232323/PokeRPG-Bot")
+        embed.set_author(name=me.display_name, icon_url=appinfo.owner.avatar_url,
         embed.add_field(name="Author", value='Henry#6174 (Discord ID: 122739797646245899)')
         embed.add_field(name="Library", value='discord.py (Python)')
         embed.add_field(name="Uptime", value=await self.bot.get_bot_uptime())
@@ -164,7 +166,8 @@ class Misc(object):
         embed.add_field(name="Total Members", value='{} ({} online)'.format(total_members, total_online))
         embed.add_field(name="Unique Members", value='{}'.format(len(unique_members)))
         embed.add_field(name="Channels", value='{} text channels, {} voice channels'.format(text, voice))
-        embed.add_field(name="Shards", value=f'Currently running {ctx.bot.shard_count} shards. This server is on shard {getattr(ctx.guild, "shard_id", 0)}')
+        embed.add_field(name="Shards",
+                        value=f'Currently running {ctx.bot.shard_count} shards. This server is on shard {getattr(ctx.guild, "shard_id", 0)}')
 
         a = monotonic()
         await (await ctx.bot.shards[getattr(ctx.guild, "shard_id", 0)].ws.ping())
@@ -254,3 +257,45 @@ class Misc(object):
 
         fmt = '%s socket events observed (%.2f/minute):\n%s'
         await ctx.send(fmt % (total, cpm, self.bot.socket_stats))
+
+    @commands.command(hidden=True)
+    @commands.is_owner()
+    async def makedoc(self, ctx):
+        cogs = {name: {} for name in ctx.bot.cogs.keys()}
+
+        all_commands = []
+        for command in ctx.bot.commands:
+            all_commands.append(command)
+            if isinstance(command, commands.Group):
+                all_commands.extend(command.commands)
+
+        for c in all_commands:
+            if c.cog_name not in cogs or c.help is None or c.hidden:
+                continue
+            if c.qualified_name not in cogs[c.cog_name]:
+                skip = False
+                for ch in c.checks:
+                    if 'is_owner' in repr(ch):  # mine. don't put on docs
+                        skip = True
+                if skip:
+                    continue
+                help = c.help.replace('\n\n', '\n>')
+                cogs[c.cog_name][
+                    c.qualified_name] = f'#### {c.qualified_name}\n>**Description:** {help}\n\n>**Usage:** `{ctx.prefix + c.signature}`'
+
+        index = '\n\n# Commands\n\n'
+        data = ''
+
+        for cog in sorted(cogs):
+            index += '- [{0} Commands](#{1})\n'.format(cog, (cog + ' Commands').replace(' ', '-').lower())
+            data += '## {0} Commands\n\n'.format(cog)
+            extra = inspect.getdoc(ctx.bot.get_cog(cog))
+            if extra is not None:
+                data += '#### ***{0}***\n\n'.format(extra)
+
+            for command in sorted(cogs[cog]):
+                index += '  - [{0}](#{1})\n'.format(command, command.replace(' ', '-').lower())
+                data += cogs[cog][command] + '\n\n'
+
+        fp = io.BytesIO((index.rstrip() + '\n\n' + data.strip()).encode('utf-8'))
+        await ctx.author.send(file=discord.File(fp, 'commands.md'))
