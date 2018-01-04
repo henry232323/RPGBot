@@ -33,7 +33,7 @@ Character = namedtuple("Character", ["name", "owner", "description", "level", "t
 gc = namedtuple("Guild",
                 ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites",
                  "mods"])
-Map = namedtuple("Map", ["tiles", "generators", "spawners"])
+Map = namedtuple("Map", ["tiles", "generators", "spawners", "spawn", "maxx", "maxy"])
 
 converters = {
     discord.Member: commands.MemberConverter,
@@ -72,12 +72,22 @@ class MemberConverter(commands.MemberConverter):
 
 class NumberConverter(commands.Converter):
     async def convert(self, ctx, argument):
-        argument = argument.replace(",", "")
+        argument = argument.replace(",", "").strip("$")
         if not argument.isdigit():
             raise commands.BadArgument("That is not a number!")
         if len(argument) > 10:
             raise commands.BadArgument("That number is much too big! Must be less than 999,999,999")
         return int(argument)
+
+
+class ItemOrNumber(commands.Converter):
+    async def convert(self, ctx, argument):
+        fargument = argument.replace(",", "").strip("$")
+        if not fargument.isdigit():
+            return argument
+        if len(fargument) > 10:
+            raise commands.BadArgument("That number is much too big! Must be less than 999,999,999")
+        return int(fargument)
 
 
 def union(*classes):
@@ -311,9 +321,20 @@ class DataInteraction(object):
         chrs = await self.get_guild_characters(guild)
         return chrs.get(name)
 
-    async def get_map(self, guild):
+    async def get_map(self, guild, name):
         gd = await self.db.get_guild_data(guild)
-        return gd.get("map")
+        maps = gd.get("map", {})
+        if isinstance(maps, Map):
+            maps = {"Default": maps}
+        map = maps.get(name)
+        return Map(*map) if map else None
+
+    async def get_maps(self, guild):
+        gd = await self.db.get_guild_data(guild)
+        maps = gd.get("map", {})
+        if isinstance(maps, Map):
+            maps = {"Default": maps}
+        return {name: Map(*map) for name, map in maps.items()}
 
     async def get_guild_guilds(self, guild):
         """Get a server's guilds"""
@@ -443,10 +464,20 @@ class DataInteraction(object):
         ud["guild"] = name
         await self.db.update_user_data(member, ud)
 
-    async def set_map(self, guild, map):
+    async def set_map(self, guild, name, map):
         gd = await self.db.get_guild_data(guild)
-        gd["map"] = map
-        return await self.db.update_guild_data(gd)
+        if "map" not in gd:
+            gd["map"] = {}
+        gd["map"]["name"] = map
+        return await self.db.update_guild_data(guild, gd)
+
+    async def set_pos(self, guild, map, character, pos):
+        char = await self.get_character(guild, character)
+        maps = char.meta.get("maps")
+        if maps is None:
+            char.meta["maps"] = {}
+        char.meta["maps"][map] = pos
+        await self.add_character(guild, character)
 
     async def set_level(self, member, level, exp):
         ud = await self.db.get_user_data(member)

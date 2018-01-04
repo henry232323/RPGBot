@@ -39,7 +39,7 @@ from kyoukai.asphalt import HTTPRequestContext, Response
 from werkzeug.exceptions import HTTPException
 
 import cogs
-from cogs.utils import db, data
+from cogs.utils import db, data, formatter
 
 try:
     import uvloop
@@ -96,7 +96,8 @@ class Bot(commands.AutoShardedBot):
             cogs.pokemon.Pokemon(self),
             cogs.groups.Groups(self),
             cogs.user.User(self),
-            cogs.salary.Salary(self)
+            cogs.salary.Salary(self),
+            cogs.map.Mapping(self),
         ]
         for cog in icogs:
             self.add_cog(cog)
@@ -107,6 +108,9 @@ class Bot(commands.AutoShardedBot):
         init_dd(self._auth[3], self._auth[4])
         self.stats = ThreadStats()
         self.stats.start()
+
+        #self.default_formatter = self.formatter
+        #self.formatter = formatter.Formatter(False, True, 4000)
 
     async def on_ready(self):
         print('Logged in as')
@@ -181,10 +185,13 @@ class Bot(commands.AutoShardedBot):
 
     async def on_guild_join(self, guild):
         if sum(1 for m in guild.members if m.bot) / guild.member_count >= 3 / 4:
-            try:
-                await guild.channels[0].send("This server has too many bots! I'm just going to leave if thats alright")
-            finally:
-                await guild.leave()
+            for ch in guild.channels:
+                try:
+                    await guild.channels[0].send("This server has too many bots! I'm just going to leave if thats alright")
+                    break
+                except:
+                    pass
+            await guild.leave()
         else:
             self.stats.increment("RPGBot.guilds", tags=["RPGBot:guilds"], host="scw-8112e8")
 
