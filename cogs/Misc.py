@@ -151,6 +151,7 @@ class Misc(object):
         appinfo = await self.bot.application_info()
         embed = discord.Embed()
         embed.set_author(name=me.display_name, icon_url=appinfo.owner.avatar_url,
+                         url="https://github.com/henry232323/RPGBot")
         embed.add_field(name="Author", value='Henry#6174 (Discord ID: 122739797646245899)')
         embed.add_field(name="Library", value='discord.py (Python)')
         embed.add_field(name="Uptime", value=await self.bot.get_bot_uptime())

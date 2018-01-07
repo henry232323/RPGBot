@@ -323,7 +323,7 @@ class DataInteraction(object):
 
     async def get_map(self, guild, name):
         gd = await self.db.get_guild_data(guild)
-        maps = gd.get("map", {})
+        maps = gd.get("maps", {})
         if isinstance(maps, Map):
             maps = {"Default": maps}
         map = maps.get(name)
@@ -331,7 +331,7 @@ class DataInteraction(object):
 
     async def get_maps(self, guild):
         gd = await self.db.get_guild_data(guild)
-        maps = gd.get("map", {})
+        maps = gd.get("maps", {})
         if isinstance(maps, Map):
             maps = {"Default": maps}
         return {name: Map(*map) for name, map in maps.items()}
@@ -466,9 +466,16 @@ class DataInteraction(object):
 
     async def set_map(self, guild, name, map):
         gd = await self.db.get_guild_data(guild)
-        if "map" not in gd:
-            gd["map"] = {}
-        gd["map"]["name"] = map
+        if "maps" not in gd:
+            gd["maps"] = {}
+        gd["maps"][name] = map
+        return await self.db.update_guild_data(guild, gd)
+
+    async def remove_map(self, guild, name):
+        gd = await self.db.get_guild_data(guild)
+        maps = gd.get("maps")
+        if maps and name in maps:
+            del gd["maps"][name]
         return await self.db.update_guild_data(guild, gd)
 
     async def set_pos(self, guild, map, character, pos):

@@ -519,7 +519,7 @@ class Groups(object):
         guild = guilds.get(ug)
 
         if ctx.author.id not in guild.mods and ctx.author.id != guild.owner:
-            await ctx.send("Only mods can withdraw money!")
+            await ctx.send("Only mods can withdraw items!")
             return
 
         fitems = []
@@ -531,15 +531,12 @@ class Groups(object):
         guild.items = Counter(guild.items)
         guild.items.subtract(dict(fitems))
 
-        nones = []
-        for item, value in guild.items.items():
+        for item, value in list(guild.items.items()):
             if value < 0:
                 await ctx.send("The guild does not have enough items to take!")
                 return
-            nones.append(item)
-
-        for item in nones:
-            del guild.items[item]
+            if value == 0:
+                del guild.items[item]
 
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await self.bot.di.give_items(ctx.author, *fitems)

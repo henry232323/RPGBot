@@ -76,7 +76,7 @@ class Bot(commands.AutoShardedBot):
         self.session = aiohttp.ClientSession(loop=self.loop)
         self.shutdowns.append(self.shutdown)
 
-        with open("resources/auth", 'r') as af:
+        with open("resources/auth") as af:
             self._auth = json.loads(af.read())
 
         self.db: db.Database = db.Database(self)
@@ -84,6 +84,9 @@ class Bot(commands.AutoShardedBot):
         self.default_udata = data.default_user
         self.default_servdata = data.default_server
         self.rnd = "1234567890abcdefghijklmnopqrstuvwxyz"
+
+        with open("patrons.json") as pj:
+            self.patrons = {int(k): v for k, v in json.loads(pj.read()).items()}
 
         icogs = [
             cogs.admin.Admin(self),
