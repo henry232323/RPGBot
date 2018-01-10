@@ -9,34 +9,34 @@
     },
     "Characters": {
       "characters": [
-        "Lister tout vos personnages",
-        "Utilisateur n'a aucun personnages à afficher"
+        "Lister tous vos personnages",
+        "L'utilisateur n'a aucun personnage à afficher"
       ],
       "allchars": [
-        "Lister tout les personnages de la guilde",
+        "Lister tous les personnages de la guilde",
         "Aucun personnage à afficher"
       ],
       "character": [
-        "Obtenir les informations sur un personnage",
+        "Obtenir des informations sur un personnage",
         "Ce personnage n'existe pas",
         "Nom",
         "Propriétaire",
         "Niveau",
         "Vide",
         "Équipe",
-        "Informations additionnelles"
+        "Informations supplémentaires"
       ],
       "character.create": [
         "Créer un nouveau personnage",
-        "Un a déjà ce nom",
+        "Un personnage a déjà ce nom",
         "Décrivez le personnage",
-        "À quel niveau est le personange ?",
-        "Information additionnelle ? (Ajouter une image du personnage avec `image` en tant que mot-clé, avec la syntaxe régulière : `image: http://image.com/image.jpg, cheveux: bruns` (Separer les clés avec des virgules ou des nouvelles lignes)",
+        "Quel est le niveau du personnage ?",
+        "Information supplémentaire ? (Ajouter une image au personnage avec le mot-clé `image`, avec la syntaxe suivante : `image: http://image.com/image.jpg, cheveux: bruns` (Separer les mot-clés avec des virgules ou de nouvelles lignes)",
         "Syntaxe invalide !",
         "Personnage créé ! Effectuez `rp!team addmember` pour ajouter des personnages à votre équipe !"
       ],
       "character.delete": [
-        "Supprimer un personnage (Vous devez être le propriétaire du personnage)",
+        "Supprimer un personnage (vous devez en être le propriétaire)",
         "Ce personnage n'existe pas !",
         "Vous n'êtes pas le propriétaire de ce personnage !",
         "Personnage supprimé"
