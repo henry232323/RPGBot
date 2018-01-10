@@ -99,7 +99,7 @@ class Salary(object):
     @salary.command()
     @checks.no_pm()
     @checks.mod_or_permissions()
-    async def delete(self, ctx, role: discord.Role):
+    async def delete(self, ctx, *, role: discord.Role):
         """Remove a created salary"""
         del self.guilds[ctx.guild.id][role.id]
         await ctx.send(f"Successfully deleted the daily salary for {role}")

@@ -149,12 +149,13 @@ class Bot(commands.AutoShardedBot):
         self.commands_used[ctx.command] += 1
         if isinstance(ctx.author, discord.Member):
             self.server_commands[ctx.guild.id] += 1
-            if not (self.server_commands[ctx.guild.id] % 50):
-                await ctx.send(
-                    "This bot costs $130/yr to run. If you like the utilities it provides,"
-                    " consider buying me a coffee <https://ko-fi.com/henrys>"
-                    " or subscribe as a Patron <https://www.patreon.com/henry232323>"
-                )
+            if ctx.guild.id not in self.patrons:
+                if (self.server_commands[ctx.guild.id] % 50) == 0:
+                    await ctx.send(
+                        "This bot costs $130/yr to run. If you like the utilities it provides,"
+                        " consider buying me a coffee <https://ko-fi.com/henrys>"
+                        " or subscribe as a Patron <https://www.patreon.com/henry232323>"
+                    )
 
             add = choice([0, 0, 0, 0, 0, 1, 1, 2, 3])
             fpn = ctx.command.full_parent_name

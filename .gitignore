@@ -90,6 +90,9 @@ ENV/
 
 # etc
 resources/auth
+resources/postgresql/
+patrons.json
+salaries.json
 .idea/
 ftpclient.py
 ftpserver.py

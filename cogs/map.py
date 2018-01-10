@@ -237,7 +237,7 @@ class Mapping:
     @map.command(aliases=["supprimer"])
     @checks.no_pm()
     @checks.admin_or_permissions()
-    async def delete(self, ctx, name: str):
+    async def delete(self, ctx, *, name: str):
         """Delete a map"""
         await self.bot.di.remove_map(ctx.guild, name)
         await ctx.send(f"Map {name} successfully deleted.")
