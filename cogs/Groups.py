@@ -335,7 +335,7 @@ class Groups(object):
 
     @guild.command()
     @checks.no_pm()
-    async def kick(self, ctx, user: discord.Member):
+    async def kick(self, ctx, *, user: discord.Member):
         """Kick a member from a guild"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:

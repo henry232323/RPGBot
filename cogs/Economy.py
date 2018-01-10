@@ -453,7 +453,7 @@ class Economy(object):
     @commands.group(invoke_without_command=True)
     async def shop(self, ctx):
         """Get all items currently listed on the server shop"""
-        shop = list((await self.bot.di.get_guild_shop(ctx.guild)).items())
+        shop = sorted((await self.bot.di.get_guild_shop(ctx.guild)).items(), key=lambda x: x[1])
         desc = """
                 \u27A1 to see the next page
                 \u2B05 to go back
@@ -474,12 +474,12 @@ class Economy(object):
 
         def lfmt(v):
             d = ""
-            if value["buy"]:
-                d += f"Buy Value: {value['buy']}"
-            if value["sell"]:
-                d += f"\nSell Value: {value['sell']}"
-            if value["level"]:
-                d += f"\nLevel: {value['level']}"
+            if v["buy"]:
+                d += f"Buy Value: {v['buy']}"
+            if v["sell"]:
+                d += f"\nSell Value: {v['sell']}"
+            if v["level"]:
+                d += f"\nLevel: {v['level']}"
 
             return d
 
@@ -609,7 +609,7 @@ class Economy(object):
     @checks.no_pm()
     @shop.command()
     @checks.mod_or_permissions()
-    async def removeitem(self, ctx, name: str):
+    async def removeitem(self, ctx, *, name: str):
         """Remove a listed item"""
         shop = await self.bot.di.get_guild_shop(ctx.guild)
         try:
