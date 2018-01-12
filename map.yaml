@@ -1,0 +1,84 @@
+0000000000000001111111
+0000000000111111111111
+2222200011111111111111
+2222222000001111111111
+2222222003333333333111
+4444433333333333333311
+4444444333333333333333
+
+tiles:
+  0: grassland
+  1: mountain
+  2: town
+  3: desert
+  4: marshland
+
+grassland: [
+  pig, pig, pig, pig, pig,
+  cow, cow, cow,
+  chicken, chicken
+]
+
+mountain: [
+  nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing,
+  iron_ore, iron_ore, iron_ore,
+  copper_ore, copper_ore, copper_ore,
+  tin_ore, tin_ore,
+  stone, stone, stone, stone
+]
+
+town: [
+  villager, villager, villager, villager, villager, villager, villager, villager, villager, villager,
+  forein_merchant,
+  shopkeeper,
+  alchemist,
+  smith
+]
+
+"*": [
+  wolf, stray_cat
+]
+
+spawners:
+  pig:
+    give: [[pork, 1]]
+    say: [You killed a pig!]
+
+  cow:
+    give: [
+      [beef, 2],
+      [leather, 3]
+    ]
+    say: [You killed a cow!]
+
+  chicken:
+    give: [
+      [egg, 2],
+      [chicken, 1]
+    ]
+    say: [You killed a chicken!]
+
+  iron_ore:
+    give: [[iron_ore, 1]]
+    say: [You mined some iron!]
+
+  copper_ore:
+    give: [[copper_ore, 1]]
+    say: [You mined some copper!]
+
+  tin_ore:
+    give: [[tin_ore, 1]]
+    say: [You mined some tin!]
+
+  stone:
+    give: [[stone, 3]]
+    say: [You mined some stone!]
+
+  villager:
+    say: ["Hi there {player}!", "How are you, {player}?", "Some weather we're having huh?"]
+
+  forein_merchant:
+    say: ["Anything you would like to buy?"]
+    buy:
+      silk: 40
+      porcelain: 50
