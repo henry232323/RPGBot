@@ -27,12 +27,13 @@ from .utils import checks, data
 
 class User(object):
     """Commands for guild management"""
+
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name="userinfo", aliases=["ui"])
     @checks.no_pm()
-    async def ui(self, ctx, *, user: discord.Member=None):
+    async def ui(self, ctx, *, user: discord.Member = None):
         """Get info on a user"""
         if user is None:
             user = ctx.author
@@ -61,14 +62,15 @@ class User(object):
         embed.add_field(name="Guild", value=ud.get("guild", "None"))
         embed.add_field(name="Items", value=invitems)
         embed.add_field(name="Box", value=boxitems) if boxitems else None
-        embed.add_field(name="Experience", value=f"Level: {ud.get('level', 1)}\nExperience: {ud.get('exp', 0)}/{self.bot.get_exp(ud.get('level', 1))}")
+        embed.add_field(name="Experience",
+                        value=f"Level: {ud.get('level', 1)}\nExperience: {ud.get('exp', 0)}/{self.bot.get_exp(ud.get('level', 1))}")
 
         await ctx.send(embed=embed)
 
     @checks.no_pm()
     @checks.mod_or_permissions()
     @commands.group(aliases=["exp"], invoke_without_command=True)
-    async def experience(self, ctx, member: discord.Member=None):
+    async def experience(self, ctx, member: discord.Member = None):
         """Get your or another user's level information. Help on this command for experience subcommands
         EXP is calculated using a 0.1x^2+5x+4 where x is equal to the user's current level
         Spamming commands or messages will not earn more exp!"""

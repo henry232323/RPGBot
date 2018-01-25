@@ -2,7 +2,9 @@ from random import randint, choices
 from collections import Counter
 from discord.ext import commands
 
-from .utils.data import Map
+import yaml
+
+from .utils.data import Map, AdvancedMap
 from .utils import checks
 
 
@@ -297,6 +299,9 @@ class Mapping:
 
         pos[1] -= 1
         changed, spawned, tile = self.explore(mapo, x, y)
+        if tile == " ":
+            await ctx.send("You cannot move any further in this direction!")
+            return
         if changed or change:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
@@ -357,6 +362,9 @@ class Mapping:
 
         pos[1] += 1
         changed, spawned, tile = self.explore(mapo, x, y)
+        if tile == " ":
+            await ctx.send("You cannot move any further in this direction!")
+            return
         if changed or change:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
@@ -420,6 +428,9 @@ class Mapping:
 
         pos[0] -= 1
         changed, spawned, tile = self.explore(mapo, x, y)
+        if tile == " ":
+            await ctx.send("You cannot move any further in this direction!")
+            return
         if changed or change:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
@@ -483,6 +494,9 @@ class Mapping:
 
         pos[0] += 1
         changed, spawned, tile = self.explore(mapo, x, y)
+        if tile == " ":
+            await ctx.send("You cannot move any further in this direction!")
+            return
         if changed or change:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
@@ -541,8 +555,78 @@ class Mapping:
         await ctx.send("```{}```".format('\n'.join(surrounding)))
         await ctx.send("```{}```".format("\n".join(f"{i}: {item}" for i, item in enumerate(mapo.generators))))
 
-    def rtile(self, mapo):
+    @staticmethod
+    def rtile(mapo):
         return str(randint(0, len(mapo.generators) - 1))
 
-    def ndslice(self, l, ysl, xsl):
+    @staticmethod
+    def ndslice(l, ysl, xsl):
         return [e[slice(*ysl)] for e in l[slice(*xsl)]]
+
+    @map.command(aliases=["upload"])
+    @checks.no_pm()
+    @checks.admin_or_permissions()
+    async def load(self, ctx, name: str):
+        if not ctx.message.attachments:
+            await ctx.send("This command needs to have a file attached!")
+            return
+
+        attachment = ctx.message.attachments.pop()
+        size = attachment.size
+        if size > 2 ** 20:
+            await ctx.send("This file is too large!")
+            return
+
+        file = await attachment.save()
+        mapspace, mapdata = self.parsemap(file)
+        xsize, ysize = len(mapspace[0]), len(mapspace)
+        level = self.bot.patrons.get(ctx.guild.id, 0)
+
+        if xsize > 64 or ysize > 64:
+            if level == 0:
+                await ctx.send("Only Patrons may make maps larger than 64x64 tiles!")
+                return
+            elif level > 0:
+                if xsize > 256 or ysize > 256:
+                    if level > 5:
+                        if xsize > 512 or ysize > 512:
+                            await ctx.send("You may not make maps greater than 512x512 unless they are infinite!")
+                            return
+                    else:
+                        await ctx.send("Only higher tier Patrons may make maps greater than 256x256")
+                        return
+
+        maps = await self.bot.di.get_maps(ctx.guild)
+        if len(maps) >= 3:
+            if len(maps) >= 5:
+                if len(maps) >= 10:
+                    await ctx.send("You cannot make more than 10 maps as of now! (Ask Henry if you really want it)")
+                    return
+                elif level < 5:
+                    await ctx.send("You cannot make more than 5 maps unless you are a higher level Patron!")
+                    return
+            elif level < 1:
+                await ctx.send("Only Patrons may make more than 3 maps! See https://www.patreon.com/henry232323")
+                return
+
+        fullmap = AdvancedMap(mapspace, mapdata["tiles"], mapdata["spawners"], mapdata.get("spawn", (0, 0)), None)
+        await self.bot.di.set_map(ctx.guild, name, fullmap)
+        await ctx.send(f"Map created with name {name}")
+
+
+    @staticmethod
+    def parsemap(file):
+        mapspace = []
+        last, current = "", file.readline()
+        while (last.strip(), current.strip()) != ("", ""):
+            if current.strip():
+                mapspace.append(current.strip("\n"))
+            last, current = current, file.readline()
+
+        maxlen = max(mapspace, key=lambda x: len(x))
+        for i, line in enumerate(mapspace):
+            linelen = len(line)
+            if linelen < maxlen:
+                mapspace[i] += " " * (maxlen - linelen)  # pad lines with spaces
+
+        return mapspace, yaml.safe_load(file)

@@ -34,6 +34,7 @@ gc = namedtuple("Guild",
                 ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites",
                  "mods"])
 Map = namedtuple("Map", ["tiles", "generators", "spawners", "spawn", "maxx", "maxy"])
+AdvancedMap = namedtuple("AdvancedMap", ["tiles", "generators", "spawners", "spawn", "type"])
 
 converters = {
     discord.Member: commands.MemberConverter,
@@ -327,14 +328,18 @@ class DataInteraction(object):
         if isinstance(maps, Map):
             maps = {"Default": maps}
         map = maps.get(name)
-        return Map(*map) if map else None
+        if not map:
+            return
+        if len(map) == 5:
+            return AdvancedMap(*map)
+        return Map(*map)
 
     async def get_maps(self, guild):
         gd = await self.db.get_guild_data(guild)
         maps = gd.get("maps", {})
         if isinstance(maps, Map):
             maps = {"Default": maps}
-        return {name: Map(*map) for name, map in maps.items()}
+        return {name: Map(*map) if len(map) != 5 else AdvancedMap(*map) for name, map in maps.items()}
 
     async def get_guild_guilds(self, guild):
         """Get a server's guilds"""
