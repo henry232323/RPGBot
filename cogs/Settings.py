@@ -81,7 +81,7 @@ class Settings(object):
         embed = discord.Embed()
 
         words = dict()
-        for x in items.keys():
+        for x in sorted(items.keys()):
             if x[0].casefold() in words:
                 words[x[0].casefold()].append(x)
             else:

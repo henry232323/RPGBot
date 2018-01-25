@@ -13,31 +13,34 @@ tiles:
   3: desert
   4: marshland
 
-grassland: [
-  pig, pig, pig, pig, pig,
-  cow, cow, cow,
-  chicken, chicken
-]
+spawn: [0, 0]
 
-mountain: [
-  nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing,
-  iron_ore, iron_ore, iron_ore,
-  copper_ore, copper_ore, copper_ore,
-  tin_ore, tin_ore,
-  stone, stone, stone, stone
-]
+generators:
+  grassland: [
+    pig, pig, pig, pig, pig,
+    cow, cow, cow,
+    chicken, chicken
+  ]
 
-town: [
-  villager, villager, villager, villager, villager, villager, villager, villager, villager, villager,
-  forein_merchant,
-  shopkeeper,
-  alchemist,
-  smith
-]
+  mountain: [
+    nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing,
+    iron_ore, iron_ore, iron_ore,
+    copper_ore, copper_ore, copper_ore,
+    tin_ore, tin_ore,
+    stone, stone, stone, stone
+  ]
 
-"*": [
-  wolf, stray_cat
-]
+  town: [
+    villager, villager, villager, villager, villager, villager, villager, villager, villager, villager,
+    forein_merchant,
+    shopkeeper,
+    alchemist,
+    smith
+  ]
+
+  "*": [
+    wolf, stray_cat
+  ]
 
 spawners:
   pig:
