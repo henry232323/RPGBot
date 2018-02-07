@@ -1,6 +1,8 @@
-from random import randint, choices
+from random import randint, choices, choice
 from collections import Counter
 from discord.ext import commands
+from typing import Union
+from io import BytesIO
 
 import yaml
 
@@ -130,46 +132,12 @@ class Mapping:
         await self.bot.di.set_map(ctx.guild, mapname, new_map)
         await ctx.send(f"Map created with name {mapname}")
 
-    '''
-    @map.command(aliases=["look", "regarder", "inspect", "voir"])
-    @checks.no_pm()
-    async def check(self, ctx, mapname: str, character: str):
-        """See what is on the current character's tile"""
-        map = await self.bot.di.get_map(ctx.guild)
-        if map is None:
-            await ctx.send("This server has no map!")
-            return
-
-        chr = await self.bot.di.get_character(ctx.guild, character)
-        if chr is None:
-            await ctx.send("That character does not exist!")
-        chmaps = chr.meta.get("maps")
-        if not chmaps:
-            xc = yc = 0
-        else:
-            if mapname in chmaps:
-                xc, yc = chmaps[mapname]
-            else:
-                xc = yc = 0
-
-        tiles = map.tiles.split("\n")
-        xm, ym = len(tiles[0]), len(tiles)
-        if None in (xc, yc) or xc > xm or yc > ym:
-            xc, yc = ym // 2, ym // 2
-
-        tile = map.generators[int(tiles[yc - 1][xc - 1])]
-        spawners = map.spawners.get(tile)
-        spawned = choices(*zip(*spawners.items()))
-
-        await ctx.send(f"You are on a {tile} tile. There is {spawned}")
-    '''
-
     @checks.admin_or_permissions()
     @map.command(aliases=["creer", "new", "nouvelle"])
     @checks.no_pm()
     async def generate(self, ctx, name: str, xsize: int, ysize: int):
         """Create a custom map for the guild.
-        Usage: `rp!map create passive Earth 64 64`
+        Usage: `rp!map create Earth 64 64`
             This will create a 64x64 map that will generate as the players explore it"""
 
         level = self.bot.patrons.get(ctx.guild.id, 0)
@@ -287,7 +255,7 @@ class Mapping:
             pos[1] = -spawn[1]
 
         if y == 0:
-            if len(mapo.tiles) >= mapo.maxy and not mapo.maxy == -1:
+            if isinstance(mapo, AdvancedMap) or len(mapo.tiles) >= mapo.maxy and not mapo.maxy == -1:
                 await ctx.send("You can't move any further this direction, you've hit the border!")
                 return
             else:
@@ -306,7 +274,10 @@ class Mapping:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
 
-        await ctx.send(f"You enter a {mapo.generators[int(tile)]}. You see {spawned}")
+        tstring = mapo.generators.get(int(tile))
+        if tstring is None:
+            tstring = mapo.generators.get(tile)
+        await ctx.send(f"You enter a {tstring}. You see {spawned}")
 
     @map.command(aliases=["south", "sud"])
     @checks.no_pm()
@@ -351,7 +322,7 @@ class Mapping:
             pos[1] = -spawn[1]
 
         if y == ly:
-            if (ly + 1) >= mapo.maxy and not mapo.maxy == -1:
+            if isinstance(mapo, AdvancedMap) or (ly + 1) >= mapo.maxy and not mapo.maxy == -1:
                 await ctx.send("You can't move any further this direction, you've hit the border!")
                 return
             else:
@@ -369,7 +340,10 @@ class Mapping:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
 
-        await ctx.send(f"You enter a {mapo.generators[int(tile)]}. You see {spawned}")
+        tstring = mapo.generators.get(int(tile))
+        if tstring is None:
+            tstring = mapo.generators.get(tile)
+        await ctx.send(f"You enter a {tstring}. You see {spawned}")
 
     @map.command(aliases=["west", "ouest", "gauche"])
     @checks.no_pm()
@@ -414,7 +388,7 @@ class Mapping:
             pos[1] = -spawn[1]
 
         if x == 0:
-            if len(mapo.tiles[0]) >= mapo.maxx and not mapo.maxx == -1:
+            if isinstance(mapo, AdvancedMap) or len(mapo.tiles[0]) >= mapo.maxx and not mapo.maxx == -1:
                 await ctx.send("You can't move any further this direction, you've hit the border!")
                 return
             else:
@@ -435,7 +409,10 @@ class Mapping:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
 
-        await ctx.send(f"You enter a {mapo.generators[int(tile)]}. You see {spawned}")
+        tstring = mapo.generators.get(int(tile))
+        if tstring is None:
+            tstring = mapo.generators.get(tile)
+        await ctx.send(f"You enter a {tstring}. You see {spawned}")
 
     @map.command(aliases=["east", "est", "droit"])
     @checks.no_pm()
@@ -481,7 +458,7 @@ class Mapping:
             pos[1] = -spawn[1]
 
         if x == lx:
-            if lx + 1 >= mapo.maxx and not mapo.maxy == -1:
+            if isinstance(mapo, AdvancedMap) or lx + 1 >= mapo.maxx and not mapo.maxy == -1:
                 await ctx.send("You can't move any further this direction, you've hit the border!")
                 return
             else:
@@ -501,34 +478,27 @@ class Mapping:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
 
-        await ctx.send(f"You enter a {mapo.generators[int(tile)]}. You see {spawned}")
+        tstring = mapo.generators.get(tile)
+        if tstring is None:
+            tstring = mapo.generators.get(int(tile))
+        await ctx.send(f"You enter a {tstring}. You see {spawned}")
 
-    def explore(self, mapo: Map, x: int, y: int):
-        tile = mapo.tiles[y][x]
-        changed = False
-        if tile == "?":
-            changed = True
-            f = list(mapo.tiles[y])
-            f[x] = self.rtile(mapo)
-            mapo.tiles[y] = "".join(f)
-            tile = f[x]
+        if isinstance(mapo, AdvancedMap):
+            if spawned in mapo.spawnables:
+                sp = mapo.spawnables[spawned]
+                if "say" in sp:
+                    await ctx.send(choice(sp["say"]).replace("{player}", str(ctx.author)))
+                if "give" in sp:
+                    await self.bot.di.give_items(ctx.author, *sp["give"])
+                    await ctx.send("You acquired {}".format(", ".join(f"{it}x{ni}" for it, ni in sp["give"].items())))
+                if "shop" in sp:
+                    await ctx.send(
+                        "This tile has a shop that sells: {}".format(f"\n{it}: {ni}" for it, ni in sp["shop"].items()))
 
-        spawnable = mapo.spawners.get(tile)
-        if not spawnable:
-            spawnable = mapo.spawners.get('-1')
-        if not spawnable:
-            spawned = "nothing"
-        else:
-            spawned = choices(*zip(*spawnable.items()))[0]
-            if spawned is None:
-                spawned = "nothing"
-
-        return changed, spawned, tile
-
-    @map.command(aliases=["look", "regarder", "inspect", "voir"])
+    @map.command()
     @checks.no_pm()
-    async def check(self, ctx, mapname: str, character: str):
-        """Inspect the current tile a character is on"""
+    async def buy(self, ctx, mapname: str, character: str, amount: int, itemname: str):
+        """Buy an item from the shop on the current tile"""
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
         char = await self.bot.di.get_character(ctx.guild, character)
         if char is None:
@@ -541,6 +511,9 @@ class Mapping:
             await ctx.send("This map does not exist!")
             return
 
+        if not isinstance(mapo, AdvancedMap):
+            await ctx.send("There is no shop on this tile! (This map does not support shops!)")
+
         spawn = mapo.spawn
         if not char.meta.get("maps"):
             char.meta["maps"] = {}
@@ -550,10 +523,92 @@ class Mapping:
         y = spawn[1] + pos[1]
         x = spawn[0] + pos[0]
 
-        surrounding = self.ndslice(mapo.tiles, (max(y - 1, 0), max(y + 2, mapo.maxy)),
-                                   (max(x - 1, 0), max(x + 2, mapo.maxx)))
-        await ctx.send("```{}```".format('\n'.join(surrounding)))
-        await ctx.send("```{}```".format("\n".join(f"{i}: {item}" for i, item in enumerate(mapo.generators))))
+        _, spawned, tile, = self.explore(mapo, x, y)
+        sp = mapo.spawnables.get(spawned)
+        if sp and "shop" in sp:
+            try:
+                await self.bot.di.add_eco(ctx.author, -sp[itemname] * amount)
+                await self.bot.di.give_items(ctx.author, (itemname, amount))
+                await ctx.send(f"Successfully bought {amount} {itemname}s")
+            except ValueError:
+                await ctx.send("You can't afford this many!")
+            except KeyError:
+                await ctx.send("This shop sells no such item!")
+        else:
+            await ctx.send("There is no shop here!")
+
+    def explore(self, mapo: Union[Map, AdvancedMap], x: int, y: int):
+        tile = mapo.tiles[y][x]
+        changed = False
+        if tile == "?":
+            changed = True
+            f = list(mapo.tiles[y])
+            f[x] = self.rtile(mapo)
+            mapo.tiles[y] = "".join(f)
+            tile = f[x]
+
+        if not isinstance(mapo, AdvancedMap):
+            spawnable = mapo.spawners.get(tile)
+            if not spawnable:
+                spawnable = mapo.spawners.get('-1')
+            if not spawnable:
+                spawned = "nothing"
+            else:
+                spawned = choices(*zip(*spawnable.items()))[0]
+                if spawned is None:
+                    spawned = "nothing"
+        else:
+            spawnable = mapo.spawners.get(mapo.generators[tile])
+            if not spawnable:
+                spawnable = mapo.spawners.get('*')
+            if not spawnable:
+                spawned = "nothing"
+            else:
+                spawned = choice(spawnable)
+                if spawned is None:
+                    spawned = "nothing"
+
+        return changed, spawned, tile
+
+    @map.command(aliases=["look", "regarder", "inspect", "voir"])
+    @checks.no_pm()
+    async def check(self, ctx, mapname: str, character: str):
+        """Inspect the current tile a character is on"""
+        try:
+            mapo = await self.bot.di.get_map(ctx.guild, mapname)
+            char = await self.bot.di.get_character(ctx.guild, character)
+            if char is None:
+                await ctx.send("That character doesn't exist!")
+                return
+            if char.owner != ctx.author.id:
+                await ctx.send("You do not own this character!")
+                return
+            if mapo is None:
+                await ctx.send("This map does not exist!")
+                return
+
+            spawn = mapo.spawn
+            if not char.meta.get("maps"):
+                char.meta["maps"] = {}
+            if not char.meta["maps"].get(mapname):
+                char.meta["maps"][mapname] = [0, 0]
+            pos = char.meta["maps"][mapname]
+            y = spawn[1] + pos[1]
+            x = spawn[0] + pos[0]
+
+            if isinstance(mapo, AdvancedMap):
+                surrounding = self.ndslice(mapo.tiles, (max(y - 1, 0), max(y + 2, len(mapo.tiles))),
+                                           (max(x - 1, 0), max(x + 2, len(mapo.tiles[0]))))
+                await ctx.send("```{}```".format('\n'.join(surrounding)))
+                await ctx.send("```{}```".format("\n".join(f"{i}: {item}" for i, item in mapo.generators.items())))
+            else:
+                surrounding = self.ndslice(mapo.tiles, (max(y - 1, 0), max(y + 2, mapo.maxy)),
+                                           (max(x - 1, 0), max(x + 2, mapo.maxx)))
+                await ctx.send("```{}```".format('\n'.join(surrounding)))
+                await ctx.send("```{}```".format("\n".join(f"{i}: {item}" for i, item in enumerate(mapo.generators))))
+        except:
+            from traceback import print_exc
+            print_exc()
 
     @staticmethod
     def rtile(mapo):
@@ -577,7 +632,9 @@ class Mapping:
             await ctx.send("This file is too large!")
             return
 
-        file = await attachment.save()
+        file = BytesIO()
+        await attachment.save(file)
+        file.seek(0)
         mapspace, mapdata = self.parsemap(file)
         xsize, ysize = len(mapspace[0]), len(mapspace)
         level = self.bot.patrons.get(ctx.guild.id, 0)
@@ -609,21 +666,21 @@ class Mapping:
                 await ctx.send("Only Patrons may make more than 3 maps! See https://www.patreon.com/henry232323")
                 return
 
-        fullmap = AdvancedMap(mapspace, mapdata["tiles"], mapdata["spawners"], mapdata.get("spawn", (0, 0)), None)
+        fullmap = AdvancedMap(mapspace, mapdata["generators"], mapdata["spawners"], mapdata["spawnables"],
+                              mapdata.get("spawn", (0, 0)), True)
         await self.bot.di.set_map(ctx.guild, name, fullmap)
         await ctx.send(f"Map created with name {name}")
-
 
     @staticmethod
     def parsemap(file):
         mapspace = []
-        last, current = "", file.readline()
+        last, current = "", file.readline().decode()
         while (last.strip(), current.strip()) != ("", ""):
             if current.strip():
-                mapspace.append(current.strip("\n"))
-            last, current = current, file.readline()
+                mapspace.append(current.strip("\r").strip("\n"))
+            last, current = current, file.readline().decode()
 
-        maxlen = max(mapspace, key=lambda x: len(x))
+        maxlen = len(max(mapspace, key=lambda x: len(x)))
         for i, line in enumerate(mapspace):
             linelen = len(line)
             if linelen < maxlen:

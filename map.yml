@@ -5,8 +5,11 @@
 2222222003333333333111
 4444433333333333333311
 4444444333333333333333
+4444443333333333332222
+4442222222222211111111
 
-tiles:
+
+generators:
   0: grassland
   1: mountain
   2: town
@@ -15,7 +18,7 @@ tiles:
 
 spawn: [0, 0]
 
-generators:
+spawners:
   grassland: [
     pig, pig, pig, pig, pig,
     cow, cow, cow,
@@ -42,7 +45,7 @@ generators:
     wolf, stray_cat
   ]
 
-spawners:
+spawnables:
   pig:
     give: [[pork, 1]]
     say: [You killed a pig!]

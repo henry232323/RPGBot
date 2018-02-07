@@ -453,7 +453,7 @@ class Economy(object):
     @commands.group(invoke_without_command=True)
     async def shop(self, ctx):
         """Get all items currently listed on the server shop"""
-        shop = sorted((await self.bot.di.get_guild_shop(ctx.guild)).items(), key=lambda x: x[1])
+        shop = sorted((await self.bot.di.get_guild_shop(ctx.guild)).items(), key=lambda x: x[0])
         desc = """
                 \u27A1 to see the next page
                 \u2B05 to go back
@@ -653,7 +653,6 @@ class Economy(object):
         if not iobj["sell"]:
             await ctx.send("This item cannot be sold!")
             return
-        await self.bot.di.add_eco(ctx.author, iobj["sell"] * amount)
 
         try:
             await self.bot.di.take_items(ctx.author, (item, amount))
@@ -661,7 +660,8 @@ class Economy(object):
             await ctx.send("You don't have enough to sell")
             return
 
-        await ctx.send(f"Successfully sell {amount} {item}s")
+        await self.bot.di.add_eco(ctx.author, iobj["sell"] * amount)
+        await ctx.send(f"Successfully sold {amount} {item}s")
 
     @checks.no_pm()
     @commands.command()
