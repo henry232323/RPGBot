@@ -152,7 +152,7 @@ class Bot(commands.AutoShardedBot):
             if ctx.guild.id not in self.patrons:
                 if (self.server_commands[ctx.guild.id] % 50) == 0:
                     await ctx.send(
-                        "This bot costs $130/yr to run. If you like the utilities it provides,"
+                        "This bot costs $300/yr to run. If you like the utilities it provides,"
                         " consider buying me a coffee <https://ko-fi.com/henrys>"
                         " or subscribe as a Patron <https://www.patreon.com/henry232323>"
                     )
@@ -171,7 +171,7 @@ class Bot(commands.AutoShardedBot):
                 add += values.get(fpn, 0)
 
             if add:
-                await asyncio.sleep(3)
+                await asyncio.sleep(4)
                 r = await self.di.add_exp(ctx.author, add)
                 if r is not None:
                     await ctx.send(f"{ctx.author.mention} is now level {r}!")
@@ -185,16 +185,7 @@ class Bot(commands.AutoShardedBot):
             await ctx.send(f"`{exception}`")
 
     async def on_guild_join(self, guild):
-        if sum(1 for m in guild.members if m.bot) / guild.member_count >= 3 / 4:
-            for ch in guild.channels:
-                try:
-                    await guild.channels[0].send("This server has too many bots! I'm just going to leave if thats alright")
-                    break
-                except:
-                    pass
-            await guild.leave()
-        else:
-            self.stats.increment("RPGBot.guilds", tags=["RPGBot:guilds"], host="scw-8112e8")
+        self.stats.increment("RPGBot.guilds", tags=["RPGBot:guilds"], host="scw-8112e8")
 
     async def on_guild_leave(self, guild):
         self.stats.increment("RPGBot.guilds", -1, tags=["RPGBot:guilds"], host="scw-8112e8")
