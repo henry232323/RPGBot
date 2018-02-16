@@ -19,3 +19,14 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
+
+async def _(ctx, translation):
+    gd = await ctx.bot.db.get_guild_data(ctx.guild)
+    lang = gd.get("lang", "en")
+    currency = gd.get("currency", "$")
+    if currency != "$":
+        translation = translation.replace("$", currency)
+    if lang == "en":
+        return translation
+
+    return ctx.bot.translations[translation][lang]

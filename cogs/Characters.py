@@ -24,6 +24,7 @@ from discord.ext import commands
 
 from .utils import checks
 from .utils.data import Character
+from .utils.translation import _
 
 
 class Characters(object):
@@ -39,7 +40,7 @@ class Characters(object):
         characters = await self.bot.di.get_guild_characters(ctx.guild)
         characters = [x for x, y in characters.items() if y.owner == user.id]
         if not characters:
-            await ctx.send(f"{user} has no characters to display")
+            await ctx.send((await _(ctx, "{} has no characters to display")).format(user))
             return
 
         embed = discord.Embed(description="\n".join(characters))
@@ -52,7 +53,7 @@ class Characters(object):
         """List all guild characters"""
         characters = await self.bot.di.get_guild_characters(ctx.guild)
         if not characters:
-            await ctx.send("No characters to display")
+            await ctx.send(await _(ctx, "No characters to display"))
             return
 
         embed = discord.Embed()
@@ -77,7 +78,7 @@ class Characters(object):
         try:
             char = (await self.bot.di.get_guild_characters(ctx.guild))[name]
         except KeyError:
-            await ctx.send(f"Character {name} does not exist!")
+            await ctx.send((await _(ctx, "Character {} does not exist!")).format(name))
             return
 
         try:
@@ -86,28 +87,28 @@ class Characters(object):
             embed.set_author(name=char.name, icon_url=owner.avatar_url)
             if char.meta.get("image"):
                 embed.set_thumbnail(url=char.meta.get("image"))
-            embed.add_field(name="Name", value=char.name)
-            embed.add_field(name="Owner", value=str(owner))
-            embed.add_field(name="Level", value=char.level)
+            embed.add_field(name=await _(ctx, "Name"), value=char.name)
+            embed.add_field(name=await _(ctx, "Owner"), value=str(owner))
+            embed.add_field(name=await _(ctx, "Level"), value=char.level)
             team = await self.bot.di.get_team(ctx.guild, char.name)
-            tfmt = "\n".join(f"{p.name} ({p.type})" for p in team) if team else "Empty"
-            embed.add_field(name="Team", value=tfmt)
+            tfmt = "\n".join(f"{p.name} ({p.type})" for p in team) if team else await _(ctx, "Empty")
+            embed.add_field(name=await _(ctx, "Team"), value=tfmt)
             mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items())
-            embed.add_field(name="Additional Info", value=mfmt)
+            embed.add_field(name=await _(ctx, "Additional Info"), value=mfmt)
 
             await ctx.send(embed=embed)
         except:
             owner = discord.utils.get(ctx.guild.members, id=char.owner)
             embed = discord.Embed(description=char.description)
             embed.set_author(name=char.name, icon_url=owner.avatar_url)
-            embed.add_field(name="Name", value=char.name)
-            embed.add_field(name="Owner", value=str(owner))
-            embed.add_field(name="Level", value=char.level)
+            embed.add_field(name=await _(ctx, "Name"), value=char.name)
+            embed.add_field(name=await _(ctx, "Owner"), value=str(owner))
+            embed.add_field(name=await _(ctx, "Level"), value=char.level)
             team = await self.bot.di.get_team(ctx.guild, char.name)
-            tfmt = "\n".join(f"{p.name} ({p.type})" for p in team) if team else "Empty"
+            tfmt = "\n".join(f"{p.name} ({p.type})" for p in team) if team else await _(ctx, "Empty")
             embed.add_field(name="Team", value=tfmt)
             mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items())
-            embed.add_field(name="Additional Info", value=mfmt)
+            embed.add_field(name=await _(ctx, "Additional Info"), value=mfmt)
 
             await ctx.send(embed=embed)
 
@@ -120,17 +121,18 @@ class Characters(object):
         else:
             if not checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
                                               manage_server=True):
-                await ctx.send("Only Bot Mods/Bot Admins may make characters for other players!")
+                await ctx.send(await _(ctx, "Only Bot Mods/Bot Admins may make characters for other players!"))
                 return
 
         characters = await self.bot.di.get_guild_characters(ctx.guild)
         if name in characters:
-            await ctx.send("A character with this name already exists!")
+            await ctx.send(await _(ctx, "A character with this name already exists!"))
             return
 
         check = lambda x: x.channel is ctx.channel and x.author is ctx.author
         character = dict(name=name, owner=user.id, meta=dict(), team=list())
-        await ctx.send("Describe the character (Relevant character sheet) (Say `done` when you're done describing)")
+        await ctx.send(
+            await _(ctx, "Describe the character (Relevant character sheet) (Say `done` when you're done describing)"))
         content = ""
         while True:
             response = await self.bot.wait_for("message", check=check, timeout=120)
@@ -139,20 +141,21 @@ class Characters(object):
             else:
                 content += response.content + "\n"
         character["description"] = content
-        await ctx.send("What level is the character?")
+        await ctx.send(await _(ctx, "What level is the character?"))
         response = await self.bot.wait_for("message", timeout=60, check=check)
         character["level"] = int(response.content)
         await ctx.send(
-            "Any additional info? (Add a character image using the image keyword. Formats use regular syntax i.e "
-            "`image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)"
-        )
+            await _(ctx,
+                    "Any additional info? (Add a character image using the image keyword. Formats use regular syntax i.e "
+                    "`image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)"
+                    ))
         while True:
             response = await self.bot.wait_for("message", check=check, timeout=120)
             if response.content.lower() == "cancel":
-                await ctx.send("Cancelling!")
+                await ctx.send(await _(ctx, "Cancelling!"))
                 return
             elif response.content.lower() == "skip":
-                await ctx.send("Skipping!")
+                await ctx.send(await _(ctx, "Skipping!"))
                 break
             else:
                 try:
@@ -168,11 +171,11 @@ class Characters(object):
                     else:
                         break
                 except:
-                    await ctx.send("Invalid formatting! Try again")
+                    await ctx.send(await _(ctx, "Invalid formatting! Try again"))
                     continue
 
         await self.bot.di.add_character(ctx.guild, Character(**character))
-        await ctx.send("Character created! rp!team addmember to add to your characters team!")
+        await ctx.send(await _(ctx, "Character created! rp!team addmember to add to your characters team!"))
 
     @checks.no_pm()
     @character.command(aliases=["remove", "supprimer"])
@@ -181,17 +184,17 @@ class Characters(object):
         characters = await self.bot.di.get_guild_characters(ctx.guild)
         character = characters.get(name)
         if character is None:
-            await ctx.send("That character doesn't exist!")
+            await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
 
         is_mod = checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
                                             manage_server=True)
         if character.owner != ctx.author.id and not is_mod:
-            await ctx.send("You do not own this character!")
+            await ctx.send(await _(ctx, "You do not own this character!"))
             return
 
         await self.bot.di.remove_character(ctx.guild, name)
-        await ctx.send("Character deleted")
+        await ctx.send(await _(ctx, "Character deleted"))
 
     @checks.no_pm()
     @character.command()
@@ -208,13 +211,13 @@ class Characters(object):
         chars = await self.bot.di.get_guild_characters(ctx.guild)
         character = chars.get(character)
         if character is None:
-            await ctx.send("That character doesn't exist!")
+            await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
 
         is_mod = checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
                                             manage_server=True)
         if character.owner != ctx.author.id and not is_mod:
-            await ctx.send("This isnt your character!")
+            await ctx.send(await _(ctx, "You do not own this character!"))
             return
 
         character = list(character)
@@ -238,10 +241,10 @@ class Characters(object):
                     if key != "maps":
                         character[5][key] = value
             except:
-                await ctx.send("Invalid formatting try again!")
+                await ctx.send(await _(ctx, "Invalid formatting! Try again"))
         else:
-            await ctx.send("That is not a valid item! Try again")
+            await ctx.send(await _(ctx, "That is not a valid item! Try again"))
             return
 
         await self.bot.di.add_character(ctx.guild, Character(*character))
-        await ctx.send("Character edited!")
+        await ctx.send(await _(ctx, "Character edited!"))

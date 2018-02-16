@@ -88,6 +88,10 @@ class Bot(commands.AutoShardedBot):
         with open("patrons.json") as pj:
             self.patrons = {int(k): v for k, v in json.loads(pj.read()).items()}
 
+        with open("newtranslations.json") as trf:
+            self.translations = json.loads(trf.read())
+        self.languages = ["en", "fr", "de"]
+
         icogs = [
             cogs.admin.Admin(self),
             cogs.team.Team(self),
