@@ -1,0 +1,249 @@
+{
+  "Cannot purge more than 100 messages!": {
+    "fr": "C'est impossible de supprimer plus de 100 messages.",
+    "de": "Benutzer hat keinen auswählbaren Charakter"
+  },
+  "{} has no characters to display": {
+    "fr": "{} n'a aucun personnage à afficher",
+    "de": "Keine Charaktere anzeigbar"
+  },
+  "No characters to display": {
+    "fr": "Aucun personnage à afficher",
+    "de": "Keine Charaktere anzeigbar"
+  },
+  "Character {} does not exist!": {
+    "fr": "Personnage {} n'existe pas",
+    "de": "Dieser Charakter existiert nicht"
+  },
+  "Name": {
+    "fr": "Nom",
+    "de": "Name"
+  },
+  "Owner": {
+    "fr": "Propriétaire",
+    "de": "Eigenschaften"
+  },
+  "Level": {
+    "fr": "Niveau",
+    "de": "Ebene"
+  },
+  "Empty": {
+    "fr": "Vide",
+    "de": "Leere"
+  },
+  "Team": {
+    "fr": "Équipe",
+    "de": "Ausrüstung"
+  },
+  "Additional Info": {
+    "fr": "Informations supplémentaires",
+    "de": "Zusätzliche Informationen"
+  },
+  "Only Bot Mods/Bot Admins may make characters for other players!": {
+    "fr": "Il faut etre `Bot Mod` ou `Bot Admin` pour faire un personnage pour les autrui"
+  },
+  "A character with this name already exists!": {
+    "fr": "Un personnage a déjà ce nom"
+  },
+  "Describe the character (Relevant character sheet) (Say `done` when you're done describing)": {
+    "fr": "Décrivez le personnage (Fiche du personnage relevant) (Dites `done` quand vous-êtes finis)"
+  },
+  "What level is the character?": {
+    "fr": "Quel est le niveau du personnage ?"
+  },
+  "Any additional info? (Add a character image using the image keyword. Formats use regular syntax i.e `image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)": {
+    "fr": "Information supplémentaire ? (Ajouter une image au personnage avec le mot-clé `image`, avec la syntaxe suivante : `image: http://image.com/image.jpg, cheveux: bruns` (Separer les mot-clés avec des virgules ou de nouvelles lignes)"
+  },
+  "Cancelling!": {
+    "fr": "Annulant !"
+  },
+  "Skipping!": {
+    "fr": "Passant !"
+  },
+  "Character created! rp!team addmember to add to your characters team!": {
+    "fr": "Personnage créé ! Effectuez `rp!team addmember` pour ajouter des personnages à votre équipe !"
+  },
+  "That character doesn't exist!": {
+    "fr": "Ce personnage n'existe pas !"
+  },
+  "You do not own this character!": {
+    "fr": "Vous n'êtes pas le propriétaire de ce personnage !"
+  },
+  "Character deleted": {
+    "fr": "Personnage supprimé"
+  },
+  "Invalid formatting! Try again": {
+    "fr": "Syntaxe invalide !"
+  },
+  "That is not a valid item! Try again": {
+    "fr": "Ce item n'existe pas !"
+  },
+  "Character edited!": {
+    "fr": "Personnage modifié"
+  },
+  "has": {
+    "fr": "a"
+  },
+  "Balances changed": {
+    "fr": "Solde changé"
+  },
+  "Money given": {
+    "fr": "Argent donné"
+  },
+  "Successfully paid ${} to {}": {
+    "fr": "Payé ${} à {} avec succès"
+  },
+  "\n        \u27A1 to see the next page\n        \u2B05 to go back\n        \u274C to exit\n        ": {
+    "fr": "\n        \u27A1 pour voir la page suivante\n        \u2B05 pour retourner\n        \u274C pour quitter\n        "
+  },
+  "No items on the market to display.": {
+    "fr": "Aucun item sur le marché"
+  },
+  "Player Market": {
+    "fr": "Marché des Joueurs"
+  },
+  "ID": {
+    "fr": "ID"
+  },
+  "COST": {
+    "fr": "COÛT"
+  },
+  "NUMBER": {
+    "fr": "NOMBRE"
+  },
+  "ITEM": {
+    "fr": "ITEM"
+  },
+  "SELLER": {
+    "fr": "VENDEUR"
+  },
+  "Timed out! Try again": {
+    "fr": "Fin du temps! Réessayer"
+  },
+  "You don't have enough of these to sell!": {
+    "fr": "Vous n'avez pas assez à vendre"
+  },
+  "Item listed!": {
+    "fr": "Item listé!"
+  },
+  "That is not a valid ID!": {
+    "fr": "Ce n'est pas un ID valide"
+  },
+  "You cant afford this item!": {
+    "fr": "Vous ne pouvez pas vous le permettre"
+  },
+  "Items successfully bought": {
+    "fr": "Items acheté avec succès"
+  },
+  "{} bought {} {} from you for ${} with ID {} on server {}": {
+    "fr": "{} a acheté {} {} de vous pour ${} avec ID {} sur serveur {}"
+  },
+  "This is not your item to remove!": {
+    "fr": "Ce n'est pas votre item à supprimer"
+  },
+  "Jackpot: ${}\n{} players entered": {
+    "fr": "Cagnotte: ${}\n{} joueurs ont entré"
+  },
+  "No lotteries currently running!": {
+    "fr": "Aucune loterie actuellement"
+  },
+  "A lottery of that name already exists!": {
+    "fr": "Une loterie avec ce nom existe déjà!"
+  },
+  "Lottery created!": {
+    "fr": "Loterie créée"
+  },
+  "Lottery {} is now over!\n{} won {}! Congratulations!": {
+    "fr": "Loterie {} c'est maintenant terminée!\n{} a gagné(e) {} ! Toutes nos félicitations !"
+  },
+  "Nobody entered {}! Its over now.": {
+    "fr": "Personne n'a entré {}! C'est maintenant terminée."
+  },
+  "Lotto entered!": {
+    "fr": "Vous avez entré la lotto"
+  },
+  "You're already in this lotto!": {
+    "fr": "Vous avez déjà entré ce lotto"
+  },
+  "This server has no lotto by that name! See rp!lotto": {
+    "fr": "Ce serveur n'a aucune lotto avec ce nom ! Voyez rp!lotto"
+  },
+  "This server has no lottos currently running!": {
+    "fr": "Ce serveur n'a aucune lotto actuellement !"
+  },
+  "No items in the shop to display.": {
+    "fr": "Il n'y a aucun item dans le shop"
+  },
+  "Server Shop": {
+    "fr": "Shop du Serveur"
+  },
+  "Say 'cancel' to cancel or 'skip' to skip a step": {
+    "fr": "Dites 'cancel' pour annuler, ou 'skip' pour passer un pas"
+  },
+  "How much should this be buyable for? 0 for not buyable": {
+    "fr": "Pour combien devrait-il etre achetable ? (0 pour non-achetable)"
+  },
+  "That is not a valid number!": {
+    "fr": "Ce n'est pas un nombre valid !"
+  },
+  "How much should this be sellable for? 0 for not sellable": {
+    "fr": "Pour combien devrait-il etre vendable ? (0 pour non-vendable)"
+  },
+  "What is the minimum level a user must be for this item? 0 for no minimum": {
+    "fr": "Quel est le niveau minimum qu'il faut etre pour acheter ce item ? 0 pour aucun minimum"
+  },
+  "You can't make an item with 0 for every value! Cancelling, try again.": {
+    "fr": "Vous ne pouvez pas créer un item avec 0 pour chaque valeur ! Annulant, réessayez."
+  },
+  "Timed out! Cancelling": {
+    "fr": "Fin du temps! Annulant !"
+  },
+  "Guild shop updated": {
+    "fr": "Shop actualisé"
+  },
+  "That item isn't listed!": {
+    "fr": "Ce item n'est pas listé !"
+  },
+  "Successfully removed item": {
+    "fr": "L'item a éte supprimé avec succès"
+  },
+  "This item cannot be bought!": {
+    "fr": "Ce item ne peut pas etre acheté !"
+  },
+  "You aren't high enough level for this item!": {
+    "fr": "Vous n'etes pas un niveau assez élevé !"
+  },
+  "You can't afford this many!": {
+    "fr": "Vous ne pouvez pas vous en permettre !"
+  },
+  "Successfully bought {} {}s": {
+    "fr": "Vous avez acheté {} {}s avec succès !"
+  },
+  "This item cannot be sold!": {
+    "fr": "Ce item ne peut pas etre vendu"
+  },
+  "You don't have enough to sell": {
+    "fr": "Vous n'avez pas assez à vendre"
+  },
+  "Successfully sold {} {}s": {
+    "fr": "Vous avez vendu {} {}s"
+  },
+  "This channel already has a bid going!": {
+    "fr": "Ce channel a déjà une enchère !"
+  },
+  "You do not have x{} {}!": {
+    "fr": "Vous n'avez pas x{} {} !"
+  },
+  "{} Has started a bid for x{} {} starting at ${}\nBid runs for 60 seconds `rp!bid` to place a bid!": {
+    "fr": "{} a commencé une enchère pour x{} {}, commençant à ${}\nL'enchère va pour 60 secondes `rp!bid` pour placer une enchère !"
+  },
+  "Bid over!": {
+    "fr": "L'enchère est finie!"
+  },
+  "{} won the bid for ${}!": {
+    "fr": "{} a gagné l'enchère pour ${}"
+  },
+  "Nobody bid and had enough money to pay for it!": {
+    "fr": "Personne n'a enchéri"
+  }
+}

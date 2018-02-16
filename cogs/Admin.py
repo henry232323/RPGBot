@@ -27,7 +27,8 @@ import psutil
 import asyncio
 import discord
 from textwrap import indent
-from cogs.utils import checks
+from .utils import checks
+from .utils.translation import _
 from inspect import isawaitable
 from discord.ext import commands
 from traceback import format_exc
@@ -118,7 +119,7 @@ class Admin(object):
     async def purge(self, ctx, number: int):
         """Purge messages"""
         if number > 100:
-            await ctx.send("Cannot purge more than 100 messages!")
+            await ctx.send(await _(ctx, "Cannot purge more than 100 messages!"))
             return
 
         await ctx.message.channel.purge(limit=number)
@@ -131,4 +132,3 @@ class Admin(object):
         for shutdown in self.bot.shutdowns:
             await shutdown()
         await self.bot.logout()
-

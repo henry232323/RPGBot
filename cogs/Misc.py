@@ -30,6 +30,7 @@ import psutil
 from itertools import chain
 import io
 import inspect
+from .utils import checks
 
 
 class Misc(object):
@@ -300,3 +301,20 @@ class Misc(object):
 
         fp = io.BytesIO((index.rstrip() + '\n\n' + data.strip()).encode('utf-8'))
         await ctx.author.send(file=discord.File(fp, 'commands.md'))
+
+    @commands.guild_only()
+    @commands.command()
+    @checks.admin_or_permissions()
+    async def language(self, ctx, language: str):
+        if language not in self.bot.languages:
+            await ctx.send("That is not a valid language!")
+            return
+        await self.bot.di.set_language(ctx.guild, language)
+        await ctx.send("Language successfully set!")
+
+    @commands.guild_only()
+    @commands.command()
+    @checks.admin_or_permissions()
+    async def currency(self, ctx, currency: str):
+        await self.bot.di.set_language(ctx.guild, currency)
+        await ctx.send("Currency successfully set!")

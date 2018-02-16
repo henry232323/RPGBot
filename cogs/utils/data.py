@@ -246,6 +246,7 @@ class DataInteraction(object):
         self.bot = bot
         self.db = self.bot.db
 
+
     async def get_team(self, guild, character):
         gd = await self.db.get_guild_data(guild)
         character = Character(*gd["characters"][character])
@@ -425,6 +426,18 @@ class DataInteraction(object):
             raise ValueError("Cannot take more than user has!")
         await self.db.update_user_data(member, ud)
         return ud["money"]
+
+    async def set_language(self, guild, language):
+        gd = await self.db.get_guild_data(guild)
+        gd["lang"] = language
+        await self.db.update_guild_data(guild, gd)
+
+    async def set_currency(self, guild, currency):
+        if len(currency) > 10:
+            raise ValueError("Currency prefix too long!")
+        gd = await self.db.get_guild_data(guild)
+        gd["currency"] = currency
+        await self.db.update_guild_data(guild, gd)
 
     async def set_eco(self, member, amount):
         """Set a user's balance"""

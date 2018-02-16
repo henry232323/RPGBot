@@ -29,6 +29,7 @@ from discord.ext import commands
 
 from .utils import checks
 from .utils.data import MemberConverter, NumberConverter, get
+from .utils.translation import _
 
 
 class Economy(object):
@@ -47,7 +48,7 @@ class Economy(object):
 
         bal = await self.bot.di.get_balance(member)
 
-        await ctx.send(f"{member.display_name} has ${bal}")
+        await ctx.send(f"{member.display_name} {{}} ${bal}".format(await _(ctx, 'has')))
 
     @checks.no_pm()
     @checks.mod_or_permissions()
@@ -60,7 +61,7 @@ class Economy(object):
         for member in members:
             await self.bot.di.set_eco(member, amount)
 
-        await ctx.send("Balances changed")
+        await ctx.send(await _(ctx, "Balances changed"))
 
     @checks.no_pm()
     @checks.mod_or_permissions()
@@ -73,7 +74,7 @@ class Economy(object):
         for member in members:
             await self.bot.di.add_eco(member, amount)
 
-        await ctx.send("Money given")
+        await ctx.send(await _(ctx, "Money given"))
 
     @checks.no_pm()
     @checks.mod_or_permissions()
@@ -86,7 +87,7 @@ class Economy(object):
         for member in members:
             await self.bot.di.add_eco(member, -amount)
 
-        await ctx.send("Money given")
+        await ctx.send(await _(ctx, "Money given"))
 
     @checks.no_pm()
     @commands.command()
@@ -95,7 +96,7 @@ class Economy(object):
         amount = abs(amount)
         await self.bot.di.add_eco(ctx.author, -amount)
         await self.bot.di.add_eco(member, amount)
-        await ctx.send(f"Successfully paid ${amount} to {member}")
+        await ctx.send((await _(ctx, "Successfully paid ${} to {}")).format(amount, member))
 
     @checks.no_pm()
     @commands.group(aliases=["m", "pm"], invoke_without_command=True)
@@ -103,17 +104,17 @@ class Economy(object):
         """View the current market listings"""
         um = await self.bot.di.get_guild_market(ctx.guild)
         market = list(um.values())
-        desc = """
+        desc = await _(ctx, """
         \u27A1 to see the next page
         \u2B05 to go back
         \u274C to exit
-        """
+        """)
         if not market:
-            await ctx.send("No items on the market to display.")
+            await ctx.send(await _(ctx, "No items on the market to display."))
             return
 
         emotes = ("\u2B05", "\u27A1", "\u274C")
-        embed = discord.Embed(description=desc, title="Player Market")
+        embed = discord.Embed(description=desc, title=await _(ctx, "Player Market"))
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 
         chunks = []
@@ -147,7 +148,11 @@ class Economy(object):
             users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
 
         fin = [[x['id'], f"${x['cost']}", f"x{x['amount']}", x['item'], str(y)] for x, y in zip(chunks[i], users)]
-        fin.insert(0, ["ID", "COST", "NUMBER", "ITEM", "SELLER"])
+        fin.insert(0, [await _(ctx, "ID"),
+                       await _(ctx, "COST"),
+                       await _(ctx, "NUMBER"),
+                       await _(ctx, "ITEM"),
+                       await _(ctx, "SELLER")])
         embed.description = "```\n{}\n```".format(self.bot.format_table(fin))
 
         max = len(chunks) - 1
@@ -160,7 +165,7 @@ class Economy(object):
             try:
                 r, u = await self.bot.wait_for("reaction_add", check=lambda r, u: r.message.id == msg.id, timeout=80)
             except asyncio.TimeoutError:
-                await ctx.send("Timed out! Try again")
+                await ctx.send(await _(ctx, "Timed out! Try again"))
                 await msg.delete()
                 return
 
@@ -182,7 +187,11 @@ class Economy(object):
                     users = get(ctx.guild.members, id=[x["user"] for x in chunks[i]])
                     fin = [[x['id'], f"${x['cost']}", f"x{x['amount']}", x['item'], str(y)] for x, y in
                            zip(chunks[i], users)]
-                    fin.insert(0, ["ID", "COST", "NUMBER", "ITEM", "SELLER"])
+                    fin.insert(0, [await _(ctx, "ID"),
+                                   await _(ctx, "COST"),
+                                   await _(ctx, "NUMBER"),
+                                   await _(ctx, "ITEM"),
+                                   await _(ctx, "SELLER")])
                     embed.description = "```\n{}\n```".format(self.bot.format_table(fin))
 
                     await msg.edit(embed=embed)
@@ -196,7 +205,11 @@ class Economy(object):
                     users = get(ctx.guild.members, id=[x["user"] for x in chunks[i]])
                     fin = [[x['id'], f"${x['cost']}", f"x{x['amount']}", x['item'], str(y)] for x, y in
                            zip(chunks[i], users)]
-                    fin.insert(0, ["ID", "COST", "NUMBER", "ITEM", "SELLER"])
+                    fin.insert(0, [await _(ctx, "ID"),
+                                   await _(ctx, "COST"),
+                                   await _(ctx, "NUMBER"),
+                                   await _(ctx, "ITEM"),
+                                   await _(ctx, "SELLER")])
                     embed.description = "```\n{}\n```".format(self.bot.format_table(fin))
 
                     await msg.edit(embed=embed)
@@ -221,7 +234,7 @@ class Economy(object):
         try:
             await self.bot.di.take_items(ctx.author, (item, amount))
         except ValueError:
-            await ctx.send("You dont have enough of these to sell!")
+            await ctx.send(await _(ctx, "You don't have enough of these to sell!"))
             return
 
         id = self.bot.randsample()
@@ -229,32 +242,33 @@ class Economy(object):
 
         await self.bot.di.update_guild_market(ctx.guild, market)
 
-        await ctx.send("Item listed!")
+        await ctx.send(await _(ctx, "Item listed!"))
 
     @checks.no_pm()
-    @market.command(aliases=["purchase"])
+    @market.command(aliases=["purchase", "acheter"])
     async def buy(self, ctx, id: str):
         """Buy a given amount of an item from the player market at the cheapest given price"""
         market = await self.bot.di.get_guild_market(ctx.guild)
         item = market.pop(id)
 
         if not item:
-            await ctx.send("That is not a valid ID!")
+            await ctx.send(await _(ctx, "That is not a valid ID!"))
             return
 
         try:
             await self.bot.di.add_eco(ctx.author, -item['cost'])
         except ValueError:
-            await ctx.send("You cant afford this item!")
+            await ctx.send(await _(ctx, "You cant afford this item!"))
             return
 
         owner = discord.utils.get(ctx.guild.members, id=item["user"])
         await self.bot.di.add_eco(owner, item['cost'])
         await self.bot.di.give_items(ctx.author, (item["item"], item["amount"]))
         await self.bot.di.update_guild_market(ctx.guild, market)
-        await ctx.send("Items successfully bought")
-        await owner.send(
-            f"{ctx.author} bought {item['item']} {item['amount']} from you for ${item['cost']} with ID {id} on server {ctx.guild}")
+        await ctx.send(await _(ctx, "Items successfully bought"))
+        await owner.send((await _(ctx,
+                                  "{} bought {} {} from you for ${} with ID {} on server {}")).format(
+            ctx.author, item["item"], item["amount"], item['cost'], id))
 
     @checks.no_pm()
     @market.command()
@@ -262,17 +276,17 @@ class Economy(object):
         """Search the market for an item"""
         um = await self.bot.di.get_guild_market(ctx.guild)
         market = [i for i in um.values() if i['item'] == item]
-        desc = """
+        desc = await _(ctx, """
         \u27A1 to see the next page
         \u2B05 to go back
         \u274C to exit
-        """
+        """)
         if not market:
-            await ctx.send("No items on the market to display.")
+            await ctx.send(await _(ctx, "No items on the market to display."))
             return
 
         emotes = ("\u2B05", "\u27A1", "\u274C")
-        embed = discord.Embed(description=desc, title="Player Market")
+        embed = discord.Embed(description=desc, title=await _(ctx, "Player Market"))
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 
         chunks = []
@@ -308,7 +322,11 @@ class Economy(object):
         # items = [f"{x['id']}\t| ${x['cost']}\t| x{x['amount']}\t| {x['item']}\t| {y.mention}" for x, y in zip(chunks[i], users)]
         # items.insert(0, "ID\t\t| COST\t\t| NUMBER\t\t| ITEM\t\t| SELLER")
         fin = [[x['id'], f"${x['cost']}", f"x{x['amount']}", x['item'], str(y)] for x, y in zip(chunks[i], users)]
-        fin.insert(0, ["ID", "COST", "NUMBER", "ITEM", "SELLER"])
+        fin.insert(0, [await _(ctx, "ID"),
+                       await _(ctx, "COST"),
+                       await _(ctx, "NUMBER"),
+                       await _(ctx, "ITEM"),
+                       await _(ctx, "SELLER")])
         embed.description = "```\n{}\n```".format(self.bot.format_table(fin))
 
         max = len(chunks) - 1
@@ -321,7 +339,7 @@ class Economy(object):
             try:
                 r, u = await self.bot.wait_for("reaction_add", check=lambda r, u: r.message.id == msg.id, timeout=80)
             except asyncio.TimeoutError:
-                await ctx.send("Timed out! Try again")
+                await ctx.send(await _(ctx, "Timed out! Try again"))
                 await msg.delete()
                 return
 
@@ -343,7 +361,11 @@ class Economy(object):
                     users = get(ctx.guild.members, id=[x["user"] for x in chunks[i]])
                     fin = [[x['id'], f"${x['cost']}", f"x{x['amount']}", x['item'], str(y)] for x, y in
                            zip(chunks[i], users)]
-                    fin.insert(0, ["ID", "COST", "NUMBER", "ITEM", "SELLER"])
+                    fin.insert(0, [await _(ctx, "ID"),
+                                   await _(ctx, "COST"),
+                                   await _(ctx, "NUMBER"),
+                                   await _(ctx, "ITEM"),
+                                   await _(ctx, "SELLER")])
                     embed.description = "```\n{}\n```".format(self.bot.format_table(fin))
 
                     await msg.edit(embed=embed)
@@ -357,13 +379,17 @@ class Economy(object):
                     users = get(ctx.guild.members, id=[x["user"] for x in chunks[i]])
                     fin = [[x['id'], f"${x['cost']}", f"x{x['amount']}", x['item'], str(y)] for x, y in
                            zip(chunks[i], users)]
-                    fin.insert(0, ["ID", "COST", "NUMBER", "ITEM", "SELLER"])
+                    fin.insert(0, [await _(ctx, "ID"),
+                                   await _(ctx, "COST"),
+                                   await _(ctx, "NUMBER"),
+                                   await _(ctx, "ITEM"),
+                                   await _(ctx, "SELLER")])
                     embed.description = "```\n{}\n```".format(self.bot.format_table(fin))
 
                     await msg.edit(embed=embed)
             else:
                 await msg.delete()
-                await ctx.send("Closing")
+                await ctx.send(await _(ctx, "Closing"))
                 return
 
             try:
@@ -379,7 +405,7 @@ class Economy(object):
         try:
             item = market.pop(id)
         except KeyError:
-            await ctx.send("That is not a valid ID!")
+            await ctx.send(await _(ctx, "That is not a valid ID!"))
             return
 
         if item["user"] == ctx.author.id:
@@ -387,7 +413,7 @@ class Economy(object):
             market.remove(id)
             await self.bot.di.update_guild_market(ctx.guild, market)
         else:
-            await ctx.send("This is not your item to remove!")
+            await ctx.send(await _(ctx, "This is not your item to remove!"))
 
     @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=['lottery'])
@@ -402,13 +428,13 @@ class Economy(object):
 
             for lotto, value in self.bot.lotteries[ctx.guild.id].items():
                 embed.add_field(name=lotto,
-                                value="Jackpot: ${}\n{} players entered".format(value["jackpot"],
-                                                                                len(value["players"])))
+                                value=(await _(ctx, "Jackpot: ${}\n{} players entered")).format(value["jackpot"],
+                                                                                                len(value["players"])))
             embed.set_footer(text=str(ctx.message.created_at))
 
             await ctx.send(embed=embed)
         else:
-            await ctx.send("No lotteries currently running!")
+            await ctx.send(await _(ctx, "No lotteries currently running!"))
 
     @checks.no_pm()
     @checks.mod_or_permissions()
@@ -418,19 +444,20 @@ class Economy(object):
         if ctx.guild.id not in self.bot.lotteries:
             self.bot.lotteries[ctx.guild.id] = dict()
         if name in self.bot.lotteries[ctx.guild.id]:
-            await ctx.send("A lottery of that name already exists!")
+            await ctx.send(await _(ctx, "A lottery of that name already exists!"))
             return
         current = dict(jackpot=jackpot, players=list(), channel=ctx.channel)
         self.bot.lotteries[ctx.guild.id][name] = current
-        await ctx.send("Lottery created!")
+        await ctx.send(await _(ctx, "Lottery created!"))
         await asyncio.sleep(time)
         if current["players"]:
             winner = choice(current["players"])
             await self.bot.di.add_eco(winner, current["jackpot"])
             await current["channel"].send(
-                "Lottery {} is now over!\n{} won {}! Congratulations!".format(name, winner.mention, current["jackpot"]))
+                (await _(ctx, "Lottery {} is now over!\n{} won {}! Congratulations!")).format(name, winner.mention,
+                                                                                              current["jackpot"]))
         else:
-            await ctx.send("Nobody entered {}! Its over now.".format(name))
+            await ctx.send((await _(ctx, "Nobody entered {}! Its over now.")).format(name))
         del self.bot.lotteries[ctx.guild.id][name]
 
     @checks.no_pm()
@@ -441,29 +468,29 @@ class Economy(object):
             if name in self.bot.lotteries[ctx.guild.id]:
                 if ctx.author not in self.bot.lotteries[ctx.guild.id][name]["players"]:
                     self.bot.lotteries[ctx.guild.id][name]["players"].append(ctx.author)
-                    await ctx.send("Lotto entered!")
+                    await ctx.send(await _(ctx, "Lotto entered!"))
                 else:
-                    await ctx.send("You're already in this lotto!")
+                    await ctx.send(await _(ctx, "You're already in this lotto!"))
             else:
-                await ctx.send("This server has no lotto by that name! See ;lotto")
+                await ctx.send(await _(ctx, "This server has no lotto by that name! See rp!lotto"))
         else:
-            await ctx.send("This server has no lottos currently running!")
+            await ctx.send(await _(ctx, "This server has no lottos currently running!"))
 
     @checks.no_pm()
     @commands.group(invoke_without_command=True)
     async def shop(self, ctx):
         """Get all items currently listed on the server shop"""
         shop = sorted((await self.bot.di.get_guild_shop(ctx.guild)).items(), key=lambda x: x[0])
-        desc = """
+        desc = await _(ctx, """
                 \u27A1 to see the next page
                 \u2B05 to go back
                 \u274C to exit
-                """
+                """)
         if not shop:
-            await ctx.send("No items in the shop to display.")
+            await ctx.send(await _(ctx, "No items in the shop to display."))
             return
         emotes = ("\u2B05", "\u27A1", "\u274C")
-        embed = discord.Embed(description=desc, title="Server Shop")
+        embed = discord.Embed(description=desc, title=await _(ctx, "Server Shop"))
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 
         chunks = []
@@ -497,7 +524,7 @@ class Economy(object):
             try:
                 r, u = await self.bot.wait_for("reaction_add", check=lambda r, u: r.message.id == msg.id, timeout=80)
             except asyncio.TimeoutError:
-                await ctx.send("Timed out! Try again")
+                await ctx.send(await _(ctx, "Timed out! Try again"))
                 await msg.delete()
                 return
 
@@ -536,7 +563,7 @@ class Economy(object):
                     await msg.edit(embed=embed)
             else:
                 await msg.delete()
-                await ctx.send("Closing")
+                await ctx.send(await _(ctx, "Closing"))
                 return
 
             try:
@@ -555,7 +582,7 @@ class Economy(object):
         Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot Moderator or Admin"""
         gd = await self.bot.db.get_guild_data(ctx.guild)
         if name not in gd["items"]:
-            await ctx.send("This item doesn't exist!")
+            await ctx.send(await _(ctx, "This item doesn't exist!"))
             return
 
         shop = gd.get("shop_items", dict())
@@ -563,48 +590,48 @@ class Economy(object):
         shop[name] = item
         check = lambda x: x.author is ctx.author and x.channel is ctx.channel
 
-        await ctx.send("Say 'cancel' to cancel or 'skip' to skip a step")
+        await ctx.send(await _(ctx, "Say 'cancel' to cancel or 'skip' to skip a step"))
         try:
             while True:
-                await ctx.send("How much should this be buyable for? 0 for not buyable")
+                await ctx.send(await _(ctx, "How much should this be buyable for? 0 for not buyable"))
                 resp = await self.bot.wait_for("message", check=check)
                 try:
                     item["buy"] = int(resp.content)
                 except ValueError:
-                    await ctx.send("That is not a valid number!")
+                    await ctx.send(await _(ctx, "That is not a valid number!"))
                     continue
                 break
 
             while True:
-                await ctx.send("How much should this be sellable for? 0 for not sellable")
+                await ctx.send(await _(ctx, "How much should this be sellable for? 0 for not sellable"))
                 resp = await self.bot.wait_for("message", check=check)
                 try:
                     item["sell"] = int(resp.content)
                 except ValueError:
-                    await ctx.send("That is not a valid number!")
+                    await ctx.send(await _(ctx, "That is not a valid number!"))
                     continue
                 break
 
             while True:
-                await ctx.send("What is the minimum level a user must be for this item? 0 for no minimum")
+                await ctx.send(await _(ctx, "What is the minimum level a user must be for this item? 0 for no minimum"))
                 resp = await self.bot.wait_for("message", check=check)
                 try:
                     item["level"] = int(resp.content)
                 except ValueError:
-                    await ctx.send("That is not a valid number!")
+                    await ctx.send(await _(ctx, "That is not a valid number!"))
                     continue
                 break
 
             if not sum(item.values()):
-                await ctx.send("You can't make an item with 0 for every value! Cancelling, try again.")
+                await ctx.send(await _(ctx, "You can't make an item with 0 for every value! Cancelling, try again."))
                 return
 
         except asyncio.TimeoutError:
-            await ctx.send("Timed out! Cancelling")
+            await ctx.send(await _(ctx, "Timed out! Cancelling"))
             return
 
         await self.bot.di.update_guild_shop(ctx.guild, shop)
-        await ctx.send("Guild shop updated")
+        await ctx.send(await _(ctx, "Guild shop updated"))
 
     @checks.no_pm()
     @shop.command()
@@ -615,10 +642,10 @@ class Economy(object):
         try:
             del shop[name]
         except KeyError:
-            await ctx.send("That item isn't listed!")
+            await ctx.send(await _(ctx, "That item isn't listed!"))
             return
         await self.bot.di.update_guild_shop(ctx.guild, shop)
-        await ctx.send("Successfully removed item")
+        await ctx.send(await _(ctx, "Successfully removed item"))
 
     @checks.no_pm()
     @shop.command(name="buy")
@@ -630,18 +657,18 @@ class Economy(object):
         try:
             iobj = shop[item]
             if not iobj["buy"]:
-                await ctx.send("This item cannot be bought!")
+                await ctx.send(await _(ctx, "This item cannot be bought!"))
                 return
             if iobj["level"] > ulvl:
-                await ctx.send("You aren't high enough level for this item!")
+                await ctx.send(await _(ctx, "You aren't high enough level for this item!"))
                 return
             await self.bot.di.add_eco(ctx.author, -iobj["buy"] * amount)
         except ValueError:
-            await ctx.send("You can't afford this many!")
+            await ctx.send(await _(ctx, "You can't afford this many!"))
             return
 
         await self.bot.di.give_items(ctx.author, (item, amount))
-        await ctx.send(f"Successfully bought {amount} {item}s")
+        await ctx.send((await _(ctx, "Successfully bought {} {}s")).format(amount, item))
 
     @checks.no_pm()
     @shop.command(name="sell")
@@ -651,36 +678,37 @@ class Economy(object):
         shop = await self.bot.di.get_guild_shop(ctx.guild)
         iobj = shop[item]
         if not iobj["sell"]:
-            await ctx.send("This item cannot be sold!")
+            await ctx.send(await _(ctx, "This item cannot be sold!"))
             return
 
         try:
             await self.bot.di.take_items(ctx.author, (item, amount))
         except ValueError:
-            await ctx.send("You don't have enough to sell")
+            await ctx.send(await _(ctx, "You don't have enough to sell"))
             return
 
         await self.bot.di.add_eco(ctx.author, iobj["sell"] * amount)
-        await ctx.send(f"Successfully sold {amount} {item}s")
+        await ctx.send((await _(ctx, "Successfully sold {} {}s")).format(amount, item))
 
     @checks.no_pm()
     @commands.command()
     async def startbid(self, ctx, item: str, amount: NumberConverter, startbid: NumberConverter):
         """Start a bid for an item"""
         if ctx.channel.id in self.bids:
-            await ctx.send("This channel already has a bid going!")
+            await ctx.send(await _(ctx, "This channel already has a bid going!"))
             return
 
         amount = abs(amount)
         try:
             await self.bot.di.take_items(ctx.author, (item, amount))
         except ValueError:
-            await ctx.send(f"You do not have x{amount} {item}!")
+            await ctx.send((await _(ctx, "You do not have x{} {}!")).format(amount, item))
             return
 
         self.bids.append(ctx.channel.id)
-        await ctx.send(
-            f"{ctx.author} Has started a bid for x{amount} {item} starting at ${startbid}\nBid runs for 60 seconds `rp!bid` to place a bid!")
+        await ctx.send((await _(ctx,
+                                "{} Has started a bid for x{} {} starting at ${}\nBid runs for 60 seconds `rp!bid` to place a bid!")).format(
+            ctx.author, amount, item, startbid))
         cb = Counter()
 
         try:
@@ -698,10 +726,10 @@ class Economy(object):
         except asyncio.TimeoutError:
             pass
 
-        await ctx.send("Bid over!")
+        await ctx.send(await _(ctx, "Bid over!"))
 
         if not cb:
-            await ctx.send("Nobody bid!")
+            await ctx.send(await _(ctx, "Nobody bid!"))
             await self.bot.di.give_items(ctx.author, (item, amount))
             self.bids.remove(ctx.channel.id)
             return
@@ -710,13 +738,13 @@ class Economy(object):
             winner, wamount = cb.most_common(x + 1)[x]
             wb = await self.bot.di.get_balance(winner)
             if wb >= wamount:
-                await ctx.send(f"{winner} won the bid for ${amount}!")
+                await ctx.send((await _(ctx, "{} won the bid for ${}!").format(winner, amount)))
                 await self.bot.di.add_eco(winner, -wamount)
                 await self.bot.di.add_eco(ctx.author, wamount)
                 await self.bot.di.give_items(winner, (item, amount))
                 break
         else:
-            await ctx.send("Nobody bid and had enough money to pay for it!")
+            await ctx.send(await _(ctx, "Nobody bid and had enough money to pay for it!"))
             await self.bot.di.give_items(ctx.author, (item, amount))
 
         self.bids.remove(ctx.channel.id)
