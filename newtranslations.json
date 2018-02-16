@@ -181,16 +181,16 @@
     "fr": "Dites 'cancel' pour annuler, ou 'skip' pour passer un pas"
   },
   "How much should this be buyable for? 0 for not buyable": {
-    "fr": "Pour combien devrait-il etre achetable ? (0 pour non-achetable)"
+    "fr": "Pour combien devrait-il être achetable ? (0 pour non-achetable)"
   },
   "That is not a valid number!": {
     "fr": "Ce n'est pas un nombre valid !"
   },
   "How much should this be sellable for? 0 for not sellable": {
-    "fr": "Pour combien devrait-il etre vendable ? (0 pour non-vendable)"
+    "fr": "Pour combien devrait-il être vendable ? (0 pour non-vendable)"
   },
   "What is the minimum level a user must be for this item? 0 for no minimum": {
-    "fr": "Quel est le niveau minimum qu'il faut etre pour acheter ce item ? 0 pour aucun minimum"
+    "fr": "Quel est le niveau minimum qu'il faut être pour acheter ce item ? 0 pour aucun minimum"
   },
   "You can't make an item with 0 for every value! Cancelling, try again.": {
     "fr": "Vous ne pouvez pas créer un item avec 0 pour chaque valeur ! Annulant, réessayez."
@@ -208,10 +208,10 @@
     "fr": "L'item a éte supprimé avec succès"
   },
   "This item cannot be bought!": {
-    "fr": "Ce item ne peut pas etre acheté !"
+    "fr": "Ce item ne peut pas être acheté !"
   },
   "You aren't high enough level for this item!": {
-    "fr": "Vous n'etes pas un niveau assez élevé !"
+    "fr": "Vous n'êtes pas un niveau assez élevé !"
   },
   "You can't afford this many!": {
     "fr": "Vous ne pouvez pas vous en permettre !"
@@ -220,7 +220,7 @@
     "fr": "Vous avez acheté {} {}s avec succès !"
   },
   "This item cannot be sold!": {
-    "fr": "Ce item ne peut pas etre vendu"
+    "fr": "Ce item ne peut pas être vendu"
   },
   "You don't have enough to sell": {
     "fr": "Vous n'avez pas assez à vendre"
