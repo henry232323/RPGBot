@@ -428,5 +428,62 @@
   },
   "no": {
     "fr": "non"
+  },
+  "This inventory is empty!": {
+    "fr": "Cette inventaire est vide !"
+  },
+  "Items taken!": {
+    "fr": "Items pris !"
+  },
+  "That is not a valid item!": {
+    "fr": "Ce item n'est pas valide !"
+  },
+  "Items given!": {
+    "fr": "Items donnés !"
+  },
+  "Successfully gave {0} {1}": {
+    "fr": "Vous avez donné {1} {0} avec succis !"
+  },
+  "You do not have enough to give away!": {
+    "fr": "Vous n'avez pas assez à donner !"
+  },
+  "This item is not usable!": {
+    "fr": "Ce item n'est pas utilisable"
+  },
+  "Used {} {}s": {
+    "fr": "Vous avez utilise {} {}(s)"
+  },
+  "You do not have that many to use!": {
+    "fr": "Vous n'avez pas assez à utiliser !"
+  },
+  "No current lootboxes": {
+    "fr": "Il n'y a aucun lootbox maintenant"
+  },
+  "Lootbox already exists, updating...": {
+    "fr": "Le lootbox existe déjà, mis à jour !"
+  },
+  "Lootbox {} successfully created and requires one {} to open.": {
+    "fr": "Lootbox {} a été créé avec succis et a besoin d'un(e) {} pour ouvrir."
+  },
+  "Lootbox {} successfully created and requires ${} to open": {
+    "fr": "Lootbox {} a été créé avec succis et a besoin de ${} pour ouvrir."
+  },
+  "That is not a valid lootbox": {
+    "fr": "Ce n'est pas un lootbox valide"
+  },
+  "You do not have 1 {}": {
+    "fr": "Vous n'avez pas 1 {}"
+  },
+  "You cant afford this box": {
+    "fr": "Vous ne pouvez pas vous le permettre !"
+  },
+  "You won a(n) {}": {
+    "fr": "Vous avez gagné un(e) {}"
+  },
+  "Lootbox removed": {
+    "fr": "Lootbox supprimé"
+  },
+  "Invalid loot box": {
+    "fr": "Ce lootbox est invalide !"
   }
 }
