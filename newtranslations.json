@@ -1,52 +1,67 @@
 {
   "Cannot purge more than 100 messages!": {
     "fr": "C'est impossible de supprimer plus de 100 messages.",
-    "de": "Benutzer hat keinen auswählbaren Charakter"
+    "de": "Benutzer hat keinen auswählbaren Charakter",
+    "ru": "Нельзя удалить более 100 сообщений!"
   },
   "{} has no characters to display": {
     "fr": "{} n'a aucun personnage à afficher",
-    "de": "Keine Charaktere anzeigbar"
+    "de": "Keine Charaktere anzeigbar",
+    "ru": "{} не имеет персонажей"
   },
   "No characters to display": {
     "fr": "Aucun personnage à afficher",
-    "de": "Keine Charaktere anzeigbar"
+    "de": "Keine Charaktere anzeigbar",
+    "ru": "Нет персонажей для показа"
+
   },
   "Character {} does not exist!": {
     "fr": "Personnage {} n'existe pas",
-    "de": "Dieser Charakter existiert nicht"
+    "de": "Dieser Charakter existiert nicht",
+    "ru": "Персонаж {} не существует"
   },
   "Name": {
     "fr": "Nom",
-    "de": "Name"
+    "de": "Name",
+    "ru": "Имя" 
   },
   "Owner": {
     "fr": "Propriétaire",
-    "de": "Eigenschaften"
+    "de": "Eigenschaften",
+    "ru": "Владелец"
+
   },
   "Level": {
     "fr": "Niveau",
-    "de": "Ebene"
+    "de": "Ebene",
+    "ru": "Уровень"
   },
   "Empty": {
     "fr": "Vide",
-    "de": "Leere"
+    "de": "Leere",
+    "ru": "Пусто"
   },
   "Team": {
     "fr": "Équipe",
-    "de": "Ausrüstung"
+    "de": "Ausrüstung",
+    "ru": "Команда"
   },
   "Additional Info": {
     "fr": "Informations supplémentaires",
-    "de": "Zusätzliche Informationen"
+    "de": "Zusätzliche Informationen",
+    "ru" : "Дополнительная информация"
   },
   "Only Bot Mods/Bot Admins may make characters for other players!": {
-    "fr": "Il faut etre `Bot Mod` ou `Bot Admin` pour faire un personnage pour les autrui"
+    "fr": "Il faut etre `Bot Mod` ou `Bot Admin` pour faire un personnage pour les autrui",
+    "ru": "Только Bot Mods/Bot Admins может делать персонажей для других игроков"
   },
   "A character with this name already exists!": {
-    "fr": "Un personnage a déjà ce nom"
+    "fr": "Un personnage a déjà ce nom",
+    "ru": "Персонаж с таким именем уже существует"
   },
   "Describe the character (Relevant character sheet) (Say `done` when you're done describing)": {
-    "fr": "Décrivez le personnage (Fiche du personnage relevant) (Dites `done` quand vous-êtes finis)"
+    "fr": "Décrivez le personnage (Fiche du personnage relevant) (Dites `done` quand vous-êtes finis)", 
+    "ru": " Опишите персонажа (Внешность, характер) ( Скажите 'done' , когда закончите описание"
   },
   "What level is the character?": {
     "fr": "Quel est le niveau du personnage ?"
