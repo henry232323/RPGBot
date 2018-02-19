@@ -24,6 +24,7 @@ import discord
 
 from .utils.data import NumberConverter, MemberConverter, ItemOrNumber
 from .utils import checks
+from .utils.translation import _
 
 from random import choice
 
@@ -41,7 +42,7 @@ class Inventory(object):
 
         inv = await self.bot.di.get_inventory(member)
         if not inv:
-            await ctx.send("This inventory is empty!")
+            await ctx.send(await _(ctx, "This inventory is empty!"))
             return
 
         fmap = map(lambda x: f"{x[0]} x{x[1]}", inv.items())
@@ -62,7 +63,7 @@ class Inventory(object):
         for member in members:
             await self.bot.di.take_items(member, (item, num))
 
-        await ctx.send("Items taken!")
+        await ctx.send(await _(ctx, "Items taken!"))
 
     @checks.mod_or_permissions()
     @commands.command()
@@ -74,14 +75,14 @@ class Inventory(object):
 
         items = await self.bot.di.get_guild_items(ctx.guild)
         if item not in items:
-            await ctx.send("That is not a valid item!")
+            await ctx.send(await _(ctx, "That is not a valid item!"))
             return
 
         num = abs(num)
         for member in members:
             await self.bot.di.give_items(member, (item, num))
 
-        await ctx.send("Items given!")
+        await ctx.send(await _(ctx, "Items given!"))
 
     @commands.command()
     @checks.no_pm()
@@ -96,9 +97,9 @@ class Inventory(object):
         try:
             await self.bot.di.take_items(ctx.author, *fitems)
             await self.bot.di.give_items(other, *fitems)
-            await ctx.send(f"Successfully gave {other} {items}")
+            await ctx.send((await _(ctx, "Successfully gave {} {}")).format(other, items))
         except:
-            await ctx.send("You do not have enough to give away!")
+            await ctx.send(await _(ctx, "You do not have enough to give away!"))
 
     @commands.command()
     @checks.no_pm()
@@ -120,12 +121,12 @@ class Inventory(object):
             items = await self.bot.di.get_guild_items(ctx.guild)
             msg = items.get(item).meta['used']
             if msg is None:
-                await ctx.send("This item is not usable!")
+                await ctx.send(await _(ctx, "This item is not usable!"))
             else:
                 await ctx.send(msg)
-                await ctx.send(f"Used {number} {item}s")
+                await ctx.send((await _(ctx, "Used {} {}s")).format(number, item))
         except:
-            await ctx.send("You do not have that many to use!")
+            await ctx.send(await _(ctx, "You do not have that many to use!"))
 
     @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=['lb'])
@@ -141,7 +142,7 @@ class Inventory(object):
             fmt = "{0}: {1:.2f}%"
             for box, data in boxes.items():
                 total = sum(data["items"].values())
-                value = "Cost: {}\n\t".format(data["cost"]) + "\n\t".join(
+                value = "{}: {}\n\t".format(await _(ctx, "cost"), data["cost"]) + "\n\t".join(
                     fmt.format(item, (value / total) * 100) for item, value in data["items"].items())
                 embed.add_field(name=box,
                                 value=value)
@@ -150,7 +151,7 @@ class Inventory(object):
 
             await ctx.send(embed=embed)
         else:
-            await ctx.send("No current lootboxes")
+            await ctx.send(await _(ctx, "No current lootboxes"))
 
     @checks.no_pm()
     @checks.mod_or_permissions()
@@ -164,7 +165,7 @@ class Inventory(object):
 
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
         if name in boxes:
-            await ctx.send("Lootbox already exists, updating...")
+            await ctx.send(await _(ctx, "Lootbox already exists, updating..."))
 
         winitems = {}
         for item in items:
@@ -175,9 +176,9 @@ class Inventory(object):
             boxes[name] = dict(cost=cost, items=winitems)
 
         if isinstance(cost, str):
-            await ctx.send(f"Lootbox {name} successfully created and requires one {cost} to open.")
+            await ctx.send((await _(ctx, "Lootbox {} successfully created and requires one {} to open.")).format(name, cost))
         else:
-            await ctx.send(f"Lootbox {name} successfully created and requires ${cost} to open")
+            await ctx.send((await _(ctx, "Lootbox {} successfully created and requires ${} to open")).format(name, cost))
         await self.bot.di.update_guild_lootboxes(ctx.guild, boxes)
 
     @checks.no_pm()
@@ -188,7 +189,7 @@ class Inventory(object):
         try:
             box = boxes[name]
         except KeyError:
-            await ctx.send("That is not a valid lootbox")
+            await ctx.send(await _(ctx, "That is not a valid lootbox"))
             return
 
         cost = box["cost"]
@@ -196,13 +197,13 @@ class Inventory(object):
             try:
                 await self.bot.di.take_items(ctx.author, (cost, 1))
             except ValueError:
-                await ctx.send(f"You do not have 1 {cost}")
+                await ctx.send((await _(ctx, "You do not have 1 {}")).format(cost))
                 return
         else:
             try:
                 await self.bot.di.add_eco(ctx.author, -cost)
             except ValueError:
-                await ctx.send("You cant afford this box")
+                await ctx.send(await _(ctx, "You cant afford this box"))
                 return
 
         winitems = []
@@ -211,7 +212,7 @@ class Inventory(object):
 
         result = choice(winitems)
         await self.bot.di.give_items(ctx.author, (result, 1))
-        await ctx.send("You won a(n) {}".format(result))
+        await ctx.send((await _(ctx, "You won a(n) {}")).format(result))
 
     @checks.no_pm()
     @lootbox.command(name="delete", aliases=["remove"])
@@ -220,7 +221,7 @@ class Inventory(object):
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
         if name in boxes:
             del boxes[name]
-            await ctx.send("Lootbox removed")
+            await ctx.send(await _(ctx, "Lootbox removed"))
             await self.bot.di.update_guild_lootboxes(ctx.guild, boxes)
         else:
-            await ctx.send("Invalid loot box")
+            await ctx.send(await _(ctx, "Invalid loot box"))
