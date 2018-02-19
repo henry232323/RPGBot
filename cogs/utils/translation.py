@@ -24,9 +24,13 @@ async def _(ctx, translation):
     gd = await ctx.bot.db.get_guild_data(ctx.guild)
     lang = gd.get("lang", "en")
     currency = gd.get("currency", "$")
-    if currency != "$":
-        translation = translation.replace("$", currency)
     if lang == "en":
         return translation
 
-    return ctx.bot.translations[translation][lang]
+    try:
+        translation = ctx.bot.translations[translation][lang]
+        if currency != "$":
+            translation = translation.replace("$", currency)
+        return translation
+    except:
+        return translation

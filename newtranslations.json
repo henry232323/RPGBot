@@ -245,5 +245,188 @@
   },
   "Nobody bid and had enough money to pay for it!": {
     "fr": "Personne n'a enchéri"
+  },
+  "User does not have a guild!": {
+    "fr": "L'utilisateur n'a pas une guilde !"
+  },
+  "That guild doesn't exist here!": {
+    "fr": "Cette guilde n'existe pas ici !"
+  },
+  "\nAnd {} more...": {
+    "fr": "\nEt {} plus..."
+  },
+  "This guild doesn't have a description": {
+    "fr": "Cette guilde n'a pas une description !"
+  },
+  "Open": {
+    "fr": "Ouvert"
+  },
+  "Bank Balance": {
+    "fr": "Solde Bancaire"
+  },
+  "Members": {
+    "fr": "Membres"
+  },
+  "Items": {
+    "fr": "Items"
+  },
+  "None": {
+    "fr": "Aucun"
+  },
+  "No guilds to display.": {
+    "fr": "Aucun guild pour "
+  },
+  "Server Guilds": {
+    "fr": "Guildes du Serveur"
+  },
+  "Owner: {}\nMembers: {}\nOpen: {}": {
+    "fr": "{}\nMembres: {}\nOuvert: {}"
+  },
+  "You're already in a guild! Leave this guild to create a new one": {
+    "fr": "Vous etez deja dans une guilde ! Quittez cette guilde pour creer une nouvelle !"
+  },
+  "A guild with this name already exists!": {
+    "fr": "Une guilde avec ce nom existe encore !"
+  },
+  "You already own a guild!": {
+    "fr": "Vous avez deja une guilde !"
+  },
+  "'cancel' or 'skip' to cancel creation or skip a step": {
+    "fr": "'cancel' ou 'skip' pour annuler ou passer un pas"
+  },
+  "Describe the Guild (guild description)": {
+    "fr": "Decrivez la guilde (description de la guilde)"
+  },
+  "Is this guild open to everyone? Or is an invite necessary? (yes or no, no is assumed)": {
+    "fr": "Est-ce que la guilde est ouverte a tout le monde ? Ou est-ce qu'on a besoin d'une invitation ? (yes (oui) ou no (non), non est assumé)"
+  },
+  "If you'd like give a URL to an image for the guild": {
+    "fr": "Si vous voulez, donnez un URL a une image pour la guilde"
+  },
+  "That isn't a valid URL!": {
+    "fr": "Ce n'est pas un URL valide !"
+  },
+  "Finally, you can also set an icon for the guild": {
+    "fr": "Finalement, vous pouvez aussi fixer une icône pour la guilde"
+  },
+  "Guild successfully created!": {
+    "fr": "Guilde créée avec succis !"
+  },
+  "You're already in a guild! Leave this guild to join a new one": {
+    "fr": "Vous etes deja dans une guilde ! Quittez cette guilde pour rejoindre une nouvelle !"
+  },
+  "That guild doesnt exist!": {
+    "fr": "Cette guilde n'existe pas !"
+  },
+  "This guild is closed and you don't have an invite!": {
+    "fr": "Cette guilde est fermée et vous n'avez pas une invitation !"
+  },
+  "Guild joined!": {
+    "fr": "Guilde rejoint !"
+  },
+  "You aren't in a guild!": {
+    "fr": "Vous n'etes pas dans une guilde !"
+  },
+  "Guild will be deleted is this alright? {yes / no}": {
+    "fr": "Guilde sera supprimée, est-ce que ça va ? {yes (oui) / no (non)}"
+  },
+  "Deleting!": {
+    "fr": "Supprimée !"
+  },
+  "Guild left.": {
+    "fr": "Vous avez quitté la guilde."
+  },
+  "You do not own this guild!": {
+    "fr": "Vous ne possede pas la guilde !"
+  },
+  "User isn't in this guild!": {
+    "fr": "L'utilisateur n'est pas dans cette guilde !"
+  },
+  "User kicked": {
+    "fr": "Utilisateur botté"
+  },
+  "Sent a guild invite to {}": {
+    "fr": "Envoyé une invitation guilde a {}"
+  },
+  "Are you sure you want to delete the guild? {yes/no}": {
+    "fr": "Etes-vous sur que vous veuillez le supprimer ?"
+  },
+  "Alright then!": {
+    "fr": "Très bien alors!"
+  },
+  "Guild removed!": {
+    "fr": "Guilde supprimée !"
+  },
+  "You don't have enough to deposit!": {
+    "fr": "Vous n'avez pas assez pour déposer"
+  },
+  "Successfully deposited ${} into {}'s bank": {
+    "fr": "${} déposé dans la banque de {} avec succis !"
+  },
+  "Only mods can withdraw money!": {
+    "fr": "Seulement les modos peuvent retirer d'argent !"
+  },
+  "Cannot withdraw more than the guild has!": {
+    "fr": "Vous ne pouvez pas retirer plus que la guilde a !"
+  },
+  "Successfully withdrew ${}": {
+    "fr": "Vous avez retiré ${} avec succis !"
+  },
+  "Only the guild owner can add mods": {
+    "fr": "Seulement le propriateur de la guilde peut ajouter des modos !"
+  },
+  "{} couldn't be added! Not in guild!": {
+    "fr": "{} ne pouvait pas etre ajouté ! Pas dans une guilde !"
+  },
+  "Successfully added mods!": {
+    "fr": "Modos ajoutés avec succis !"
+  },
+  "You don't have enough to give!": {
+    "fr": "Vous n'avez pas assez pour donner"
+  },
+  "Successfully deposited items!": {
+    "fr": "Items deposés avec succis !"
+  },
+  "Only mods can withdraw items!": {
+    "fr": "Seulement les modos peuvent retirer des items !"
+  },
+  "The guild does not have enough items to take!": {
+    "fr": "La guilde n'a pas assez items pour retirer !"
+  },
+  "Successfully withdrew items": {
+    "fr": "Items retirés avec succis !"
+  },
+  "Only the owner can toggle this!": {
+    "fr": "Seulement le propriateur peut le basculer"
+  },
+  "Guild is now {}": {
+    "fr": "La guilde est maintenant {}"
+  },
+  "open": {
+    "fr": "ouverte"
+  },
+  "closed": {
+    "fr": "fermée"
+  },
+  "Only guild mods may set this!": {
+    "fr": "Seulement les modos peuvent le fixer !"
+  },
+  "Updated guild icon url!": {
+    "fr": "Vous avez mis(e) à jour l'URL de l'icone !"
+  },
+  "Updated guild image url!": {
+    "fr": "Vous avez mis(e) à jour l'URL de l'image !"
+  },
+  "Updated guild's description!": {
+    "fr": "Vous avez mis(e) à jour la description de la guilde !"
+  },
+  "Successfully transferred ownership": {
+    "fr": "Vous avez transféré la posession de la guilde !"
+  },
+  "yes": {
+    "fr": "oui"
+  },
+  "no": {
+    "fr": "non"
   }
 }
