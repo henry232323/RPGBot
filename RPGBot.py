@@ -90,7 +90,7 @@ class Bot(commands.AutoShardedBot):
 
         with open("newtranslations.json") as trf:
             self.translations = json.loads(trf.read())
-        self.languages = ["en", "fr", "de"]
+        self.languages = ["en", "fr", "de", "ru"]
 
         icogs = [
             cogs.admin.Admin(self),
@@ -139,12 +139,6 @@ class Bot(commands.AutoShardedBot):
             await response.read()
 
         self.loop.call_later(14400, lambda: asyncio.ensure_future(self.update_stats()))
-
-    async def on_message(self, message):
-        if message.author.bot:
-            return
-
-        await self.process_commands(message)
 
     async def on_command(self, ctx):
         self.stats.increment("RPGBot.commands", tags=["RPGBot:commands"], host="scw-8112e8")
