@@ -61,34 +61,43 @@
   },
   "Describe the character (Relevant character sheet) (Say `done` when you're done describing)": {
     "fr": "Décrivez le personnage (Fiche du personnage relevant) (Dites `done` quand vous-êtes finis)", 
-    "ru": " Опишите персонажа (Внешность, характер) ( Скажите 'done' , когда закончите описание"
+    "ru": " Опишите персонажа (Внешность, характер) (Скажите 'done' , когда закончите описание)"
   },
   "What level is the character?": {
-    "fr": "Quel est le niveau du personnage ?"
+    "fr": "Quel est le niveau du personnage ?",
+    "ru": "Какого уровня выш персонаж?"
   },
   "Any additional info? (Add a character image using the image keyword. Formats use regular syntax i.e `image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)": {
-    "fr": "Information supplémentaire ? (Ajouter une image au personnage avec le mot-clé `image`, avec la syntaxe suivante : `image: http://image.com/image.jpg, cheveux: bruns` (Separer les mot-clés avec des virgules ou de nouvelles lignes)"
+    "fr": "Information supplémentaire ? (Ajouter une image au personnage avec le mot-clé `image`, avec la syntaxe suivante : `image: http://image.com/image.jpg, cheveux: bruns` (Separer les mot-clés avec des virgules ou de nouvelles lignes)",
+    "ru": "Дополнительна информация.(Добавьте персонажу картинку используя команды: 'image: http://image.com/image.jpg, hair_color:Темные волосы,nickname:Кевин' (Разделяйте команды запятыми)"
   },
   "Cancelling!": {
-    "fr": "Annulant !"
+    "fr": "Annulant !",
+    "ru": "Закрыто!"
   },
   "Skipping!": {
-    "fr": "Passant !"
+    "fr": "Passant !",
+    "ru": "Пропущено!"
   },
   "Character created! rp!team addmember to add to your characters team!": {
-    "fr": "Personnage créé ! Effectuez `rp!team addmember` pour ajouter des personnages à votre équipe !"
+    "fr": "Personnage créé ! Effectuez `rp!team addmember` pour ajouter des personnages à votre équipe !",
+    "ru": "Персонаж создан! Если хотите добавить персонажа в команду, используете rp!team addmember"
   },
   "That character doesn't exist!": {
-    "fr": "Ce personnage n'existe pas !"
+    "fr": "Ce personnage n'existe pas !",
+    "ru": "Персонаж не существует!"
   },
   "You do not own this character!": {
-    "fr": "Vous n'êtes pas le propriétaire de ce personnage !"
+    "fr": "Vous n'êtes pas le propriétaire de ce personnage !",
+    "ru": "Вы не владелец этого персонажа!"
   },
   "Character deleted": {
-    "fr": "Personnage supprimé"
+    "fr": "Personnage supprimé",
+    "ru": "Персонаж удален"
   },
   "Invalid formatting! Try again": {
-    "fr": "Syntaxe invalide !"
+    "fr": "Syntaxe invalide !",
+    "ru": "Не правильный формат, попробуй снова"
   },
   "That is not a valid item! Try again": {
     "fr": "Ce item n'existe pas !"
