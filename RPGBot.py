@@ -279,9 +279,9 @@ class Bot(commands.AutoShardedBot):
         await self.webapp.start('0.0.0.0', 1441)
 
 
-prefix = ['rp!', 'pb!', '<@305177429612298242> '] if "debug" not in sys.argv else 'rp$'
+prefix = ['rp!', 'pb!', '<@305177429612298242> ', '*', '$'] if "debug" not in sys.argv else 'rp$'
 invlink = "https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=322625"
-servinv = "https://discord.gg/UYJb8fQ"
+servinv = "https://discord.gg/UYJb8fQ" //Uppdate link
 sourcelink = "https://github.com/henry232323/RPGBot"
 description = f"A Bot for assisting with RPG made by Henry#6174," \
               " with a working inventory, market and economy," \
