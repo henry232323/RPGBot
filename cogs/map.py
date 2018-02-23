@@ -32,12 +32,12 @@ class Mapping:
     async def map(self, ctx, name: str):
         """See the server map"""
         #
-        #map = await self.bot.di.get_map(ctx.guild, name)
-        #if map is None:
+        # map = await self.bot.di.get_map(ctx.guild, name)
+        # if map is None:
         #    await ctx.send("This server has no map of that name!")
         #    return
 
-        #await ctx.send(f"{map.tiles}\n" + "\n".join(f"{i}: {item}" for i, item in enumerate(map.generators)))
+        # await ctx.send(f"{map.tiles}\n" + "\n".join(f"{i}: {item}" for i, item in enumerate(map.generators)))
 
     # Character meta has a "maps" key possibly, that will contain co-ords
     # "maps": {"Default": (0,0), "Moon": (32, 16)}
@@ -66,7 +66,8 @@ class Mapping:
                 if xmax > 256 or ymax > 256:
                     if level > 5:
                         if xmax > 512 or ymax > 512:
-                            await ctx.send(await _(ctx, "You may not make maps greater than 512x512 unless they are infinite!"))
+                            await ctx.send(
+                                await _(ctx, "You may not make maps greater than 512x512 unless they are infinite!"))
                             return
                     else:
                         await ctx.send(await _(ctx, "Only higher tier Patrons may make maps greater than 256x256"))
@@ -76,7 +77,7 @@ class Mapping:
         if -1 in (xmax, ymax):
             if level < 10:
                 await ctx.send(await _(ctx,
-                    "Infinite maps are reserved for certain Patrons! See https://www.patreon.com/henry232323"
+                                       "Infinite maps are reserved for certain Patrons! See https://www.patreon.com/henry232323"
                                        ))
                 return
             else:
@@ -84,30 +85,35 @@ class Mapping:
                 if ninfmaps >= 1:
                     if level < 15:
                         await ctx.send(await _(ctx,
-                            "You can only make one Infinite Map at this Patron level! Upgrade to make a second"
+                                               "You can only make one Infinite Map at this Patron level! Upgrade to make a second"
                                                ))
                         return
                     elif ninfmaps >= 2:
-                        await ctx.send(await _(ctx, "You cannot make more than 2 infinite maps! (Ask Henry if you really want it)"))
+                        await ctx.send(await _(ctx,
+                                               "You cannot make more than 2 infinite maps! (Ask Henry if you really want it)"))
 
         if len(maps) >= 3:
             level = self.bot.patrons.get(ctx.guild.id, 0)
             if len(maps) >= 5:
                 if len(maps) >= 10:
-                    await ctx.send(await _(ctx, "You cannot make more than 10 maps as of now! (Ask Henry if you really want it)"))
+                    await ctx.send(
+                        await _(ctx, "You cannot make more than 10 maps as of now! (Ask Henry if you really want it)"))
                     return
                 elif level < 5:
-                    await ctx.send(await _(ctx, "You cannot make more than 5 maps unless you are a higher level Patron!"))
+                    await ctx.send(
+                        await _(ctx, "You cannot make more than 5 maps unless you are a higher level Patron!"))
                     return
             elif level < 1:
-                await ctx.send(await _(ctx, "Only Patrons may make more than 3 maps! See https://www.patreon.com/henry232323"))
+                await ctx.send(
+                    await _(ctx, "Only Patrons may make more than 3 maps! See https://www.patreon.com/henry232323"))
                 return
 
             await ctx.send(await _(ctx, "You can not have more than 3 maps unless you are a Patron! (For now)"))
             return
 
-        await ctx.send(await _(ctx, "What available tiles will there be? Say `done` when done. Use the * tile to describe all tiles "
-                       "when adding what will spawn. One at a time send the name of the tile. i.e. grassland"))
+        await ctx.send(await _(ctx,
+                               "What available tiles will there be? Say `done` when done. Use the * tile to describe all tiles "
+                               "when adding what will spawn. One at a time send the name of the tile. i.e. grassland"))
 
         generators = []
         spawners = {}
@@ -122,9 +128,9 @@ class Mapping:
             elif tile != "*":
                 generators.append(tile)
             await ctx.send(await _(ctx,
-                "What things might spawn in those tiles? Split terms with commas. (Equal chance of each, repeat a term "
-                "for greater chance) `skip` to skip"
-            ))
+                                   "What things might spawn in those tiles? Split terms with commas. (Equal chance of each, repeat a term "
+                                   "for greater chance) `skip` to skip"
+                                   ))
             msg = await self.bot.wait_for("message", check=check, timeout=60)
             if msg.content.lower() == "skip":
                 continue
@@ -160,7 +166,8 @@ class Mapping:
                 if xsize > 256 or ysize > 256:
                     if level > 5:
                         if xsize > 512 or ysize > 512:
-                            await ctx.send(await _(ctx, "You may not make maps greater than 512x512 unless they are infinite!"))
+                            await ctx.send(
+                                await _(ctx, "You may not make maps greater than 512x512 unless they are infinite!"))
                             return
                     else:
                         await ctx.send(await _(ctx, "Only higher tier Patrons may make maps greater than 256x256"))
@@ -170,17 +177,21 @@ class Mapping:
         if len(maps) >= 3:
             if len(maps) >= 5:
                 if len(maps) >= 10:
-                    await ctx.send(await _(ctx, "You cannot make more than 10 maps as of now! (Ask Henry if you really want it)"))
+                    await ctx.send(
+                        await _(ctx, "You cannot make more than 10 maps as of now! (Ask Henry if you really want it)"))
                     return
                 elif level < 5:
-                    await ctx.send(await _(ctx, "You cannot make more than 5 maps unless you are a higher level Patron!"))
+                    await ctx.send(
+                        await _(ctx, "You cannot make more than 5 maps unless you are a higher level Patron!"))
                     return
             elif level < 1:
-                await ctx.send(await _(ctx, "Only Patrons may make more than 3 maps! See https://www.patreon.com/henry232323"))
+                await ctx.send(
+                    await _(ctx, "Only Patrons may make more than 3 maps! See https://www.patreon.com/henry232323"))
                 return
 
-        await ctx.send(await _(ctx, "What available tiles will there be? Say `done` when done. Use the * tile to describe all tiles "
-                       "when adding what will spawn. One at a time send the name of the tile. i.e. grassland"))
+        await ctx.send(await _(ctx,
+                               "What available tiles will there be? Say `done` when done. Use the * tile to describe all tiles "
+                               "when adding what will spawn. One at a time send the name of the tile. i.e. grassland"))
 
         generators = []
         spawners = {}
@@ -195,9 +206,9 @@ class Mapping:
             elif tile != "*":
                 generators.append(tile)
             await ctx.send(await _(ctx,
-                "What things might spawn in those tiles? Split terms with commas. (Equal chance of each, repeat a term "
-                "for greater chance) `skip` to skip"
-            ))
+                                   "What things might spawn in those tiles? Split terms with commas. (Equal chance of each, repeat a term "
+                                   "for greater chance) `skip` to skip"
+                                   ))
             msg = await self.bot.wait_for("message", check=check, timeout=60)
             if msg.content.lower() == "skip":
                 continue
@@ -493,10 +504,12 @@ class Mapping:
                     await ctx.send(choice(sp["say"]).replace("{player}", str(ctx.author)))
                 if "give" in sp:
                     await self.bot.di.give_items(ctx.author, *sp["give"])
-                    await ctx.send((await _(ctx, "You acquired {}")).format(", ".join(f"{it}x{ni}" for it, ni in sp["give"].items())))
+                    await ctx.send((await _(ctx, "You acquired {}")).format(
+                        ", ".join(f"{it}x{ni}" for it, ni in sp["give"].items())))
                 if "shop" in sp:
                     await ctx.send((await _(ctx,
-                        "This tile has a shop that sells: {}")).format(f"\n{it}: {ni}" for it, ni in sp["shop"].items()))
+                                            "This tile has a shop that sells: {}")).format(
+                        f"\n{it}: {ni}" for it, ni in sp["shop"].items()))
 
     @map.command()
     @checks.no_pm()
@@ -650,7 +663,8 @@ class Mapping:
                 if xsize > 256 or ysize > 256:
                     if level > 5:
                         if xsize > 512 or ysize > 512:
-                            await ctx.send(await _(ctx, "You may not make maps greater than 512x512 unless they are infinite!"))
+                            await ctx.send(
+                                await _(ctx, "You may not make maps greater than 512x512 unless they are infinite!"))
                             return
                     else:
                         await ctx.send(await _(ctx, "Only higher tier Patrons may make maps greater than 256x256"))
@@ -660,13 +674,16 @@ class Mapping:
         if len(maps) >= 3:
             if len(maps) >= 5:
                 if len(maps) >= 10:
-                    await ctx.send(await _(ctx, "You cannot make more than 10 maps as of now! (Ask Henry if you really want it)"))
+                    await ctx.send(
+                        await _(ctx, "You cannot make more than 10 maps as of now! (Ask Henry if you really want it)"))
                     return
                 elif level < 5:
-                    await ctx.send(await _(ctx, "You cannot make more than 5 maps unless you are a higher level Patron!"))
+                    await ctx.send(
+                        await _(ctx, "You cannot make more than 5 maps unless you are a higher level Patron!"))
                     return
             elif level < 1:
-                await ctx.send(await _(ctx, "Only Patrons may make more than 3 maps! See https://www.patreon.com/henry232323"))
+                await ctx.send(
+                    await _(ctx, "Only Patrons may make more than 3 maps! See https://www.patreon.com/henry232323"))
                 return
 
         fullmap = AdvancedMap(mapspace, mapdata["generators"], mapdata["spawners"], mapdata["spawnables"],
