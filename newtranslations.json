@@ -92,7 +92,7 @@
   },
   "Character deleted": {
     "fr": "Personnage supprimé",
-    "ru": "Персонаж удален"
+    "ру": "Персонаж удален",
   },
   "Invalid formatting! Try again": {
     "fr": "Syntaxe invalide !",
@@ -100,18 +100,23 @@
   },
   "That is not a valid item! Try again": {
     "fr": "Ce item n'existe pas !"
+    "ru": "Этот товар не существует!"
   },
   "Character edited!": {
     "fr": "Personnage modifié"
+    "ru": "Персонаж изменён!"
   },
   "has": {
     "fr": "a"
+    "ru": " "
   },
   "Balances changed": {
     "fr": "Solde changé"
+    "ру": "Баланс изменён"
   },
   "Money given": {
     "fr": "Argent donné"
+    "ru": "Денги выданы"
   },
   "Successfully paid ${} to {}": {
     "fr": "Payé ${} à {} avec succès"
@@ -127,27 +132,34 @@
   },
   "ID": {
     "fr": "ID"
+    "ru": "ID"
   },
   "COST": {
     "fr": "COÛT"
   },
   "NUMBER": {
     "fr": "NOMBRE"
+    "ru": "Число"
   },
   "ITEM": {
     "fr": "ITEM"
+    "ru": "Вещь"
   },
   "SELLER": {
     "fr": "VENDEUR"
+    "ru": "Продавец"
   },
   "Timed out! Try again": {
     "fr": "Fin du temps! Réessayer"
+    "ru": "Время истекло! Повторите попытку..."
   },
   "You don't have enough of these to sell!": {
     "fr": "Vous n'avez pas assez à vendre"
+    "ru": "Вы не имеете достаточно для продажи!"
   },
   "Item listed!": {
     "fr": "Item listé!"
+    "ru": "Вещь добавлен в лист!"
   },
   "That is not a valid ID!": {
     "fr": "Ce n'est pas un ID valide"
@@ -448,9 +460,11 @@
   },
   "yes": {
     "fr": "oui"
+    "ru": "да"
   },
   "no": {
     "fr": "non"
+    "ru": "нет"
   },
   "This inventory is empty!": {
     "fr": "Cette inventaire est vide !"
@@ -463,6 +477,7 @@
   },
   "Items given!": {
     "fr": "Items donnés !"
+    "ru": "Вещь выдана!"
   },
   "Successfully gave {0} {1}": {
     "fr": "Vous avez donné {1} {0} avec succis !"
@@ -568,9 +583,11 @@
   },
   "Map created!": {
     "fr": "Carte créé !"
+    "ru": "Карта сгенерированна"
   },
   "Map {} successfully deleted.": {
     "fr": "Carte {} supprimé avec succis."
+    "ru": "Карта {} успешно удалилась"
   },
   "This map does not exist!": {
     "fr": "Cette carte n'existe pas !"
