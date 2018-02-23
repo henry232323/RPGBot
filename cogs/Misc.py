@@ -75,21 +75,21 @@ class Misc(object):
                         if len(die) <= 5:
                             add.append(int(die))
                         else:
-                            await ctx.send(die + " is too big a number!")
+                            await ctx.send("{} is too big a number!".format(die))
                             return
                     except:
                         if die.startswith((">", "<")):
                             rel = die
                             _dir = rel.strip("<>")
                             if len(_dir) > 5:
-                                await ctx.send(_dir + " is too big a number!")
+                                await ctx.send("{} is too big a number!".format(_dir))
                                 return
                             val = int(_dir)
                             type = rel[0]
                         elif die.startswith("^"):
                             _cur = die.strip("^")
                             if len(_cur) > 5:
-                                await ctx.send(_cur + " is too big a number!")
+                                await ctx.send("{} is too big a number!".format(_cur))
                                 return
                             pp = int(_cur)
 
@@ -116,16 +116,16 @@ class Misc(object):
                     else:
                         succ = "failed"
 
-                fmt = "Roll **{0}** ({1} {2} {3}) ([{4}] + {5})" if add else "Roll **{0}** ({1} {2} {3}) ([{4}])"
+                fmt = "{roll} **{0}** ({1} {2} {3}) ([{4}] + {5})" if add else "{roll} **{0}** ({1} {2} {3}) ([{4}])"
                 all = "] + [".join(" + ".join(map(lambda x: str(x), roll)) for roll in rolls.values())
-                msg = fmt.format(succ, total, type, val, all, " + ".join(map(lambda x: str(x), add)))
+                msg = fmt.format(succ, total, type, val, all, " + ".join(map(lambda x: str(x), add)), roll=await _(ctx, "Roll"))
             else:
-                fmt = "Rolled **{0}** ([{1}] + {2})" if add else "Rolled **{0}** ([{1}])"
+                fmt = "{roll} **{0}** ([{1}] + {2})" if add else "{roll} **{0}** ([{1}])"
                 all = "] + [".join(" + ".join(map(lambda x: str(x), roll)) for roll in rolls.values())
-                msg = fmt.format(total, all, " + ".join(map(lambda x: str(x), add)))
+                msg = fmt.format(total, all, " + ".join(map(lambda x: str(x), add)), roll=await _(ctx, "Roll"))
 
             if pp:
-                msg += f" (Grabbed top {pp} out of {len(s) + pp})"
+                msg += " (Grabbed top {} out of {})".format(pp, len(s) + pp)
 
             await ctx.send(msg)
         except Exception as e:
@@ -169,7 +169,7 @@ class Misc(object):
         embed.add_field(name="Unique Members", value='{}'.format(len(unique_members)))
         embed.add_field(name="Channels", value='{} text channels, {} voice channels'.format(text, voice))
         embed.add_field(name="Shards",
-                        value=f'Currently running {ctx.bot.shard_count} shards. This server is on shard {getattr(ctx.guild, "shard_id", 0)}')
+                        value='Currently running {} shards. This server is on shard {}'.format(ctx.bot.shard_count, getattr(ctx.guild, "shard_id", 0)))
 
         a = monotonic()
         await (await ctx.bot.shards[getattr(ctx.guild, "shard_id", 0)].ws.ping())

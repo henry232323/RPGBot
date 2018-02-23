@@ -601,5 +601,102 @@
   },
   "This file is too large!": {
     "fr": "Cette fichier est trop grande !"
+  },
+  "Too many dice! Cant roll that many!": {
+    "fr": "Trop de dés! Vous ne pouvez pas rouler autant!"
+  },
+  "That die has much too many sides!": {
+    "fr": "Ce dé a beaucoup trop de côtés!"
+  },
+  "{} is too big a number!": {
+    "fr": "{} est trop grand un chiffre"
+  },
+  "suceeded": {
+    "fr": "a réussi !"
+  },
+  "failed": {
+    "fr": "a échoué"
+  },
+  " (Grabbed top {} out of {})": {
+    "fr": " (Pris le top {} sur {})"
+  },
+  "Invalid syntax!": {
+    "fr": "Syntax invalide !"
+  },
+  "Author": {
+    "fr": "Autour"
+  },
+  "Library": {
+    "fr": "Libraire"
+  },
+  "Uptime": {
+    "fr": "Uptime"
+  },
+  "Servers": {
+    "fr": "Serveurs"
+  },
+  "Commands Run": {
+    "fr": "Commandes Exécuté"
+  },
+  "{} servers": {
+    "fr": "{} serveurs"
+  },
+  "{} commands": {
+    "fr": "{} commandes"
+  },
+  "Total Members": {
+    "fr": "Membres en Totale"
+  },
+  "Unique Members": {
+    "fr": "Membres Uniques"
+  },
+  "{} ({} online)": {
+    "fr": "{} ({} en ligne)"
+  },
+  "Channels": {
+    "fr": "Channels"
+  },
+  "{} text channels, {} voice channels": {
+    "fr": "{} channels de texte, {} channels de voix"
+  },
+  "Shards": {
+    "fr": "Shards"
+  },
+  "Currently running {} shards. This server is on shard {}": {
+    "fr": "Actuellement courant {} shards. Ce serveur utilise shard {}"
+  },
+  "CPU Percentage": {
+    "fr": "CPU Pourcentage"
+  },
+  "Memory Usage": {
+    "fr": "Utilisation de la Mémoire"
+  },
+  "Observed Events": {
+    "fr": "Événements Observés"
+  },
+  "Ping": {
+    "fr": "Ping"
+  },
+  "Source": {
+    "fr": "Source"
+  },
+  "Made with discord.py": {
+    "fr": "Fait utilisant discord.py"
+  },
+  "Could not find the command ": {
+    "fr": "La commande n'a pas pu être trouvée"
+  },
+  "{0.name} command has no subcommands": {
+    "fr": "{0.name} commande n'a aucune sous-commande"
+  },
+  "Keeping the bots running takes money, if several people would buy me a coffee each month, I wouldn't have to worry about it coming out of my pocket. If you'd like, you can donate to me here: https://ko-fi.com/henrys": {
+    "fr": "Pour garder les bots en en ligne prend de l'argent, si plusieurs personnes m'achetaient un café chaque mois, je n'aurais pas à m'inquiéter de le sortir de ma poche. Si vous le souhaitez, vous pouvez me faire un don ici: https://ko-fi.com/henrys"
+  },
+  "That is not a valid language!": {
+    "fr": "Ce n'est pas une langage valide !"
+  },
+  "Currency successfully set!": {
+    "fr": "Devise fixée avec succis !"
   }
+
 }
