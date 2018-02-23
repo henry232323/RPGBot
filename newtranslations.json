@@ -13,11 +13,11 @@
     "fr": "Aucun personnage à afficher",
     "de": "Keine Charaktere anzeigbar",
     "ru": "Нет персонажей для показа"
-
   },
+
   "Character {} does not exist!": {
     "fr": "Personnage {} n'existe pas",
-    "de": "Dieser Charakter existiert nicht",
+    "de": "Charakter {} existiert nicht",
     "ru": "Персонаж {} не существует"
   },
   "Name": {
@@ -29,7 +29,6 @@
     "fr": "Propriétaire",
     "de": "Eigenschaften",
     "ru": "Владелец"
-
   },
   "Level": {
     "fr": "Niveau",
@@ -509,5 +508,98 @@
   },
   "Invalid loot box": {
     "fr": "Ce lootbox est invalide !"
+  },
+  "x or y cannot exceed 64 and must be at least 2!": {
+    "fr": "l'x ou l'y ne peux pas dépassent 64 et doivent etre au moins 2 !"
+  },
+  "xmax must be at least 2 or be -1!": {
+    "fr": "xmax doit etre au moins 2 ou etre -1 !"
+  },
+  "ymax must be at least 2 or be -1!": {
+    "fr": "ymax doit etre au moins 2 ou etre -1 !"
+  },
+  "Only Patrons may make maps larger than 64x64 tiles!": {
+    "fr": "Seulement les Patrons peuvent faire les cartes plus grandes que 64x64 tuiles"
+  },
+  "You may not make maps greater than 512x512 unless they are infinite!": {
+    "fr": "Vous ne pouvez pas faire les cartes plus grandes que 512x512 sauf s'ils sont infinies !"
+  },
+  "Only higher tier Patrons may make maps greater than 256x256": {
+    "fr": "Seulement les Patrons a un niveau supérieur peuvent faire les cartes plus grandes que 256x256"
+  },
+  "Infinite maps are reserved for certain Patrons! See https://www.patreon.com/henry232323": {
+    "fr": "Les Cartes infinies sont réservé pour les Patrons certains ! Voyez https://www.patreon.com/henry232323"
+  },
+  "You can only make one Infinite Map at this Patron level! Upgrade to make a second": {
+    "fr": "Vous ne pouvez faire qu'une carte infinie a ce niveau de Patronage ! Mettez à jour pour faire un second"
+  },
+  "You cannot make more than 2 infinite maps! (Ask Henry if you really want it)": {
+    "fr": "Vous ne pouvez pas faire plus que 2 cartes infinies ! (Demandez a Henry si vous le voulez vraiment)"
+  },
+  "You cannot make more than 10 maps as of now! (Ask Henry if you really want it)": {
+    "fr": "Vous ne pouvez pas faire plus que 10 cartes infinies ! (Demandez a Henry si vous le voulez vraiment)"
+  },
+  "You cannot make more than 5 maps unless you are a higher level Patron!": {
+    "fr": "Seulement les Patrons a un niveau supérieur peuvent faire plus que 5 cartes !"
+  },
+  "Only Patrons may make more than 3 maps! See https://www.patreon.com/henry232323": {
+    "fr": "Seulement les Patrons peuvent faire plus que 5 cartes ! Voyez https://www.patreon.com/henry232323"
+  },
+  "You can not have more than 3 maps unless you are a Patron! (For now)": {
+    "fr": "Vous ne pouvez pas avoir plus que 3 cartes sauf si vous etes un Patron ! (Maintenant seulement)"
+  },
+  "What available tiles will there be? Say `done` when done. Use the * tile to describe all tiles when adding what will spawn. One at a time send the name of the tile. i.e. grassland": {
+    "fr": ""
+  },
+  "What kind of tile is it? Say `done` when done": {
+    "fr": "Quelle type de tuile est-elle ? Dites `done` quand vous etes finis(e)!"
+  },
+  "What things might spawn in those tiles? Split terms with commas. (Equal chance of each, repeat a term for greater chance) `skip` to skip": {
+    "fr": "Quel types de choses pourrait dans celles tuiles ? Séparez les termes avec des virgules. (Égalité de chance, repetez une terme pour une plus grande chance) `skip` pour passer"
+  },
+  "Map created with name {}": {
+    "fr": "Carte créé avec le nom {}"
+  },
+  "xsize must be at least 2!": {
+    "fr": "xsize doit etre au moins 2"
+  },
+  "ysize must be at least 2!": {
+    "fr": "ysize doit etre au moins 2"
+  },
+  "Map created!": {
+    "fr": "Carte créé !"
+  },
+  "Map {} successfully deleted.": {
+    "fr": "Carte {} supprimé avec succis."
+  },
+  "This map does not exist!": {
+    "fr": "Cette carte n'existe pas !"
+  },
+  "You can't move any further this direction, you've hit the border!": {
+    "fr": "Vous ne pouvez pas aller plus en cette direction, vous avez trouvé la frontière !"
+  },
+  "You cannot move any further in this direction!": {
+    "fr": "Vous ne pouvez pas aller plus en cette direction !"
+  },
+  "You enter a {}. You see {}": {
+    "fr": "Vous entrez un(e) {}. Vous voyez {}"
+  },
+  "You acquired {}": {
+    "fr": "Vous avez obtenu un(e) {}"
+  },
+  "This tile has a shop that sells: {}": {
+    "fr": "Cette tuile a un shop qui vends: {}"
+  },
+  "This shop sells no such item!": {
+    "fr": "Ce shop ne vend aucun article de ce type !"
+  },
+  "There is no shop here!": {
+    "fr": "Il n'y a pas un shop ici !"
+  },
+  "This command needs to have a file attached!": {
+    "fr": "Ce commande a besoin d'une fichier !"
+  },
+  "This file is too large!": {
+    "fr": "Cette fichier est trop grande !"
   }
 }
