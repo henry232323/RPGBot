@@ -103,15 +103,19 @@
   },
   "Character edited!": {
     "fr": "Personnage modifié"
+    "ru": "Персонаж отредактирован!"
   },
   "has": {
     "fr": "a"
+    "ru": " "
   },
   "Balances changed": {
     "fr": "Solde changé"
+    "ru": "Баланс установлен"
   },
   "Money given": {
     "fr": "Argent donné"
+    "ru": "Деньги выданы"
   },
   "Successfully paid ${} to {}": {
     "fr": "Payé ${} à {} avec succès"
@@ -127,27 +131,33 @@
   },
   "ID": {
     "fr": "ID"
+    "ru": "ID"
   },
   "COST": {
     "fr": "COÛT"
   },
   "NUMBER": {
     "fr": "NOMBRE"
+    "ru": "Число"
   },
   "ITEM": {
     "fr": "ITEM"
+    "ru": "Вещь"
   },
   "SELLER": {
     "fr": "VENDEUR"
+    "ru": "Продавец"
   },
   "Timed out! Try again": {
     "fr": "Fin du temps! Réessayer"
+    "ru": "Время вышло! Попробуйте ещё раз..."
   },
   "You don't have enough of these to sell!": {
     "fr": "Vous n'avez pas assez à vendre"
   },
   "Item listed!": {
     "fr": "Item listé!"
+    "ru": "Вещь в листе!"
   },
   "That is not a valid ID!": {
     "fr": "Ce n'est pas un ID valide"
@@ -175,6 +185,7 @@
   },
   "Lottery created!": {
     "fr": "Loterie créée"
+    "ru": "Лоттерея создана!"
   },
   "Lottery {} is now over!\n{} won {}! Congratulations!": {
     "fr": "Loterie {} c'est maintenant terminée!\n{} a gagné(e) {} ! Toutes nos félicitations !"
@@ -199,9 +210,11 @@
   },
   "Server Shop": {
     "fr": "Shop du Serveur"
+    "ru": "серверный магазин"
   },
   "Say 'cancel' to cancel or 'skip' to skip a step": {
     "fr": "Dites 'cancel' pour annuler, ou 'skip' pour passer un pas"
+    "ru": "Напишите *cancel* или *skip* для пропуска"
   },
   "How much should this be buyable for? 0 for not buyable": {
     "fr": "Pour combien devrait-il être achetable ? (0 pour non-achetable)"
@@ -223,12 +236,14 @@
   },
   "Guild shop updated": {
     "fr": "Shop actualisé"
+    "ru": "Магазин гильдии обнавлён"
   },
   "That item isn't listed!": {
     "fr": "Ce item n'est pas listé !"
   },
   "Successfully removed item": {
     "fr": "L'item a éte supprimé avec succès"
+    "ru": "Вы успешно удалите вещь"
   },
   "This item cannot be bought!": {
     "fr": "Ce item ne peut pas être acheté !"
@@ -283,15 +298,19 @@
   },
   "Open": {
     "fr": "Ouvert"
+    "ru": "Открыто"
   },
   "Bank Balance": {
     "fr": "Solde Bancaire"
+    "ru": "Баланс в банке"
   },
   "Members": {
     "fr": "Membres"
+    "ru": "Пользователи"
   },
   "Items": {
     "fr": "Items"
+    "ru": "Вещи"
   },
   "None": {
     "fr": "Aucun"
@@ -301,6 +320,7 @@
   },
   "Server Guilds": {
     "fr": "Guildes du Serveur"
+    "ru": "Гильдии на сервере"
   },
   "Owner: {}\nMembers: {}\nOpen: {}": {
     "fr": "{}\nMembres: {}\nOuvert: {}"
@@ -334,6 +354,7 @@
   },
   "Guild successfully created!": {
     "fr": "Guilde créée avec succis !"
+    "ru": "Гильдия успешна создана"
   },
   "You're already in a guild! Leave this guild to join a new one": {
     "fr": "Vous etes deja dans une guilde ! Quittez cette guilde pour rejoindre une nouvelle !"
@@ -346,6 +367,7 @@
   },
   "Guild joined!": {
     "fr": "Guilde rejoint !"
+    "ru": "Вы присоединились к гильдии"
   },
   "You aren't in a guild!": {
     "fr": "Vous n'etes pas dans une guilde !"
@@ -355,6 +377,7 @@
   },
   "Deleting!": {
     "fr": "Supprimée !"
+    "ru": "Удалено"
   },
   "Guild left.": {
     "fr": "Vous avez quitté la guilde."
@@ -367,6 +390,7 @@
   },
   "User kicked": {
     "fr": "Utilisateur botté"
+    "ru": "Игрок исключён"
   },
   "Sent a guild invite to {}": {
     "fr": "Envoyé une invitation guilde a {}"
@@ -379,6 +403,7 @@
   },
   "Guild removed!": {
     "fr": "Guilde supprimée !"
+    "ru": "Гильдия удалена"
   },
   "You don't have enough to deposit!": {
     "fr": "Vous n'avez pas assez pour déposer"
@@ -427,9 +452,11 @@
   },
   "open": {
     "fr": "ouverte"
+    "ru": "Открыт"
   },
   "closed": {
     "fr": "fermée"
+    "ru": "Закрыт"
   },
   "Only guild mods may set this!": {
     "fr": "Seulement les modos peuvent le fixer !"
@@ -448,9 +475,11 @@
   },
   "yes": {
     "fr": "oui"
+    "ru": "Да"
   },
   "no": {
     "fr": "non"
+    "ru": "Нет"
   },
   "This inventory is empty!": {
     "fr": "Cette inventaire est vide !"
@@ -603,3 +632,8 @@
     "fr": "Cette fichier est trop grande !"
   }
 }
+
+
+
+
+
