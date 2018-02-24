@@ -239,7 +239,7 @@
     "ru": "Напиши 'cancel' для закрытия или 'skip', чтобы пропустить шаг"
   },
   "How much should this be buyable for? 0 for not buyable": {
-    "fr": "Pour combien devrait-il être achetable ? (0 pour non-achetable)"
+    "fr": "Pour combien devrait-il être achetable ? (0 pour non-achetable)",
     "ru": "За сколько это можно купить? 0 если нельзя купить"
   },
   "That is not a valid number!": {
@@ -335,7 +335,7 @@
   },
   "\nAnd {} more...": {
     "fr": "\nEt {} plus...",
-    //"ru": "\nИ {} далее..."
+    "ru": "\nИ {} далее..."
   },
   "This guild doesn't have a description": {
     "fr": "Cette guilde n'a pas une description !",
@@ -343,7 +343,7 @@
   },
   "Open": {
     "fr": "Ouvert",
-    //"ru": "Открыто",
+    "ru": "Открыто",
   },
   "Bank Balance": {
     "fr": "Solde Bancaire",
@@ -351,7 +351,7 @@
   },
   "Members": {
     "fr": "Membres",
-    //"ru": "Члены"
+    "ru": "Члены"
   },
   "Items": {
     "fr": "Items",
@@ -359,7 +359,7 @@
   },
   "None": {
     "fr": "Aucun",
-    //"ru": "Никто"
+    "ru": "Никто"
   },
   "No guilds to display.": {
     "fr": "Aucun guild pour ",
