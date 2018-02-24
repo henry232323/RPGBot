@@ -394,7 +394,7 @@
     "ru": "Опиши гильдию"
   },
   "Is this guild open to everyone? Or is an invite necessary? (yes or no, no is assumed)": {
-    "fr": "Est-ce que la guilde est ouverte a tout le monde ? Ou est-ce qu'on a besoin d'une invitation ? (yes (oui) ou no (non), non est assumé)"
+    "fr": "Est-ce que la guilde est ouverte a tout le monde ? Ou est-ce qu'on a besoin d'une invitation ? (yes (oui) ou no (non), non est assumé)",
     "ru": "Эта гильдия для всех? Или необходимо приглащение? ('yes' да, 'no' нет, 'no is assumed' не принемаются)"
   },
   "If you'd like give a URL to an image for the guild": {
