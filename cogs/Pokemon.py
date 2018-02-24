@@ -86,7 +86,7 @@ class Pokemon(object):
                 pokemon["type"] = response.content
 
             await ctx.send("In any order, what are its stats? (level, health, attack, defense, spatk, spdef, speed)"
-                           "For example `level: 5, health: 22, attack: 56`"
+                           " For example `level: 5, health: 22, attack: 56`"
                            " Type 'skip' to skip.")
 
             pokemon["stats"] = dict()
@@ -110,7 +110,7 @@ class Pokemon(object):
                             key = key.strip().casefold()
                             value = value.strip()
                             if key not in valid_stats:
-                                await ctx.send(f"{key} is not a valid stat! Try again")
+                                await ctx.send("{} is not a valid stat! Try again".format(key))
                                 break
                             pokemon["stats"][key] = int(value)
                         else:
@@ -150,7 +150,7 @@ class Pokemon(object):
                         continue
 
             id = await self.bot.di.add_pokemon(ctx.author, pokemon)
-            await ctx.send(f"Finished! Pokemon has been added to box with ID {id}")
+            await ctx.send("Finished! Pokemon has been added to box with ID {}".format(id))
 
         except asyncio.TimeoutError:
             await ctx.send("Timed out! Try again")
@@ -182,7 +182,7 @@ class Pokemon(object):
     async def release(self, ctx, id: data.NumberConverter):
         """Release a Pokemon from your box"""
         pk = await self.bot.di.remove_pokemon(ctx.author, id)
-        await ctx.send(f"This Pokemon has been released! Goodbye {pk.name}!")
+        await ctx.send("This Pokemon has been released! Goodbye {}!".format(pk.name))
 
     @pokemon.command()
     @checks.no_pm()
@@ -206,7 +206,7 @@ class Pokemon(object):
                 if your_pokemon[0] == your_id:
                     break
             else:
-                raise KeyError(f"{your_id} is not a valid ID!")
+                raise KeyError("{} is not a valid ID!".format(your_id))
             yud["box"].remove(your_pokemon)
             tud["box"].append(your_pokemon)
 
@@ -214,7 +214,7 @@ class Pokemon(object):
                 if their_pokemon[0] == your_id:
                     break
             else:
-                raise KeyError(f"{their_id} is not a valid ID!")
+                raise KeyError("{} is not a valid ID!".format(their_id))
             tud["box"].remove(their_pokemon)
             yud["box"].append(their_pokemon)
 
@@ -222,7 +222,7 @@ class Pokemon(object):
 
             await self.bot.db.update_user_data(ctx.author, yud)
             await self.bot.db.update_user_data(other, tud)
-            await ctx.send(f"Trade completed! Traded {your_pokemon['name']} for {their_pokemon['name']}!")
+            await ctx.send("Trade completed! Traded {} for {}!".format(your_pokemon['name'], their_pokemon['name']))
 
         else:
             await ctx.send("Trade declined! Cancelling.")

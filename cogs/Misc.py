@@ -19,18 +19,22 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
+import psutil
 import discord
 from discord.ext import commands
-import datetime
-from collections import Counter
-from random import randint, choice
-from time import monotonic
+
 import os
-import psutil
-from itertools import chain
 import io
 import inspect
+import datetime
+from time import monotonic
+from itertools import chain
+from collections import Counter
+from random import randint, choice
+
+
 from .utils import checks
+from .utils.translation import _
 
 
 class Misc(object):
@@ -62,10 +66,10 @@ class Misc(object):
                     number, sides = die.split("d")
                     number, sides = int(number), int(sides)
                     if number > 10:
-                        await ctx.send("Too many dice! Cant roll that many!")
+                        await ctx.send(await _(ctx, "Too many dice! Cant roll that many!"))
                         return
                     if sides > 1000:
-                        await ctx.send("That die has much too many sides!")
+                        await ctx.send(await _(ctx, "That die has much too many sides!"))
                         return
 
                     rolls[sides] = [randint(1, sides) for _ in range(number)]
@@ -75,21 +79,21 @@ class Misc(object):
                         if len(die) <= 5:
                             add.append(int(die))
                         else:
-                            await ctx.send("{} is too big a number!".format(die))
+                            await ctx.send(await _(ctx, "{} is too big a number!".format(die)))
                             return
                     except:
                         if die.startswith((">", "<")):
                             rel = die
                             _dir = rel.strip("<>")
                             if len(_dir) > 5:
-                                await ctx.send("{} is too big a number!".format(_dir))
+                                await ctx.send(await _(ctx, "{} is too big a number!").format(_dir))
                                 return
                             val = int(_dir)
                             type = rel[0]
                         elif die.startswith("^"):
                             _cur = die.strip("^")
                             if len(_cur) > 5:
-                                await ctx.send("{} is too big a number!".format(_cur))
+                                await ctx.send((await _(ctx, "{} is too big a number!")).format(_cur))
                                 return
                             pp = int(_cur)
 
@@ -107,14 +111,14 @@ class Misc(object):
             if rel is not None:
                 if type == "<":
                     if total < val:
-                        succ = "suceeded"
+                        succ = await _(ctx, "suceeded")
                     else:
-                        succ = "failed"
+                        succ = await _(ctx, "failed")
                 else:
                     if total > val:
-                        succ = "suceeded"
+                        succ = await _(ctx, "suceeded")
                     else:
-                        succ = "failed"
+                        succ = await _(ctx, "failed")
 
                 fmt = "{roll} **{0}** ({1} {2} {3}) ([{4}] + {5})" if add else "{roll} **{0}** ({1} {2} {3}) ([{4}])"
                 all = "] + [".join(" + ".join(map(lambda x: str(x), roll)) for roll in rolls.values())
@@ -125,13 +129,13 @@ class Misc(object):
                 msg = fmt.format(total, all, " + ".join(map(lambda x: str(x), add)), roll=await _(ctx, "Roll"))
 
             if pp:
-                msg += " (Grabbed top {} out of {})".format(pp, len(s) + pp)
+                msg += (await _(ctx, " (Grabbed top {} out of {})")).format(pp, len(s) + pp)
 
             await ctx.send(msg)
         except Exception as e:
             from traceback import print_exc
             print_exc()
-            await ctx.send("Invalid syntax!")
+            await ctx.send(await _(ctx, "Invalid syntax!"))
 
     @commands.command()
     async def ping(self, ctx):
@@ -153,11 +157,11 @@ class Misc(object):
         embed = discord.Embed()
         embed.set_author(name=me.display_name, icon_url=appinfo.owner.avatar_url,
                          url="https://github.com/henry232323/RPGBot")
-        embed.add_field(name="Author", value='Henry#6174 (Discord ID: 122739797646245899)')
-        embed.add_field(name="Library", value='discord.py (Python)')
-        embed.add_field(name="Uptime", value=await self.bot.get_bot_uptime())
-        embed.add_field(name="Servers", value="{} servers".format(len(self.bot.guilds)))
-        embed.add_field(name="Commands Run", value='{} commands'.format(sum(self.bot.commands_used.values())))
+        embed.add_field(name=await _(ctx, "Author"), value='Henry#6174 (Discord ID: 122739797646245899)')
+        embed.add_field(name=await _(ctx, "Library"), value='discord.py (Python)')
+        embed.add_field(name=await _(ctx, "Uptime"), value=await self.bot.get_bot_uptime())
+        embed.add_field(name=await _(ctx, "Servers"), value=(await _(ctx, "{} servers")).format(len(self.bot.guilds)))
+        embed.add_field(name=await _(ctx, "Commands Run"), value=(await _(ctx, '{} commands')).format(sum(self.bot.commands_used.values())))
 
         total_members = sum(len(s.members) for s in self.bot.guilds)
         total_online = sum(1 for m in self.bot.get_all_members() if m.status != discord.Status.offline)
@@ -165,25 +169,25 @@ class Misc(object):
         channel_types = Counter(isinstance(c, discord.TextChannel) for c in self.bot.get_all_channels())
         voice = channel_types[False]
         text = channel_types[True]
-        embed.add_field(name="Total Members", value='{} ({} online)'.format(total_members, total_online))
-        embed.add_field(name="Unique Members", value='{}'.format(len(unique_members)))
-        embed.add_field(name="Channels", value='{} text channels, {} voice channels'.format(text, voice))
-        embed.add_field(name="Shards",
-                        value='Currently running {} shards. This server is on shard {}'.format(ctx.bot.shard_count, getattr(ctx.guild, "shard_id", 0)))
+        embed.add_field(name=await _(ctx, "Total Members"), value=(await _(ctx, '{} ({} online)')).format(total_members, total_online))
+        embed.add_field(name=await _(ctx, "Unique Members"), value='{}').format(len(unique_members))
+        embed.add_field(name=await _(ctx, "Channels"), value=(await _(ctx, '{} text channels, {} voice channels')).format(text, voice))
+        embed.add_field(name=await _(ctx, "Shards"),
+                        value=(await _(ctx, 'Currently running {} shards. This server is on shard {}')).format(ctx.bot.shard_count, getattr(ctx.guild, "shard_id", 0)))
 
         a = monotonic()
         await (await ctx.bot.shards[getattr(ctx.guild, "shard_id", 0)].ws.ping())
         b = monotonic()
         ping = "{:.3f}ms".format((b - a) * 1000)
 
-        embed.add_field(name="CPU Percentage", value="{}%".format(psutil.cpu_percent()))
-        embed.add_field(name="Memory Usage", value=self.bot.get_ram())
-        embed.add_field(name="Observed Events", value=sum(self.bot.socket_stats.values()))
-        embed.add_field(name="Ping", value=ping)
+        embed.add_field(name=await _(ctx, "CPU Percentage"), value="{}%".format(psutil.cpu_percent()))
+        embed.add_field(name=await _(ctx, "Memory Usage"), value=self.bot.get_ram())
+        embed.add_field(name=await _(ctx, "Observed Events"), value=sum(self.bot.socket_stats.values()))
+        embed.add_field(name=await _(ctx, "Ping"), value=ping)
 
-        embed.add_field(name="Source", value="[Github](https://github.com/henry232323/RPGBot)")
+        embed.add_field(name=await _(ctx, "Source"), value="[Github](https://github.com/henry232323/RPGBot)")
 
-        embed.set_footer(text='Made with discord.py', icon_url='http://i.imgur.com/5BFecvA.png')
+        embed.set_footer(text=await _(ctx, 'Made with discord.py'), icon_url='http://i.imgur.com/5BFecvA.png')
         embed.set_thumbnail(url=self.bot.user.avatar_url)
         await ctx.send(delete_after=60, embed=embed)
 
@@ -214,10 +218,10 @@ class Misc(object):
             try:
                 obj = obj.get_command(cmd)
                 if obj is None:
-                    await ctx.send('Could not find the command ' + cmd)
+                    await ctx.send(await _(ctx, 'Could not find the command ') + cmd)
                     return
             except AttributeError:
-                await ctx.send('{0.name} command has no subcommands'.format(obj))
+                await ctx.send((await _(ctx, '{0.name} command has no subcommands')).format(obj))
                 return
 
         # since we found the command we're looking for, presumably anyway, let's
@@ -238,17 +242,17 @@ class Misc(object):
     @commands.command()
     async def donate(self, ctx):
         """Donation information"""
-        await ctx.send("Keeping the bots running takes money, "
+        await ctx.send(await _(ctx, "Keeping the bots running takes money, "
                        "if several people would buy me a coffee each month, "
                        "I wouldn't have to worry about it coming out of my pocket. "
-                       "If you'd like, you can donate to me here: https://ko-fi.com/henrys")
+                       "If you'd like, you can donate to me here: https://ko-fi.com/henrys"))
 
     @commands.command()
     async def feedback(self, ctx, *, feedback):
         """Give me some feedback on the bot"""
         with open("feedback.txt", "a+") as f:
             f.write(feedback + "\n")
-        await ctx.send("Thank you for the feedback!")
+        await ctx.send(await _(ctx, "Thank you for the feedback!"))
 
     @commands.command(hidden=True)
     async def socketstats(self, ctx):
@@ -307,14 +311,14 @@ class Misc(object):
     @checks.admin_or_permissions()
     async def language(self, ctx, language: str):
         if language not in self.bot.languages:
-            await ctx.send("That is not a valid language!")
+            await ctx.send(await _(ctx, "That is not a valid language!"))
             return
         await self.bot.di.set_language(ctx.guild, language)
-        await ctx.send("Language successfully set!")
+        await ctx.send(await _(ctx, "Language successfully set!"))
 
     @commands.guild_only()
     @commands.command()
     @checks.admin_or_permissions()
     async def currency(self, ctx, currency: str):
         await self.bot.di.set_language(ctx.guild, currency)
-        await ctx.send("Currency successfully set!")
+        await ctx.send(await _(ctx, "Currency successfully set!"))
