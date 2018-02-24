@@ -695,8 +695,80 @@
   "That is not a valid language!": {
     "fr": "Ce n'est pas une langage valide !"
   },
+  "Language successfully set!": {
+    "fr": "Langage fixée avec succis !"
+  },
   "Currency successfully set!": {
     "fr": "Devise fixée avec succis !"
+  },
+  "In any step type 'cancel' to cancel": {
+    "fr": ""
+  },
+  "What will its nickname be?": {
+    "fr": ""
+  },
+  "What species of Pokemon is it?": {
+    "fr": ""
+  },
+  "In any order, what are its stats? (level, health, attack, defense, spatk, spdef, speed) For example `level: 5, health: 22, attack: 56` Type 'skip' to skip.": {
+    "fr": ""
+  },
+  "level": {
+    "fr": ""
+  },
+  "health": {
+    "fr": ""
+  },
+  "attack": {
+    "fr": ""
+  },
+  "defense": {
+    "fr": ""
+  },
+  "spatk": {
+    "fr": ""
+  },
+  "spdef": {
+    "fr": ""
+  },
+  "speed": {
+    "fr": ""
+  },
+  "{} is not a valid stat! Try again": {
+    "fr": ""
+  },
+  "Any additional data? (Format like the above, for example nature: hasty, color: brown)": {
+    "fr": ""
+  },
+  "Finished! Pokemon has been added to box with ID {}": {
+    "fr": ""
+  },
+  "Nickname": {
+    "fr": ""
+  },
+  "Species": {
+    "fr": ""
+  },
+  "Stats": {
+    "fr": ""
+  },
+  "This Pokemon has been released! Goodbye {}!": {
+    "fr": ""
+  },
+  "Say rp!accept or rp!decline to respond to the trade!": {
+    "fr": ""
+  },
+  "Failed to respond in time! Cancelling.": {
+    "fr": ""
+  },
+  "{} is not a valid ID!": {
+    "fr": ""
+  },
+  "Trade completed! Traded {} for {}!": {
+    "fr": ""
+  },
+  "Trade declined! Cancelling.": {
+    "fr": ""
   }
 
 }
