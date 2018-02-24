@@ -111,7 +111,7 @@
     "ru": "имеет"
   },
   "Balances changed": {
-    "fr": "Solde changé"
+    "fr": "Solde changé",
     "ru": "Баланс изменен"
   },
   "Money given": {
@@ -171,7 +171,7 @@
     "ru": "Неверный ID"
   },
   "You cant afford this item!": {
-    "fr": "Vous ne pouvez pas vous le permettre"/
+    "fr": "Vous ne pouvez pas vous le permettre",
     "ru": "Вы не можете позволить купить себе этот товар!"
   },
   "Items successfully bought": {
