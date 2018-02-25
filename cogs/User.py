@@ -23,6 +23,7 @@ from discord.ext import commands
 import discord
 
 from .utils import checks, data
+from .utils.translation import _
 
 
 class User(object):
