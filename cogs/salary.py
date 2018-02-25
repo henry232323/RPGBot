@@ -7,6 +7,7 @@ import discord
 from discord.ext import commands
 
 from .utils import data, checks
+from .utils.translation import _
 
 
 class Salary(object):
@@ -63,7 +64,7 @@ class Salary(object):
         """See guild salaries"""
         embed = discord.Embed()
         if not self.guilds[ctx.guild.id]:
-            await ctx.send("There are no current salaries on this server")
+            await ctx.send(await _(ctx, "There are no current salaries on this server"))
         else:
             dels = []
             for role, amount in self.guilds[ctx.guild.id].items():
@@ -73,7 +74,7 @@ class Salary(object):
                     dels.append(role)
             for d in dels:
                 del self.guilds[ctx.guild.id][d]
-            embed.set_author(name="Guild salaries", icon_url=ctx.guild.icon_url)
+            embed.set_author(name=await _(ctx, "Guild Salaries"), icon_url=ctx.guild.icon_url)
             await ctx.send(embed=embed)
 
     @commands.group(invoke_without_command=True, aliases=["sal"])
@@ -82,9 +83,9 @@ class Salary(object):
         """Get a role's salary. Also includes salary subcommands"""
         salary = self.guilds[ctx.guild.id].get(role.id, None)
         if salary is None:
-            await ctx.send("That role does not have a salary!")
+            await ctx.send(await _(ctx, "That role does not have a salary!"))
         else:
-            await ctx.send(f"{role} has a daily salary of {salary}")
+            await ctx.send((await _(ctx, "{} has a daily salary of {}")).format(role, salary))
 
     @salary.command()
     @checks.no_pm()
@@ -94,7 +95,7 @@ class Salary(object):
          Roles are paid every day at 24:00, every user with the role will receive the amount specified.
          If a role with a salary is deleted, the salary will also be deleted."""
         self.guilds[ctx.guild.id][role.id] = amount
-        await ctx.send(f"Successfully created a daily salary of {amount} for {role}")
+        await ctx.send((await _(ctx, "Successfully created a daily salary of {} for {}")).format(amount, role))
 
     @salary.command()
     @checks.no_pm()
@@ -102,5 +103,5 @@ class Salary(object):
     async def delete(self, ctx, *, role: discord.Role):
         """Remove a created salary"""
         del self.guilds[ctx.guild.id][role.id]
-        await ctx.send(f"Successfully deleted the daily salary for {role}")
+        await ctx.send((await _(ctx, "Successfully deleted the daily salary for {}")).format(role))
 

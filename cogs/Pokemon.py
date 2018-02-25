@@ -24,6 +24,7 @@ import discord
 import asyncio
 
 from .utils import checks, data
+from .utils.translation import _
 
 
 class Pokemon(object):
@@ -32,7 +33,7 @@ class Pokemon(object):
 
     @commands.command()
     @checks.no_pm()
-    async def box(self, ctx, member: discord.Member=None):
+    async def box(self, ctx, member: discord.Member = None):
         """Check the pokemon in your box"""
         if member is None:
             member = ctx.author
@@ -40,14 +41,14 @@ class Pokemon(object):
 
         pokemon = [f"{x.id}: **{x.name}**" for x in box]
         description = "\n".join(pokemon)
-        embed = discord.Embed(description=description, title=f"{member.display_name}'s Pokemon")
+        embed = discord.Embed(description=description, title=f"{member.display_name} Pokemon")
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
 
         await ctx.send(embed=embed)
 
     @commands.group(aliases=["p"], invoke_without_command=True)
     @checks.no_pm()
-    async def pokemon(self, ctx, member: discord.Member=None):
+    async def pokemon(self, ctx, member: discord.Member = None):
         """Subcommands for Pokemon management, see rp!help pokemon
         Same use as rp!box"""
         if member is None:
@@ -56,7 +57,7 @@ class Pokemon(object):
 
         pokemon = [f"{x.id}: **{x.name}**" for x in box]
         description = "\n".join(pokemon)
-        embed = discord.Embed(description=description, title=f"{member.display_name}'s Pokemon")
+        embed = discord.Embed(description=description, title=f"{member.display_name} Pokemon")
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
 
         await ctx.send(embed=embed)
@@ -68,36 +69,43 @@ class Pokemon(object):
         try:
             check = lambda x: x.channel is ctx.channel and x.author is ctx.author
             pokemon = dict()
-            await ctx.send("In any step type 'cancel' to cancel")
-            await ctx.send("What will its nickname be?")
+            await ctx.send(await _(ctx, "In any step type 'cancel' to cancel"))
+            await ctx.send(await _(ctx, "What will its nickname be?"))
             response = await self.bot.wait_for("message", check=check, timeout=60)
             if response.content.lower() == "cancel":
-                await ctx.send("Cancelled")
+                await ctx.send(await _(ctx, "Cancelled"))
                 return
             else:
                 pokemon["name"] = response.content
 
-            await ctx.send("What species of Pokemon is it?")
+            await ctx.send(await _(ctx, "What species of Pokemon is it?"))
             response = await self.bot.wait_for("message", check=check, timeout=60)
             if response.content.lower() == "cancel":
-                await ctx.send("Cancelled")
+                await ctx.send(await _(ctx, "Cancelled"))
                 return
             else:
                 pokemon["type"] = response.content
 
-            await ctx.send("In any order, what are its stats? (level, health, attack, defense, spatk, spdef, speed)"
-                           " For example `level: 5, health: 22, attack: 56`"
-                           " Type 'skip' to skip.")
+            await ctx.send(
+                await _(ctx, "In any order, what are its stats? (level, health, attack, defense, spatk, spdef, speed)"
+                             " For example `level: 5, health: 22, attack: 56`"
+                             " Type 'skip' to skip."))
 
             pokemon["stats"] = dict()
-            valid_stats = ["level", "health", "attack", "defense", "spatk", "spdef", "speed"]
+            valid_stats = [await _(ctx, "level"),
+                           await _(ctx, "health"),
+                           await _(ctx, "attack"),
+                           await _(ctx, "defense"),
+                           await _(ctx, "spatk"),
+                           await _(ctx, "spdef"),
+                           await _(ctx, "speed")]
             while True:
                 response = await self.bot.wait_for("message", check=check, timeout=120)
                 if response.content.lower() == "cancel":
-                    await ctx.send("Cancelled")
+                    await ctx.send(await _(ctx, "Cancelled"))
                     return
                 elif response.content.lower() == "skip":
-                    await ctx.send("Skipping")
+                    await ctx.send(await _(ctx, "Skipping"))
                     break
                 else:
                     try:
@@ -110,27 +118,27 @@ class Pokemon(object):
                             key = key.strip().casefold()
                             value = value.strip()
                             if key not in valid_stats:
-                                await ctx.send("{} is not a valid stat! Try again".format(key))
+                                await ctx.send((await _(ctx, "{} is not a valid stat! Try again")).format(key))
                                 break
                             pokemon["stats"][key] = int(value)
                         else:
                             break
                     except:
-                        await ctx.send("Invalid formatting! Try again")
+                        await ctx.send(await _(ctx, "Invalid formatting! Try again"))
                         continue
                     continue
 
             pokemon["meta"] = dict()
-            await ctx.send("Any additional data? (Format like the above, for example "
-                           "nature: hasty, color: brown)")
+            await ctx.send(await _(ctx, "Any additional data? (Format like the above, for example "
+                                        "nature: hasty, color: brown)"))
 
             while True:
                 response = await self.bot.wait_for("message", check=check, timeout=120)
                 if response.content.lower() == "cancel":
-                    await ctx.send("Cancelling!")
+                    await ctx.send(await _(ctx, "Cancelling!"))
                     return
                 elif response.content.lower() == "skip":
-                    await ctx.send("Skipping!")
+                    await ctx.send(await _(ctx, "Skipping!"))
                     break
                 else:
                     try:
@@ -146,14 +154,14 @@ class Pokemon(object):
                         else:
                             break
                     except:
-                        await ctx.send("Invalid formatting! Try again")
+                        await ctx.send(await _(ctx, "Invalid formatting! Try again"))
                         continue
 
             id = await self.bot.di.add_pokemon(ctx.author, pokemon)
-            await ctx.send("Finished! Pokemon has been added to box with ID {}".format(id))
+            await ctx.send((await _(ctx, "Finished! Pokemon has been added to box with ID {}")).format(id))
 
         except asyncio.TimeoutError:
-            await ctx.send("Timed out! Try again")
+            await ctx.send(await _(ctx, "Timed out! Try again"))
         except Exception:
             import traceback
             traceback.print_exc()
@@ -167,13 +175,13 @@ class Pokemon(object):
         embed = discord.Embed(title=f"{pokemon.name}")
         embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
 
-        embed.add_field(name="Nickname", value=pokemon.name)
-        embed.add_field(name="Species", value=pokemon.type)
-        embed.add_field(name="ID", value=pokemon.id)
+        embed.add_field(name=await _(ctx, "Nickname"), value=pokemon.name)
+        embed.add_field(name=await _(ctx, "Species"), value=pokemon.type)
+        embed.add_field(name=await _(ctx, "ID"), value=pokemon.id)
         stats = "\n".join(f"{x}: {y}" for x, y in pokemon.stats.items())
         meta = "\n".join(f"{x}: {y}" for x, y in pokemon.meta.items())
-        embed.add_field(name="Stats", value=stats)
-        embed.add_field(name="Additional Info", value=meta)
+        embed.add_field(name=await _(ctx, "Stats"), value=stats)
+        embed.add_field(name=await _(ctx, "Additional Info"), value=meta)
 
         await ctx.send(embed=embed)
 
@@ -182,7 +190,7 @@ class Pokemon(object):
     async def release(self, ctx, id: data.NumberConverter):
         """Release a Pokemon from your box"""
         pk = await self.bot.di.remove_pokemon(ctx.author, id)
-        await ctx.send("This Pokemon has been released! Goodbye {}!".format(pk.name))
+        await ctx.send((await _(ctx, "This Pokemon has been released! Goodbye {}!")).format(pk.name))
 
     @pokemon.command()
     @checks.no_pm()
@@ -191,11 +199,13 @@ class Pokemon(object):
         `your_id` is the ID of the Pokemon you want to give, `their_id` is the Pokemon you want from them.
         `other` being the user you want to trade with"""
 
-        await ctx.send("Say rp!accept or rp!decline to respond to the trade!")
+        await ctx.send(await _(ctx, "Say rp!accept or rp!decline to respond to the trade!"))
         try:
-            resp = await self.bot.wait_for("message", timeout=120, check=lambda x: x.author == other and x.channel == ctx.channel and ctx.message.content in ["rp!accept", "rp!decline"])
+            resp = await self.bot.wait_for("message", timeout=120, check=lambda
+                x: x.author == other and x.channel == ctx.channel and ctx.message.content in ["rp!accept",
+                                                                                              "rp!decline"])
         except asyncio.TimeoutError:
-            await ctx.send("Failed to respond in time! Cancelling.")
+            await ctx.send(await _(ctx, "Failed to respond in time! Cancelling."))
             return
 
         if resp.content == "rp!accept":
@@ -206,7 +216,7 @@ class Pokemon(object):
                 if your_pokemon[0] == your_id:
                     break
             else:
-                raise KeyError("{} is not a valid ID!".format(your_id))
+                raise KeyError((await _(ctx, "{} is not a valid ID!")).format(your_id))
             yud["box"].remove(your_pokemon)
             tud["box"].append(your_pokemon)
 
@@ -214,7 +224,7 @@ class Pokemon(object):
                 if their_pokemon[0] == your_id:
                     break
             else:
-                raise KeyError("{} is not a valid ID!".format(their_id))
+                raise KeyError((await _(ctx, "{} is not a valid ID!")).format(their_id))
             tud["box"].remove(their_pokemon)
             yud["box"].append(their_pokemon)
 
@@ -222,10 +232,10 @@ class Pokemon(object):
 
             await self.bot.db.update_user_data(ctx.author, yud)
             await self.bot.db.update_user_data(other, tud)
-            await ctx.send("Trade completed! Traded {} for {}!".format(your_pokemon['name'], their_pokemon['name']))
+            await ctx.send((await _(ctx, "Trade completed! Traded {} for {}!")).format(your_pokemon['name'], their_pokemon['name']))
 
         else:
-            await ctx.send("Trade declined! Cancelling.")
+            await ctx.send(await _(ctx, "Trade declined! Cancelling."))
 
     @commands.command(hidden=True)
     async def accept(self, ctx):
