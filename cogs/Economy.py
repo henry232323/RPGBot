@@ -48,7 +48,7 @@ class Economy(object):
 
         bal = await self.bot.di.get_balance(member)
 
-        await ctx.send(f"{member.display_name} {{}} ${bal}".format(await _(ctx, 'has')))
+        await ctx.send((await _(ctx, "{} has ${}")).format(member.display_name, bal))
 
     @checks.no_pm()
     @checks.mod_or_permissions()

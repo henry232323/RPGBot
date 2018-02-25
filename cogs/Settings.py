@@ -22,8 +22,10 @@
 from discord.ext import commands
 import discord
 import asyncio
+
 from .utils.data import ServerItem, NumberConverter
 from .utils import checks
+from .utils.translation import _
 
 
 class Settings(object):
@@ -37,11 +39,13 @@ class Settings(object):
         settings = await self.bot.db.get_guild_data(ctx.guild)
         embed = discord.Embed()
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-        embed.add_field(name="Starting Money", value=f"${settings['start']}")
-        embed.add_field(name="Items", value=f"{len(settings['items'])} items")
-        embed.add_field(name="Characters", value=f"{len(settings['characters'])} characters")
-        embed.add_field(name="Maps",
-                        value="None" if not settings.get("maps") else "\n\t" + "\n\t".join(settings["maps"]))
+        embed.add_field(name=await _(ctx, "Starting Money"), value=f"${settings['start']}")
+        embed.add_field(name=await _(ctx, "Items"), value="{} {}".format(len(settings['items']), await _(ctx, "items")))
+        embed.add_field(name=await _(ctx, "Characters"),
+                        value="{} {}".format(len(settings['characters']), await _(ctx, "characters")))
+        embed.add_field(name=await _(ctx, "Maps"),
+                        value=await _(ctx, "None") if not settings.get("maps") else "\n\t" + "\n\t".join(
+                            settings["maps"]))
         await ctx.send(embed=embed)
 
     @settings.command()
@@ -51,7 +55,7 @@ class Settings(object):
         items = await self.bot.di.get_guild_items(ctx.guild)
         item = items.get(item)
         if not item:
-            await ctx.send("Item doesnt exist!")
+            await ctx.send(await _(ctx, "Item doesnt exist!"))
             return
         if hasattr(item, "description"):
             embed = discord.Embed(title=item.name, description=item.description)
@@ -59,7 +63,7 @@ class Settings(object):
             embed = discord.Embed()
 
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-        embed.add_field(name="Name", value=item.name)
+        embed.add_field(name=await _(ctx, "Name"), value=item.name)
         img = item.meta.get("image")
         embed.set_thumbnail(url=str(img)) if img else None
         for key, value in item.meta.items():
@@ -76,7 +80,7 @@ class Settings(object):
         items = await self.bot.di.get_guild_items(ctx.guild)
 
         if not items:
-            await ctx.send("No items to display")
+            await ctx.send(await _(ctx, "No items to display"))
             return
 
         embed = discord.Embed()
@@ -105,21 +109,22 @@ class Settings(object):
             item = dict()
             item["name"] = name
             check = lambda x: x.channel is ctx.channel and x.author is ctx.author
-            await ctx.send("Describe the item (a description for the item)")
+            await ctx.send(await _(ctx, "Describe the item (a description for the item)"))
             response = await self.bot.wait_for("message", timeout=120, check=check)
             item["description"] = response.content
             item["meta"] = dict()
 
-            await ctx.send("Additional information? (Attributes formatted in a list i.e `color: 400, value: 200` "
-                           "Set an image for this item with the `image` key i.e. `image: http://image.com/image.png`"
-                           "Set this item as usable by adding `used` key i.e. `used: You open the jar and the bird flies away`")
+            await ctx.send(
+                await _(ctx, "Additional information? (Attributes formatted in a list i.e `color: 400, value: 200` "
+                             "Set an image for this item with the `image` key i.e. `image: http://image.com/image.png` "
+                             "Set this item as usable by adding `used` key i.e. `used: You open the jar and the bird flies away`"))
             while True:
                 response = await self.bot.wait_for("message", timeout=60, check=check)
                 if response.content.lower() == "cancel":
-                    await ctx.send("Cancelling!")
+                    await ctx.send(await _(ctx, "Cancelling!"))
                     return
                 elif response.content.lower() == "skip":
-                    await ctx.send("Skipping!")
+                    await ctx.send(await _(ctx, "Skipping!"))
                     break
                 else:
                     try:
@@ -135,12 +140,12 @@ class Settings(object):
                         else:
                             break
                     except:
-                        await ctx.send("Invalid syntax, try again.")
+                        await ctx.send(await _(ctx, "Invalid syntax, try again."))
             await self.bot.di.new_item(ctx.guild, ServerItem(**item))
-            await ctx.send("Item successfully created")
+            await ctx.send(await _(ctx, "Item successfully created"))
 
         except asyncio.TimeoutError:
-            await ctx.send("Timed out! Try again")
+            await ctx.send(await _(ctx, "Timed out! Try again"))
 
     @checks.mod_or_permissions()
     @settings.command(aliases=["deleteitem"])
@@ -149,9 +154,9 @@ class Settings(object):
         """Remove a custom item"""
         try:
             await self.bot.di.remove_item(ctx.guild, name)
-            await ctx.send(f"Successfully removed {name}")
+            await ctx.send((await _(ctx, "Successfully removed {}")).format(name))
         except KeyError:
-            await ctx.send("That item doesn't exist")
+            await ctx.send(await _(ctx, "That item doesn't exist"))
 
     @checks.mod_or_permissions()
     @checks.no_pm()
@@ -159,4 +164,4 @@ class Settings(object):
     async def setstart(self, ctx, amount: NumberConverter):
         """Set the money start amount for a guild"""
         await self.bot.di.set_start(ctx.guild, amount)
-        await ctx.send(f"Starting amount changed to ${amount}")
+        await ctx.send((await _(ctx, "Starting amount changed to ${}")).format(amount))

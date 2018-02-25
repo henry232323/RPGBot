@@ -66,7 +66,7 @@
     "fr": "Quel est le niveau du personnage ?",
     "ru": "Какого уровня выш персонаж?"
   },
-  "Any additional info? (Add a character image using the image keyword. Formats use regular syntax i.e `image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)": {
+  "Any additional info? (Add a character image using the image keyword. Formats use regular syntax e.g `image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)": {
     "fr": "Information supplémentaire ? (Ajouter une image au personnage avec le mot-clé `image`, avec la syntaxe suivante : `image: http://image.com/image.jpg, cheveux: bruns` (Separer les mot-clés avec des virgules ou de nouvelles lignes)",
     "ru": "Дополнительна информация.(Добавьте персонажу картинку используя команды: 'image: http://image.com/image.jpg, hair_color:Темные волосы,nickname:Кевин' (Разделяйте команды запятыми)"
   },
@@ -106,9 +106,9 @@
     "fr": "Personnage modifié",
     "ru": "Персонаж изменен!"
   },
-  "has": {
-    "fr": "a",
-    "ru": "имеет"
+  "{} has ${}": {
+    "fr": "{} a ${}",
+    "ru": "{} имеет ${}"
   },
   "Balances changed": {
     "fr": "Solde changé",
@@ -343,7 +343,7 @@
   },
   "Open": {
     "fr": "Ouvert",
-    "ru": "Открыто",
+    "ru": "Открыто"
   },
   "Bank Balance": {
     "fr": "Solde Bancaire",
@@ -622,7 +622,7 @@
   "You can not have more than 3 maps unless you are a Patron! (For now)": {
     "fr": "Vous ne pouvez pas avoir plus que 3 cartes sauf si vous etes un Patron ! (Maintenant seulement)"
   },
-  "What available tiles will there be? Say `done` when done. Use the * tile to describe all tiles when adding what will spawn. One at a time send the name of the tile. i.e. grassland": {
+  "What available tiles will there be? Say `done` when done. Use the * tile to describe all tiles when adding what will spawn. One at a time send the name of the tile. e.g. grassland": {
     "fr": ""
   },
   "What kind of tile is it? Say `done` when done": {
@@ -812,7 +812,7 @@
     "fr": "{} n'est pas un stat valide ! Réessayer!"
   },
   "Any additional data? (Format like the above, for example nature: hasty, color: brown)": {
-    "fr": "Informations additionelles ? (Formater comme les autres, par exemple: nature: précipité, colour: marron"
+    "fr": "Information supplémentaire ? (Formater comme les autres, par exemple: nature: précipité, colour: marron"
   },
   "Finished! Pokemon has been added to box with ID {}": {
     "fr": "Finis ! Pokemon a été créé et ajouté a la boite avec ID {}"
@@ -843,7 +843,7 @@
   },
   "Trade declined! Cancelling.": {
     "fr": "échangé refusé ! Anuller."
-  }
+  },
   "There are no current salaries on this server": {
     "fr": "Il n'y a aucun salaire actuel sur ce serveur"
   },
@@ -861,5 +861,83 @@
   },
   "Guild Salaries": {
     "fr": "Salaires de la Guilde"
+  },
+  "Starting Money": {
+    "fr": "Argent Commencant"
+  },
+  "Characters": {
+    "fr": "Personnages"
+  },
+  "Maps": {
+    "fr": "Cartes"
+  },
+  "characters": {
+    "fr": "Personnages"
+  },
+  "Item doesnt exist!": {
+    "fr": "Item n'existe pas !"
+  },
+  "No items to display": {
+    "fr": "Aucun item pour montrer"
+  },
+  "Describe the item (a description for the item)": {
+    "fr": "Decrivez l'item (une description pour l'item)"
+  },
+  "Additional information? (Attributes formatted in a list e.g `color: 400, value: 200` Set an image for this item with the `image` key e.g. `image: http://image.com/image.png` Set this item as usable by adding `used` key e.g. `used: You open the jar and the bird flies away`": {
+    "fr": "Information supplémentaire ? (Attributes formatté dans une liste e.g `color: green, cout: 300` Ajouter une image pour cet item avec le `image` clé e.g `image: http://image.com/image.png` Ajouter cet item comme utilisable par ajouter le `used` clé e.g. `used: Vous ouvrez le jar et l'oiseau s'envole`"
+  },
+  "Item successfully created": {
+    "fr": "Item créé avec succis"
+  },
+  "Successfully removed {}": {
+    "fr": "{} supprimé avec succis"
+  },
+  "That item doesn't exist": {
+    "fr": "Cet item n'existe pas"
+  },
+  "Starting amount changed to ${}": {
+    "fr": "Montant commencant changé a ${}"
+  },
+  "items": {
+    "fr": "items"
+  },
+  "ID: {}\nSpecies: {}\nStats:\n\t{}\nAdditional Info:\n\t{}": {
+    "fr": "ID: {}\nEspèce: {}\nStats:\n\t{}\nInformations Supplimentaires:\n\t{}"
+  },
+  "That Pokemon is already a part of the team!": {
+    "fr": "Ce Pokemon est deja une partie de l'equipe"
+  },
+  "Added to team!": {
+    "fr": "Ajoute a l'equipe"
+  },
+  "That character does not exist!": {
+    "fr": "Ce character n'existe pas !"
+  },
+  "Successfully removed Pokemon!": {
+    "fr": "Supprime le Pokemon avec succis !"
+  },
+  "Balance": {
+    "fr": "Solde Bancaire"
+  },
+  "Box": {
+    "fr": "Boite"
+  },
+  "Experience": {
+    "fr": "Experience"
+  },
+  "Level: {}\nExperience: {}/{}": {
+    "fr": "Niveau: {}\nExperience: {}/{}"
+  },
+  "Set level for members": {
+    "fr": "Fixe le niveau pour les membres"
+  },
+  "Gave experience to members": {
+    "fr": "Donne experience aux membres"
+  },
+  "No Items": {
+    "fr": "Aucun item"
+  },
+  "\nand {} more...": {
+    "fr": "\nEt {} plus..."
   }
 }
