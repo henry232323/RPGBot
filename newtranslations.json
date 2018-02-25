@@ -764,10 +764,10 @@
     "fr": "La commande {0.name} n'a aucune sous-commande"
   },
   "Keeping the bots running takes money, if several people would buy me a coffee each month, I wouldn't have to worry about it coming out of my pocket. If you'd like, you can donate to me here: https://ko-fi.com/henrys": {
-    "fr": "Pour garder les bots en ligne, cela nécessite de l'argent. Si plusieurs personnes m'achetaient un café tous les mois, je n'aurais pas de problème à le payer de ma poche. Si vous le souhaitez, vous pouvez me faire un don ici : https://ko-fi.com/henrys"
+    "fr": "Pour garder les bots en ligne, cela nécessite de l'argent. Si plusieurs personnes m'achetaient un café tous les mois, je n'aurais pas de problème à payer de ma poche. Si vous le souhaitez, vous pouvez me faire un don ici : https://ko-fi.com/henrys"
   },
   "That is not a valid language!": {
-    "fr": "Ce n'est pas un langue valide !"
+    "fr": "Ce n'est pas une langue valide !"
   },
   "Language successfully set!": {
     "fr": "Langue définie avec succis !"
@@ -782,10 +782,10 @@
     "fr": "Quel sera son surnom ?"
   },
   "What species of Pokemon is it?": {
-    "fr": "Quel espèce de Pokémon est-il ?"
+    "fr": "De quel espèce de Pokémon est-il ?"
   },
   "In any order, what are its stats? (level, health, attack, defense, spatk, spdef, speed) For example `level: 5, health: 22, attack: 56` Type 'skip' to skip.": {
-    "fr": "Dans n'importe quel ordre, quelles sont ses stats? (level, health, attack, defense, spatk, spdef, speed) Par exemple : `level: 5, health: 22, attack: 56` Tapez 'skip' pour passer."
+    "fr": "Dans n'importe quel ordre, quelles sont ses stats? (level, health, attack, defense, spatk, spdef, speed) Par exemple : `level: 5, health: 22, attack: 56`. Tapez 'skip' pour passer."
   },
   "level": {
     "fr": "niveau"
@@ -812,7 +812,7 @@
     "fr": "{} n'est pas une stat valide ! Réessayez !"
   },
   "Any additional data? (Format like the above, for example nature: hasty, color: brown)": {
-    "fr": "Des informations supplémentaires ? (Comme pour les autres, tapez par exemple: nature: précipité, colour: marron)"
+    "fr": "Des informations supplémentaires ? (Par exemple: nature: précipité, color: marron)"
   },
   "Finished! Pokemon has been added to box with ID {}": {
     "fr": "Fini ! Le Pokemon a été créé et ajouté à la boîte d'ID {}"
@@ -830,7 +830,7 @@
     "fr": "Ce Pokemon a été libéré ! Adieu, {} !"
   },
   "Say rp!accept or rp!decline to respond to the trade!": {
-    "fr": "Tapez rp!accept (pour accepter) ou rp!decline (pour refuser) pour répondre à l'échange"
+    "fr": "Tapez rp!accept (pour accepter) ou rp!decline (pour refuser) l'échange"
   },
   "Failed to respond in time! Cancelling.": {
     "fr": "Vous n'avez pas répondu à temps ! Annulation !"
