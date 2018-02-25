@@ -776,73 +776,90 @@
     "fr": "Devise fixée avec succis !"
   },
   "In any step type 'cancel' to cancel": {
-    "fr": ""
+    "fr": "Dans n'importe quelle étape dites `cancel` pour annuler"
   },
   "What will its nickname be?": {
-    "fr": ""
+    "fr": "Quel sera son surnom?"
   },
   "What species of Pokemon is it?": {
-    "fr": ""
+    "fr": "Quel espèce de Pokemon est-il ?"
   },
   "In any order, what are its stats? (level, health, attack, defense, spatk, spdef, speed) For example `level: 5, health: 22, attack: 56` Type 'skip' to skip.": {
-    "fr": ""
+    "fr": "Dans n'importe quel ordre, quelles sont ses stats? (level, health, attack, defense, spatk, spdef, speed) For example `level: 5, health: 22, attack: 56` Dites 'skip' pour passer."
   },
   "level": {
-    "fr": ""
+    "fr": "niveau"
   },
   "health": {
-    "fr": ""
+    "fr": "points de vie"
   },
   "attack": {
-    "fr": ""
+    "fr": "attack"
   },
   "defense": {
-    "fr": ""
+    "fr": "defense"
   },
   "spatk": {
-    "fr": ""
+    "fr": "atkspe"
   },
   "spdef": {
-    "fr": ""
+    "fr": "defspe"
   },
   "speed": {
-    "fr": ""
+    "fr": "vitesse"
   },
   "{} is not a valid stat! Try again": {
-    "fr": ""
+    "fr": "{} n'est pas un stat valide ! Réessayer!"
   },
   "Any additional data? (Format like the above, for example nature: hasty, color: brown)": {
-    "fr": ""
+    "fr": "Informations additionelles ? (Formater comme les autres, par exemple: nature: précipité, colour: marron"
   },
   "Finished! Pokemon has been added to box with ID {}": {
-    "fr": ""
+    "fr": "Finis ! Pokemon a été créé et ajouté a la boite avec ID {}"
   },
   "Nickname": {
-    "fr": ""
+    "fr": "Surnom"
   },
   "Species": {
-    "fr": ""
+    "fr": "Espèce"
   },
   "Stats": {
-    "fr": ""
+    "fr": "Stats"
   },
   "This Pokemon has been released! Goodbye {}!": {
-    "fr": ""
+    "fr": "Ce Pokemon a été libéré ! Adieu {} !"
   },
   "Say rp!accept or rp!decline to respond to the trade!": {
-    "fr": ""
+    "fr": "Dites rp!accept (pour accepter) ou rp!decline (pour refuser) pour repondre au commerce"
   },
   "Failed to respond in time! Cancelling.": {
-    "fr": ""
+    "fr": "Vous n'avez pas répondu à temps ! Annuller !"
   },
   "{} is not a valid ID!": {
-    "fr": ""
+    "fr": "{} n'est pas un ID valide !"
   },
   "Trade completed! Traded {} for {}!": {
-    "fr": ""
+    "fr": "échangé  completé ! échangé {} pour {} !"
   },
   "Trade declined! Cancelling.": {
-    "fr": ""
+    "fr": "échangé refusé ! Anuller."
   }
-
+  "There are no current salaries on this server": {
+    "fr": "Il n'y a aucun salaire actuel sur ce serveur"
+  },
+  "That role does not have a salary!": {
+    "fr": "Ce rôle n'a pas un salaire !"
+  },
+  "{} has a daily salary of {}": {
+    "fr": "{} a un salaire de {}"
+  },
+  "Successfully created a daily salary of {} for {}": {
+    "fr": "Créé un salaire du quotidien de {} pour {} avec succis"
+  },
+  "Successfully deleted the daily salary for {}": {
+    "fr": "Supprimé le salaire du quotidien pour {} avec succis"
+  },
+  "Guild Salaries": {
+    "fr": "Salaires de la Guilde"
+  }
 }
