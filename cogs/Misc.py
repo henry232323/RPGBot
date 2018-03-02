@@ -170,7 +170,7 @@ class Misc(object):
         voice = channel_types[False]
         text = channel_types[True]
         embed.add_field(name=await _(ctx, "Total Members"), value=(await _(ctx, '{} ({} online)')).format(total_members, total_online))
-        embed.add_field(name=await _(ctx, "Unique Members"), value='{}').format(len(unique_members))
+        embed.add_field(name=await _(ctx, "Unique Members"), value='{}'.format(len(unique_members)))
         embed.add_field(name=await _(ctx, "Channels"), value=(await _(ctx, '{} text channels, {} voice channels')).format(text, voice))
         embed.add_field(name=await _(ctx, "Shards"),
                         value=(await _(ctx, 'Currently running {} shards. This server is on shard {}')).format(ctx.bot.shard_count, getattr(ctx.guild, "shard_id", 0)))
