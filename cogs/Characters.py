@@ -205,7 +205,8 @@ class Characters(object):
             name: the character's name
             description: the description of the character
             level: an integer representing the character's level
-        Anything else will be arbitrary, like the additional info section.
+            meta: used like the additional info section when creating; can be used to edit/remove all attributes
+        Anything else will edit single attributes in the additional info section
         """
         attribute = attribute.lower()
         chars = await self.bot.di.get_guild_characters(ctx.guild)
@@ -231,7 +232,7 @@ class Characters(object):
             character[2] = value
         elif attribute == "level":
             character[3] = int(value)
-        else:
+        elif attribute == "meta":
             try:
                 if "\n" in value:
                     res = value.split("\n")
@@ -245,6 +246,8 @@ class Characters(object):
                         character[5][key] = value
             except:
                 await ctx.send(await _(ctx, "Invalid formatting! Try again"))
+        else:
+            character[5][attribute] = value
 
         await self.bot.di.add_character(ctx.guild, Character(*character))
         await ctx.send(await _(ctx, "Character edited!"))
