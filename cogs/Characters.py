@@ -234,6 +234,7 @@ class Characters(object):
             character[3] = int(value)
         elif attribute == "meta":
             try:
+                character[5] = {}
                 if "\n" in value:
                     res = value.split("\n")
                 else:
@@ -246,6 +247,7 @@ class Characters(object):
                         character[5][key] = value
             except:
                 await ctx.send(await _(ctx, "Invalid formatting! Try again"))
+                return
         else:
             character[5][attribute] = value
 
