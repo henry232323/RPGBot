@@ -205,7 +205,7 @@ class Characters(object):
             name: the character's name
             description: the description of the character
             level: an integer representing the character's level
-            meta: same usage as the character create command a: b value pairs
+        Anything else will be arbitrary, like the additional info section.
         """
         attribute = attribute.lower()
         chars = await self.bot.di.get_guild_characters(ctx.guild)
@@ -214,8 +214,11 @@ class Characters(object):
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
 
-        is_mod = checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
-                                            manage_server=True)
+        try:
+            is_mod = checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
         if character.owner != ctx.author.id and not is_mod:
             await ctx.send(await _(ctx, "You do not own this character!"))
             return
@@ -228,7 +231,7 @@ class Characters(object):
             character[2] = value
         elif attribute == "level":
             character[3] = int(value)
-        elif attribute == "meta":
+        else:
             try:
                 if "\n" in value:
                     res = value.split("\n")
@@ -242,9 +245,6 @@ class Characters(object):
                         character[5][key] = value
             except:
                 await ctx.send(await _(ctx, "Invalid formatting! Try again"))
-        else:
-            await ctx.send(await _(ctx, "That is not a valid item! Try again"))
-            return
 
         await self.bot.di.add_character(ctx.guild, Character(*character))
         await ctx.send(await _(ctx, "Character edited!"))
