@@ -94,21 +94,20 @@ class Characters(object):
             tfmt = "\n".join(f"{p.name} ({p.type})" for p in team) if team else await _(ctx, "Empty")
             embed.add_field(name=await _(ctx, "Team"), value=tfmt)
             mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items())
-            embed.add_field(name=await _(ctx, "Additional Info"), value=mfmt)
+            if mfmt.strip():
+                embed.add_field(name=await _(ctx, "Additional Info"), value=mfmt)
 
             await ctx.send(embed=embed)
         except:
             owner = discord.utils.get(ctx.guild.members, id=char.owner)
             embed = discord.Embed(description=char.description)
-            embed.set_author(name=char.name, icon_url=owner.avatar_url)
+            embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
             embed.add_field(name=await _(ctx, "Name"), value=char.name)
             embed.add_field(name=await _(ctx, "Owner"), value=str(owner))
             embed.add_field(name=await _(ctx, "Level"), value=char.level)
-            team = await self.bot.di.get_team(ctx.guild, char.name)
-            tfmt = "\n".join(f"{p.name} ({p.type})" for p in team) if team else await _(ctx, "Empty")
-            embed.add_field(name="Team", value=tfmt)
             mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items())
-            embed.add_field(name=await _(ctx, "Additional Info"), value=mfmt)
+            if mfmt.strip():
+                embed.add_field(name=await _(ctx, "Additional Info"), value=mfmt)
 
             await ctx.send(embed=embed)
 
@@ -135,8 +134,8 @@ class Characters(object):
             await _(ctx, "Describe the character (Relevant character sheet) (Say `done` when you're done describing)"))
         content = ""
         while True:
-            response = await self.bot.wait_for("message", check=check, timeout=120)
-            if response.content == "done":
+            response = await self.bot.wait_for("message", check=check, timeout=180)
+            if response.content.lower() == "done":
                 break
             else:
                 if len(content) + len(response.content) > 3500:
@@ -145,7 +144,7 @@ class Characters(object):
                     content += response.content + "\n"
         character["description"] = content
         await ctx.send(await _(ctx, "What level is the character?"))
-        response = await self.bot.wait_for("message", timeout=60, check=check)
+        response = await self.bot.wait_for("message", timeout=180, check=check)
         character["level"] = int(response.content)
         await ctx.send(
             await _(ctx,
@@ -153,7 +152,7 @@ class Characters(object):
                     "`image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)"
                     ))
         while True:
-            response = await self.bot.wait_for("message", check=check, timeout=120)
+            response = await self.bot.wait_for("message", check=check, timeout=180)
             if response.content.lower() == "cancel":
                 await ctx.send(await _(ctx, "Cancelling!"))
                 return
