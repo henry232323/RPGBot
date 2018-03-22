@@ -46,6 +46,8 @@ class Settings(object):
         embed.add_field(name=await _(ctx, "Maps"),
                         value=await _(ctx, "None") if not settings.get("maps") else "\n\t" + "\n\t".join(
                             settings["maps"]))
+        embed.add_field(name=await _(ctx, "Currency"), value=f"{settings.get('currency', '$')}")
+        embed.add_field(name=await _(ctx, "Language"), value=f"{settings.get('language', 'en')}")
         await ctx.send(embed=embed)
 
     @settings.command()

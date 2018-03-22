@@ -25,7 +25,7 @@ async def _(ctx, translation):
     lang = gd.get("lang", "en")
     currency = gd.get("currency", "$")
     if lang == "en":
-        return translation
+        return translation.replace("$", currency)
 
     try:
         translation = ctx.bot.translations[translation][lang]

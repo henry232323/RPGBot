@@ -15,17 +15,6 @@ class Salary(object):
     def __init__(self, bot):
         self.bot = bot
         self.first = True
-        self.guilds = defaultdict(dict)
-        try:
-            with open("salaries.json", "r") as gf:
-                self.guilds.update(json.loads(gf.read()))
-        except FileNotFoundError:
-            pass
-        self.bot.shutdowns.append(self.shutdown)
-
-    async def shutdown(self):
-        with open("salaries.json", "w") as gf:
-            gf.write(json.dumps(self.guilds, indent=4))
 
     async def on_ready(self):
         self.bot.loop.create_task(self.run_salaries())
@@ -37,23 +26,33 @@ class Salary(object):
             time_until = 86400 - (_today + datetime.timedelta(days=1)).timestamp() - datetime.datetime.utcnow().timestamp()
             await asyncio.sleep(time_until)
             while True:
-                dels = []
-                await self.shutdown()
-                for guild, roles in self.guilds.items():
+                dels = defaultdict(list)
+
+                req = f"""SELECT UUID, info ->> 'salaries' FROM servdata;"""
+                async with self.bot.db._conn.acquire() as connection:
+                    response = await connection.fetch(req)
+                guilds = (y for y in ((x["uuid"], json.loads(x["?column?"])) for x in response) if y[1])
+
+                for guild, roles in guilds:
                     try:
                         gob = self.bot.get_guild(guild)
                         if gob:
                             for role, amount in roles.items():
                                 rob = discord.utils.get(gob.roles, id=role)
-                                for member in rob.members:
-                                    await self.bot.di.add_eco(member, amount)
+                                if rob:
+                                    for member in rob.members:
+                                        await self.bot.di.add_eco(member, amount)
+                                else:
+                                    dels[gob].append((roles, rob))
                         else:
-                            dels.append(guild)
+                            pass
                     except:
                         pass
                 try:
-                    for guild in dels:
-                        del self.guilds[guild]
+                    for g, rs in dels.items():
+                        for dls, r in rs:
+                            del r[dls]
+                        await self.bot.di.update_salaries(g, r)
                 except:
                     pass
                 await asyncio.sleep(86400)
@@ -63,17 +62,20 @@ class Salary(object):
     async def salaries(self, ctx):
         """See guild salaries"""
         embed = discord.Embed()
-        if not self.guilds[ctx.guild.id]:
+        sals = await self.bot.di.get_salaries(ctx.guild)
+        if not sals:
             await ctx.send(await _(ctx, "There are no current salaries on this server"))
         else:
             dels = []
-            for role, amount in self.guilds[ctx.guild.id].items():
+            for role, amount in sals.items():
                 try:
                     embed.add_field(name=discord.utils.get(ctx.guild.roles, id=role).name, value=f"${amount}")
                 except:
                     dels.append(role)
             for d in dels:
-                del self.guilds[ctx.guild.id][d]
+                del sals[d]
+            if dels:
+                await self.bot.di.update_salaries(ctx.guild, sals)
             embed.set_author(name=await _(ctx, "Guild Salaries"), icon_url=ctx.guild.icon_url)
             await ctx.send(embed=embed)
 
@@ -81,7 +83,7 @@ class Salary(object):
     @checks.no_pm()
     async def salary(self, ctx, role: discord.Role):
         """Get a role's salary. Also includes salary subcommands"""
-        salary = self.guilds[ctx.guild.id].get(role.id, None)
+        salary = (await self.bot.di.get_salaries(ctx.guild)).get(role.id, None)
         if salary is None:
             await ctx.send(await _(ctx, "That role does not have a salary!"))
         else:
@@ -94,7 +96,9 @@ class Salary(object):
         """Create a daily salary for a user with the given role.
          Roles are paid every day at 24:00, every user with the role will receive the amount specified.
          If a role with a salary is deleted, the salary will also be deleted."""
-        self.guilds[ctx.guild.id][role.id] = amount
+        sals = await self.bot.di.get_salaries(ctx.guild)
+        sals[role.id] = amount
+        await self.bot.di.update_salaries(ctx.guild, sals)
         await ctx.send((await _(ctx, "Successfully created a daily salary of {} for {}")).format(amount, role))
 
     @salary.command()
@@ -102,6 +106,8 @@ class Salary(object):
     @checks.mod_or_permissions()
     async def delete(self, ctx, *, role: discord.Role):
         """Remove a created salary"""
-        del self.guilds[ctx.guild.id][role.id]
+        sals = await self.bot.di.get_salaries(ctx.guild)
+        del sals[role.id]
+        await self.bot.di.update_salaries(ctx.guild, sals)
         await ctx.send((await _(ctx, "Successfully deleted the daily salary for {}")).format(role))
 
