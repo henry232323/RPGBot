@@ -139,7 +139,10 @@ class Characters(object):
             if response.content == "done":
                 break
             else:
-                content += response.content + "\n"
+                if len(content) + len(response.content) > 3500:
+                    await ctx.send(await _("Can't create a description of over 3500 characters"))
+                else:
+                    content += response.content + "\n"
         character["description"] = content
         await ctx.send(await _(ctx, "What level is the character?"))
         response = await self.bot.wait_for("message", timeout=60, check=check)

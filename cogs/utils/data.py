@@ -342,6 +342,18 @@ class DataInteraction(object):
             maps = {"Default": maps}
         return {name: Map(*map) if not isinstance(map[3], dict) else AdvancedMap(*map) for name, map in maps.items()}
 
+    async def get_language(self, guild):
+        gd = await self.db.get_guild_data(guild)
+        return gd.get("lang", {})
+
+    async def get_salaries(self, guild):
+        gd = await self.db.get_guild_data(guild)
+        return gd.get("salaries", {})
+
+    async def get_currency(self, guild):
+        gd = await self.db.get_guild_data(guild)
+        return gd.get("currency", {})
+
     async def get_guild_guilds(self, guild):
         """Get a server's guilds"""
         gd = await self.db.get_guild_data(guild)
@@ -426,6 +438,11 @@ class DataInteraction(object):
             raise ValueError("Cannot take more than user has!")
         await self.db.update_user_data(member, ud)
         return ud["money"]
+
+    async def update_salaries(self, guild, data):
+        gd = await self.db.get_guild_data(guild)
+        gd["salaries"] = data
+        await self.db.update_guild_data(guild, gd)
 
     async def set_language(self, guild, language):
         gd = await self.db.get_guild_data(guild)
