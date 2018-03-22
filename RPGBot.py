@@ -153,6 +153,7 @@ class Bot(commands.AutoShardedBot):
                         "This bot costs $300/yr to run. If you like the utilities it provides,"
                         " consider buying me a coffee <https://ko-fi.com/henrys>"
                         " or subscribe as a Patron <https://www.patreon.com/henry232323>"
+                        " Also consider upvoting the bot  to help us grow<https://discordbots.org/bot/305177429612298242>"
                     )
 
             add = choice([0, 0, 0, 0, 0, 1, 1, 2, 3])

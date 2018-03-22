@@ -32,7 +32,6 @@ from itertools import chain
 from collections import Counter
 from random import randint, choice
 
-
 from .utils import checks
 from .utils.translation import _
 
@@ -122,7 +121,8 @@ class Misc(object):
 
                 fmt = "{roll} **{0}** ({1} {2} {3}) ([{4}] + {5})" if add else "{roll} **{0}** ({1} {2} {3}) ([{4}])"
                 all = "] + [".join(" + ".join(map(lambda x: str(x), roll)) for roll in rolls.values())
-                msg = fmt.format(succ, total, type, val, all, " + ".join(map(lambda x: str(x), add)), roll=await _(ctx, "Roll"))
+                msg = fmt.format(succ, total, type, val, all, " + ".join(map(lambda x: str(x), add)),
+                                 roll=await _(ctx, "Roll"))
             else:
                 fmt = "{roll} **{0}** ([{1}] + {2})" if add else "{roll} **{0}** ([{1}])"
                 all = "] + [".join(" + ".join(map(lambda x: str(x), roll)) for roll in rolls.values())
@@ -161,7 +161,8 @@ class Misc(object):
         embed.add_field(name=await _(ctx, "Library"), value='discord.py (Python)')
         embed.add_field(name=await _(ctx, "Uptime"), value=await self.bot.get_bot_uptime())
         embed.add_field(name=await _(ctx, "Servers"), value=(await _(ctx, "{} servers")).format(len(self.bot.guilds)))
-        embed.add_field(name=await _(ctx, "Commands Run"), value=(await _(ctx, '{} commands')).format(sum(self.bot.commands_used.values())))
+        embed.add_field(name=await _(ctx, "Commands Run"),
+                        value=(await _(ctx, '{} commands')).format(sum(self.bot.commands_used.values())))
 
         total_members = sum(len(s.members) for s in self.bot.guilds)
         total_online = sum(1 for m in self.bot.get_all_members() if m.status != discord.Status.offline)
@@ -169,11 +170,14 @@ class Misc(object):
         channel_types = Counter(isinstance(c, discord.TextChannel) for c in self.bot.get_all_channels())
         voice = channel_types[False]
         text = channel_types[True]
-        embed.add_field(name=await _(ctx, "Total Members"), value=(await _(ctx, '{} ({} online)')).format(total_members, total_online))
+        embed.add_field(name=await _(ctx, "Total Members"),
+                        value=(await _(ctx, '{} ({} online)')).format(total_members, total_online))
         embed.add_field(name=await _(ctx, "Unique Members"), value='{}'.format(len(unique_members)))
-        embed.add_field(name=await _(ctx, "Channels"), value=(await _(ctx, '{} text channels, {} voice channels')).format(text, voice))
+        embed.add_field(name=await _(ctx, "Channels"),
+                        value=(await _(ctx, '{} text channels, {} voice channels')).format(text, voice))
         embed.add_field(name=await _(ctx, "Shards"),
-                        value=(await _(ctx, 'Currently running {} shards. This server is on shard {}')).format(ctx.bot.shard_count, getattr(ctx.guild, "shard_id", 0)))
+                        value=(await _(ctx, 'Currently running {} shards. This server is on shard {}')).format(
+                            ctx.bot.shard_count, getattr(ctx.guild, "shard_id", 0)))
 
         a = monotonic()
         await (await ctx.bot.shards[getattr(ctx.guild, "shard_id", 0)].ws.ping())
@@ -243,9 +247,9 @@ class Misc(object):
     async def donate(self, ctx):
         """Donation information"""
         await ctx.send(await _(ctx, "Keeping the bots running takes money, "
-                       "if several people would buy me a coffee each month, "
-                       "I wouldn't have to worry about it coming out of my pocket. "
-                       "If you'd like, you can donate to me here: https://ko-fi.com/henrys"))
+                                    "if several people would buy me a coffee each month, "
+                                    "I wouldn't have to worry about it coming out of my pocket. "
+                                    "If you'd like, you can donate to me here: https://ko-fi.com/henrys"))
 
     @commands.command()
     async def feedback(self, ctx, *, feedback):
