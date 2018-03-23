@@ -178,7 +178,7 @@ class Inventory(object):
         if isinstance(cost, str):
             await ctx.send((await _(ctx, "Lootbox {} successfully created and requires one {} to open.")).format(name, cost))
         else:
-            await ctx.send((await _(ctx, "Lootbox {} successfully created and requires ${} to open")).format(name, cost))
+            await ctx.send((await _(ctx, "Lootbox {} successfully created and requires 1 dollars to open")).format(name, cost))
         await self.bot.di.update_guild_lootboxes(ctx.guild, boxes)
 
     @checks.no_pm()
