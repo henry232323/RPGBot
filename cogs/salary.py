@@ -69,7 +69,7 @@ class Salary(object):
             dels = []
             for role, amount in sals.items():
                 try:
-                    embed.add_field(name=discord.utils.get(ctx.guild.roles, id=role).name, value=f"${amount}")
+                    embed.add_field(name=discord.utils.get(ctx.guild.roles, id=role).name, value=f"{amount} dollars")
                 except:
                     dels.append(role)
             for d in dels:

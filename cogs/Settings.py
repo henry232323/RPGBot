@@ -39,14 +39,14 @@ class Settings(object):
         settings = await self.bot.db.get_guild_data(ctx.guild)
         embed = discord.Embed()
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-        embed.add_field(name=await _(ctx, "Starting Money"), value=f"${settings['start']}")
+        embed.add_field(name=await _(ctx, "Starting Money"), value=f"{settings['start']} dollars")
         embed.add_field(name=await _(ctx, "Items"), value="{} {}".format(len(settings['items']), await _(ctx, "items")))
         embed.add_field(name=await _(ctx, "Characters"),
                         value="{} {}".format(len(settings['characters']), await _(ctx, "characters")))
         embed.add_field(name=await _(ctx, "Maps"),
                         value=await _(ctx, "None") if not settings.get("maps") else "\n\t" + "\n\t".join(
                             settings["maps"]))
-        embed.add_field(name=await _(ctx, "Currency"), value=f"{settings.get('currency', '$')}")
+        embed.add_field(name=await _(ctx, "Currency"), value=f"{settings.get('currency', 'dollars')}")
         embed.add_field(name=await _(ctx, "Language"), value=f"{settings.get('language', 'en')}")
         await ctx.send(embed=embed)
 
@@ -166,4 +166,4 @@ class Settings(object):
     async def setstart(self, ctx, amount: NumberConverter):
         """Set the money start amount for a guild"""
         await self.bot.di.set_start(ctx.guild, amount)
-        await ctx.send((await _(ctx, "Starting amount changed to ${}")).format(amount))
+        await ctx.send((await _(ctx, "Starting amount changed to {} dollars")).format(amount))
