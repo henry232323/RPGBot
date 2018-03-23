@@ -59,7 +59,7 @@ class User(object):
             imap.append((await _(ctx, "\nand {} more...")).format(il-20))
         invitems = "\n".join(imap) or await _(ctx, "No Items")
 
-        embed.add_field(name=await _(ctx, "Balance"), value=f"${ud['money']}")
+        embed.add_field(name=await _(ctx, "Balance"), value=f"{ud['money']} dollars")
         embed.add_field(name=await _(ctx, "Guild"), value=ud.get("guild", await _(ctx, "None")))
         embed.add_field(name=await _(ctx, "Items"), value=invitems)
         embed.add_field(name=await _(ctx, "Box"), value=boxitems) if boxitems else None
