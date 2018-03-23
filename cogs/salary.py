@@ -38,7 +38,7 @@ class Salary(object):
                         gob = self.bot.get_guild(guild)
                         if gob:
                             for role, amount in roles.items():
-                                rob = discord.utils.get(gob.roles, id=role)
+                                rob = discord.utils.get(gob.roles, id=int(role))
                                 if rob:
                                     for member in rob.members:
                                         await self.bot.di.add_eco(member, amount)
@@ -69,7 +69,7 @@ class Salary(object):
             dels = []
             for role, amount in sals.items():
                 try:
-                    embed.add_field(name=discord.utils.get(ctx.guild.roles, id=role).name, value=f"${amount}")
+                    embed.add_field(name=discord.utils.get(ctx.guild.roles, id=int(role)).name, value=f"1 dollars")
                 except:
                     dels.append(role)
             for d in dels:

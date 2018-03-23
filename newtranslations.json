@@ -106,9 +106,9 @@
     "fr": "Personnage modifié",
     "ru": "Персонаж изменен!"
   },
-  "{} has ${}": {
-    "fr": "{} a ${}",
-    "ru": "{} имеет ${}"
+  "{} has 1 dollars": {
+    "fr": "{} a 1 dollars",
+    "ru": "{} имеет 1 dollars"
   },
   "Balances changed": {
     "fr": "Solde changé",
@@ -118,9 +118,9 @@
     "fr": "Argent donné",
     "ru": "Деньги выданы"
   },
-  "Successfully paid ${} to {}": {
-    "fr": "Payé ${} à {} avec succès",
-    "ru": "Успешно выплачено ${} для{}"
+  "Successfully paid 1 dollars to {}": {
+    "fr": "Payé 1 dollars à {} avec succès",
+    "ru": "Успешно выплачено 1 dollars для{}"
   },
   "\n        \u27A1 to see the next page\n        \u2B05 to go back\n        \u274C to exit\n        ": {
     "fr": "\n        \u27A1 pour voir la page suivante\n        \u2B05 pour retourner\n        \u274C pour quitter\n        ",
@@ -178,17 +178,17 @@
     "fr": "Items achetés avec succès",
     "ru": "Предмет успешно куплен"
   },
-  "{} bought {} {} from you for ${} with ID {} on server {}": {
-    "fr": "{} a acheté {} {} de vous pour ${} avec l'ID {} sur le serveur {}",
-    "ru": "{} купил {} {} у вас за ${} его ID {} на сервере {}"
+  "{} bought {} {} from you for 1 dollars with ID {} on server {}": {
+    "fr": "{} a acheté {} {} de vous pour 1 dollars avec l'ID {} sur le serveur {}",
+    "ru": "{} купил {} {} у вас за 1 dollars его ID {} на сервере {}"
   },
   "This is not your item to remove!": {
     "fr": "Ce n'est pas à vous de supprimer cet item !",
     "ru": "Это не ваш предмет! Вы не можете его удалить!"
   },
-  "Jackpot: ${}\n{} players entered": {
-    "fr": "Cagnotte: ${}\n{} joueurs participent",
-    "ru": "Джекпот: ${}\n{} игроков вошло"
+  "Jackpot: 1 dollars\n{} players entered": {
+    "fr": "Cagnotte: 1 dollars\n{} joueurs participent",
+    "ru": "Джекпот: 1 dollars\n{} игроков вошло"
   },
   "No lotteries currently running!": {
     "fr": "Aucune loterie n'a été lancée !",
@@ -309,17 +309,17 @@
     "fr": "Vous n'avez pas x{} {} !",
     "ru": "У вас нет x{} {}!"
   },
-  "{} Has started a bid for x{} {} starting at ${}\nBid runs for 60 seconds `rp!bid` to place a bid!": {
-    "fr": "{} a commencé une enchère pour x{} {}, commençant à ${}\nL'enchère dure 60 secondes, tapez `rp!bid` enchérir !",
+  "{} Has started a bid for x{} {} starting at 1 dollars\nBid runs for 60 seconds `rp!bid` to place a bid!": {
+    "fr": "{} a commencé une enchère pour x{} {}, commençant à 1 dollars\nL'enchère dure 60 secondes, tapez `rp!bid` enchérir !",
     "ru": "{} запустил ставку для x{} {}, начиная с x{} {}\nBid напиши 'rp!bid' , что бы сделать ставку!"
   },
   "Bid over!": {
     "fr": "L'enchère est finie!",
     "ru": "Ставка закончена!"
   },
-  "{} won the bid for ${}!": {
-    "fr": "{} a gagné l'enchère pour ${}",
-    "ru": "{} выйграл ставку ценой в ${}" 
+  "{} won the bid for 1 dollars!": {
+    "fr": "{} a gagné l'enchère pour 1 dollars",
+    "ru": "{} выйграл ставку ценой в 1 dollars"
   },
   "Nobody bid and had enough money to pay for it!": {
     "fr": "Personne n'a enchéri et n'a pu se l'acheter !",
@@ -457,8 +457,8 @@
   "You don't have enough to deposit!": {
     "fr": "Vous n'en avez pas assez pour en déposer"
   },
-  "Successfully deposited ${} into {}'s bank": {
-    "fr": "${} déposé dans la banque de {} avec succès !"
+  "Successfully deposited 1 dollars into {}'s bank": {
+    "fr": "1 dollars déposé dans la banque de {} avec succès !"
   },
   "Only mods can withdraw money!": {
     "fr": "Seuls les modérateurs peuvent retirer de l'argent !"
@@ -466,8 +466,8 @@
   "Cannot withdraw more than the guild has!": {
     "fr": "Vous ne pouvez pas retirer plus que ce que la guilde possède !"
   },
-  "Successfully withdrew ${}": {
-    "fr": "Vous avez retiré ${} avec succès !"
+  "Successfully withdrew 1 dollars": {
+    "fr": "Vous avez retiré 1 dollars avec succès !"
   },
   "Only the guild owner can add mods": {
     "fr": "Seul le propriétaire de la guilde peut ajouter des modérateurs !"
@@ -562,8 +562,8 @@
   "Lootbox {} successfully created and requires one {} to open.": {
     "fr": "La lootbox {} a été créé avec succès et a besoin d'un(e) {} pour ouvrir."
   },
-  "Lootbox {} successfully created and requires ${} to open": {
-    "fr": "La lootbox {} a été créé avec succès et a besoin de ${} pour ouvrir."
+  "Lootbox {} successfully created and requires 1 dollars to open": {
+    "fr": "La lootbox {} a été créé avec succès et a besoin de 1 dollars pour ouvrir."
   },
   "That is not a valid lootbox": {
     "fr": "Ce n'est pas une lootbox valide"
@@ -895,8 +895,8 @@
   "That item doesn't exist": {
     "fr": "Cet item n'existe pas"
   },
-  "Starting amount changed to ${}": {
-    "fr": "Montant de base changé a ${}"
+  "Starting amount changed to 1 dollars": {
+    "fr": "Montant de base changé a 1 dollars"
   },
   "items": {
     "fr": "items"
