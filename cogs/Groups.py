@@ -72,7 +72,7 @@ class Groups(object):
 
         embed.add_field(name=await _(ctx, "Owner"), value=owner.mention)
         embed.add_field(name=await _(ctx, "Open"), value=str(guild.open))
-        embed.add_field(name=await _(ctx, "Bank Balance"), value=f"1 dollars")
+        embed.add_field(name=await _(ctx, "Bank Balance"), value=f"${guild.bank}")
         embed.add_field(name=await _(ctx, "Members"), value=members or await _(ctx, "None"))
         embed.add_field(name=await _(ctx, "Items"), value=items or await _(ctx, "None"))
 
@@ -432,7 +432,7 @@ class Groups(object):
 
             guild.bank += amount
             await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-            await ctx.send((await _(ctx, "Successfully deposited 1 dollars into {}'s bank")).format(amount, guild_name))
+            await ctx.send((await _(ctx, "Successfully deposited ${} into {}'s bank")).format(amount, guild_name))
         except:
             from traceback import print_exc
             print_exc()
@@ -460,7 +460,7 @@ class Groups(object):
             return
 
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send((await _(ctx, "Successfully withdrew 1 dollars")).format(amount))
+        await ctx.send((await _(ctx, "Successfully withdrew ${}")).format(amount))
 
     @guild.command()
     @checks.no_pm()
