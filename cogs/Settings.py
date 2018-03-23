@@ -39,12 +39,12 @@ class Settings(object):
         settings = await self.bot.db.get_guild_data(ctx.guild)
         embed = discord.Embed()
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-        embed.add_field(name=await _(ctx, "Starting Money"), value=f"g<1> dollars")
+        embed.add_field(name=await _(ctx, "Starting Money"), value=f"${settings['start']}")
         embed.add_field(name=await _(ctx, "Items"), value="{} {}".format(len(settings['items']), await _(ctx, "items")))
         embed.add_field(name=await _(ctx, "Characters"),
                         value="{} {}".format(len(settings['characters']), await _(ctx, "characters")))
         embed.add_field(name=await _(ctx, "Maps"),
-                        value=await _(ctx, "None") if not settings.get("maps") else "\n".join(
+                        value=await _(ctx, "None") if not settings.get("maps") else "\n\t" + "\n\t".join(
                             settings["maps"]))
         embed.add_field(name=await _(ctx, "Currency"), value=f"{settings.get('currency', '$')}")
         embed.add_field(name=await _(ctx, "Language"), value=f"{settings.get('language', 'en')}")
@@ -166,21 +166,4 @@ class Settings(object):
     async def setstart(self, ctx, amount: NumberConverter):
         """Set the money start amount for a guild"""
         await self.bot.di.set_start(ctx.guild, amount)
-        await ctx.send((await _(ctx, "Starting amount changed to g<1> dollars")).format(amount))
-
-    @commands.guild_only()
-    @commands.command()
-    @checks.admin_or_permissions()
-    async def language(self, ctx, language: str):
-        if language not in self.bot.languages:
-            await ctx.send(await _(ctx, "That is not a valid language!"))
-            return
-        await self.bot.di.set_language(ctx.guild, language)
-        await ctx.send(await _(ctx, "Language successfully set!"))
-
-    @commands.guild_only()
-    @commands.command()
-    @checks.admin_or_permissions()
-    async def currency(self, ctx, currency: str):
-        await self.bot.di.set_currency(ctx.guild, currency)
-        await ctx.send(await _(ctx, "Currency successfully set!"))
+        await ctx.send((await _(ctx, "Starting amount changed to ${}")).format(amount))
