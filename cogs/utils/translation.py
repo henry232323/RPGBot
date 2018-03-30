@@ -29,8 +29,6 @@ async def _(ctx, translation):
 
     try:
         translation = ctx.bot.translations[translation][lang]
-        if currency != "dollars":
-            translation = translation.replace("dollars", currency)
-        return translation
+        return translation.replace("dollars", currency)
     except:
-        return translation
+        return translation.replace("dollars", currency)

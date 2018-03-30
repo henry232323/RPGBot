@@ -26,36 +26,40 @@ class Salary(object):
             time_until = 86400 - (_today + datetime.timedelta(days=1)).timestamp() - datetime.datetime.utcnow().timestamp()
             await asyncio.sleep(time_until)
             while True:
-                dels = defaultdict(list)
+                try:
+                    dels = defaultdict(list)
 
-                req = f"""SELECT UUID, info ->> 'salaries' FROM servdata;"""
-                async with self.bot.db._conn.acquire() as connection:
-                    response = await connection.fetch(req)
-                guilds = (y for y in ((x["uuid"], json.loads(x["?column?"])) for x in response) if y[1])
+                    req = f"""SELECT UUID, info ->> 'salaries' FROM servdata;"""
+                    async with self.bot.db._conn.acquire() as connection:
+                        response = await connection.fetch(req)
+                    guilds = (y for y in ((x["uuid"], json.loads(x["?column?"])) for x in response) if y[1])
 
-                for guild, roles in guilds:
-                    try:
-                        gob = self.bot.get_guild(guild)
-                        if gob:
-                            for role, amount in roles.items():
-                                rob = discord.utils.get(gob.roles, id=role)
-                                if rob:
-                                    for member in rob.members:
-                                        await self.bot.di.add_eco(member, amount)
-                                else:
-                                    dels[gob].append((roles, rob))
-                        else:
+                    for guild, roles in guilds:
+                        try:
+                            gob = self.bot.get_guild(guild)
+                            if gob:
+                                for role, amount in roles.items():
+                                    rob = discord.utils.get(gob.roles, id=role)
+                                    if rob:
+                                        for member in rob.members:
+                                            await self.bot.di.add_eco(member, amount)
+                                    else:
+                                        dels[gob].append((roles, rob))
+                            else:
+                                pass
+                        except:
                             pass
+                    try:
+                        for g, rs in dels.items():
+                            for dls, r in rs:
+                                del r[dls]
+                            await self.bot.di.update_salaries(g, r)
                     except:
                         pass
-                try:
-                    for g, rs in dels.items():
-                        for dls, r in rs:
-                            del r[dls]
-                        await self.bot.di.update_salaries(g, r)
                 except:
                     pass
-                await asyncio.sleep(86400)
+                finally:
+                    await asyncio.sleep(86400)
 
     @commands.command()
     @checks.no_pm()
@@ -69,7 +73,7 @@ class Salary(object):
             dels = []
             for role, amount in sals.items():
                 try:
-                    embed.add_field(name=discord.utils.get(ctx.guild.roles, id=role).name, value=f"{amount} dollars")
+                    embed.add_field(name=discord.utils.get(ctx.guild.roles, id=int(role)).name, value=await _(ctx, f"{amount} dollars"))
                 except:
                     dels.append(role)
             for d in dels:
