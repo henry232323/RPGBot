@@ -32,7 +32,8 @@ class Salary(object):
                     req = f"""SELECT UUID, info ->> 'salaries' FROM servdata;"""
                     async with self.bot.db._conn.acquire() as connection:
                         response = await connection.fetch(req)
-                    guilds = (y for y in ((x["uuid"], json.loads(x["?column?"])) for x in response) if y[1])
+                    guilds = (y for y in ((x["uuid"], json.loads(x["?column?"])) for x in response if x["?column?"]) if
+                              y[1])
 
                     for guild, roles in guilds:
                         try:
@@ -42,18 +43,18 @@ class Salary(object):
                                     rob = discord.utils.get(gob.roles, id=role)
                                     if rob:
                                         for member in rob.members:
-                                            await self.bot.di.add_eco(member, amount)
+                                            await self.bot.di.add_eco(member, 0)
                                     else:
-                                        dels[gob].append((roles, rob))
+                                        dels[gob].append((roles, role))
                             else:
                                 pass
                         except:
                             pass
                     try:
                         for g, rs in dels.items():
-                            for dls, r in rs:
-                                del r[dls]
-                            await self.bot.di.update_salaries(g, r)
+                            for allroles, r in rs:
+                                del allroles[r]
+                            await self.bot.di.update_salaries(g, allroles)
                     except:
                         pass
                 except:
@@ -111,7 +112,7 @@ class Salary(object):
     async def delete(self, ctx, *, role: discord.Role):
         """Remove a created salary"""
         sals = await self.bot.di.get_salaries(ctx.guild)
-        del sals[role.id]
+        del sals[str(role.id)]
         await self.bot.di.update_salaries(ctx.guild, sals)
         await ctx.send((await _(ctx, "Successfully deleted the daily salary for {}")).format(role))
 

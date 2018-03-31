@@ -68,7 +68,11 @@ class MemberConverter(commands.MemberConverter):
     async def convert(self, ctx, argument):
         if argument == 'everyone' or argument == '@everyone':
             return 'everyone'
-        return await super().convert(ctx, argument)
+        try:
+            role = await commands.RoleConverter.convert(self, ctx, argument)
+            return role.members
+        except:
+            return await super().convert(ctx, argument)
 
 
 class NumberConverter(commands.Converter):
