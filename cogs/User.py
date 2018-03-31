@@ -44,6 +44,7 @@ class User(object):
         embed.set_thumbnail(url=user.avatar_url)
 
         ud = await self.bot.db.get_user_data(user)
+        gd = await self.bot.db.get_guild_data(ctx.guild)
 
         pokemon = [f"{x[0]}: **{x[1]}**" for x in ud["box"]]
         pl = len(pokemon)
@@ -59,7 +60,7 @@ class User(object):
             imap.append((await _(ctx, "\nand {} more...")).format(il-20))
         invitems = "\n".join(imap) or await _(ctx, "No Items")
 
-        embed.add_field(name=await _(ctx, "Balance"), value=f"{ud['money']} dollars")
+        embed.add_field(name=await _(ctx, "Balance"), value=f"{ud['money']} {gd.get('currency', 'dollars')}")
         embed.add_field(name=await _(ctx, "Guild"), value=ud.get("guild", await _(ctx, "None")))
         embed.add_field(name=await _(ctx, "Items"), value=invitems)
         embed.add_field(name=await _(ctx, "Box"), value=boxitems) if boxitems else None
