@@ -48,6 +48,7 @@ class Settings(object):
                             settings["maps"]))
         embed.add_field(name=await _(ctx, "Currency"), value=f"{settings.get('currency', 'dollars')}")
         embed.add_field(name=await _(ctx, "Language"), value=f"{settings.get('language', 'en')}")
+        embed.add_field(name=await _(ctx, "Experience Enabled"), value=f"{settings.get('exp', True)}")
         await ctx.send(embed=embed)
 
     @settings.command()
@@ -171,16 +172,22 @@ class Settings(object):
     @commands.guild_only()
     @commands.command()
     @checks.admin_or_permissions()
-    async def language(self, ctx, language: str):
-        if language not in self.bot.languages:
-            await ctx.send(await _(ctx, "That is not a valid language!"))
-            return
-        await self.bot.di.set_language(ctx.guild, language)
-        await ctx.send(await _(ctx, "Language successfully set!"))
+    async def language(self, ctx, language: str = None):
+        """Set the guild language or check the language"""
+        if language is None:
+            lang = await self.bot.di.get_language(ctx.guild)
+            await ctx.send((await _(ctx, "The guild language is set to {}")).format(lang))
+        else:
+            if language not in self.bot.languages:
+                await ctx.send(await _(ctx, "That is not a valid language!"))
+                return
+            await self.bot.di.set_language(ctx.guild, language)
+            await ctx.send(await _(ctx, "Language successfully set!"))
 
     @commands.guild_only()
     @commands.command()
     @checks.admin_or_permissions()
     async def currency(self, ctx, currency: str):
+        """Set the guild currency"""
         await self.bot.di.set_currency(ctx.guild, currency)
         await ctx.send(await _(ctx, "Currency successfully set!"))

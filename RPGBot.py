@@ -40,6 +40,7 @@ from werkzeug.exceptions import HTTPException
 
 import cogs
 from cogs.utils import db, data
+from cogs.utils.translation import _
 
 try:
     import uvloop
@@ -149,31 +150,32 @@ class Bot(commands.AutoShardedBot):
             self.server_commands[ctx.guild.id] += 1
             if ctx.guild.id not in self.patrons:
                 if (self.server_commands[ctx.guild.id] % 50) == 0:
-                    await ctx.send(
-                        "This bot costs $300/yr to run. If you like the utilities it provides,"
-                        " consider buying me a coffee <https://ko-fi.com/henrys>"
-                        " or subscribe as a Patron <https://www.patreon.com/henry232323>"
-                        " Also consider upvoting the bot  to help us grow<https://discordbots.org/bot/305177429612298242>"
-                    )
+                    await ctx.send(await _(ctx,
+                                           "This bot costs $300/yr to run. If you like the utilities it provides,"
+                                           " consider buying me a coffee <https://ko-fi.com/henrys>"
+                                           " or subscribe as a Patron <https://www.patreon.com/henry232323>"
+                                           " Also consider upvoting the bot to help us grow <https://discordbots.org/bot/305177429612298242>"
+                                           ))
 
-            add = choice([0, 0, 0, 0, 0, 1, 1, 2, 3])
-            fpn = ctx.command.full_parent_name
-            if fpn:
-                values = {
-                    "character": 2,
-                    "inventory": 1,
-                    "economy": 1,
-                    "pokemon": 2,
-                    "guild": 2,
-                    "team": 1,
-                }
-                add += values.get(fpn, 0)
+            if await self.di.get_exp_enabled(ctx.guild):
+                add = choice([0, 0, 0, 0, 0, 1, 1, 2, 3])
+                fpn = ctx.command.full_parent_name
+                if fpn:
+                    values = {
+                        "character": 2,
+                        "inventory": 1,
+                        "economy": 1,
+                        "pokemon": 2,
+                        "guild": 2,
+                        "team": 1,
+                    }
+                    add += values.get(fpn, 0)
 
-            if add:
-                await asyncio.sleep(4)
-                r = await self.di.add_exp(ctx.author, add)
-                if r is not None:
-                    await ctx.send(f"{ctx.author.mention} is now level {r}!")
+                if add:
+                    await asyncio.sleep(4)
+                    r = await self.di.add_exp(ctx.author, add)
+                    if r is not None:
+                        await ctx.send((await _(ctx, "{0} is now level {1}!")).format(ctx.author.mention, r))
 
     async def on_command_error(self, ctx, exception):
         self.stats.increment("RPGBot.errors", tags=["RPGBot:errors"], host="scw-8112e8")
