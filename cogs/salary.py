@@ -23,7 +23,7 @@ class Salary(object):
         if self.first:
             self.first = False
             _today = datetime.datetime(*datetime.datetime.utcnow().timetuple()[:3])
-            time_until = 86400 - (_today + datetime.timedelta(days=1)).timestamp() - datetime.datetime.utcnow().timestamp()
+            time_until = (_today + datetime.timedelta(days=1)).timestamp() - datetime.datetime.utcnow().timestamp()
             await asyncio.sleep(time_until)
             while True:
                 try:
