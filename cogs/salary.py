@@ -40,10 +40,10 @@ class Salary(object):
                             gob = self.bot.get_guild(guild)
                             if gob:
                                 for role, amount in roles.items():
-                                    rob = discord.utils.get(gob.roles, id=role)
+                                    rob = discord.utils.get(gob.roles, id=int(role))
                                     if rob:
                                         for member in rob.members:
-                                            await self.bot.di.add_eco(member, 0)
+                                            await self.bot.di.add_eco(member, amount)
                                     else:
                                         dels[gob].append((roles, role))
                             else:
@@ -112,7 +112,10 @@ class Salary(object):
     async def delete(self, ctx, *, role: discord.Role):
         """Remove a created salary"""
         sals = await self.bot.di.get_salaries(ctx.guild)
-        del sals[str(role.id)]
-        await self.bot.di.update_salaries(ctx.guild, sals)
-        await ctx.send((await _(ctx, "Successfully deleted the daily salary for {}")).format(role))
+        if str(role.id) in sals:
+            del sals[str(role.id)]
+            await self.bot.di.update_salaries(ctx.guild, sals)
+            await ctx.send((await _(ctx, "Successfully deleted the daily salary for {}")).format(role))
+        else:
+            await ctx.send(await _(ctx, "That role has no salaries!"))
 

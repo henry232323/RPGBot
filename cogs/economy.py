@@ -28,7 +28,7 @@ from async_timeout import timeout
 from discord.ext import commands
 
 from .utils import checks
-from .utils.data import MemberConverter, NumberConverter, get
+from .utils.data import MemberConverter, NumberConverter, get, chain
 from .utils.translation import _
 
 
@@ -55,8 +55,7 @@ class Economy(object):
     @commands.command(aliases=["set"])
     async def setbalance(self, ctx, amount: NumberConverter, *members: MemberConverter):
         """Set the balance of the given members to an amount"""
-        if "everyone" in members:
-            members = ctx.guild.members
+        members = chain(members)
 
         for member in members:
             await self.bot.di.set_eco(member, amount)
@@ -68,8 +67,7 @@ class Economy(object):
     @commands.command()
     async def givemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
         """Give the members money (Moderators)"""
-        if "everyone" in members:
-            members = ctx.guild.members
+        members = chain(members)
 
         for member in members:
             await self.bot.di.add_eco(member, amount)
@@ -81,8 +79,7 @@ class Economy(object):
     @commands.command()
     async def takemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
         """Give the members money (Moderators)"""
-        if "everyone" in members:
-            members = ctx.guild.members
+        members = chain(members)
 
         for member in members:
             await self.bot.di.add_eco(member, -amount)

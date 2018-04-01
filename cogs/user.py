@@ -23,6 +23,7 @@ from discord.ext import commands
 import discord
 
 from .utils import checks, data
+from .utils.data import chain
 from .utils.translation import _
 
 
@@ -90,8 +91,7 @@ class User(object):
     @experience.command(aliases=["set"])
     async def setlevel(self, ctx, level: data.NumberConverter, *members: data.MemberConverter):
         """Set the given members level"""
-        if "everyone" in members:
-            members = ctx.guild.members
+        members = chain(members)
         for member in members:
             await self.bot.di.set_level(member, level, 0)
         await ctx.send(await _(ctx, "Set level for members"))
@@ -101,9 +101,24 @@ class User(object):
     @experience.command()
     async def add(self, ctx, amount: data.NumberConverter, *members: data.MemberConverter):
         """Give the given members an amount of experience"""
-        if "everyone" in members:
-            members = ctx.guild.members
+        members = chain(members)
         for member in members:
             await self.bot.di.add_exp(member, amount)
 
         await ctx.send(await _(ctx, "Gave experience to members"))
+
+    @commands.guild_only()
+    @commands.command()
+    @checks.mod_or_permissions()
+    async def enable(self, ctx, value: str):
+        truth = ["yes", "true"]
+        false = ["false", "no"]
+        if value.lower() in truth:
+            val = True
+        elif value.lower() in false:
+            val = False
+        else:
+            await ctx.send("That is not a valid value! (true/false, yes/no)")
+            return
+        await self.bot.di.set_exp_enabled(ctx.guild, val)
+        await ctx.send(await _(ctx, "Successfully change EXP setting"))

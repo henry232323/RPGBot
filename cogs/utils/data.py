@@ -48,6 +48,16 @@ converters = {
 }
 
 
+def chain(l):
+    for item in l:
+        try:
+            itr = iter(item)
+            for ytem in itr:
+                yield ytem
+        except:
+            yield item
+
+
 class Guild(gc):
     __slots__ = ()
 
@@ -67,7 +77,7 @@ class Guild(gc):
 class MemberConverter(commands.MemberConverter):
     async def convert(self, ctx, argument):
         if argument == 'everyone' or argument == '@everyone':
-            return 'everyone'
+            return ctx.guild.members
         try:
             role = await commands.RoleConverter.convert(self, ctx, argument)
             return role.members
@@ -78,7 +88,7 @@ class MemberConverter(commands.MemberConverter):
 class NumberConverter(commands.Converter):
     async def convert(self, ctx, argument):
         argument = argument.replace(",", "").strip("$")
-        if not argument.isdigit():
+        if not argument.strip("-").isdigit():
             raise commands.BadArgument("That is not a number!")
         if len(argument) > 10:
             raise commands.BadArgument("That number is much too big! Must be less than 999,999,999")
@@ -350,6 +360,10 @@ class DataInteraction(object):
         gd = await self.db.get_guild_data(guild)
         return gd.get("lang", {})
 
+    async def get_exp_enabled(self, guild):
+        gd = await self.db.get_guild_data(guild)
+        return gd.get("exp", True)
+
     async def get_salaries(self, guild):
         gd = await self.db.get_guild_data(guild)
         return gd.get("salaries", {})
@@ -488,6 +502,11 @@ class DataInteraction(object):
 
         await self.db.update_user_data(member, ud)
         return ud["level"] if ud["level"] > s else None
+
+    async def set_exp_enabled(self, guild, value):
+        gd = await self.db.get_guild_data(guild)
+        gd["exp"] = value
+        await self.db.update_guild_data(guild, gd)
 
     async def add_to_team(self, guild, character, id):
         """Add a pokemon to a character's team"""

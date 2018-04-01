@@ -772,6 +772,9 @@
   "Language successfully set!": {
     "fr": "Langue définie avec succis !"
   },
+  "The guild language is set to {}": {
+    "fr": "La langue de la guilde est {}"
+  },
   "Currency successfully set!": {
     "fr": "Devise définie avec succis !"
   },
@@ -859,6 +862,9 @@
   "Successfully deleted the daily salary for {}": {
     "fr": "Le salaire quotidien pour {} a été supprimé avec succès"
   },
+  "That role has no salaries!": {
+    "fr": "Ce role n'a pas de salaire !"
+  },
   "Guild Salaries": {
     "fr": "Salaires de la Guilde"
   },
@@ -933,6 +939,12 @@
   },
   "Gave experience to members": {
     "fr": "De l'expérience a été donnée aux membres"
+  },
+  "{0} is now level {1}!": {
+    "fr": "{0} maintenant a le niveau de {1} !"
+  },
+  "This bot costs $300/yr to run. If you like the utilities it provides, consider buying me a coffee <https://ko-fi.com/henrys> or subscribe as a Patron <https://www.patreon.com/henry232323> Also consider upvoting the bot to help us grow <https://discordbots.org/bot/305177429612298242>":{
+    "fr": "Faire tourner le bot coûte $300. Si vous aimez les services qu'il a, considerez de m'acheter un café <https://ko-fi.com/henrys> ou abonnez-vous comme un Patron <https://www.patreon.com/henry232323> Aussi considerez upvoter le bot pour nous aider grandir <https://discordbots.org/bot/305177429612298242>"
   },
   "No Items": {
     "fr": "Aucun item"

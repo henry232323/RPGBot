@@ -22,7 +22,7 @@
 from discord.ext import commands
 import discord
 
-from .utils.data import NumberConverter, MemberConverter, ItemOrNumber
+from .utils.data import NumberConverter, MemberConverter, ItemOrNumber, chain
 from .utils import checks
 from .utils.translation import _
 
@@ -56,8 +56,7 @@ class Inventory(object):
     @checks.no_pm()
     async def takeitem(self, ctx, item: str, num: NumberConverter, *members: MemberConverter):
         """Remove an item from a person's inventory"""
-        if "everyone" in members:
-            members = ctx.guild.members
+        members = chain(members)
 
         num = abs(num)
         for member in members:
@@ -70,8 +69,7 @@ class Inventory(object):
     @checks.no_pm()
     async def giveitem(self, ctx, item: str, num: NumberConverter, *members: MemberConverter):
         """Give an item to a person (Not out of your inventory)"""
-        if "everyone" in members:
-            members = ctx.guild.members
+        members = chain(members)
 
         items = await self.bot.di.get_guild_items(ctx.guild)
         if item not in items:
@@ -104,8 +102,7 @@ class Inventory(object):
     @commands.command()
     @checks.no_pm()
     async def wipeinv(self, ctx, *members: MemberConverter):
-        if "everyone" in members:
-            members = ctx.guild.members
+        members = chain(members)
 
         for member in members:
             ud = await self.bot.db.get_user_data(member)
