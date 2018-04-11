@@ -28,7 +28,7 @@ from async_timeout import timeout
 from discord.ext import commands
 
 from .utils import checks
-from .utils.data import MemberConverter, NumberConverter, get, chain
+from .utils.data import MemberConverter, NumberConverter, get, chain, create_pages, IntConverter
 from .utils.translation import _
 
 
@@ -84,7 +84,7 @@ class Economy(object):
         for member in members:
             await self.bot.di.add_eco(member, -amount)
 
-        await ctx.send(await _(ctx, "Money given"))
+        await ctx.send(await _(ctx, "Money taken"))
 
     @checks.no_pm()
     @commands.command()
@@ -101,11 +101,11 @@ class Economy(object):
         """View the current market listings"""
         um = await self.bot.di.get_guild_market(ctx.guild)
         market = list(um.values())
-        desc = await _(ctx, """
-        \u27A1 to see the next page
-        \u2B05 to go back
-        \u274C to exit
-        """)
+        desc = await _(ctx,
+                       "\u27A1 to see the next page"
+                       "\n\u2B05 to go back"
+                       "\n\u274C to exit"
+                       )
         if not market:
             await ctx.send(await _(ctx, "No items on the market to display."))
             return
@@ -144,7 +144,10 @@ class Economy(object):
 
             users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
 
-        fin = [[x['id'], f"{x['cost']} dollars", f"x{x['amount']}", x['item'], str(y)] for x, y in zip(chunks[i], users)]
+        currency = await ctx.bot.di.get_currency(ctx.guild)
+
+        fin = [[x['id'], f"{x['cost']} {currency}", f"x{x['amount']}", x['item'], str(y)] for x, y in
+               zip(chunks[i], users)]
         fin.insert(0, [await _(ctx, "ID"),
                        await _(ctx, "COST"),
                        await _(ctx, "NUMBER"),
@@ -222,7 +225,7 @@ class Economy(object):
 
     @checks.no_pm()
     @market.command(aliases=["createlisting", "new", "listitem", "list"])
-    async def create(self, ctx, cost: NumberConverter, amount: NumberConverter, *, item: str):
+    async def create(self, ctx, cost: NumberConverter, amount: IntConverter, *, item: str):
         """Create a new market listing"""
         amount = abs(amount)
         cost = abs(cost)
@@ -265,7 +268,7 @@ class Economy(object):
         await ctx.send(await _(ctx, "Items successfully bought"))
         await owner.send((await _(ctx,
                                   "{} bought {} {} from you for {} dollars with ID {} on server {}")).format(
-            ctx.author, item["item"], item["amount"], item['cost'], id))
+            ctx.author, item["item"], item["amount"], item['cost'], id, ctx.guild.name))
 
     @checks.no_pm()
     @market.command()
@@ -318,7 +321,8 @@ class Economy(object):
 
         # items = [f"{x['id']}\t| {x['cost']} dollars\t| x{x['amount']}\t| {x['item']}\t| {y.mention}" for x, y in zip(chunks[i], users)]
         # items.insert(0, "ID\t\t| COST\t\t| NUMBER\t\t| ITEM\t\t| SELLER")
-        fin = [[x['id'], f"{x['cost']} dollars", f"x{x['amount']}", x['item'], str(y)] for x, y in zip(chunks[i], users)]
+        fin = [[x['id'], f"{x['cost']} dollars", f"x{x['amount']}", x['item'], str(y)] for x, y in
+               zip(chunks[i], users)]
         fin.insert(0, [await _(ctx, "ID"),
                        await _(ctx, "COST"),
                        await _(ctx, "NUMBER"),
@@ -407,7 +411,6 @@ class Economy(object):
 
         if item["user"] == ctx.author.id:
             await self.bot.di.give_items(ctx.author, (item["item"], item["amount"]))
-            market.remove(id)
             await self.bot.di.update_guild_market(ctx.guild, market)
         else:
             await ctx.send(await _(ctx, "This is not your item to remove!"))
@@ -426,7 +429,8 @@ class Economy(object):
             for lotto, value in self.bot.lotteries[ctx.guild.id].items():
                 embed.add_field(name=lotto,
                                 value=(await _(ctx, "Jackpot: {} dollars\n{} players entered")).format(value["jackpot"],
-                                                                                                len(value["players"])))
+                                                                                                       len(value[
+                                                                                                               "players"])))
             embed.set_footer(text=str(ctx.message.created_at))
 
             await ctx.send(embed=embed)
@@ -477,24 +481,19 @@ class Economy(object):
     @commands.group(invoke_without_command=True)
     async def shop(self, ctx):
         """Get all items currently listed on the server shop"""
-        shop = sorted((await self.bot.di.get_guild_shop(ctx.guild)).items(), key=lambda x: x[0])
-        desc = await _(ctx, """
-                \u27A1 to see the next page
-                \u2B05 to go back
-                \u274C to exit
-                """)
+        shop = shop = sorted((await self.bot.di.get_guild_shop(ctx.guild)).items(), key=lambda x: x[0])
+
         if not shop:
             await ctx.send(await _(ctx, "No items in the shop to display."))
             return
-        emotes = ("\u2B05", "\u27A1", "\u274C")
-        embed = discord.Embed(description=desc, title=await _(ctx, "Server Shop"))
-        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 
-        chunks = []
-        for i in range(0, len(shop), 25):
-            chunks.append(shop[i:i + 25])
+        desc = await _(ctx, "\u27A1 to see the next page"
+                            "\n\u2B05 to go back"
+                            "\n\u274C to exit")
 
-        i = 0
+        title = await _(ctx, "Server Shop")
+        author = ctx.guild.name
+        author_url = ctx.guild.icon_url
 
         def lfmt(v):
             d = ""
@@ -507,66 +506,8 @@ class Economy(object):
 
             return d
 
-        for item, value in chunks[i]:
-            fmt = lfmt(value)
-            embed.add_field(name=item, value=fmt)
-
-        max = len(chunks) - 1
-
-        msg = await ctx.send(embed=embed)
-        for emote in emotes:
-            await msg.add_reaction(emote)
-
-        while True:
-            try:
-                r, u = await self.bot.wait_for("reaction_add", check=lambda r, u: r.message.id == msg.id, timeout=80)
-            except asyncio.TimeoutError:
-                await ctx.send(await _(ctx, "Timed out! Try again"))
-                await msg.delete()
-                return
-
-            if u == ctx.guild.me:
-                continue
-
-            if u != ctx.author or r.emoji not in emotes:
-                try:
-                    await msg.remove_reaction(r.emoji, u)
-                except:
-                    pass
-                continue
-
-            if r.emoji == emotes[0]:
-                if i == 0:
-                    pass
-                else:
-                    embed.clear_fields()
-                    i -= 1
-                    for item, value in chunks[i]:
-                        fmt = lfmt(value)
-                        embed.add_field(name=item, value=fmt)
-
-                    await msg.edit(embed=embed)
-
-            elif r.emoji == emotes[1]:
-                if i == max:
-                    pass
-                else:
-                    embed.clear_fields()
-                    i += 1
-                    for item, value in chunks[i]:
-                        fmt = lfmt(value)
-                        embed.add_field(name=item, value=fmt)
-
-                    await msg.edit(embed=embed)
-            else:
-                await msg.delete()
-                await ctx.send(await _(ctx, "Closing"))
-                return
-
-            try:
-                await msg.remove_reaction(r.emoji, u)
-            except:
-                pass
+        await create_pages(ctx, shop, lfmt, description=desc, title=title,
+                           author=author, author_url=author_url)
 
     @checks.no_pm()
     @shop.command(aliases=["add"])
@@ -593,7 +534,7 @@ class Economy(object):
                 await ctx.send(await _(ctx, "How much should this be buyable for? 0 for not buyable"))
                 resp = await self.bot.wait_for("message", check=check)
                 try:
-                    item["buy"] = int(resp.content)
+                    item["buy"] = float(resp.content)
                 except ValueError:
                     await ctx.send(await _(ctx, "That is not a valid number!"))
                     continue
@@ -603,7 +544,7 @@ class Economy(object):
                 await ctx.send(await _(ctx, "How much should this be sellable for? 0 for not sellable"))
                 resp = await self.bot.wait_for("message", check=check)
                 try:
-                    item["sell"] = int(resp.content)
+                    item["sell"] = float(resp.content)
                 except ValueError:
                     await ctx.send(await _(ctx, "That is not a valid number!"))
                     continue
@@ -646,7 +587,7 @@ class Economy(object):
 
     @checks.no_pm()
     @shop.command(name="buy")
-    async def _buy(self, ctx, item: str, amount: NumberConverter):
+    async def _buy(self, ctx, item: str, amount: IntConverter):
         """Buy an item from the shop"""
         amount = abs(amount)
         shop = await self.bot.di.get_guild_shop(ctx.guild)
@@ -669,7 +610,7 @@ class Economy(object):
 
     @checks.no_pm()
     @shop.command(name="sell")
-    async def _sell(self, ctx, item: str, amount: NumberConverter):
+    async def _sell(self, ctx, item: str, amount: IntConverter):
         """Sell an item to the shop"""
         amount = abs(amount)
         shop = await self.bot.di.get_guild_shop(ctx.guild)
@@ -735,7 +676,7 @@ class Economy(object):
             winner, wamount = cb.most_common(x + 1)[x]
             wb = await self.bot.di.get_balance(winner)
             if wb >= wamount:
-                await ctx.send((await _(ctx, "{} won the bid for {} dollars!").format(winner, amount)))
+                await ctx.send((await _(ctx, "{} won the bid for {} dollars!")).format(winner, amount))
                 await self.bot.di.add_eco(winner, -wamount)
                 await self.bot.di.add_eco(ctx.author, wamount)
                 await self.bot.di.give_items(winner, (item, amount))

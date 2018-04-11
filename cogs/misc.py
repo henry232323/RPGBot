@@ -110,12 +110,12 @@ class Misc(object):
             if rel is not None:
                 if type == "<":
                     if total < val:
-                        succ = await _(ctx, "suceeded")
+                        succ = await _(ctx, "succeeded")
                     else:
                         succ = await _(ctx, "failed")
                 else:
                     if total > val:
-                        succ = await _(ctx, "suceeded")
+                        succ = await _(ctx, "succeeded")
                     else:
                         succ = await _(ctx, "failed")
 

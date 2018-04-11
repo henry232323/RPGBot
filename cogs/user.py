@@ -51,14 +51,14 @@ class User(object):
         pl = len(pokemon)
         if pl > 20:
             pokemon = pokemon[20:]
-            pokemon.append((await _(ctx, "\nand {} more...")).format(pl-20))
+            pokemon.append((await _(ctx, "\nand {} more...")).format(pl - 20))
         boxitems = "\n".join(pokemon)
 
         imap = [f"{x[0]} x{x[1]}" for x in ud["items"].items()]
         il = len(imap)
         if il > 20:
             imap = imap[20:]
-            imap.append((await _(ctx, "\nand {} more...")).format(il-20))
+            imap.append((await _(ctx, "\nand {} more...")).format(il - 20))
         invitems = "\n".join(imap) or await _(ctx, "No Items")
 
         embed.add_field(name=await _(ctx, "Balance"), value=f"{ud['money']} {gd.get('currency', 'dollars')}")
@@ -66,8 +66,10 @@ class User(object):
         embed.add_field(name=await _(ctx, "Items"), value=invitems)
         embed.add_field(name=await _(ctx, "Box"), value=boxitems) if boxitems else None
         embed.add_field(name=await _(ctx, "Experience"),
-                        value=(await _(ctx, "Level: {}\nExperience: {}/{}")).format(ud.get('level', 1), ud.get('exp', 0),
-                                                                    self.bot.get_exp(ud.get('level', 1))))
+                        value=(await _(ctx, "Level: {}\nExperience: {}/{}")).format(ud.get('level', 1),
+                                                                                    ud.get('exp', 0),
+                                                                                    self.bot.get_exp(
+                                                                                        ud.get('level', 1))))
 
         await ctx.send(embed=embed)
 
@@ -82,14 +84,15 @@ class User(object):
             member = ctx.author
 
         ulvl, uexp = await self.bot.di.get_user_level(ctx.author)
-        embed = discord.Embed(description=(await _(ctx, "Level: {}\nExperience: {}/{}")).format(ulvl, uexp, self.bot.get_exp(ulvl)))
+        embed = discord.Embed(
+            description=(await _(ctx, "Level: {}\nExperience: {}/{}")).format(ulvl, uexp, self.bot.get_exp(ulvl)))
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
         await ctx.send(embed=embed)
 
     @checks.no_pm()
     @checks.mod_or_permissions()
     @experience.command(aliases=["set"])
-    async def setlevel(self, ctx, level: data.NumberConverter, *members: data.MemberConverter):
+    async def setlevel(self, ctx, level: data.IntConverter, *members: data.MemberConverter):
         """Set the given members level"""
         members = chain(members)
         for member in members:
@@ -99,7 +102,7 @@ class User(object):
     @checks.no_pm()
     @checks.mod_or_inv()
     @experience.command()
-    async def add(self, ctx, amount: data.NumberConverter, *members: data.MemberConverter):
+    async def add(self, ctx, amount: data.IntConverter, *members: data.MemberConverter):
         """Give the given members an amount of experience"""
         members = chain(members)
         for member in members:
@@ -108,7 +111,7 @@ class User(object):
         await ctx.send(await _(ctx, "Gave experience to members"))
 
     @commands.guild_only()
-    @commands.command()
+    @experience.command()
     @checks.mod_or_permissions()
     async def enable(self, ctx, value: str):
         truth = ["yes", "true"]

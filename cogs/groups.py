@@ -69,10 +69,11 @@ class Groups(object):
             embed.set_image(url=guild.image)
 
         owner = discord.utils.get(ctx.guild.members, id=guild.owner)
+        currency = await ctx.bot.di.get_currency(ctx.guild)
 
         embed.add_field(name=await _(ctx, "Owner"), value=owner.mention)
         embed.add_field(name=await _(ctx, "Open"), value=str(guild.open))
-        embed.add_field(name=await _(ctx, "Bank Balance"), value=f"{guild.bank} dollars")
+        embed.add_field(name=await _(ctx, "Bank Balance"), value=f"{guild.bank} {currency}")
         embed.add_field(name=await _(ctx, "Members"), value=members or await _(ctx, "None"))
         embed.add_field(name=await _(ctx, "Items"), value=items or await _(ctx, "None"))
 
@@ -432,7 +433,8 @@ class Groups(object):
 
             guild.bank += amount
             await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-            await ctx.send((await _(ctx, "Successfully deposited {} dollars into {}'s bank")).format(amount, guild_name))
+            await ctx.send(
+                (await _(ctx, "Successfully deposited {} dollars into {}'s bank")).format(amount, guild_name))
         except:
             from traceback import print_exc
             print_exc()
