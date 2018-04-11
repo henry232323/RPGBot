@@ -122,7 +122,7 @@
     "fr": "Payé {} dollars à {} avec succès",
     "ru": "Успешно выплачено {} dollars для{}"
   },
-  "\n        \u27A1 to see the next page\n        \u2B05 to go back\n        \u274C to exit\n        ": {
+  "\u27A1 to see the next page\n\u2B05 to go back\n\u274C to exit": {
     "fr": "\n        \u27A1 pour voir la page suivante\n        \u2B05 pour retourner\n        \u274C pour quitter\n        ",
     "ru": "\n        \u27A1 переход на следующую страницу\n        \u2B05 возврат\n        \u274C выход\n        "
   },

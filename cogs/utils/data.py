@@ -20,12 +20,17 @@
 # DEALINGS IN THE SOFTWARE.
 
 
-from collections import Counter
-from recordclass import recordclass as namedtuple
-import ujson as json
-import re
 import discord
 from discord.ext import commands
+from recordclass import recordclass as namedtuple
+import ujson as json
+
+from collections import Counter
+import re
+import asyncio
+
+from .translation import _
+
 
 Pokemon = namedtuple("Pokemon", ["id", "name", "type", "stats", "meta"])
 ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
@@ -88,7 +93,16 @@ class MemberConverter(commands.MemberConverter):
 class NumberConverter(commands.Converter):
     async def convert(self, ctx, argument):
         argument = argument.replace(",", "").strip("$")
-        if not argument.strip("-").isdigit():
+        if not argument.strip("-").replace(".", "").isdigit():
+            raise commands.BadArgument("That is not a number!")
+        if len(argument) > 10:
+            raise commands.BadArgument("That number is much too big! Must be less than 999,999,999")
+        return round(float(argument), 2)
+
+class IntConverter(commands.Converter):
+    async def convert(self, ctx, argument):
+        argument = argument.replace(",", "").strip("$")
+        if not argument.strip("-").replace(".", "").isdigit():
             raise commands.BadArgument("That is not a number!")
         if len(argument) > 10:
             raise commands.BadArgument("That number is much too big! Must be less than 999,999,999")
@@ -98,11 +112,11 @@ class NumberConverter(commands.Converter):
 class ItemOrNumber(commands.Converter):
     async def convert(self, ctx, argument):
         fargument = argument.replace(",", "").strip("$")
-        if not fargument.isdigit():
+        if not fargument.strip("-").replace(".", "").isdigit():
             return argument
         if len(fargument) > 10:
             raise commands.BadArgument("That number is much too big! Must be less than 999,999,999")
-        return int(fargument)
+        return round(float(fargument), 2)
 
 
 def union(*classes):
@@ -145,6 +159,81 @@ def get(iterable, **attrs):
             fin.append(discord.utils.get(iterable, **{attr: x}))
 
     return None or fin
+
+
+async def create_pages(ctx, items, lfmt,
+                       description=None, title=None,
+                       author=None, author_url=None,
+                       emotes=("\u2B05", "\u27A1", "\u274C")):
+    embed = discord.Embed(description=description, title=title)
+    embed.set_author(name=author, icon_url=author_url)
+
+    chunks = []
+    for i in range(0, len(items), 25):
+        chunks.append(items[i:i + 25])
+
+    i = 0
+
+    for item, value in chunks[i]:
+        fmt = lfmt(value)
+        embed.add_field(name=item, value=fmt)
+
+    max = len(chunks) - 1
+
+    msg = await ctx.send(embed=embed)
+    for emote in emotes:
+        await msg.add_reaction(emote)
+
+    while True:
+        try:
+            r, u = await ctx.bot.wait_for("reaction_add", check=lambda r, u: r.message.id == msg.id, timeout=80)
+        except asyncio.TimeoutError:
+            await ctx.send(await _(ctx, "Timed out! Try again"))
+            await msg.delete()
+            return
+
+        if u == ctx.guild.me:
+            continue
+
+        if u != ctx.author or r.emoji not in emotes:
+            try:
+                await msg.remove_reaction(r.emoji, u)
+            except:
+                pass
+            continue
+
+        if r.emoji == emotes[0]:
+            if i == 0:
+                pass
+            else:
+                embed.clear_fields()
+                i -= 1
+                for item, value in chunks[i]:
+                    fmt = lfmt(value)
+                    embed.add_field(name=item, value=fmt)
+
+                await msg.edit(embed=embed)
+
+        elif r.emoji == emotes[1]:
+            if i == max:
+                pass
+            else:
+                embed.clear_fields()
+                i += 1
+                for item, value in chunks[i]:
+                    fmt = lfmt(value)
+                    embed.add_field(name=item, value=fmt)
+
+                await msg.edit(embed=embed)
+        else:
+            await msg.delete()
+            await ctx.send(await _(ctx, "Closing"))
+            return
+
+        try:
+            await msg.remove_reaction(r.emoji, u)
+        except:
+            pass
 
 
 default_user = {
@@ -260,7 +349,6 @@ class DataInteraction(object):
         self.bot = bot
         self.db = self.bot.db
 
-
     async def get_team(self, guild, character):
         gd = await self.db.get_guild_data(guild)
         character = Character(*gd["characters"][character])
@@ -278,7 +366,7 @@ class DataInteraction(object):
 
     async def get_balance(self, member):
         """Get user's balance"""
-        return int(await self.db.user_item(member, "money"))
+        return float(await self.db.user_item(member, "money"))
 
     async def get_inventory(self, member):
         """Get user's inventory"""

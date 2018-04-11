@@ -22,7 +22,7 @@
 from discord.ext import commands
 import discord
 
-from .utils.data import NumberConverter, MemberConverter, ItemOrNumber, chain
+from .utils.data import NumberConverter, MemberConverter, ItemOrNumber, chain, IntConverter
 from .utils import checks
 from .utils.translation import _
 
@@ -54,7 +54,7 @@ class Inventory(object):
     @checks.mod_or_permissions()
     @commands.command(aliases=["take"])
     @checks.no_pm()
-    async def takeitem(self, ctx, item: str, num: NumberConverter, *members: MemberConverter):
+    async def takeitem(self, ctx, item: str, num: IntConverter, *members: MemberConverter):
         """Remove an item from a person's inventory"""
         members = chain(members)
 
@@ -67,7 +67,7 @@ class Inventory(object):
     @checks.mod_or_permissions()
     @commands.command()
     @checks.no_pm()
-    async def giveitem(self, ctx, item: str, num: NumberConverter, *members: MemberConverter):
+    async def giveitem(self, ctx, item: str, num: IntConverter, *members: MemberConverter):
         """Give an item to a person (Not out of your inventory)"""
         members = chain(members)
 
@@ -115,15 +115,15 @@ class Inventory(object):
         number = abs(number)
         try:
             await self.bot.di.take_items(ctx.author, (item, number))
-            items = await self.bot.di.get_guild_items(ctx.guild)
-            msg = items.get(item).meta['used']
-            if msg is None:
-                await ctx.send(await _(ctx, "This item is not usable!"))
-            else:
-                await ctx.send(msg)
-                await ctx.send((await _(ctx, "Used {} {}s")).format(number, item))
-        except:
+        except ValueError:
             await ctx.send(await _(ctx, "You do not have that many to use!"))
+        items = await self.bot.di.get_guild_items(ctx.guild)
+        msg = items.get(item).meta.get('used')
+        if msg is None:
+            await ctx.send(await _(ctx, "This item is not usable!"))
+        else:
+            await ctx.send(msg)
+            await ctx.send((await _(ctx, "Used {} {}s")).format(number, item))
 
     @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=['lb'])

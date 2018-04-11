@@ -43,7 +43,10 @@ class Salary(object):
                                     rob = discord.utils.get(gob.roles, id=int(role))
                                     if rob:
                                         for member in rob.members:
-                                            await self.bot.di.add_eco(member, amount)
+                                            try:
+                                                await self.bot.di.add_eco(member, amount)
+                                            except ValueError:
+                                                await self.bot.di.set_eco(member, 0)
                                     else:
                                         dels[gob].append((roles, role))
                             else:
