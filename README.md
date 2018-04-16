@@ -8,7 +8,6 @@ Made by Henry#6174
 [**Support Server**](https://discord.gg/UYJb8fQ)
 
 
-
 # Commands
 
 - [Admin Commands](#admin-commands)
@@ -24,10 +23,6 @@ Made by Henry#6174
   - [bid](#bid)
   - [economy](#economy)
   - [givemoney](#givemoney)
-  - [lootbox](#lootbox)
-  - [lootbox buy](#lootbox-buy)
-  - [lootbox create](#lootbox-create)
-  - [lootbox delete](#lootbox-delete)
   - [lotto](#lotto)
   - [lotto enter](#lotto-enter)
   - [lotto new](#lotto-new)
@@ -69,12 +64,22 @@ Made by Henry#6174
   - [give](#give)
   - [giveitem](#giveitem)
   - [inventory](#inventory)
+  - [lootbox](#lootbox)
+  - [lootbox buy](#lootbox-buy)
+  - [lootbox create](#lootbox-create)
+  - [lootbox delete](#lootbox-delete)
   - [takeitem](#takeitem)
 - [Mapping Commands](#mapping-commands)
   - [map](#map)
+  - [map buy](#map-buy)
   - [map check](#map-check)
   - [map create](#map-create)
-  - [map move](#map-move)
+  - [map delete](#map-delete)
+  - [map down](#map-down)
+  - [map generate](#map-generate)
+  - [map left](#map-left)
+  - [map right](#map-right)
+  - [map up](#map-up)
 - [Misc Commands](#misc-commands)
   - [donate](#donate)
   - [feedback](#feedback)
@@ -96,6 +101,8 @@ Made by Henry#6174
   - [salary create](#salary-create)
   - [salary delete](#salary-delete)
 - [Settings Commands](#settings-commands)
+  - [currency](#currency)
+  - [language](#language)
   - [setstart](#setstart)
   - [settings](#settings)
   - [settings additem](#settings-additem)
@@ -111,7 +118,8 @@ Made by Henry#6174
   - [experience add](#experience-add)
   - [experience setlevel](#experience-setlevel)
   - [userinfo](#userinfo)
-  
+
+## Admin Commands
 
 ## Characters Commands
 
@@ -142,7 +150,8 @@ Valid values for the [item] (second argument):
     name: the character's name
     description: the description of the character
     level: an integer representing the character's level
-    meta: same usage as the character create command a: b value pairs
+    meta: used like the additional info section when creating; can be used to edit/remove all attributes
+Anything else will edit single attributes in the additional info section
 
 >**Usage:** `rp!character edit <character> <attribute> <value>`
 
@@ -175,30 +184,6 @@ Valid values for the [item] (second argument):
 
 >**Usage:** `rp!givemoney <amount> [members...]`
 
-#### lootbox
->**Description:** List the current lootboxes
-
->**Usage:** `rp![lootbox|lb]`
-
-#### lootbox buy
->**Description:** Buy a lootbox of the given name
-
->**Usage:** `rp!lootbox buy <name>`
-
-#### lootbox create
->**Description:** Create a new lootbox, under the given `name` for the given cost
-Use {item}x{#} notation to add items with {#} weight
-Weight being an integer. For example:
-bananax2 orangex3. The outcome of the box will be
-Random Choice[banana, banana, orange, orange, orange]
-
->**Usage:** `rp!lootbox [create|new] <name> <cost> [items...]`
-
-#### lootbox delete
->**Description:** Delete a lootbox with the given name
-
->**Usage:** `rp!lootbox [delete|remove] <name>`
-
 #### lotto
 >**Description:** List the currently running lottos.
 
@@ -210,7 +195,7 @@ Random Choice[banana, banana, orange, orange, orange]
 >**Usage:** `rp!lotto [enter|join] <name>`
 
 #### lotto new
->**Description:** Create a new lotto, with jackpot payout lasting time in seconds
+>**Description:** Create a new lotto, with jacpot payout lasting time in seconds
 
 >**Usage:** `rp!lotto [new|create] <name> <jackpot> <time>`
 
@@ -222,7 +207,7 @@ Random Choice[banana, banana, orange, orange, orange]
 #### market buy
 >**Description:** Buy a given amount of an item from the player market at the cheapest given price
 
->**Usage:** `rp!market [buy|purchase] <id>`
+>**Usage:** `rp!market [buy|purchase|acheter] <id>`
 
 #### market create
 >**Description:** Create a new market listing
@@ -404,6 +389,30 @@ Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot 
 
 >**Usage:** `rp![inventory|i|inv] [member]`
 
+#### lootbox
+>**Description:** List the current lootboxes
+
+>**Usage:** `rp![lootbox|lb]`
+
+#### lootbox buy
+>**Description:** Buy a lootbox of the given name
+
+>**Usage:** `rp!lootbox buy <name>`
+
+#### lootbox create
+>**Description:** Create a new lootbox, under the given `name` for the given cost
+Use {item}x{#} notation to add items with {#} weight
+Weight being an integer. For example:
+bananax2 orangex3. The outcome of the box will be
+Random Choice[banana, banana, orange, orange, orange]
+
+>**Usage:** `rp!lootbox [create|new] <name> <cost> [items...]`
+
+#### lootbox delete
+>**Description:** Delete a lootbox with the given name
+
+>**Usage:** `rp!lootbox [delete|remove] <name>`
+
 #### takeitem
 >**Description:** Remove an item from a person's inventory
 
@@ -414,23 +423,55 @@ Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot 
 #### map
 >**Description:** See the server map
 
->**Usage:** `rp![map|carte]`
+>**Usage:** `rp![map|carte] <name>`
+
+#### map buy
+>**Description:** Buy an item from the shop on the current tile
+
+>**Usage:** `rp!map buy <mapname> <character> <amount> <itemname>`
 
 #### map check
->**Description:** See what is on the current character's tile
+>**Description:** Inspect the current tile a character is on
 
->**Usage:** `rp!map [check|look|regarder|inspect|voir] <character>`
+>**Usage:** `rp!map [check|look|regarder|inspect|voir] <mapname> <character>`
 
 #### map create
->**Description:** Create a custom map for the guild (if one exists it will be overwritten)
+>**Description:** Create a map that will generate as it is explored. Set xmax and ymax to -1 for an infinite map
+($5 Patrons only)
 
->**Usage:** `rp!map [create|creer|new|nouvelle] <xsize> <ysize>`
+>**Usage:** `rp!map create <mapname> <xmax> <ymax>`
 
-#### map move
->**Description:** Move a character in a direction (valid directions include N/S/E/W for the cardinal directions respectively)
-(Not yet added)
+#### map delete
+>**Description:** Delete a map
 
->**Usage:** `rp!map [move|bouger|aller|go] <direction>`
+>**Usage:** `rp!map [delete|supprimer] <name>`
+
+#### map down
+>**Description:** Move south on a map
+
+>**Usage:** `rp!map [down|south|sud] <mapname> <character>`
+
+#### map generate
+>**Description:** Create a custom map for the guild.
+Usage: `rp!map create Earth 64 64`
+    This will create a 64x64 map that will generate as the players explore it
+
+>**Usage:** `rp!map [generate|creer|new|nouvelle] <name> <xsize> <ysize>`
+
+#### map left
+>**Description:** Move West on a map
+
+>**Usage:** `rp!map [left|west|ouest|gauche] <mapname> <character>`
+
+#### map right
+>**Description:** Move East on a map
+
+>**Usage:** `rp!map [right|east|est|droit] <mapname> <character>`
+
+#### map up
+>**Description:** Move North on a map
+
+>**Usage:** `rp!map [up|north|nord] <mapname> <character>`
 
 ## Misc Commands
 
@@ -543,6 +584,16 @@ If a role with a salary is deleted, the salary will also be deleted.
 >**Usage:** `rp!salary delete <role>`
 
 ## Settings Commands
+
+#### currency
+>**Description:** Set the guild currency
+
+>**Usage:** `rp!currency <currency>`
+
+#### language
+>**Description:** Set the guild language or check the language
+
+>**Usage:** `rp!language [language]`
 
 #### setstart
 >**Description:** Set the money start amount for a guild
