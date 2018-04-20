@@ -124,4 +124,4 @@ class User(object):
             await ctx.send("That is not a valid value! (true/false, yes/no)")
             return
         await self.bot.di.set_exp_enabled(ctx.guild, val)
-        await ctx.send(await _(ctx, "Successfully change EXP setting"))
+        await ctx.send(await _(ctx, "Successfully changed EXP setting"))

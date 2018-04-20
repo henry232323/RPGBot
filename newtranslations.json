@@ -78,8 +78,8 @@
     "fr": "Étape sautée !",
     "ru": "Пропущено!"
   },
-  "Character created! rp!team addmember to add to your characters team!": {
-    "fr": "Personnage créé ! Tapez `rp!team addmember` pour ajouter des personnages à votre équipe !",
+  "Character created! rp!team addmember to add Pokemon (optional) to your character's team!": {
+    "fr": "Personnage créé ! Tapez `rp!team addmember` pour ajouter des Pokemons (optionel) à votre équipe !",
     "ru": "Персонаж создан! Если хотите добавить персонажа в команду, используете rp!team addmember"
   },
   "That character doesn't exist!": {
@@ -559,8 +559,8 @@
   "Lootbox already exists, updating...": {
     "fr": "La lootbox existe déjà, mise à jour !"
   },
-  "Lootbox {} successfully created and requires one {} to open.": {
-    "fr": "La lootbox {} a été créé avec succès et a besoin d'un(e) {} pour ouvrir."
+  "Lootbox {} successfully created and requires {} {} to open.": {
+    "fr": "La lootbox {} a été créé avec succès et a besoin de {} {} pour ouvrir."
   },
   "Lootbox {} successfully created and requires {} dollars to open": {
     "fr": "La lootbox {} a été créé avec succès et a besoin de {} dollars pour ouvrir."
@@ -568,8 +568,8 @@
   "That is not a valid lootbox": {
     "fr": "Ce n'est pas une lootbox valide"
   },
-  "You do not have 1 {}": {
-    "fr": "Vous n'avez pas 1 {}"
+  "You do not have {} {}": {
+    "fr": "Vous n'avez pas {} {}"
   },
   "You cant afford this box": {
     "fr": "Vous ne pouvez pas acheter cette lootbox"
@@ -951,5 +951,35 @@
   },
   "\nand {} more...": {
     "fr": "\nEt {} plus..."
+  },
+  "{} failed to respond": {
+    "fr": "{} n'a pas repondu !"
+  },
+  "Both parties say rp!accept @Other to accept the trade or rp!decline @Other to decline": {
+    "fr": "Vous deux dites rp!accept @Autre pour accepter l'echange ou rp!decline @Autre pour refuser"
+  },
+  "Response one received!": {
+    "fr": "La premiere reponse est reçue"
+  },
+  "Failed to accept in time!": {
+    "fr": "Vous n'avez pas accepté à temps"
+  },
+  "Trade declined, cancelling!": {
+    "fr": "L'échange a été refusé, annulant"
+  },
+  "Response two received!": {
+    "fr": "La premiere reponse est reçue"
+  },
+  "Invalid value for number {} of {}": {
+    "fr": "Valeur non valide pour le nombre {} de {}"
+  },
+  "{} does not have enough {} to trade! Trade cancelled!": {
+    "fr": "{} n'a pas assez {} pour echanger! L'echange est annulle"
+  },
+  "Swapping items": {
+    "fr": "Les items ont été échangé"
+  },
+  "Trade complete!": {
+    "fr": "L'échange est complet"
   }
 }

@@ -177,7 +177,8 @@ class Characters(object):
                     continue
 
         await self.bot.di.add_character(ctx.guild, Character(**character))
-        await ctx.send(await _(ctx, "Character created! rp!team addmember to add to your characters team!"))
+        await ctx.send(
+            await _(ctx, "Character created! rp!team addmember to add Pokemon (optional) to your character's team!"))
 
     @checks.no_pm()
     @character.command(aliases=["remove", "supprimer"])

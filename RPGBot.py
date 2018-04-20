@@ -291,14 +291,14 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
               " team setups and characters as well. Each user has a server unique inventory and balance." \
               " Players may list items on a market for other users to buy." \
               " Users may create characters with teams from Pokemon in their storage box. " \
-              "Server administrators may add and give items to the server and its users.\n" \
+              "Server administrators may add and give items to the server and its users.```\n" \
               f"**Add to your server**: {invlink}\n" \
               f"**Support Server**: {servinv}\n" \
               f"**Source**: {sourcelink}\n" \
-              "**Help**: http://typheus.me\n" \
+              "**Help**: https://github.com/henry232323/RPGBot/blob/master/README.md\n" \
               "**Aide en français**: http://typheus.me/rpgbot-francais.html\n" \
               "**Patreon**: https://www.patreon.com/henry232323\n" \
-              "**Buy Me a Coffee**: https://ko-fi.com/henrys"
+              "**Buy Me a Coffee**: https://ko-fi.com/henrys\n```"
 
 with open("resources/auth") as af:
     _auth = json.loads(af.read())

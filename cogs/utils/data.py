@@ -113,6 +113,10 @@ class ItemOrNumber(commands.Converter):
     async def convert(self, ctx, argument):
         fargument = argument.replace(",", "").strip("$")
         if not fargument.strip("-").replace(".", "").isdigit():
+            if "x" in argument:
+                item, n = argument.split("x")
+                if n.isdigit():
+                    return item, int(n)
             return argument
         if len(fargument) > 10:
             raise commands.BadArgument("That number is much too big! Must be less than 999,999,999")
