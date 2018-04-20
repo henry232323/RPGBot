@@ -703,7 +703,8 @@ class Economy(object):
         users = [(discord.utils.get(ctx.guild.members, id=int(x["row"][0])), x["row"][1]) for x in resp if
                  (len(x["row"]) == 2) and (x["row"][1] is not None)]
         users = [x for x in users if x[0]]
-        users.sort(key=lambda x: -int(x[1]))
+        users.sort(key=lambda x: -float(x[1]))
 
-        msg = "\n".join(f"{x}: {y[0]} {y[1]} dollars" for x, y in zip(range(1, 11), users))
+        currency = await ctx.bot.di.get_currency(ctx.guild)
+        msg = "\n".join(f"{x}: {y[0]} {y[1]} {currency}" for x, y in zip(range(1, 11), users))
         await ctx.send(f"```\n{msg}\n```")

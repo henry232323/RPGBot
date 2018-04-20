@@ -44,13 +44,15 @@ class Team(object):
             return
 
         embed = discord.Embed(title=f"{character} Pokemon")
-        embed.set_author(name=character, icon_url=chobj.meta.get("image"))
+        embed.set_author(name=character, icon_url=chobj.meta.get("image", discord.Embed.Empty))
 
         for pokemon in team:
             stats = "\n\t".join(f"{x}: {y}" for x, y in pokemon.stats.items())
             meta = "\n\t".join(f"{x}: {y}" for x, y in pokemon.meta.items())
-            fmt = (await _(ctx, "ID: {}\nSpecies: {}\nStats:\n\t{}\nAdditional Info:\n\t{}")).format(pokemon.id, pokemon.type, stats,
-                                                                                     meta)
+            fmt = (await _(ctx, "ID: {}\nSpecies: {}\nStats:\n\t{}\nAdditional Info:\n\t{}")).format(pokemon.id,
+                                                                                                     pokemon.type,
+                                                                                                     stats,
+                                                                                                     meta)
             embed.add_field(name=pokemon.name, value=fmt)
 
         await ctx.send(embed=embed)
