@@ -47,7 +47,7 @@ class Inventory(object):
             await ctx.send(await _(ctx, "This inventory is empty!"))
             return
 
-        fmap = map(lambda x: f"{x[0]} x{x[1]}", inv.items())
+        fmap = map(lambda x: f"{x[0]} x{x[1]}", sorted(inv.items()))
         fmt = "\n".join(fmap)
         embed = discord.Embed(description=fmt)
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
@@ -183,7 +183,8 @@ class Inventory(object):
 
         if isinstance(cost, tuple):
             await ctx.send(
-                (await _(ctx, "Lootbox {} successfully created and requires {} {} to open.")).format(name, cost))
+                (await _(ctx, "Lootbox {} successfully created and requires {} {} to open.")).format(name, cost[0],
+                                                                                                     cost[1]))
         else:
             await ctx.send(
                 (await _(ctx, "Lootbox {} successfully created and requires {} dollars to open")).format(name, cost))
@@ -201,7 +202,7 @@ class Inventory(object):
             return
 
         cost = box["cost"]
-        if isinstance(cost, (str, tuple)):
+        if isinstance(cost, (str, tuple, list)):
             cost, val = cost if isinstance(cost, tuple) else (cost, 1)
             try:
                 await self.bot.di.take_items(ctx.author, cost)
@@ -286,6 +287,7 @@ class Inventory(object):
                                            timeout=30,
                                            check=check)
 
+            await ctx.send(await _(ctx, "Response two received!"))
 
             if not msg2:
                 await ctx.send(await _(ctx, "Failed to accept in time!"))
@@ -297,8 +299,8 @@ class Inventory(object):
                 del self.trades[sender]
                 return
 
-            oinv = (await self.bot.di.get_inventory(other))['items']
-            sinv = (await self.bot.di.get_inventory(sender))['items']
+            oinv = (await self.bot.di.get_inventory(other))
+            sinv = (await self.bot.di.get_inventory(sender))
             for item in self.trades[sender][1]:
                 split = item.split('x')
                 split, num = "x".join(split[:-1]), abs(int(split[-1]))
