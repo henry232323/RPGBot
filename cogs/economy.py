@@ -68,7 +68,7 @@ class Economy(object):
     @checks.mod_or_permissions()
     @commands.command()
     async def givemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
-        """Give the members money (Moderators)"""
+        """Give the member's money (Moderators)"""
         members = chain(members)
 
         for member in members:
@@ -80,7 +80,7 @@ class Economy(object):
     @checks.mod_or_permissions()
     @commands.command()
     async def takemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
-        """Give the members money (Moderators)"""
+        """Take the member's money (Moderators)"""
         members = chain(members)
 
         for member in members:

@@ -66,7 +66,6 @@
     "fr": "Quel est le niveau du personnage ?",
     "ru": "Какого уровня выш персонаж?"
   },
-  "Any additional info? (Add a character image using the image keyword. Formats use regular syntax e.g `image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)": {
     "fr": "Des informations supplémentaires ? (Ajouter une image au personnage avec le mot-clé `image`, comme ceci : `image: http://image.com/image.jpg, cheveux: bruns` (Separer les mot-clés avec des virgules ou des retours à la ligne)",
     "ru": "Дополнительна информация.(Добавьте персонажу картинку используя команды: 'image: http://image.com/image.jpg, hair_color:Темные волосы,nickname:Кевин' (Разделяйте команды запятыми)"
   },

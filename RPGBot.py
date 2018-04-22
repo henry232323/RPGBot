@@ -182,6 +182,8 @@ class Bot(commands.AutoShardedBot):
         logging.info(f"Exception in {ctx.command} {ctx.guild}:{ctx.channel} {exception}")
         if isinstance(exception, commands.MissingRequiredArgument):
             await ctx.send(f"`{exception}`")
+        elif isinstance(exception, TimeoutError):
+            await ctx.send(await _("This operation ran out of time! Please try again"))
         else:
             await ctx.send(f"`{exception}`")
 
