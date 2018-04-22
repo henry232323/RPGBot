@@ -143,7 +143,15 @@ class Inventory(object):
             fmt = "{0}: {1:.2f}%"
             for box, data in boxes.items():
                 total = sum(data["items"].values())
-                value = "{}: {}\n\t".format(await _(ctx, "cost"), data["cost"]) + "\n\t".join(
+
+                if isinstance(data["cost"], (int, float)):
+                    cost = data["cost"]
+                elif isinstance(data["cost"], str):
+                    cost = data["cost"] + "x1"
+                else:
+                    cost = "{}x{}".format(*data["cost"])
+
+                value = "{}: {}\n\t".format(await _(ctx, "cost"), cost) + "\n\t".join(
                     fmt.format(item, (value / total) * 100) for item, value in data["items"].items())
                 embed.add_field(name=box,
                                 value=value)
@@ -180,11 +188,13 @@ class Inventory(object):
             winitems.update({split: num})
 
             boxes[name] = dict(cost=cost, items=winitems)
+        if not winitems:
+            await ctx.send(await _(ctx, "You cannot create an empty lootbox!"))
 
         if isinstance(cost, tuple):
             await ctx.send(
-                (await _(ctx, "Lootbox {} successfully created and requires {} {} to open.")).format(name, cost[0],
-                                                                                                     cost[1]))
+                (await _(ctx, "Lootbox {} successfully created and requires {} {} to open.")).format(name, cost[1],
+                                                                                                     cost[0]))
         else:
             await ctx.send(
                 (await _(ctx, "Lootbox {} successfully created and requires {} dollars to open")).format(name, cost))
@@ -254,13 +264,15 @@ class Inventory(object):
         if sender in self.trades and other == self.trades[sender][0].message.author:
             await ctx.send(
                 await _(ctx, "Both parties say rp!accept @Other to accept the trade or rp!decline @Other to decline"))
-
+            already = None
             def check(message):
                 if not (message.channel == ctx.channel):
                     return False
                 if not message.content.startswith(("rp!accept", "rp!decline",)):
                     return False
                 if message.author in (other, sender):
+                    if message.author == already:
+                        return False
                     if message.author == sender:
                         return other in message.mentions
                     else:
@@ -268,9 +280,12 @@ class Inventory(object):
                 else:
                     return False
 
-            msg = await self.bot.wait_for("message",
-                                          timeout=30,
-                                          check=check)
+            try:
+                msg = await self.bot.wait_for("message",
+                                              timeout=30,
+                                              check=check)
+            except TimeoutError:
+                msg = None
 
             await ctx.send(await _(ctx, "Response one received!"))
             if not msg:
@@ -283,9 +298,14 @@ class Inventory(object):
                 del self.trades[sender]
                 return
 
-            msg2 = await self.bot.wait_for("message",
-                                           timeout=30,
-                                           check=check)
+            already = msg.author
+
+            try:
+                msg2 = await self.bot.wait_for("message",
+                                               timeout=30,
+                                               check=check)
+            except TimeoutError:
+                msg2 = None
 
             await ctx.send(await _(ctx, "Response two received!"))
 

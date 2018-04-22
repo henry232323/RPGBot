@@ -148,7 +148,7 @@ class Characters(object):
         character["level"] = int(response.content)
         await ctx.send(
             await _(ctx,
-                    "Any additional info? (Add a character image using the image keyword. Formats use regular syntax i.e "
+                    "Any additional info? (Add a character image using the image keyword. Formats use regular syntax e.g. "
                     "`image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)"
                     ))
         while True:
