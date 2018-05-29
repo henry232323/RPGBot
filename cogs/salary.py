@@ -12,6 +12,7 @@ from .utils.translation import _
 
 class Salary(object):
     """Salary commands"""
+
     def __init__(self, bot):
         self.bot = bot
         self.first = True
@@ -76,10 +77,11 @@ class Salary(object):
         else:
             dels = []
             for role, amount in sals.items():
-                try:
-                    embed.add_field(name=discord.utils.get(ctx.guild.roles, id=int(role)).name, value=await _(ctx, f"{amount} dollars"))
-                except:
+                roleobj = discord.utils.get(ctx.guild.roles, id=int(role)).name
+                if roleobj is None:
                     dels.append(role)
+                embed.add_field(name=roleobj,
+                                value="{} {}".format(amount, await ctx.bot.di.get_currency(ctx.guild)))
             for d in dels:
                 del sals[d]
             if dels:
@@ -121,4 +123,3 @@ class Salary(object):
             await ctx.send((await _(ctx, "Successfully deleted the daily salary for {}")).format(role))
         else:
             await ctx.send(await _(ctx, "That role has no salaries!"))
-

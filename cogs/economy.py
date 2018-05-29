@@ -483,7 +483,7 @@ class Economy(object):
     @commands.group(invoke_without_command=True)
     async def shop(self, ctx):
         """Get all items currently listed on the server shop"""
-        shop = shop = sorted((await self.bot.di.get_guild_shop(ctx.guild)).items(), key=lambda x: x[0])
+        shop = sorted((await self.bot.di.get_guild_shop(ctx.guild)).items(), key=lambda x: x[0])
 
         if not shop:
             await ctx.send(await _(ctx, "No items in the shop to display."))

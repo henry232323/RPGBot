@@ -53,6 +53,16 @@ converters = {
 }
 
 
+def parse_varargs(s):
+    view = commands.view.StringView(s)
+    end = []
+    while True:
+        next = commands.view.quoted_word(view)
+        if next is None:
+            break
+        end.append(next.strip())
+    return end
+
 def chain(l):
     for item in l:
         try:
@@ -168,13 +178,20 @@ def get(iterable, **attrs):
 async def create_pages(ctx, items, lfmt,
                        description=None, title=None,
                        author=None, author_url=None,
-                       emotes=("\u2B05", "\u27A1", "\u274C")):
+                       emotes=("\u2B05", "\u27A1", "\u274C"),
+                       thumbnail=None, footer=None, chunk=25):
     embed = discord.Embed(description=description, title=title)
     embed.set_author(name=author, icon_url=author_url)
+    if thumbnail:
+        embed.set_thumbnail(
+            url=thumbnail
+        )
+    if footer:
+        embed.set_footer(text=footer)
 
     chunks = []
-    for i in range(0, len(items), 25):
-        chunks.append(items[i:i + 25])
+    for i in range(0, len(items), chunk):
+        chunks.append(items[i:i + chunk])
 
     i = 0
 
@@ -256,7 +273,8 @@ default_server = {
     "market_items": dict(),
     "loot_boxes": dict(),
     "guilds": dict(),
-    "shop_items": dict()
+    "shop_items": dict(),
+    "recipes": dict(),
 }
 
 example_pokemon = {
@@ -398,7 +416,10 @@ class DataInteraction(object):
 
     async def get_guild_start(self, guild):
         """Get a Server's user starting balance"""
-        return (await self.db.get_guild_data(guild))["start"]
+        return (await self.db.get_guild_data(guild)).get("start", 0)
+
+    async def get_guild_recipes(self, guild):
+        return (await self.db.get_guild_data(guild)).get("recipes", {})
 
     async def get_guild_items(self, guild):
         """Get all the items available in a server"""
@@ -598,6 +619,19 @@ class DataInteraction(object):
     async def set_exp_enabled(self, guild, value):
         gd = await self.db.get_guild_data(guild)
         gd["exp"] = value
+        await self.db.update_guild_data(guild, gd)
+
+    async def add_recipe(self, guild, name: str, itemsin: dict, itemsout: dict):
+        gd = await self.db.get_guild_data(guild)
+        if "recipes" not in gd:
+            gd["recipes"] = {}
+        recipes = gd["recipes"]
+        recipes[name] = (itemsin, itemsout)
+        await self.db.update_guild_data(guild, gd)
+
+    async def remove_recipe(self, guild, name):
+        gd = await self.db.get_guild_data(guild)
+        del gd.get("recipes", {})[name]
         await self.db.update_guild_data(guild, gd)
 
     async def add_to_team(self, guild, character, id):

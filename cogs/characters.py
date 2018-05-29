@@ -89,7 +89,8 @@ class Characters(object):
                 embed.set_thumbnail(url=char.meta.get("image"))
             embed.add_field(name=await _(ctx, "Name"), value=char.name)
             embed.add_field(name=await _(ctx, "Owner"), value=str(owner))
-            embed.add_field(name=await _(ctx, "Level"), value=char.level)
+            if char.level is not None:
+                embed.add_field(name=await _(ctx, "Level"), value=char.level)
             team = await self.bot.di.get_team(ctx.guild, char.name)
             tfmt = "\n".join(f"{p.name} ({p.type})" for p in team) if team else await _(ctx, "Empty")
             embed.add_field(name=await _(ctx, "Team"), value=tfmt)
@@ -134,7 +135,7 @@ class Characters(object):
             await _(ctx, "Describe the character (Relevant character sheet) (Say `done` when you're done describing)"))
         content = ""
         while True:
-            response = await self.bot.wait_for("message", check=check, timeout=180)
+            response = await self.bot.wait_for("message", check=check, timeout=300)
             if response.content.lower() == "done":
                 break
             else:
@@ -143,16 +144,13 @@ class Characters(object):
                 else:
                     content += response.content + "\n"
         character["description"] = content
-        await ctx.send(await _(ctx, "What level is the character?"))
-        response = await self.bot.wait_for("message", timeout=180, check=check)
-        character["level"] = int(response.content)
         await ctx.send(
             await _(ctx,
                     "Any additional info? (Add a character image using the image keyword. Formats use regular syntax e.g. "
                     "`image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)"
                     ))
         while True:
-            response = await self.bot.wait_for("message", check=check, timeout=180)
+            response = await self.bot.wait_for("message", check=check, timeout=300)
             if response.content.lower() == "cancel":
                 await ctx.send(await _(ctx, "Cancelling!"))
                 return
@@ -175,6 +173,8 @@ class Characters(object):
                 except:
                     await ctx.send(await _(ctx, "Invalid formatting! Try again"))
                     continue
+
+        character["level"] = character["meta"].pop("level", None)
 
         await self.bot.di.add_character(ctx.guild, Character(**character))
         await ctx.send(

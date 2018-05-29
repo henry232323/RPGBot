@@ -34,9 +34,6 @@ import psutil
 from datadog import ThreadStats
 from datadog import initialize as init_dd
 from discord.ext import commands
-from kyoukai import Kyoukai
-from kyoukai.asphalt import HTTPRequestContext, Response
-from werkzeug.exceptions import HTTPException
 
 import cogs
 from cogs.utils import db, data
@@ -110,7 +107,7 @@ class Bot(commands.AutoShardedBot):
         for cog in icogs:
             self.add_cog(cog)
 
-        self.loop.create_task(self.start_serv())
+        #self.loop.create_task(self.start_serv())
         self.loop.create_task(self.db.connect())
 
         init_dd(self._auth[3], self._auth[4])
@@ -159,7 +156,7 @@ class Bot(commands.AutoShardedBot):
 
             if await self.di.get_exp_enabled(ctx.guild):
                 add = choice([0, 0, 0, 0, 0, 1, 1, 2, 3])
-                fpn = ctx.command.full_parent_name
+                fpn = ctx.command.full_parent_name.lower()
                 if fpn:
                     values = {
                         "character": 2,
@@ -175,7 +172,7 @@ class Bot(commands.AutoShardedBot):
                     await asyncio.sleep(4)
                     r = await self.di.add_exp(ctx.author, add)
                     if r is not None:
-                        await ctx.send((await _(ctx, "{0} is now level {1}!")).format(ctx.author.mention, r))
+                        await ctx.message.add_reaction("\u23EB")
 
     async def on_command_error(self, ctx, exception):
         self.stats.increment("RPGBot.errors", tags=["RPGBot:errors"], host="scw-8112e8")
@@ -183,7 +180,7 @@ class Bot(commands.AutoShardedBot):
         if isinstance(exception, commands.MissingRequiredArgument):
             await ctx.send(f"`{exception}`")
         elif isinstance(exception, TimeoutError):
-            await ctx.send(await _("This operation ran out of time! Please try again"))
+            await ctx.send(await _(ctx, "This operation ran out of time! Please try again"))
         else:
             await ctx.send(f"`{exception}`")
 
@@ -255,33 +252,6 @@ class Bot(commands.AutoShardedBot):
 
     async def shutdown(self):
         self.session.close()
-
-    async def start_serv(self):
-        self.webapp = Kyoukai(__name__)
-
-        @self.webapp.route("/servers/<int:snowflake>/", methods=["GET"])
-        async def getservinfo(ctx: HTTPRequestContext, snowflake: int):
-            try:
-                snowflake = int(snowflake)
-                req = f"""SELECT info FROM servdata WHERE UUID = {snowflake};"""
-                async with self.db._conn.acquire() as connection:
-                    response = await connection.fetchval(req)
-                return Response(response if response else json.dumps(self.default_servdata, indent=4), status=200)
-            except:
-                return HTTPException("Invalid snowflake!", Response("Failed to fetch info!", status=400))
-
-        @self.webapp.route("/users/<int:snowflake>/", methods=["GET"])
-        async def getuserinfo(ctx: HTTPRequestContext, snowflake: int):
-            try:
-                snowflake = int(snowflake)
-                req = f"""SELECT info FROM userdata WHERE UUID = {snowflake};"""
-                async with self.db._conn.acquire() as connection:
-                    response = await connection.fetchval(req)
-                return Response(response if response else json.dumps(self.default_udata, indent=4), status=200)
-            except:
-                return HTTPException("Invalid snowflake!", Response("Failed to fetch info!", status=400))
-
-        await self.webapp.start('0.0.0.0', 1441)
 
 
 prefix = ['rp!', 'pb!', '<@305177429612298242> '] if "debug" not in sys.argv else 'rp$'

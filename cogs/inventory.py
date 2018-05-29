@@ -23,7 +23,7 @@ from discord.ext import commands
 import discord
 import asyncio
 
-from .utils.data import MemberConverter, ItemOrNumber, chain, IntConverter
+from .utils.data import MemberConverter, ItemOrNumber, chain, IntConverter, create_pages, parse_varargs
 from .utils import checks
 from .utils.translation import _
 
@@ -131,34 +131,43 @@ class Inventory(object):
 
     @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=['lb'])
-    async def lootbox(self, ctx):
+    async def lootbox(self, ctx, name: str = None):
         """List the current lootboxes"""
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
+        if name is not None:
+            boxes = {name: boxes.get(name)}
+            if boxes[name] is None:
+                await ctx.send(await _(ctx, "That is not a valid lootbox"))
+                return
         if boxes:
-            embed = discord.Embed()
-            embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-            embed.set_thumbnail(
-                url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/196b9d18843737.562d0472d523f.png"
-            )
-            fmt = "{0}: {1:.2f}%"
-            for box, data in boxes.items():
-                total = sum(data["items"].values())
+            boxes = sorted(boxes.items(), key=lambda x: x[0])
+            desc = await _(ctx, "\u27A1 to see the next page"
+                                "\n\u2B05 to go back"
+                                "\n\u274C to exit")
 
-                if isinstance(data["cost"], (int, float)):
-                    cost = data["cost"]
-                elif isinstance(data["cost"], str):
-                    cost = data["cost"] + "x1"
+            cstr = await _(ctx, "cost")
+
+            def lfmt(v):
+                fmt = "{0}: {1:.2f}%"
+                total = sum(v["items"].values())
+
+                if isinstance(v["cost"], (int, float)):
+                    cost = v["cost"]
+                elif isinstance(v["cost"], str):
+                    cost = v["cost"] + "x1"
                 else:
-                    cost = "{}x{}".format(*data["cost"])
+                    cost = "{}x{}".format(*v["cost"])
 
-                value = "{}: {}\n\t".format(await _(ctx, "cost"), cost) + "\n\t".join(
-                    fmt.format(item, (value / total) * 100) for item, value in data["items"].items())
-                embed.add_field(name=box,
-                                value=value)
+                value = "{}: {}\n\t".format(cstr, cost) + "\n\t".join(
+                    fmt.format(item, (value / total) * 100) for item, value in v["items"].items())
 
-            embed.set_footer(text=str(ctx.message.created_at))
+                return value
 
-            await ctx.send(embed=embed)
+            await create_pages(ctx, boxes, lfmt, description=desc, title=await _(ctx, "Server Lootboxes"),
+                               author=ctx.guild.name, author_url=ctx.guild.icon_url,
+                               thumbnail="https://mir-s3-cdn-cf.behance.net/project_modules/disp/196b9d18843737.562d0472d523f.png",
+                               footer=str(ctx.message.created_at), chunk=4)
+
         else:
             await ctx.send(await _(ctx, "No current lootboxes"))
 
@@ -265,6 +274,7 @@ class Inventory(object):
             await ctx.send(
                 await _(ctx, "Both parties say rp!accept @Other to accept the trade or rp!decline @Other to decline"))
             already = None
+
             def check(message):
                 if not (message.channel == ctx.channel):
                     return False
@@ -363,3 +373,147 @@ class Inventory(object):
 
             await ctx.send(await _(ctx, "Trade complete!"))
             del self.trades[sender]
+
+    @commands.command()
+    @checks.no_pm()
+    async def craft(self, ctx, number: int, *name: str):
+        """Craft a recipe with a given name from the available server recipes; e.g. rp!craft 5 Apple Pie"""
+        recipes = await ctx.bot.di.get_guild_recipes(ctx.guild)
+        recipe = recipes.get(name)
+        if recipe is None:
+            await ctx.send(await _(ctx, "That recipe doesn't exist!"))
+            return
+
+        uinv = await self.bot.di.get_inventory(ctx.author)
+        for item, n in recipe[0].items():
+            if uinv.get(item) < n * number:
+                await ctx.send(
+                    (await _(ctx, "You need {} {} to craft this! You only have {}")).format(n * number, item,
+                                                                                            uinv.get(item)))
+                return
+
+        await ctx.bot.di.take_items(ctx.author, *recipe[0].items())
+        await ctx.bot.di.give_items(ctx.author, *recipe[1].items())
+
+        await ctx.send((await _(ctx, "Successfully crafted {} {}")).format(number, name))
+
+    @commands.command()
+    @checks.no_pm()
+    async def recipes(self, ctx):
+        """List all the available server recipes"""
+        recipes = await ctx.bot.di.get_guild_recipes(ctx.guild)
+
+        if recipes:
+            boxes = sorted(recipes.items(), key=lambda x: x[0])
+            desc = await _(ctx, "\u27A1 to see the next page"
+                                "\n\u2B05 to go back"
+                                "\n\u274C to exit")
+
+            def lfmt(v):
+                fmt = "Input:\n{}\nOutput:\n{}"
+
+                inputstr = "\n".join(f"\t{i}: n" for i, n in v[0].items())
+                outputstr = "\n".join(f"\t{i}: n" for i, n in v[1].items())
+                return fmt.format(inputstr, outputstr)
+
+            await create_pages(ctx, boxes, lfmt, description=desc, title=await _(ctx, "Server Recipes"),
+                               author=ctx.guild.name, author_url=ctx.guild.icon_url,
+                               thumbnail="http://chittagongit.com/images/scroll-icon-vector/scroll-icon-vector-0.jpg",
+                               footer=str(ctx.message.created_at), chunk=4)
+
+        else:
+            await ctx.send(await _(ctx, "No current recipes"))
+
+    @commands.group(invoke_without_command=True)
+    @checks.no_pm()
+    async def recipe(self, ctx, name: str):
+        """Subcommands for recipes. See data on a specific recipe; e.g. rp!recipe Banana"""
+        recipes = await ctx.bot.di.get_guild_recipes(ctx.guild)
+
+        if name is not None:
+            recipes = {name: recipes.get(name)}
+            if recipes[name] is None:
+                await ctx.send(await _(ctx, "That is not a valid recipe"))
+                return
+        if recipes:
+            recipes = sorted(recipes.items(), key=lambda x: x[0])
+            desc = await _(ctx, "\u27A1 to see the next page"
+                                "\n\u2B05 to go back"
+                                "\n\u274C to exit")
+
+            def lfmt(v):
+                fmt = "Input:\n{}\nOutput:\n{}"
+                inputstr = "\n".join(f"\t{i}: n" for i, n in v[0].items())
+                outputstr = "\n".join(f"\t{i}: n" for i, n in v[1].items())
+                return fmt.format(inputstr, outputstr)
+
+            await create_pages(ctx, recipes, lfmt, description=desc, title=await _(ctx, "Server Recipes"),
+                               author=ctx.guild.name, author_url=ctx.guild.icon_url,
+                               thumbnail="http://chittagongit.com/images/scroll-icon-vector/scroll-icon-vector-0.jpg",
+                               footer=str(ctx.message.created_at), chunk=4)
+
+        else:
+            await ctx.send(await _(ctx, "No current recipes"))
+
+    @recipe.command()
+    @checks.no_pm()
+    @checks.mod_or_permissions()
+    async def create(self, ctx, *name: str):
+        """Create a new recipe; e.g.
+        > rp!recipe create Apple Pie
+        >> What items must be consumed to follow this recipe? e.g. Applex5 Breadx2
+        > Applex5 Breadx15 "Pie Tinx1"
+        >> What items will be given upon the completion of this recipe? e.g. "Apple Piex1"
+        > "Apple Piex1" "Pie Tinx1"
+        >> Successfully created new recipe!
+        """
+        await ctx.send(await _(ctx, "What items must be consumed to follow this recipe? e.g. "
+                                    "Applex5 Breadx2"))
+        while True:
+            try:
+                inmsg = await ctx.bot.wait_for("message",
+                                               check=lambda x: x.author == ctx.author and (x.channel == ctx.channel),
+                                               timeout=120)
+                inmsgparts = parse_varargs(inmsg.content)
+
+                initems = []
+                for item in inmsgparts:
+                    split = item.split('x')
+                    initems.append(("x".join(split[:-1]), abs(int(split[-1]))))
+
+                break
+            except:
+                from traceback import print_exc
+                print_exc()
+                await ctx.send(await _(ctx, "Invalid formatting! Try again!"))
+
+        await ctx.send(await _(ctx, "What items will be given upon the completion of this recipe? e.g. "
+                                    "\"Apple Piex1\""))
+        while True:
+            try:
+                outmsg = await ctx.bot.wait_for("message",
+                                                check=lambda x: x.author == ctx.author and (x.channel == ctx.channel),
+                                                timeout=120)
+                outmsgparts = parse_varargs(outmsg.content)
+
+                outitems = []
+                for item in outmsgparts:
+                    split = item.split('x')
+                    outitems.append(("x".join(split[:-1]), abs(int(split[-1]))))
+
+                break
+            except:
+                from traceback import print_exc
+                print_exc()
+                await ctx.send(await _(ctx, "Invalid formatting! Try again!"))
+
+        await ctx.bot.di.add_recipe(ctx.guild, name, dict(initems), dict(outitems))
+        await ctx.send(await _(ctx, "Successfully created new recipe!"))
+
+    @recipe.command()
+    @checks.no_pm()
+    @checks.mod_or_permissions()
+    async def delete(self, ctx, *name: str):
+        """Delete the recipe with the given name; e.g. rp!recipe delete Apple Pie"""
+        await ctx.bot.di.remove_recipe(ctx.guild, name)
+        await ctx.send(await _(ctx, "Successfully deleted the recipe"))
