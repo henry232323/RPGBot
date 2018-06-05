@@ -419,7 +419,8 @@ class DataInteraction(object):
         return (await self.db.get_guild_data(guild)).get("start", 0)
 
     async def get_guild_recipes(self, guild):
-        return (await self.db.get_guild_data(guild)).get("recipes", {})
+        recipes = (await self.db.get_guild_data(guild)).get("recipes", {})
+        return {a if isinstance(a, str) else " ".join(a): b for a, b in recipes.items()}
 
     async def get_guild_items(self, guild):
         """Get all the items available in a server"""
@@ -483,7 +484,7 @@ class DataInteraction(object):
 
     async def get_currency(self, guild):
         gd = await self.db.get_guild_data(guild)
-        return gd.get("currency", {})
+        return gd.get("currency", "$")
 
     async def get_guild_guilds(self, guild):
         """Get a server's guilds"""
