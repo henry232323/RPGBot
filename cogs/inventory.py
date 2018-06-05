@@ -376,7 +376,7 @@ class Inventory(object):
 
     @commands.command()
     @checks.no_pm()
-    async def craft(self, ctx, number: int, *name: str):
+    async def craft(self, ctx, number: int, *, name: str):
         """Craft a recipe with a given name from the available server recipes; e.g. rp!craft 5 Apple Pie"""
         recipes = await ctx.bot.di.get_guild_recipes(ctx.guild)
         recipe = recipes.get(name)
@@ -426,7 +426,7 @@ class Inventory(object):
 
     @commands.group(invoke_without_command=True)
     @checks.no_pm()
-    async def recipe(self, ctx, name: str):
+    async def recipe(self, ctx, *, name: str):
         """Subcommands for recipes. See data on a specific recipe; e.g. rp!recipe Banana"""
         recipes = await ctx.bot.di.get_guild_recipes(ctx.guild)
 
@@ -458,7 +458,7 @@ class Inventory(object):
     @recipe.command()
     @checks.no_pm()
     @checks.mod_or_permissions()
-    async def create(self, ctx, *name: str):
+    async def create(self, ctx, *, name: str):
         """Create a new recipe; e.g.
         > rp!recipe create Apple Pie
         >> What items must be consumed to follow this recipe? e.g. Applex5 Breadx2
@@ -513,7 +513,7 @@ class Inventory(object):
     @recipe.command()
     @checks.no_pm()
     @checks.mod_or_permissions()
-    async def delete(self, ctx, *name: str):
+    async def delete(self, ctx, *, name: str):
         """Delete the recipe with the given name; e.g. rp!recipe delete Apple Pie"""
         await ctx.bot.di.remove_recipe(ctx.guild, name)
         await ctx.send(await _(ctx, "Successfully deleted the recipe"))

@@ -35,6 +35,7 @@ from datadog import ThreadStats
 from datadog import initialize as init_dd
 from discord.ext import commands
 
+from pyhtml import server
 import cogs
 from cogs.utils import db, data
 from cogs.utils.translation import _
@@ -77,6 +78,9 @@ class Bot(commands.AutoShardedBot):
         with open("resources/auth") as af:
             self._auth = json.loads(af.read())
 
+        self.httpserver = server.API(self, "RPGBot")
+        server.makepaths(self.httpserver)
+
         self.db: db.Database = db.Database(self)
         self.di: data.DataInteraction = data.DataInteraction(self)
         self.default_udata = data.default_user
@@ -108,7 +112,7 @@ class Bot(commands.AutoShardedBot):
             self.add_cog(cog)
 
         #self.loop.create_task(self.start_serv())
-        self.loop.create_task(self.db.connect())
+        self.loop.create_task(self.httpserver.host())
 
         init_dd(self._auth[3], self._auth[4])
         self.stats = ThreadStats()
@@ -119,24 +123,25 @@ class Bot(commands.AutoShardedBot):
         print(self.user.name)
         print(self.user.id)
         print('------')
-        await self.update_stats()
+        self.loop.create_task(self.update_stats())
 
     async def update_stats(self):
         url = "https://bots.discord.pw/api/bots/{}/stats".format(self.user.id)
-        payload = json.dumps(dict(server_count=len(self.guilds))).encode()
-        headers = {'authorization': self._auth[1], "Content-Type": "application/json"}
+        while not self.is_closed():
+            payload = json.dumps(dict(server_count=len(self.guilds))).encode()
+            headers = {'authorization': self._auth[1], "Content-Type": "application/json"}
 
-        async with self.session.post(url, data=payload, headers=headers) as response:
-            await response.read()
+            async with self.session.post(url, data=payload, headers=headers) as response:
+                await response.read()
 
-        url = "https://discordbots.org/api/bots/{}/stats".format(self.user.id)
-        payload = json.dumps(dict(server_count=len(self.guilds))).encode()
-        headers = {'authorization': self._auth[2], "Content-Type": "application/json"}
+            url = "https://discordbots.org/api/bots/{}/stats".format(self.user.id)
+            payload = json.dumps(dict(server_count=len(self.guilds))).encode()
+            headers = {'authorization': self._auth[2], "Content-Type": "application/json"}
 
-        async with self.session.post(url, data=payload, headers=headers) as response:
-            await response.read()
+            async with self.session.post(url, data=payload, headers=headers) as response:
+                await response.read()
 
-        self.loop.call_later(14400, lambda: asyncio.ensure_future(self.update_stats()))
+            await asyncio.sleep(14400)
 
     async def on_command(self, ctx):
         self.stats.increment("RPGBot.commands", tags=["RPGBot:commands"], host="scw-8112e8")
