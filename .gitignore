@@ -89,6 +89,7 @@ ENV/
 .ropeproject
 
 # etc
+pyhtml/auth
 resources/auth
 resources/postgresql/
 patrons.json
@@ -99,3 +100,4 @@ ftpserver.py
 invdata/
 discord/
 discord.py-rewrite.zip
+server.py

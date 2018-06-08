@@ -169,7 +169,7 @@ class Settings(object):
         await self.bot.di.set_start(ctx.guild, amount)
         await ctx.send((await _(ctx, "Starting amount changed to {} dollars")).format(amount))
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.command()
     @checks.admin_or_permissions()
     async def language(self, ctx, language: str = None):
@@ -184,10 +184,19 @@ class Settings(object):
             await self.bot.di.set_language(ctx.guild, language)
             await ctx.send(await _(ctx, "Language successfully set!"))
 
-    @commands.guild_only()
+    @checks.no_pm()
     @commands.command()
     @checks.admin_or_permissions()
     async def currency(self, ctx, currency: str):
         """Set the guild currency"""
         await self.bot.di.set_currency(ctx.guild, currency)
         await ctx.send(await _(ctx, "Currency successfully set!"))
+
+    @checks.no_pm()
+    @commands.command()
+    @checks.mod_or_permissions()
+    async def loaddnd(self, ctx):
+        """This command will pre-load all D&D items and make them available to give"""
+        for item in self.bot.dnditems.values():
+            await self.bot.di.new_item(ctx.guild, ServerItem(**item))
+        await ctx.send(await _(ctx, "Successfully added all D&D items!"))

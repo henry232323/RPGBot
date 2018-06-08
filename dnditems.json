@@ -1,0 +1,2742 @@
+{
+    "Abacus": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "2 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Abacus"
+    },
+    "Acid (vial)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "25 gp",
+            "Weight": "1 lb",
+            "Tags": "Combat, Damage, Utility",
+            "Attributes": ""
+        },
+        "description": "Acid (vial)"
+    },
+    "Alchemist's Fire (flask)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "50 gp",
+            "Weight": "1 lb",
+            "Tags": "Combat, Consumable, Damage, Utility",
+            "Attributes": ""
+        },
+        "description": "Alchemist's Fire (flask)"
+    },
+    "Alchemist's Supplies": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "50 gp",
+            "Weight": "8 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Alchemist's Supplies"
+    },
+    "Alms Box": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Alms Box"
+    },
+    "Amulet": {
+        "meta": {
+            "Type": "Holy Symbol",
+            "Cost": "5 gp",
+            "Weight": "1 lb",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Amulet"
+    },
+    "Antimatter Rifle": {
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "10 lbs",
+            "Tags": "Reload (2 shots)",
+            "Attributes": "Necrotic"
+        },
+        "description": "Antimatter Rifle"
+    },
+    "Antitoxin": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "50 gp",
+            "Weight": "--",
+            "Tags": "Healing, Utility",
+            "Attributes": ""
+        },
+        "description": "Antitoxin"
+    },
+    "Arcane Focus": {
+        "meta": {
+            "Type": "Arcane Focus",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Arcane Focus"
+    },
+    "Arrows": {
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "1 gp",
+            "Weight": "1 lb",
+            "Tags": "Combat, Damage",
+            "Attributes": ""
+        },
+        "description": "Arrows"
+    },
+    "Assassin's Blood (Ingested)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "150 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Damage",
+            "Attributes": ""
+        },
+        "description": "Assassin's Blood (Ingested)"
+    },
+    "Backpack": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "5 lbs",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Backpack"
+    },
+    "Bagpipes": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "30 gp",
+            "Weight": "6 lbs",
+            "Tags": "Instrument",
+            "Attributes": ""
+        },
+        "description": "Bagpipes"
+    },
+    "Ball Bearings (bag of 1,000)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Control, Utility",
+            "Attributes": ""
+        },
+        "description": "Ball Bearings (bag of 1,000)"
+    },
+    "Barding": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "Cost x4, Weight x2",
+            "Attributes": ""
+        },
+        "description": "Barding"
+    },
+    "Barrel": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "70 lbs",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Barrel"
+    },
+    "Basket": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "4 sp",
+            "Weight": "2 lbs",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Basket"
+    },
+    "Battleaxe": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "10 gp",
+            "Weight": "4 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Slashing"
+        },
+        "description": "Battleaxe"
+    },
+    "Bedroll": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "7 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Bedroll"
+    },
+    "Bell": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "--",
+            "Tags": "Communication, Utility",
+            "Attributes": ""
+        },
+        "description": "Bell"
+    },
+    "Bit and Bridle": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "1 lb",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Bit and Bridle"
+    },
+    "Blanket": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "3 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Blanket"
+    },
+    "Block and Tackle": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "5 lbs",
+            "Tags": "Exploration, Movement, Utility",
+            "Attributes": ""
+        },
+        "description": "Block and Tackle"
+    },
+    "Block of Incense": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Block of Incense"
+    },
+    "Blowgun": {
+        "meta": {
+            "Type": "Martial Ranged Weapon",
+            "Cost": "10 gp",
+            "Weight": "1 lb",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Blowgun"
+    },
+    "Blowgun Needles": {
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "1 gp",
+            "Weight": "1 lb",
+            "Tags": "Combat, Damage",
+            "Attributes": ""
+        },
+        "description": "Blowgun Needles"
+    },
+    "Bomb": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "150 gp",
+            "Weight": "1 lb",
+            "Tags": "Combat, Damage",
+            "Attributes": ""
+        },
+        "description": "Bomb"
+    },
+    "Book": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "25 gp",
+            "Weight": "5 lbs",
+            "Tags": "Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Book"
+    },
+    "Boomerang": {
+        "meta": {
+            "Type": "Simple Ranged Weapon",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "Combat, Damage",
+            "Attributes": "Bludgeoning"
+        },
+        "description": "Boomerang"
+    },
+    "Bottle, Glass": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "2 lbs",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Bottle, Glass"
+    },
+    "Breastplate": {
+        "meta": {
+            "Type": "Medium Armor",
+            "Cost": "400 gp",
+            "Weight": "20 lbs",
+            "Tags": "Warding",
+            "Attributes": "AC 14"
+        },
+        "description": "Breastplate"
+    },
+    "Brewer's Supplies": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "20 gp",
+            "Weight": "9 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Brewer's Supplies"
+    },
+    "Bucket": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 cp",
+            "Weight": "2 lbs",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Bucket"
+    },
+    "Bullets, Modern": {
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "--",
+            "Weight": "1 lb",
+            "Tags": "Combat, Damage",
+            "Attributes": ""
+        },
+        "description": "Bullets, Modern"
+    },
+    "Bullets, Renaissance": {
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "3 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": ""
+        },
+        "description": "Bullets, Renaissance"
+    },
+    "Burglar's Pack": {
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "16 gp",
+            "Weight": "47 1/2 lbs",
+            "Tags": "Container, Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Burglar's Pack"
+    },
+    "Burnt Othur Fumes (Inhaled)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "500 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Damage",
+            "Attributes": ""
+        },
+        "description": "Burnt Othur Fumes (Inhaled)"
+    },
+    "Calligrapher's Supplies": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "10 gp",
+            "Weight": "5 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Calligrapher's Supplies"
+    },
+    "Caltrops (bag of 20)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage, Movement",
+            "Attributes": ""
+        },
+        "description": "Caltrops (bag of 20)"
+    },
+    "Camel": {
+        "meta": {
+            "Type": "Mount",
+            "Cost": "50 gp",
+            "Weight": "--",
+            "Tags": "Speed 50 ft., Carrying Capacity 480 lbs.",
+            "Attributes": ""
+        },
+        "description": "Camel"
+    },
+    "Candle": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 cp",
+            "Weight": "--",
+            "Tags": "Consumable, Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Candle"
+    },
+    "Canoe": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "50 gp",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Canoe"
+    },
+    "Carpenter's Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "8 gp",
+            "Weight": "6 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Carpenter's Tools"
+    },
+    "Carriage": {
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "100 gp",
+            "Weight": "600 lbs",
+            "Tags": "Exploration, Movement, Utility",
+            "Attributes": ""
+        },
+        "description": "Carriage"
+    },
+    "Cart": {
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "15 gp",
+            "Weight": "200 lbs",
+            "Tags": "Exploration, Movement, Utility",
+            "Attributes": ""
+        },
+        "description": "Cart"
+    },
+    "Cartographer's Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "15 gp",
+            "Weight": "6 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Cartographer's Tools"
+    },
+    "Case, Crossbow Bolt": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "1 lb",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Case, Crossbow Bolt"
+    },
+    "Case, Map or Scroll": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "1 lb",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Case, Map or Scroll"
+    },
+    "Censer": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Censer"
+    },
+    "Chain (10 feet)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "10 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Chain (10 feet)"
+    },
+    "Chain Mail": {
+        "meta": {
+            "Type": "Heavy Armor",
+            "Cost": "75 gp",
+            "Weight": "55 lbs",
+            "Tags": "Warding",
+            "Attributes": "AC 16"
+        },
+        "description": "Chain Mail"
+    },
+    "Chain Shirt": {
+        "meta": {
+            "Type": "Medium Armor",
+            "Cost": "50 gp",
+            "Weight": "20 lbs",
+            "Tags": "Warding",
+            "Attributes": "AC 13"
+        },
+        "description": "Chain Shirt"
+    },
+    "Chalk (1 piece)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 cp",
+            "Weight": "--",
+            "Tags": "Communication, Consumable, Utility",
+            "Attributes": ""
+        },
+        "description": "Chalk (1 piece)"
+    },
+    "Chariot": {
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "250 gp",
+            "Weight": "100 lbs",
+            "Tags": "Exploration, Movement, Utility",
+            "Attributes": ""
+        },
+        "description": "Chariot"
+    },
+    "Chest": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "25 lbs",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Chest"
+    },
+    "Climber's Kit": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "25 gp",
+            "Weight": "12 lbs",
+            "Tags": "Exploration, Movement, Utility",
+            "Attributes": ""
+        },
+        "description": "Climber's Kit"
+    },
+    "Clothes, Common": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "3 lbs",
+            "Tags": "Outerwear, Social",
+            "Attributes": ""
+        },
+        "description": "Clothes, Common"
+    },
+    "Clothes, Costume": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "4 lbs",
+            "Tags": "Deception, Outerwear, Social",
+            "Attributes": ""
+        },
+        "description": "Clothes, Costume"
+    },
+    "Clothes, Fine": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "15 gp",
+            "Weight": "6 lbs",
+            "Tags": "Outerwear, Social",
+            "Attributes": ""
+        },
+        "description": "Clothes, Fine"
+    },
+    "Clothes, Traveler's": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "4 lbs",
+            "Tags": "Outerwear, Social",
+            "Attributes": ""
+        },
+        "description": "Clothes, Traveler's"
+    },
+    "Club": {
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "1 sp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Bludgeoning"
+        },
+        "description": "Club"
+    },
+    "Cobbler's Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "5 gp",
+            "Weight": "5 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Cobbler's Tools"
+    },
+    "Component Pouch": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "25 gp",
+            "Weight": "2 lbs",
+            "Tags": "Container, Utility",
+            "Attributes": ""
+        },
+        "description": "Component Pouch"
+    },
+    "Cook's Utensils": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "1 gp",
+            "Weight": "8 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Cook's Utensils"
+    },
+    "Crawler Mucus (Contact)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "200 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Damage, Debuff",
+            "Attributes": ""
+        },
+        "description": "Crawler Mucus (Contact)"
+    },
+    "Crossbow Bolts": {
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "1 gp",
+            "Weight": "1 1/2 lb",
+            "Tags": "Combat, Damage",
+            "Attributes": ""
+        },
+        "description": "Crossbow Bolts"
+    },
+    "Crossbow, Hand": {
+        "meta": {
+            "Type": "Martial Ranged Weapon",
+            "Cost": "75 gp",
+            "Weight": "3 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Crossbow, Hand"
+    },
+    "Crossbow, Heavy": {
+        "meta": {
+            "Type": "Martial Ranged Weapon",
+            "Cost": "50 gp",
+            "Weight": "18 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Crossbow, Heavy"
+    },
+    "Crossbow, Light": {
+        "meta": {
+            "Type": "Simple Ranged Weapon",
+            "Cost": "25 gp",
+            "Weight": "5 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Crossbow, Light"
+    },
+    "Crowbar": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "5 lbs",
+            "Tags": "Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Crowbar"
+    },
+    "Crystal": {
+        "meta": {
+            "Type": "Arcane Focus",
+            "Cost": "10 gp",
+            "Weight": "1 lb",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Crystal"
+    },
+    "Dagger": {
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "2 gp",
+            "Weight": "1 lb",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Dagger"
+    },
+    "Dart": {
+        "meta": {
+            "Type": "Simple Ranged Weapon",
+            "Cost": "5 cp",
+            "Weight": "1/4 lb",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Dart"
+    },
+    "Dice Set": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "1 sp",
+            "Weight": "--",
+            "Tags": "Social",
+            "Attributes": ""
+        },
+        "description": "Dice Set"
+    },
+    "Diplomat's Pack": {
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "39 gp",
+            "Weight": "36 lbs",
+            "Tags": "Container, Exploration, Outerwear, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Diplomat's Pack"
+    },
+    "Disguise Kit": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "25 gp",
+            "Weight": "3 lbs",
+            "Tags": "Deception, Utility",
+            "Attributes": ""
+        },
+        "description": "Disguise Kit"
+    },
+    "Donkey (or Mule)": {
+        "meta": {
+            "Type": "Mount",
+            "Cost": "8 gp",
+            "Weight": "--",
+            "Tags": "Speed 40 ft., Carrying Capacity 420 lbs.",
+            "Attributes": ""
+        },
+        "description": "Donkey (or Mule)"
+    },
+    "Draft Horse": {
+        "meta": {
+            "Type": "Mount",
+            "Cost": "50 gp",
+            "Weight": "--",
+            "Tags": "Speed 40 ft., Carrying Capacity 540 lbs.",
+            "Attributes": ""
+        },
+        "description": "Draft Horse"
+    },
+    "Dragonchess Set": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "1 gp",
+            "Weight": "1/2 lb",
+            "Tags": "Social",
+            "Attributes": ""
+        },
+        "description": "Dragonchess Set"
+    },
+    "Drow Poison (Injury)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "200 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Damage, Debuff",
+            "Attributes": ""
+        },
+        "description": "Drow Poison (Injury)"
+    },
+    "Druidic Focus": {
+        "meta": {
+            "Type": "Druidic Focus",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Druidic Focus"
+    },
+    "Drum": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "6 gp",
+            "Weight": "3 lbs",
+            "Tags": "Instrument",
+            "Attributes": ""
+        },
+        "description": "Drum"
+    },
+    "Dulcimer": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "25 gp",
+            "Weight": "10 lbs",
+            "Tags": "Instrument",
+            "Attributes": ""
+        },
+        "description": "Dulcimer"
+    },
+    "Dungeoneer's Pack": {
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "12 gp",
+            "Weight": "61 1/2 lbs",
+            "Tags": "Container, Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Dungeoneer's Pack"
+    },
+    "Dynamite (Stick)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "1 lb",
+            "Tags": "Combat, Damage",
+            "Attributes": ""
+        },
+        "description": "Dynamite (Stick)"
+    },
+    "Elephant": {
+        "meta": {
+            "Type": "Mount",
+            "Cost": "200 gp",
+            "Weight": "--",
+            "Tags": "Speed 40 ft., Carrying Capacity 1,320 lbs.",
+            "Attributes": ""
+        },
+        "description": "Elephant"
+    },
+    "Emblem": {
+        "meta": {
+            "Type": "Holy Symbol",
+            "Cost": "5 gp",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Emblem"
+    },
+    "Energy Cell": {
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "--",
+            "Weight": "lb",
+            "Tags": "Combat, Damage",
+            "Attributes": ""
+        },
+        "description": "Energy Cell"
+    },
+    "Entertainer's Pack": {
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "40 gp",
+            "Weight": "38 lbs",
+            "Tags": "Container, Deception, Exploration, Outerwear, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Entertainer's Pack"
+    },
+    "Essence of Ether (Inhaled)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "300 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Damage, Debuff",
+            "Attributes": ""
+        },
+        "description": "Essence of Ether (Inhaled)"
+    },
+    "Explorer's Pack": {
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "10 gp",
+            "Weight": "59 lbs",
+            "Tags": "Container, Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Explorer's Pack"
+    },
+    "Feed (per day)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 cp",
+            "Weight": "10 lbs",
+            "Tags": "Consumable, Utility",
+            "Attributes": ""
+        },
+        "description": "Feed (per day)"
+    },
+    "Fishing Tackle": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "4 lbs",
+            "Tags": "Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Fishing Tackle"
+    },
+    "Flail": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "10 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Bludgeoning"
+        },
+        "description": "Flail"
+    },
+    "Flask or Tankard": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 cp",
+            "Weight": "1 lb",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Flask or Tankard"
+    },
+    "Flute": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "2 gp",
+            "Weight": "1 lb",
+            "Tags": "Instrument",
+            "Attributes": ""
+        },
+        "description": "Flute"
+    },
+    "Forgery Kit": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "15 gp",
+            "Weight": "5 lbs",
+            "Tags": "Deception, Utility",
+            "Attributes": ""
+        },
+        "description": "Forgery Kit"
+    },
+    "Galley": {
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "30000 gp",
+            "Weight": "--",
+            "Tags": "Speed 4 mph",
+            "Attributes": ""
+        },
+        "description": "Galley"
+    },
+    "Glaive": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "20 gp",
+            "Weight": "6 lbs",
+            "Tags": "Combat, Control, Damage",
+            "Attributes": "Slashing"
+        },
+        "description": "Glaive"
+    },
+    "Glassblower's Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "30 gp",
+            "Weight": "5 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Glassblower's Tools"
+    },
+    "Grappling Hook": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "4 lbs",
+            "Tags": "Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Grappling Hook"
+    },
+    "Greataxe": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "30 gp",
+            "Weight": "6 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Slashing"
+        },
+        "description": "Greataxe"
+    },
+    "Greatclub": {
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "2 sp",
+            "Weight": "10 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Bludgeoning"
+        },
+        "description": "Greatclub"
+    },
+    "Greatsword": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "50 gp",
+            "Weight": "6 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Slashing"
+        },
+        "description": "Greatsword"
+    },
+    "Grenade Launcher": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "7 lbs",
+            "Tags": "Combat, Control, Damage",
+            "Attributes": ""
+        },
+        "description": "Grenade Launcher"
+    },
+    "Grenade, Fragmentation": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "1 lb",
+            "Tags": "Combat, Damage",
+            "Attributes": ""
+        },
+        "description": "Grenade, Fragmentation"
+    },
+    "Grenade, Smoke": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Control",
+            "Attributes": ""
+        },
+        "description": "Grenade, Smoke"
+    },
+    "Gunpowder, Keg": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "250 gp",
+            "Weight": "20 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": ""
+        },
+        "description": "Gunpowder, Keg"
+    },
+    "Gunpowder, Powder Horn": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "35 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": ""
+        },
+        "description": "Gunpowder, Powder Horn"
+    },
+    "Halberd": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "20 gp",
+            "Weight": "6 lbs",
+            "Tags": "Combat, Control, Damage",
+            "Attributes": "Slashing"
+        },
+        "description": "Halberd"
+    },
+    "Half Plate": {
+        "meta": {
+            "Type": "Medium Armor",
+            "Cost": "750 gp",
+            "Weight": "40 lbs",
+            "Tags": "Warding",
+            "Attributes": "AC 15"
+        },
+        "description": "Half Plate"
+    },
+    "Hammer": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "3 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Hammer"
+    },
+    "Hammer, Sledge": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "10 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Hammer, Sledge"
+    },
+    "Handaxe": {
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "5 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Slashing"
+        },
+        "description": "Handaxe"
+    },
+    "Healer's Kit": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "3 lbs",
+            "Tags": "Combat, Healing",
+            "Attributes": ""
+        },
+        "description": "Healer's Kit"
+    },
+    "Herbalism Kit": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "5 gp",
+            "Weight": "3 lbs",
+            "Tags": "Healing, Utility",
+            "Attributes": ""
+        },
+        "description": "Herbalism Kit"
+    },
+    "Hide": {
+        "meta": {
+            "Type": "Medium Armor",
+            "Cost": "10 gp",
+            "Weight": "12 lbs",
+            "Tags": "Warding",
+            "Attributes": "AC 12"
+        },
+        "description": "Hide"
+    },
+    "Holy Symbol": {
+        "meta": {
+            "Type": "Holy Symbol",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Holy Symbol"
+    },
+    "Holy Water (flask)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "25 gp",
+            "Weight": "1 lb",
+            "Tags": "Combat, Damage, Utility",
+            "Attributes": ""
+        },
+        "description": "Holy Water (flask)"
+    },
+    "Horn": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "3 gp",
+            "Weight": "2 lbs",
+            "Tags": "Instrument",
+            "Attributes": ""
+        },
+        "description": "Horn"
+    },
+    "Hourglass": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "25 gp",
+            "Weight": "1 lb",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Hourglass"
+    },
+    "Hunting Trap": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "25 lbs",
+            "Tags": "Damage, Utility",
+            "Attributes": ""
+        },
+        "description": "Hunting Trap"
+    },
+    "Ink (1 ounce bottle)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "10 gp",
+            "Weight": "--",
+            "Tags": "Communication, Consumable, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Ink (1 ounce bottle)"
+    },
+    "Ink Pen": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 cp",
+            "Weight": "--",
+            "Tags": "Communication, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Ink Pen"
+    },
+    "Insect Repellant-Salve": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Insect Repellant-Salve"
+    },
+    "Insect Repellent-Incense": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 sp",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Insect Repellent-Incense"
+    },
+    "Javelin": {
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "5 sp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Javelin"
+    },
+    "Jeweler's Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "25 gp",
+            "Weight": "2 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Jeweler's Tools"
+    },
+    "Jug or Pitcher": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 cp",
+            "Weight": "4 lbs",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Jug or Pitcher"
+    },
+    "Keelboat": {
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "3000 gp",
+            "Weight": "--",
+            "Tags": "Speed 1 mph",
+            "Attributes": ""
+        },
+        "description": "Keelboat"
+    },
+    "Ladder (10 foot)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 sp",
+            "Weight": "25 lbs",
+            "Tags": "Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Ladder (10 foot)"
+    },
+    "Lamp": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "1 lb",
+            "Tags": "Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Lamp"
+    },
+    "Lance": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "10 gp",
+            "Weight": "6 lbs",
+            "Tags": "Combat, Control, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Lance"
+    },
+    "Lantern, Bullseye": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "10 gp",
+            "Weight": "2 lbs",
+            "Tags": "Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Lantern, Bullseye"
+    },
+    "Lantern, Hooded": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "2 lbs",
+            "Tags": "Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Lantern, Hooded"
+    },
+    "Laser Pistol": {
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "2 lbs",
+            "Tags": "Reload (50 shots)",
+            "Attributes": "Radiant"
+        },
+        "description": "Laser Pistol"
+    },
+    "Laser Rifle": {
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "7 lbs",
+            "Tags": "Reload (30 shots)",
+            "Attributes": "Radiant"
+        },
+        "description": "Laser Rifle"
+    },
+    "Leather": {
+        "meta": {
+            "Type": "Light Armor",
+            "Cost": "10 gp",
+            "Weight": "10 lbs",
+            "Tags": "Warding",
+            "Attributes": "AC 11"
+        },
+        "description": "Leather"
+    },
+    "Leatherworker's Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "5 gp",
+            "Weight": "5 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Leatherworker's Tools"
+    },
+    "Light Hammer": {
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "2 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Bludgeoning"
+        },
+        "description": "Light Hammer"
+    },
+    "Little Bag of Sand": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Little Bag of Sand"
+    },
+    "Lock": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "10 gp",
+            "Weight": "1 lb",
+            "Tags": "Utility, Warding",
+            "Attributes": ""
+        },
+        "description": "Lock"
+    },
+    "Longbow": {
+        "meta": {
+            "Type": "Martial Ranged Weapon",
+            "Cost": "50 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Longbow"
+    },
+    "Longship": {
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "10000 gp",
+            "Weight": "--",
+            "Tags": "Speed 3 mph",
+            "Attributes": ""
+        },
+        "description": "Longship"
+    },
+    "Longsword": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "15 gp",
+            "Weight": "3 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Slashing"
+        },
+        "description": "Longsword"
+    },
+    "Lute": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "35 gp",
+            "Weight": "2 lbs",
+            "Tags": "Instrument",
+            "Attributes": ""
+        },
+        "description": "Lute"
+    },
+    "Lyre": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "30 gp",
+            "Weight": "2 lbs",
+            "Tags": "Instrument",
+            "Attributes": ""
+        },
+        "description": "Lyre"
+    },
+    "Mace": {
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "5 gp",
+            "Weight": "4 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Bludgeoning"
+        },
+        "description": "Mace"
+    },
+    "Magnifying Glass": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "100 gp",
+            "Weight": "--",
+            "Tags": "Detection, Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Magnifying Glass"
+    },
+    "Malice (Inhaled)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "250 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Damage, Debuff",
+            "Attributes": ""
+        },
+        "description": "Malice (Inhaled)"
+    },
+    "Manacles": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "6 lbs",
+            "Tags": "Control, Utility",
+            "Attributes": ""
+        },
+        "description": "Manacles"
+    },
+    "Mason's Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "10 gp",
+            "Weight": "8 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Mason's Tools"
+    },
+    "Mastiff": {
+        "meta": {
+            "Type": "Mount",
+            "Cost": "25 gp",
+            "Weight": "--",
+            "Tags": "Speed 40 ft., Carrying Capacity 195 lbs.",
+            "Attributes": ""
+        },
+        "description": "Mastiff"
+    },
+    "Maul": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "10 gp",
+            "Weight": "10 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Bludgeoning"
+        },
+        "description": "Maul"
+    },
+    "Mess Kit": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 sp",
+            "Weight": "1 lb",
+            "Tags": "Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Mess Kit"
+    },
+    "Midnight Tears (Ingested)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "1500 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Damage",
+            "Attributes": ""
+        },
+        "description": "Midnight Tears (Ingested)"
+    },
+    "Mirror, Steel": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "1/2 lb",
+            "Tags": "Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Mirror, Steel"
+    },
+    "Monster Hunter's Pack": {
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "33 gp",
+            "Weight": "49 lbs",
+            "Tags": "Container, Control, Utility",
+            "Attributes": ""
+        },
+        "description": "Monster Hunter's Pack"
+    },
+    "Morningstar": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "15 gp",
+            "Weight": "4 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Morningstar"
+    },
+    "Musket": {
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "500 gp",
+            "Weight": "10 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Musket"
+    },
+    "Navigator's Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "25 gp",
+            "Weight": "2 lbs",
+            "Tags": "Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Navigator's Tools"
+    },
+    "Net": {
+        "meta": {
+            "Type": "Martial Ranged Weapon",
+            "Cost": "1 gp",
+            "Weight": "3 lbs",
+            "Tags": "Combat, Control",
+            "Attributes": "Bludgeoning"
+        },
+        "description": "Net"
+    },
+    "Oil (flask)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 sp",
+            "Weight": "1 lb",
+            "Tags": "Combat, Damage, Utility",
+            "Attributes": ""
+        },
+        "description": "Oil (flask)"
+    },
+    "Oil of Taggit (Contact)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "400 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Damage, Debuff",
+            "Attributes": ""
+        },
+        "description": "Oil of Taggit (Contact)"
+    },
+    "Orb": {
+        "meta": {
+            "Type": "Arcane Focus",
+            "Cost": "20 gp",
+            "Weight": "3 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Orb"
+    },
+    "Padded": {
+        "meta": {
+            "Type": "Light Armor",
+            "Cost": "5 gp",
+            "Weight": "8 lbs",
+            "Tags": "Warding",
+            "Attributes": "AC 11"
+        },
+        "description": "Padded"
+    },
+    "Painter's Supplies": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "10 gp",
+            "Weight": "5 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Painter's Supplies"
+    },
+    "Pale Tincture (Ingested)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "250 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Damage, Debuff",
+            "Attributes": ""
+        },
+        "description": "Pale Tincture (Ingested)"
+    },
+    "Pan Flute": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "12 gp",
+            "Weight": "2 lbs",
+            "Tags": "Instrument",
+            "Attributes": ""
+        },
+        "description": "Pan Flute"
+    },
+    "Paper (one sheet)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 sp",
+            "Weight": "--",
+            "Tags": "Communication, Consumable, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Paper (one sheet)"
+    },
+    "Parchment (one sheet)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 sp",
+            "Weight": "--",
+            "Tags": "Communication, Consumable, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Parchment (one sheet)"
+    },
+    "Perfume (vial)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Perfume (vial)"
+    },
+    "Pick, Miner's": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "10 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Pick, Miner's"
+    },
+    "Pike": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "5 gp",
+            "Weight": "18 lbs",
+            "Tags": "Combat, Control, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Pike"
+    },
+    "Pistol": {
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "250 gp",
+            "Weight": "3 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Pistol"
+    },
+    "Pistol, Automatic": {
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "3 lbs",
+            "Tags": "Reload (15 shots)",
+            "Attributes": "Piercing"
+        },
+        "description": "Pistol, Automatic"
+    },
+    "Piton": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 cp",
+            "Weight": "1/4 lb",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Piton"
+    },
+    "Plate": {
+        "meta": {
+            "Type": "Heavy Armor",
+            "Cost": "1500 gp",
+            "Weight": "65 lbs",
+            "Tags": "Warding",
+            "Attributes": "AC 18"
+        },
+        "description": "Plate"
+    },
+    "Playing Card Set": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "5 sp",
+            "Weight": "--",
+            "Tags": "Social",
+            "Attributes": ""
+        },
+        "description": "Playing Card Set"
+    },
+    "Poison, Basic (vial)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "100 gp",
+            "Weight": "--",
+            "Tags": "Combat, Consumable, Damage, Utility",
+            "Attributes": ""
+        },
+        "description": "Poison, Basic (vial)"
+    },
+    "Poisoner's Kit": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "50 gp",
+            "Weight": "2 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Poisoner's Kit"
+    },
+    "Pole (10-foot)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 cp",
+            "Weight": "7 lbs",
+            "Tags": "Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Pole (10-foot)"
+    },
+    "Pony": {
+        "meta": {
+            "Type": "Mount",
+            "Cost": "30 gp",
+            "Weight": "--",
+            "Tags": "Speed 40 ft., Carrying Capacity 225 lbs.",
+            "Attributes": ""
+        },
+        "description": "Pony"
+    },
+    "Pot, Iron": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "10 lbs",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Pot, Iron"
+    },
+    "Potion of Healing": {
+        "meta": {
+            "Type": "Potion",
+            "Cost": "50 gp",
+            "Weight": "1/2 lb",
+            "Tags": "Combat, Consumable, Healing",
+            "Attributes": ""
+        },
+        "description": "Potion of Healing"
+    },
+    "Potter's Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "10 gp",
+            "Weight": "3 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Potter's Tools"
+    },
+    "Pouch": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "1 lb",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Pouch"
+    },
+    "Priest's Pack": {
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "19 gp",
+            "Weight": "24 lbs",
+            "Tags": "Container, Exploration, Outerwear, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Priest's Pack"
+    },
+    "Purple Worm Poison (Injury)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "2000 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Damage, Debuff",
+            "Attributes": ""
+        },
+        "description": "Purple Worm Poison (Injury)"
+    },
+    "Quarterstaff": {
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "2 sp",
+            "Weight": "4 lbs",
+            "Tags": "",
+            "Attributes": "Bludgeoning"
+        },
+        "description": "Quarterstaff"
+    },
+    "Quiver": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "1 lb",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Quiver"
+    },
+    "Rain Catcher": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "5 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Rain Catcher"
+    },
+    "Ram, Portable": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "4 gp",
+            "Weight": "35 lbs",
+            "Tags": "Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Ram, Portable"
+    },
+    "Rapier": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "25 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Rapier"
+    },
+    "Rations (1 day)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "2 lbs",
+            "Tags": "Consumable, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Rations (1 day)"
+    },
+    "Reliquary": {
+        "meta": {
+            "Type": "Holy Symbol",
+            "Cost": "5 gp",
+            "Weight": "2 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Reliquary"
+    },
+    "Revolver": {
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "3 lbs",
+            "Tags": "Reload (6 shots)",
+            "Attributes": "Piercing"
+        },
+        "description": "Revolver"
+    },
+    "Riding Horse": {
+        "meta": {
+            "Type": "Mount",
+            "Cost": "75 gp",
+            "Weight": "--",
+            "Tags": "Speed 60 ft., Carrying Capacity 480 lbs.",
+            "Attributes": ""
+        },
+        "description": "Riding Horse"
+    },
+    "Rifle, Automatic": {
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "8 lbs",
+            "Tags": "Reload (30 shots)",
+            "Attributes": "Piercing"
+        },
+        "description": "Rifle, Automatic"
+    },
+    "Rifle, Hunting": {
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "8 lbs",
+            "Tags": "Reload (5 shots)",
+            "Attributes": "Piercing"
+        },
+        "description": "Rifle, Hunting"
+    },
+    "Ring Mail": {
+        "meta": {
+            "Type": "Heavy Armor",
+            "Cost": "30 gp",
+            "Weight": "40 lbs",
+            "Tags": "Warding",
+            "Attributes": "AC 14"
+        },
+        "description": "Ring Mail"
+    },
+    "Robes": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "4 lbs",
+            "Tags": "Outerwear, Utility",
+            "Attributes": ""
+        },
+        "description": "Robes"
+    },
+    "Rod": {
+        "meta": {
+            "Type": "Arcane Focus",
+            "Cost": "10 gp",
+            "Weight": "2 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Rod"
+    },
+    "Rope, Hempen (50 feet)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "10 lbs",
+            "Tags": "Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Rope, Hempen (50 feet)"
+    },
+    "Rope, Silk (50 feet)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "10 gp",
+            "Weight": "5 lbs",
+            "Tags": "Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Rope, Silk (50 feet)"
+    },
+    "Rowboat": {
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "50 gp",
+            "Weight": "100 lbs",
+            "Tags": "Speed 1 1/2 mph",
+            "Attributes": ""
+        },
+        "description": "Rowboat"
+    },
+    "Sack": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 cp",
+            "Weight": "1/2 lb",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Sack"
+    },
+    "Saddle, Exotic": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "60 gp",
+            "Weight": "40 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Saddle, Exotic"
+    },
+    "Saddle, Military": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "20 gp",
+            "Weight": "30 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Saddle, Military"
+    },
+    "Saddle, Pack": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "15 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Saddle, Pack"
+    },
+    "Saddle, Riding": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "10 gp",
+            "Weight": "25 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Saddle, Riding"
+    },
+    "Saddlebags": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "4 gp",
+            "Weight": "8 lbs",
+            "Tags": "Container, Utility",
+            "Attributes": ""
+        },
+        "description": "Saddlebags"
+    },
+    "Sailing Ship": {
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "10000 gp",
+            "Weight": "--",
+            "Tags": "Speed 2 mph",
+            "Attributes": ""
+        },
+        "description": "Sailing Ship"
+    },
+    "Scale Mail": {
+        "meta": {
+            "Type": "Medium Armor",
+            "Cost": "50 gp",
+            "Weight": "45 lbs",
+            "Tags": "Warding",
+            "Attributes": "AC 14"
+        },
+        "description": "Scale Mail"
+    },
+    "Scale, Merchant's": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "3 lbs",
+            "Tags": "Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Scale, Merchant's"
+    },
+    "Scholar's Pack": {
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "40 gp",
+            "Weight": "10 lbs",
+            "Tags": "Container, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Scholar's Pack"
+    },
+    "Scimitar": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "25 gp",
+            "Weight": "3 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Slashing"
+        },
+        "description": "Scimitar"
+    },
+    "Sealing Wax": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "--",
+            "Tags": "Communication, Consumable, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Sealing Wax"
+    },
+    "Serpent Venom (Injury)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "200 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Damage, Debuff",
+            "Attributes": ""
+        },
+        "description": "Serpent Venom (Injury)"
+    },
+    "Shawm": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "2 gp",
+            "Weight": "1 lb",
+            "Tags": "Instrument",
+            "Attributes": ""
+        },
+        "description": "Shawm"
+    },
+    "Shield": {
+        "meta": {
+            "Type": "Shield",
+            "Cost": "--",
+            "Weight": "6 lbs",
+            "Tags": "Warding",
+            "Attributes": "AC 2"
+        },
+        "description": "Shield"
+    },
+    "Shortbow": {
+        "meta": {
+            "Type": "Simple Ranged Weapon",
+            "Cost": "25 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Shortbow"
+    },
+    "Shortsword": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "10 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Shortsword"
+    },
+    "Shotgun": {
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "7 lbs",
+            "Tags": "Reload (2 shots)",
+            "Attributes": "Piercing"
+        },
+        "description": "Shotgun"
+    },
+    "Shovel": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "5 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Shovel"
+    },
+    "Sickle": {
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "1 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Slashing"
+        },
+        "description": "Sickle"
+    },
+    "Signal Whistle": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "50 cp",
+            "Weight": "--",
+            "Tags": "Communication, Utility",
+            "Attributes": ""
+        },
+        "description": "Signal Whistle"
+    },
+    "Signet Ring": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "--",
+            "Tags": "Communication, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Signet Ring"
+    },
+    "Sled": {
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "20 gp",
+            "Weight": "300 lbs",
+            "Tags": "Exploration, Movement, Utility",
+            "Attributes": ""
+        },
+        "description": "Sled"
+    },
+    "Sling": {
+        "meta": {
+            "Type": "Simple Ranged Weapon",
+            "Cost": "1 sp",
+            "Weight": "--",
+            "Tags": "Combat, Damage",
+            "Attributes": "Bludgeoning"
+        },
+        "description": "Sling"
+    },
+    "Sling Bullets": {
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "1 cp",
+            "Weight": "1 1/2 lb",
+            "Tags": "Combat, Damage",
+            "Attributes": ""
+        },
+        "description": "Sling Bullets"
+    },
+    "Small Knife": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Small Knife"
+    },
+    "Smith's Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "20 gp",
+            "Weight": "8 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Smith's Tools"
+    },
+    "Soap": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 cp",
+            "Weight": "--",
+            "Tags": "Consumable, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Soap"
+    },
+    "Spear": {
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "1 gp",
+            "Weight": "3 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Spear"
+    },
+    "Spellbook": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "50 gp",
+            "Weight": "3 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Spellbook"
+    },
+    "Spiked Armor": {
+        "meta": {
+            "Type": "Medium Armor",
+            "Cost": "75 gp",
+            "Weight": "45 lbs",
+            "Tags": "Damage, Warding",
+            "Attributes": "AC 14"
+        },
+        "description": "Spiked Armor"
+    },
+    "Spikes, Iron (10)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "5 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Spikes, Iron (10)"
+    },
+    "Splint": {
+        "meta": {
+            "Type": "Heavy Armor",
+            "Cost": "200 gp",
+            "Weight": "60 lbs",
+            "Tags": "Warding",
+            "Attributes": "AC 17"
+        },
+        "description": "Splint"
+    },
+    "Sprig of Mistletoe": {
+        "meta": {
+            "Type": "Druidic Focus",
+            "Cost": "1 gp",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Sprig of Mistletoe"
+    },
+    "Spyglass": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1000 gp",
+            "Weight": "1 lb",
+            "Tags": "Exploration, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Spyglass"
+    },
+    "Staff": {
+        "meta": {
+            "Type": "Arcane Focus",
+            "Cost": "5 gp",
+            "Weight": "4 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Staff"
+    },
+    "Stake (Wooden)": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Stake (Wooden)"
+    },
+    "String": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "String"
+    },
+    "Studded Leather": {
+        "meta": {
+            "Type": "Light Armor",
+            "Cost": "45 gp",
+            "Weight": "13 lbs",
+            "Tags": "Warding",
+            "Attributes": "AC 12"
+        },
+        "description": "Studded Leather"
+    },
+    "Tej": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "",
+            "Attributes": ""
+        },
+        "description": "Tej"
+    },
+    "Tent, Two-Person": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "20 lbs",
+            "Tags": "Exploration, Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Tent, Two-Person"
+    },
+    "Thieves' Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "25 gp",
+            "Weight": "1 lb",
+            "Tags": "Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Thieves' Tools"
+    },
+    "Three-Dragon Ante Set": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "1 gp",
+            "Weight": "--",
+            "Tags": "Social",
+            "Attributes": ""
+        },
+        "description": "Three-Dragon Ante Set"
+    },
+    "Tinderbox": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "1 lb",
+            "Tags": "Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Tinderbox"
+    },
+    "Tinker's Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "50 gp",
+            "Weight": "10 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Tinker's Tools"
+    },
+    "Torch": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 cp",
+            "Weight": "1 lb",
+            "Tags": "Combat, Damage, Exploration, Utility",
+            "Attributes": ""
+        },
+        "description": "Torch"
+    },
+    "Torpor (Ingested)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "600 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Damage, Debuff",
+            "Attributes": ""
+        },
+        "description": "Torpor (Ingested)"
+    },
+    "Totem": {
+        "meta": {
+            "Type": "Druidic Focus",
+            "Cost": "1 gp",
+            "Weight": "--",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Totem"
+    },
+    "Trident": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "5 gp",
+            "Weight": "4 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Trident"
+    },
+    "Truth Serum (Ingested)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "150 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Debuff, Utility",
+            "Attributes": ""
+        },
+        "description": "Truth Serum (Ingested)"
+    },
+    "Vestments": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Tags": "Social, Utility",
+            "Attributes": ""
+        },
+        "description": "Vestments"
+    },
+    "Vial": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "--",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Vial"
+    },
+    "Viol": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "30 gp",
+            "Weight": "1 lb",
+            "Tags": "Instrument",
+            "Attributes": ""
+        },
+        "description": "Viol"
+    },
+    "Wagon": {
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "35 gp",
+            "Weight": "400 lbs",
+            "Tags": "Exploration, Movement, Utility",
+            "Attributes": ""
+        },
+        "description": "Wagon"
+    },
+    "Wand": {
+        "meta": {
+            "Type": "Arcane Focus",
+            "Cost": "10 gp",
+            "Weight": "1 lb",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Wand"
+    },
+    "War Pick": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "5 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "War Pick"
+    },
+    "Warhammer": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "15 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Bludgeoning"
+        },
+        "description": "Warhammer"
+    },
+    "Warhorse": {
+        "meta": {
+            "Type": "Mount",
+            "Cost": "400 gp",
+            "Weight": "--",
+            "Tags": "Speed 60 ft., Carry Capacity 540 lbs.",
+            "Attributes": ""
+        },
+        "description": "Warhorse"
+    },
+    "Warship": {
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "25000 gp",
+            "Weight": "--",
+            "Tags": "2 1/2 mph",
+            "Attributes": ""
+        },
+        "description": "Warship"
+    },
+    "Waterskin": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 sp",
+            "Weight": "5 lbs",
+            "Tags": "Container",
+            "Attributes": ""
+        },
+        "description": "Waterskin"
+    },
+    "Weaver's Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "1 gp",
+            "Weight": "5 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Weaver's Tools"
+    },
+    "Whetstone": {
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 cp",
+            "Weight": "1 lb",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Whetstone"
+    },
+    "Whip": {
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "2 gp",
+            "Weight": "3 lbs",
+            "Tags": "Combat, Control, Damage",
+            "Attributes": "Slashing"
+        },
+        "description": "Whip"
+    },
+    "Woodcarver's Tools": {
+        "meta": {
+            "Type": "Tool",
+            "Cost": "1 gp",
+            "Weight": "5 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Woodcarver's Tools"
+    },
+    "Wooden Staff": {
+        "meta": {
+            "Type": "Druidic Focus",
+            "Cost": "5 gp",
+            "Weight": "4 lbs",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Wooden Staff"
+    },
+    "Wyvern Poison (Injury)": {
+        "meta": {
+            "Type": "Poison",
+            "Cost": "1200 gp",
+            "Weight": "--",
+            "Tags": "Consumable, Damage, Debuff",
+            "Attributes": ""
+        },
+        "description": "Wyvern Poison (Injury)"
+    },
+    "Yew Wand": {
+        "meta": {
+            "Type": "Druidic Focus",
+            "Cost": "10 gp",
+            "Weight": "1 lb",
+            "Tags": "Utility",
+            "Attributes": ""
+        },
+        "description": "Yew Wand"
+    },
+    "Yklwa": {
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "1 gp",
+            "Weight": "2 lbs",
+            "Tags": "Combat, Damage",
+            "Attributes": "Piercing"
+        },
+        "description": "Yklwa"
+    }
+}
