@@ -78,6 +78,9 @@ class Bot(commands.AutoShardedBot):
         with open("resources/auth") as af:
             self._auth = json.loads(af.read())
 
+        with open("dnditems.json", 'r') as dndf:
+            self.dnditems = json.loads(dndf.read())
+
         self.httpserver = server.API(self, "RPGBot")
         server.makepaths(self.httpserver)
 
