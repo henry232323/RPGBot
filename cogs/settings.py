@@ -23,7 +23,7 @@ from discord.ext import commands
 import discord
 import asyncio
 
-from .utils.data import ServerItem, NumberConverter
+from .utils.data import ServerItem, NumberConverter, create_pages
 from .utils import checks
 from .utils.translation import _
 
@@ -86,8 +86,6 @@ class Settings(object):
             await ctx.send(await _(ctx, "No items to display"))
             return
 
-        embed = discord.Embed()
-
         words = dict()
         for x in sorted(items.keys()):
             if x[0].casefold() in words:
@@ -95,13 +93,17 @@ class Settings(object):
             else:
                 words[x[0].casefold()] = [x]
 
-        for key, value in words.items():
-            if value:
-                embed.add_field(name=key.upper(), value="\n".join(value))
+        desc = await _(ctx, "\u27A1 to see the next page"
+                            "\n\u2B05 to go back"
+                            "\n\u274C to exit")
 
-        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-        embed.set_footer(text=str(ctx.message.created_at))
-        await ctx.send(embed=embed)
+        def lfmt(v):
+            return "\n".join(v)
+
+        await create_pages(ctx, words, lfmt, description=desc, title=await _(ctx, "Server Items"),
+                           author=ctx.guild.name, author_url=ctx.guild.icon_url,
+                           thumbnail="https://mir-s3-cdn-cf.behance.net/project_modules/disp/196b9d18843737.562d0472d523f.png",
+                           footer=str(ctx.message.created_at), chunk=6)
 
     @checks.mod_or_permissions()
     @settings.command()

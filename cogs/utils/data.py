@@ -31,7 +31,6 @@ import asyncio
 
 from .translation import _
 
-
 Pokemon = namedtuple("Pokemon", ["id", "name", "type", "stats", "meta"])
 ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
 Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
@@ -62,6 +61,7 @@ def parse_varargs(s):
             break
         end.append(next.strip())
     return end
+
 
 def chain(l):
     for item in l:
@@ -108,6 +108,7 @@ class NumberConverter(commands.Converter):
         if len(argument) > 10:
             raise commands.BadArgument("That number is much too big! Must be less than 999,999,999")
         return round(float(argument), 2)
+
 
 class IntConverter(commands.Converter):
     async def convert(self, ctx, argument):
@@ -189,17 +190,39 @@ async def create_pages(ctx, items, lfmt,
     if footer:
         embed.set_footer(text=footer)
 
-    chunks = []
-    for i in range(0, len(items), chunk):
-        chunks.append(items[i:i + chunk])
-
+    items = {k: lfmt(v) for k, v in items}
+    ctr = 0
+    while any(len(v) > 500 for v in items.values()) and ctr < 10:
+        additions = {}
+        for k, v in items.items():
+            if len(v) > 500:
+                count = 0
+                start = ""
+                end = ""
+                for item in v.split("\n"):
+                    if count + len(item) > 500:
+                        end += item + "\n"
+                    else:
+                        start += item + "\n"
+                        count += len(item) + 1
+                additions[k] = start.strip()
+                if end.strip():
+                    additions[k + " continued"] = end.strip()
+        items.update(additions)
+        ctr += 1
     i = 0
+    ditems = items
+    items = list(items.items())
+    items.sort()
+
+    chunks = []
+    for j in range(0, len(items), chunk):
+        chunks.append(items[j:j + chunk])
 
     for item, value in chunks[i]:
-        fmt = lfmt(value)
-        embed.add_field(name=item, value=fmt)
+        embed.add_field(name=item, value=ditems[item])
 
-    max = len(chunks) - 1
+    end = len(chunks) - 1
 
     msg = await ctx.send(embed=embed)
     for emote in emotes:
@@ -230,20 +253,18 @@ async def create_pages(ctx, items, lfmt,
                 embed.clear_fields()
                 i -= 1
                 for item, value in chunks[i]:
-                    fmt = lfmt(value)
-                    embed.add_field(name=item, value=fmt)
+                    embed.add_field(name=item, value=ditems[item])
 
                 await msg.edit(embed=embed)
 
         elif r.emoji == emotes[1]:
-            if i == max:
+            if i == end:
                 pass
             else:
                 embed.clear_fields()
                 i += 1
                 for item, value in chunks[i]:
-                    fmt = lfmt(value)
-                    embed.add_field(name=item, value=fmt)
+                    embed.add_field(name=item, value=ditems[item])
 
                 await msg.edit(embed=embed)
         else:
