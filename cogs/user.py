@@ -57,7 +57,7 @@ class User(object):
         imap = [f"{x[0]} x{x[1]}" for x in ud["items"].items()]
         il = len(imap)
         if il > 20:
-            imap = imap[20:]
+            imap = imap[:20]
             imap.append((await _(ctx, "\nand {} more...")).format(il - 20))
         invitems = "\n".join(imap) or await _(ctx, "No Items")
 

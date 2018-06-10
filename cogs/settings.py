@@ -39,12 +39,13 @@ class Settings(object):
         settings = await self.bot.db.get_guild_data(ctx.guild)
         embed = discord.Embed()
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-        embed.add_field(name=await _(ctx, "Starting Money"), value=f"{settings['start']} {settings.get('currency', 'dollars')}")
+        embed.add_field(name=await _(ctx, "Starting Money"),
+                        value=f"{settings['start']} {settings.get('currency', 'dollars')}")
         embed.add_field(name=await _(ctx, "Items"), value="{} {}".format(len(settings['items']), await _(ctx, "items")))
         embed.add_field(name=await _(ctx, "Characters"),
                         value="{} {}".format(len(settings['characters']), await _(ctx, "characters")))
         embed.add_field(name=await _(ctx, "Maps"),
-                        value=await _(ctx, "None") if not settings.get("maps") else "\n\t" + "\n\t".join(
+                        value=await _(ctx, "None") if not settings.get("maps") else "\n".join(
                             settings["maps"]))
         embed.add_field(name=await _(ctx, "Currency"), value=f"{settings.get('currency', 'dollars')}")
         embed.add_field(name=await _(ctx, "Language"), value=f"{settings.get('language', 'en')}")
@@ -100,10 +101,10 @@ class Settings(object):
         def lfmt(v):
             return "\n".join(v)
 
-        await create_pages(ctx, words, lfmt, description=desc, title=await _(ctx, "Server Items"),
+        await create_pages(ctx, list(words.items()), lfmt, description=desc, title=await _(ctx, "Server Items"),
                            author=ctx.guild.name, author_url=ctx.guild.icon_url,
                            thumbnail="https://mir-s3-cdn-cf.behance.net/project_modules/disp/196b9d18843737.562d0472d523f.png",
-                           footer=str(ctx.message.created_at), chunk=6)
+                           footer=str(ctx.message.created_at), chunk=4)
 
     @checks.mod_or_permissions()
     @settings.command()
