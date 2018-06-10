@@ -647,7 +647,8 @@ class Economy(object):
 
         self.bids.append(ctx.channel.id)
         await ctx.send((await _(ctx,
-                                "{} Has started a bid for x{} {} starting at {} dollars\nBid runs for 60 seconds `rp!bid` to place a bid!")).format(
+                                "{} Has started a bid for x{} {} starting at {} dollars\nBid runs for 60 seconds `rp!bid` to place a bid!")
+                        ).format(
             ctx.author, amount, item, startbid))
         cb = Counter()
 

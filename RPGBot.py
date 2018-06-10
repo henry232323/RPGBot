@@ -114,7 +114,7 @@ class Bot(commands.AutoShardedBot):
         for cog in icogs:
             self.add_cog(cog)
 
-        #self.loop.create_task(self.start_serv())
+        # self.loop.create_task(self.start_serv())
         self.loop.create_task(self.httpserver.host())
 
         init_dd(self._auth[3], self._auth[4])
