@@ -507,6 +507,11 @@ class DataInteraction(object):
         gd = await self.db.get_guild_data(guild)
         return gd.get("currency", "$")
 
+    async def get_delete_time(self, guild):
+        gd = await self.db.get_guild_data(guild)
+        t = gd.get("msgdel", None)
+        return t if t is not 0 else None
+
     async def get_guild_guilds(self, guild):
         """Get a server's guilds"""
         gd = await self.db.get_guild_data(guild)
@@ -595,6 +600,11 @@ class DataInteraction(object):
     async def update_salaries(self, guild, data):
         gd = await self.db.get_guild_data(guild)
         gd["salaries"] = data
+        await self.db.update_guild_data(guild, gd)
+
+    async def set_delete_time(self, guild, time):
+        gd = await self.db.get_guild_data(guild)
+        gd["msgdel"] = time
         await self.db.update_guild_data(guild, gd)
 
     async def set_language(self, guild, language):

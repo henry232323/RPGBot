@@ -181,6 +181,10 @@ class Bot(commands.AutoShardedBot):
                     r = await self.di.add_exp(ctx.author, add)
                     if r is not None:
                         await ctx.message.add_reaction("\u23EB")
+            time = await self.di.get_delete_time(ctx.guild)
+            if time:
+                await asyncio.sleep(time)
+                await ctx.message.delete()
 
     async def on_command_error(self, ctx, exception):
         self.stats.increment("RPGBot.errors", tags=["RPGBot:errors"], host="scw-8112e8")
