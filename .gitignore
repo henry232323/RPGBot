@@ -101,3 +101,4 @@ invdata/
 discord/
 discord.py-rewrite.zip
 server.py
+.DS_STORE
