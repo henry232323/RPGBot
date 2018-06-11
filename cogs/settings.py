@@ -50,6 +50,8 @@ class Settings(object):
         embed.add_field(name=await _(ctx, "Currency"), value=f"{settings.get('currency', 'dollars')}")
         embed.add_field(name=await _(ctx, "Language"), value=f"{settings.get('language', 'en')}")
         embed.add_field(name=await _(ctx, "Experience Enabled"), value=f"{settings.get('exp', True)}")
+        time = settings.get('msgdel', 0)
+        embed.add_field(name=await _(ctx, "Message Auto Delete Time"), value=f"{time if time is not 0 else 'Never'}")
         await ctx.send(embed=embed)
 
     @settings.command()
@@ -203,3 +205,11 @@ class Settings(object):
         for item in self.bot.dnditems.values():
             await self.bot.di.new_item(ctx.guild, ServerItem(**item))
         await ctx.send(await _(ctx, "Successfully added all D&D items!"))
+
+    @checks.no_pm()
+    @commands.command()
+    @checks.mod_or_permissions()
+    async def deleteafter(self, ctx, time: int):
+        """Set a time for messages to be automatically deleted after running. `rp!deleteafter 0` to make messages never be deleted"""
+        await self.bot.di.set_delete_time(ctx.guild, time)
+        await ctx.send(await _(ctx, "Updated settings"))

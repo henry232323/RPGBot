@@ -113,15 +113,15 @@ class User(object):
     @commands.guild_only()
     @experience.command()
     @checks.mod_or_permissions()
-    async def enable(self, ctx, value: str):
-        truth = ["yes", "true"]
-        false = ["false", "no"]
-        if value.lower() in truth:
-            val = True
-        elif value.lower() in false:
-            val = False
-        else:
-            await ctx.send("That is not a valid value! (true/false, yes/no)")
-            return
-        await self.bot.di.set_exp_enabled(ctx.guild, val)
+    async def enable(self, ctx):
+        """Enable EXP settings for a guild"""
+        await self.bot.di.set_exp_enabled(ctx.guild, True)
+        await ctx.send(await _(ctx, "Successfully changed EXP setting"))
+
+    @commands.guild_only()
+    @experience.command()
+    @checks.mod_or_permissions()
+    async def disable(self, ctx):
+        """Disable EXP settings for a guild"""
+        await self.bot.di.set_exp_enabled(ctx.guild, False)
         await ctx.send(await _(ctx, "Successfully changed EXP setting"))

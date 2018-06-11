@@ -131,8 +131,8 @@ class Misc(object):
             if pp:
                 msg += (await _(ctx, " (Grabbed top {} out of {})")).format(pp, len(s) + pp)
 
-            await ctx.send(msg)
-        except Exception as e:
+            await ctx.send(f"{ctx.author.display_name} rolled {msg}")
+        except:
             from traceback import print_exc
             print_exc()
             await ctx.send(await _(ctx, "Invalid syntax!"))
