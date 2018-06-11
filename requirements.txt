@@ -1,0 +1,6 @@
+discord
+ujson
+psutil
+uvloop
+datadog
+kyoukai

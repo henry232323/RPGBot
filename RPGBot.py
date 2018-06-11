@@ -49,7 +49,7 @@ except ImportError:
 
 if os.name == "nt":
     sys.argv.append("debug")
-if os.getcwd().endswith("rpgtest"):
+elif os.getcwd().endswith("rpgtest"):
     sys.argv.append("debug")
 
 
@@ -95,7 +95,7 @@ class Bot(commands.AutoShardedBot):
 
         with open("newtranslations.json") as trf:
             self.translations = json.loads(trf.read())
-        self.languages = ["en", "fr", "de", "ru"]
+        self.languages = ["en", "fr", "de", "ru", "es"]
 
         icogs = [
             cogs.admin.Admin(self),
