@@ -66,7 +66,7 @@ class Settings(object):
         if hasattr(item, "description"):
             embed = discord.Embed(title=item.name, description=item.description)
         else:
-            embed = discord.Embed()
+            embed = discord.Embed(title=item.name)
 
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
         embed.add_field(name=await _(ctx, "Name"), value=item.name)
@@ -78,10 +78,11 @@ class Settings(object):
             embed.add_field(name=key, value=value)
 
         await ctx.send(embed=embed)
+        discord.Embed()
 
     @settings.command()
     @checks.no_pm()
-    async def items(self, ctx):
+    async def items(self, ctx, letter: str = None):
         """See all items for a guild"""
         items = await self.bot.di.get_guild_items(ctx.guild)
 
@@ -100,6 +101,12 @@ class Settings(object):
                             "\n\u2B05 to go back"
                             "\n\u274C to exit")
 
+        if letter is not None:
+            if letter in words:
+                words = {letter: words[letter]}
+            else:
+                await ctx.send(await _(ctx, "No entries found for that letter"))
+
         def lfmt(v):
             return "\n".join(v)
 
@@ -112,7 +119,10 @@ class Settings(object):
     @settings.command()
     @checks.no_pm()
     async def additem(self, ctx, *, name: str):
-        """Add a custom item"""
+        """Add a custom item.
+         Custom keys that can be used for special additions:
+            `image` Setting this to a URL will give that item a special thumbnail when info is viewed for it
+            """
         try:
             item = dict()
             item["name"] = name
@@ -202,8 +212,15 @@ class Settings(object):
     @checks.mod_or_permissions()
     async def loaddnd(self, ctx):
         """This command will pre-load all D&D items and make them available to give"""
-        for item in self.bot.dnditems.values():
-            await self.bot.di.new_item(ctx.guild, ServerItem(**item))
+        await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.dnditems.values()))
+        await ctx.send(await _(ctx, "Successfully added all D&D items!"))
+
+    @checks.no_pm()
+    @commands.command()
+    @checks.mod_or_permissions()
+    async def loadpokemon(self, ctx):
+        """This command will pre-load all Pokemon items and make them available to give"""
+        await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.dnditems.values()))
         await ctx.send(await _(ctx, "Successfully added all D&D items!"))
 
     @checks.no_pm()

@@ -81,6 +81,9 @@ class Bot(commands.AutoShardedBot):
         with open("dnditems.json", 'r') as dndf:
             self.dnditems = json.loads(dndf.read())
 
+        with open("pokemonitems.json", 'r') as dndf:
+            self.dnditems = json.loads(dndf.read())
+
         self.httpserver = server.API(self, "RPGBot")
         server.makepaths(self.httpserver)
 

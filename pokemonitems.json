@@ -1,0 +1,4615 @@
+{
+    "Ability Capsule": {
+        "name": "Ability Capsule",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A capsule that allows a Pok\u00e9mon with two Abilities to switch between these Abilities when it is used."
+    },
+    "Ability Urge": {
+        "name": "Ability Urge",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "When used, it activates the Ability of an ally Pok\u00e9mon."
+    },
+    "Abomasite": {
+        "name": "Abomasite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Abomasnow to Mega Evolve during battle."
+    },
+    "Absolite": {
+        "name": "Absolite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Absol to Mega Evolve during battle."
+    },
+    "Absorb Bulb": {
+        "name": "Absorb Bulb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A consumable bulb. If the holder is hit by a Water-type move, its Sp. Atk will rise."
+    },
+    "Adamant Orb": {
+        "name": "Adamant Orb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Dragon- and Steel-type moves when held by Dialga."
+    },
+    "Adrenaline Orb": {
+        "name": "Adrenaline Orb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Using it makes wild Pok\u00e9mon more likely to call for help. If held by a Pok\u00e9mon, it boosts Speed when intimidated. It can be used only once."
+    },
+    "Aerodactylite": {
+        "name": "Aerodactylite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Aerodactyl to Mega Evolve during battle."
+    },
+    "Aggronite": {
+        "name": "Aggronite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Aggron to Mega Evolve during battle."
+    },
+    "Aguav Berry": {
+        "name": "Aguav Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Restores HP if it's low, but may cause confusion."
+    },
+    "Air Balloon": {
+        "name": "Air Balloon",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "When held by a Pok\u00e9mon, the Pok\u00e9mon will float into the air. When the holder is attacked, this item will burst."
+    },
+    "Alakazite": {
+        "name": "Alakazite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Alakazam to Mega Evolve during battle."
+    },
+    "Aloraichium Z": {
+        "name": "Aloraichium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Alolan Raichu to upgrade Thunderbolt to a Z-Move, Stoked Sparksurfer."
+    },
+    "Altarianite": {
+        "name": "Altarianite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Altaria to Mega Evolve during battle."
+    },
+    "Ampharosite": {
+        "name": "Ampharosite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Ampharos to Mega Evolve during battle."
+    },
+    "Amulet Coin": {
+        "name": "Amulet Coin",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It doubles a battle\u2019s prize money if the holding Pok\u00e9mon joins in."
+    },
+    "Antidote": {
+        "name": "Antidote",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A spray-type medicine. It lifts the effect of poison from one Pok\u00e9mon."
+    },
+    "Apicot Berry": {
+        "name": "Apicot Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Raises Special Defense when HP is low."
+    },
+    "Armor Fossil": {
+        "name": "Armor Fossil",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A fossil from a prehistoric Pok\u00e9mon that lived on the land. It appears to be part of a collar."
+    },
+    "Aspear Berry": {
+        "name": "Aspear Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, it defrosts it."
+    },
+    "Assault Vest": {
+        "name": "Assault Vest",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Raises Special Defense but prevents the use of status moves."
+    },
+    "Audinite": {
+        "name": "Audinite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Audino to Mega Evolve during battle."
+    },
+    "Awakening": {
+        "name": "Awakening",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A spray-type medicine. It awakens a Pok\u00e9mon from the clutches of sleep."
+    },
+    "Babiri Berry": {
+        "name": "Babiri Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Steel-type attack against the holding Pok\u00e9mon."
+    },
+    "Balm Mushroom": {
+        "name": "Balm Mushroom",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A rare mushroom which gives off a nice fragrance. A maniac will buy it for a high price."
+    },
+    "Banettite": {
+        "name": "Banettite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Banette to Mega Evolve during battle."
+    },
+    "Beast Ball": {
+        "name": "Beast Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A special Pok\u00e9 Ball designed to catch Ultra Beasts. It has a low success rate for catching others."
+    },
+    "Beedrillite": {
+        "name": "Beedrillite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Beedrill to Mega Evolve during battle."
+    },
+    "Belue Berry": {
+        "name": "Belue Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Berry Juice": {
+        "name": "Berry Juice",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A 100% pure juice made of Berries. It restores the HP of one Pok\u00e9mon by just 20 points."
+    },
+    "Big Malasada": {
+        "name": "Big Malasada",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "The Alola region\u2019s local specialty\u2014fried bread. It can be used once to heal all the status conditions of a Pok\u00e9mon."
+    },
+    "Big Mushroom": {
+        "name": "Big Mushroom",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A large and rare mushroom. It is sought after by collectors."
+    },
+    "Big Nugget": {
+        "name": "Big Nugget",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A big nugget of pure gold that gives off a lustrous gleam. A maniac will buy it for a high price."
+    },
+    "Big Pearl": {
+        "name": "Big Pearl",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A quite-large pearl that sparkles in a pretty silver color. It can be sold at a high price to shops."
+    },
+    "Big Root": {
+        "name": "Big Root",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Recovers more HP from HP-stealing moves."
+    },
+    "Binding Band": {
+        "name": "Binding Band",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A band that increases the power of binding moves when held."
+    },
+    "Black Apricorn": {
+        "name": "Black Apricorn",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A black Apricorn It has an indescribable scent."
+    },
+    "Black Belt": {
+        "name": "Black Belt",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Fighting-type moves."
+    },
+    "Black Flute": {
+        "name": "Black Flute",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A toy flute made from black glass. A maniac will buy it for a high price."
+    },
+    "Black Glasses": {
+        "name": "Black Glasses",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Dark-type moves."
+    },
+    "Black Sludge": {
+        "name": "Black Sludge",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A held item that gradually restores the HP of Poison-type Pok\u00e9mon. It inflicts damage on all other types."
+    },
+    "Blastoisinite": {
+        "name": "Blastoisinite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Blastoise to Mega Evolve during battle."
+    },
+    "Blazikenite": {
+        "name": "Blazikenite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Blaziken to Mega Evolve during battle."
+    },
+    "Blue Apricorn": {
+        "name": "Blue Apricorn",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A blue Apricorn. It smells a bit like grass."
+    },
+    "Blue Flute": {
+        "name": "Blue Flute",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A toy flute made from blue glass. A maniac will buy it for a high price."
+    },
+    "Blue Scarf": {
+        "name": "Blue Scarf",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "Raises holder's Beauty aspect in a Contest."
+    },
+    "Blue Shard": {
+        "name": "Blue Shard",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A small blue shard. It appears to be from some sort of implement made long ago."
+    },
+    "Bluk Berry": {
+        "name": "Bluk Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Bottle Cap": {
+        "name": "Bottle Cap",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A beautiful bottle cap that gives off a silver gleam. Some people are happy to receive one."
+    },
+    "Bright Powder": {
+        "name": "Bright Powder",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Lowers the opponent\u2019s accuracy."
+    },
+    "Bug Gem": {
+        "name": "Bug Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Bug-type move only once."
+    },
+    "Bug Memory": {
+        "name": "Bug Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Bug-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Buginium Z": {
+        "name": "Buginium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Savage Spin-Out, the Bug type Z-Move."
+    },
+    "Burn Drive": {
+        "name": "Burn Drive",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Changes Techno Blast to a Fire-type move when held by Genesect."
+    },
+    "Burn Heal": {
+        "name": "Burn Heal",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A spray-type medicine. It heals a single Pok\u00e9mon that is suffering from a burn."
+    },
+    "Calcium": {
+        "name": "Calcium",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A nutritious drink for Pok\u00e9mon. It raises the base Sp. Atk (Special Attack) stat of a single Pok\u00e9mon."
+    },
+    "Cameruptite": {
+        "name": "Cameruptite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Camerupt to Mega Evolve during battle."
+    },
+    "Carbos": {
+        "name": "Carbos",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A nutritious drink for Pok\u00e9mon. It raises the base Speed stat of a single Pok\u00e9mon."
+    },
+    "Casteliacone": {
+        "name": "Casteliacone",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Castelia City\u2019s specialty, soft-serve ice cream. It heals all the status problems of a single Pok\u00e9mon."
+    },
+    "Cell Battery": {
+        "name": "Cell Battery",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise."
+    },
+    "Charcoal": {
+        "name": "Charcoal",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Fire-type moves."
+    },
+    "Charizardite X": {
+        "name": "Charizardite X",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Charizard to Mega Evolve during battle."
+    },
+    "Charizardite Y": {
+        "name": "Charizardite Y",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Charizard to Mega Evolve during battle."
+    },
+    "Charti Berry": {
+        "name": "Charti Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Rock-type attack against the holding Pok\u00e9mon."
+    },
+    "Cheri Berry": {
+        "name": "Cheri Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, it recovers from paralysis."
+    },
+    "Cherish Ball": {
+        "name": "Cherish Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A quite rare Pok\u00e9 Ball that has been specially crafted to commemorate an occasion of some sort."
+    },
+    "Chesto Berry": {
+        "name": "Chesto Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, it recovers from sleep."
+    },
+    "Chilan Berry": {
+        "name": "Chilan Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a Normal-type attack against the Pok\u00e9mon holding this berry."
+    },
+    "Chill Drive": {
+        "name": "Chill Drive",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Changes Techno Blast to an Ice-type move when held by Genesect."
+    },
+    "Choice Band": {
+        "name": "Choice Band",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Raises Attack, but only one move can be used."
+    },
+    "Choice Scarf": {
+        "name": "Choice Scarf",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Raises Speed, but only one move can be used."
+    },
+    "Choice Specs": {
+        "name": "Choice Specs",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Raises Special Attack, but only one move can be used."
+    },
+    "Chople Berry": {
+        "name": "Chople Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Fighting-type attack against the holding Pok\u00e9mon."
+    },
+    "Claw Fossil": {
+        "name": "Claw Fossil",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A fossil of an ancient Pok\u00e9mon that lived in the sea. It appears to be part of a claw."
+    },
+    "Cleanse Tag": {
+        "name": "Cleanse Tag",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It helps keep wild Pok\u00e9mon away if the holder is the first one in the party."
+    },
+    "Clever Wing": {
+        "name": "Clever Wing",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Increases Special Defense EVs by 1."
+    },
+    "Coba Berry": {
+        "name": "Coba Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Flying-type attack against the holding Pok\u00e9mon."
+    },
+    "Colbur Berry": {
+        "name": "Colbur Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Dark-type attack against the holding Pok\u00e9mon."
+    },
+    "Colress Machine": {
+        "name": "Colress Machine",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A special device that wrings out the potential of Pok\u00e9mon. It is an imperfect prototype."
+    },
+    "Comet Shard": {
+        "name": "Comet Shard",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A shard which fell to the ground when a comet approached. A maniac will buy it for a high price."
+    },
+    "Cornn Berry": {
+        "name": "Cornn Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Cover Fossil": {
+        "name": "Cover Fossil",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A fossil of an ancient Pok\u00e9mon that lived in the sea in ancient times. It appears to be part of its back."
+    },
+    "Custap Berry": {
+        "name": "Custap Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Holder can move first when HP is low."
+    },
+    "Damp Mulch": {
+        "name": "Damp Mulch",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price."
+    },
+    "Damp Rock": {
+        "name": "Damp Rock",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A Pok\u00e9mon held item that extends the duration of the move Rain Dance used by the holder."
+    },
+    "Dark Gem": {
+        "name": "Dark Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Dark-type move only once."
+    },
+    "Dark Memory": {
+        "name": "Dark Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Dark-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Darkinium Z": {
+        "name": "Darkinium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Black Hole Eclipse, the Dark type Z-Move."
+    },
+    "Dawn Stone": {
+        "name": "Dawn Stone",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It sparkles like eyes."
+    },
+    "Decidium Z": {
+        "name": "Decidium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Decidueye to upgrade Spirit Shackle to a Z-Move, Sinister Arrow Raid."
+    },
+    "Deep Sea Scale": {
+        "name": "Deep Sea Scale",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases Special Defense when held by Clamperl."
+    },
+    "Deep Sea Tooth": {
+        "name": "Deep Sea Tooth",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases Special Attack when held by Clamperl."
+    },
+    "Destiny Knot": {
+        "name": "Destiny Knot",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A long, thin, bright-red string to be held by a Pok\u00e9mon. If the holder becomes infatuated, the foe does too."
+    },
+    "Diancite": {
+        "name": "Diancite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Diancie to Mega Evolve during battle."
+    },
+    "Dire Hit": {
+        "name": "Dire Hit",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Raises critical-hit ratio of a Pok\u00e9mon in battle."
+    },
+    "Dire Hit 2": {
+        "name": "Dire Hit 2",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Raises a Pok\u00e9mon's critical-hit ratio in battle."
+    },
+    "Dire Hit 3": {
+        "name": "Dire Hit 3",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Greatly raises a Pok\u00e9mon\u2019s critical-hit ratio in battle."
+    },
+    "Discount Coupon": {
+        "name": "Discount Coupon",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "This special coupon allows you to buy items at a discount when you are shopping at a boutique."
+    },
+    "Dive Ball": {
+        "name": "Dive Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A somewhat different Pok\u00e9 Ball that works especially well on Pok\u00e9mon that live underwater."
+    },
+    "DNA Splicers": {
+        "name": "DNA Splicers",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A splicer that fuses Kyurem and a certain Pok\u00e9mon. They are said to have been one in the beginning."
+    },
+    "Dome Fossil": {
+        "name": "Dome Fossil",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A fossil of an ancient Pok\u00e9mon that lived in the sea. It appears to be part of a shell."
+    },
+    "Douse Drive": {
+        "name": "Douse Drive",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Changes Techno Blast to a Water-type move when held by Genesect."
+    },
+    "Draco Plate": {
+        "name": "Draco Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Dragon-type moves. Changes Arceus' type to Dragon."
+    },
+    "Dragon Fang": {
+        "name": "Dragon Fang",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Dragon-type moves."
+    },
+    "Dragon Gem": {
+        "name": "Dragon Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Dragon-type move only once."
+    },
+    "Dragon Memory": {
+        "name": "Dragon Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Dragon-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Dragon Scale": {
+        "name": "Dragon Scale",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A thick and tough scale. Dragon-type Pok\u00e9mon may be holding this item when caught."
+    },
+    "Dragonium Z": {
+        "name": "Dragonium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Devastating Drake, the Dragon type Z-Move."
+    },
+    "Dread Plate": {
+        "name": "Dread Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Dark-type moves. Changes Arceus' type to Dark."
+    },
+    "Dream Ball": {
+        "name": "Dream Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A special Pok\u00e9 Ball that appears out of nowhere in a bag at the Entree Forest. It can catch any Pok\u00e9mon."
+    },
+    "Dropped Item": {
+        "name": "Dropped Item",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "The Xtransceiver found at the Nimbasa City amusement park. It seems it belongs to a boy."
+    },
+    "Dubious Disc": {
+        "name": "Dubious Disc",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A transparent device overflowing with dubious data. Its producer is unknown."
+    },
+    "Durin Berry": {
+        "name": "Durin Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Dusk Ball": {
+        "name": "Dusk Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A somewhat different Pok\u00e9 Ball that makes it easier to catch wild Pok\u00e9mon at night or in dark places like caves."
+    },
+    "Dusk Stone": {
+        "name": "Dusk Stone",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It is as dark as dark can be."
+    },
+    "Earth Plate": {
+        "name": "Earth Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Ground-type moves. Changes Arceus' type to Ground."
+    },
+    "Eevium Z": {
+        "name": "Eevium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Eevee to upgrade Last Resort to a Z-Move, Extreme Evoboost."
+    },
+    "Eject Button": {
+        "name": "Eject Button",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "If the holder is hit by an attack, it will switch with another Pok\u00e9mon in your party."
+    },
+    "Electirizer": {
+        "name": "Electirizer",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A box packed with a tremendous amount of electric energy. It is loved by a certain Pok\u00e9mon."
+    },
+    "Electric Gem": {
+        "name": "Electric Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of an Electric-type move only once."
+    },
+    "Electric Memory": {
+        "name": "Electric Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Electric-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Electric Seed": {
+        "name": "Electric Seed",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It boosts Defense on Electric Terrain. It can only be used once."
+    },
+    "Electrium Z": {
+        "name": "Electrium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Gigavolt Havoc, the Electric type Z-Move."
+    },
+    "Elevator Key": {
+        "name": "Elevator Key",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A card key that activates the elevator in Lysandre Labs. It is emblazoned with Team Flare\u2019s logo."
+    },
+    "Elixir": {
+        "name": "Elixir",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "It restores the PP of all the moves learned by the targeted Pok\u00e9mon by 10 points each."
+    },
+    "Energy Powder": {
+        "name": "Energy Powder",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Restores 60 HP but lowers happiness."
+    },
+    "Energy Root": {
+        "name": "Energy Root",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Restores 120 HP but lowers happiness."
+    },
+    "Enigma Berry": {
+        "name": "Enigma Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, it restores its HP if it is hit by any supereffective attack."
+    },
+    "Escape Rope": {
+        "name": "Escape Rope",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A long, durable rope. Use it to escape instantly from a cave or a dungeon."
+    },
+    "Ether": {
+        "name": "Ether",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "It restores the PP of a Pok\u00e9mon\u2019s selected move by a maximum of 10 points."
+    },
+    "Everstone": {
+        "name": "Everstone",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. The Pok\u00e9mon holding this peculiar stone is prevented from evolving."
+    },
+    "Eviolite": {
+        "name": "Eviolite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A mysterious evolutionary lump. When held, it raises the Defense and Sp. Def of a Pok\u00e9mon that can still evolve."
+    },
+    "Exp. Share": {
+        "name": "Exp. Share",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. The holder gets a share of a battle\u2019s Exp. Points without battling."
+    },
+    "Expert Belt": {
+        "name": "Expert Belt",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of super-effective moves."
+    },
+    "Fairium Z": {
+        "name": "Fairium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Twinkle Tackle, the Fairy type Z-Move."
+    },
+    "Fairy Gem": {
+        "name": "Fairy Gem",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "Increases the power of a Fairy-type move only once."
+    },
+    "Fairy Memory": {
+        "name": "Fairy Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Fairy-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Fast Ball": {
+        "name": "Fast Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A Pok\u00e9 Ball that makes it easier to catch Pok\u00e9mon which are quick to run away."
+    },
+    "Festival Ticket": {
+        "name": "Festival Ticket",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A ticket that allows you to host a mission in Festival Plaza."
+    },
+    "Fighting Gem": {
+        "name": "Fighting Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Fighting-type move only once."
+    },
+    "Fighting Memory": {
+        "name": "Fighting Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Fighting-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Fightinium Z": {
+        "name": "Fightinium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of All-Out Pummeling, the Fighting type Z-Move."
+    },
+    "Figy Berry": {
+        "name": "Figy Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Restores HP if it's low, but may cause confusion."
+    },
+    "Fire Gem": {
+        "name": "Fire Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Fire-type move only once."
+    },
+    "Fire Memory": {
+        "name": "Fire Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Fire-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Fire Stone": {
+        "name": "Fire Stone",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A peculiar stone that makes certain species of POK\u00e9MON evolve. It is colored orange."
+    },
+    "Firium Z": {
+        "name": "Firium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Inferno Overdrive, the Fire type Z-Move."
+    },
+    "Fist Plate": {
+        "name": "Fist Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Fighting-type moves. Changes Arceus' type to Fighting."
+    },
+    "Flame Orb": {
+        "name": "Flame Orb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It is a bizarre orb that inflicts a burn on the holder in battle."
+    },
+    "Flame Plate": {
+        "name": "Flame Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Fire-type moves. Changes Arceus' type to Fire."
+    },
+    "Float Stone": {
+        "name": "Float Stone",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A very light stone. It reduces the weight of a Pok\u00e9mon when held."
+    },
+    "Fluffy Tail": {
+        "name": "Fluffy Tail",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "An item that attracts Pok\u00e9mon. Use it to flee from any battle with a wild Pok\u00e9mon."
+    },
+    "Flying Gem": {
+        "name": "Flying Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Flying-type move only once."
+    },
+    "Flying Memory": {
+        "name": "Flying Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Flying-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Flyinium Z": {
+        "name": "Flyinium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Supersonic Skystrike, the Flying type Z-Move."
+    },
+    "Focus Band": {
+        "name": "Focus Band",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. The holder may endure a potential KO attack, leaving it with just 1 HP."
+    },
+    "Focus Sash": {
+        "name": "Focus Sash",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. If it has full HP, the holder will endure one potential KO attack, leaving 1 HP."
+    },
+    "Fresh Water": {
+        "name": "Fresh Water",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Water with a high mineral content. It restores the HP of one POK\u00e9MON by 50 points."
+    },
+    "Friend Ball": {
+        "name": "Friend Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A Pok\u00e9 Ball that makes caught Pok\u00e9mon more friendly."
+    },
+    "Full Heal": {
+        "name": "Full Heal",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A spray-type medicine. It heals all the status problems of a single Pok\u00e9mon."
+    },
+    "Full Incense": {
+        "name": "Full Incense",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It is an exotic-smelling incense that makes the holder bloated and slow moving."
+    },
+    "Full Restore": {
+        "name": "Full Restore",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A medicine that fully restores the HP and heals any status problems of a single Pok\u00e9mon."
+    },
+    "Galladite": {
+        "name": "Galladite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Gallade to Mega Evolve during battle."
+    },
+    "Ganlon Berry": {
+        "name": "Ganlon Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Raises Defense when HP is low."
+    },
+    "Garchompite": {
+        "name": "Garchompite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Garchomp to Mega Evolve during battle."
+    },
+    "Gardevoirite": {
+        "name": "Gardevoirite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Gardevoir to Mega Evolve during battle."
+    },
+    "Gengarite": {
+        "name": "Gengarite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Gengar to Mega Evolve during battle."
+    },
+    "Genius Wing": {
+        "name": "Genius Wing",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Increases Special Attack EVs by 1."
+    },
+    "Ghost Gem": {
+        "name": "Ghost Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Ghost-type move only once."
+    },
+    "Ghost Memory": {
+        "name": "Ghost Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Ghost-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Ghostium Z": {
+        "name": "Ghostium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Never-Ending Nightmare, the Ghost type Z-Move."
+    },
+    "Glalitite": {
+        "name": "Glalitite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Glalie to Mega Evolve during battle."
+    },
+    "Gold Bottle Cap": {
+        "name": "Gold Bottle Cap",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A beautiful bottle cap that gives off a golden gleam. Some people are happy to receive one."
+    },
+    "Gooey Mulch": {
+        "name": "Gooey Mulch",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price."
+    },
+    "Grass Gem": {
+        "name": "Grass Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Grass-type move only once."
+    },
+    "Grass Memory": {
+        "name": "Grass Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Grass-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Grassium Z": {
+        "name": "Grassium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Bloom Doom, the Grass type Z-Move."
+    },
+    "Grassy Seed": {
+        "name": "Grassy Seed",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It boosts Defense on Grassy Terrain. It can only be used once."
+    },
+    "Great Ball": {
+        "name": "Great Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A good, high-performance Ball that provides a higher Pok\u00e9mon catch rate than a standard Pok\u00e9 Ball."
+    },
+    "Green Apricorn": {
+        "name": "Green Apricorn",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A green Apricorn. It has a mysterious, aromatic scent."
+    },
+    "Green Scarf": {
+        "name": "Green Scarf",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "Raises holder's Smart aspect in a Contest."
+    },
+    "Green Shard": {
+        "name": "Green Shard",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A small green shard. It appears to be from some sort of implement made long ago."
+    },
+    "Grepa Berry": {
+        "name": "Grepa Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Using it on a Pok\u00e9mon makes it more friendly, but it also lowers its base Sp. Def stat."
+    },
+    "Grip Claw": {
+        "name": "Grip Claw",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A Pok\u00e9mon held item that extends the duration of multiturn attacks like Bind and Wrap."
+    },
+    "Griseous Orb": {
+        "name": "Griseous Orb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Dragon- and Ghost-type moves when held by Giratina, and changes it to Origin Forme."
+    },
+    "Ground Gem": {
+        "name": "Ground Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Ground-type move only once."
+    },
+    "Ground Memory": {
+        "name": "Ground Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Ground-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Groundium Z": {
+        "name": "Groundium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Tectonic Rage, the Ground type Z-Move."
+    },
+    "Growth Mulch": {
+        "name": "Growth Mulch",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price."
+    },
+    "Grubby Hanky": {
+        "name": "Grubby Hanky",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A handkerchief dropped by a regular at Caf\u00e9 Warehouse. It smells faintly like a Pok\u00e9mon."
+    },
+    "Guard Spec.": {
+        "name": "Guard Spec.",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Prevents stat reduction for five turns."
+    },
+    "Gyaradosite": {
+        "name": "Gyaradosite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Gyarados to Mega Evolve during battle."
+    },
+    "Haban Berry": {
+        "name": "Haban Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Dragon-type attack against the holding Pok\u00e9mon."
+    },
+    "Hard Stone": {
+        "name": "Hard Stone",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Rock-type moves."
+    },
+    "Heal Ball": {
+        "name": "Heal Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A remedial Pok\u00e9 Ball that restores the caught Pok\u00e9mon\u2019s HP and eliminates any status problem."
+    },
+    "Heal Powder": {
+        "name": "Heal Powder",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A very bitter medicine powder. It heals all the status problems of a single Pok\u00e9mon."
+    },
+    "Health Wing": {
+        "name": "Health Wing",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Increases HP EVs by 1."
+    },
+    "Heart Scale": {
+        "name": "Heart Scale",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A pretty, heart-shaped scale that is extremely rare. It glows faintly in the colors of the rainbow."
+    },
+    "Heat Rock": {
+        "name": "Heat Rock",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A Pok\u00e9mon held item that extends the duration of the move Sunny Day used by the holder."
+    },
+    "Heavy Ball": {
+        "name": "Heavy Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A Pok\u00e9 Ball for catching very heavy Pok\u00e9mon."
+    },
+    "Helix Fossil": {
+        "name": "Helix Fossil",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A fossil of an ancient Pok\u00e9mon that lived in the sea. It appears to be part of a seashell."
+    },
+    "Heracronite": {
+        "name": "Heracronite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Heracross to Mega Evolve during battle."
+    },
+    "HM01": {
+        "name": "HM01",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Cut."
+    },
+    "HM02": {
+        "name": "HM02",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Fly."
+    },
+    "HM03": {
+        "name": "HM03",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Surf."
+    },
+    "HM04": {
+        "name": "HM04",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Strength."
+    },
+    "HM05": {
+        "name": "HM05",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Flash/Defog/Whirlpool/Waterfall."
+    },
+    "HM06": {
+        "name": "HM06",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Whirlpool/Rock Smash/Dive."
+    },
+    "HM07": {
+        "name": "HM07",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Waterfall."
+    },
+    "HM08": {
+        "name": "HM08",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Dive/Rock Climb."
+    },
+    "Hondew Berry": {
+        "name": "Hondew Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Using it on a Pok\u00e9mon makes it more friendly, but it also lowers its base Sp. Atk stat."
+    },
+    "Honey": {
+        "name": "Honey",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A sweet honey with a lush aroma that attracts wild Pok\u00e9mon when it is used in grass, caves, or on special trees."
+    },
+    "Honor Of Kalos": {
+        "name": "Honor Of Kalos",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A precious symbol that is awarded only to an individual who has done great things for the Kalos region."
+    },
+    "Houndoominite": {
+        "name": "Houndoominite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Houndoom to Mega Evolve during battle."
+    },
+    "HP Up": {
+        "name": "HP Up",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A nutritious drink for Pok\u00e9mon. It raises the base HP of a single Pok\u00e9mon."
+    },
+    "Hyper Potion": {
+        "name": "Hyper Potion",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Restores 120 HP."
+    },
+    "Iapapa Berry": {
+        "name": "Iapapa Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Restores HP if it's low, but may cause confusion."
+    },
+    "Ice Gem": {
+        "name": "Ice Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of an Ice-type move only once."
+    },
+    "Ice Heal": {
+        "name": "Ice Heal",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A spray-type medicine. It defrosts a Pok\u00e9mon that has been frozen solid."
+    },
+    "Ice Memory": {
+        "name": "Ice Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Ice-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Ice Stone": {
+        "name": "Ice Stone",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A peculiar stone that can make certain species of Pok\u00e9mon evolve. It has an unmistakable snowflake pattern."
+    },
+    "Icicle Plate": {
+        "name": "Icicle Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Ice-type moves. Changes Arceus' type to Ice."
+    },
+    "Icium Z": {
+        "name": "Icium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Subzero Slammer, the Ice type Z-Move."
+    },
+    "Icy Rock": {
+        "name": "Icy Rock",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A Pok\u00e9mon held item that extends the duration of the move Hail used by the holder."
+    },
+    "Incinium Z": {
+        "name": "Incinium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Incineroar to upgrade Darkest Lariat to a Z-Move, Malicious Moonsault."
+    },
+    "Insect Plate": {
+        "name": "Insect Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Bug-type moves. Changes Arceus' type to Bug."
+    },
+    "Intriguing Stone": {
+        "name": "Intriguing Stone",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A rather curious stone that might appear to be valuable to some. It\u2019s all in the eye of the beholder."
+    },
+    "Iron": {
+        "name": "Iron",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A nutritious drink for Pok\u00e9mon. It raises the base Defense stat of a single Pok\u00e9mon."
+    },
+    "Iron Ball": {
+        "name": "Iron Ball",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A Pok\u00e9mon held item that cuts Speed. It makes Flying-type and levitating holders susceptible to Ground moves."
+    },
+    "Iron Plate": {
+        "name": "Iron Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Steel-type moves. Changes Arceus' type to Steel."
+    },
+    "Item Drop": {
+        "name": "Item Drop",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "When used, it causes an ally Pok\u00e9mon to drop a held item."
+    },
+    "Item Urge": {
+        "name": "Item Urge",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "When used, it causes an ally Pok\u00e9mon to use its held item."
+    },
+    "Jaboca Berry": {
+        "name": "Jaboca Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon and a physical attack lands, the attacker also takes damage."
+    },
+    "Kangaskhanite": {
+        "name": "Kangaskhanite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Kangaskhan to Mega Evolve during battle."
+    },
+    "Kasib Berry": {
+        "name": "Kasib Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Ghost-type attack against the holding Pok\u00e9mon."
+    },
+    "Kebia Berry": {
+        "name": "Kebia Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Poison-type attack against the holding Pok\u00e9mon."
+    },
+    "Kee Berry": {
+        "name": "Kee Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, this Berry will increase the holder\u2019s Defense if it\u2019s hit with a physical move."
+    },
+    "Kelpsy Berry": {
+        "name": "Kelpsy Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Using it on a Pok\u00e9mon makes it more friendly, but it also lowers its base Attack stat."
+    },
+    "King's Rock": {
+        "name": "King's Rock",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. When the holder inflicts damage, the target may flinch."
+    },
+    "Kommonium Z": {
+        "name": "Kommonium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Kommo-o to upgrade Clanging Scales to a Z-Move, Clangorous Soulblaze."
+    },
+    "Lagging Tail": {
+        "name": "Lagging Tail",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It is tremendously heavy and makes the holder move slower than usual."
+    },
+    "Lansat Berry": {
+        "name": "Lansat Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Increases critical-hit ratio when HP is low."
+    },
+    "Latiasite": {
+        "name": "Latiasite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Latias to Mega Evolve during battle."
+    },
+    "Latiosite": {
+        "name": "Latiosite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Latios to Mega Evolve during battle."
+    },
+    "Lava Cookie": {
+        "name": "Lava Cookie",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "LAVARIDGE TOWN\u2019s local specialty. It heals all the status problems of one POK\u00e9MON."
+    },
+    "Lax Incense": {
+        "name": "Lax Incense",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. The tricky aroma of this incense may make attacks miss the holder."
+    },
+    "Leaf Stone": {
+        "name": "Leaf Stone",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A peculiar stone that makes certain species of POK\u00e9MON evolve. It has a leaf pattern."
+    },
+    "Leftovers": {
+        "name": "Leftovers",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. The holder\u2019s HP is gradually restored during battle."
+    },
+    "Lemonade": {
+        "name": "Lemonade",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A very sweet drink. It restores the HP of one POK\u00e9MON by 80 points."
+    },
+    "Leppa Berry": {
+        "name": "Leppa Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, it restores a move\u2019s PP by 10."
+    },
+    "Level Ball": {
+        "name": "Level Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A Pok\u00e9 Ball for catching Pok\u00e9mon that are a lower level than your own."
+    },
+    "Liechi Berry": {
+        "name": "Liechi Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Raises Attack when HP is low."
+    },
+    "Life Orb": {
+        "name": "Life Orb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of moves, but loses HP each turn."
+    },
+    "Light Ball": {
+        "name": "Light Ball",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by PIKACHU. It is a puzzling orb that raises the Attack and Sp. Atk stat."
+    },
+    "Light Clay": {
+        "name": "Light Clay",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A Pok\u00e9mon held item that extends the duration of barrier moves like Light Screen and Reflect used by the holder."
+    },
+    "Looker Ticket": {
+        "name": "Looker Ticket",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A ticket that was handmade by Looker. It\u2019s decorated with a liberal amount of glittery paint."
+    },
+    "Lopunnite": {
+        "name": "Lopunnite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Lopunny to Mega Evolve during battle."
+    },
+    "Love Ball": {
+        "name": "Love Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "Pok\u00e9 Ball for catching Pok\u00e9mon that are the opposite gender of your Pok\u00e9mon."
+    },
+    "Lucarionite": {
+        "name": "Lucarionite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Lucario to Mega Evolve during battle."
+    },
+    "Luck Incense": {
+        "name": "Luck Incense",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It doubles a battle\u2019s prize money if the holding Pok\u00e9mon joins in."
+    },
+    "Lucky Egg": {
+        "name": "Lucky Egg",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It is an egg filled with happiness that earns extra Exp. Points in battle."
+    },
+    "Lucky Punch": {
+        "name": "Lucky Punch",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases critical-hit ratio when held by Chansey."
+    },
+    "Lum Berry": {
+        "name": "Lum Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, it recovers from any status problem."
+    },
+    "Luminous Moss": {
+        "name": "Luminous Moss",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Raises Special Defense if hit by a Water-type move."
+    },
+    "Lunalium Z": {
+        "name": "Lunalium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Lunala to upgrade Moongeist Beam to a Z-Move, Menacing Moonraze Maelstrom."
+    },
+    "Lure Ball": {
+        "name": "Lure Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A Pok\u00e9 Ball for catching Pok\u00e9mon hooked by a Rod when fishing."
+    },
+    "Lustrous Orb": {
+        "name": "Lustrous Orb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Dragon- and Water-type moves when held by Palkia."
+    },
+    "Luxury Ball": {
+        "name": "Luxury Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A comfortable Pok\u00e9 Ball that makes a caught wild Pok\u00e9mon quickly grow friendly."
+    },
+    "Lycanium Z": {
+        "name": "Lycanium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Lycanroc to upgrade Stone Edge to a Z-Move, Splintered Stormshards."
+    },
+    "Macho Brace": {
+        "name": "Macho Brace",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It is a stiff and heavy brace that promotes strong growth but lowers Speed."
+    },
+    "Magmarizer": {
+        "name": "Magmarizer",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A box packed with a tremendous amount of magma energy. It is loved by a certain Pok\u00e9mon."
+    },
+    "Magnet": {
+        "name": "Magnet",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Electric-type moves."
+    },
+    "Mago Berry": {
+        "name": "Mago Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Restores HP if it's low, but may cause confusion."
+    },
+    "Magost Berry": {
+        "name": "Magost Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Manectite": {
+        "name": "Manectite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Manectric to Mega Evolve during battle."
+    },
+    "Maranga Berry": {
+        "name": "Maranga Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, this Berry will increase the holder\u2019s Sp. Def if it\u2019s hit with a special move."
+    },
+    "Marshadium Z": {
+        "name": "Marshadium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Marshadow to upgrade Spectral Thief to a Z-Move, Soul-Stealing 7-Star Strike."
+    },
+    "Master Ball": {
+        "name": "Master Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "The best Ball with the ultimate level of performance. It will catch any wild Pok\u00e9mon without fail."
+    },
+    "Mawilite": {
+        "name": "Mawilite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Mawile to Mega Evolve during battle."
+    },
+    "Max Elixir": {
+        "name": "Max Elixir",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "It fully restores the PP of all the moves learned by the targeted Pok\u00e9mon."
+    },
+    "Max Ether": {
+        "name": "Max Ether",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "It fully restores the PP of a single selected move that has been learned by the target Pok\u00e9mon."
+    },
+    "Max Potion": {
+        "name": "Max Potion",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A spray-type medicine for wounds. It completely restores the HP of a single Pok\u00e9mon."
+    },
+    "Max Repel": {
+        "name": "Max Repel",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "An item that prevents weak wild Pok\u00e9mon from appearing for 250 steps after its use."
+    },
+    "Max Revive": {
+        "name": "Max Revive",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A medicine that revives a fainted Pok\u00e9mon. It fully restores the Pok\u00e9mon\u2019s HP."
+    },
+    "Meadow Plate": {
+        "name": "Meadow Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Grass-type moves. Changes Arceus' type to Grass."
+    },
+    "Medichamite": {
+        "name": "Medichamite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Medicham to Mega Evolve during battle."
+    },
+    "Mental Herb": {
+        "name": "Mental Herb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It snaps the holder out of infatuation. It can be used only once."
+    },
+    "Metagrossite": {
+        "name": "Metagrossite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Metagross to Mega Evolve during battle."
+    },
+    "Metal Coat": {
+        "name": "Metal Coat",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Steel-type moves."
+    },
+    "Metal Powder": {
+        "name": "Metal Powder",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases Defense when held by Ditto."
+    },
+    "Metronome": {
+        "name": "Metronome",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of moves used consecutively."
+    },
+    "Mewnium Z": {
+        "name": "Mewnium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Mew to upgrade Psychic to a Z-Move, Genesis Supernova."
+    },
+    "Mewtwonite X": {
+        "name": "Mewtwonite X",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Mewtwo to Mega Evolve during battle."
+    },
+    "Mewtwonite Y": {
+        "name": "Mewtwonite Y",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Mewtwo to Mega Evolve during battle."
+    },
+    "Micle Berry": {
+        "name": "Micle Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Increases a move's accuracy when HP is low."
+    },
+    "Mimikium Z": {
+        "name": "Mimikium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Mimikyu to upgrade Play Rough to a Z-Move, Let's Snuggle Forever."
+    },
+    "Mind Plate": {
+        "name": "Mind Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Psychic-type moves. Changes Arceus' type to Psychic."
+    },
+    "Miracle Seed": {
+        "name": "Miracle Seed",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Grass-type moves."
+    },
+    "Misty Seed": {
+        "name": "Misty Seed",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It boosts Sp. Def on Misty Terrain. It can only be used once."
+    },
+    "Moomoo Milk": {
+        "name": "Moomoo Milk",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Milk with a very high nutrition content. It restores the HP of one Pok\u00e9mon by 100 points."
+    },
+    "Moon Ball": {
+        "name": "Moon Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A Pok\u00e9 Ball for catching Pok\u00e9mon that evolve using the Moon Stone."
+    },
+    "Moon Stone": {
+        "name": "Moon Stone",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A peculiar stone that makes certain species of POK\u00e9MON evolve. It is as black as the night sky."
+    },
+    "Muscle Band": {
+        "name": "Muscle Band",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Physical-category moves."
+    },
+    "Muscle Wing": {
+        "name": "Muscle Wing",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Increases Attack EVs by 1."
+    },
+    "Mystic Water": {
+        "name": "Mystic Water",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Water-type moves."
+    },
+    "Nanab Berry": {
+        "name": "Nanab Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Nest Ball": {
+        "name": "Nest Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A somewhat different Pok\u00e9 Ball that works especially well on weaker Pok\u00e9mon in the wild."
+    },
+    "Net Ball": {
+        "name": "Net Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A somewhat different Pok\u00e9 Ball that works especially well on Water- and Bug-type Pok\u00e9mon."
+    },
+    "Never-Melt Ice": {
+        "name": "Never-Melt Ice",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Ice-type moves."
+    },
+    "Nomel Berry": {
+        "name": "Nomel Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Normal Gem": {
+        "name": "Normal Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Normal-type move only once."
+    },
+    "Normalium Z": {
+        "name": "Normalium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Breakneck Blitz, the Normal type Z-Move."
+    },
+    "Nugget": {
+        "name": "Nugget",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A nugget of pure gold that gives off a lustrous gleam. It can be sold at a high price to shops."
+    },
+    "Occa Berry": {
+        "name": "Occa Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Fire-type attack against the holding Pok\u00e9mon."
+    },
+    "Odd Incense": {
+        "name": "Odd Incense",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Psychic-type moves."
+    },
+    "Odd Keystone": {
+        "name": "Odd Keystone",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A vital item that is needed to keep a stone tower from collapsing. Voices can be heard from it occasionally."
+    },
+    "Old Amber": {
+        "name": "Old Amber",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A piece of amber that contains the genetic material of an ancient Pok\u00e9mon. It is clear with a reddish tint."
+    },
+    "Old Gateau": {
+        "name": "Old Gateau",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Old Chateau\u2019s hidden specialty. It heals all the status problems of a single Pok\u00e9mon."
+    },
+    "Oran Berry": {
+        "name": "Oran Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, it heals the user by just 10 HP."
+    },
+    "Oval Charm": {
+        "name": "Oval Charm",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "An oval charm said to increase the chance of Pok\u00e9mon Eggs being found at the Day Care."
+    },
+    "Oval Stone": {
+        "name": "Oval Stone",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It is shaped like an egg."
+    },
+    "Pamtre Berry": {
+        "name": "Pamtre Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Paralyze Heal": {
+        "name": "Paralyze Heal",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A spray-type medicine. It eliminates paralysis from a single Pok\u00e9mon."
+    },
+    "Park Ball": {
+        "name": "Park Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A special Pok\u00e9 Ball for the Pal Park."
+    },
+    "Pass Orb": {
+        "name": "Pass Orb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A mysterious orb containing the power of the Unova region, to be used when generating Pass Power."
+    },
+    "Passho Berry": {
+        "name": "Passho Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Water-type attack against the holding Pok\u00e9mon."
+    },
+    "Payapa Berry": {
+        "name": "Payapa Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Psychic-type attack against the holding Pok\u00e9mon."
+    },
+    "Pearl": {
+        "name": "Pearl",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A somewhat-small pearl that sparkles in a pretty silver color. It can be sold cheaply to shops."
+    },
+    "Pearl String": {
+        "name": "Pearl String",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "Very large pearls that sparkle in a pretty silver color. A maniac will buy them for a high price."
+    },
+    "Pecha Berry": {
+        "name": "Pecha Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, it recovers from poison."
+    },
+    "Permit": {
+        "name": "Permit",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A permit that is needed to enter the Nature Preserve. Not many know about it."
+    },
+    "Persim Berry": {
+        "name": "Persim Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, it recovers from confusion."
+    },
+    "Petaya Berry": {
+        "name": "Petaya Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Raises Special Attack when HP is low."
+    },
+    "Pidgeotite": {
+        "name": "Pidgeotite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Pidgeot to Mega Evolve during battle."
+    },
+    "Pikanium Z": {
+        "name": "Pikanium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Pikachu to upgrade Volt Tackle to a Z-Move, Catastropika."
+    },
+    "Pikashunium Z": {
+        "name": "Pikashunium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Pikachu in a cap to upgrade Thunderbolt to a Z-Move, 10,000,000 Volt Thunderbolt."
+    },
+    "Pinap Berry": {
+        "name": "Pinap Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Pink Apricorn": {
+        "name": "Pink Apricorn",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A pink Apricorn. It has a nice, sweet scent."
+    },
+    "Pink Nectar": {
+        "name": "Pink Nectar",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "The flower nectar obtained at the flowering shrubs on Royal Avenue. It changes the form of certain species of Pok\u00e9mon."
+    },
+    "Pink Scarf": {
+        "name": "Pink Scarf",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "Raises holder's Cute aspect in a Contest."
+    },
+    "Pinsirite": {
+        "name": "Pinsirite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Pinsir to Mega Evolve during battle."
+    },
+    "Pixie Plate": {
+        "name": "Pixie Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Fairy-type moves. Changes Arceus' type to Fairy."
+    },
+    "Plasma Card": {
+        "name": "Plasma Card",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A card key needed to enter the password inside the Plasma Frigate."
+    },
+    "Plume Fossil": {
+        "name": "Plume Fossil",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A fossil of an ancient Pok\u00e9mon that flew in the sky in ancient times. It appears to be part of its wing."
+    },
+    "Poison Barb": {
+        "name": "Poison Barb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Poison-type moves."
+    },
+    "Poison Gem": {
+        "name": "Poison Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Poison-type move only once."
+    },
+    "Poison Memory": {
+        "name": "Poison Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Poison-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Poisonium Z": {
+        "name": "Poisonium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Acid Downpour, the Poison type Z-Move."
+    },
+    "Pok\u00e9 Ball": {
+        "name": "Pok\u00e9 Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A device for catching wild Pok\u00e9mon. It is thrown like a ball at the target. It is designed as a capsule system."
+    },
+    "Pok\u00e9 Doll": {
+        "name": "Pok\u00e9 Doll",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A doll that attracts Pok\u00e9mon. Use it to flee from any battle with a wild Pok\u00e9mon."
+    },
+    "Pok\u00e9 Toy": {
+        "name": "Pok\u00e9 Toy",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "An item that attracts Pok\u00e9mon. Use it to flee from any battle with a wild Pok\u00e9mon."
+    },
+    "Pomeg Berry": {
+        "name": "Pomeg Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Using it on a Pok\u00e9mon makes it more friendly, but it also lowers its base HP."
+    },
+    "Potion": {
+        "name": "Potion",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A spray-type medicine for wounds. It restores the HP of one Pok\u00e9mon by just 20 points."
+    },
+    "Power Anklet": {
+        "name": "Power Anklet",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A Pok\u00e9mon held item that promotes Speed gain on leveling, but reduces the Speed stat."
+    },
+    "Power Band": {
+        "name": "Power Band",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A Pok\u00e9mon held item that promotes Sp. Def gain on leveling, but reduces the Speed stat."
+    },
+    "Power Belt": {
+        "name": "Power Belt",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A Pok\u00e9mon held item that promotes Defense gain on leveling, but reduces the Speed stat."
+    },
+    "Power Bracer": {
+        "name": "Power Bracer",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A Pok\u00e9mon held item that promotes Attack gain on leveling, but reduces the Speed stat."
+    },
+    "Power Herb": {
+        "name": "Power Herb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A single-use item to be held by a Pok\u00e9mon. It allows the immediate use of a move that charges on the first turn."
+    },
+    "Power Lens": {
+        "name": "Power Lens",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A Pok\u00e9mon held item that promotes Sp. Atk gain on leveling, but reduces the Speed stat."
+    },
+    "Power Plant Pass": {
+        "name": "Power Plant Pass",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "This pass serves as an ID card for gaining access to the power plant that lies along Route 13."
+    },
+    "Power Weight": {
+        "name": "Power Weight",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A Pok\u00e9mon held item that promotes HP gain on leveling, but reduces the Speed stat."
+    },
+    "PP Max": {
+        "name": "PP Max",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "It maximally raises the top PP of a selected move that has been learned by the target Pok\u00e9mon."
+    },
+    "PP Up": {
+        "name": "PP Up",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "It slightly raises the maximum PP of a selected move that has been learned by the target Pok\u00e9mon."
+    },
+    "Premier Ball": {
+        "name": "Premier Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A somewhat rare Pok\u00e9 Ball that has been specially made to commemorate an event of some sort."
+    },
+    "Pretty Wing": {
+        "name": "Pretty Wing",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "Though this feather is beautiful, it\u2019s just a regular feather and has no effect on Pok\u00e9mon."
+    },
+    "Primarium Z": {
+        "name": "Primarium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Primarina to upgrade Sparkling Aria to a Z-Move, Oceanic Operetta."
+    },
+    "Prism Scale": {
+        "name": "Prism Scale",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A mysterious scale that evolves certain Pok\u00e9mon. It shines in rainbow colors."
+    },
+    "Prison Bottle": {
+        "name": "Prison Bottle",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Transforms Hoopa Confined to Hoopa Unbound."
+    },
+    "Prof's Letter": {
+        "name": "Prof's Letter",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A letter that Professor Sycamore wrote to your mother. A faint but pleasant perfume seems to cling to the paper."
+    },
+    "Protective Pads": {
+        "name": "Protective Pads",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. These pads protect the holder from effects caused by making direct contact with the target."
+    },
+    "Protector": {
+        "name": "Protector",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A protective item of some sort. It is extremely stiff and heavy. It is loved by a certain Pok\u00e9mon."
+    },
+    "Protein": {
+        "name": "Protein",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A nutritious drink for Pok\u00e9mon. It raises the base Attack stat of a single Pok\u00e9mon."
+    },
+    "Psychic Gem": {
+        "name": "Psychic Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Psychic-type move only once."
+    },
+    "Psychic Memory": {
+        "name": "Psychic Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Psychic-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Psychic Seed": {
+        "name": "Psychic Seed",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It boosts Sp. Def on Psychic Terrain. It can only be used once."
+    },
+    "Psychium Z": {
+        "name": "Psychium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Shattered Psyche, the Psychic type Z-Move."
+    },
+    "Pure Incense": {
+        "name": "Pure Incense",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It helps keep wild Pok\u00e9mon away if the holder is the first one in the party."
+    },
+    "Purple Nectar": {
+        "name": "Purple Nectar",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A flower nectar obtained at Poni Meadow. It changes the form of certain species of Pok\u00e9mon."
+    },
+    "Qualot Berry": {
+        "name": "Qualot Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Using it on a Pok\u00e9mon makes it more friendly, but it also lowers its base Defense stat."
+    },
+    "Quick Ball": {
+        "name": "Quick Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A somewhat different Pok\u00e9 Ball that provides a better catch rate if it is used at the start of a wild encounter."
+    },
+    "Quick Claw": {
+        "name": "Quick Claw",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. A light, sharp claw that lets the bearer move first occasionally."
+    },
+    "Quick Powder": {
+        "name": "Quick Powder",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases Speed when held by Ditto."
+    },
+    "Rabuta Berry": {
+        "name": "Rabuta Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Rare Bone": {
+        "name": "Rare Bone",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A bone that is extremely valuable for Pok\u00e9mon archeology. It can be sold for a high price to shops."
+    },
+    "Rare Candy": {
+        "name": "Rare Candy",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A candy that is packed with energy. It raises the level of a single Pok\u00e9mon by one."
+    },
+    "Rawst Berry": {
+        "name": "Rawst Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, it recovers from a burn."
+    },
+    "Razor Claw": {
+        "name": "Razor Claw",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases critical-hit ratio."
+    },
+    "Razor Fang": {
+        "name": "Razor Fang",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It may make foes and allies flinch when the holder inflicts damage."
+    },
+    "Razz Berry": {
+        "name": "Razz Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Reaper Cloth": {
+        "name": "Reaper Cloth",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A cloth imbued with horrifyingly strong spiritual energy. It is loved by a certain Pok\u00e9mon."
+    },
+    "Red Apricorn": {
+        "name": "Red Apricorn",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A red Apricorn. It assails your nostrils."
+    },
+    "Red Card": {
+        "name": "Red Card",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A card with a mysterious power. When the holder is struck by a foe, the attacker is removed from battle."
+    },
+    "Red Flute": {
+        "name": "Red Flute",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A toy flute made from red glass. A maniac will buy it for a high price."
+    },
+    "Red Nectar": {
+        "name": "Red Nectar",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A flower nectar obtained at Ula\u2019ula Meadow. It changes the form of certain species of Pok\u00e9mon."
+    },
+    "Red Scarf": {
+        "name": "Red Scarf",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "Raises holder's Cool aspect in a Contest."
+    },
+    "Red Shard": {
+        "name": "Red Shard",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A small red shard. It appears to be from some sort of implement made long ago."
+    },
+    "Relic Band": {
+        "name": "Relic Band",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A bracelet made in a civilization about 3,000 years ago. A maniac will buy it for a high price."
+    },
+    "Relic Copper": {
+        "name": "Relic Copper",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A copper coin used in a civilization about 3,000 years ago. A maniac will buy it for a high price."
+    },
+    "Relic Crown": {
+        "name": "Relic Crown",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A crown made in a civilization about 3,000 years ago. A maniac will buy it for a high price."
+    },
+    "Relic Gold": {
+        "name": "Relic Gold",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A gold coin used in a civilization about 3,000 years ago. A maniac will buy it for a high price."
+    },
+    "Relic Silver": {
+        "name": "Relic Silver",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A silver coin used in a civilization about 3,000 years ago. A maniac will buy it for a high price."
+    },
+    "Relic Statue": {
+        "name": "Relic Statue",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A stone figure made in a civilization about 3,000 years ago. A maniac will buy it for a high price."
+    },
+    "Relic Vase": {
+        "name": "Relic Vase",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A vase made in a civilization about 3,000 years ago. A maniac will buy it for a high price."
+    },
+    "Repeat Ball": {
+        "name": "Repeat Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A somewhat different Pok\u00e9 Ball that works especially well on Pok\u00e9mon species that were previously caught."
+    },
+    "Repel": {
+        "name": "Repel",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "An item that prevents weak wild Pok\u00e9mon from appearing for 100 steps after its use."
+    },
+    "Reset Urge": {
+        "name": "Reset Urge",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "When used, it restores any stat changes of an ally Pok\u00e9mon."
+    },
+    "Resist Wing": {
+        "name": "Resist Wing",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Increases Defense EVs by 1."
+    },
+    "Reveal Glass": {
+        "name": "Reveal Glass",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A looking glass that reveals the truth. It\u2019s a mysterious glass that returns a Pok\u00e9mon to its original shape."
+    },
+    "Revival Herb": {
+        "name": "Revival Herb",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A very bitter medicinal herb. It revives a fainted Pok\u00e9mon, fully restoring its HP."
+    },
+    "Revive": {
+        "name": "Revive",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A medicine that revives a fainted Pok\u00e9mon. It restores half the Pok\u00e9mon\u2019s maximum HP."
+    },
+    "Rindo Berry": {
+        "name": "Rindo Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Grass-type attack against the holding Pok\u00e9mon."
+    },
+    "Ring Target": {
+        "name": "Ring Target",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Moves that would otherwise have no effect will land on the Pok\u00e9mon that holds it."
+    },
+    "Rock Gem": {
+        "name": "Rock Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Rock-type move only once."
+    },
+    "Rock Incense": {
+        "name": "Rock Incense",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Rock-type moves."
+    },
+    "Rock Memory": {
+        "name": "Rock Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Rock-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Rockium Z": {
+        "name": "Rockium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Continental Crush, the Rock type Z-Move."
+    },
+    "Rocky Helmet": {
+        "name": "Rocky Helmet",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "If the holder of this item takes damage, the attacker will also be damaged upon contact."
+    },
+    "Roller Skates": {
+        "name": "Roller Skates",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "Attaches roller skates to the bottom of your shoes, allowing you to glide quickly around and perform tricks."
+    },
+    "Root Fossil": {
+        "name": "Root Fossil",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A fossil of an ancient Pok\u00e9mon that lived in the sea. It appears to be part of a plant root."
+    },
+    "Rose Incense": {
+        "name": "Rose Incense",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Grass-type moves."
+    },
+    "Roseli Berry": {
+        "name": "Roseli Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, this Berry will lessen the damage taken from one supereffective Fairy-type attack."
+    },
+    "Roto Bargain": {
+        "name": "Roto Bargain",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Reduces the prices of products at Pok\u00e9 Marts by half."
+    },
+    "Roto Boost": {
+        "name": "Roto Boost",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Raises all stats of your battling Pok\u00e9mon."
+    },
+    "Roto Catch": {
+        "name": "Roto Catch",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Increases the chance to catch Pok\u00e9mon a lot."
+    },
+    "Roto Encounter": {
+        "name": "Roto Encounter",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Increases the chance of encountering high-level wild Pok\u00e9mon a lot for a certain period of time."
+    },
+    "Roto Exp. Points": {
+        "name": "Roto Exp. Points",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Increases the Exp. Points your Pok\u00e9mon receive after battle a little."
+    },
+    "Roto Friendship": {
+        "name": "Roto Friendship",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Helps Pok\u00e9mon in your party grow friendly faster."
+    },
+    "Roto Hatch": {
+        "name": "Roto Hatch",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Helps Eggs hatch faster."
+    },
+    "Roto HP Restore": {
+        "name": "Roto HP Restore",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Fully restores the HP of your battling Pok\u00e9mon."
+    },
+    "Roto PP Restore": {
+        "name": "Roto PP Restore",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Fully restores the PP of your battling Pok\u00e9mon."
+    },
+    "Roto Prize Money": {
+        "name": "Roto Prize Money",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Triples the prize money you receive after battle."
+    },
+    "Roto Stealth": {
+        "name": "Roto Stealth",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Prevents you from encountering wild Pok\u00e9mon for a certain period of time."
+    },
+    "Rowap Berry": {
+        "name": "Rowap Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon and a special attack lands, the attacker also takes damage."
+    },
+    "Sablenite": {
+        "name": "Sablenite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Sableye to Mega Evolve during battle."
+    },
+    "Sachet": {
+        "name": "Sachet",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A sachet filled with fragrant perfumes that are just slightly too overwhelming. Yet it\u2019s loved by a certain Pok\u00e9mon."
+    },
+    "Sacred Ash": {
+        "name": "Sacred Ash",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "It revives all fainted Pok\u00e9mon. In doing so, it also fully restores their HP."
+    },
+    "Safari Ball": {
+        "name": "Safari Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A special Pok\u00e9 Ball that is used only in the Great Marsh. It is decorated in a camouflage pattern."
+    },
+    "Safety Goggles": {
+        "name": "Safety Goggles",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Prevents damage from weather and powder."
+    },
+    "Salac Berry": {
+        "name": "Salac Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Raises Speed when HP is low."
+    },
+    "Salamencite": {
+        "name": "Salamencite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Salamence to Mega Evolve during battle."
+    },
+    "Sceptilite": {
+        "name": "Sceptilite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Sceptile to Mega Evolve during battle."
+    },
+    "Scizorite": {
+        "name": "Scizorite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Scizor to Mega Evolve during battle."
+    },
+    "Scope Lens": {
+        "name": "Scope Lens",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases critical-hit ratio."
+    },
+    "Sea Incense": {
+        "name": "Sea Incense",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Water-type moves."
+    },
+    "Sharp Beak": {
+        "name": "Sharp Beak",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Flying-type moves."
+    },
+    "Sharpedonite": {
+        "name": "Sharpedonite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Sharpedo to Mega Evolve during battle."
+    },
+    "Shed Shell": {
+        "name": "Shed Shell",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A tough, discarded carapace to be held by a Pok\u00e9mon. It enables the holder to switch with a waiting Pok\u00e9mon in battle."
+    },
+    "Shell Bell": {
+        "name": "Shell Bell",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. The holder\u2019s HP is restored a little every time it inflicts damage."
+    },
+    "Shiny Charm": {
+        "name": "Shiny Charm",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A shiny charm said to increase the chance of finding a Shiny Pok\u00e9mon in the wild."
+    },
+    "Shiny Stone": {
+        "name": "Shiny Stone",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It shines with a dazzling light."
+    },
+    "Shoal Salt": {
+        "name": "Shoal Salt",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "Pure salt that can be discovered deep inside the Shoal Cave. A maniac will buy it for a high price."
+    },
+    "Shoal Shell": {
+        "name": "Shoal Shell",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A pretty seashell that can be found deep inside the Shoal Cave. A maniac will buy it for a high price."
+    },
+    "Shock Drive": {
+        "name": "Shock Drive",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Changes Techno Blast to an Electric-type move when held by Genesect."
+    },
+    "Shuca Berry": {
+        "name": "Shuca Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Ground-type attack against the holding Pok\u00e9mon."
+    },
+    "Silk Scarf": {
+        "name": "Silk Scarf",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Normal-type moves."
+    },
+    "Silver Powder": {
+        "name": "Silver Powder",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Bug-type moves."
+    },
+    "Sitrus Berry": {
+        "name": "Sitrus Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "If held by a Pok\u00e9mon, it heals the user\u2019s HP a little."
+    },
+    "Skull Fossil": {
+        "name": "Skull Fossil",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A fossil from a prehistoric Pok\u00e9mon that lived on the land. It appears to be part of a head."
+    },
+    "Sky Plate": {
+        "name": "Sky Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Flying-type moves. Changes Arceus' type to Flying."
+    },
+    "Slowbronite": {
+        "name": "Slowbronite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Slowbro to Mega Evolve during battle."
+    },
+    "Smoke Ball": {
+        "name": "Smoke Ball",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It enables the holder to flee from any wild Pok\u00e9mon without fail."
+    },
+    "Smooth Rock": {
+        "name": "Smooth Rock",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A Pok\u00e9mon held item that extends the duration of the move Sandstorm used by the holder."
+    },
+    "Snorlium Z": {
+        "name": "Snorlium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Snorlax to upgrade Giga Impact to a Z-Move, Pulverizing Pancake."
+    },
+    "Snowball": {
+        "name": "Snowball",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Raises Attack if hit by an Ice-type move."
+    },
+    "Soda Pop": {
+        "name": "Soda Pop",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A fizzy soda drink. It restores the HP of one POK\u00e9MON by 60 points."
+    },
+    "Soft Sand": {
+        "name": "Soft Sand",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Ground-type moves."
+    },
+    "Solganium Z": {
+        "name": "Solganium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Solgaleo to upgrade Sunsteel Strike to a Z-Move, Searing Sunraze Smash."
+    },
+    "Soothe Bell": {
+        "name": "Soothe Bell",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It is a bell with a comforting chime that calms the holder and makes it friendly."
+    },
+    "Soul Dew": {
+        "name": "Soul Dew",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases both Special Attack and Special Defense when held by Latios or Latias."
+    },
+    "Spell Tag": {
+        "name": "Spell Tag",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Ghost-type moves."
+    },
+    "Spelon Berry": {
+        "name": "Spelon Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Splash Plate": {
+        "name": "Splash Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Water-type moves. Changes Arceus' type to Water."
+    },
+    "Spooky Plate": {
+        "name": "Spooky Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Ghost-type moves. Changes Arceus' type to Ghost."
+    },
+    "Sport Ball": {
+        "name": "Sport Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A special Pok\u00e9 Ball for the Bug-Catching Contest."
+    },
+    "Sprinklotad": {
+        "name": "Sprinklotad",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A watering can shaped like a Lotad. It helps promote the healthy growth of any Berries planted in good, soft soil."
+    },
+    "Stable Mulch": {
+        "name": "Stable Mulch",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price."
+    },
+    "Star Piece": {
+        "name": "Star Piece",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A shard of a pretty gem that sparkles in a red color. It can be sold at a high price to shops."
+    },
+    "Stardust": {
+        "name": "Stardust",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "Lovely, red-colored sand with a loose, silky feel. It can be sold at a high price to shops."
+    },
+    "Starf Berry": {
+        "name": "Starf Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Sharply raises a random stat when HP is low."
+    },
+    "Steel Gem": {
+        "name": "Steel Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Steel-type move only once."
+    },
+    "Steel Memory": {
+        "name": "Steel Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Steel-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Steelium Z": {
+        "name": "Steelium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Corkscrew Crash, the Steel type Z-Move."
+    },
+    "Steelixite": {
+        "name": "Steelixite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Steelix to Mega Evolve during battle."
+    },
+    "Stick": {
+        "name": "Stick",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases critical-hit ratio when held by Farfetch'd."
+    },
+    "Sticky Barb": {
+        "name": "Sticky Barb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A held item that damages the holder on every turn. It may latch on to foes and allies that touch the holder."
+    },
+    "Stone Plate": {
+        "name": "Stone Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Rock-type moves. Changes Arceus' type to Rock."
+    },
+    "Strange Souvenir": {
+        "name": "Strange Souvenir",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "An ornament depicting a Pok\u00e9mon that is venerated as a protector in some region far from Kalos."
+    },
+    "Sun Stone": {
+        "name": "Sun Stone",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A peculiar stone that makes certain species of POK\u00e9MON evolve. It is as red as the sun."
+    },
+    "Super Potion": {
+        "name": "Super Potion",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Restores 60 HP."
+    },
+    "Super Repel": {
+        "name": "Super Repel",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "An item that prevents weak wild Pok\u00e9mon from appearing for 200 steps after its use."
+    },
+    "Swampertite": {
+        "name": "Swampertite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Swampert to Mega Evolve during battle."
+    },
+    "Sweet Heart": {
+        "name": "Sweet Heart",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Very sweet chocolate. It restores the HP of one Pok\u00e9mon by only 20 points."
+    },
+    "Swift Wing": {
+        "name": "Swift Wing",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "Increases Speed EVs by 1."
+    },
+    "Tamato Berry": {
+        "name": "Tamato Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Using it on a Pok\u00e9mon makes it more friendly, but it also lowers its base Speed stat."
+    },
+    "Tanga Berry": {
+        "name": "Tanga Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Bug-type attack against the holding Pok\u00e9mon."
+    },
+    "Tapunium Z": {
+        "name": "Tapunium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the Tapus to upgrade Nature's Madness to a Z-Move, Guardian of Alola."
+    },
+    "Terrain Extender": {
+        "name": "Terrain Extender",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It extends the duration of the terrain caused by the holder\u2019s move or Ability."
+    },
+    "Thick Club": {
+        "name": "Thick Club",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases Attack when held by Cubone or Marowak."
+    },
+    "Thunder Stone": {
+        "name": "Thunder Stone",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A peculiar stone that makes certain species of POK\u00e9MON evolve. It has a thunderbolt pattern."
+    },
+    "Timer Ball": {
+        "name": "Timer Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "A somewhat different BALL that becomes progressively better the more turns there are in a battle."
+    },
+    "Tiny Mushroom": {
+        "name": "Tiny Mushroom",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A small and rare mushroom. It is sought after by collectors."
+    },
+    "TM01": {
+        "name": "TM01",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Mega Punch/DynamicPunch/Focus Punch/Hone Claws/Work Up."
+    },
+    "TM02": {
+        "name": "TM02",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Razor Wind/Headbutt/Dragon Claw."
+    },
+    "TM03": {
+        "name": "TM03",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Swords Dance/Curse/Water Pulse/Psyshock."
+    },
+    "TM04": {
+        "name": "TM04",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Whirlwind/Rollout/Calm Mind."
+    },
+    "TM05": {
+        "name": "TM05",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Mega Kick/Roar."
+    },
+    "TM06": {
+        "name": "TM06",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Toxic."
+    },
+    "TM07": {
+        "name": "TM07",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Horn Drill/Zap Cannon/Hail."
+    },
+    "TM08": {
+        "name": "TM08",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Body Slam/Rock Smash/Bulk Up."
+    },
+    "TM09": {
+        "name": "TM09",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Take Down/Psych Up/Bullet Seed/Venoshock."
+    },
+    "TM10": {
+        "name": "TM10",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Double-Edge/Hidden Power."
+    },
+    "TM100": {
+        "name": "TM100",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Confide."
+    },
+    "TM11": {
+        "name": "TM11",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move BubbleBeam/Sunny Day."
+    },
+    "TM12": {
+        "name": "TM12",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Water Gun/Sweet Scent/Taunt."
+    },
+    "TM13": {
+        "name": "TM13",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Snore/Ice Beam."
+    },
+    "TM14": {
+        "name": "TM14",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Blizzard."
+    },
+    "TM15": {
+        "name": "TM15",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Hyper Beam."
+    },
+    "TM16": {
+        "name": "TM16",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Pay Day/Icy Wind/Light Screen."
+    },
+    "TM17": {
+        "name": "TM17",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Submission/Protect."
+    },
+    "TM18": {
+        "name": "TM18",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Counter/Rain Dance."
+    },
+    "TM19": {
+        "name": "TM19",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Seismic Toss/Giga Drain/Telekinesis/Roost."
+    },
+    "TM20": {
+        "name": "TM20",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Rage/Endure/Safeguard."
+    },
+    "TM21": {
+        "name": "TM21",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Mega Drain/Frustration."
+    },
+    "TM22": {
+        "name": "TM22",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move SolarBeam."
+    },
+    "TM23": {
+        "name": "TM23",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Dragon Rage/Iron Tail/Smack Down."
+    },
+    "TM24": {
+        "name": "TM24",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Thunderbolt/DragonBreath."
+    },
+    "TM25": {
+        "name": "TM25",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Thunder."
+    },
+    "TM26": {
+        "name": "TM26",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Earthquake."
+    },
+    "TM27": {
+        "name": "TM27",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Fissure/Return."
+    },
+    "TM28": {
+        "name": "TM28",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Dig/Leech Life."
+    },
+    "TM29": {
+        "name": "TM29",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Psychic."
+    },
+    "TM30": {
+        "name": "TM30",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Teleport/Shadow Ball."
+    },
+    "TM31": {
+        "name": "TM31",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Mimic/Mud-Slap/Brick Break."
+    },
+    "TM32": {
+        "name": "TM32",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Double Team."
+    },
+    "TM33": {
+        "name": "TM33",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Ice Punch/Reflect."
+    },
+    "TM34": {
+        "name": "TM34",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Bide/Swagger/Shock Wave/Sludge Wave."
+    },
+    "TM35": {
+        "name": "TM35",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Metronome/Sleep Talk/Flamethrower."
+    },
+    "TM36": {
+        "name": "TM36",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Selfdestruct/Sludge Bomb."
+    },
+    "TM37": {
+        "name": "TM37",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Egg Bomb/Sandstorm."
+    },
+    "TM38": {
+        "name": "TM38",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Fire Blast."
+    },
+    "TM39": {
+        "name": "TM39",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Swift/Rock Tomb."
+    },
+    "TM40": {
+        "name": "TM40",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Skull Bash/Defense Curl/Aerial Ace."
+    },
+    "TM41": {
+        "name": "TM41",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Softboiled/ThunderPunch/Torment."
+    },
+    "TM42": {
+        "name": "TM42",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Dream Eater/Facade."
+    },
+    "TM43": {
+        "name": "TM43",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Sky Attack/Detect/Secret Power/Flame Charge."
+    },
+    "TM44": {
+        "name": "TM44",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Rest."
+    },
+    "TM45": {
+        "name": "TM45",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Thunder Wave/Attract."
+    },
+    "TM46": {
+        "name": "TM46",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Psywave/Thief."
+    },
+    "TM47": {
+        "name": "TM47",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Explosion/Steel Wing/Low Sweep."
+    },
+    "TM48": {
+        "name": "TM48",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Rock Slide/Fire Punch/Skill Swap/Round."
+    },
+    "TM49": {
+        "name": "TM49",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Tri Attack/Fury Cutter/Snatch/Echoed Voice."
+    },
+    "TM50": {
+        "name": "TM50",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Substitute/Nightmare/Overheat."
+    },
+    "TM51": {
+        "name": "TM51",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Roost/Ally Switch/Steel Wing."
+    },
+    "TM52": {
+        "name": "TM52",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Focus Blast."
+    },
+    "TM53": {
+        "name": "TM53",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Energy Ball."
+    },
+    "TM54": {
+        "name": "TM54",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move False Swipe."
+    },
+    "TM55": {
+        "name": "TM55",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Brine/Scald."
+    },
+    "TM56": {
+        "name": "TM56",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Fling."
+    },
+    "TM57": {
+        "name": "TM57",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Charge Beam."
+    },
+    "TM58": {
+        "name": "TM58",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Endure/Sky Drop."
+    },
+    "TM59": {
+        "name": "TM59",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Dragon Pulse/Incinerate/Brutal Swing."
+    },
+    "TM60": {
+        "name": "TM60",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Drain Punch/Quash."
+    },
+    "TM61": {
+        "name": "TM61",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Will-O-Wisp."
+    },
+    "TM62": {
+        "name": "TM62",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Silver Wind/Acrobatics."
+    },
+    "TM63": {
+        "name": "TM63",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Embargo."
+    },
+    "TM64": {
+        "name": "TM64",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Explosion."
+    },
+    "TM65": {
+        "name": "TM65",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Shadow Claw."
+    },
+    "TM66": {
+        "name": "TM66",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Payback."
+    },
+    "TM67": {
+        "name": "TM67",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Recycle/Retaliate/Smart Strike."
+    },
+    "TM68": {
+        "name": "TM68",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Giga Impact."
+    },
+    "TM69": {
+        "name": "TM69",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Rock Polish."
+    },
+    "TM70": {
+        "name": "TM70",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Flash/Aurora Veil."
+    },
+    "TM71": {
+        "name": "TM71",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Stone Edge."
+    },
+    "TM72": {
+        "name": "TM72",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Avalanche/Volt Switch."
+    },
+    "TM73": {
+        "name": "TM73",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Thunder Wave."
+    },
+    "TM74": {
+        "name": "TM74",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Gyro Ball."
+    },
+    "TM75": {
+        "name": "TM75",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Swords Dance."
+    },
+    "TM76": {
+        "name": "TM76",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Stealth Rock/Struggle Bug/Fly."
+    },
+    "TM77": {
+        "name": "TM77",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Psych Up."
+    },
+    "TM78": {
+        "name": "TM78",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Captivate/Bulldoze."
+    },
+    "TM79": {
+        "name": "TM79",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Dark Pulse/Frost Breath."
+    },
+    "TM80": {
+        "name": "TM80",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Rock Slide."
+    },
+    "TM81": {
+        "name": "TM81",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move X-Scissor."
+    },
+    "TM82": {
+        "name": "TM82",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Sleep Talk/Dragon Tail."
+    },
+    "TM83": {
+        "name": "TM83",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Natural Gift/Work Up/Infestation."
+    },
+    "TM84": {
+        "name": "TM84",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Poison Jab."
+    },
+    "TM85": {
+        "name": "TM85",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Dream Eater."
+    },
+    "TM86": {
+        "name": "TM86",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Grass Knot."
+    },
+    "TM87": {
+        "name": "TM87",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Swagger."
+    },
+    "TM88": {
+        "name": "TM88",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Pluck/Sleep Talk."
+    },
+    "TM89": {
+        "name": "TM89",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move U-turn."
+    },
+    "TM90": {
+        "name": "TM90",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Substitute."
+    },
+    "TM91": {
+        "name": "TM91",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Flash Cannon."
+    },
+    "TM92": {
+        "name": "TM92",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Trick Room."
+    },
+    "TM93": {
+        "name": "TM93",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Wild Charge."
+    },
+    "TM94": {
+        "name": "TM94",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Rock Smash/Surf."
+    },
+    "TM95": {
+        "name": "TM95",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Snarl."
+    },
+    "TM96": {
+        "name": "TM96",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Nature Power."
+    },
+    "TM97": {
+        "name": "TM97",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Dark Pulse."
+    },
+    "TM98": {
+        "name": "TM98",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Power-Up Punch/Waterfall."
+    },
+    "TM99": {
+        "name": "TM99",
+        "meta": {
+            "Category": "Machines"
+        },
+        "description": "Teaches the move Dazzling Gleam."
+    },
+    "TMV Pass": {
+        "name": "TMV Pass",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A commuter pass that allows the holder to ride the TMV between Lumiose City and Kiloude City at any time."
+    },
+    "Toxic Orb": {
+        "name": "Toxic Orb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a Pok\u00e9mon. It is a bizarre orb that badly poisons the holder in battle."
+    },
+    "Toxic Plate": {
+        "name": "Toxic Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Poison-type moves. Changes Arceus' type to Poison."
+    },
+    "Twisted Spoon": {
+        "name": "Twisted Spoon",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Psychic-type moves."
+    },
+    "Tyranitarite": {
+        "name": "Tyranitarite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Tyranitar to Mega Evolve during battle."
+    },
+    "Ultra Ball": {
+        "name": "Ultra Ball",
+        "meta": {
+            "Category": "Pokeballs"
+        },
+        "description": "An ultra-performance Ball that provides a higher Pok\u00e9mon catch rate than a Great Ball."
+    },
+    "Ultranecrozium Z": {
+        "name": "Ultranecrozium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows Ultra Necrozma to upgrade Photon Geyser to a Z-Move, Light That Burns the Sky."
+    },
+    "Up-Grade": {
+        "name": "Up-Grade",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A transparent device filled with all sorts of data. It was produced by Silph Co."
+    },
+    "Venusaurite": {
+        "name": "Venusaurite",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Enables Venusaur to Mega Evolve during battle."
+    },
+    "Wacan Berry": {
+        "name": "Wacan Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Electric-type attack against the holding Pok\u00e9mon."
+    },
+    "Water Gem": {
+        "name": "Water Gem",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of a Water-type move only once."
+    },
+    "Water Memory": {
+        "name": "Water Memory",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A memory disc that contains Water-type data. It changes the type of the holder if held by a certain species of Pok\u00e9mon."
+    },
+    "Water Stone": {
+        "name": "Water Stone",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A peculiar stone that makes certain species of Pok\u00e9mon evolve. It is a clear, light blue."
+    },
+    "Waterium Z": {
+        "name": "Waterium Z",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Allows the use of Hydro Vortex, the Water type Z-Move."
+    },
+    "Watmel Berry": {
+        "name": "Watmel Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Wave Incense": {
+        "name": "Wave Incense",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Water-type moves."
+    },
+    "Weakness Policy": {
+        "name": "Weakness Policy",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Sharply raises Attack and Special Attack if hit by a super-effective move."
+    },
+    "Wepear Berry": {
+        "name": "Wepear Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "A Berry which is very rare in the Unova region. A maniac will buy it for a high price."
+    },
+    "Whipped Dream": {
+        "name": "Whipped Dream",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A soft and sweet treat made of fluffy, puffy, whipped and whirled cream. It\u2019s loved by a certain Pok\u00e9mon."
+    },
+    "White Apricorn": {
+        "name": "White Apricorn",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A white Apricorn. It doesn\u2019t smell like anything."
+    },
+    "White Flute": {
+        "name": "White Flute",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A toy flute made from white glass. A maniac will buy it for a high price."
+    },
+    "White Herb": {
+        "name": "White Herb",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "An item to be held by a POK\u00e9MON. It restores any lowered stat in battle. It can be used only once."
+    },
+    "Wide Lens": {
+        "name": "Wide Lens",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the accuracy of moves."
+    },
+    "Wiki Berry": {
+        "name": "Wiki Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Restores HP if it's low, but may cause confusion."
+    },
+    "Wise Glasses": {
+        "name": "Wise Glasses",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases the power of Special-category moves."
+    },
+    "X Accuracy": {
+        "name": "X Accuracy",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Raises Accuracy of a Pok\u00e9mon in battle."
+    },
+    "X Accuracy 2": {
+        "name": "X Accuracy 2",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Sharply raises Accuracy of a Pok\u00e9mon in battle."
+    },
+    "X Accuracy 3": {
+        "name": "X Accuracy 3",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Drastically raises Accuracy of a Pok\u00e9mon in battle."
+    },
+    "X Accuracy 6": {
+        "name": "X Accuracy 6",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Immensely raises Accuracy of a Pok\u00e9mon in battle."
+    },
+    "X Attack": {
+        "name": "X Attack",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Raises Attack of a Pok\u00e9mon in battle."
+    },
+    "X Attack 2": {
+        "name": "X Attack 2",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Sharply raises Attack of a Pok\u00e9mon in battle."
+    },
+    "X Attack 3": {
+        "name": "X Attack 3",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Drastically raises Attack of a Pok\u00e9mon in battle."
+    },
+    "X Attack 6": {
+        "name": "X Attack 6",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Immensely raises Attack of a Pok\u00e9mon in battle."
+    },
+    "X Defense": {
+        "name": "X Defense",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Raises Defense of a Pok\u00e9mon in battle."
+    },
+    "X Defense 2": {
+        "name": "X Defense 2",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Sharply raises Defense of a Pok\u00e9mon in battle."
+    },
+    "X Defense 3": {
+        "name": "X Defense 3",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Drastically raises Defense of a Pok\u00e9mon in battle."
+    },
+    "X Defense 6": {
+        "name": "X Defense 6",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Immensely raises Defense of a Pok\u00e9mon in battle."
+    },
+    "X Sp. Atk": {
+        "name": "X Sp. Atk",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Raises Special Attack of a Pok\u00e9mon in battle."
+    },
+    "X Sp. Atk 2": {
+        "name": "X Sp. Atk 2",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Sharply raises Special Attack of a Pok\u00e9mon in battle."
+    },
+    "X Sp. Atk 3": {
+        "name": "X Sp. Atk 3",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Drastically raises Special Attack of a Pok\u00e9mon in battle."
+    },
+    "X Sp. Atk 6": {
+        "name": "X Sp. Atk 6",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Immensely raises Special Attack of a Pok\u00e9mon in battle."
+    },
+    "X Sp. Def": {
+        "name": "X Sp. Def",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Raises Special Defense of a Pok\u00e9mon in battle."
+    },
+    "X Sp. Def 2": {
+        "name": "X Sp. Def 2",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Sharply raises Special Defense of a Pok\u00e9mon in battle."
+    },
+    "X Sp. Def 3": {
+        "name": "X Sp. Def 3",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Drastically raises Special Defense of a Pok\u00e9mon in battle."
+    },
+    "X Sp. Def 6": {
+        "name": "X Sp. Def 6",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Immensely raises Special Defense of a Pok\u00e9mon in battle."
+    },
+    "X Speed": {
+        "name": "X Speed",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Raises Speed of a Pok\u00e9mon in battle."
+    },
+    "X Speed 2": {
+        "name": "X Speed 2",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Sharply raises Speed of a Pok\u00e9mon in battle."
+    },
+    "X Speed 3": {
+        "name": "X Speed 3",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Drastically raises Speed of a Pok\u00e9mon in battle."
+    },
+    "X Speed 6": {
+        "name": "X Speed 6",
+        "meta": {
+            "Category": "Battle items"
+        },
+        "description": "Immensely raises Speed of a Pok\u00e9mon in battle."
+    },
+    "Yache Berry": {
+        "name": "Yache Berry",
+        "meta": {
+            "Category": "Berries"
+        },
+        "description": "Weakens a supereffective Ice-type attack against the holding Pok\u00e9mon."
+    },
+    "Yellow Apricorn": {
+        "name": "Yellow Apricorn",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A yellow Apricorn. It has an invigorating scent."
+    },
+    "Yellow Flute": {
+        "name": "Yellow Flute",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A toy flute made from yellow glass. A maniac will buy it for a high price."
+    },
+    "Yellow Nectar": {
+        "name": "Yellow Nectar",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "A flower nectar obtained at Melemele Meadow. It changes the form of certain species of Pok\u00e9mon."
+    },
+    "Yellow Scarf": {
+        "name": "Yellow Scarf",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "Raises holder's Tough aspect in a Contest."
+    },
+    "Yellow Shard": {
+        "name": "Yellow Shard",
+        "meta": {
+            "Category": "General items"
+        },
+        "description": "A small yellow shard. It appears to be from some sort of implement made long ago."
+    },
+    "Zap Plate": {
+        "name": "Zap Plate",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Increases power of Electric-type moves. Changes Arceus' type to Electric."
+    },
+    "Zinc": {
+        "name": "Zinc",
+        "meta": {
+            "Category": "Medicine"
+        },
+        "description": "A nutritious drink for Pok\u00e9mon. It raises the base Sp. Def (Special Defense) stat of a single Pok\u00e9mon."
+    },
+    "Zoom Lens": {
+        "name": "Zoom Lens",
+        "meta": {
+            "Category": "Hold items"
+        },
+        "description": "Raises a move's accuracy if the holder moves after its target."
+    }
+}
