@@ -22,6 +22,7 @@
 import asyncio
 from collections import Counter
 from random import choice
+import json
 
 import discord
 from async_timeout import timeout
@@ -38,6 +39,11 @@ class Economy(object):
     def __init__(self, bot):
         self.bot = bot
         self.bids = list()
+        self.bot.shutdowns.append(self.shutdown)
+
+    async def shutdown(self):
+        with open("lotteries.json", 'w') as lf:
+            lf.write(json.dumps(self.bot.lotteries))
 
     @checks.no_pm()
     @commands.group(aliases=["bal", "balance", "eco", "e"], invoke_without_command=True)
@@ -117,8 +123,9 @@ class Economy(object):
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 
         chunks = []
-        for i in range(0, len(market), 25):
-            chunks.append(market[i:i + 25])
+        clen = 10
+        for i in range(0, len(market), clen):
+            chunks.append(market[i:i + clen])
 
         i = 0
         try:
@@ -141,8 +148,8 @@ class Economy(object):
             await self.bot.di.update_guild_market(ctx.guild, um)
             market = list(um.items())
             chunks = []
-            for i in range(0, len(market), 25):
-                chunks.append(market[i:i + 25])
+            for i in range(0, len(market), clen):
+                chunks.append(market[i:i + clen])
 
             users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
 
@@ -438,6 +445,16 @@ class Economy(object):
             await ctx.send(embed=embed)
         else:
             await ctx.send(await _(ctx, "No lotteries currently running!"))
+
+    @checks.no_pm()
+    @checks.mod_or_permissions()
+    @lotto.command(aliases=["delete"])
+    async def cancel(self, ctx, name: str):
+        """Cancel a lottery"""
+        try:
+            del self.bot.lotteries[ctx.guild.id][name]
+        except KeyError:
+            await ctx.send(await _(ctx, "There is no lottery of that name!"))
 
     @checks.no_pm()
     @checks.mod_or_permissions()

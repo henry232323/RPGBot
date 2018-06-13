@@ -119,8 +119,12 @@ class Characters(object):
         if user is None or user == ctx.author:
             user = ctx.author
         else:
-            if not checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
-                                              manage_server=True):
+            try:
+                has_role = checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                              manage_server=True)
+            except:
+                has_role = False
+            if not has_role:
                 await ctx.send(await _(ctx, "Only Bot Mods/Bot Admins may make characters for other players!"))
                 return
 
@@ -189,12 +193,15 @@ class Characters(object):
         if character is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
-
-        is_mod = checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
-                                            manage_server=True)
-        if character.owner != ctx.author.id and not is_mod:
-            await ctx.send(await _(ctx, "You do not own this character!"))
-            return
+        if character.owner == ctx.author.id:
+            try:
+                is_mod = checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                    manage_server=True)
+            except:
+                is_mod = False
+            if character.owner != ctx.author.id and not is_mod:
+                await ctx.send(await _(ctx, "You do not own this character!"))
+                return
 
         await self.bot.di.remove_character(ctx.guild, name)
         await ctx.send(await _(ctx, "Character deleted"))
