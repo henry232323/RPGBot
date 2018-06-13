@@ -7,6 +7,17 @@ Made by henry232323
 
 [**Support Server**](https://discord.gg/UYJb8fQ)
 
+### Translators
+####French
+- @wRadion#5043 https://github.com/wRadion
+- Me (@henry232323)
+- https://github.com/youqad
+####Russian
+- https://github.com/Mozyl
+####German
+- https://github.com/LW001
+####Spanish
+- https://github.com/Luistorch
 
 # Commands
 

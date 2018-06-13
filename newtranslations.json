@@ -2,221 +2,273 @@
   "Cannot purge more than 100 messages!": {
     "fr": "Impossible de supprimer plus de 100 messages.",
     "de": "Benutzer hat keinen auswählbaren Charakter",
-    "ru": "Нельзя удалить более 100 сообщений!"
+    "ru": "Нельзя удалить более 100 сообщений!",
+    "es": "No se pueden eliminar más de 100 mensajes."
   },
   "{} has no characters to display": {
     "fr": "{} n'a aucun personnage à afficher",
     "de": "Keine Charaktere anzeigbar",
-    "ru": "{} не имеет персонажей"
+    "ru": "{} не имеет персонажей",
+    "es": "{} no tiene personajes"
   },
   "No characters to display": {
     "fr": "Aucun personnage à afficher",
     "de": "Keine Charaktere anzeigbar",
-    "ru": "Нет персонажей для показа"
+    "ru": "Нет персонажей для показа",
+    "es": "No hay personajes personajes a mostrar"
   },
 
   "Character {} does not exist!": {
     "fr": "Le personnage {} n'existe pas",
     "de": "Charakter {} existiert nicht",
-    "ru": "Персонаж {} не существует"
+    "ru": "Персонаж {} не существует",
+    "es": "El personaje {} no existe"
   },
   "Name": {
     "fr": "Nom",
     "de": "Name",
-    "ru": "Имя" 
+    "ru": "Имя",
+    "es": "Nombre"
   },
   "Owner": {
     "fr": "Propriétaire",
     "de": "Eigenschaften",
-    "ru": "Владелец"
+    "ru": "Владелец",
+    "es": "Propietario"
   },
   "Level": {
     "fr": "Niveau",
     "de": "Ebene",
-    "ru": "Уровень"
+    "ru": "Уровень",
+    "es": "Nivel"
   },
   "Empty": {
     "fr": "Vide",
     "de": "Leere",
-    "ru": "Пусто"
+    "ru": "Пусто",
+    "es": "Vacío"
   },
   "Team": {
     "fr": "Équipe",
     "de": "Ausrüstung",
-    "ru": "Команда"
+    "ru": "Команда",
+    "es": "Equipo"
   },
   "Additional Info": {
     "fr": "Informations supplémentaires",
     "de": "Zusätzliche Informationen",
-    "ru" : "Дополнительная информация"
+    "ru" : "Дополнительная информация",
+    "es": "Información adicional"
   },
   "Only Bot Mods/Bot Admins may make characters for other players!": {
     "fr": "Il faut etre `Bot Mod` ou `Bot Admin` pour créer un personnage pour les autres",
-    "ru": "Только Bot Mods/Bot Admins может делать персонажей для других игроков"
+    "ru": "Только Bot Mods/Bot Admins может делать персонажей для других игроков",
+    "es": "Solo Bot Mods/Bot Admins pueden crear personajes para otros jugadores"
   },
   "A character with this name already exists!": {
     "fr": "Un personnage a déjà ce nom",
-    "ru": "Персонаж с таким именем уже существует"
+    "ru": "Персонаж с таким именем уже существует",
+    "es": "Ya existe un personaje con este nombre"
   },
   "Describe the character (Relevant character sheet) (Say `done` when you're done describing)": {
-    "fr": "Décrivez le personnage (Fiche associée du personnage) (Tapez `done` quand vous avez fini)", 
-    "ru": " Опишите персонажа (Внешность, характер) (Скажите 'done' , когда закончите описание)"
+    "fr": "Décrivez le personnage (Fiche associée du personnage) (Tapez `done` quand vous avez fini)",
+    "ru": " Опишите персонажа (Внешность, характер) (Скажите 'done' , когда закончите описание)",
+    "es": "Describe el personaje (Personaje asociado a la ficha) (Escriba `done`cuando haya acabado de escribir"
   },
   "What level is the character?": {
     "fr": "Quel est le niveau du personnage ?",
-    "ru": "Какого уровня выш персонаж?"
+    "ru": "Какого уровня выш персонаж?",
+    "es": "¿Cuál es el nivel del personaje?"
   },
-  "Any additional info? (Add a character image using the image keyword. Formats use regular syntax e.g. `image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)": {
+  "Any additional info? (Add a character image using the image keyword. Formats use regular syntax e.g.  (Separate keys with commas or newlines)": {
     "fr": "Des informations supplémentaires ? (Ajouter une image au personnage avec le mot-clé `image`, comme ceci : `image: http://image.com/image.jpg, cheveux: bruns` (Separer les mot-clés avec des virgules ou des retours à la ligne)",
-    "ru": "Дополнительна информация.(Добавьте персонажу картинку используя команды: 'image: http://image.com/image.jpg, hair_color:Темные волосы,nickname:Кевин' (Разделяйте команды запятыми)"
+    "ru": "Дополнительна информация.(Добавьте персонажу картинку используя команды: 'image: http://image.com/image.jpg, hair_color:Темные волосы,nickname:Кевин' (Разделяйте команды запятыми)",
+    "es": "¿Alguna información adicional? (Añade una imágen al personaje  usango la palabra clave image. El formato debe seguir la sintaxis regular p.e. `image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin`(Separe las claves con comas u otra línea))"
   },
   "Cancelling!": {
     "fr": "Commande annulée !",
-    "ru": "Закрыто!"
+    "ru": "Закрыто!",
+    "es": "¡Cancelado!"
   },
   "Skipping!": {
     "fr": "Étape sautée !",
-    "ru": "Пропущено!"
+    "ru": "Пропущено!",
+    "es": "¡Saltando!"
   },
   "Character created! rp!team addmember to add Pokemon (optional) to your character's team!": {
     "fr": "Personnage créé ! Tapez `rp!team addmember` pour ajouter des Pokemons (optionel) à votre équipe !",
-    "ru": "Персонаж создан! Если хотите добавить персонажа в команду, используете rp!team addmember"
+    "ru": "Персонаж создан! Если хотите добавить персонажа в команду, используете rp!team addmember",
+    "es": "¡Personaje creado! rp!team addmembet para añadir un Pokémon (opcional) al equipo de tu personaje"
   },
   "That character doesn't exist!": {
     "fr": "Ce personnage n'existe pas !",
-    "ru": "Персонаж не существует!"
+    "ru": "Персонаж не существует!",
+    "es": "El personaje no existe"
   },
   "You do not own this character!": {
     "fr": "Vous n'êtes pas le propriétaire de ce personnage !",
-    "ru": "Вы не владелец этого персонажа!"
+    "ru": "Вы не владелец этого персонажа!",
+    "es": "No eres el propietario del personaje"
   },
   "Character deleted": {
     "fr": "Personnage supprimé",
-    "ru": "Персонаж удален"
+    "ru": "Персонаж удален",
+    "es": "Personaje borrado"
   },
   "Invalid formatting! Try again": {
     "fr": "Syntaxe invalide !",
-    "ru": "Не правильный формат, попробуй снова"
+    "ru": "Не правильный формат, попробуй снова",
+    "es": "Formato no válido"
   },
   "That is not a valid item! Try again": {
     "fr": "Cet item n'existe pas !",
-    "ru": "Этот предмет не действителен! Попробуй еще"
+    "ru": "Этот предмет не действителен! Попробуй еще",
+    "es": "¡Este no es un item válido! Vuelve a intentarlo"
   },
   "Character edited!": {
     "fr": "Personnage modifié",
-    "ru": "Персонаж изменен!"
+    "ru": "Персонаж изменен!",
+    "es": "Personaje editado"
   },
   "{} has {} dollars": {
     "fr": "{} a {} dollars",
-    "ru": "{} имеет {} dollars"
+    "ru": "{} имеет {} dollars",
+    "es": "{} tiene {} dollars"
   },
   "Balances changed": {
     "fr": "Solde changé",
-    "ru": "Баланс изменен"
+    "ru": "Баланс изменен",
+    "es": "Balance cambiado"
   },
   "Money given": {
     "fr": "Argent donné",
-    "ru": "Деньги выданы"
+    "ru": "Деньги выданы",
+    "es": "Dinero dado"
   },
   "Successfully paid {} dollars to {}": {
     "fr": "Payé {} dollars à {} avec succès",
-    "ru": "Успешно выплачено {} dollars для{}"
+    "ru": "Успешно выплачено {} dollars для{}",
+    "es": "Pago de {} dollars a {} satisfactorio"
   },
   "\u27A1 to see the next page\n\u2B05 to go back\n\u274C to exit": {
     "fr": "\n        \u27A1 pour voir la page suivante\n        \u2B05 pour retourner\n        \u274C pour quitter\n        ",
-    "ru": "\n        \u27A1 переход на следующую страницу\n        \u2B05 возврат\n        \u274C выход\n        "
+    "ru": "\n        \u27A1 переход на следующую страницу\n        \u2B05 возврат\n        \u274C выход\n        ",
+    "es": "\n        \u27A1 para ver la siguente página\n        \u2B05 para volver\n        \u274C para salir\n        "
   },
   "No items on the market to display.": {
     "fr": "Aucun item sur le marché",
-    "ru": "Нет предметов в магазине для отображения."
+    "ru": "Нет предметов в магазине для отображения.",
+    "es": "No hay items en el mercado"
   },
   "Player Market": {
     "fr": "Marché des joueurs",
-    "ru": "Игровой магазин"
+    "ru": "Игровой магазин",
+    "es": "Mercado de jugadores"
   },
   "ID": {
     "fr": "ID",
-    "ru": "ID"
+    "ru": "ID",
+    "es": "ID"
   },
   "COST": {
     "fr": "COÛT",
-    "ru": "Стоимость"
+    "ru": "Стоимость",
+    "es": "Costo"
   },
   "NUMBER": {
     "fr": "NOMBRE",
-    "ru": "Число"
+    "ru": "Число",
+    "es": "Número"
   },
   "ITEM": {
     "fr": "ITEM",
-    "ru": "Предмет"
+    "ru": "Предмет",
+    "es": "ITEM"
   },
   "SELLER": {
     "fr": "VENDEUR",
-    "ru": "Продавец"
+    "ru": "Продавец",
+    "es": "VENDEDOR"
   },
   "Timed out! Try again": {
     "fr": "Fin du temps ! Réessayez",
-    "ru": "Время вышло! Начни заново"
+    "ru": "Время вышло! Начни заново",
+    "es": "¡Tiempo agotado! Vualva a intentarlo"
   },
   "You don't have enough of these to sell!": {
     "fr": "Vous n'en avez pas assez pour en vendre !",
-    "ru": "У вас не хватает предметов для продажи"
+    "ru": "У вас не хватает предметов для продажи",
+    "es": "No tienes suficientes items de estos para vender"
   },
   "Item listed!": {
     "fr": "Item listé !",
-    "ru": "Перечень товаров!"
+    "ru": "Перечень товаров!",
+    "es": "Items listados"
   },
   "That is not a valid ID!": {
     "fr": "Ce n'est pas un ID valide !",
-    "ru": "Неверный ID"
+    "ru": "Неверный ID",
+    "es": "La ID no es válida"
   },
   "You cant afford this item!": {
     "fr": "Vous ne pouvez pas acheter cet item !",
-    "ru": "Вы не можете позволить купить себе этот товар!"
+    "ru": "Вы не можете позволить купить себе этот товар!",
+    "es": "No puedes permitirte comprar este item"
   },
   "Items successfully bought": {
     "fr": "Items achetés avec succès",
-    "ru": "Предмет успешно куплен"
+    "ru": "Предмет успешно куплен",
+    "es": "Item comprado"
   },
   "{} bought {} {} from you for {} dollars with ID {} on server {}": {
     "fr": "{} a acheté {} {} de vous pour {} dollars avec l'ID {} sur le serveur {}",
-    "ru": "{} купил {} {} у вас за {} dollars его ID {} на сервере {}"
+    "ru": "{} купил {} {} у вас за {} dollars его ID {} на сервере {}",
+    "es": "{} ha comprado {} {} de ti {} dollars con ID {} del servidor {}"
   },
   "This is not your item to remove!": {
     "fr": "Ce n'est pas à vous de supprimer cet item !",
-    "ru": "Это не ваш предмет! Вы не можете его удалить!"
+    "ru": "Это не ваш предмет! Вы не можете его удалить!",
+    "es": "Este objeto no es tuyo a eliminar"
   },
   "Jackpot: {} dollars\n{} players entered": {
     "fr": "Cagnotte: {} dollars\n{} joueurs participent",
-    "ru": "Джекпот: {} dollars\n{} игроков вошло"
+    "ru": "Джекпот: {} dollars\n{} игроков вошло",
+    "es": "Lotería: {} dollars\n{} jugadores han entrado"
   },
   "No lotteries currently running!": {
     "fr": "Aucune loterie n'a été lancée !",
-    "ru": "В данный момент нет лотерей!"
+    "ru": "В данный момент нет лотерей!",
+    "es": "No hay loterías disponibles ahora mismo"
   },
   "A lottery of that name already exists!": {
     "fr": "Une loterie avec ce nom existe déjà !",
-    "ru": "Лотерея с таким именем уже существует!"
+    "ru": "Лотерея с таким именем уже существует!",
+    "es": "Ya existe una lotería con este nombre"
   },
   "Lottery created!": {
     "fr": "Loterie créée !",
-    "ru": "Лотерея создана!"
+    "ru": "Лотерея создана!",
+    "es": "Lotería creada"
   },
   "Lottery {} is now over!\n{} won {}! Congratulations!": {
     "fr": "La loterie {} est maintenant terminée !\n{} a gagné(e) {} ! Toutes nos félicitations !",
-    "ru": "Лотерея {} началачь!\n{} выиграл {}! Поздравляем!"
+    "ru": "Лотерея {} началачь!\n{} выиграл {}! Поздравляем!",
+    "es": "¡La lotería {} ha terminado!\n{} ¡Ha ganado {}! ¡Enhorabuena!"
   },
   "Nobody entered {}! Its over now.": {
     "fr": "Personne n'a participé à la loterie {} ! Elle est maintenant terminée.",
-    "ru": "Никто не заходит в {}! Закрываю."
+    "ru": "Никто не заходит в {}! Закрываю.",
+    "es": "Nadie ha entrado {}. Ha terminado ya."
   },
   "Lotto entered!": {
     "fr": "Vous êtes entré dans la loterie !",
-    "ru": "Кто-то присоединился к лото!"
+    "ru": "Кто-то присоединился к лото!",
+    "es": "Has entrado a la lotría"
   },
   "You're already in this lotto!": {
     "fr": "Vous êtes déjà dans cette loterie !",
-    "ru": "Вы уже в этом лото!"
+    "ru": "Вы уже в этом лото!",
+    "es": ""
   },
   "This server has no lotto by that name! See rp!lotto": {
     "fr": "Ce serveur n'a aucune loterie avec ce nom ! Pour voir la liste des loteries, tapez rp!lotto",
@@ -224,7 +276,7 @@
   },
   "This server has no lottos currently running!": {
     "fr": "Il n'y a aucune loterie en cours sur ce serveur !",
-    "ru": "На этом сервере нет активных лото!"    
+    "ru": "На этом сервере нет активных лото!"
   },
   "No items in the shop to display.": {
     "fr": "Il n'y a aucun item dans le shop",
