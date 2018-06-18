@@ -110,7 +110,7 @@ class User(object):
 
         await ctx.send(await _(ctx, "Gave experience to members"))
 
-    @commands.guild_only()
+    @checks.no_pm()
     @experience.command()
     @checks.mod_or_permissions()
     async def enable(self, ctx):
@@ -118,7 +118,7 @@ class User(object):
         await self.bot.di.set_exp_enabled(ctx.guild, True)
         await ctx.send(await _(ctx, "Successfully changed EXP setting"))
 
-    @commands.guild_only()
+    @checks.no_pm()
     @experience.command()
     @checks.mod_or_permissions()
     async def disable(self, ctx):

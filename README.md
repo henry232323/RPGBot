@@ -18,6 +18,7 @@ Made by henry232323
 - https://github.com/LW001
 ####Spanish
 - https://github.com/Luistorch
+- https://github.com/Looker845
 
 # Commands
 
