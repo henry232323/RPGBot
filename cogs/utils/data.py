@@ -515,7 +515,8 @@ class DataInteraction(object):
     async def get_guild_guilds(self, guild):
         """Get a server's guilds"""
         gd = await self.db.get_guild_data(guild)
-        return {y: Guild(*x) for y, x in gd.get("guilds", dict()).items()}
+        gobj = {y: Guild(*x) for y, x in gd.get("guilds", dict()).items()}
+        return gobj
 
     async def add_pokemon(self, owner, pokemon):
         """Create a Pokemon for a user's box"""
