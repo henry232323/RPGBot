@@ -55,6 +55,10 @@ def mod_or_inv():
     return commands.check(predicate)
 
 
+def modpredicate(ctx):
+    return role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                               manage_server=True)
+
 def mod_or_permissions(**perms):
     def predicate(ctx):
         return role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),

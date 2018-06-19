@@ -326,9 +326,13 @@ class Groups(object):
         guilds = await self.bot.di.get_guild_guilds(ctx.guild)
         guild = guilds.get(ug)
         if guild.owner == ctx.author.id:
-            await ctx.send(await _(ctx, "Guild will be deleted is this alright? {yes / no}"))
-            resp = await self.bot.wait_for("message",
-                                           check=lambda x: x.author is ctx.author and x.channel is ctx.channel)
+            try:
+                await ctx.send(await _(ctx, "Guild will be deleted is this alright? {yes / no}"))
+                resp = await self.bot.wait_for("message",
+                                               check=lambda x: x.author is ctx.author and x.channel is ctx.channel)
+            except TimeoutError:
+                await ctx.send(await _(ctx, "Didn't respond in time! Cancelling"))
+
             if resp.content == "yes":
                 await ctx.send(await _(ctx, "Deleting!"))
                 await self.bot.di.remove_guild(ctx.guild, guild.name)
@@ -384,15 +388,19 @@ class Groups(object):
 
     @guild.command()
     @checks.no_pm()
-    async def delete(self, ctx):
+    async def delete(self, ctx, name=None):
         """Delete your guild"""
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send(await _(ctx, "You aren't in a guild!"))
-            return
+        if name is not None:
+            assert checks.modpredicate(ctx)
+            ug = name
+        else:
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is None:
+                await ctx.send(await _(ctx, "You aren't in a guild!"))
+                return
         guilds = await self.bot.di.get_guild_guilds(ctx.guild)
         guild = guilds.get(ug)
-        if guild.owner != ctx.author.id:
+        if guild.owner != ctx.author.id and name is None:
             await ctx.send(await _(ctx, "You do not own this guild!"))
             return
 
@@ -416,7 +424,6 @@ class Groups(object):
         """Deposit an amount of money into the guild bank"""
         try:
             amount = abs(amount)
-            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
             if not guild_name:
                 guild_name = await self.bot.di.get_user_guild(ctx.author)
                 if guild_name is None:
