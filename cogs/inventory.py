@@ -38,7 +38,7 @@ class Inventory(object):
     @commands.group(invoke_without_command=True, aliases=['i', 'inv'])
     @checks.no_pm()
     async def inventory(self, ctx, *, member: discord.Member = None):
-        """Check your or another users inventory."""
+        """Check your or another users inventory. Example: rp!inventory @Henry#6174 or just rp!inventory"""
         if member is None:
             member = ctx.message.author
 
@@ -70,7 +70,8 @@ class Inventory(object):
     @commands.command()
     @checks.no_pm()
     async def giveitem(self, ctx, item: str, num: IntConverter, *members: MemberConverter):
-        """Give an item to a person (Not out of your inventory)"""
+        """Give an item to a person (Not out of your inventory)
+        Example: rp!giveitem Banana 32 @Henry#6174 @RPGBot#8700 @JoeShmoe#3012"""
         members = chain(members)
 
         items = await self.bot.di.get_guild_items(ctx.guild)
@@ -87,7 +88,7 @@ class Inventory(object):
     @commands.command()
     @checks.no_pm()
     async def give(self, ctx, other: discord.Member, *items: str):
-        """Give items ({item}x{#}) to a member; ie: rp!give @Henry#6174 pokeballx3"""
+        """Give items ({item}x{#}) to a member; ie: rp!give @Henry#6174 Pokeballx3"""
         fitems = []
         for item in items:
             split = item.split('x')

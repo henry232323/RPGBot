@@ -44,14 +44,24 @@ class Salary(object):
                                     rob = discord.utils.get(gob.roles, id=int(role))
                                     if rob:
                                         for member in rob.members:
-                                            try:
-                                                await self.bot.di.add_eco(member, amount)
-                                            except ValueError:
-                                                await self.bot.di.set_eco(member, 0)
+                                            if isinstance(amount, int):
+                                                try:
+                                                    await self.bot.di.add_eco(member, amount)
+                                                except ValueError:
+                                                    await self.bot.di.set_eco(member, 0)
+                                            else:
+                                                payamount, giveamount = sum(
+                                                    filter(lambda x: isinstance(x, int), amount)), tuple(filter(
+                                                    lambda x: isinstance(x, (list, tuple)), amount))
+                                                if payamount:
+                                                    try:
+                                                        await self.bot.di.add_eco(member, payamount)
+                                                    except ValueError:
+                                                        await self.bot.di.set_eco(member, 0)
+                                                if giveamount:
+                                                    await self.bot.di.update_items(member, *giveamount)
                                     else:
                                         dels[gob].append((roles, role))
-                            else:
-                                pass
                         except:
                             pass
                     try:
@@ -102,14 +112,21 @@ class Salary(object):
     @salary.command()
     @checks.no_pm()
     @checks.mod_or_permissions()
-    async def create(self, ctx, amount: data.NumberConverter, role: discord.Role):
+    async def create(self, ctx, role: discord.Role, items_or_number: data.ItemOrNumber):
         """Create a daily salary for a user with the given role.
          Roles are paid every day at 24:00, every user with the role will receive the amount specified.
-         If a role with a salary is deleted, the salary will also be deleted."""
+         If a role with a salary is deleted, the salary will also be deleted.
+         For example
+         `rp!salary create @Bot Creator 500` Will create a salary of $500 for a user daily
+         `rp!salary create @Bot Creator Bananax3 Orangex4` Will create a salary of 3 Bananas and 4 Oranges for a user daily
+         """
         sals = await self.bot.di.get_salaries(ctx.guild)
-        sals[role.id] = amount
+        if len(items_or_number) == 1 and isinstance(items_or_number[0], int):
+            items_or_number = items_or_number[0]
+
+        sals[role.id] = items_or_number
         await self.bot.di.update_salaries(ctx.guild, sals)
-        await ctx.send((await _(ctx, "Successfully created a daily salary of {} for {}")).format(amount, role))
+        await ctx.send((await _(ctx, "Successfully created a daily salary of {} for {}")).format(items_or_number, role))
 
     @salary.command()
     @checks.no_pm()
@@ -123,3 +140,40 @@ class Salary(object):
             await ctx.send((await _(ctx, "Successfully deleted the daily salary for {}")).format(role))
         else:
             await ctx.send(await _(ctx, "That role has no salaries!"))
+
+    @salary.command()
+    @checks.no_pm()
+    @checks.mod_or_permissions()
+    async def payout(self, ctx, role: discord.Role = None):
+        """Manually pay out salaries for a role or all roles"""
+        dels = []
+        roles = await self.bot.di.get_salaries(ctx.guild)
+        for role, amount in roles.items():
+            rob = discord.utils.get(ctx.guild.roles, id=int(role))
+            if rob:
+                for member in rob.members:
+                    if isinstance(amount, int):
+                        try:
+                            await self.bot.di.add_eco(member, amount)
+                        except ValueError:
+                            await self.bot.di.set_eco(member, 0)
+                    else:
+                        payamount, giveamount = sum(
+                            filter(lambda x: isinstance(x, int), amount)), tuple(filter(
+                            lambda x: isinstance(x, (list, tuple)), amount))
+                        if payamount:
+                            try:
+                                await self.bot.di.add_eco(member, payamount)
+                            except ValueError:
+                                await self.bot.di.set_eco(member, 0)
+                        if giveamount:
+                            await self.bot.di.update_items(member, *giveamount)
+            else:
+                dels.append(role)
+
+        if dels:
+            await ctx.send((await _(ctx, "Roles {} were missing")).format(dels))
+            for role in dels:
+                del roles[role]
+
+            await self.bot.di.update_salaries(ctx.guild, roles)
