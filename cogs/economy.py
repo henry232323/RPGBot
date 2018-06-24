@@ -466,14 +466,14 @@ class Economy(object):
         if name in self.bot.lotteries[ctx.guild.id]:
             await ctx.send(await _(ctx, "A lottery of that name already exists!"))
             return
-        current = dict(jackpot=jackpot, players=list(), channel=ctx.channel)
+        current = dict(jackpot=jackpot, players=list(), channel=ctx.channel.id)
         self.bot.lotteries[ctx.guild.id][name] = current
         await ctx.send(await _(ctx, "Lottery created!"))
         await asyncio.sleep(time)
         if current["players"]:
             winner = discord.utils.get(ctx.guild.members, id=choice(current["players"]))
             await self.bot.di.add_eco(winner, current["jackpot"])
-            await current["channel"].send(
+            await ctx.send(
                 (await _(ctx, "Lottery {} is now over!\n{} won {}! Congratulations!")).format(name, winner.mention,
                                                                                               current["jackpot"]))
         else:
@@ -486,7 +486,7 @@ class Economy(object):
         """Enter the lottery with the given name."""
         if ctx.guild.id in self.bot.lotteries:
             if name in self.bot.lotteries[ctx.guild.id]:
-                if ctx.author not in self.bot.lotteries[ctx.guild.id][name]["players"]:
+                if ctx.author.id not in self.bot.lotteries[ctx.guild.id][name]["players"]:
                     self.bot.lotteries[ctx.guild.id][name]["players"].append(ctx.author.id)
                     await ctx.send(await _(ctx, "Lotto entered!"))
                 else:

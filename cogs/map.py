@@ -288,9 +288,14 @@ class Mapping:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
 
-        tstring = mapo.generators.get(int(tile))
-        if tstring is None:
-            tstring = mapo.generators.get(tile)
+        if isinstance(mapo.generators, list):
+            tstring = mapo.generators[int(tile)]
+            if tstring is None:
+                tstring = mapo.generators[tile]
+        else:
+            tstring = mapo.generators.get(int(tile))
+            if tstring is None:
+                tstring = mapo.generators.get(tile)
         await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
 
     @map.command(aliases=["south", "sud"])
@@ -354,9 +359,14 @@ class Mapping:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
 
-        tstring = mapo.generators.get(int(tile))
-        if tstring is None:
-            tstring = mapo.generators.get(tile)
+        if isinstance(mapo.generators, list):
+            tstring = mapo.generators[int(tile)]
+            if tstring is None:
+                tstring = mapo.generators[tile]
+        else:
+            tstring = mapo.generators.get(int(tile))
+            if tstring is None:
+                tstring = mapo.generators.get(tile)
         await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
 
     @map.command(aliases=["west", "ouest", "gauche"])
@@ -423,9 +433,14 @@ class Mapping:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
 
-        tstring = mapo.generators.get(int(tile))
-        if tstring is None:
-            tstring = mapo.generators.get(tile)
+        if isinstance(mapo.generators, list):
+            tstring = mapo.generators[int(tile)]
+            if tstring is None:
+                tstring = mapo.generators[tile]
+        else:
+            tstring = mapo.generators.get(int(tile))
+            if tstring is None:
+                tstring = mapo.generators.get(tile)
         await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
 
     @map.command(aliases=["east", "est", "droit"])
@@ -492,9 +507,14 @@ class Mapping:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
 
-        tstring = mapo.generators.get(tile)
-        if tstring is None:
+        if isinstance(mapo.generators, list):
+            tstring = mapo.generators[int(tile)]
+            if tstring is None:
+                tstring = mapo.generators[tile]
+        else:
             tstring = mapo.generators.get(int(tile))
+            if tstring is None:
+                tstring = mapo.generators.get(tile)
         await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
 
         if isinstance(mapo, AdvancedMap):

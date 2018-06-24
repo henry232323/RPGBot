@@ -596,6 +596,19 @@ class DataInteraction(object):
         await self.db.update_user_data(member, ud)
         return ud["items"]
 
+    async def update_items(self, member, *items):
+        """Take items from a user"""
+        ud = await self.db.get_user_data(member)
+        ud["items"] = Counter(ud["items"])
+        ud["items"].update(dict(items))
+
+        for item, value in list(ud["items"].items()):
+            if value <= 0:
+                del ud["items"][item]
+
+        await self.db.update_user_data(member, ud)
+        return ud["items"]
+
     async def add_eco(self, member, amount):
         """Give (or take) a user('s) money"""
         ud = await self.db.get_user_data(member)
@@ -744,7 +757,10 @@ class DataInteraction(object):
     async def remove_guild(self, guild, name):
         gd = await self.db.get_guild_data(guild)
         for mid in gd["guilds"][name][3]:
-            await self.set_guild(discord.utils.get(guild.members, id=mid), None)
+            try:
+                await self.set_guild(discord.utils.get(guild.members, id=mid), None)
+            except:
+                pass
         del gd["guilds"][name]
         return await self.db.update_guild_data(guild, gd)
 

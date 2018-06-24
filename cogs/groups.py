@@ -388,7 +388,7 @@ class Groups(object):
 
     @guild.command()
     @checks.no_pm()
-    async def delete(self, ctx, name=None):
+    async def delete(self, ctx, name: str=None):
         """Delete your guild"""
         if name is not None:
             assert checks.modpredicate(ctx)
@@ -400,7 +400,7 @@ class Groups(object):
                 return
         guilds = await self.bot.di.get_guild_guilds(ctx.guild)
         guild = guilds.get(ug)
-        if guild.owner != ctx.author.id and name is None:
+        if name is None and guild.owner != ctx.author.id:
             await ctx.send(await _(ctx, "You do not own this guild!"))
             return
 
