@@ -413,8 +413,8 @@ class Inventory(object):
             def lfmt(v):
                 fmt = "Input:\n{}\nOutput:\n{}"
 
-                inputstr = "\n".join(f"\t{i}: n" for i, n in v[0].items())
-                outputstr = "\n".join(f"\t{i}: n" for i, n in v[1].items())
+                inputstr = "\n".join(f"\t{i}: {n}" for i, n in v[0].items())
+                outputstr = "\n".join(f"\t{i}: {n}" for i, n in v[1].items())
                 return fmt.format(inputstr, outputstr)
 
             await create_pages(ctx, boxes, lfmt, description=desc, title=await _(ctx, "Server Recipes"),
@@ -475,6 +475,8 @@ class Inventory(object):
                 inmsg = await ctx.bot.wait_for("message",
                                                check=lambda x: x.author == ctx.author and (x.channel == ctx.channel),
                                                timeout=120)
+                if inmsg.content == "cancel":
+                    await ctx.send(await _(ctx, "Cancelling!"))
                 inmsgparts = parse_varargs(inmsg.content)
 
                 initems = []
@@ -484,8 +486,8 @@ class Inventory(object):
 
                 break
             except:
-                from traceback import print_exc
-                print_exc()
+                if isinstance(e, TimeoutError):
+                    raise
                 await ctx.send(await _(ctx, "Invalid formatting! Try again!"))
 
         await ctx.send(await _(ctx, "What items will be given upon the completion of this recipe? e.g. "
@@ -495,6 +497,10 @@ class Inventory(object):
                 outmsg = await ctx.bot.wait_for("message",
                                                 check=lambda x: x.author == ctx.author and (x.channel == ctx.channel),
                                                 timeout=120)
+                if outmsg.content == "cancel":
+                    await ctx.send(await _(ctx, "Cancelling!"))
+                    return
+
                 outmsgparts = parse_varargs(outmsg.content)
 
                 outitems = []
@@ -503,9 +509,9 @@ class Inventory(object):
                     outitems.append(("x".join(split[:-1]), abs(int(split[-1]))))
 
                 break
-            except:
-                from traceback import print_exc
-                print_exc()
+            except Exception as e:
+                if isinstance(e, TimeoutError):
+                    raise
                 await ctx.send(await _(ctx, "Invalid formatting! Try again!"))
 
         await ctx.bot.di.add_recipe(ctx.guild, name, dict(initems), dict(outitems))

@@ -218,6 +218,14 @@ class Settings(object):
     @checks.no_pm()
     @commands.command()
     @checks.mod_or_permissions()
+    async def loaddndmagic(self, ctx):
+        """This command will pre-load all D&D items and make them available to give"""
+        await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.dndmagic.values()))
+        await ctx.send(await _(ctx, "Successfully added all D&D items!"))
+
+    @checks.no_pm()
+    @commands.command()
+    @checks.mod_or_permissions()
     async def loadpokemon(self, ctx):
         """This command will pre-load all Pokemon items and make them available to give"""
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.dnditems.values()))

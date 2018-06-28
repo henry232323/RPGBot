@@ -51,8 +51,9 @@ class Salary(object):
                                                     await self.bot.di.set_eco(member, 0)
                                             else:
                                                 payamount, giveamount = sum(
-                                                    filter(lambda x: isinstance(x, int), amount)), tuple(filter(
-                                                    lambda x: isinstance(x, (list, tuple)), amount))
+                                                    filter(lambda x: isinstance(x, (int, float)), amount)), tuple(
+                                                    filter(
+                                                        lambda x: isinstance(x, (list, tuple)), amount))
                                                 if payamount:
                                                     try:
                                                         await self.bot.di.add_eco(member, payamount)
@@ -112,7 +113,7 @@ class Salary(object):
     @salary.command()
     @checks.no_pm()
     @checks.mod_or_permissions()
-    async def create(self, ctx, role: discord.Role, items_or_number: data.ItemOrNumber):
+    async def create(self, ctx, role: discord.Role, *items_or_number: data.ItemOrNumber):
         """Create a daily salary for a user with the given role.
          Roles are paid every day at 24:00, every user with the role will receive the amount specified.
          If a role with a salary is deleted, the salary will also be deleted.
@@ -148,6 +149,11 @@ class Salary(object):
         """Manually pay out salaries for a role or all roles"""
         dels = []
         roles = await self.bot.di.get_salaries(ctx.guild)
+        try:
+            if role is not None:
+                roles = {role.id: roles[str(role.id)]}
+        except KeyError:
+            await ctx.send(await _(ctx, "That role doesn't have a salary!"))
         for role, amount in roles.items():
             rob = discord.utils.get(ctx.guild.roles, id=int(role))
             if rob:
@@ -159,7 +165,7 @@ class Salary(object):
                             await self.bot.di.set_eco(member, 0)
                     else:
                         payamount, giveamount = sum(
-                            filter(lambda x: isinstance(x, int), amount)), tuple(filter(
+                            filter(lambda x: isinstance(x, (int, float)), amount)), tuple(filter(
                             lambda x: isinstance(x, (list, tuple)), amount))
                         if payamount:
                             try:
@@ -177,3 +183,5 @@ class Salary(object):
                 del roles[role]
 
             await self.bot.di.update_salaries(ctx.guild, roles)
+
+        await ctx.send(await _(ctx, "Salaries payed out"))

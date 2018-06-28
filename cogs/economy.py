@@ -42,7 +42,7 @@ class Economy(object):
         self.bot.shutdowns.append(self.shutdown)
 
     async def shutdown(self):
-        with open("lotteries.json", 'w') as lf:
+        with open("resources/lotteries.json", 'w') as lf:
             lf.write(json.dumps(self.bot.lotteries))
 
     @checks.no_pm()

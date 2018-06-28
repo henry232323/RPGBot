@@ -1,0 +1,3290 @@
+{
+    "Abacus": {
+        "name": "Abacus",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "2 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Abacus"
+    },
+    "Acid (vial)": {
+        "name": "Acid (vial)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "25 gp",
+            "Weight": "1 lb",
+            "Notes": "Combat, Damage, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Acid (vial)"
+    },
+    "Alchemist's Fire (flask)": {
+        "name": "Alchemist's Fire (flask)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "50 gp",
+            "Weight": "1 lb",
+            "Notes": "Combat, Consumable, Damage, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Alchemist's Fire (flask)"
+    },
+    "Alchemist's Supplies": {
+        "name": "Alchemist's Supplies",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "50 gp",
+            "Weight": "8 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Alchemist's Supplies"
+    },
+    "Alms Box": {
+        "name": "Alms Box",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Alms Box"
+    },
+    "Amulet": {
+        "name": "Amulet",
+        "meta": {
+            "Type": "Holy Symbol",
+            "Cost": "5 gp",
+            "Weight": "1 lb",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/holy-symbol.jpg"
+        },
+        "description": "Amulet"
+    },
+    "Antimatter Rifle": {
+        "name": "Antimatter Rifle",
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "10 lbs",
+            "Notes": "Reload (2 shots)",
+            "Attributes": "Necrotic",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/firearms-ranged-weapon.jpg"
+        },
+        "description": "Antimatter Rifle"
+    },
+    "Antitoxin": {
+        "name": "Antitoxin",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "50 gp",
+            "Weight": "--",
+            "Notes": "Healing, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Antitoxin"
+    },
+    "Arcane Focus": {
+        "name": "Arcane Focus",
+        "meta": {
+            "Type": "Arcane Focus",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/arcane-focus.jpg"
+        },
+        "description": "Arcane Focus"
+    },
+    "Arrows": {
+        "name": "Arrows",
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "1 gp",
+            "Weight": "1 lb",
+            "Notes": "Combat, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/ammunition.jpg"
+        },
+        "description": "Arrows"
+    },
+    "Assassin's Blood (Ingested)": {
+        "name": "Assassin's Blood (Ingested)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "150 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Assassin's Blood (Ingested)"
+    },
+    "Backpack": {
+        "name": "Backpack",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "5 lbs",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Backpack"
+    },
+    "Bagpipes": {
+        "name": "Bagpipes",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "30 gp",
+            "Weight": "6 lbs",
+            "Notes": "Instrument",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Bagpipes"
+    },
+    "Ball Bearings (bag of 1,000)": {
+        "name": "Ball Bearings (bag of 1,000)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Control, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Ball Bearings (bag of 1,000)"
+    },
+    "Barding": {
+        "name": "Barding",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "Cost x4, Weight x2",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Barding"
+    },
+    "Barrel": {
+        "name": "Barrel",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "70 lbs",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Barrel"
+    },
+    "Basket": {
+        "name": "Basket",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "4 sp",
+            "Weight": "2 lbs",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Basket"
+    },
+    "Battleaxe": {
+        "name": "Battleaxe",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "10 gp",
+            "Weight": "4 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Slashing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Battleaxe"
+    },
+    "Bedroll": {
+        "name": "Bedroll",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "7 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Bedroll"
+    },
+    "Bell": {
+        "name": "Bell",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "--",
+            "Notes": "Communication, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Bell"
+    },
+    "Bit and Bridle": {
+        "name": "Bit and Bridle",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "1 lb",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Bit and Bridle"
+    },
+    "Blanket": {
+        "name": "Blanket",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "3 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Blanket"
+    },
+    "Block and Tackle": {
+        "name": "Block and Tackle",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "5 lbs",
+            "Notes": "Exploration, Movement, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Block and Tackle"
+    },
+    "Block of Incense": {
+        "name": "Block of Incense",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Block of Incense"
+    },
+    "Blowgun": {
+        "name": "Blowgun",
+        "meta": {
+            "Type": "Martial Ranged Weapon",
+            "Cost": "10 gp",
+            "Weight": "1 lb",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-ranged-weapon.jpg"
+        },
+        "description": "Blowgun"
+    },
+    "Blowgun Needles": {
+        "name": "Blowgun Needles",
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "1 gp",
+            "Weight": "1 lb",
+            "Notes": "Combat, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/ammunition.jpg"
+        },
+        "description": "Blowgun Needles"
+    },
+    "Bomb": {
+        "name": "Bomb",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "150 gp",
+            "Weight": "1 lb",
+            "Notes": "Combat, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Bomb"
+    },
+    "Book": {
+        "name": "Book",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "25 gp",
+            "Weight": "5 lbs",
+            "Notes": "Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Book"
+    },
+    "Boomerang": {
+        "name": "Boomerang",
+        "meta": {
+            "Type": "Simple Ranged Weapon",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "Combat, Damage",
+            "Attributes": "Bludgeoning",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-ranged-weapon.jpg"
+        },
+        "description": "Boomerang"
+    },
+    "Bottle, Glass": {
+        "name": "Bottle, Glass",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "2 lbs",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Bottle, Glass"
+    },
+    "Breastplate": {
+        "name": "Breastplate",
+        "meta": {
+            "Type": "Medium Armor",
+            "Cost": "400 gp",
+            "Weight": "20 lbs",
+            "Notes": "Warding",
+            "Attributes": "AC 14",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/medium-armor.jpg"
+        },
+        "description": "Breastplate"
+    },
+    "Brewer's Supplies": {
+        "name": "Brewer's Supplies",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "20 gp",
+            "Weight": "9 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Brewer's Supplies"
+    },
+    "Bucket": {
+        "name": "Bucket",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 cp",
+            "Weight": "2 lbs",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Bucket"
+    },
+    "Bullets, Modern": {
+        "name": "Bullets, Modern",
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "--",
+            "Weight": "1 lb",
+            "Notes": "Combat, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/ammunition.jpg"
+        },
+        "description": "Bullets, Modern"
+    },
+    "Bullets, Renaissance": {
+        "name": "Bullets, Renaissance",
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "3 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/ammunition.jpg"
+        },
+        "description": "Bullets, Renaissance"
+    },
+    "Burglar's Pack": {
+        "name": "Burglar's Pack",
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "16 gp",
+            "Weight": "47 1/2 lbs",
+            "Notes": "Container, Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/equipment-pack.jpg"
+        },
+        "description": "Burglar's Pack"
+    },
+    "Burnt Othur Fumes (Inhaled)": {
+        "name": "Burnt Othur Fumes (Inhaled)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "500 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Burnt Othur Fumes (Inhaled)"
+    },
+    "Calligrapher's Supplies": {
+        "name": "Calligrapher's Supplies",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "10 gp",
+            "Weight": "5 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Calligrapher's Supplies"
+    },
+    "Caltrops (bag of 20)": {
+        "name": "Caltrops (bag of 20)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage, Movement",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Caltrops (bag of 20)"
+    },
+    "Camel": {
+        "name": "Camel",
+        "meta": {
+            "Type": "Mount",
+            "Cost": "50 gp",
+            "Weight": "--",
+            "Notes": "Speed 50 ft., Carrying Capacity 480 lbs.",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/mount.jpg"
+        },
+        "description": "Camel"
+    },
+    "Candle": {
+        "name": "Candle",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 cp",
+            "Weight": "--",
+            "Notes": "Consumable, Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Candle"
+    },
+    "Canoe": {
+        "name": "Canoe",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "50 gp",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Canoe"
+    },
+    "Carpenter's Tools": {
+        "name": "Carpenter's Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "8 gp",
+            "Weight": "6 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Carpenter's Tools"
+    },
+    "Carriage": {
+        "name": "Carriage",
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "100 gp",
+            "Weight": "600 lbs",
+            "Notes": "Exploration, Movement, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/vehicle.jpg"
+        },
+        "description": "Carriage"
+    },
+    "Cart": {
+        "name": "Cart",
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "15 gp",
+            "Weight": "200 lbs",
+            "Notes": "Exploration, Movement, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/vehicle.jpg"
+        },
+        "description": "Cart"
+    },
+    "Cartographer's Tools": {
+        "name": "Cartographer's Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "15 gp",
+            "Weight": "6 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Cartographer's Tools"
+    },
+    "Case, Crossbow Bolt": {
+        "name": "Case, Crossbow Bolt",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "1 lb",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Case, Crossbow Bolt"
+    },
+    "Case, Map or Scroll": {
+        "name": "Case, Map or Scroll",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "1 lb",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Case, Map or Scroll"
+    },
+    "Censer": {
+        "name": "Censer",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Censer"
+    },
+    "Chain (10 feet)": {
+        "name": "Chain (10 feet)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "10 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Chain (10 feet)"
+    },
+    "Chain Mail": {
+        "name": "Chain Mail",
+        "meta": {
+            "Type": "Heavy Armor",
+            "Cost": "75 gp",
+            "Weight": "55 lbs",
+            "Notes": "Warding",
+            "Attributes": "AC 16",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/heavy-armor.jpg"
+        },
+        "description": "Chain Mail"
+    },
+    "Chain Shirt": {
+        "name": "Chain Shirt",
+        "meta": {
+            "Type": "Medium Armor",
+            "Cost": "50 gp",
+            "Weight": "20 lbs",
+            "Notes": "Warding",
+            "Attributes": "AC 13",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/medium-armor.jpg"
+        },
+        "description": "Chain Shirt"
+    },
+    "Chalk (1 piece)": {
+        "name": "Chalk (1 piece)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 cp",
+            "Weight": "--",
+            "Notes": "Communication, Consumable, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Chalk (1 piece)"
+    },
+    "Chariot": {
+        "name": "Chariot",
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "250 gp",
+            "Weight": "100 lbs",
+            "Notes": "Exploration, Movement, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/vehicle.jpg"
+        },
+        "description": "Chariot"
+    },
+    "Chest": {
+        "name": "Chest",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "25 lbs",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Chest"
+    },
+    "Climber's Kit": {
+        "name": "Climber's Kit",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "25 gp",
+            "Weight": "12 lbs",
+            "Notes": "Exploration, Movement, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Climber's Kit"
+    },
+    "Clothes, Common": {
+        "name": "Clothes, Common",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "3 lbs",
+            "Notes": "Outerwear, Social",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Clothes, Common"
+    },
+    "Clothes, Costume": {
+        "name": "Clothes, Costume",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "4 lbs",
+            "Notes": "Deception, Outerwear, Social",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Clothes, Costume"
+    },
+    "Clothes, Fine": {
+        "name": "Clothes, Fine",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "15 gp",
+            "Weight": "6 lbs",
+            "Notes": "Outerwear, Social",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Clothes, Fine"
+    },
+    "Clothes, Traveler's": {
+        "name": "Clothes, Traveler's",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "4 lbs",
+            "Notes": "Outerwear, Social",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Clothes, Traveler's"
+    },
+    "Club": {
+        "name": "Club",
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "1 sp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Bludgeoning",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-melee-weapon.jpg"
+        },
+        "description": "Club"
+    },
+    "Cobbler's Tools": {
+        "name": "Cobbler's Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "5 gp",
+            "Weight": "5 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Cobbler's Tools"
+    },
+    "Component Pouch": {
+        "name": "Component Pouch",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "25 gp",
+            "Weight": "2 lbs",
+            "Notes": "Container, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Component Pouch"
+    },
+    "Cook's Utensils": {
+        "name": "Cook's Utensils",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "1 gp",
+            "Weight": "8 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Cook's Utensils"
+    },
+    "Crawler Mucus (Contact)": {
+        "name": "Crawler Mucus (Contact)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "200 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Damage, Debuff",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Crawler Mucus (Contact)"
+    },
+    "Crossbow Bolts": {
+        "name": "Crossbow Bolts",
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "1 gp",
+            "Weight": "1 1/2 lb",
+            "Notes": "Combat, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/ammunition.jpg"
+        },
+        "description": "Crossbow Bolts"
+    },
+    "Crossbow, Hand": {
+        "name": "Crossbow, Hand",
+        "meta": {
+            "Type": "Martial Ranged Weapon",
+            "Cost": "75 gp",
+            "Weight": "3 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-ranged-weapon.jpg"
+        },
+        "description": "Crossbow, Hand"
+    },
+    "Crossbow, Heavy": {
+        "name": "Crossbow, Heavy",
+        "meta": {
+            "Type": "Martial Ranged Weapon",
+            "Cost": "50 gp",
+            "Weight": "18 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-ranged-weapon.jpg"
+        },
+        "description": "Crossbow, Heavy"
+    },
+    "Crossbow, Light": {
+        "name": "Crossbow, Light",
+        "meta": {
+            "Type": "Simple Ranged Weapon",
+            "Cost": "25 gp",
+            "Weight": "5 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-ranged-weapon.jpg"
+        },
+        "description": "Crossbow, Light"
+    },
+    "Crowbar": {
+        "name": "Crowbar",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "5 lbs",
+            "Notes": "Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Crowbar"
+    },
+    "Crystal": {
+        "name": "Crystal",
+        "meta": {
+            "Type": "Arcane Focus",
+            "Cost": "10 gp",
+            "Weight": "1 lb",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/arcane-focus.jpg"
+        },
+        "description": "Crystal"
+    },
+    "Dagger": {
+        "name": "Dagger",
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "2 gp",
+            "Weight": "1 lb",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-melee-weapon.jpg"
+        },
+        "description": "Dagger"
+    },
+    "Dart": {
+        "name": "Dart",
+        "meta": {
+            "Type": "Simple Ranged Weapon",
+            "Cost": "5 cp",
+            "Weight": "1/4 lb",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-ranged-weapon.jpg"
+        },
+        "description": "Dart"
+    },
+    "Dice Set": {
+        "name": "Dice Set",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "1 sp",
+            "Weight": "--",
+            "Notes": "Social",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Dice Set"
+    },
+    "Diplomat's Pack": {
+        "name": "Diplomat's Pack",
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "39 gp",
+            "Weight": "36 lbs",
+            "Notes": "Container, Exploration, Outerwear, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/equipment-pack.jpg"
+        },
+        "description": "Diplomat's Pack"
+    },
+    "Disguise Kit": {
+        "name": "Disguise Kit",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "25 gp",
+            "Weight": "3 lbs",
+            "Notes": "Deception, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Disguise Kit"
+    },
+    "Donkey (or Mule)": {
+        "name": "Donkey (or Mule)",
+        "meta": {
+            "Type": "Mount",
+            "Cost": "8 gp",
+            "Weight": "--",
+            "Notes": "Speed 40 ft., Carrying Capacity 420 lbs.",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/mount.jpg"
+        },
+        "description": "Donkey (or Mule)"
+    },
+    "Draft Horse": {
+        "name": "Draft Horse",
+        "meta": {
+            "Type": "Mount",
+            "Cost": "50 gp",
+            "Weight": "--",
+            "Notes": "Speed 40 ft., Carrying Capacity 540 lbs.",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/mount.jpg"
+        },
+        "description": "Draft Horse"
+    },
+    "Dragonchess Set": {
+        "name": "Dragonchess Set",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "1 gp",
+            "Weight": "1/2 lb",
+            "Notes": "Social",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Dragonchess Set"
+    },
+    "Drow Poison (Injury)": {
+        "name": "Drow Poison (Injury)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "200 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Damage, Debuff",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Drow Poison (Injury)"
+    },
+    "Druidic Focus": {
+        "name": "Druidic Focus",
+        "meta": {
+            "Type": "Druidic Focus",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/druidic-focus.jpg"
+        },
+        "description": "Druidic Focus"
+    },
+    "Drum": {
+        "name": "Drum",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "6 gp",
+            "Weight": "3 lbs",
+            "Notes": "Instrument",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Drum"
+    },
+    "Dulcimer": {
+        "name": "Dulcimer",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "25 gp",
+            "Weight": "10 lbs",
+            "Notes": "Instrument",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Dulcimer"
+    },
+    "Dungeoneer's Pack": {
+        "name": "Dungeoneer's Pack",
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "12 gp",
+            "Weight": "61 1/2 lbs",
+            "Notes": "Container, Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/equipment-pack.jpg"
+        },
+        "description": "Dungeoneer's Pack"
+    },
+    "Dynamite (Stick)": {
+        "name": "Dynamite (Stick)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "1 lb",
+            "Notes": "Combat, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Dynamite (Stick)"
+    },
+    "Elephant": {
+        "name": "Elephant",
+        "meta": {
+            "Type": "Mount",
+            "Cost": "200 gp",
+            "Weight": "--",
+            "Notes": "Speed 40 ft., Carrying Capacity 1,320 lbs.",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/mount.jpg"
+        },
+        "description": "Elephant"
+    },
+    "Emblem": {
+        "name": "Emblem",
+        "meta": {
+            "Type": "Holy Symbol",
+            "Cost": "5 gp",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/holy-symbol.jpg"
+        },
+        "description": "Emblem"
+    },
+    "Energy Cell": {
+        "name": "Energy Cell",
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "--",
+            "Weight": "lb",
+            "Notes": "Combat, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/ammunition.jpg"
+        },
+        "description": "Energy Cell"
+    },
+    "Entertainer's Pack": {
+        "name": "Entertainer's Pack",
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "40 gp",
+            "Weight": "38 lbs",
+            "Notes": "Container, Deception, Exploration, Outerwear, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/equipment-pack.jpg"
+        },
+        "description": "Entertainer's Pack"
+    },
+    "Essence of Ether (Inhaled)": {
+        "name": "Essence of Ether (Inhaled)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "300 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Damage, Debuff",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Essence of Ether (Inhaled)"
+    },
+    "Explorer's Pack": {
+        "name": "Explorer's Pack",
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "10 gp",
+            "Weight": "59 lbs",
+            "Notes": "Container, Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/equipment-pack.jpg"
+        },
+        "description": "Explorer's Pack"
+    },
+    "Feed (per day)": {
+        "name": "Feed (per day)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 cp",
+            "Weight": "10 lbs",
+            "Notes": "Consumable, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Feed (per day)"
+    },
+    "Fishing Tackle": {
+        "name": "Fishing Tackle",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "4 lbs",
+            "Notes": "Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Fishing Tackle"
+    },
+    "Flail": {
+        "name": "Flail",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "10 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Bludgeoning",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Flail"
+    },
+    "Flask or Tankard": {
+        "name": "Flask or Tankard",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 cp",
+            "Weight": "1 lb",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Flask or Tankard"
+    },
+    "Flute": {
+        "name": "Flute",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "2 gp",
+            "Weight": "1 lb",
+            "Notes": "Instrument",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Flute"
+    },
+    "Forgery Kit": {
+        "name": "Forgery Kit",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "15 gp",
+            "Weight": "5 lbs",
+            "Notes": "Deception, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Forgery Kit"
+    },
+    "Galley": {
+        "name": "Galley",
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "30000 gp",
+            "Weight": "--",
+            "Notes": "Speed 4 mph",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/vehicle.jpg"
+        },
+        "description": "Galley"
+    },
+    "Glaive": {
+        "name": "Glaive",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "20 gp",
+            "Weight": "6 lbs",
+            "Notes": "Combat, Control, Damage",
+            "Attributes": "Slashing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Glaive"
+    },
+    "Glassblower's Tools": {
+        "name": "Glassblower's Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "30 gp",
+            "Weight": "5 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Glassblower's Tools"
+    },
+    "Grappling Hook": {
+        "name": "Grappling Hook",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "4 lbs",
+            "Notes": "Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Grappling Hook"
+    },
+    "Greataxe": {
+        "name": "Greataxe",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "30 gp",
+            "Weight": "6 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Slashing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Greataxe"
+    },
+    "Greatclub": {
+        "name": "Greatclub",
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "2 sp",
+            "Weight": "10 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Bludgeoning",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-melee-weapon.jpg"
+        },
+        "description": "Greatclub"
+    },
+    "Greatsword": {
+        "name": "Greatsword",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "50 gp",
+            "Weight": "6 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Slashing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Greatsword"
+    },
+    "Grenade Launcher": {
+        "name": "Grenade Launcher",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "7 lbs",
+            "Notes": "Combat, Control, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Grenade Launcher"
+    },
+    "Grenade, Fragmentation": {
+        "name": "Grenade, Fragmentation",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "1 lb",
+            "Notes": "Combat, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Grenade, Fragmentation"
+    },
+    "Grenade, Smoke": {
+        "name": "Grenade, Smoke",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Control",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Grenade, Smoke"
+    },
+    "Gunpowder, Keg": {
+        "name": "Gunpowder, Keg",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "250 gp",
+            "Weight": "20 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Gunpowder, Keg"
+    },
+    "Gunpowder, Powder Horn": {
+        "name": "Gunpowder, Powder Horn",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "35 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Gunpowder, Powder Horn"
+    },
+    "Halberd": {
+        "name": "Halberd",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "20 gp",
+            "Weight": "6 lbs",
+            "Notes": "Combat, Control, Damage",
+            "Attributes": "Slashing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Halberd"
+    },
+    "Half Plate": {
+        "name": "Half Plate",
+        "meta": {
+            "Type": "Medium Armor",
+            "Cost": "750 gp",
+            "Weight": "40 lbs",
+            "Notes": "Warding",
+            "Attributes": "AC 15",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/medium-armor.jpg"
+        },
+        "description": "Half Plate"
+    },
+    "Hammer": {
+        "name": "Hammer",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "3 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Hammer"
+    },
+    "Hammer, Sledge": {
+        "name": "Hammer, Sledge",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "10 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Hammer, Sledge"
+    },
+    "Handaxe": {
+        "name": "Handaxe",
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "5 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Slashing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-melee-weapon.jpg"
+        },
+        "description": "Handaxe"
+    },
+    "Healer's Kit": {
+        "name": "Healer's Kit",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "3 lbs",
+            "Notes": "Combat, Healing",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Healer's Kit"
+    },
+    "Herbalism Kit": {
+        "name": "Herbalism Kit",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "5 gp",
+            "Weight": "3 lbs",
+            "Notes": "Healing, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Herbalism Kit"
+    },
+    "Hide": {
+        "name": "Hide",
+        "meta": {
+            "Type": "Medium Armor",
+            "Cost": "10 gp",
+            "Weight": "12 lbs",
+            "Notes": "Warding",
+            "Attributes": "AC 12",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/medium-armor.jpg"
+        },
+        "description": "Hide"
+    },
+    "Holy Symbol": {
+        "name": "Holy Symbol",
+        "meta": {
+            "Type": "Holy Symbol",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/holy-symbol.jpg"
+        },
+        "description": "Holy Symbol"
+    },
+    "Holy Water (flask)": {
+        "name": "Holy Water (flask)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "25 gp",
+            "Weight": "1 lb",
+            "Notes": "Combat, Damage, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Holy Water (flask)"
+    },
+    "Horn": {
+        "name": "Horn",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "3 gp",
+            "Weight": "2 lbs",
+            "Notes": "Instrument",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Horn"
+    },
+    "Hourglass": {
+        "name": "Hourglass",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "25 gp",
+            "Weight": "1 lb",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Hourglass"
+    },
+    "Hunting Trap": {
+        "name": "Hunting Trap",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "25 lbs",
+            "Notes": "Damage, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Hunting Trap"
+    },
+    "Ink (1 ounce bottle)": {
+        "name": "Ink (1 ounce bottle)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "10 gp",
+            "Weight": "--",
+            "Notes": "Communication, Consumable, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Ink (1 ounce bottle)"
+    },
+    "Ink Pen": {
+        "name": "Ink Pen",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 cp",
+            "Weight": "--",
+            "Notes": "Communication, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Ink Pen"
+    },
+    "Insect Repellant-Salve": {
+        "name": "Insect Repellant-Salve",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Insect Repellant-Salve"
+    },
+    "Insect Repellent-Incense": {
+        "name": "Insect Repellent-Incense",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 sp",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Insect Repellent-Incense"
+    },
+    "Javelin": {
+        "name": "Javelin",
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "5 sp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-melee-weapon.jpg"
+        },
+        "description": "Javelin"
+    },
+    "Jeweler's Tools": {
+        "name": "Jeweler's Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "25 gp",
+            "Weight": "2 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Jeweler's Tools"
+    },
+    "Jug or Pitcher": {
+        "name": "Jug or Pitcher",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 cp",
+            "Weight": "4 lbs",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Jug or Pitcher"
+    },
+    "Keelboat": {
+        "name": "Keelboat",
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "3000 gp",
+            "Weight": "--",
+            "Notes": "Speed 1 mph",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/vehicle.jpg"
+        },
+        "description": "Keelboat"
+    },
+    "Ladder (10 foot)": {
+        "name": "Ladder (10 foot)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 sp",
+            "Weight": "25 lbs",
+            "Notes": "Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Ladder (10 foot)"
+    },
+    "Lamp": {
+        "name": "Lamp",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "1 lb",
+            "Notes": "Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Lamp"
+    },
+    "Lance": {
+        "name": "Lance",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "10 gp",
+            "Weight": "6 lbs",
+            "Notes": "Combat, Control, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Lance"
+    },
+    "Lantern, Bullseye": {
+        "name": "Lantern, Bullseye",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "10 gp",
+            "Weight": "2 lbs",
+            "Notes": "Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Lantern, Bullseye"
+    },
+    "Lantern, Hooded": {
+        "name": "Lantern, Hooded",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "2 lbs",
+            "Notes": "Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Lantern, Hooded"
+    },
+    "Laser Pistol": {
+        "name": "Laser Pistol",
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "2 lbs",
+            "Notes": "Reload (50 shots)",
+            "Attributes": "Radiant",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/firearms-ranged-weapon.jpg"
+        },
+        "description": "Laser Pistol"
+    },
+    "Laser Rifle": {
+        "name": "Laser Rifle",
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "7 lbs",
+            "Notes": "Reload (30 shots)",
+            "Attributes": "Radiant",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/firearms-ranged-weapon.jpg"
+        },
+        "description": "Laser Rifle"
+    },
+    "Leather": {
+        "name": "Leather",
+        "meta": {
+            "Type": "Light Armor",
+            "Cost": "10 gp",
+            "Weight": "10 lbs",
+            "Notes": "Warding",
+            "Attributes": "AC 11",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/light-armor.jpg"
+        },
+        "description": "Leather"
+    },
+    "Leatherworker's Tools": {
+        "name": "Leatherworker's Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "5 gp",
+            "Weight": "5 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Leatherworker's Tools"
+    },
+    "Light Hammer": {
+        "name": "Light Hammer",
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "2 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Bludgeoning",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-melee-weapon.jpg"
+        },
+        "description": "Light Hammer"
+    },
+    "Little Bag of Sand": {
+        "name": "Little Bag of Sand",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Little Bag of Sand"
+    },
+    "Lock": {
+        "name": "Lock",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "10 gp",
+            "Weight": "1 lb",
+            "Notes": "Utility, Warding",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Lock"
+    },
+    "Longbow": {
+        "name": "Longbow",
+        "meta": {
+            "Type": "Martial Ranged Weapon",
+            "Cost": "50 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-ranged-weapon.jpg"
+        },
+        "description": "Longbow"
+    },
+    "Longship": {
+        "name": "Longship",
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "10000 gp",
+            "Weight": "--",
+            "Notes": "Speed 3 mph",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/vehicle.jpg"
+        },
+        "description": "Longship"
+    },
+    "Longsword": {
+        "name": "Longsword",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "15 gp",
+            "Weight": "3 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Slashing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Longsword"
+    },
+    "Lute": {
+        "name": "Lute",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "35 gp",
+            "Weight": "2 lbs",
+            "Notes": "Instrument",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Lute"
+    },
+    "Lyre": {
+        "name": "Lyre",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "30 gp",
+            "Weight": "2 lbs",
+            "Notes": "Instrument",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Lyre"
+    },
+    "Mace": {
+        "name": "Mace",
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "5 gp",
+            "Weight": "4 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Bludgeoning",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-melee-weapon.jpg"
+        },
+        "description": "Mace"
+    },
+    "Magnifying Glass": {
+        "name": "Magnifying Glass",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "100 gp",
+            "Weight": "--",
+            "Notes": "Detection, Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Magnifying Glass"
+    },
+    "Malice (Inhaled)": {
+        "name": "Malice (Inhaled)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "250 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Damage, Debuff",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Malice (Inhaled)"
+    },
+    "Manacles": {
+        "name": "Manacles",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "6 lbs",
+            "Notes": "Control, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Manacles"
+    },
+    "Mason's Tools": {
+        "name": "Mason's Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "10 gp",
+            "Weight": "8 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Mason's Tools"
+    },
+    "Mastiff": {
+        "name": "Mastiff",
+        "meta": {
+            "Type": "Mount",
+            "Cost": "25 gp",
+            "Weight": "--",
+            "Notes": "Speed 40 ft., Carrying Capacity 195 lbs.",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/mount.jpg"
+        },
+        "description": "Mastiff"
+    },
+    "Maul": {
+        "name": "Maul",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "10 gp",
+            "Weight": "10 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Bludgeoning",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Maul"
+    },
+    "Mess Kit": {
+        "name": "Mess Kit",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 sp",
+            "Weight": "1 lb",
+            "Notes": "Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Mess Kit"
+    },
+    "Midnight Tears (Ingested)": {
+        "name": "Midnight Tears (Ingested)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "1500 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Midnight Tears (Ingested)"
+    },
+    "Mirror, Steel": {
+        "name": "Mirror, Steel",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "1/2 lb",
+            "Notes": "Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Mirror, Steel"
+    },
+    "Monster Hunter's Pack": {
+        "name": "Monster Hunter's Pack",
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "33 gp",
+            "Weight": "49 lbs",
+            "Notes": "Container, Control, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/equipment-pack.jpg"
+        },
+        "description": "Monster Hunter's Pack"
+    },
+    "Morningstar": {
+        "name": "Morningstar",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "15 gp",
+            "Weight": "4 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Morningstar"
+    },
+    "Musket": {
+        "name": "Musket",
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "500 gp",
+            "Weight": "10 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/firearms-ranged-weapon.jpg"
+        },
+        "description": "Musket"
+    },
+    "Navigator's Tools": {
+        "name": "Navigator's Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "25 gp",
+            "Weight": "2 lbs",
+            "Notes": "Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Navigator's Tools"
+    },
+    "Net": {
+        "name": "Net",
+        "meta": {
+            "Type": "Martial Ranged Weapon",
+            "Cost": "1 gp",
+            "Weight": "3 lbs",
+            "Notes": "Combat, Control",
+            "Attributes": "Bludgeoning",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-ranged-weapon.jpg"
+        },
+        "description": "Net"
+    },
+    "Oil (flask)": {
+        "name": "Oil (flask)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 sp",
+            "Weight": "1 lb",
+            "Notes": "Combat, Damage, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Oil (flask)"
+    },
+    "Oil of Taggit (Contact)": {
+        "name": "Oil of Taggit (Contact)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "400 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Damage, Debuff",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Oil of Taggit (Contact)"
+    },
+    "Orb": {
+        "name": "Orb",
+        "meta": {
+            "Type": "Arcane Focus",
+            "Cost": "20 gp",
+            "Weight": "3 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/arcane-focus.jpg"
+        },
+        "description": "Orb"
+    },
+    "Padded": {
+        "name": "Padded",
+        "meta": {
+            "Type": "Light Armor",
+            "Cost": "5 gp",
+            "Weight": "8 lbs",
+            "Notes": "Warding",
+            "Attributes": "AC 11",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/light-armor.jpg"
+        },
+        "description": "Padded"
+    },
+    "Painter's Supplies": {
+        "name": "Painter's Supplies",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "10 gp",
+            "Weight": "5 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Painter's Supplies"
+    },
+    "Pale Tincture (Ingested)": {
+        "name": "Pale Tincture (Ingested)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "250 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Damage, Debuff",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Pale Tincture (Ingested)"
+    },
+    "Pan Flute": {
+        "name": "Pan Flute",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "12 gp",
+            "Weight": "2 lbs",
+            "Notes": "Instrument",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Pan Flute"
+    },
+    "Paper (one sheet)": {
+        "name": "Paper (one sheet)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 sp",
+            "Weight": "--",
+            "Notes": "Communication, Consumable, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Paper (one sheet)"
+    },
+    "Parchment (one sheet)": {
+        "name": "Parchment (one sheet)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 sp",
+            "Weight": "--",
+            "Notes": "Communication, Consumable, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Parchment (one sheet)"
+    },
+    "Perfume (vial)": {
+        "name": "Perfume (vial)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Perfume (vial)"
+    },
+    "Pick, Miner's": {
+        "name": "Pick, Miner's",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "10 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Pick, Miner's"
+    },
+    "Pike": {
+        "name": "Pike",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "5 gp",
+            "Weight": "18 lbs",
+            "Notes": "Combat, Control, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Pike"
+    },
+    "Pistol": {
+        "name": "Pistol",
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "250 gp",
+            "Weight": "3 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/firearms-ranged-weapon.jpg"
+        },
+        "description": "Pistol"
+    },
+    "Pistol, Automatic": {
+        "name": "Pistol, Automatic",
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "3 lbs",
+            "Notes": "Reload (15 shots)",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/firearms-ranged-weapon.jpg"
+        },
+        "description": "Pistol, Automatic"
+    },
+    "Piton": {
+        "name": "Piton",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 cp",
+            "Weight": "1/4 lb",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Piton"
+    },
+    "Plate": {
+        "name": "Plate",
+        "meta": {
+            "Type": "Heavy Armor",
+            "Cost": "1500 gp",
+            "Weight": "65 lbs",
+            "Notes": "Warding",
+            "Attributes": "AC 18",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/heavy-armor.jpg"
+        },
+        "description": "Plate"
+    },
+    "Playing Card Set": {
+        "name": "Playing Card Set",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "5 sp",
+            "Weight": "--",
+            "Notes": "Social",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Playing Card Set"
+    },
+    "Poison, Basic (vial)": {
+        "name": "Poison, Basic (vial)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "100 gp",
+            "Weight": "--",
+            "Notes": "Combat, Consumable, Damage, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Poison, Basic (vial)"
+    },
+    "Poisoner's Kit": {
+        "name": "Poisoner's Kit",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "50 gp",
+            "Weight": "2 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Poisoner's Kit"
+    },
+    "Pole (10-foot)": {
+        "name": "Pole (10-foot)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 cp",
+            "Weight": "7 lbs",
+            "Notes": "Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Pole (10-foot)"
+    },
+    "Pony": {
+        "name": "Pony",
+        "meta": {
+            "Type": "Mount",
+            "Cost": "30 gp",
+            "Weight": "--",
+            "Notes": "Speed 40 ft., Carrying Capacity 225 lbs.",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/mount.jpg"
+        },
+        "description": "Pony"
+    },
+    "Pot, Iron": {
+        "name": "Pot, Iron",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "10 lbs",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Pot, Iron"
+    },
+    "Potion of Healing": {
+        "name": "Potion of Healing",
+        "meta": {
+            "Type": "Potion",
+            "Cost": "50 gp",
+            "Weight": "1/2 lb",
+            "Notes": "Combat, Consumable, Healing",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/potion.jpg"
+        },
+        "description": "Potion of Healing"
+    },
+    "Potter's Tools": {
+        "name": "Potter's Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "10 gp",
+            "Weight": "3 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Potter's Tools"
+    },
+    "Pouch": {
+        "name": "Pouch",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "1 lb",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Pouch"
+    },
+    "Priest's Pack": {
+        "name": "Priest's Pack",
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "19 gp",
+            "Weight": "24 lbs",
+            "Notes": "Container, Exploration, Outerwear, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/equipment-pack.jpg"
+        },
+        "description": "Priest's Pack"
+    },
+    "Purple Worm Poison (Injury)": {
+        "name": "Purple Worm Poison (Injury)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "2000 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Damage, Debuff",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Purple Worm Poison (Injury)"
+    },
+    "Quarterstaff": {
+        "name": "Quarterstaff",
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "2 sp",
+            "Weight": "4 lbs",
+            "Notes": "--",
+            "Attributes": "Bludgeoning",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-melee-weapon.jpg"
+        },
+        "description": "Quarterstaff"
+    },
+    "Quiver": {
+        "name": "Quiver",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "1 lb",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Quiver"
+    },
+    "Rain Catcher": {
+        "name": "Rain Catcher",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "5 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Rain Catcher"
+    },
+    "Ram, Portable": {
+        "name": "Ram, Portable",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "4 gp",
+            "Weight": "35 lbs",
+            "Notes": "Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Ram, Portable"
+    },
+    "Rapier": {
+        "name": "Rapier",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "25 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Rapier"
+    },
+    "Rations (1 day)": {
+        "name": "Rations (1 day)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "2 lbs",
+            "Notes": "Consumable, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Rations (1 day)"
+    },
+    "Reliquary": {
+        "name": "Reliquary",
+        "meta": {
+            "Type": "Holy Symbol",
+            "Cost": "5 gp",
+            "Weight": "2 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/holy-symbol.jpg"
+        },
+        "description": "Reliquary"
+    },
+    "Revolver": {
+        "name": "Revolver",
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "3 lbs",
+            "Notes": "Reload (6 shots)",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/firearms-ranged-weapon.jpg"
+        },
+        "description": "Revolver"
+    },
+    "Riding Horse": {
+        "name": "Riding Horse",
+        "meta": {
+            "Type": "Mount",
+            "Cost": "75 gp",
+            "Weight": "--",
+            "Notes": "Speed 60 ft., Carrying Capacity 480 lbs.",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/mount.jpg"
+        },
+        "description": "Riding Horse"
+    },
+    "Rifle, Automatic": {
+        "name": "Rifle, Automatic",
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "8 lbs",
+            "Notes": "Reload (30 shots)",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/firearms-ranged-weapon.jpg"
+        },
+        "description": "Rifle, Automatic"
+    },
+    "Rifle, Hunting": {
+        "name": "Rifle, Hunting",
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "8 lbs",
+            "Notes": "Reload (5 shots)",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/firearms-ranged-weapon.jpg"
+        },
+        "description": "Rifle, Hunting"
+    },
+    "Ring Mail": {
+        "name": "Ring Mail",
+        "meta": {
+            "Type": "Heavy Armor",
+            "Cost": "30 gp",
+            "Weight": "40 lbs",
+            "Notes": "Warding",
+            "Attributes": "AC 14",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/heavy-armor.jpg"
+        },
+        "description": "Ring Mail"
+    },
+    "Robes": {
+        "name": "Robes",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "4 lbs",
+            "Notes": "Outerwear, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Robes"
+    },
+    "Rod": {
+        "name": "Rod",
+        "meta": {
+            "Type": "Arcane Focus",
+            "Cost": "10 gp",
+            "Weight": "2 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/arcane-focus.jpg"
+        },
+        "description": "Rod"
+    },
+    "Rope, Hempen (50 feet)": {
+        "name": "Rope, Hempen (50 feet)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "10 lbs",
+            "Notes": "Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Rope, Hempen (50 feet)"
+    },
+    "Rope, Silk (50 feet)": {
+        "name": "Rope, Silk (50 feet)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "10 gp",
+            "Weight": "5 lbs",
+            "Notes": "Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Rope, Silk (50 feet)"
+    },
+    "Rowboat": {
+        "name": "Rowboat",
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "50 gp",
+            "Weight": "100 lbs",
+            "Notes": "Speed 1 1/2 mph",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/vehicle.jpg"
+        },
+        "description": "Rowboat"
+    },
+    "Sack": {
+        "name": "Sack",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 cp",
+            "Weight": "1/2 lb",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Sack"
+    },
+    "Saddle, Exotic": {
+        "name": "Saddle, Exotic",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "60 gp",
+            "Weight": "40 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Saddle, Exotic"
+    },
+    "Saddle, Military": {
+        "name": "Saddle, Military",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "20 gp",
+            "Weight": "30 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Saddle, Military"
+    },
+    "Saddle, Pack": {
+        "name": "Saddle, Pack",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "15 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Saddle, Pack"
+    },
+    "Saddle, Riding": {
+        "name": "Saddle, Riding",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "10 gp",
+            "Weight": "25 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Saddle, Riding"
+    },
+    "Saddlebags": {
+        "name": "Saddlebags",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "4 gp",
+            "Weight": "8 lbs",
+            "Notes": "Container, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Saddlebags"
+    },
+    "Sailing Ship": {
+        "name": "Sailing Ship",
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "10000 gp",
+            "Weight": "--",
+            "Notes": "Speed 2 mph",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/vehicle.jpg"
+        },
+        "description": "Sailing Ship"
+    },
+    "Scale Mail": {
+        "name": "Scale Mail",
+        "meta": {
+            "Type": "Medium Armor",
+            "Cost": "50 gp",
+            "Weight": "45 lbs",
+            "Notes": "Warding",
+            "Attributes": "AC 14",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/medium-armor.jpg"
+        },
+        "description": "Scale Mail"
+    },
+    "Scale, Merchant's": {
+        "name": "Scale, Merchant's",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "3 lbs",
+            "Notes": "Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Scale, Merchant's"
+    },
+    "Scholar's Pack": {
+        "name": "Scholar's Pack",
+        "meta": {
+            "Type": "Equipment Pack",
+            "Cost": "40 gp",
+            "Weight": "10 lbs",
+            "Notes": "Container, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/equipment-pack.jpg"
+        },
+        "description": "Scholar's Pack"
+    },
+    "Scimitar": {
+        "name": "Scimitar",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "25 gp",
+            "Weight": "3 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Slashing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Scimitar"
+    },
+    "Sealing Wax": {
+        "name": "Sealing Wax",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "--",
+            "Notes": "Communication, Consumable, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Sealing Wax"
+    },
+    "Serpent Venom (Injury)": {
+        "name": "Serpent Venom (Injury)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "200 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Damage, Debuff",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Serpent Venom (Injury)"
+    },
+    "Shawm": {
+        "name": "Shawm",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "2 gp",
+            "Weight": "1 lb",
+            "Notes": "Instrument",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Shawm"
+    },
+    "Shield": {
+        "name": "Shield",
+        "meta": {
+            "Type": "Shield",
+            "Cost": "--",
+            "Weight": "6 lbs",
+            "Notes": "Warding",
+            "Attributes": "AC 2",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/shield.jpg"
+        },
+        "description": "Shield"
+    },
+    "Shortbow": {
+        "name": "Shortbow",
+        "meta": {
+            "Type": "Simple Ranged Weapon",
+            "Cost": "25 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-ranged-weapon.jpg"
+        },
+        "description": "Shortbow"
+    },
+    "Shortsword": {
+        "name": "Shortsword",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "10 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Shortsword"
+    },
+    "Shotgun": {
+        "name": "Shotgun",
+        "meta": {
+            "Type": "Firearms Ranged Weapon",
+            "Cost": "--",
+            "Weight": "7 lbs",
+            "Notes": "Reload (2 shots)",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/firearms-ranged-weapon.jpg"
+        },
+        "description": "Shotgun"
+    },
+    "Shovel": {
+        "name": "Shovel",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "5 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Shovel"
+    },
+    "Sickle": {
+        "name": "Sickle",
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "1 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Slashing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-melee-weapon.jpg"
+        },
+        "description": "Sickle"
+    },
+    "Signal Whistle": {
+        "name": "Signal Whistle",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "50 cp",
+            "Weight": "--",
+            "Notes": "Communication, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Signal Whistle"
+    },
+    "Signet Ring": {
+        "name": "Signet Ring",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 gp",
+            "Weight": "--",
+            "Notes": "Communication, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Signet Ring"
+    },
+    "Sled": {
+        "name": "Sled",
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "20 gp",
+            "Weight": "300 lbs",
+            "Notes": "Exploration, Movement, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/vehicle.jpg"
+        },
+        "description": "Sled"
+    },
+    "Sling": {
+        "name": "Sling",
+        "meta": {
+            "Type": "Simple Ranged Weapon",
+            "Cost": "1 sp",
+            "Weight": "--",
+            "Notes": "Combat, Damage",
+            "Attributes": "Bludgeoning",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-ranged-weapon.jpg"
+        },
+        "description": "Sling"
+    },
+    "Sling Bullets": {
+        "name": "Sling Bullets",
+        "meta": {
+            "Type": "Ammunition",
+            "Cost": "1 cp",
+            "Weight": "1 1/2 lb",
+            "Notes": "Combat, Damage",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/ammunition.jpg"
+        },
+        "description": "Sling Bullets"
+    },
+    "Small Knife": {
+        "name": "Small Knife",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Small Knife"
+    },
+    "Smith's Tools": {
+        "name": "Smith's Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "20 gp",
+            "Weight": "8 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Smith's Tools"
+    },
+    "Soap": {
+        "name": "Soap",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 cp",
+            "Weight": "--",
+            "Notes": "Consumable, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Soap"
+    },
+    "Spear": {
+        "name": "Spear",
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "1 gp",
+            "Weight": "3 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-melee-weapon.jpg"
+        },
+        "description": "Spear"
+    },
+    "Spellbook": {
+        "name": "Spellbook",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "50 gp",
+            "Weight": "3 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Spellbook"
+    },
+    "Spiked Armor": {
+        "name": "Spiked Armor",
+        "meta": {
+            "Type": "Medium Armor",
+            "Cost": "75 gp",
+            "Weight": "45 lbs",
+            "Notes": "Damage, Warding",
+            "Attributes": "AC 14",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/medium-armor.jpg"
+        },
+        "description": "Spiked Armor"
+    },
+    "Spikes, Iron (10)": {
+        "name": "Spikes, Iron (10)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "5 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Spikes, Iron (10)"
+    },
+    "Splint": {
+        "name": "Splint",
+        "meta": {
+            "Type": "Heavy Armor",
+            "Cost": "200 gp",
+            "Weight": "60 lbs",
+            "Notes": "Warding",
+            "Attributes": "AC 17",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/heavy-armor.jpg"
+        },
+        "description": "Splint"
+    },
+    "Sprig of Mistletoe": {
+        "name": "Sprig of Mistletoe",
+        "meta": {
+            "Type": "Druidic Focus",
+            "Cost": "1 gp",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/druidic-focus.jpg"
+        },
+        "description": "Sprig of Mistletoe"
+    },
+    "Spyglass": {
+        "name": "Spyglass",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1000 gp",
+            "Weight": "1 lb",
+            "Notes": "Exploration, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Spyglass"
+    },
+    "Staff": {
+        "name": "Staff",
+        "meta": {
+            "Type": "Arcane Focus",
+            "Cost": "5 gp",
+            "Weight": "4 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/arcane-focus.jpg"
+        },
+        "description": "Staff"
+    },
+    "Stake (Wooden)": {
+        "name": "Stake (Wooden)",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Stake (Wooden)"
+    },
+    "String": {
+        "name": "String",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "String"
+    },
+    "Studded Leather": {
+        "name": "Studded Leather",
+        "meta": {
+            "Type": "Light Armor",
+            "Cost": "45 gp",
+            "Weight": "13 lbs",
+            "Notes": "Warding",
+            "Attributes": "AC 12",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/light-armor.jpg"
+        },
+        "description": "Studded Leather"
+    },
+    "Tej": {
+        "name": "Tej",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "--",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Tej"
+    },
+    "Tent, Two-Person": {
+        "name": "Tent, Two-Person",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 gp",
+            "Weight": "20 lbs",
+            "Notes": "Exploration, Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Tent, Two-Person"
+    },
+    "Thieves' Tools": {
+        "name": "Thieves' Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "25 gp",
+            "Weight": "1 lb",
+            "Notes": "Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Thieves' Tools"
+    },
+    "Three-Dragon Ante Set": {
+        "name": "Three-Dragon Ante Set",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "1 gp",
+            "Weight": "--",
+            "Notes": "Social",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Three-Dragon Ante Set"
+    },
+    "Tinderbox": {
+        "name": "Tinderbox",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "5 sp",
+            "Weight": "1 lb",
+            "Notes": "Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Tinderbox"
+    },
+    "Tinker's Tools": {
+        "name": "Tinker's Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "50 gp",
+            "Weight": "10 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Tinker's Tools"
+    },
+    "Torch": {
+        "name": "Torch",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 cp",
+            "Weight": "1 lb",
+            "Notes": "Combat, Damage, Exploration, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Torch"
+    },
+    "Torpor (Ingested)": {
+        "name": "Torpor (Ingested)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "600 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Damage, Debuff",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Torpor (Ingested)"
+    },
+    "Totem": {
+        "name": "Totem",
+        "meta": {
+            "Type": "Druidic Focus",
+            "Cost": "1 gp",
+            "Weight": "--",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/druidic-focus.jpg"
+        },
+        "description": "Totem"
+    },
+    "Trident": {
+        "name": "Trident",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "5 gp",
+            "Weight": "4 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Trident"
+    },
+    "Truth Serum (Ingested)": {
+        "name": "Truth Serum (Ingested)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "150 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Debuff, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Truth Serum (Ingested)"
+    },
+    "Vestments": {
+        "name": "Vestments",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "--",
+            "Weight": "--",
+            "Notes": "Social, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Vestments"
+    },
+    "Vial": {
+        "name": "Vial",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 gp",
+            "Weight": "--",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Vial"
+    },
+    "Viol": {
+        "name": "Viol",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "30 gp",
+            "Weight": "1 lb",
+            "Notes": "Instrument",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Viol"
+    },
+    "Wagon": {
+        "name": "Wagon",
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "35 gp",
+            "Weight": "400 lbs",
+            "Notes": "Exploration, Movement, Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/vehicle.jpg"
+        },
+        "description": "Wagon"
+    },
+    "Wand": {
+        "name": "Wand",
+        "meta": {
+            "Type": "Arcane Focus",
+            "Cost": "10 gp",
+            "Weight": "1 lb",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/arcane-focus.jpg"
+        },
+        "description": "Wand"
+    },
+    "War Pick": {
+        "name": "War Pick",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "5 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "War Pick"
+    },
+    "Warhammer": {
+        "name": "Warhammer",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "15 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Bludgeoning",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Warhammer"
+    },
+    "Warhorse": {
+        "name": "Warhorse",
+        "meta": {
+            "Type": "Mount",
+            "Cost": "400 gp",
+            "Weight": "--",
+            "Notes": "Speed 60 ft., Carry Capacity 540 lbs.",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/mount.jpg"
+        },
+        "description": "Warhorse"
+    },
+    "Warship": {
+        "name": "Warship",
+        "meta": {
+            "Type": "Vehicle",
+            "Cost": "25000 gp",
+            "Weight": "--",
+            "Notes": "2 1/2 mph",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/vehicle.jpg"
+        },
+        "description": "Warship"
+    },
+    "Waterskin": {
+        "name": "Waterskin",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "2 sp",
+            "Weight": "5 lbs",
+            "Notes": "Container",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Waterskin"
+    },
+    "Weaver's Tools": {
+        "name": "Weaver's Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "1 gp",
+            "Weight": "5 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Weaver's Tools"
+    },
+    "Whetstone": {
+        "name": "Whetstone",
+        "meta": {
+            "Type": "Adventuring Gear",
+            "Cost": "1 cp",
+            "Weight": "1 lb",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/adventuring-gear.jpg"
+        },
+        "description": "Whetstone"
+    },
+    "Whip": {
+        "name": "Whip",
+        "meta": {
+            "Type": "Martial Melee Weapon",
+            "Cost": "2 gp",
+            "Weight": "3 lbs",
+            "Notes": "Combat, Control, Damage",
+            "Attributes": "Slashing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/martial-melee-weapon.jpg"
+        },
+        "description": "Whip"
+    },
+    "Woodcarver's Tools": {
+        "name": "Woodcarver's Tools",
+        "meta": {
+            "Type": "Tool",
+            "Cost": "1 gp",
+            "Weight": "5 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/tool.jpg"
+        },
+        "description": "Woodcarver's Tools"
+    },
+    "Wooden Staff": {
+        "name": "Wooden Staff",
+        "meta": {
+            "Type": "Druidic Focus",
+            "Cost": "5 gp",
+            "Weight": "4 lbs",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/druidic-focus.jpg"
+        },
+        "description": "Wooden Staff"
+    },
+    "Wyvern Poison (Injury)": {
+        "name": "Wyvern Poison (Injury)",
+        "meta": {
+            "Type": "Poison",
+            "Cost": "1200 gp",
+            "Weight": "--",
+            "Notes": "Consumable, Damage, Debuff",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/poison.jpg"
+        },
+        "description": "Wyvern Poison (Injury)"
+    },
+    "Yew Wand": {
+        "name": "Yew Wand",
+        "meta": {
+            "Type": "Druidic Focus",
+            "Cost": "10 gp",
+            "Weight": "1 lb",
+            "Notes": "Utility",
+            "Attributes": "--",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/druidic-focus.jpg"
+        },
+        "description": "Yew Wand"
+    },
+    "Yklwa": {
+        "name": "Yklwa",
+        "meta": {
+            "Type": "Simple Melee Weapon",
+            "Cost": "1 gp",
+            "Weight": "2 lbs",
+            "Notes": "Combat, Damage",
+            "Attributes": "Piercing",
+            "image": "https://www.dndbeyond.com/Content/1-0-316-0/Skins/Waterdeep/images/icons/equipment/simple-melee-weapon.jpg"
+        },
+        "description": "Yklwa"
+    }
+}
