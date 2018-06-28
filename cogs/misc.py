@@ -252,12 +252,12 @@ class Misc(object):
                                     "If you'd like, you can donate to me here: https://ko-fi.com/henrys "
                                     "Or subscribe to my Patreon here: https://www.patreon.com/henry232323"))
 
-    @commands.command()
-    async def feedback(self, ctx, *, feedback):
-        """Give me some feedback on the bot"""
-        with open("feedback.txt", "a+") as f:
-            f.write(feedback + "\n")
-        await ctx.send(await _(ctx, "Thank you for the feedback!"))
+    #@commands.command()
+    #async def feedback(self, ctx, *, feedback):
+    #    """Give me some feedback on the bot"""
+    #    with open("feedback.txt", "a+") as f:
+    #        f.write(feedback + "\n")
+    #    await ctx.send(await _(ctx, "Thank you for the feedback!"))
 
     @commands.command(hidden=True)
     async def socketstats(self, ctx):

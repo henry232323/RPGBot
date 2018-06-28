@@ -78,10 +78,13 @@ class Bot(commands.AutoShardedBot):
         with open("resources/auth") as af:
             self._auth = json.loads(af.read())
 
-        with open("dnditems.json", 'r') as dndf:
+        with open("resources/dnditems.json", 'r') as dndf:
             self.dnditems = json.loads(dndf.read())
 
-        with open("pokemonitems.json", 'r') as dndf:
+        with open("resources/dnditems.json", 'r') as dndf2:
+            self.dndmagic = json.loads(dndf2.read())
+
+        with open("resources/pokemonitems.json", 'r') as dndf:
             self.dnditems = json.loads(dndf.read())
 
         self.httpserver = server.API(self, "RPGBot")
@@ -93,10 +96,10 @@ class Bot(commands.AutoShardedBot):
         self.default_servdata = data.default_server
         self.rnd = "1234567890abcdefghijklmnopqrstuvwxyz"
 
-        with open("patrons.json") as pj:
+        with open("resources/patrons.json") as pj:
             self.patrons = {int(k): v for k, v in json.loads(pj.read()).items()}
 
-        with open("newtranslations.json") as trf:
+        with open("resources/newtranslations.json") as trf:
             self.translations = json.loads(trf.read())
         self.languages = ["en", "fr", "de", "ru", "es"]
 

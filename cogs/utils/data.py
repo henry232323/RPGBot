@@ -56,6 +56,7 @@ def parse_varargs(s):
     view = commands.view.StringView(s)
     end = []
     while True:
+        view.skip_ws()
         next = commands.view.quoted_word(view)
         if next is None:
             break
