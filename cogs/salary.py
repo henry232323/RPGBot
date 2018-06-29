@@ -44,7 +44,7 @@ class Salary(object):
                                     rob = discord.utils.get(gob.roles, id=int(role))
                                     if rob:
                                         for member in rob.members:
-                                            if isinstance(amount, int):
+                                            if isinstance(amount, (int, float)):
                                                 try:
                                                     await self.bot.di.add_eco(member, amount)
                                                 except ValueError:
@@ -158,7 +158,7 @@ class Salary(object):
             rob = discord.utils.get(ctx.guild.roles, id=int(role))
             if rob:
                 for member in rob.members:
-                    if isinstance(amount, int):
+                    if isinstance(amount, (int, float)):
                         try:
                             await self.bot.di.add_eco(member, amount)
                         except ValueError:
