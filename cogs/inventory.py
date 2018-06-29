@@ -201,7 +201,7 @@ class Inventory(object):
         if not winitems:
             await ctx.send(await _(ctx, "You cannot create an empty lootbox!"))
 
-        if isinstance(cost, tuple):
+        if isinstance(cost, (list, tuple)):
             await ctx.send(
                 (await _(ctx, "Lootbox {} successfully created and requires {} {} to open.")).format(name, cost[1],
                                                                                                      cost[0]))
@@ -223,11 +223,11 @@ class Inventory(object):
 
         cost = box["cost"]
         if isinstance(cost, (str, tuple, list)):
-            cost, val = cost if isinstance(cost, tuple) else (cost, 1)
+            cost, val = cost if isinstance(cost, (tuple, list)) else (cost, 1)
             try:
-                await self.bot.di.take_items(ctx.author, cost)
+                await self.bot.di.take_items(ctx.author, (cost, val))
             except ValueError:
-                await ctx.send((await _(ctx, "You do not have {} {}")).format(cost, val))
+                await ctx.send((await _(ctx, "You do not have {} {}")).format(val, cost))
                 return
         else:
             try:
@@ -387,7 +387,7 @@ class Inventory(object):
 
         uinv = await self.bot.di.get_inventory(ctx.author)
         for item, n in recipe[0].items():
-            if uinv.get(item) < n * number:
+            if uinv.get(item, 0) < n * number:
                 await ctx.send(
                     (await _(ctx, "You need {} {} to craft this! You only have {}")).format(n * number, item,
                                                                                             uinv.get(item)))
@@ -485,7 +485,7 @@ class Inventory(object):
                     initems.append(("x".join(split[:-1]), abs(int(split[-1]))))
 
                 break
-            except:
+            except Exception as e:
                 if isinstance(e, TimeoutError):
                     raise
                 await ctx.send(await _(ctx, "Invalid formatting! Try again!"))
