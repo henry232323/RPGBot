@@ -388,7 +388,7 @@ class Groups(object):
 
     @guild.command()
     @checks.no_pm()
-    async def delete(self, ctx, name: str=None):
+    async def delete(self, ctx, *, name: str=None):
         """Delete your guild"""
         if name is not None:
             assert checks.modpredicate(ctx)
