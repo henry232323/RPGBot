@@ -228,8 +228,8 @@ class Settings(object):
     @checks.mod_or_permissions()
     async def loadpokemon(self, ctx):
         """This command will pre-load all Pokemon items and make them available to give"""
-        await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.dnditems.values()))
-        await ctx.send(await _(ctx, "Successfully added all D&D items!"))
+        await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.pokemonitems.values()))
+        await ctx.send(await _(ctx, "Successfully added all Pokemon items!"))
 
     @checks.no_pm()
     @commands.command()
@@ -238,3 +238,21 @@ class Settings(object):
         """Set a time for messages to be automatically deleted after running. `rp!deleteafter 0` to make messages never be deleted"""
         await self.bot.di.set_delete_time(ctx.guild, time)
         await ctx.send(await _(ctx, "Updated settings"))
+
+    @checks.no_pm()
+    @commands.command()
+    @checks.mod_or_permissions()
+    async def unload(self, ctx, name: str):
+        """Unload Pokemon, D&D, or D&D Magic items. `rp!unload pokemon` `rp!unload dnd` `rp!unload dndmagic`"""
+        if name == "dnd":
+            items = self.bot.dnditems
+        elif name == "dndmagic":
+            items = self.bot.dndmagic
+        elif name == "pokemon":
+            items = self.bot.pokemonitems
+        else:
+            await ctx.send(await _(ctx, "That is not a valid input, look at `rp!help unload`"))
+            return
+
+        await self.bot.di.remove_items(ctx.guild, *items)
+        await ctx.send((await _(ctx, "Successfully removed all {} items!")).format(name))

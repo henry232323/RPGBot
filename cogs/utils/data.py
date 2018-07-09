@@ -562,6 +562,13 @@ class DataInteraction(object):
         del gd["items"][item]
         await self.db.update_guild_data(guild, gd)
 
+    async def remove_items(self, guild, *items):
+        """Remove a server item"""
+        gd = await self.db.get_guild_data(guild)
+        for item in items:
+            del gd["items"][item]
+        await self.db.update_guild_data(guild, gd)
+
     async def add_character(self, guild, character):
         """Add a new character to a guild"""
         gd = await self.db.get_guild_data(guild)

@@ -104,6 +104,7 @@ class Inventory(object):
 
     @commands.command()
     @checks.no_pm()
+    @checks.admin_or_permissions()
     async def wipeinv(self, ctx, *members: MemberConverter):
         members = chain(members)
 
