@@ -84,8 +84,8 @@ class Bot(commands.AutoShardedBot):
         with open("resources/dnditems.json", 'r') as dndf2:
             self.dndmagic = json.loads(dndf2.read())
 
-        with open("resources/pokemonitems.json", 'r') as dndf:
-            self.dnditems = json.loads(dndf.read())
+        with open("resources/pokemonitems.json", 'r') as dndf3:
+            self.pokemonitems = json.loads(dndf3.read())
 
         self.httpserver = server.API(self, "RPGBot")
         server.makepaths(self.httpserver)
@@ -102,6 +102,9 @@ class Bot(commands.AutoShardedBot):
         with open("resources/newtranslations.json") as trf:
             self.translations = json.loads(trf.read())
         self.languages = ["en", "fr", "de", "ru", "es"]
+
+        with open("resources/blacklist.json") as blf:
+            self.blacklist = json.loads(blf.read())
 
         icogs = [
             cogs.admin.Admin(self),
@@ -133,6 +136,10 @@ class Bot(commands.AutoShardedBot):
         print(self.user.id)
         print('------')
         self.loop.create_task(self.update_stats())
+
+    async def on_message(self, msg):
+        if msg.author.id not in self.blacklist:
+            await self.process_commands(msg)
 
     async def update_stats(self):
         url = "https://bots.discord.pw/api/bots/{}/stats".format(self.user.id)
@@ -203,6 +210,9 @@ class Bot(commands.AutoShardedBot):
             await ctx.send(f"`{exception}`")
 
     async def on_guild_join(self, guild):
+        if guild.id in self.blacklist:
+            await guild.leave()
+
         self.stats.increment("RPGBot.guilds", tags=["RPGBot:guilds"], host="scw-8112e8")
 
     async def on_guild_leave(self, guild):
