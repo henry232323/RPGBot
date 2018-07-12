@@ -23,6 +23,7 @@ import asyncio
 from collections import Counter
 from random import choice
 import json
+from recordclass import recordclass
 
 import discord
 from async_timeout import timeout
@@ -271,13 +272,17 @@ class Economy(object):
             return
 
         owner = discord.utils.get(ctx.guild.members, id=item["user"])
+        if owner is None:
+            owner = discord.Object(item["user"])
+            owner.guild = ctx.guild
         await self.bot.di.add_eco(owner, item['cost'])
         await self.bot.di.give_items(ctx.author, (item["item"], item["amount"]))
         await self.bot.di.update_guild_market(ctx.guild, market)
         await ctx.send(await _(ctx, "Items successfully bought"))
-        await owner.send((await _(ctx,
-                                  "{} bought {} {} from you for {} dollars with ID {} on server {}")).format(
-            ctx.author, item["item"], item["amount"], item['cost'], id, ctx.guild.name))
+        if not isinstance(owner, discord.Object):
+            await owner.send((await _(ctx,
+                                      "{} bought {} {} from you for {} dollars with ID {} on server {}")).format(
+                ctx.author, item["item"], item["amount"], item['cost'], id, ctx.guild.name))
 
     @checks.no_pm()
     @market.command()
