@@ -617,8 +617,8 @@ class Economy(object):
         shop = await self.bot.di.get_guild_shop(ctx.guild)
         ulvl, uexp = await self.bot.di.get_user_level(ctx.author)
         try:
-            iobj = shop[item]
-            if not iobj["buy"]:
+            iobj = shop.get(item)
+            if not iobj or not iobj["buy"]:
                 await ctx.send(await _(ctx, "This item cannot be bought!"))
                 return
             if iobj["level"] > ulvl:
