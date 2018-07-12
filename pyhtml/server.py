@@ -304,6 +304,24 @@ def makepaths(server):
 
         return as_json(js, code=200)
 
+    @server.route("/user/<int:guild>/<int:user>/", methods=["GET"])
+    async def getuser(ctx: HTTPRequestContext, guild: int, user: int):
+        req = f"""SELECT info FROM userdata WHERE UUID = {user}"""
+        async with server.bot.db._conn.acquire() as connection:
+            response = await connection.fetchval(req)
+        if response:
+            return as_json(json.decode(response)[str(int(guild))], code=200)
+        return Response(status=403)
+
+    @server.route("/guild/<int:guild>/", methods=["GET"])
+    async def getguild(ctx: HTTPRequestContext, guild: int):
+        req = f"""SELECT info FROM servdata WHERE UUID = {guild}"""
+        async with server.bot.db._conn.acquire() as connection:
+            response = await connection.fetchval(req)
+        if response:
+            return as_json(json.decode(response), code=200)
+        return Response(status=403)
+
     @server.route("/", methods=["GET"])
     async def index(ctx: HTTPRequestContext):
         return redirect("/register", code=303)

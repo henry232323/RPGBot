@@ -45,7 +45,7 @@ try:
 
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 except ImportError:
-    pass
+    uvloop = None
 
 if os.name == "nt":
     sys.argv.append("debug")
