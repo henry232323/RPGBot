@@ -80,10 +80,10 @@ class User(object):
         """Get your or another user's level information. Help on this command for experience subcommands
         EXP is calculated using a 0.1x^2+5x+4 where x is equal to the user's current level
         Spamming commands or messages will not earn more exp!"""
-        if not member:
+        if member is None:
             member = ctx.author
 
-        ulvl, uexp = await self.bot.di.get_user_level(ctx.author)
+        ulvl, uexp = await self.bot.di.get_user_level(member)
         embed = discord.Embed(
             description=(await _(ctx, "Level: {}\nExperience: {}/{}")).format(ulvl, uexp, self.bot.get_exp(ulvl)))
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
