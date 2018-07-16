@@ -642,7 +642,7 @@ class DataInteraction(object):
         await self.db.update_guild_data(guild, gd)
 
     async def set_currency(self, guild, currency):
-        if len(currency) > 10:
+        if len(currency) > 30:
             raise ValueError("Currency prefix too long!")
         gd = await self.db.get_guild_data(guild)
         gd["currency"] = currency
