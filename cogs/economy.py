@@ -560,6 +560,8 @@ class Economy(object):
                 try:
                     item["buy"] = float(resp.content)
                 except ValueError:
+                    if resp.content.lower() == "cancel":
+                        await ctx.send(await _(ctx, "Cancelling!"))
                     await ctx.send(await _(ctx, "That is not a valid number!"))
                     continue
                 break
@@ -570,6 +572,8 @@ class Economy(object):
                 try:
                     item["sell"] = float(resp.content)
                 except ValueError:
+                    if resp.content.lower() == "cancel":
+                        await ctx.send(await _(ctx, "Cancelling!"))
                     await ctx.send(await _(ctx, "That is not a valid number!"))
                     continue
                 break
@@ -580,6 +584,8 @@ class Economy(object):
                 try:
                     item["level"] = int(resp.content)
                 except ValueError:
+                    if resp.content.lower() == "cancel":
+                        await ctx.send(await _(ctx, "Cancelling!"))
                     await ctx.send(await _(ctx, "That is not a valid number!"))
                     continue
                 break
