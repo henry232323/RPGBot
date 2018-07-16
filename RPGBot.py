@@ -282,7 +282,7 @@ class Bot(commands.AutoShardedBot):
         self.session.close()
 
 
-prefix = ['rp!', 'pb!', '<@305177429612298242> '] if "debug" not in sys.argv else 'rp$'
+prefix = ['rp!', 'pb!', '<@305177429612298242> ', 'Rp!'] if "debug" not in sys.argv else 'rp$'
 invlink = "https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=322625"
 servinv = "https://discord.gg/UYJb8fQ"
 sourcelink = "https://github.com/henry232323/RPGBot"
@@ -296,7 +296,6 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
               f"**Support Server**: {servinv}\n" \
               f"**Source**: {sourcelink}\n" \
               "**Help**: https://github.com/henry232323/RPGBot/blob/master/README.md\n" \
-              "**Aide en français**: http://typheus.me/rpgbot-francais.html\n" \
               "**Patreon**: https://www.patreon.com/henry232323\n" \
               "**Buy Me a Coffee**: https://ko-fi.com/henrys\n```"
 
