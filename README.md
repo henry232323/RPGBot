@@ -20,6 +20,8 @@ Made by Henry#6174
 - https://github.com/Luistorch
 - https://github.com/Looker845
 
+
+
 # Commands
 
 - [Admin Commands](#admin-commands)
@@ -36,6 +38,7 @@ Made by Henry#6174
   - [economy](#economy)
   - [givemoney](#givemoney)
   - [lotto](#lotto)
+  - [lotto cancel](#lotto-cancel)
   - [lotto enter](#lotto-enter)
   - [lotto new](#lotto-new)
   - [market](#market)
@@ -73,6 +76,7 @@ Made by Henry#6174
   - [guild withdrawitems](#guild-withdrawitems)
   - [guilds](#guilds)
 - [Inventory Commands](#inventory-commands)
+  - [craft](#craft)
   - [give](#give)
   - [giveitem](#giveitem)
   - [inventory](#inventory)
@@ -80,7 +84,15 @@ Made by Henry#6174
   - [lootbox buy](#lootbox-buy)
   - [lootbox create](#lootbox-create)
   - [lootbox delete](#lootbox-delete)
+  - [offer](#offer)
+  - [recipe](#recipe)
+  - [recipe create](#recipe-create)
+  - [recipe delete](#recipe-delete)
+  - [recipes](#recipes)
+  - [respond](#respond)
   - [takeitem](#takeitem)
+  - [use](#use)
+  - [wipeinv](#wipeinv)
 - [Mapping Commands](#mapping-commands)
   - [map](#map)
   - [map buy](#map-buy)
@@ -94,7 +106,6 @@ Made by Henry#6174
   - [map up](#map-up)
 - [Misc Commands](#misc-commands)
   - [donate](#donate)
-  - [feedback](#feedback)
   - [info](#info)
   - [ping](#ping)
   - [rtd](#rtd)
@@ -112,15 +123,21 @@ Made by Henry#6174
   - [salary](#salary)
   - [salary create](#salary-create)
   - [salary delete](#salary-delete)
+  - [salary payout](#salary-payout)
 - [Settings Commands](#settings-commands)
   - [currency](#currency)
+  - [deleteafter](#deleteafter)
   - [language](#language)
+  - [loaddnd](#loaddnd)
+  - [loaddndmagic](#loaddndmagic)
+  - [loadpokemon](#loadpokemon)
   - [setstart](#setstart)
   - [settings](#settings)
   - [settings additem](#settings-additem)
   - [settings iteminfo](#settings-iteminfo)
   - [settings items](#settings-items)
   - [settings removeitem](#settings-removeitem)
+  - [unload](#unload)
 - [Team Commands](#team-commands)
   - [team](#team)
   - [team add](#team-add)
@@ -128,6 +145,8 @@ Made by Henry#6174
 - [User Commands](#user-commands)
   - [experience](#experience)
   - [experience add](#experience-add)
+  - [experience disable](#experience-disable)
+  - [experience enable](#experience-enable)
   - [experience setlevel](#experience-setlevel)
   - [userinfo](#userinfo)
 
@@ -192,7 +211,7 @@ Anything else will edit single attributes in the additional info section
 >**Usage:** `rp![economy|bal|balance|eco|e] [member]`
 
 #### givemoney
->**Description:** Give the members money (Moderators)
+>**Description:** Give the member's money (Moderators)
 
 >**Usage:** `rp!givemoney <amount> [members...]`
 
@@ -200,6 +219,11 @@ Anything else will edit single attributes in the additional info section
 >**Description:** List the currently running lottos.
 
 >**Usage:** `rp![lotto|lottery]`
+
+#### lotto cancel
+>**Description:** Cancel a lottery
+
+>**Usage:** `rp!lotto [cancel|delete] <name>`
 
 #### lotto enter
 >**Description:** Enter the lottery with the given name.
@@ -281,7 +305,7 @@ Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot 
 >**Usage:** `rp!startbid <item> <amount> <startbid>`
 
 #### takemoney
->**Description:** Give the members money (Moderators)
+>**Description:** Take the member's money (Moderators)
 
 >**Usage:** `rp!takemoney <amount> [members...]`
 
@@ -302,7 +326,7 @@ Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot 
 #### guild delete
 >**Description:** Delete your guild
 
->**Usage:** `rp!guild delete`
+>**Usage:** `rp!guild delete [name]`
 
 #### guild deposit
 >**Description:** Deposit an amount of money into the guild bank
@@ -386,25 +410,31 @@ Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot 
 
 ## Inventory Commands
 
+#### craft
+>**Description:** Craft a recipe with a given name from the available server recipes; e.g. rp!craft 5 Apple Pie
+
+>**Usage:** `rp!craft <number> <name>`
+
 #### give
->**Description:** Give items ({item}x{#}) to a member; ie: ;give @Henry#6174 pokeballx3
+>**Description:** Give items ({item}x{#}) to a member; ie: rp!give @Henry#6174 Pokeballx3
 
 >**Usage:** `rp!give <other> [items...]`
 
 #### giveitem
 >**Description:** Give an item to a person (Not out of your inventory)
+Example: rp!giveitem Banana 32 @Henry#6174 @RPGBot#8700 @JoeShmoe#3012
 
 >**Usage:** `rp!giveitem <item> <num> [members...]`
 
 #### inventory
->**Description:** Check your or another users inventory.
+>**Description:** Check your or another users inventory. Example: rp!inventory @Henry#6174 or just rp!inventory
 
 >**Usage:** `rp![inventory|i|inv] [member]`
 
 #### lootbox
 >**Description:** List the current lootboxes
 
->**Usage:** `rp![lootbox|lb]`
+>**Usage:** `rp![lootbox|lb] [name]`
 
 #### lootbox buy
 >**Description:** Buy a lootbox of the given name
@@ -415,8 +445,12 @@ Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot 
 >**Description:** Create a new lootbox, under the given `name` for the given cost
 Use {item}x{#} notation to add items with {#} weight
 Weight being an integer. For example:
-bananax2 orangex3. The outcome of the box will be
+rp!lootbox create MyBox 500 bananax2 orangex3. The outcome of the box will be
 Random Choice[banana, banana, orange, orange, orange]
+The price can also be an item (or several items), for example
+rp!lootbox create MyBox Key bananax2 orangex3
+or
+rp!lootbox create MyBox Keyx2 bananax3 orangex3
 
 >**Usage:** `rp!lootbox [create|new] <name> <cost> [items...]`
 
@@ -425,10 +459,57 @@ Random Choice[banana, banana, orange, orange, orange]
 
 >**Usage:** `rp!lootbox [delete|remove] <name>`
 
+#### offer
+>**Description:** Send a trade offer to another user. Usage: rp!inventory offer @Henry bananax3 applex1 --Format items as {item}x{#}
+
+>**Usage:** `rp!offer <other> [items...]`
+
+#### recipe
+>**Description:** Subcommands for recipes. See data on a specific recipe; e.g. rp!recipe Banana
+
+>**Usage:** `rp!recipe <name>`
+
+#### recipe create
+>**Description:** Create a new recipe; e.g.
+> rp!recipe create Apple Pie
+>> What items must be consumed to follow this recipe? e.g. Applex5 Breadx2
+> Applex5 Breadx15 "Pie Tinx1"
+>> What items will be given upon the completion of this recipe? e.g. "Apple Piex1"
+> "Apple Piex1" "Pie Tinx1"
+>> Successfully created new recipe!
+
+>**Usage:** `rp!recipe create <name>`
+
+#### recipe delete
+>**Description:** Delete the recipe with the given name; e.g. rp!recipe delete Apple Pie
+
+>**Usage:** `rp!recipe delete <name>`
+
+#### recipes
+>**Description:** List all the available server recipes
+
+>**Usage:** `rp!recipes`
+
+#### respond
+>**Description:** Respond to a trade offer by another user. Usage: rp!inventory respond @Henry grapex8 applex1 --Format items as {item}x{#}
+
+>**Usage:** `rp!respond <other> [items...]`
+
 #### takeitem
 >**Description:** Remove an item from a person's inventory
 
 >**Usage:** `rp![takeitem|take] <item> <num> [members...]`
+
+#### use
+>**Description:** Use an item. Example `rp!use Banana` or `rp!use Banana 5`
+To make an item usable, you must put the key `used: <message>` when you are adding additional information for an item
+
+>**Usage:** `rp!use <item> [number=1]`
+
+#### wipeinv
+>**Description:** Wipe all inventories. Must be administrator
+
+>**Usage:** `rp!wipeinv [members...]`
 
 ## Mapping Commands
 
@@ -491,11 +572,6 @@ Usage: `rp!map create Earth 64 64`
 >**Description:** Donation information
 
 >**Usage:** `rp!donate`
-
-#### feedback
->**Description:** Give me some feedback on the bot
-
->**Usage:** `rp!feedback <feedback>`
 
 #### info
 >**Description:** Bot Info
@@ -587,13 +663,21 @@ Same use as rp!box
 >**Description:** Create a daily salary for a user with the given role.
 Roles are paid every day at 24:00, every user with the role will receive the amount specified.
 If a role with a salary is deleted, the salary will also be deleted.
+For example
+`rp!salary create @Bot Creator 500` Will create a salary of $500 for a user daily
+`rp!salary create @Bot Creator Bananax3 Orangex4` Will create a salary of 3 Bananas and 4 Oranges for a user daily
 
->**Usage:** `rp!salary create <amount> <role>`
+>**Usage:** `rp!salary create <role> [items_or_number...]`
 
 #### salary delete
 >**Description:** Remove a created salary
 
 >**Usage:** `rp!salary delete <role>`
+
+#### salary payout
+>**Description:** Manually pay out salaries for a role or all roles
+
+>**Usage:** `rp!salary payout [role]`
 
 ## Settings Commands
 
@@ -602,10 +686,30 @@ If a role with a salary is deleted, the salary will also be deleted.
 
 >**Usage:** `rp!currency <currency>`
 
+#### deleteafter
+>**Description:** Set a time for messages to be automatically deleted after running. `rp!deleteafter 0` to make messages never be deleted
+
+>**Usage:** `rp!deleteafter <time>`
+
 #### language
 >**Description:** Set the guild language or check the language
 
 >**Usage:** `rp!language [language]`
+
+#### loaddnd
+>**Description:** This command will pre-load all D&D items and make them available to give
+
+>**Usage:** `rp!loaddnd`
+
+#### loaddndmagic
+>**Description:** This command will pre-load all D&D items and make them available to give
+
+>**Usage:** `rp!loaddndmagic`
+
+#### loadpokemon
+>**Description:** This command will pre-load all Pokemon items and make them available to give
+
+>**Usage:** `rp!loadpokemon`
 
 #### setstart
 >**Description:** Set the money start amount for a guild
@@ -618,7 +722,10 @@ If a role with a salary is deleted, the salary will also be deleted.
 >**Usage:** `rp![settings|s|configuration|conf]`
 
 #### settings additem
->**Description:** Add a custom item
+>**Description:** Add a custom item.
+Custom keys that can be used for special additions:
+   `image` Setting this to a URL will give that item a special thumbnail when info is viewed for it
+   
 
 >**Usage:** `rp!settings additem <name>`
 
@@ -630,12 +737,17 @@ If a role with a salary is deleted, the salary will also be deleted.
 #### settings items
 >**Description:** See all items for a guild
 
->**Usage:** `rp!settings items`
+>**Usage:** `rp!settings items [letter]`
 
 #### settings removeitem
 >**Description:** Remove a custom item
 
 >**Usage:** `rp!settings [removeitem|deleteitem] <name>`
+
+#### unload
+>**Description:** Unload Pokemon, D&D, or D&D Magic items. `rp!unload pokemon` `rp!unload dnd` `rp!unload dndmagic`
+
+>**Usage:** `rp!unload <name>`
 
 ## Team Commands
 
@@ -669,6 +781,16 @@ Spamming commands or messages will not earn more exp!
 >**Description:** Give the given members an amount of experience
 
 >**Usage:** `rp!experience add <amount> [members...]`
+
+#### experience disable
+>**Description:** Disable EXP settings for a guild
+
+>**Usage:** `rp!experience disable`
+
+#### experience enable
+>**Description:** Enable EXP settings for a guild
+
+>**Usage:** `rp!experience enable`
 
 #### experience setlevel
 >**Description:** Set the given members level
