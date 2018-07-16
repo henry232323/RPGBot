@@ -106,16 +106,22 @@ class Inventory(object):
     @checks.no_pm()
     @checks.admin_or_permissions()
     async def wipeinv(self, ctx, *members: MemberConverter):
+        """Wipe all inventories. Must be administrator"""
+
         members = chain(members)
 
         for member in members:
             ud = await self.bot.db.get_user_data(member)
             ud["items"] = {}
             await self.bot.db.update_user_data(member, ud)
+        await ctx.send(await _(ctx, "Wiped all inventories"))
 
     @commands.command()
     @checks.no_pm()
     async def use(self, ctx, item, number: int = 1):
+        """Use an item. Example `rp!use Banana` or `rp!use Banana 5`
+        To make an item usable, you must put the key `used: <message>` when you are adding additional information for an item
+        """
         number = abs(number)
         items = await self.bot.di.get_guild_items(ctx.guild)
         msg = items.get(item).meta.get('used')
