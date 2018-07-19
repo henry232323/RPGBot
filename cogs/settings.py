@@ -209,7 +209,7 @@ class Settings(object):
 
     @checks.no_pm()
     @commands.command()
-    @checks.mod_or_permissions()
+    @checks.admin_or_permissions()
     async def loaddnd(self, ctx):
         """This command will pre-load all D&D items and make them available to give"""
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.dnditems.values()))
@@ -217,15 +217,35 @@ class Settings(object):
 
     @checks.no_pm()
     @commands.command()
-    @checks.mod_or_permissions()
+    @checks.admin_or_permissions()
+    async def loaddndshop(self, ctx):
+        """This command will pre-load all D&D items and make them available in shop"""
+        await self.bot.di.add_shop_items(ctx.guild,
+                                         {item: value["meta"]["Cost"] for item, value in self.bot.dnditems.items() if
+                                          value["meta"].get("Cost", "").isdigit()})
+        await ctx.send(await _(ctx, "Successfully added all D&D items to shop!"))
+
+    @checks.no_pm()
+    @commands.command()
+    @checks.admin_or_permissions()
+    async def loadmagicshop(self, ctx):
+        """This command will pre-load all D&D Magic items and make them available in shop"""
+        await self.bot.di.add_shop_items(ctx.guild,
+                                         {item: value["meta"]["Cost"] for item, value in self.bot.dndmagic.items() if
+                                          value["meta"].get("Cost", "").isdigit()})
+        await ctx.send(await _(ctx, "Successfully added all D&D items to shop!"))
+
+    @checks.no_pm()
+    @commands.command()
+    @checks.admin_or_permissions()
     async def loaddndmagic(self, ctx):
-        """This command will pre-load all D&D items and make them available to give"""
+        """This command will pre-load all D&D Magic items and make them available to give"""
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.dndmagic.values()))
         await ctx.send(await _(ctx, "Successfully added all D&D items!"))
 
     @checks.no_pm()
     @commands.command()
-    @checks.mod_or_permissions()
+    @checks.admin_or_permissions()
     async def loadpokemon(self, ctx):
         """This command will pre-load all Pokemon items and make them available to give"""
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.pokemonitems.values()))
