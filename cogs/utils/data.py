@@ -777,3 +777,9 @@ class DataInteraction(object):
         gd = await self.db.get_guild_data(guild)
         gd["shop_items"] = data
         return await self.db.update_guild_data(guild, gd)
+
+    async def add_shop_items(self, guild, data):
+        """Update a server's market"""
+        gd = await self.db.get_guild_data(guild)
+        gd["shop_items"].update(data)
+        return await self.db.update_guild_data(guild, gd)
