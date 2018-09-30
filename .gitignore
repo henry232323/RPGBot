@@ -103,3 +103,5 @@ discord.py-rewrite.zip
 server.py
 .DS_STORE
 requirements.txt
+postgresql2/
+backups/
