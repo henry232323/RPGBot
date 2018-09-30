@@ -400,8 +400,8 @@ class Inventory(object):
                                                                                             uinv.get(item)))
                 return
 
-        await ctx.bot.di.take_items(ctx.author, *((a, b * 5) for a, b in recipe[0].items()))
-        await ctx.bot.di.give_items(ctx.author, *((a, b * 5) for a, b in recipe[1].items()))
+        await ctx.bot.di.take_items(ctx.author, *((a, b * number) for a, b in recipe[0].items()))
+        await ctx.bot.di.give_items(ctx.author, *((a, b * number) for a, b in recipe[1].items()))
 
         await ctx.send((await _(ctx, "Successfully crafted {} {}")).format(number, name))
 
