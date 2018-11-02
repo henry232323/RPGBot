@@ -23,7 +23,7 @@ from discord.ext import commands
 import discord
 import asyncio
 
-from .utils.data import MemberConverter, ItemOrNumber, chain, IntConverter, create_pages, parse_varargs
+from .utils.data import MemberConverter, ItemOrNumber, chain, IntConverter, create_pages, parse_varargs, chunkn
 from .utils import checks
 from .utils.translation import _
 
@@ -49,9 +49,12 @@ class Inventory(object):
 
         fmap = map(lambda x: f"{x[0]} x{x[1]}", sorted(inv.items()))
         fmt = "\n".join(fmap)
-        embed = discord.Embed(description=fmt)
-        embed.set_author(name=member.display_name, icon_url=member.avatar_url)
-        await ctx.send(embed=embed)
+        chunks = [("Items: ", v) for v in chunkn(fmt)]
+        await create_pages(ctx, chunks, lfmt=lambda v: "\n".join(v),
+                           chunk=1, author=member.display_name, author_url=member.avatar_url)
+        #embed = discord.Embed(description=fmt)
+        #embed.set_author(name=member.display_name, icon_url=member.avatar_url)
+        #await ctx.send(embed=embed)
 
     @checks.mod_or_permissions()
     @commands.command(aliases=["take"])

@@ -177,6 +177,22 @@ def get(iterable, **attrs):
     return None or fin
 
 
+def chunkn(s, n=2000, splitter="\n"):
+    s = s.split(splitter)
+    chunks = [[]]
+    ctr = 0
+    ictr = 0
+    for str in s:
+        ctr += len(str) + 1
+        if ctr > n:
+            ictr += 1
+            chunks.append([])
+
+        chunks[ictr].append(str)
+
+    return chunks
+
+
 async def create_pages(ctx, items, lfmt,
                        description=None, title=None,
                        author=None, author_url=None,
