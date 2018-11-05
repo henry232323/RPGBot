@@ -49,7 +49,7 @@ class Inventory(object):
 
         fmap = map(lambda x: f"{x[0]} x{x[1]}", sorted(inv.items()))
         fmt = "\n".join(fmap)
-        chunks = [("Items: ", v) for v in chunkn(fmt)]
+        chunks = [("Items: ", v) for v in chunkn(fmt, size=400)]
         await create_pages(ctx, chunks, lfmt=lambda v: "\n".join(v),
                            chunk=1, author=member.display_name, author_url=member.avatar_url)
         #embed = discord.Embed(description=fmt)

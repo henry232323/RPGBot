@@ -139,7 +139,8 @@ class Bot(commands.AutoShardedBot):
 
     async def on_message(self, msg):
         if msg.author.id not in self.blacklist:
-            await self.process_commands(msg)
+            ctx = await self.get_context(msg)
+            await self.invoke(ctx)
 
     async def update_stats(self):
         url = "https://bots.discord.pw/api/bots/{}/stats".format(self.user.id)
