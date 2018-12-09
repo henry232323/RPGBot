@@ -53,8 +53,14 @@ class Groups(object):
             await ctx.send(await _(ctx, "That guild doesn't exist here!"))
             return
 
-        members = "\n".join([discord.utils.get(ctx.guild.members, id=x).mention for x in
-                             (guild.members if len(guild.members) <= 20 else guild.members[20:])])
+        if len(guild.members) <= 20:
+            cmem = guild.members
+        else:
+            cmem = guild.members[20:]
+
+        mobj = (discord.utils.get(ctx.guild.members, id=x) for x in cmem)
+
+        members = "\n".join([u.mention for u in mobj if u])
         if len(guild.members) > 20:
             members = members + (await _(ctx, "\nAnd {} more...")).format(guild.members - 20)
 
@@ -69,9 +75,10 @@ class Groups(object):
             embed.set_image(url=guild.image)
 
         owner = discord.utils.get(ctx.guild.members, id=guild.owner)
+        oment = owner.mention if owner else "Not in server"
         currency = await ctx.bot.di.get_currency(ctx.guild)
 
-        embed.add_field(name=await _(ctx, "Owner"), value=owner.mention)
+        embed.add_field(name=await _(ctx, "Owner"), value=oment)
         embed.add_field(name=await _(ctx, "Open"), value=str(guild.open))
         embed.add_field(name=await _(ctx, "Bank Balance"), value=f"{guild.bank} {currency}")
         embed.add_field(name=await _(ctx, "Members"), value=members or await _(ctx, "None"))

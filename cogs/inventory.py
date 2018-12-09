@@ -49,12 +49,11 @@ class Inventory(object):
 
         fmap = map(lambda x: f"{x[0]} x{x[1]}", sorted(inv.items()))
         fmt = "\n".join(fmap)
-        chunks = [("Items: ", v) for v in chunkn(fmt, size=400)]
-        await create_pages(ctx, chunks, lfmt=lambda v: "\n".join(v),
-                           chunk=1, author=member.display_name, author_url=member.avatar_url)
-        #embed = discord.Embed(description=fmt)
-        #embed.set_author(name=member.display_name, icon_url=member.avatar_url)
-        #await ctx.send(embed=embed)
+        chunks = chunkn(fmt, 2000)#[("Items: ", v) for v in chunkn(fmt, 400)]
+        for chunk in chunks:
+            embed = discord.Embed(description="\n".join(chunk))
+            embed.set_author(name=member.display_name, icon_url=member.avatar_url)
+            await ctx.send(embed=embed)
 
     @checks.mod_or_permissions()
     @commands.command(aliases=["take"])
