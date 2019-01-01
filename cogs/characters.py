@@ -208,7 +208,7 @@ class Characters(object):
 
     @checks.no_pm()
     @character.command()
-    async def edit(self, ctx, character, attribute, *, value):
+    async def edit(self, ctx, character: str, attribute: str, *, value: str):
         """Edit a character
         Usage: rp!character edit John description John likes bananas!
         Valid values for the [item] (second argument):
@@ -266,15 +266,9 @@ class Characters(object):
 
     @checks.no_pm()
     @character.command()
-    async def del_att(self, ctx, character, attribute):
+    async def remattr(self, ctx, character: str, *, attribute: str):
         """Delete a character attribute
-        Usage: rp!character edit John description
-        Invalid values for the [item] (second argument) (do not delete these)
-            name: the character's name
-            description: the description of the character
-            level: an integer representing the character's level
-            meta: used like the additional info section when creating; can be used to edit/remove all attributes
-        Anything else will delete single attributes in the additional info section
+        Usage: rp!character remattr John hair color
         """
         attribute = attribute.lower()
         chars = await self.bot.di.get_guild_characters(ctx.guild)
@@ -294,9 +288,9 @@ class Characters(object):
 
         if attribute not in character[5]:
             await ctx.send(await _(ctx, "That attribute doesn't exist! Try again"))
-        
-        character = list(character)
+            return
+
         del character[5][attribute]
 
-        wait self.bot.di.addcharacter(ctx.guild, Character(*character))
-        await ctx.send(await (ctx, "Attribute!"))
+        await self.bot.di.add_character(ctx.guild, Character(*character))
+        await ctx.send(await _(ctx, "Removed attribute!"))
