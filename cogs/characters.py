@@ -263,3 +263,34 @@ class Characters(object):
 
         await self.bot.di.add_character(ctx.guild, Character(*character))
         await ctx.send(await _(ctx, "Character edited!"))
+
+    @checks.no_pm()
+    @character.command()
+    async def del_att(self, ctx, character, attribute):
+        """Delete a character attribute
+        Usage: rp!character edit John description
+        Invalid values for the [item] (second argument) (do not delete these)
+            name: the character's name
+            description: the description of the character
+            level: an integer representing the character's level
+            meta: used like the additional info section when creating; can be used to edit/remove all attributes
+        Anything else will delete single attributes in the additional info section
+        """
+        attribute = attribute.lower()
+        chars = await self.bot.di.get_guild_characters(ctx.guild)
+        character = chars.get(character)
+        if character is None:
+            await ctx.send(await _(ctx, "That character doesn't exist!"))
+            return
+
+        try:
+            is_mod = checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
+        if character.owner != ctx.author.id and not is_mod:
+            await ctx.send(await _(ctx, "You do not own this character!"))
+            return
+
+        character = list(character)
+        del character[5][attribute]
