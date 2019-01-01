@@ -255,6 +255,7 @@ class Inventory(object):
 
     @checks.no_pm()
     @lootbox.command(name="delete", aliases=["remove"])
+    @checks.mod_or_permissions()
     async def _lootbox_delete(self, ctx, *, name: str):
         """Delete a lootbox with the given name"""
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
