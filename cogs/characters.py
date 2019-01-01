@@ -292,5 +292,11 @@ class Characters(object):
             await ctx.send(await _(ctx, "You do not own this character!"))
             return
 
+        if attribute not in character[5]:
+            await ctx.send(await _(ctx, "That attribute doesn't exist! Try again"))
+        
         character = list(character)
         del character[5][attribute]
+
+        wait self.bot.di.addcharacter(ctx.guild, Character(*character))
+        await ctx.send(await (ctx, "Attribute!"))
