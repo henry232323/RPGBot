@@ -8,17 +8,19 @@ Made by Henry#6174
 [**Support Server**](https://discord.gg/UYJb8fQ)
 
 ### Translators
-####French
+#### French
 - @wRadion#5043 https://github.com/wRadion
 - Me (@Henry#6174)
 - https://github.com/youqad
-####Russian
+#### Russian
 - https://github.com/Mozyl
-####German
+#### German
 - https://github.com/LW001
-####Spanish
+#### Spanish
 - https://github.com/Luistorch
 - https://github.com/Looker845
+
+
 
 
 
@@ -31,6 +33,7 @@ Made by Henry#6174
   - [character create](#character-create)
   - [character delete](#character-delete)
   - [character edit](#character-edit)
+  - [character remattr](#character-remattr)
   - [characters](#characters)
 - [Economy Commands](#economy-commands)
   - [baltop](#baltop)
@@ -130,6 +133,8 @@ Made by Henry#6174
   - [language](#language)
   - [loaddnd](#loaddnd)
   - [loaddndmagic](#loaddndmagic)
+  - [loaddndshop](#loaddndshop)
+  - [loadmagicshop](#loadmagicshop)
   - [loadpokemon](#loadpokemon)
   - [setstart](#setstart)
   - [settings](#settings)
@@ -185,6 +190,12 @@ Valid values for the [item] (second argument):
 Anything else will edit single attributes in the additional info section
 
 >**Usage:** `rp!character edit <character> <attribute> <value>`
+
+#### character remattr
+>**Description:** Delete a character attribute
+Usage: rp!character remattr John hair color
+
+>**Usage:** `rp!character remattr <character> <attribute>`
 
 #### characters
 >**Description:** List all your characters
@@ -702,9 +713,19 @@ For example
 >**Usage:** `rp!loaddnd`
 
 #### loaddndmagic
->**Description:** This command will pre-load all D&D items and make them available to give
+>**Description:** This command will pre-load all D&D Magic items and make them available to give
 
 >**Usage:** `rp!loaddndmagic`
+
+#### loaddndshop
+>**Description:** This command will pre-load all D&D items and make them available in shop
+
+>**Usage:** `rp!loaddndshop`
+
+#### loadmagicshop
+>**Description:** This command will pre-load all D&D Magic items and make them available in shop
+
+>**Usage:** `rp!loadmagicshop`
 
 #### loadpokemon
 >**Description:** This command will pre-load all Pokemon items and make them available to give
