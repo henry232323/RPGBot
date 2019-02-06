@@ -21,7 +21,7 @@
 
 import asyncio
 from collections import Counter
-from random import choice
+from random import choice, randint
 import json
 from recordclass import recordclass
 
@@ -51,13 +51,31 @@ class Economy(object):
     async def economy(self, ctx, member: discord.Member = None):
         """Check your or another users balance"""
         if member is None:
-            member = ctx.author
+            bal = await ctx.bot.di.get_all_balances(ctx.author)
 
-        bal = await self.bot.di.get_balance(member)
+            data = """
+            On you:\t\t{} dollars
+            In the bank:\t{} dollars in the bank
+            Total:\t\t{} dollars
+            """
 
-        await ctx.send(
-            (await _(ctx, "{} has {} dollars")).format(member.display_name, int(bal) if int(bal) == bal else bal)
-        )
+            embed = discord.Embed(description=(await _(ctx, data)).format(int(bal[0]) if int(bal[0]) == bal[0] else bal[0],
+                                                                          int(bal[1]) if int(bal[1]) == bal[1] else bal[1],
+                                                                          sum(bal)
+                                                                          ),
+                                  color=randint(0, 0xFFFFFF),
+                                  )
+
+            embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
+            embed.set_thumbnail(url="https://opengameart.org/sites/default/files/styles/medium/public/gold_pile_0.png")
+            await ctx.send(embed=embed)
+
+        else:
+            bal = await self.bot.di.get_balance(member)
+
+            await ctx.send(
+                (await _(ctx, "{} has {} dollars")).format(member.display_name, int(bal) if int(bal) == bal else bal)
+            )
 
     @checks.no_pm()
     @checks.mod_or_permissions()
@@ -120,7 +138,7 @@ class Economy(object):
             return
 
         emotes = ("\u2B05", "\u27A1", "\u274C")
-        embed = discord.Embed(description=desc, title=await _(ctx, "Player Market"))
+        embed = discord.Embed(description=desc, title=await _(ctx, "Player Market"), color=randint(0, 0xFFFFFF), )
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 
         chunks = []
@@ -300,7 +318,7 @@ class Economy(object):
             return
 
         emotes = ("\u2B05", "\u27A1", "\u274C")
-        embed = discord.Embed(description=desc, title=await _(ctx, "Player Market"))
+        embed = discord.Embed(description=desc, title=await _(ctx, "Player Market"), color=randint(0, 0xFFFFFF), )
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 
         chunks = []
@@ -434,7 +452,7 @@ class Economy(object):
     async def lotto(self, ctx):
         """List the currently running lottos."""
         if ctx.guild.id in self.bot.lotteries:
-            embed = discord.Embed()
+            embed = discord.Embed(color=randint(0, 0xFFFFFF), )
             embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
             embed.set_thumbnail(
                 url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/196b9d18843737.562d0472d523f.png"
@@ -739,3 +757,41 @@ class Economy(object):
         currency = await ctx.bot.di.get_currency(ctx.guild)
         msg = "\n".join(f"{x}: {y[0]} {y[1]} {currency}" for x, y in zip(range(1, 11), users))
         await ctx.send(f"```\n{msg}\n```")
+
+    @checks.no_pm()
+    @commands.group(aliases=["banc"], invoke_without_command=True)
+    async def bank(self, ctx):
+        bal = (await self.bot.di.get_all_balances(ctx.author))[0]
+
+        await ctx.send(
+            (await _(ctx, "{} has {} dollars")).format(ctx.author.display_name, int(bal) if int(bal) == bal else bal)
+        )
+
+    @checks.no_pm()
+    @bank.command()
+    async def deposit(self, ctx, amount: int):
+        """Deposit `amount` into the bank"""
+        bal = (await self.bot.di.get_all_balances(ctx.author))
+        if amount > bal[0]:
+            await ctx.send(await _(ctx, "You don't have enough to deposit!"))
+            return
+        await ctx.bot.di.set_balances(ctx.author, bal[0] - amount, bal[1] + amount)
+
+        await ctx.send(
+            (await _(ctx, "Successfully transferred ${} to your bank. You have ${} total in the bank")).format(amount,
+                                                                                                               bal[
+                                                                                                                   1] + amount))
+
+    @checks.no_pm()
+    @bank.command()
+    async def withdraw(self, ctx, amount: int):
+        """Withdraw `amount` from the bank"""
+        bal = (await self.bot.di.get_all_balances(ctx.author))
+        if amount > bal[1]:
+            await ctx.send(await _(ctx, "You don't have enough to withdraw!"))
+            return
+        await ctx.bot.di.set_balances(ctx.author, bal[0] + amount, bal[1] - amount)
+
+        await ctx.send((await _(ctx,
+                                "Successfully transferred {} dollars to your bank. You have {} dollars total in the bank")).format(
+            amount, bal[1] - amount))

@@ -154,7 +154,7 @@ class Misc(object):
         """Bot Info"""
         me = self.bot.user if not ctx.guild else ctx.guild.me
         appinfo = await self.bot.application_info()
-        embed = discord.Embed()
+        embed = discord.Embed(color=randint(0, 0xFFFFFF),)
         embed.set_author(name=me.display_name, icon_url=appinfo.owner.avatar_url,
                          url="https://github.com/henry232323/RPGBot")
         embed.add_field(name=await _(ctx, "Author"), value='Henry#6174 (Discord ID: 122739797646245899)')
@@ -198,7 +198,7 @@ class Misc(object):
     @commands.command()
     async def totalcmds(self, ctx):
         """Get totals of commands and their number of uses"""
-        embed = discord.Embed()
+        embed = discord.Embed(color=randint(0, 0xFFFFFF),)
         embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
         for val in self.bot.commands_used.most_common(25):
             embed.add_field(name=val[0], value=val[1])

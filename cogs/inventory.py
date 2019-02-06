@@ -27,7 +27,7 @@ from .utils.data import MemberConverter, ItemOrNumber, chain, IntConverter, crea
 from .utils import checks
 from .utils.translation import _
 
-from random import choice
+from random import choice, randint
 
 
 class Inventory(object):
@@ -51,7 +51,7 @@ class Inventory(object):
         fmt = "\n".join(fmap)
         chunks = chunkn(fmt, 2000)#[("Items: ", v) for v in chunkn(fmt, 400)]
         for chunk in chunks:
-            embed = discord.Embed(description="\n".join(chunk))
+            embed = discord.Embed(description="\n".join(chunk), color=randint(0, 0xFFFFFF))
             embed.set_author(name=member.display_name, icon_url=member.avatar_url)
             await ctx.send(embed=embed)
 
@@ -209,6 +209,7 @@ class Inventory(object):
             boxes[name] = dict(cost=cost, items=winitems)
         if not winitems:
             await ctx.send(await _(ctx, "You cannot create an empty lootbox!"))
+            return
 
         if isinstance(cost, (list, tuple)):
             await ctx.send(

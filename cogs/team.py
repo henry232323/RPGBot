@@ -22,6 +22,8 @@
 from discord.ext import commands
 import discord
 
+from random import randint
+
 from .utils import checks
 from .utils.translation import _
 
@@ -43,7 +45,7 @@ class Team(object):
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
 
-        embed = discord.Embed(title=f"{character} Pokemon")
+        embed = discord.Embed(title=f"{character} Pokemon", color=randint(0, 0xFFFFFF))
         embed.set_author(name=character, icon_url=chobj.meta.get("image", discord.Embed.Empty))
 
         for pokemon in team:

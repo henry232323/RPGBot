@@ -280,7 +280,7 @@ class Bot(commands.AutoShardedBot):
         return "\n".join(fin)
 
     async def shutdown(self):
-        self.session.close()
+        await self.session.close()
 
 
 prefix = ['rp!', 'pb!', '<@305177429612298242> ', 'Rp!'] if "debug" not in sys.argv else 'rp$'

@@ -22,6 +22,8 @@
 from discord.ext import commands
 import discord
 
+from random import randint
+
 from .utils import checks, data
 from .utils.data import chain
 from .utils.translation import _
@@ -40,7 +42,7 @@ class User(object):
         if user is None:
             user = ctx.author
 
-        embed = discord.Embed()
+        embed = discord.Embed(color=randint(0, 0xFFFFFF), )
         embed.set_author(name=user.display_name, icon_url=user.avatar_url)
         embed.set_thumbnail(url=user.avatar_url)
 
@@ -62,6 +64,9 @@ class User(object):
         invitems = "\n".join(imap) or await _(ctx, "No Items")
 
         embed.add_field(name=await _(ctx, "Balance"), value=f"{ud['money']} {gd.get('currency', 'dollars')}")
+        if user == ctx.author:
+            embed.add_field(name=await _(ctx, "Bank"), value=f"{ud.get('bank', 0)} {gd.get('currency', 'dollars')}")
+            embed.add_field(name=await _(ctx, "Total Money"), value=f"{ud.get('bank', 0) + ud['money']} {gd.get('currency', 'dollars')}")
         embed.add_field(name=await _(ctx, "Guild"), value=ud.get("guild", await _(ctx, "None")))
         embed.add_field(name=await _(ctx, "Items"), value=invitems)
         embed.add_field(name=await _(ctx, "Box"), value=boxitems) if boxitems else None
@@ -85,7 +90,8 @@ class User(object):
 
         ulvl, uexp = await self.bot.di.get_user_level(member)
         embed = discord.Embed(
-            description=(await _(ctx, "Level: {}\nExperience: {}/{}")).format(ulvl, uexp, self.bot.get_exp(ulvl)))
+            description=(await _(ctx, "Level: {}\nExperience: {}/{}")).format(ulvl, uexp, self.bot.get_exp(ulvl)),
+            color=randint(0, 0xFFFFFF), )
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
         await ctx.send(embed=embed)
 
