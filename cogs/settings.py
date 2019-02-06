@@ -130,6 +130,10 @@ class Settings(object):
             check = lambda x: x.channel is ctx.channel and x.author is ctx.author
             await ctx.send(await _(ctx, "Describe the item (a description for the item)"))
             response = await self.bot.wait_for("message", timeout=120, check=check)
+            if response.content.lower() == "cancel":
+                await ctx.send(await _(ctx, "Cancelling!"))
+                return
+
             item["description"] = response.content
             item["meta"] = dict()
 

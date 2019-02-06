@@ -59,12 +59,13 @@ class Economy(object):
             Total:\t\t{} dollars
             """
 
-            embed = discord.Embed(description=(await _(ctx, data)).format(int(bal[0]) if int(bal[0]) == bal[0] else bal[0],
-                                                                          int(bal[1]) if int(bal[1]) == bal[1] else bal[1],
-                                                                          sum(bal)
-                                                                          ),
-                                  color=randint(0, 0xFFFFFF),
-                                  )
+            embed = discord.Embed(
+                description=(await _(ctx, data)).format(int(bal[0]) if int(bal[0]) == bal[0] else bal[0],
+                                                        int(bal[1]) if int(bal[1]) == bal[1] else bal[1],
+                                                        sum(bal)
+                                                        ),
+                color=randint(0, 0xFFFFFF),
+                )
 
             embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
             embed.set_thumbnail(url="https://opengameart.org/sites/default/files/styles/medium/public/gold_pile_0.png")
@@ -778,9 +779,9 @@ class Economy(object):
         await ctx.bot.di.set_balances(ctx.author, bal[0] - amount, bal[1] + amount)
 
         await ctx.send(
-            (await _(ctx, "Successfully transferred ${} to your bank. You have ${} total in the bank")).format(amount,
-                                                                                                               bal[
-                                                                                                                   1] + amount))
+            (await _(ctx, "Successfully transferred {} dollars to your bank. You have ${} total in the bank")).format(
+                amount,
+                bal[1] + amount))
 
     @checks.no_pm()
     @bank.command()
