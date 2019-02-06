@@ -23,6 +23,8 @@ from discord.ext import commands
 import discord
 import asyncio
 
+from random import randint
+
 from .utils.data import ServerItem, NumberConverter, create_pages
 from .utils import checks
 from .utils.translation import _
@@ -37,7 +39,7 @@ class Settings(object):
     async def settings(self, ctx):
         """Get the current server settings"""
         settings = await self.bot.db.get_guild_data(ctx.guild)
-        embed = discord.Embed()
+        embed = discord.Embed(color=randint(0, 0xFFFFFF),)
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
         embed.add_field(name=await _(ctx, "Starting Money"),
                         value=f"{settings['start']} {settings.get('currency', 'dollars')}")
@@ -64,9 +66,9 @@ class Settings(object):
             await ctx.send(await _(ctx, "Item doesnt exist!"))
             return
         if hasattr(item, "description"):
-            embed = discord.Embed(title=item.name, description=item.description)
+            embed = discord.Embed(title=item.name, description=item.description, color=randint(0, 0xFFFFFF),)
         else:
-            embed = discord.Embed(title=item.name)
+            embed = discord.Embed(title=item.name, color=randint(0, 0xFFFFFF),)
 
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
         embed.add_field(name=await _(ctx, "Name"), value=item.name)
@@ -78,7 +80,6 @@ class Settings(object):
             embed.add_field(name=key, value=value)
 
         await ctx.send(embed=embed)
-        discord.Embed()
 
     @settings.command()
     @checks.no_pm()

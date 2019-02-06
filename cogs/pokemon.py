@@ -22,6 +22,7 @@
 from discord.ext import commands
 import discord
 import asyncio
+from random import randint
 
 from .utils import checks, data
 from .utils.translation import _
@@ -41,7 +42,7 @@ class Pokemon(object):
 
         pokemon = [f"{x.id}: **{x.name}**" for x in box]
         description = "\n".join(pokemon)
-        embed = discord.Embed(description=description, title=f"{member.display_name} Pokemon")
+        embed = discord.Embed(description=description, title=f"{member.display_name} Pokemon", color=randint(0, 0xFFFFFF))
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
 
         await ctx.send(embed=embed)
@@ -57,7 +58,7 @@ class Pokemon(object):
 
         pokemon = [f"{x.id}: **{x.name}**" for x in box]
         description = "\n".join(pokemon)
-        embed = discord.Embed(description=description, title=f"{member.display_name} Pokemon")
+        embed = discord.Embed(description=description, title=f"{member.display_name} Pokemon", color=randint(0, 0xFFFFFF))
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
 
         await ctx.send(embed=embed)
@@ -172,7 +173,7 @@ class Pokemon(object):
         """Get info on a Pokemon"""
         pokemon = await self.bot.di.get_pokemon(ctx.author, id)
 
-        embed = discord.Embed(title=f"{pokemon.name}")
+        embed = discord.Embed(title=f"{pokemon.name}", color=randint(0, 0xFFFFFF))
         embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
 
         embed.add_field(name=await _(ctx, "Nickname"), value=pokemon.name)

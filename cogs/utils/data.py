@@ -28,6 +28,7 @@ import ujson as json
 from collections import Counter
 import re
 import asyncio
+from random import randint
 
 from .translation import _
 
@@ -198,7 +199,7 @@ async def create_pages(ctx, items, lfmt,
                        author=None, author_url=None,
                        emotes=("\u2B05", "\u27A1", "\u274C"),
                        thumbnail=None, footer=None, chunk=25):
-    embed = discord.Embed(description=description, title=title)
+    embed = discord.Embed(description=description, title=title, color=randint(0, 0xFFFFFF))
     embed.set_author(name=author, icon_url=author_url)
     if thumbnail:
         embed.set_thumbnail(
@@ -428,10 +429,21 @@ class DataInteraction(object):
         """Get user's balance"""
         return float(await self.db.user_item(member, "money"))
 
+    async def get_all_balances(self, member):
+        ud = await self.db.get_user_data(member)
+        bal = ud.get("money", 0)
+        bank = ud.get("bank", 0)
+        return (bal, bank)
+
     async def get_inventory(self, member):
         """Get user's inventory"""
         ui = await self.db.user_item(member, "items")
         return json.decode(ui)
+
+    async def get_salary_ctime(self, member):
+        """Get user's inventory"""
+        ud = await self.db.get_user_data(member)
+        return ud.get('ctimes', {})
 
     async def get_user_guild(self, member):
         """Get user's associated guild"""
@@ -642,6 +654,12 @@ class DataInteraction(object):
         await self.db.update_user_data(member, ud)
         return ud["money"]
 
+    async def set_salary_ctime(self, member, ctimes):
+        """Give a user items"""
+        ud = await self.db.get_user_data(member)
+        ud["ctimes"] = ctimes
+        await self.db.update_user_data(member, ud)
+
     async def update_salaries(self, guild, data):
         gd = await self.db.get_guild_data(guild)
         gd["salaries"] = data
@@ -670,6 +688,15 @@ class DataInteraction(object):
         ud["money"] = amount
         await self.db.update_user_data(member, ud)
         return ud["money"]
+
+    async def set_balances(self, member, bal=None, bank=None):
+        """Set a user's balance and bank balance"""
+        ud = await self.db.get_user_data(member)
+        if bal is not None:
+            ud["money"] = bal
+        if bank is not None:
+            ud["bank"] = bank
+        await self.db.update_user_data(member, ud)
 
     async def set_start(self, guild, amount):
         """Set a server's user start balance"""

@@ -1,10 +1,12 @@
 import datetime
+import time
 import asyncio
 import json
 from collections import defaultdict
 
 import discord
 from discord.ext import commands
+from random import randint
 
 from .utils import data, checks
 from .utils.translation import _
@@ -17,8 +19,8 @@ class Salary(object):
         self.bot = bot
         self.first = True
 
-    async def on_ready(self):
-        self.bot.loop.create_task(self.run_salaries())
+    #async def on_ready(self):
+        #self.bot.loop.create_task(self.run_salaries())
 
     async def run_salaries(self):
         if self.first:
@@ -81,7 +83,7 @@ class Salary(object):
     @checks.no_pm()
     async def salaries(self, ctx):
         """See guild salaries"""
-        embed = discord.Embed()
+        embed = discord.Embed(color=randint(0, 0xFFFFFF),)
         sals = await self.bot.di.get_salaries(ctx.guild)
         if not sals:
             await ctx.send(await _(ctx, "There are no current salaries on this server"))
@@ -185,3 +187,45 @@ class Salary(object):
             await self.bot.di.update_salaries(ctx.guild, roles)
 
         await ctx.send(await _(ctx, "Salaries payed out"))
+
+    @salary.command()
+    @checks.no_pm()
+    async def collect(self, ctx: commands.Context, *roles: discord.Role):
+        salaries = await self.bot.di.get_salaries(ctx.guild)
+        spayments = await self.bot.di.get_salary_ctime(ctx.author)
+        ctime = time.time()
+
+        if not roles:
+            roles = ctx.author.roles
+
+        for role in roles:
+            if str(role.id) in salaries:
+                if (ctime - spayments.get(str(role.id), 0)) > (3600 * 24):
+                    spayments[str(role.id)] = ctime
+
+                    amount = salaries[str(role.id)]
+
+                    if isinstance(amount, (int, float)):
+                        try:
+                            await self.bot.di.add_eco(ctx.author, amount)
+                        except ValueError:
+                            await self.bot.di.set_eco(ctx.author, 0)
+                    else:
+                        payamount, giveamount = sum(
+                            filter(lambda x: isinstance(x, (int, float)), amount)), tuple(filter(
+                            lambda x: isinstance(x, (list, tuple)), amount))
+                        if payamount:
+                            try:
+                                await self.bot.di.add_eco(ctx.author, payamount)
+                            except ValueError:
+                                await self.bot.di.set_eco(ctx.author, 0)
+                        if giveamount:
+                            await self.bot.di.update_items(ctx.author, *giveamount)
+
+                else:
+                    delta = datetime.timedelta(days=1) - (
+                    datetime.datetime.utcnow() - datetime.datetime.fromtimestamp(spayments[str(role.id)]))
+                    await ctx.send((await _(ctx, "{} cannot be collected for another {}")).format(role, delta))
+
+        await ctx.send(await _(ctx, "Successfully collected salaries"))
+        await self.bot.di.set_salary_ctime(ctx.author, spayments)

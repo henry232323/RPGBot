@@ -22,6 +22,8 @@
 import discord
 from discord.ext import commands
 
+from random import randint
+
 from .utils import checks
 from .utils.data import Character
 from .utils.translation import _
@@ -43,7 +45,7 @@ class Characters(object):
             await ctx.send((await _(ctx, "{} has no characters to display")).format(user))
             return
 
-        embed = discord.Embed(description="\n".join(characters))
+        embed = discord.Embed(description="\n".join(characters), color=randint(0, 0xFFFFFF),)
         embed.set_author(name=user.display_name, icon_url=user.avatar_url)
         await ctx.send(embed=embed)
 
@@ -56,7 +58,7 @@ class Characters(object):
             await ctx.send(await _(ctx, "No characters to display"))
             return
 
-        embed = discord.Embed()
+        embed = discord.Embed(color=randint(0, 0xFFFFFF),)
         words = dict()
         for x in characters.keys():
             if x[0].casefold() in words:

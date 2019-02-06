@@ -24,6 +24,7 @@ import discord
 
 import asyncio
 from collections import Counter
+from random import randint
 
 from .utils.data import Guild, NumberConverter, validate_url
 from .utils import checks
@@ -67,7 +68,7 @@ class Groups(object):
         litems = guild.items.items() if len(guild.items) < 20 else list(guild.items.items())[20:]
         items = "\n".join(f"{x} x{y}" for x, y in litems)
 
-        embed = discord.Embed(description=guild.description or await _(ctx, "This guild doesn't have a description"))
+        embed = discord.Embed(description=guild.description or await _(ctx, "This guild doesn't have a description"), color=randint(0, 0xFFFFFF))
         embed.set_author(name=guild.name, icon_url=guild.icon or ctx.guild.icon_url)
         if guild.icon is not None:
             embed.set_thumbnail(url=guild.icon)
@@ -91,7 +92,7 @@ class Groups(object):
     async def guilds(self, ctx):
         """List guilds"""
         guilds = list((await self.bot.di.get_guild_guilds(ctx.guild)).items())
-        embed = discord.Embed()
+        embed = discord.Embed(color=randint(0, 0xFFFFFF))
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 
         if not guilds:
@@ -105,7 +106,7 @@ class Groups(object):
         """)
 
         emotes = ("\u2B05", "\u27A1", "\u274C")
-        embed = discord.Embed(description=desc, title="Server Guilds")
+        embed = discord.Embed(description=desc, title="Server Guilds", color=randint(0, 0xFFFFFF))
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 
         chunks = []
@@ -189,7 +190,7 @@ class Groups(object):
         litems = guild.items.items() if len(guild.items) < 20 else list(guild.items.items())[20:]
         items = "\n".join(f"{x} x{y}" for x, y in litems)
 
-        embed = discord.Embed(description=guild.description or await _(ctx, "This guild doesn't have a description"))
+        embed = discord.Embed(description=guild.description or await _(ctx, "This guild doesn't have a description"), color=randint(0, 0xFFFFFF))
         embed.set_author(name=guild.name, icon_url=guild.icon or ctx.guild.icon_url)
         if guild.icon is not None:
             embed.set_thumbnail(url=guild.icon)
