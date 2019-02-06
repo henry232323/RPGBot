@@ -486,7 +486,7 @@ class Inventory(object):
                 inmsg = await ctx.bot.wait_for("message",
                                                check=lambda x: x.author == ctx.author and (x.channel == ctx.channel),
                                                timeout=120)
-                if inmsg.content == "cancel":
+                if inmsg.content.lower() == "cancel":
                     await ctx.send(await _(ctx, "Cancelling!"))
                 inmsgparts = parse_varargs(inmsg.content)
 
@@ -508,7 +508,7 @@ class Inventory(object):
                 outmsg = await ctx.bot.wait_for("message",
                                                 check=lambda x: x.author == ctx.author and (x.channel == ctx.channel),
                                                 timeout=120)
-                if outmsg.content == "cancel":
+                if outmsg.content.lower() == "cancel":
                     await ctx.send(await _(ctx, "Cancelling!"))
                     return
 
