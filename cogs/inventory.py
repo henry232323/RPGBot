@@ -455,8 +455,8 @@ class Inventory(object):
 
             def lfmt(v):
                 fmt = "Input:\n{}\nOutput:\n{}"
-                inputstr = "\n".join(f"\t{i}: n" for i, n in v[0].items())
-                outputstr = "\n".join(f"\t{i}: n" for i, n in v[1].items())
+                inputstr = "\n".join(f"\t{i}: {n}" for i, n in v[0].items())
+                outputstr = "\n".join(f"\t{i}: {n}" for i, n in v[1].items())
                 return fmt.format(inputstr, outputstr)
 
             await create_pages(ctx, recipes, lfmt, description=desc, title=await _(ctx, "Server Recipes"),

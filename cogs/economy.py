@@ -108,11 +108,17 @@ class Economy(object):
     async def takemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
         """Take the member's money (Moderators)"""
         members = chain(members)
+        succ = False
 
         for member in members:
-            await self.bot.di.add_eco(member, -amount)
+            try:
+                await self.bot.di.add_eco(member, -amount)
+                succ = True
+            except ValueError:
+                await ctx.send((await _(ctx, "Could not take money from {}, user does not have enough")))
 
-        await ctx.send(await _(ctx, "Money taken"))
+        if succ:
+            await ctx.send(await _(ctx, "Money taken"))
 
     @checks.no_pm()
     @commands.command()
