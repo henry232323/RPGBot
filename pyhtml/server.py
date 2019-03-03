@@ -5,11 +5,16 @@ from urllib.parse import urlencode
 
 import discord
 import aiohttp
+
+'''
 from kyoukai import Kyoukai
 from kyoukai.util import as_html, as_json
 from kyoukai.asphalt import HTTPRequestContext, Response
 from werkzeug.exceptions import HTTPException
 from werkzeug.utils import redirect
+'''
+
+from aiohttp import web
 
 try:
     import uvloop
@@ -57,7 +62,7 @@ register = {
 }
 
 
-class API(Kyoukai):
+class API(web.Application):
     def __init__(self, bot, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.pool = None
@@ -84,11 +89,29 @@ class API(Kyoukai):
         with open("pyhtml/guild.html") as _rf:
             self.guild_html = _rf.read()
 
+        self.add_routes([
+            web.get('/code', self.code),
+            web.get('/hub', self.hub),
+            web.get('/guilds', self.guilds),
+            web.get('/authorize', self.mydata),
+            web.get('/user/{guild}/{user}/', self.getuser),
+            web.get('/guild/{guild}', self.getguild),
+            web.get('/', self.index),
+            web.get('/register', self.register),
+            web.get('/add/', self.add),
+            web.get('/bots/{snowflake}/', self.convert),
+            web.post('/bots/{snowflake}/', self.convert),
+        ])
+
     async def host(self):  # Start the connection to the DB and then start the Kyoukai server
         await self.bot.db.connect()
         await self.connect()
         # asyncio.ensure_future(eval.repl(self))
-        await self.start('0.0.0.0', 1996)
+
+        runner = web.AppRunner(self)
+        await runner.setup()
+        site = web.TCPSite(runner, '0.0.0.0', 80)
+        await site.start()
 
     async def connect(self):
         db = "pokerpg"  # "discoin"
@@ -118,108 +141,105 @@ class API(Kyoukai):
 
         return json.loads(response)
 
+    async def code(self, request: web.Request):
+        if 'code' not in request.query:
+            raise web.HTTPFound("/register?" + urlencode({"redirect": request.url}))
 
-def makepaths(server):
-    @server.route("/code", methods=["GET"])
-    async def code(ctx: HTTPRequestContext):
-        if 'code' not in ctx.request.args:
-            return redirect("/register?" + urlencode({"redirect": ctx.request.url}), code=302)
-
-        code = ctx.request.args["code"]
+        code = request.query["code"]
         data = {
             "code": code,
             "grant_type": "authorization_code",
             "redirect_uri": "https://api.typheus.me/hub",
-            "client_id": server.client_id,
-            "client_secret": server.client_secret
+            "client_id": self.client_id,
+            "client_secret": self.client_secret
         }
-        response = await server.session.post(
+        response = await self.session.post(
             f"https://discordapp.com/api/oauth2/token?{urlencode(data)}",
         )
         js = await response.json()
         if 'error' in js:
-            return Response(f"Invalid code or redirect {js['error']}", status=500)
+            raise web.HTTPServerError(reason=f"Invalid code or redirect {js['error']}")
         token = js['access_token']
         logging.info("Received Discord OAuth2 code, grabbing token")
-        return redirect(f"/hub?token={token}", code=302)
+        raise web.HTTPFound(f"/hub?token={token}")
 
-    @server.route("/hub", methods=["GET"])
-    async def hub(ctx: HTTPRequestContext):
-        token = ctx.request.args.get("token")
+    async def hub(self, request: web.Request):
+        token = request.query.get("token")
         if not token:
-            return redirect("/register?" + urlencode({"redirect": ctx.request.url}))
+            raise web.HTTPFound("/register?" + urlencode({"redirect": request.url}))
 
-        api_resp = await server.session.get("https://discordapp.com/api/users/@me",
-                                            headers={
-                                                "Authorization": f"Bearer {token}",
-                                            })
+        api_resp = await self.session.get("https://discordapp.com/api/users/@me",
+                                          headers={
+                                              "Authorization": f"Bearer {token}",
+                                          })
         js = await api_resp.json()
         if "code" in js:
-            return Response(js["message"], status=js["code"])
-        resp = await server.get_userdata(js['id'])
-        guilds = await (await server.session.get("https://discordapp.com/api/users/@me/guilds",
-                                                 headers={
-                                                     "Authorization": f"Bearer {token}",
-                                                 })).json()
+            return web.StreamResponse(reason=js["message"], status=js["code"])
+        resp = await self.get_userdata(js['id'])
+        guilds = await (await self.session.get("https://discordapp.com/api/users/@me/guilds",
+                                               headers={
+                                                   "Authorization": f"Bearer {token}",
+                                               })).json()
 
         fguilds = filter(lambda x: x["id"] in resp, guilds)
         servers = "\n".join(f"""
-            <button>
-                <a href="/guilds?guild_id={guild["id"]}&token={token}">
-                    <img src="https://cdn.discordapp.com/icons/{guild["id"]}/{guild["icon"]}.webp?size=32" />
-                    {guild["name"]}
-                </a>
-            </button>
-            <br />""" for guild in fguilds)
+                <button>
+                    <a href="/guilds?guild_id={guild["id"]}&token={token}">
+                        <img src="https://cdn.discordapp.com/icons/{guild["id"]}/{guild["icon"]}.webp?size=32" />
+                        {guild["name"]}
+                    </a>
+                </button>
+                <br />""" for guild in fguilds)
 
-        return as_html(server.hub_html.format(token=token, servers=servers))
+        resp = web.Response(body=(self.hub_html.format(token=token, servers=servers)).encode())
+        resp.headers['content-type'] = 'text/html'
+        return resp
 
-    @server.route("/guilds", methods=["GET"])
-    async def guilds(ctx: HTTPRequestContext):
-        token = ctx.request.args.get("token")
-        guild_id = ctx.request.args.get("guild_id")
+    async def guilds(self, request: web.Request):
+        token = request.query.get("token")
+        guild_id = request.query.get("guild_id")
         if not (token and guild_id):
-            return redirect("/register")
+            raise web.HTTPFound("/register")
 
         if not guild_id.isdigit():
-            return Response(status=404)
+            raise web.HTTPNotFound()
         guild_id = int(guild_id)
 
-        medata = await (await server.session.get("https://discordapp.com/api/users/@me",
-                                                 headers={
-                                                     "Authorization": f"Bearer {token}",
-                                                 })).json()
+        medata = await (await self.session.get("https://discordapp.com/api/users/@me",
+                                               headers={
+                                                   "Authorization": f"Bearer {token}",
+                                               })).json()
 
-        guilds = await (await server.session.get("https://discordapp.com/api/users/@me/guilds",
-                                                 headers={
-                                                     "Authorization": f"Bearer {token}",
-                                                 })).json()
+        guilds = await (await self.session.get("https://discordapp.com/api/users/@me/guilds",
+                                               headers={
+                                                   "Authorization": f"Bearer {token}",
+                                               })).json()
 
-        guild = server.bot.get_guild(guild_id)
+        guild = self.bot.get_guild(guild_id)
 
         if "code" in guilds:
-            return Response(guilds["message"], status=guilds["code"])
+            return web.StreamResponse(reason=guilds["message"], status=guilds["code"])
 
         if str(guild_id) not in (g["id"] for g in guilds):
-            return Response(status=403)
+            raise web.HTTPForbidden()
 
         try:
-            guild_data = await server.get_serverdata(guild_id)
-            user_data = (await server.get_userdata(medata["id"]))[str(guild_id)]
+            guild_data = await self.get_serverdata(guild_id)
+            user_data = (await self.get_userdata(medata["id"]))[str(guild_id)]
         except:
             import traceback
             traceback.print_exc()
-            return Response("oof", status=400)
+            raise web.HTTPBadRequest(reason="oof")
 
-        html = server.guild_html
+        html = self.guild_html
         start = "Start Money: {}".format(guild_data["start"])
         stats = "Balance: {}\n<br />Level: {}\n<br />Exp: {}".format(user_data["money"], user_data.get("level"),
                                                                      user_data.get("exp"))
-        fmap = map(lambda x: f"{x[0]} x{x[1]}", sorted(user_data["items"].items()))
+        fmap = map(lambda x: f"<li>{x[0]} x{x[1]}</li>", sorted(user_data["items"].items()))
         inventory = "\n".join(fmap)
 
         req = f"""SELECT (UUID, info->'{guild_id}'->>'money') FROM userdata;"""
-        async with server.pool.acquire() as connection:
+        async with self.pool.acquire() as connection:
             resp = await connection.fetch(req)
 
         users = [(discord.utils.get(guild.members, id=int(x["row"][0])), x["row"][1]) for x in resp if
@@ -227,17 +247,18 @@ def makepaths(server):
         users = [x for x in users if x[0]]
         users.sort(key=lambda x: -float(x[1]))
 
-        currency = await server.bot.di.get_currency(guild)
+        currency = await self.bot.di.get_currency(guild)
         baltop = "\n".join(f"<li> {y[0]} {y[1]} {currency}</li>" for y in users[:11])
-        characters = "\n".join(f"<li>{name}</li>" for name, obj in guild_data["characters"].items() if obj[2] == str(medata["id"]))
+        characters = "\n".join(
+            f"<li>{name}</li>" for name, obj in guild_data["characters"].items() if obj[2] == str(medata["id"]))
 
         hubbutton = """
-            <button>
-                <a href="/hub?token={token}">
-                    Return to Guilds
-                </a>
-            </button>
-        """.format(token=token)
+                <button>
+                    <a href="/hub?token={token}">
+                        Return to Guilds
+                    </a>
+                </button>
+            """.format(token=token)
 
         html = html.format(
             start_money=start,
@@ -245,7 +266,7 @@ def makepaths(server):
             my_inventory=inventory,
             baltop=baltop,
             my_characters=characters,
-            my_guild="Guild: " + user_data["guild"],
+            my_guild="Guild: " + str(user_data["guild"]),
             my_box=None,
             salaries=None,
             items=None,
@@ -257,22 +278,25 @@ def makepaths(server):
             hubbutton=hubbutton,
             guildname=guild.name,
         )
-        return as_html(html, code=200)
 
-    @server.route("/authorize", methods=["GET"])
-    async def mydata(ctx: HTTPRequestContext):
+        resp = web.Response(body=html.encode())
+
+        resp.headers['content-type'] = 'text/html'
+        return resp
+
+    async def mydata(self, request: web.Request):
         # if "token" not in ctx.request.args:
         #    return redirect("/register", code=302)
-        token = ctx.request.args['token']
-        api_resp = await server.session.get("https://discordapp.com/api/users/@me",
-                                            headers={
-                                                "Authorization": f"Bearer {token}",
-                                            })
+        token = request.query['token']
+        api_resp = await self.session.get("https://discordapp.com/api/users/@me",
+                                          headers={
+                                              "Authorization": f"Bearer {token}",
+                                          })
         js = await api_resp.json()
         if "code" in js:
-            return Response(js["message"], status=js["code"])
+            return web.StreamResponse(reason=js["message"], status=js["code"])
 
-        async with server.pool.acquire() as connection:
+        async with self.pool.acquire() as connection:
             exists = await connection.fetch(
                 f"""SELECT * FROM userdata WHERE user_id = {js['id']};"""
             )
@@ -302,98 +326,117 @@ def makepaths(server):
                     "token": token,
                 }
 
-        return as_json(js, code=200)
+        return web.json_response(js)
 
-    @server.route("/user/<int:guild>/<int:user>/", methods=["GET"])
-    async def getuser(ctx: HTTPRequestContext, guild: int, user: int):
+    # @server.route("/user/{guild}/{user}/", methods=["GET"])
+    async def getuser(self, request: web.Request):
+        try:
+            guild = int(request.match_info['guild'])
+            user = int(request.match_info['user'])
+        except:
+            raise web.HTTPBadRequest(reason="Malformed request")
+
         req = f"""SELECT info FROM userdata WHERE UUID = {user}"""
-        async with server.bot.db._conn.acquire() as connection:
+        async with self.bot.db._conn.acquire() as connection:
             response = await connection.fetchval(req)
         if response:
-            return as_json(json.decode(response)[str(int(guild))], code=200)
-        return Response(status=403)
+            return web.json_response(json.decode(response)[str(int(guild))])
+        raise web.HTTPForbidden()
 
-    @server.route("/guild/<int:guild>/", methods=["GET"])
-    async def getguild(ctx: HTTPRequestContext, guild: int):
+    # @server.route("/guild/<int:guild>/", methods=["GET"])
+    async def getguild(self, request: web.Request):
+        try:
+            guild = int(request.match_info['guild'])
+        except:
+            raise web.HTTPBadRequest(reason="Malformed request")
+
         req = f"""SELECT info FROM servdata WHERE UUID = {guild}"""
-        async with server.bot.db._conn.acquire() as connection:
+        async with self.bot.db._conn.acquire() as connection:
             response = await connection.fetchval(req)
         if response:
-            return as_json(json.decode(response), code=200)
-        return Response(status=403)
+            return web.json_response(json.decode(response))
+        raise web.HTTPForbidden()
 
-    @server.route("/", methods=["GET"])
-    async def index(ctx: HTTPRequestContext):
-        return redirect("/register", code=303)
+    # @server.route("/", methods=["GET"])
+    async def index(self, request: web.Request):
+        raise web.HTTPSeeOther("/register")
 
-    @server.route("/register", methods=["GET"])
-    async def register(ctx: HTTPRequestContext):  # Post form to complete registration, GET to see register page
-        return as_html(server.register_html)
+    # @server.route("/register", methods=["GET"])
+    async def register(self, request: web.Request):  # Post form to complete registration, GET to see register page
+        resp = web.Response(body=self.register_html.encode())
+        resp.headers['content-type'] = 'text/html'
+        return resp
 
-    @server.route("/add/", methods=["GET", "POST"])
-    async def add(ctx: HTTPRequestContext):
-        if ctx.request.method == "POST":
+    # @server.route("/add/", methods=["GET", "POST"])
+    async def add(self, request: web.Request):
+        if request.method == "POST":
             logging.info("Received request to ADD bot")
-            if "Authorization" not in ctx.request.headers:
-                return HTTPException("Failed to provide token!",  # Token was omitted from the headers
-                                     response=Response("Failed to fetch info!", status=401))
-            return Response(status=503)
+            if "Authorization" not in request.headers:
+                raise web.HTTPUnauthorized(reason="Failed to provide token!")  # Token was omitted from the headers
+            raise web.HTTPServiceUnavailable()
         else:
-            return Response(status=503)
+            raise web.HTTPServiceUnavailable()
 
-    @server.route("/bots/<int:snowflake>/", methods=["GET", "POST"])  # Post to `/bots/:bot_id/` with token in headers
-    async def convert(ctx: HTTPRequestContext, snowflake: int):
-        if ctx.request.method == "GET":
+    # @server.route("/bots/<int:snowflake>/",
+    #              methods=["GET", "POST"])  # Post to `/bots/:bot_id/` with token in headers
+    async def convert(self, request: web.Request):
+        try:
+            snowflake = int(request.match_info['snowflake'])
+        except:
+            raise web.HTTPBadRequest(reason="Malformed request")
+
+        if request.method == "GET":
             logging.info(f"Received request to view info on bot {snowflake}")
             snowflake = int(snowflake)
-            resp = dict((await server.get_botdata(snowflake))[0])
-            return as_json(resp, code=200)
+            resp = dict((await self.get_botdata(snowflake))[0])
+            return web.json_response(resp)
         else:
             try:
-                if "Authorization" not in ctx.request.headers:
-                    return HTTPException("Failed to provide token!",  # Token was omitted from the headers
-                                         response=Response("Failed to fetch info!", status=401))
-                token = ctx.request.headers["Authorization"]  # The user token
+                if "Authorization" not in request.headers:
+                    raise web.HTTPUnauthorized(reason="Failed to provide token!")  # Token was omitted from the headers
+
+                token = request.headers["Authorization"]  # The user token
                 snowflake = int(snowflake)  # The bot snowflake
                 req = f"""SELECT * FROM userdata WHERE token = '{token.replace("'", "''")}';"""
-                async with server.pool.acquire() as connection:
+                async with self.pool.acquire() as connection:
                     response = await connection.fetch(req)  # Get bots and webhook / gather type
                 if response:
                     bots, type = response[0]["bots"], response[0]["type"]
                     if snowflake not in bots:  # That bot is not associated with that token
-                        return HTTPException("That snowflake is not valid!",
-                                             Response("Failed to fetch info!", status=401))
+                        raise web.HTTPUnauthorized(reason="That snowflake is not valid!")
 
-                    async with server.pool.acquire() as connection:
+                    formdata = await request.post()
+
+                    async with self.pool.acquire() as connection:
                         name = await connection.fetchval(
                             f"""SELECT name FROM botdata WHERE id = {snowflake};"""
                         )  # Get the bot's name
                         url = await connection.fetchval(
-                            f"""SELECT url FROM botdata WHERE name = '{ctx.request.form["to_bot"].replace("'", "''")}';"""
+                            f"""SELECT url FROM botdata WHERE name = '{formdata["to_bot"].replace("'", "''")}';"""
                         )  # Get the URL of the bot we're sending to
                     if url is None:  # That bot is not in our database!
-                        return HTTPException("That is an invalid bot!",
-                                             response=Response("Failed to fetch info!", status=400))
+                        raise web.HTTPBadRequest(reason="That is an invalid bot!")
 
                     payload = {
                         "from_bot": name,
-                        "amount": ctx.request.form["amount"],
-                        "to_bot": ctx.request.form["to_bot"],
-                        "server_id": ctx.request.form["server_id"]
+                        "amount": formdata["amount"],
+                        "to_bot": formdata["to_bot"],
+                        "server_id": formdata["server_id"]
                     }
                     dumped = json.dumps(payload, indent=4)
 
-                    logging.info(f"Received request to convert {ctx.request.form['amount']} from {name} "
-                                 f"to {ctx.request.form['to_bot']} on server {ctx.request.form['server_id']}")
+                    logging.info(f"Received request to convert {formdata['amount']} from {name} "
+                                 f"to {formdata['to_bot']} on server {formdata['server_id']}")
                     if type is 0:  # If using webhooks
                         try:
-                            await server.session.post(url, json=dumped)  # Post the payload to the other bot's URL
+                            await self.session.post(url, json=dumped)  # Post the payload to the other bot's URL
                         except Exception as e:
-                            return HTTPException("An error occurred forwarding to the bot!",
-                                                 response=Response(e, status=500))
+                            raise web.HTTPInternalServerError(reason="An error occurred forwarding to the bot!")
 
-                    return as_json(payload, code=200)
+                    return web.json_response(payload)
                 else:  # If we don't get a response from the given token, the token doesn't exist
-                    return HTTPException("Invalid token!", response=Response("Failed to fetch info!", status=401))
+                    raise web.HTTPUnauthorized(reason="Invalid token!")
+            except web.HTTPException:
+                raise
             except:  # Generic error catching, always gives 400 cause how could it be _my_ issue?
-                return HTTPException("An error occurred!", response=Response("Failed to fetch info!", status=400))
+                return web.HTTPBadRequest(reason="An error occurred!")

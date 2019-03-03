@@ -24,7 +24,7 @@ import asyncpg
 import copy
 
 
-class Database(object):
+class Database:
     def __init__(self, bot):
         self.bot = bot
 

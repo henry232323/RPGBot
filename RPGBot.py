@@ -87,8 +87,7 @@ class Bot(commands.AutoShardedBot):
         with open("resources/pokemonitems.json", 'r') as dndf3:
             self.pokemonitems = json.loads(dndf3.read())
 
-        self.httpserver = server.API(self, "RPGBot")
-        server.makepaths(self.httpserver)
+        self.httpserver = server.API(self)
 
         self.db: db.Database = db.Database(self)
         self.di: data.DataInteraction = data.DataInteraction(self)
@@ -199,6 +198,11 @@ class Bot(commands.AutoShardedBot):
             if time:
                 await asyncio.sleep(time)
                 await ctx.message.delete()
+
+    async def on_member_join(self, member):
+        amount = await self.di.get_guild_start(member.guild)
+        if amount:
+            await self.di.set_eco(member, amount)
 
     async def on_command_error(self, ctx, exception):
         self.stats.increment("RPGBot.errors", tags=["RPGBot:errors"], host="scw-8112e8")

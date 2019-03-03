@@ -35,7 +35,7 @@ from traceback import format_exc
 from contextlib import redirect_stdout
 
 
-class Admin(object):
+class Admin(commands.Cog):
     def __init__(self, bot):
         self.emote = None
         self.bot = bot

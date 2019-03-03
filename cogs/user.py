@@ -29,7 +29,7 @@ from .utils.data import chain
 from .utils.translation import _
 
 
-class User(object):
+class User(commands.Cog):
     """Commands for guild management"""
 
     def __init__(self, bot):

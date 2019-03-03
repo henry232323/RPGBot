@@ -11,7 +11,7 @@ from .utils import checks
 from .utils.translation import _
 
 
-class Mapping:
+class Mapping(commands.Cog):
     def __init__(self, bot):
         """Server map utilities"""
         self.bot = bot

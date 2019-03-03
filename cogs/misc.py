@@ -36,7 +36,7 @@ from .utils import checks
 from .utils.translation import _
 
 
-class Misc(object):
+class Misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 

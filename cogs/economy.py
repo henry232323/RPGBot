@@ -34,7 +34,7 @@ from .utils.data import MemberConverter, NumberConverter, get, chain, create_pag
 from .utils.translation import _
 
 
-class Economy(object):
+class Economy(commands.Cog):
     """Economy related commands: balance, market, etc"""
 
     def __init__(self, bot):
@@ -65,7 +65,7 @@ class Economy(object):
                                                         sum(bal)
                                                         ),
                 color=randint(0, 0xFFFFFF),
-                )
+            )
 
             embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
             embed.set_thumbnail(url="https://opengameart.org/sites/default/files/styles/medium/public/gold_pile_0.png")
@@ -112,7 +112,7 @@ class Economy(object):
 
         for member in members:
             try:
-                await self.bot.di.add_eco(member, -amount)
+                await self.bot.di.take_from_bank(member, amount)
                 succ = True
             except ValueError:
                 await ctx.send((await _(ctx, "Could not take money from {}, user does not have enough")))
@@ -768,10 +768,10 @@ class Economy(object):
     @checks.no_pm()
     @commands.group(aliases=["banc"], invoke_without_command=True)
     async def bank(self, ctx):
-        bal = (await self.bot.di.get_all_balances(ctx.author))[0]
+        bal = (await self.bot.di.get_all_balances(ctx.author))[1]
 
         await ctx.send(
-            (await _(ctx, "{} has {} dollars")).format(ctx.author.display_name, int(bal) if int(bal) == bal else bal)
+            (await _(ctx, "You have {} dollars in the bank")).format(int(bal) if int(bal) == bal else bal)
         )
 
     @checks.no_pm()
@@ -785,7 +785,7 @@ class Economy(object):
         await ctx.bot.di.set_balances(ctx.author, bal[0] - amount, bal[1] + amount)
 
         await ctx.send(
-            (await _(ctx, "Successfully transferred {} dollars to your bank. You have ${} total in the bank")).format(
+            (await _(ctx, "Successfully transferred {} dollars to your bank. You have {} dollars total in the bank")).format(
                 amount,
                 bal[1] + amount))
 

@@ -28,7 +28,7 @@ from .utils import checks, data
 from .utils.translation import _
 
 
-class Pokemon(object):
+class Pokemon(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 

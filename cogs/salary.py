@@ -12,7 +12,7 @@ from .utils import data, checks
 from .utils.translation import _
 
 
-class Salary(object):
+class Salary(commands.Cog):
     """Salary commands"""
 
     def __init__(self, bot):
@@ -190,14 +190,14 @@ class Salary(object):
 
     @salary.command()
     @checks.no_pm()
-    async def collect(self, ctx: commands.Context, *roles: discord.Role):
+    async def collect(self, ctx: commands.Context):
         salaries = await self.bot.di.get_salaries(ctx.guild)
         spayments = await self.bot.di.get_salary_ctime(ctx.author)
         ctime = time.time()
 
-        if not roles:
-            roles = ctx.author.roles
+        roles = ctx.author.roles
 
+        collected = False
         for role in roles:
             if str(role.id) in salaries:
                 if (ctime - spayments.get(str(role.id), 0)) > (3600 * 24):
@@ -221,11 +221,15 @@ class Salary(object):
                                 await self.bot.di.set_eco(ctx.author, 0)
                         if giveamount:
                             await self.bot.di.update_items(ctx.author, *giveamount)
+                    collected = True
 
                 else:
                     delta = datetime.timedelta(days=1) - (
                     datetime.datetime.utcnow() - datetime.datetime.fromtimestamp(spayments[str(role.id)]))
                     await ctx.send((await _(ctx, "{} cannot be collected for another {}")).format(role, delta))
 
-        await ctx.send(await _(ctx, "Successfully collected salaries"))
-        await self.bot.di.set_salary_ctime(ctx.author, spayments)
+        if collected:
+            await ctx.send(await _(ctx, "Successfully collected salaries"))
+            await self.bot.di.set_salary_ctime(ctx.author, spayments)
+        else:
+            await ctx.send(await _(ctx, "Failed to collect salaries"))
