@@ -31,7 +31,7 @@ from .utils import checks
 from .utils.translation import _
 
 
-class Groups(object):
+class Groups(commands.Cog):
     """Commands for guild management"""
 
     def __init__(self, bot):
@@ -332,7 +332,7 @@ class Groups(object):
             await ctx.send(await _(ctx, "You aren't in a guild!"))
             return
         guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
+        guild = guilds[ug]
         if guild.owner == ctx.author.id:
             try:
                 await ctx.send(await _(ctx, "Guild will be deleted is this alright? {yes / no}"))

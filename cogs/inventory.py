@@ -30,7 +30,7 @@ from .utils.translation import _
 from random import choice, randint
 
 
-class Inventory(object):
+class Inventory(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.trades = {}
@@ -49,7 +49,7 @@ class Inventory(object):
 
         fmap = map(lambda x: f"{x[0]} x{x[1]}", sorted(inv.items()))
         fmt = "\n".join(fmap)
-        chunks = chunkn(fmt, 2000)#[("Items: ", v) for v in chunkn(fmt, 400)]
+        chunks = chunkn(fmt, 2000)  # [("Items: ", v) for v in chunkn(fmt, 400)]
         for chunk in chunks:
             embed = discord.Embed(description="\n".join(chunk), color=randint(0, 0xFFFFFF))
             embed.set_author(name=member.display_name, icon_url=member.avatar_url)
@@ -108,7 +108,7 @@ class Inventory(object):
     @checks.no_pm()
     @checks.admin_or_permissions()
     async def wipeinv(self, ctx, *members: MemberConverter):
-        """Wipe all inventories. Must be administrator"""
+        """Wipe all listed inventories. Must be administrator. To wipe ALL inventories do `rp!wipeinv everyone`"""
 
         members = chain(members)
 
@@ -116,7 +116,8 @@ class Inventory(object):
             ud = await self.bot.db.get_user_data(member)
             ud["items"] = {}
             await self.bot.db.update_user_data(member, ud)
-        await ctx.send(await _(ctx, "Wiped all inventories"))
+
+        await ctx.send((await _(ctx, "Wiped {} users' inventories")).format(len(members)))
 
     @commands.command()
     @checks.no_pm()

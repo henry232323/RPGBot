@@ -30,7 +30,7 @@ from .utils import checks
 from .utils.translation import _
 
 
-class Settings(object):
+class Settings(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 

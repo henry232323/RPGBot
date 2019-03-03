@@ -29,7 +29,7 @@ from .utils.data import Character
 from .utils.translation import _
 
 
-class Characters(object):
+class Characters(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -184,7 +184,7 @@ class Characters(object):
 
         await self.bot.di.add_character(ctx.guild, Character(**character))
         await ctx.send(
-            await _(ctx, "Character created! rp!team addmember to add Pokemon (optional) to your character's team!"))
+            await _(ctx, "Character created!"))
 
     @checks.no_pm()
     @character.command(aliases=["remove", "supprimer"])
@@ -272,7 +272,7 @@ class Characters(object):
         """Delete a character attribute
         Usage: rp!character remattr John hair color
         """
-        attribute = attribute.lower()
+        attribute = attribute
         chars = await self.bot.di.get_guild_characters(ctx.guild)
         character = chars.get(character)
         if character is None:

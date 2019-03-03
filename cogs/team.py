@@ -28,7 +28,7 @@ from .utils import checks
 from .utils.translation import _
 
 
-class Team(object):
+class Team(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 

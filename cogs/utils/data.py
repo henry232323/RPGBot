@@ -654,6 +654,19 @@ class DataInteraction(object):
         await self.db.update_user_data(member, ud)
         return ud["money"]
 
+    async def take_from_bank(self, member, amount):
+        """Take a user('s) money, draining from the bank if necessary"""
+        ud = await self.db.get_user_data(member)
+        ud["money"] -= amount
+        if "bank" not in ud:
+            ud["bank"] = 0
+        if ud["money"] < 0:
+            ud["bank"] += ud["money"]
+            if ud["bank"] < 0:
+                raise ValueError("Cannot take more than user has!")
+        await self.db.update_user_data(member, ud)
+        return ud["money"], ud["bank"]
+
     async def set_salary_ctime(self, member, ctimes):
         """Give a user items"""
         ud = await self.db.get_user_data(member)

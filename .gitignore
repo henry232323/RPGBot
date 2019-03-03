@@ -100,7 +100,7 @@ ftpserver.py
 invdata/
 discord/
 discord.py-rewrite.zip
-server.py
+/server.py
 .DS_STORE
 requirements.txt
 postgresql2/
