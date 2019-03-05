@@ -332,6 +332,12 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "You aren't in a guild!"))
             return
         guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+
+        if ug not in guilds:
+            await self.bot.di.set_guild(ctx.author, None)
+            await ctx.send(await _(ctx, "Guild left."))
+            return
+
         guild = guilds[ug]
         if guild.owner == ctx.author.id:
             try:
@@ -340,6 +346,7 @@ class Groups(commands.Cog):
                                                check=lambda x: x.author is ctx.author and x.channel is ctx.channel)
             except TimeoutError:
                 await ctx.send(await _(ctx, "Didn't respond in time! Cancelling"))
+                return
 
             if resp.content == "yes":
                 await ctx.send(await _(ctx, "Deleting!"))
@@ -349,6 +356,7 @@ class Groups(commands.Cog):
                 return
 
         guild.members.remove(ctx.author.id)
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await self.bot.di.set_guild(ctx.author, None)
         await ctx.send(await _(ctx, "Guild left."))
 
