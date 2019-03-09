@@ -822,7 +822,7 @@ class DataInteraction(object):
         gd = await self.db.get_guild_data(guild)
         for mid in gd["guilds"][name][3]:
             try:
-                await self.set_guild(discord.utils.get(guild.members, id=mid), None)
+                await self.set_guild(discord.Object(id=mid), None)
             except:
                 pass
         del gd["guilds"][name]

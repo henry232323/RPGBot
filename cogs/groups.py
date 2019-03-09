@@ -349,8 +349,12 @@ class Groups(commands.Cog):
                 return
 
             if resp.content == "yes":
-                await ctx.send(await _(ctx, "Deleting!"))
+                await ctx.send(await _(ctx, "Alright then!"))
+
+                await ctx.bot.di.add_eco(discord.Object(id=guild.owner), guild.bank)
+                await ctx.bot.di.give_items(discord.Object(id=guild.owner), *guild.items)
                 await self.bot.di.remove_guild(ctx.guild, guild.name)
+                await ctx.send(await _(ctx, "Guild removed!"))
             else:
                 await ctx.send(await _(ctx, "Cancelling!"))
                 return
@@ -415,7 +419,7 @@ class Groups(commands.Cog):
                 await ctx.send(await _(ctx, "You aren't in a guild!"))
                 return
         guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
+        guild = guilds[ug]
         if name is None and guild.owner != ctx.author.id:
             await ctx.send(await _(ctx, "You do not own this guild!"))
             return
@@ -431,8 +435,12 @@ class Groups(commands.Cog):
         if resp.content.lower() == "yes":
             await ctx.send(await _(ctx, "Alright then!"))
 
+            await ctx.bot.di.add_eco(discord.Object(id=guild.owner), guild.bank)
+            await ctx.bot.di.give_items(discord.Object(id=guild.owner), *guild.items)
             await self.bot.di.remove_guild(ctx.guild, guild.name)
             await ctx.send(await _(ctx, "Guild removed!"))
+        else:
+            await ctx.send(await _(ctx, "Cancelling!"))
 
     @guild.command()
     @checks.no_pm()
