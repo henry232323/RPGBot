@@ -117,7 +117,7 @@ class Inventory(commands.Cog):
             ud["items"] = {}
             await self.bot.db.update_user_data(member, ud)
 
-        await ctx.send((await _(ctx, "Wiped {} users' inventories")).format(len(members)))
+        await ctx.send((await _(ctx, "Wiped {} users' inventories")).format(len(list(members))))
 
     @commands.command()
     @checks.no_pm()

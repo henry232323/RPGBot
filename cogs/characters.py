@@ -220,7 +220,6 @@ class Characters(commands.Cog):
             meta: used like the additional info section when creating; can be used to edit/remove all attributes
         Anything else will edit single attributes in the additional info section
         """
-        attribute = attribute.lower()
         chars = await self.bot.di.get_guild_characters(ctx.guild)
         character = chars.get(character)
         if character is None:
