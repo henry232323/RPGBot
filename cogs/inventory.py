@@ -127,7 +127,7 @@ class Inventory(commands.Cog):
         """
         number = abs(number)
         items = await self.bot.di.get_guild_items(ctx.guild)
-        msg = items.get(item).meta.get('used')
+        msg = items.get(item).meta.get('used').format(mention=ctx.author.mention, name=ctx.author.display_name, channel=ctx.channel)
         if msg is None:
             await ctx.send(await _(ctx, "This item is not usable!"))
             return

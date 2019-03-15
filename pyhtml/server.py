@@ -120,7 +120,7 @@ class API(web.Application):
     async def get_botdata(self, snowflake: int):
         async with self.pool.acquire() as connection:
             response = await connection.fetch(
-                f"""SELECT * FROM botdata WHERE id = {snowflake};"""
+                f"""SELECT * FROM botdata WHERE UUID = {snowflake};"""
             )
 
         return response

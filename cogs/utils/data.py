@@ -136,6 +136,14 @@ class ItemOrNumber(commands.Converter):
         return round(float(fargument), 2)
 
 
+class Object:
+    def __init__(self, d={}, **kwargs):
+        for k, v in d.items():
+            setattr(self, k, v)
+        for k, v in kwargs.items():
+            setattr(self, k, v)
+
+
 def union(*classes):
     class Union(commands.Converter):
         async def convert(self, ctx, argument):
@@ -822,10 +830,10 @@ class DataInteraction(object):
         gd = await self.db.get_guild_data(guild)
         for mid in gd["guilds"][name][3]:
             try:
-                await self.set_guild(discord.Object(id=mid), None)
+                await self.set_guild(Object(id=mid), None)
             except:
                 pass
-        del gd["guilds"][name]
+        del gd['guilds'][name]
         return await self.db.update_guild_data(guild, gd)
 
     async def update_guild_shop(self, guild, data):

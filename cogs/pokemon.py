@@ -181,8 +181,8 @@ class Pokemon(commands.Cog):
         embed.add_field(name=await _(ctx, "ID"), value=pokemon.id)
         stats = "\n".join(f"{x}: {y}" for x, y in pokemon.stats.items())
         meta = "\n".join(f"{x}: {y}" for x, y in pokemon.meta.items())
-        embed.add_field(name=await _(ctx, "Stats"), value=stats)
-        embed.add_field(name=await _(ctx, "Additional Info"), value=meta)
+        embed.add_field(name=await _(ctx, "Stats"), value=stats or "None")
+        embed.add_field(name=await _(ctx, "Additional Info"), value=meta or "None")
 
         await ctx.send(embed=embed)
 

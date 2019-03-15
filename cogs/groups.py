@@ -26,7 +26,7 @@ import asyncio
 from collections import Counter
 from random import randint
 
-from .utils.data import Guild, NumberConverter, validate_url
+from .utils.data import Guild, NumberConverter, validate_url, Object
 from .utils import checks
 from .utils.translation import _
 
@@ -351,10 +351,12 @@ class Groups(commands.Cog):
             if resp.content == "yes":
                 await ctx.send(await _(ctx, "Alright then!"))
 
-                await ctx.bot.di.add_eco(discord.Object(id=guild.owner), guild.bank)
-                await ctx.bot.di.give_items(discord.Object(id=guild.owner), *guild.items)
+                await ctx.bot.di.add_eco(Object(id=guild.owner, guild=ctx.guild), guild.bank)
+                await ctx.bot.di.give_items(Object(id=guild.owner, guild=ctx.guild), *guild.items.items())
                 await self.bot.di.remove_guild(ctx.guild, guild.name)
                 await ctx.send(await _(ctx, "Guild removed!"))
+                await self.bot.di.set_guild(ctx.author, None)
+                return
             else:
                 await ctx.send(await _(ctx, "Cancelling!"))
                 return
@@ -435,8 +437,8 @@ class Groups(commands.Cog):
         if resp.content.lower() == "yes":
             await ctx.send(await _(ctx, "Alright then!"))
 
-            await ctx.bot.di.add_eco(discord.Object(id=guild.owner), guild.bank)
-            await ctx.bot.di.give_items(discord.Object(id=guild.owner), *guild.items)
+            await ctx.bot.di.add_eco(Object(id=guild.owner, guild=ctx.guild), guild.bank)
+            await ctx.bot.di.give_items(Object(id=guild.owner, guild=ctx.guild), *guild.items.items())
             await self.bot.di.remove_guild(ctx.guild, guild.name)
             await ctx.send(await _(ctx, "Guild removed!"))
         else:
