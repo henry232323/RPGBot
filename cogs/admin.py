@@ -58,7 +58,7 @@ class Admin(commands.Cog):
     @checks.is_owner()
     @commands.command(hidden=True)
     async def eval(self, ctx, *, body: str):
-        """Borrowed from RoboDanny"""
+        """Don't snoop buddy"""
         env = {
             'bot': self.bot,
             'ctx': ctx,
