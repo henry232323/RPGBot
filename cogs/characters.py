@@ -241,7 +241,10 @@ class Characters(commands.Cog):
             await ctx.send(await _(ctx, "You do not own this character!"))
             return
         
-        if len(attribute) + len(value) > 1024:
+        if attribute == "description" && if len(content) + len(response.content) > 3500:
+            await ctx.send(await _(ctx, "Can't have a description longer than 3500 characters!"))
+            return
+        elif len(attribute) + len(value) > 1024:
             await ctx.send(await _(ctx, "Can't have an attribute longer than 1024 characters!"))
             return
         
