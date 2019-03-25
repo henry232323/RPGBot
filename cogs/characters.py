@@ -173,6 +173,9 @@ class Characters(commands.Cog):
                         key, value = val.split(": ")
                         key = key.strip()
                         value = value.strip()
+                        if len(key) + len(value) > 1024:
+                            await ctx.send(await _(ctx, "Can't have an attribute longer than 1024 characters!"))
+                            return
                         character["meta"][key] = value
                     else:
                         break
@@ -237,7 +240,14 @@ class Characters(commands.Cog):
         if character.owner != ctx.author.id and not is_mod:
             await ctx.send(await _(ctx, "You do not own this character!"))
             return
-
+        
+        if attribute == "description" and len(content) + len(response.content) > 3500:
+            await ctx.send(await _(ctx, "Can't have a description longer than 3500 characters!"))
+            return
+        elif len(attribute) + len(value) > 1024:
+            await ctx.send(await _(ctx, "Can't have an attribute longer than 1024 characters!"))
+            return
+        
         character = list(character)
         if attribute == "name":
             await self.bot.di.remove_character(ctx.guild, character[0])
