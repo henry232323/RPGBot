@@ -207,9 +207,13 @@ class Characters(commands.Cog):
             except:
                 is_mod = False
 
-            if character.owner != ctx.author.id and not is_mod:
+            if not is_mod:
                 await ctx.send(await _(ctx, "You do not own this character!"))
                 return
+
+            else:
+                await self.bot.di.remove_character(ctx.guild, name)
+                await ctx.send(await _(ctx, "Character deleted"))
         else:
             await self.bot.di.remove_character(ctx.guild, name)
             await ctx.send(await _(ctx, "Character deleted"))
