@@ -25,7 +25,7 @@ Now, on to the the patron favorites.
 
 Entering the `rp!character` command will give you details on that character. Characters can be created by anyone but you must have the Bot Mod role to create characters for other users. You may view all of your owned characters with the `rp!characters` command or all of the characters in the server with `rp!allchars`.
 
-## uilds
+## Guilds
 
 ## Teams
 
