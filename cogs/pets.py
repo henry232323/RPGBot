@@ -28,48 +28,48 @@ from .utils import checks, data
 from .utils.translation import _
 
 
-class Pokemon(commands.Cog):
+class Pets(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command()
     @checks.no_pm()
     async def box(self, ctx, member: discord.Member = None):
-        """Check the pokemon in your box"""
+        """Check the pet in your box"""
         if member is None:
             member = ctx.author
         box = await self.bot.di.get_box(member)
 
-        pokemon = [f"{x.id}: **{x.name}**" for x in box]
-        description = "\n".join(pokemon)
-        embed = discord.Embed(description=description, title=f"{member.display_name} Pokemon", color=randint(0, 0xFFFFFF))
+        pet = [f"{x.id}: **{x.name}**" for x in box]
+        description = "\n".join(pet)
+        embed = discord.Embed(description=description, title=f"{member.display_name} Pet", color=randint(0, 0xFFFFFF))
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
 
         await ctx.send(embed=embed)
 
     @commands.group(aliases=["p"], invoke_without_command=True)
     @checks.no_pm()
-    async def pokemon(self, ctx, member: discord.Member = None):
-        """Subcommands for Pokemon management, see rp!help pokemon
+    async def pet(self, ctx, member: discord.Member = None):
+        """Subcommands for Pet management, see rp!help pet
         Same use as rp!box"""
         if member is None:
             member = ctx.author
         box = await self.bot.di.get_box(member)
 
-        pokemon = [f"{x.id}: **{x.name}**" for x in box]
-        description = "\n".join(pokemon)
-        embed = discord.Embed(description=description, title=f"{member.display_name} Pokemon", color=randint(0, 0xFFFFFF))
+        pet = [f"{x.id}: **{x.name}**" for x in box]
+        description = "\n".join(pet)
+        embed = discord.Embed(description=description, title=f"{member.display_name} Pet", color=randint(0, 0xFFFFFF))
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
 
         await ctx.send(embed=embed)
 
-    @pokemon.command(aliases=["new"])
+    @pet.command(aliases=["new"])
     @checks.no_pm()
     async def create(self, ctx):
-        """Create a new Pokemon to add to your box"""
+        """Create a new Pet to add to your box"""
         try:
             check = lambda x: x.channel is ctx.channel and x.author is ctx.author
-            pokemon = dict()
+            pet = dict()
             await ctx.send(await _(ctx, "In any step type 'cancel' to cancel"))
             await ctx.send(await _(ctx, "What will its nickname be?"))
             response = await self.bot.wait_for("message", check=check, timeout=60)
@@ -77,22 +77,22 @@ class Pokemon(commands.Cog):
                 await ctx.send(await _(ctx, "Cancelled"))
                 return
             else:
-                pokemon["name"] = response.content
+                pet["name"] = response.content
 
-            await ctx.send(await _(ctx, "What species of Pokemon is it?"))
+            await ctx.send(await _(ctx, "What species of Pet is it?"))
             response = await self.bot.wait_for("message", check=check, timeout=60)
             if response.content.lower() == "cancel":
                 await ctx.send(await _(ctx, "Cancelled"))
                 return
             else:
-                pokemon["type"] = response.content
+                pet["type"] = response.content
 
             await ctx.send(
                 await _(ctx, "In any order, what are its stats? (level, health, attack, defense, spatk, spdef, speed)"
                              " For example `level: 5, health: 22, attack: 56`"
                              " Type 'skip' to skip."))
 
-            pokemon["stats"] = dict()
+            pet["stats"] = dict()
             valid_stats = [await _(ctx, "level"),
                            await _(ctx, "health"),
                            await _(ctx, "attack"),
@@ -121,7 +121,7 @@ class Pokemon(commands.Cog):
                             if key not in valid_stats:
                                 await ctx.send((await _(ctx, "{} is not a valid stat! Try again")).format(key))
                                 break
-                            pokemon["stats"][key] = int(value)
+                            pet["stats"][key] = int(value)
                         else:
                             break
                     except:
@@ -129,7 +129,7 @@ class Pokemon(commands.Cog):
                         continue
                     continue
 
-            pokemon["meta"] = dict()
+            pet["meta"] = dict()
             await ctx.send(await _(ctx, "Any additional data? (Format like the above, for example "
                                         "nature: hasty, color: brown)"))
 
@@ -151,15 +151,15 @@ class Pokemon(commands.Cog):
                             key, value = val.split(": ")
                             key = key.strip().casefold()
                             value = value.strip()
-                            pokemon["meta"][key] = value
+                            pet["meta"][key] = value
                         else:
                             break
                     except:
                         await ctx.send(await _(ctx, "Invalid formatting! Try again"))
                         continue
 
-            id = await self.bot.di.add_pokemon(ctx.author, pokemon)
-            await ctx.send((await _(ctx, "Finished! Pokemon has been added to box with ID {}")).format(id))
+            id = await self.bot.di.add_pet(ctx.author, pet)
+            await ctx.send((await _(ctx, "Finished! Pet has been added to box with ID {}")).format(id))
 
         except asyncio.TimeoutError:
             await ctx.send(await _(ctx, "Timed out! Try again"))
@@ -167,37 +167,37 @@ class Pokemon(commands.Cog):
             import traceback
             traceback.print_exc()
 
-    @pokemon.command()
+    @pet.command()
     @checks.no_pm()
     async def info(self, ctx, id: data.IntConverter):
-        """Get info on a Pokemon"""
-        pokemon = await self.bot.di.get_pokemon(ctx.author, id)
+        """Get info on a Pet"""
+        pet = await self.bot.di.get_pet(ctx.author, id)
 
-        embed = discord.Embed(title=f"{pokemon.name}", color=randint(0, 0xFFFFFF))
+        embed = discord.Embed(title=f"{pet.name}", color=randint(0, 0xFFFFFF))
         embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
 
-        embed.add_field(name=await _(ctx, "Nickname"), value=pokemon.name)
-        embed.add_field(name=await _(ctx, "Species"), value=pokemon.type)
-        embed.add_field(name=await _(ctx, "ID"), value=pokemon.id)
-        stats = "\n".join(f"{x}: {y}" for x, y in pokemon.stats.items())
-        meta = "\n".join(f"{x}: {y}" for x, y in pokemon.meta.items())
+        embed.add_field(name=await _(ctx, "Nickname"), value=pet.name)
+        embed.add_field(name=await _(ctx, "Species"), value=pet.type)
+        embed.add_field(name=await _(ctx, "ID"), value=pet.id)
+        stats = "\n".join(f"{x}: {y}" for x, y in pet.stats.items())
+        meta = "\n".join(f"{x}: {y}" for x, y in pet.meta.items())
         embed.add_field(name=await _(ctx, "Stats"), value=stats or "None")
         embed.add_field(name=await _(ctx, "Additional Info"), value=meta or "None")
 
         await ctx.send(embed=embed)
 
-    @pokemon.command(aliases=["delete", "rm", "remove"])
+    @pet.command(aliases=["delete", "rm", "remove"])
     @checks.no_pm()
     async def release(self, ctx, id: data.IntConverter):
-        """Release a Pokemon from your box"""
-        pk = await self.bot.di.remove_pokemon(ctx.author, id)
-        await ctx.send((await _(ctx, "This Pokemon has been released! Goodbye {}!")).format(pk.name))
+        """Release a Pet from your box"""
+        pk = await self.bot.di.remove_pet(ctx.author, id)
+        await ctx.send((await _(ctx, "This Pet has been released! Goodbye {}!")).format(pk.name))
 
-    @pokemon.command()
+    @pet.command()
     @checks.no_pm()
     async def trade(self, ctx, your_id: data.IntConverter, their_id: data.IntConverter, other: discord.Member):
         """Offer a trade to a user.
-        `your_id` is the ID of the Pokemon you want to give, `their_id` is the Pokemon you want from them.
+        `your_id` is the ID of the Pet you want to give, `their_id` is the Pet you want from them.
         `other` being the user you want to trade with"""
 
         await ctx.send(await _(ctx, "Say rp!accept or rp!decline to respond to the trade!"))
@@ -213,27 +213,27 @@ class Pokemon(commands.Cog):
             yud = await self.bot.db.get_user_data(ctx.author)
             tud = await self.bot.db.get_user_data(other)
 
-            for your_pokemon in yud["box"]:
-                if your_pokemon[0] == your_id:
+            for your_pet in yud["box"]:
+                if your_pet[0] == your_id:
                     break
             else:
                 raise KeyError((await _(ctx, "{} is not a valid ID!")).format(your_id))
-            yud["box"].remove(your_pokemon)
-            tud["box"].append(your_pokemon)
+            yud["box"].remove(your_pet)
+            tud["box"].append(your_pet)
 
-            for their_pokemon in tud["box"]:
-                if their_pokemon[0] == your_id:
+            for their_pet in tud["box"]:
+                if their_pet[0] == your_id:
                     break
             else:
                 raise KeyError((await _(ctx, "{} is not a valid ID!")).format(their_id))
-            tud["box"].remove(their_pokemon)
-            yud["box"].append(their_pokemon)
+            tud["box"].remove(their_pet)
+            yud["box"].append(their_pet)
 
-            your_pokemon["id"], their_pokemon["id"] = their_pokemon["id"], your_pokemon["id"]
+            your_pet["id"], their_pet["id"] = their_pet["id"], your_pet["id"]
 
             await self.bot.db.update_user_data(ctx.author, yud)
             await self.bot.db.update_user_data(other, tud)
-            await ctx.send((await _(ctx, "Trade completed! Traded {} for {}!")).format(your_pokemon['name'], their_pokemon['name']))
+            await ctx.send((await _(ctx, "Trade completed! Traded {} for {}!")).format(your_pet['name'], their_pet['name']))
 
         else:
             await ctx.send(await _(ctx, "Trade declined! Cancelling."))

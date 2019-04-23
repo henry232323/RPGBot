@@ -1,5 +1,5 @@
-A RPG bot, with a working inventory, market and economy, team setups and characters aswell. Each user has a server unique inventory and balance. Players may list items on a market for other users to buy. Users may create characters with teams from Pokemon in their storage box. Server administrators may add and give items to the server and its users.
-Pokemon boxes and server configurations. 
+A RPG bot, with a working inventory, market and economy, team setups and characters aswell. Each user has a server unique inventory and balance. Players may list items on a market for other users to buy. Users may create characters with teams from Pet in their storage box. Server administrators may add and give items to the server and its users.
+Pet boxes and server configurations. 
 
 Made by Henry#6174
 
@@ -114,13 +114,13 @@ Made by Henry#6174
   - [rtd](#rtd)
   - [source](#source)
   - [totalcmds](#totalcmds)
-- [Pokemon Commands](#pokemon-commands)
+- [Pet Commands](#pet-commands)
   - [box](#box)
-  - [pokemon](#pokemon)
-  - [pokemon create](#pokemon-create)
-  - [pokemon info](#pokemon-info)
-  - [pokemon release](#pokemon-release)
-  - [pokemon trade](#pokemon-trade)
+  - [pet](#pet)
+  - [pet create](#pet-create)
+  - [pet info](#pet-info)
+  - [pet release](#pet-release)
+  - [pet trade](#pet-trade)
 - [Salary Commands](#salary-commands)
   - [salaries](#salaries)
   - [salary](#salary)
@@ -135,7 +135,7 @@ Made by Henry#6174
   - [loaddndmagic](#loaddndmagic)
   - [loaddndshop](#loaddndshop)
   - [loadmagicshop](#loadmagicshop)
-  - [loadpokemon](#loadpokemon)
+  - [loadpet](#loadpet)
   - [setstart](#setstart)
   - [settings](#settings)
   - [settings additem](#settings-additem)
@@ -621,40 +621,40 @@ periods, e.g. tag.create for the create subcommand of the tag command.
 
 >**Usage:** `rp!totalcmds`
 
-## Pokemon Commands
+## Pet Commands
 
 #### box
->**Description:** Check the pokemon in your box
+>**Description:** Check the pet in your box
 
 >**Usage:** `rp!box [member]`
 
-#### pokemon
->**Description:** Subcommands for Pokemon management, see rp!help pokemon
+#### pet
+>**Description:** Subcommands for Pet management, see rp!help pet
 Same use as rp!box
 
->**Usage:** `rp![pokemon|p] [member]`
+>**Usage:** `rp![pet|p] [member]`
 
-#### pokemon create
->**Description:** Create a new Pokemon to add to your box
+#### pet create
+>**Description:** Create a new Pet to add to your box
 
->**Usage:** `rp!pokemon [create|new]`
+>**Usage:** `rp!pet [create|new]`
 
-#### pokemon info
->**Description:** Get info on a Pokemon
+#### pet info
+>**Description:** Get info on a Pet
 
->**Usage:** `rp!pokemon info <id>`
+>**Usage:** `rp!pet info <id>`
 
-#### pokemon release
->**Description:** Release a Pokemon from your box
+#### pet release
+>**Description:** Release a Pet from your box
 
->**Usage:** `rp!pokemon [release|delete|rm|remove] <id>`
+>**Usage:** `rp!pet [release|delete|rm|remove] <id>`
 
-#### pokemon trade
+#### pet trade
 >**Description:** Offer a trade to a user.
-`your_id` is the ID of the Pokemon you want to give, `their_id` is the Pokemon you want from them.
+`your_id` is the ID of the Pet you want to give, `their_id` is the Pet you want from them.
 `other` being the user you want to trade with
 
->**Usage:** `rp!pokemon trade <your_id> <their_id> <other>`
+>**Usage:** `rp!pet trade <your_id> <their_id> <other>`
 
 ## Salary Commands
 
@@ -727,10 +727,10 @@ For example
 
 >**Usage:** `rp!loadmagicshop`
 
-#### loadpokemon
->**Description:** This command will pre-load all Pokemon items and make them available to give
+#### loadpet
+>**Description:** This command will pre-load all Pet items and make them available to give
 
->**Usage:** `rp!loadpokemon`
+>**Usage:** `rp!loadpet`
 
 #### setstart
 >**Description:** Set the money start amount for a guild
@@ -766,7 +766,7 @@ Custom keys that can be used for special additions:
 >**Usage:** `rp!settings [removeitem|deleteitem] <name>`
 
 #### unload
->**Description:** Unload Pokemon, D&D, or D&D Magic items. `rp!unload pokemon` `rp!unload dnd` `rp!unload dndmagic`
+>**Description:** Unload Pet, D&D, or D&D Magic items. `rp!unload pet` `rp!unload dnd` `rp!unload dndmagic`
 
 >**Usage:** `rp!unload <name>`
 
@@ -778,12 +778,12 @@ Custom keys that can be used for special additions:
 >**Usage:** `rp!team <character>`
 
 #### team add
->**Description:** Add a Pokemon to a character's team
+>**Description:** Add a Pet to a character's team
 
 >**Usage:** `rp!team [add|addmember] <character> <id>`
 
 #### team remove
->**Description:** Remove a Pokemon from a character's team
+>**Description:** Remove a Pet from a character's team
 
 >**Usage:** `rp!team [remove|removemember] <character> <id>`
 

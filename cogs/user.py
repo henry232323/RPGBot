@@ -49,12 +49,12 @@ class User(commands.Cog):
         ud = await self.bot.db.get_user_data(user)
         gd = await self.bot.db.get_guild_data(ctx.guild)
 
-        pokemon = [f"{x[0]}: **{x[1]}**" for x in ud["box"]]
-        pl = len(pokemon)
+        pet = [f"{x[0]}: **{x[1]}**" for x in ud["box"]]
+        pl = len(pet)
         if pl > 20:
-            pokemon = pokemon[20:]
-            pokemon.append((await _(ctx, "\nand {} more...")).format(pl - 20))
-        boxitems = "\n".join(pokemon)
+            pet = pet[20:]
+            pet.append((await _(ctx, "\nand {} more...")).format(pl - 20))
+        boxitems = "\n".join(pet)
 
         imap = [f"{x[0]} x{x[1]}" for x in ud["items"].items()]
         il = len(imap)

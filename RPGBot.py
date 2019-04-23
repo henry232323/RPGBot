@@ -113,7 +113,7 @@ class Bot(commands.AutoShardedBot):
             cogs.settings.Settings(self),
             cogs.misc.Misc(self),
             cogs.characters.Characters(self),
-            cogs.pokemon.Pokemon(self),
+            cogs.pets.Pets(self),
             cogs.groups.Groups(self),
             cogs.user.User(self),
             cogs.salary.Salary(self),
@@ -183,7 +183,7 @@ class Bot(commands.AutoShardedBot):
                         "character": 2,
                         "inventory": 1,
                         "economy": 1,
-                        "pokemon": 2,
+                        "pet": 2,
                         "guild": 2,
                         "team": 1,
                     }
@@ -212,7 +212,7 @@ class Bot(commands.AutoShardedBot):
         elif isinstance(exception, TimeoutError):
             await ctx.send(await _(ctx, "This operation ran out of time! Please try again"))
         else:
-            await ctx.send(f"`{exception}`")
+            await ctx.send(f"`The command generated the following exception: {exception}. If this is unexpected, please report this to the bot creator")
 
     async def on_guild_join(self, guild):
         if guild.id in self.blacklist:
@@ -295,7 +295,7 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
               " with a working inventory, market and economy," \
               " team setups and characters as well. Each user has a server unique inventory and balance." \
               " Players may list items on a market for other users to buy." \
-              " Users may create characters with teams from Pokemon in their storage box. " \
+              " Users may create characters with teams from pets. " \
               "Server administrators may add and give items to the server and its users.```\n" \
               f"**Add to your server**: <{invlink}>\n" \
               f"**Support Server**: {servinv}\n" \

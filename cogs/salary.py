@@ -82,7 +82,7 @@ class Salary(commands.Cog):
     @commands.command()
     @checks.no_pm()
     async def salaries(self, ctx):
-        """See guild salaries"""
+        """See server salaries"""
         embed = discord.Embed(color=randint(0, 0xFFFFFF),)
         sals = await self.bot.di.get_salaries(ctx.guild)
         if not sals:

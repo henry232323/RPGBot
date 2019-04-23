@@ -32,7 +32,7 @@ from random import randint
 
 from .translation import _
 
-Pokemon = namedtuple("Pokemon", ["id", "name", "type", "stats", "meta"])
+Pet = namedtuple("Pet", ["id", "name", "type", "stats", "meta"])
 ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
 Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
 gc = namedtuple("Guild",
@@ -324,7 +324,7 @@ default_server = {
     "recipes": dict(),
 }
 
-example_pokemon = {
+example_pet = {
     "id": 0,
     "name": "Pichi",
     "type": "Pikachu",
@@ -344,7 +344,7 @@ example_pokemon = {
 
 example_serveritem = {
     "name": "pokeball",
-    "description": "Used to catch Pokemon, one of the weakest balls",
+    "description": "Used to catch Pet, one of the weakest balls",
     "meta": {
         "color": "red and white",
         "rate": 20
@@ -354,12 +354,12 @@ example_serveritem = {
 example_character = {
     "name": "Ash Ketchum",
     "owner": 166349353999532035,
-    "description": "Likes to catch pokemons",
+    "description": "Likes to catch pets",
     "level": 25,
     "team": [0],
     "meta": {
         "hair": "black",
-        "favorite_pokemon": "Pichi",
+        "favorite_pet": "Pichi",
         "image": "http://pa1.narvii.com/6320/3cf4ee1c3106552c4d8116218d556b97da0da020_128.gif"
     }
 }
@@ -367,7 +367,7 @@ example_character = {
 example_user = {
     "money": 25,
     "box": [
-        Pokemon(**example_pokemon)
+        Pet(**example_pet)
     ],
     "items": {
         "pokeball": 12
@@ -424,14 +424,14 @@ class DataInteraction(object):
         owner = discord.utils.get(guild.members, id=character.owner)
         ud = await self.db.get_user_data(owner)
 
-        pokemon = [Pokemon(*x) for x in ud["box"] if x[0] in character.team]
+        pet = [Pet(*x) for x in ud["box"] if x[0] in character.team]
 
-        return pokemon
+        return pet
 
     async def get_box(self, member):
-        """Get user's Pokemon box"""
+        """Get user's Pet box"""
         ub = await self.db.user_item(member, "box")
-        return [Pokemon(*x) for x in json.decode(ub)]
+        return [Pet(*x) for x in json.decode(ub)]
 
     async def get_balance(self, member):
         """Get user's balance"""
@@ -463,14 +463,14 @@ class DataInteraction(object):
         ud = await self.db.get_user_data(member)
         return (ud.get("level", 1), ud.get("exp", 0))
 
-    async def get_pokemon(self, member, id):
-        """Get a user's Pokemon with the given ID"""
+    async def get_pet(self, member, id):
+        """Get a user's Pet with the given ID"""
         box = await self.get_box(member)
         for x in box:
             if x[0] == id:
                 return x
         else:
-            raise KeyError("Pokemon doesn't exist!")
+            raise KeyError("Pet doesn't exist!")
 
     async def get_guild_start(self, guild):
         """Get a Server's user starting balance"""
@@ -555,20 +555,20 @@ class DataInteraction(object):
         gobj = {y: Guild(*x) for y, x in gd.get("guilds", dict()).items()}
         return gobj
 
-    async def add_pokemon(self, owner, pokemon):
-        """Create a Pokemon for a user's box"""
+    async def add_pet(self, owner, pet):
+        """Create a Pet for a user's box"""
         ud = await self.db.get_user_data(owner)
-        if not 'id' in pokemon:
+        if not 'id' in pet:
             id = ud["box"][-1][0] + 1 if ud["box"] else 0
-            ud["box"].append(Pokemon(**pokemon, id=id))
+            ud["box"].append(Pet(**pet, id=id))
         else:
-            id = pokemon['id']
-            ud["box"].append(Pokemon(**pokemon))
+            id = pet['id']
+            ud["box"].append(Pet(**pet))
         await self.db.update_user_data(owner, ud)
         return id
 
-    async def remove_pokemon(self, owner, id):
-        """Remove a Pokemon from a user's box"""
+    async def remove_pet(self, owner, id):
+        """Remove a Pet from a user's box"""
         ud = await self.db.get_user_data(owner)
         for x in ud["box"]:
             if x[0] == id:
@@ -577,7 +577,7 @@ class DataInteraction(object):
             raise ValueError("This is not a valid ID!")
         ud["box"].remove(x)
         await self.db.update_user_data(owner, ud)
-        return Pokemon(*x)
+        return Pet(*x)
 
     async def new_item(self, guild, serveritem):
         """Create a new server item"""
@@ -760,7 +760,7 @@ class DataInteraction(object):
         await self.db.update_guild_data(guild, gd)
 
     async def add_to_team(self, guild, character, id):
-        """Add a pokemon to a character's team"""
+        """Add a pet to a character's team"""
         gd = await self.db.get_guild_data(guild)
         character = gd["characters"][character]
         character[4].append(id)
@@ -802,7 +802,7 @@ class DataInteraction(object):
         return await self.db.update_user_data(member, ud)
 
     async def remove_from_team(self, guild, character, id):
-        """Remove a pokemon from a character's team"""
+        """Remove a pet from a character's team"""
         gd = await self.db.get_guild_data(guild)
         character = gd[4][character]
         character[4].remove(id)
