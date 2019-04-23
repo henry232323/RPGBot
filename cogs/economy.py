@@ -776,7 +776,7 @@ class Economy(commands.Cog):
 
     @checks.no_pm()
     @bank.command()
-    async def deposit(self, ctx, amount: int):
+    async def deposit(self, ctx, amount: float):
         """Deposit `amount` into the bank"""
         bal = (await self.bot.di.get_all_balances(ctx.author))
         if amount > bal[0]:
@@ -791,7 +791,7 @@ class Economy(commands.Cog):
 
     @checks.no_pm()
     @bank.command()
-    async def withdraw(self, ctx, amount: int):
+    async def withdraw(self, ctx, amount: float):
         """Withdraw `amount` from the bank"""
         bal = (await self.bot.di.get_all_balances(ctx.author))
         if amount > bal[1]:
@@ -800,5 +800,5 @@ class Economy(commands.Cog):
         await ctx.bot.di.set_balances(ctx.author, bal[0] + amount, bal[1] - amount)
 
         await ctx.send((await _(ctx,
-                                "Successfully transferred {} dollars to your bank. You have {} dollars total in the bank")).format(
+                                "Successfully transferred {} dollars from your bank. You have {} dollars total in the bank")).format(
             amount, bal[1] - amount))

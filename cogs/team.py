@@ -45,31 +45,31 @@ class Team(commands.Cog):
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
 
-        embed = discord.Embed(title=f"{character} Pokemon", color=randint(0, 0xFFFFFF))
+        embed = discord.Embed(title=f"{character} Pet", color=randint(0, 0xFFFFFF))
         embed.set_author(name=character, icon_url=chobj.meta.get("image", discord.Embed.Empty))
 
-        for pokemon in team:
-            stats = "\n\t".join(f"{x}: {y}" for x, y in pokemon.stats.items())
-            meta = "\n\t".join(f"{x}: {y}" for x, y in pokemon.meta.items())
-            fmt = (await _(ctx, "ID: {}\nSpecies: {}\nStats:\n\t{}\nAdditional Info:\n\t{}")).format(pokemon.id,
-                                                                                                     pokemon.type,
+        for pet in team:
+            stats = "\n\t".join(f"{x}: {y}" for x, y in pet.stats.items())
+            meta = "\n\t".join(f"{x}: {y}" for x, y in pet.meta.items())
+            fmt = (await _(ctx, "ID: {}\nSpecies: {}\nStats:\n\t{}\nAdditional Info:\n\t{}")).format(pet.id,
+                                                                                                     pet.type,
                                                                                                      stats,
                                                                                                      meta)
-            embed.add_field(name=pokemon.name, value=fmt)
+            embed.add_field(name=pet.name, value=fmt)
 
         await ctx.send(embed=embed)
 
     @team.command(aliases=["addmember"])
     @checks.no_pm()
     async def add(self, ctx, character: str, id: int):
-        """Add a Pokemon to a character's team"""
+        """Add a Pet to a character's team"""
         try:
             chobj = (await self.bot.di.get_guild_characters(ctx.guild))[character]
             if chobj.owner != ctx.author.id:
                 await ctx.send(await _(ctx, "You do not own this character!"))
                 return
             if id in chobj.team:
-                await ctx.send(await _(ctx, "That Pokemon is already a part of the team!"))
+                await ctx.send(await _(ctx, "That Pet is already a part of the team!"))
                 return
             await self.bot.di.add_to_team(ctx.guild, character, id)
             await ctx.send(await _(ctx, "Added to team!"))
@@ -79,7 +79,7 @@ class Team(commands.Cog):
     @team.command(aliases=["removemember"])
     @checks.no_pm()
     async def remove(self, ctx, character: str, id: int):
-        """Remove a Pokemon from a character's team"""
+        """Remove a Pet from a character's team"""
         try:
             chobj = (await self.bot.di.get_guild_characters(ctx.guild))[character]
             if chobj.owner != ctx.author.id:
@@ -87,6 +87,6 @@ class Team(commands.Cog):
                 return
 
             await self.bot.di.remove_from_team(ctx.guild, character, id)
-            await ctx.send(await _(ctx, "Successfully removed Pokemon!"))
+            await ctx.send(await _(ctx, "Successfully removed Pet!"))
         except KeyError:
             await ctx.send(await _(ctx, "That character does not exist!"))

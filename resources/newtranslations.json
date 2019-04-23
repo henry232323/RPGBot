@@ -102,11 +102,11 @@
     "ru": "Пропущено!",
     "es": "¡Saltando!"
   },
-  "Character created! rp!team addmember to add Pokemon (optional) to your character's team!": {
-    "fr": "Personnage créé ! Tapez `rp!team addmember` pour ajouter des Pokemons (optionel) à votre équipe !",
-    "de": "Charakter erstellt! Durch `rp!team addmember`kannst du sogar Pokemon hinzufügen falls du möchtest",
+  "Character created! rp!team addmember to add Pet (optional) to your character's team!": {
+    "fr": "Personnage créé ! Tapez `rp!team addmember` pour ajouter des Pets (optionel) à votre équipe !",
+    "de": "Charakter erstellt! Durch `rp!team addmember`kannst du sogar Pet hinzufügen falls du möchtest",
     "ru": "Персонаж создан! Если хотите добавить персонажа в команду, используете rp!team addmember",
-    "es": "¡Personaje creado! rp!team addmembet para añadir un Pokémon (opcional) al equipo de tu personaje"
+    "es": "¡Personaje creado! rp!team addmembet para añadir un Pet (opcional) al equipo de tu personaje"
   },
   "That character doesn't exist!": {
     "fr": "Ce personnage n'existe pas !",
@@ -1052,13 +1052,13 @@
     "fr": "Quel sera son surnom ?",
     "de": "Was soll sein/ihr Spitznahme sein?"
   },
-  "What species of Pokemon is it?": {
-    "fr": "De quel espèce de Pokémon est-il ?",
-    "de": "Welche Pokemon Spezies ist es?"
+  "What species of Pet is it?": {
+    "fr": "De quel espèce de Pet est-il ?",
+    "de": "Welche Pet Spezies ist es?"
   },
   "In any order, what are its stats? (level, health, attack, defense, spatk, spdef, speed) For example `level: 5, health: 22, attack: 56` Type 'skip' to skip.": {
     "fr": "Dans n'importe quel ordre, quelles sont ses stats? (level, health, attack, defense, spatk, spdef, speed) Par exemple : `level: 5, health: 22, attack: 56`. Tapez 'skip' pour passer.",
-    "de": "Ohne Spezifische Reihenfolge, was sind die Attribute des Pokemons? (level, health, attack, defense, spatk, spdef, speed) Zum Beispiel `level: 5, health:22, attack: 56` Schreib 'skip' um es zu überspringen?"
+    "de": "Ohne Spezifische Reihenfolge, was sind die Attribute des Pets? (level, health, attack, defense, spatk, spdef, speed) Zum Beispiel `level: 5, health:22, attack: 56` Schreib 'skip' um es zu überspringen?"
   },
   "level": {
     "fr": "niveau",
@@ -1096,9 +1096,9 @@
     "fr": "Des informations supplémentaires ? (Par exemple: nature: précipité, color: marron)",
     "de": "Irgendwelche zusätzlichen Informationen? (Selbes Format wie oben z.B. nature: scheu, color: braun)"
   },
-  "Finished! Pokemon has been added to box with ID {}": {
-    "fr": "Fini ! Le Pokemon a été créé et ajouté à la boîte d'ID {}",
-    "de": "Fertig! Pokemon wurde in die Box mit der ID {} abgelegt!"
+  "Finished! Pet has been added to box with ID {}": {
+    "fr": "Fini ! Le Pet a été créé et ajouté à la boîte d'ID {}",
+    "de": "Fertig! Pet wurde in die Box mit der ID {} abgelegt!"
   },
   "Nickname": {
     "fr": "Surnom",
@@ -1112,9 +1112,9 @@
     "fr": "Stats",
     "de": "Attribute"
   },
-  "This Pokemon has been released! Goodbye {}!": {
-    "fr": "Ce Pokemon a été libéré ! Adieu, {} !",
-    "de": "Dieses Pokemon wurde freigelessan! Lebwohl {} !"
+  "This Pet has been released! Goodbye {}!": {
+    "fr": "Ce Pet a été libéré ! Adieu, {} !",
+    "de": "Dieses Pet wurde freigelessan! Lebwohl {} !"
   },
   "Say rp!accept or rp!decline to respond to the trade!": {
     "fr": "Tapez rp!accept (pour accepter) ou rp!decline (pour refuser) l'échange",
@@ -1220,9 +1220,9 @@
     "fr": "ID: {}\nEspèce: {}\nStats:\n\t{}\nInformations Supplimentaires:\n\t{}",
     "de": "ID: {}\nAttribute:\n\t{}\nZusätzliche Info:\n\t{}"
   },
-  "That Pokemon is already a part of the team!": {
-    "fr": "Ce Pokemon fait déjà parti de l'équipe !",
-    "de": "Dieses Pokemon ist schon in deinem Team!"
+  "That Pet is already a part of the team!": {
+    "fr": "Ce Pet fait déjà parti de l'équipe !",
+    "de": "Dieses Pet ist schon in deinem Team!"
   },
   "Added to team!": {
     "fr": "Ajouté à l'équipe !",
@@ -1232,9 +1232,9 @@
     "fr": "Ce personnage n'existe pas !",
     "de": "Dieser Charakter existiert nicht!"
   },
-  "Successfully removed Pokemon!": {
-    "fr": "Le Pokémon a été supprimé avec succès !",
-    "de": "Pokemon erfolgreich entfernt!"
+  "Successfully removed Pet!": {
+    "fr": "Le Pet a été supprimé avec succès !",
+    "de": "Pet erfolgreich entfernt!"
   },
   "Balance": {
     "fr": "Solde Bancaire",
