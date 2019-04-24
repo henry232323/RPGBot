@@ -63,6 +63,52 @@ class Pets(commands.Cog):
 
         await ctx.send(embed=embed)
 
+    @pet.command()
+    @checks.no_pm()
+    async def edit(self, ctx, pet_id: int, attribute: str, *, value: str):
+        """Edit a pet
+                Usage: rp!pet edit 5 description John likes bananas!
+                Valid values for the [item] (second argument):
+                    name: the character's name
+                    description: the description of the character
+                    level: an integer representing the character's level
+                    meta: used like the additional info section when creating; can be used to edit/remove all attributes
+                Anything else will edit single attributes in the additional info section
+                """
+        pet = await self.bot.di.get_pet(ctx.member, id)
+
+        if len(attribute) + len(value) > 1024:
+            await ctx.send(await _(ctx, "Can't have an attribute longer than 1024 characters!"))
+            return
+
+        pet = list(pet)
+        if attribute == "name":
+            await self.bot.di.remove_pet(ctx.guild, pet[1])
+            pet.name = value
+        elif attribute in pet[3]:
+            pet[3][attribute] = value
+        elif attribute == "meta":
+            try:
+                pet[4] = {}
+                if "\n" in value:
+                    res = value.split("\n")
+                else:
+                    res = value.split(",")
+                for val in res:
+                    key, value = val.split(": ")
+                    key = key.strip()
+                    value = value.strip()
+                    if key != "maps":
+                        pet[4][key] = value
+            except:
+                await ctx.send(await _(ctx, "Invalid formatting! Try again"))
+                return
+        else:
+            pet[4][attribute] = value
+
+        await self.bot.di.add_character(ctx.guild, data.Pet(*pet))
+        await ctx.send(await _(ctx, "Character edited!"))
+
     @pet.command(aliases=["new"])
     @checks.no_pm()
     async def create(self, ctx):
@@ -88,18 +134,11 @@ class Pets(commands.Cog):
                 pet["type"] = response.content
 
             await ctx.send(
-                await _(ctx, "In any order, what are its stats? (level, health, attack, defense, spatk, spdef, speed)"
+                await _(ctx, "In any order, what are its stats? (e.g. level, health, attack, defense, spatk, spdef, speed, etc.)"
                              " For example `level: 5, health: 22, attack: 56`"
                              " Type 'skip' to skip."))
 
             pet["stats"] = dict()
-            valid_stats = [await _(ctx, "level"),
-                           await _(ctx, "health"),
-                           await _(ctx, "attack"),
-                           await _(ctx, "defense"),
-                           await _(ctx, "spatk"),
-                           await _(ctx, "spdef"),
-                           await _(ctx, "speed")]
             while True:
                 response = await self.bot.wait_for("message", check=check, timeout=120)
                 if response.content.lower() == "cancel":
@@ -118,9 +157,6 @@ class Pets(commands.Cog):
                             key, value = val.split(": ")
                             key = key.strip().casefold()
                             value = value.strip()
-                            if key not in valid_stats:
-                                await ctx.send((await _(ctx, "{} is not a valid stat! Try again")).format(key))
-                                break
                             pet["stats"][key] = int(value)
                         else:
                             break
