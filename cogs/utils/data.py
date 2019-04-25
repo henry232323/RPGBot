@@ -558,12 +558,18 @@ class DataInteraction(object):
     async def add_pet(self, owner, pet):
         """Create a Pet for a user's box"""
         ud = await self.db.get_user_data(owner)
-        if not 'id' in pet:
-            id = ud["box"][-1][0] + 1 if ud["box"] else 0
-            ud["box"].append(Pet(**pet, id=id))
+        if isinstance(pet, dict):
+            if not 'id' in pet:
+                id = ud["box"][-1][0] + 1 if ud["box"] else 0
+                ud["box"].append(Pet(**pet, id=id))
+            else:
+                id = pet['id']
+                ud["box"].append(Pet(**pet))
         else:
-            id = pet['id']
-            ud["box"].append(Pet(**pet))
+            id = pet.id
+            for i, npet in enumerate(ud["box"]):
+                if npet[0] == id:
+                    ud["box"][i] = pet
         await self.db.update_user_data(owner, ud)
         return id
 
