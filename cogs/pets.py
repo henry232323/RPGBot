@@ -75,7 +75,7 @@ class Pets(commands.Cog):
                     meta: used like the additional info section when creating; can be used to edit/remove all attributes
                 Anything else will edit single attributes in the additional info section
                 """
-        pet = await self.bot.di.get_pet(ctx.member, id)
+        pet = await self.bot.di.get_pet(ctx.author, pet_id)
 
         if len(attribute) + len(value) > 1024:
             await ctx.send(await _(ctx, "Can't have an attribute longer than 1024 characters!"))
@@ -106,8 +106,8 @@ class Pets(commands.Cog):
         else:
             pet[4][attribute] = value
 
-        await self.bot.di.add_character(ctx.guild, data.Pet(*pet))
-        await ctx.send(await _(ctx, "Character edited!"))
+        await self.bot.di.add_pet(ctx.author, data.Pet(*pet))
+        await ctx.send(await _(ctx, "Pet edited!"))
 
     @pet.command(aliases=["new"])
     @checks.no_pm()

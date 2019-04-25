@@ -208,11 +208,11 @@ class Bot(commands.AutoShardedBot):
         self.stats.increment("RPGBot.errors", tags=["RPGBot:errors"], host="scw-8112e8")
         logging.info(f"Exception in {ctx.command} {ctx.guild}:{ctx.channel} {exception}")
         if isinstance(exception, commands.MissingRequiredArgument):
-            await ctx.send(f"`{exception}`")
+            await ctx.send(f"```{exception}```")
         elif isinstance(exception, TimeoutError):
             await ctx.send(await _(ctx, "This operation ran out of time! Please try again"))
         else:
-            await ctx.send(f"`The command generated the following exception: {exception}. If this is unexpected, please report this to the bot creator")
+            await ctx.send(f"`The command generated the following exception: {exception}. If this is unexpected, please report this to the bot creator`")
 
     async def on_guild_join(self, guild):
         if guild.id in self.blacklist:
