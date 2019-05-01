@@ -110,7 +110,7 @@ class API(web.Application):
 
         runner = web.AppRunner(self)
         await runner.setup()
-        site = web.TCPSite(runner, '0.0.0.0', 80)
+        site = web.TCPSite(runner, '0.0.0.0', 6667)
         await site.start()
 
     async def connect(self):
@@ -149,12 +149,15 @@ class API(web.Application):
         data = {
             "code": code,
             "grant_type": "authorization_code",
-            "redirect_uri": "https://api.typheus.me/hub",
+            "redirect_uri": "http://api.typheus.me/hub",
             "client_id": self.client_id,
-            "client_secret": self.client_secret
+            "client_secret": self.client_secret,
+            "scope": 'identify guilds'
         }
         response = await self.session.post(
-            f"https://discordapp.com/api/oauth2/token?{urlencode(data)}",
+            f"https://discordapp.com/api/oauth2/token",
+            data=urlencode(data),
+            headers={'Content-Type': "application/x-www-form-urlencoded"}
         )
         js = await response.json()
         if 'error' in js:

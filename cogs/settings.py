@@ -225,9 +225,14 @@ class Settings(commands.Cog):
     @checks.admin_or_permissions()
     async def loaddndshop(self, ctx):
         """This command will pre-load all D&D items and make them available in shop"""
-        await self.bot.di.add_shop_items(ctx.guild,
-                                         {item: value["meta"]["Cost"] for item, value in self.bot.dnditems.items() if
-                                          value["meta"].get("Cost", "").isdigit()})
+        items = {}
+        for item, value in self.bot.dnditems.items():
+            try:
+                items[item] = dict(buy=int("".join(filter(str.isdigit, value["meta"]["Cost"]))), sell=0, level=0)
+            except:
+                continue
+
+        await self.bot.di.add_shop_items(ctx.guild, items)
         await ctx.send(await _(ctx, "Successfully added all D&D items to shop!"))
 
     @checks.no_pm()
@@ -235,10 +240,15 @@ class Settings(commands.Cog):
     @checks.admin_or_permissions()
     async def loadmagicshop(self, ctx):
         """This command will pre-load all D&D Magic items and make them available in shop"""
-        await self.bot.di.add_shop_items(ctx.guild,
-                                         {item: value["meta"]["Cost"] for item, value in self.bot.dndmagic.items() if
-                                          value["meta"].get("Cost", "").isdigit()})
-        await ctx.send(await _(ctx, "Successfully added all D&D items to shop!"))
+        items = {}
+        for item, value in self.bot.dndmagic.items():
+            try:
+                items[item] = dict(buy=int("".join(filter(str.isdigit, value["meta"]["Cost"]))), sell=0, level=0)
+            except:
+                continue
+
+        await self.bot.di.add_shop_items(ctx.guild, items)
+        await ctx.send(await _(ctx, "Successfully added all D&D magic items to shop!"))
 
     @checks.no_pm()
     @commands.command()

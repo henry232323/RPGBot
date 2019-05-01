@@ -713,6 +713,7 @@ class DataInteraction(object):
         """Set a user's balance"""
         ud = await self.db.get_user_data(member)
         ud["money"] = amount
+        ud["bank"] = 0
         await self.db.update_user_data(member, ud)
         return ud["money"]
 

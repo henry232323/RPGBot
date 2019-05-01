@@ -224,8 +224,7 @@ class Salary(commands.Cog):
                     collected = True
 
                 else:
-                    delta = datetime.timedelta(days=1) - (
-                    datetime.datetime.utcnow() - datetime.datetime.fromtimestamp(spayments[str(role.id)]))
+                    delta = datetime.timedelta(days=1) - (datetime.timedelta(seconds=time.time() - spayments[str(role.id)]))
                     await ctx.send((await _(ctx, "{} cannot be collected for another {}")).format(role, delta))
 
         if collected:
