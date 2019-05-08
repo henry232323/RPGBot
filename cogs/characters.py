@@ -23,6 +23,7 @@ import discord
 from discord.ext import commands
 
 from random import randint
+import asyncio
 
 from .utils import checks
 from .utils.data import Character
@@ -152,7 +153,8 @@ class Characters(commands.Cog):
         character["description"] = content
         await ctx.send(
             await _(ctx,
-                    "Any additional info? (Add a character image using the image keyword. Formats use regular syntax e.g. "
+                    "Any additional info? (Add a character image using the image keyword or"
+                    " use the icon keyword to give the character an icon. Formats use regular syntax e.g. "
                     "`image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)"
                     ))
         while True:
@@ -312,3 +314,48 @@ class Characters(commands.Cog):
 
         await self.bot.di.add_character(ctx.guild, Character(*character))
         await ctx.send(await _(ctx, "Removed attribute!"))
+
+    async def unassume(self, author, character, wait=3600):
+        await asyncio.sleep(wait)
+        if self.bot.in_character[author.guild.id][author.id] != character:
+            return
+        del self.bot.in_character[author.guild.id][author.id]
+        hooks = await author.guild.webhooks()
+        await discord.utils.get(hooks, name=character).delete()
+
+    async def shutdown(self):
+        pass
+
+    @checks.no_pm()
+    @character.command()
+    async def assume(self, ctx, name: str):
+        chars = await self.bot.di.get_guild_characters(ctx.guild)
+        character = chars.get(name)
+        if character is None:
+            await ctx.send(await _(ctx, "That character doesn't exist!"))
+            return
+
+        try:
+            is_mod = checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
+        if character.owner != ctx.author.id and not is_mod:
+            await ctx.send(await _(ctx, "You do not own this character!"))
+            return
+
+        self.bot.in_character[ctx.guild.id][ctx.author.id] = name
+        hooks = await ctx.guild.webhooks()
+        hook = discord.utils.get(hooks, name=name)
+
+        if hook is None:
+            await ctx.channel.create_webhook(name=name)
+
+        await ctx.send((await _(ctx, "You are now {} for the next hour")).format(name))
+        self.bot.loop.create_task(self.unassume(ctx.author, name))
+
+    @checks.no_pm()
+    @character.command(name="unassume")
+    async def c_unassume(self, ctx, character: str):
+        await self.unassume(ctx.author, character, 0)
+        await ctx.send(await _(ctx, "Character unassumed!"))
