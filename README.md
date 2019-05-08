@@ -3,7 +3,7 @@ Pet boxes and server configurations.
 
 Made by henry232323
 
-[**Add to your server**](https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=322625)
+[**Add to your server**](https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=805694529)
 
 [**Support Server**](https://discord.gg/UYJb8fQ)
 
