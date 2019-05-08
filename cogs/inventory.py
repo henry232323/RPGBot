@@ -489,6 +489,7 @@ class Inventory(commands.Cog):
                                                timeout=120)
                 if inmsg.content.lower() == "cancel":
                     await ctx.send(await _(ctx, "Cancelling!"))
+                    return
                 inmsgparts = parse_varargs(inmsg.content)
 
                 initems = []

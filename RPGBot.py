@@ -25,7 +25,7 @@ import logging
 import os
 import sys
 import ujson as json
-from collections import Counter
+from collections import Counter, defaultdict
 from random import choice, sample
 
 import aiohttp
@@ -64,6 +64,7 @@ class Bot(commands.AutoShardedBot):
         self.socket_stats = Counter()
         self.shutdowns = []
         self.lotteries = dict()
+        self.in_character = defaultdict(lambda: defaultdict(str))
 
         self.logger = logging.getLogger('discord')  # Discord Logging
         self.logger.setLevel(logging.INFO)
@@ -140,6 +141,25 @@ class Bot(commands.AutoShardedBot):
         if msg.author.id not in self.blacklist:
             ctx = await self.get_context(msg)
             await self.invoke(ctx)
+
+            if ctx.command is None:
+                if ctx.guild.id in self.in_character:
+                    if ctx.author.id in self.in_character[ctx.guild.id]:
+                        char = self.in_character[ctx.guild.id][ctx.author.id]
+                        hooks = await ctx.guild.webhooks()
+                        hook = discord.utils.get(hooks, name=char)
+                        if hook is None:
+                            await ctx.send(await _(ctx, "Webhook missing!"))
+                            del self.in_character[ctx.guild.id][ctx.author.id]
+                            return
+                        content = msg.content
+                        if hook.channel.id != msg.channel.id:
+                            await hook.delete()
+                            hook = await msg.channel.create_webhook(name=char)
+
+                        await msg.delete()
+                        url = (await self.di.get_character(ctx.guild, char))[5].get("icon")
+                        await hook.send(content, avatar_url=url)
 
     async def update_stats(self):
         url = "https://bots.discord.pw/api/bots/{}/stats".format(self.user.id)
