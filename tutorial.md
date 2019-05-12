@@ -8,7 +8,8 @@ Here in this compendium, I'll be going over some of the house specials RPGBot ha
   - Command examples using [r|p] separate alternative usable cmds; only one is used NOT both/all.
   - Command examples using <rp> mean for the word(s) within to be substituted with the appropitate entry.
   - Command examples using [g] mean that the action is optional.
-  - Command actions with a name containing spaces require "My Character One" surrounding the name.
+  - Command actions with a name containing spaces require "My Character One" surrounding the name. Often, if it is the last argument, the quotation marks can be omitted.
+  - Some commands that may need you to list multiple items and the number of each of those items may use a special syntax called Item x Number notation. This means you will put the item name, followed by an x (meaning times), then the number of that item you want. For example `rp!give @Henry#6174 Bananax3 Orangex5`. Some items may have multiple words in them, for these format them as follows: `rp!give @Henry#6174 "Old Bookx3"` (with quotation marks)
   
   **NOTE: All example brackets are not used in the actual comand.**
   For example, if the signature of the command is `rp![character|char|c|personnage] <name>`, that means to use the command we may do one of the following:
@@ -78,7 +79,19 @@ The market allows users to list and buy items from other users. Items are listed
 ## Dungeon Dice
 
 ## Maps
+![Map example](https://cdn.discordapp.com/attachments/350340609229193227/577218347415109692/mapexample.JPG "Example")
+
+An example map file can be found [here](https://github.com/henry232323/RPGBot/blob/master/map.yml)
+
 
 ## User/Settings/Info
+   - rp![s|settings] additem 
+   
+    Henry: rp!settings additem Example
+    RPGBot: Describe the item (a description for the item)
+    Henry: This is an example item
+    RPGBot: Additional information? (Attributes formatted in a list i.e color: 400, value: 200 Set an image for this item with the image key i.e. image: http://image.com/image.png Set this item as usable by adding used key i.e. used: You open the jar and the bird flies away
+    Henry: used: You used this item!, image: http://www.sourcecertain.com/img/Example.png
+    RPGBot:  Item successfully created
 
 ## Moderation
