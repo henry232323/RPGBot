@@ -3,6 +3,7 @@ Welcome to RPGBot! Sit down, relax and get ready to fill your gullet with plenty
 Here in this compendium, I'll be going over some of the house specials RPGBot has to offer. If you would like a look at the full menu, just enter rp!help and a list of all the base commands [cmds] will be sent right to your DM. Now, take any of those and put it after the help cmd rp!help <cmd> and you will get a more detailed list of the sub cmds for that particular one. If you then take one of those cmds and add it to the format rp!help <cmd> <subcmd> you'll get a list of all the ingredients that make up that specific action.
 
 ## Some things to note:
+  - For a full index of the Bot's commands, use `rp!help` or read through the [command list](https://github.com/henry232323/RPGBot/blob/master/README.md)
   - Some commands require a special rank, you will see an error that mentions the `Bot Mod` or `Bot Admin` roles. If a command does not work with `Bot Mod`, it likely requires `Bot Admin`, these two roles are not the same. To use these commands, create a role with one of the two names (case sensitive) and give it to the user you want to have those permissions.
   - Command examples using [r|p] separate alternative usable cmds; only one is used NOT both/all.
   - Command examples using <rp> mean for the word(s) within to be substituted with the appropitate entry.
