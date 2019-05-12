@@ -40,7 +40,7 @@ class Misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases=["rollthedice", "dice"])
+    @commands.command(aliases=["rollthedice", "dice", "roll"])
     async def rtd(self, ctx, *dice: str):
         """Roll a number of dice with given sides (ndx notation)
         Example: rp!rtd 3d7 2d4
@@ -310,3 +310,10 @@ class Misc(commands.Cog):
 
         fp = io.BytesIO((index.rstrip() + '\n\n' + data.strip()).encode('utf-8'))
         await ctx.author.send(file=discord.File(fp, 'commands.md'))
+
+    @commands.command()
+    @checks.no_pm()
+    @checks.admin_or_permissions()
+    async def setprefix(self, ctx, value: str):
+        await self.bot.di.set_prefix(ctx.guild, value)
+        await ctx.send(await _(ctx, "Updated server prefix"))

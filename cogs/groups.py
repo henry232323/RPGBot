@@ -452,12 +452,14 @@ class Groups(commands.Cog):
             amount = abs(amount)
             if not guild_name:
                 guild_name = await self.bot.di.get_user_guild(ctx.author)
+                guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+                guild = guilds.get(guild_name)
+
                 if guild_name is None:
+                    await self.bot.di.set_guild(ctx.author, None)
                     await ctx.send(await _(ctx, "You aren't in a guild!"))
                     return
 
-            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-            guild = guilds.get(guild_name)
             try:
                 await self.bot.di.add_eco(ctx.author, -amount)
             except ValueError:
