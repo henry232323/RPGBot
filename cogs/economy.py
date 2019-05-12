@@ -569,7 +569,7 @@ class Economy(commands.Cog):
         Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot Moderator or Admin"""
         gd = await self.bot.db.get_guild_data(ctx.guild)
         if name not in gd["items"]:
-            await ctx.send(await _(ctx, "This item doesn't exist!"))
+            await ctx.send(await _(ctx, "This item doesn't exist! Try creating the item first with `rp!settings additem`"))
             return
 
         shop = gd.get("shop_items", dict())

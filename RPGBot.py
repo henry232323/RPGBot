@@ -88,6 +88,9 @@ class Bot(commands.AutoShardedBot):
         with open("resources/pokemonitems.json", 'r') as dndf3:
             self.pokemonitems = json.loads(dndf3.read())
 
+        with open("resources/starwars.json", 'r') as swf:
+            self.switems = json.loads(swf.read())
+
         self.httpserver = server.API(self)
 
         self.db: db.Database = db.Database(self)
@@ -142,24 +145,26 @@ class Bot(commands.AutoShardedBot):
             ctx = await self.get_context(msg)
             await self.invoke(ctx)
 
-            if ctx.command is None:
+            if ctx.command is None and ctx.guild:
                 if ctx.guild.id in self.in_character:
                     if ctx.author.id in self.in_character[ctx.guild.id]:
                         char = self.in_character[ctx.guild.id][ctx.author.id]
                         hooks = await ctx.guild.webhooks()
                         hook = discord.utils.get(hooks, name=char)
                         if hook is None:
-                            await ctx.send(await _(ctx, "Webhook missing!"))
+                            #await ctx.send(await _(ctx, "Webhook missing!"))
                             del self.in_character[ctx.guild.id][ctx.author.id]
                             return
                         content = msg.content
+                        files = msg.attachments
+                        embeds = msg.embeds
                         if hook.channel.id != msg.channel.id:
                             await hook.delete()
                             hook = await msg.channel.create_webhook(name=char)
-
                         await msg.delete()
                         url = (await self.di.get_character(ctx.guild, char))[5].get("icon")
-                        await hook.send(content, avatar_url=url)
+                        await hook.send(content, avatar_url=url,
+                                        files=files, embeds=embeds)
 
     async def update_stats(self):
         url = "https://bots.discord.pw/api/bots/{}/stats".format(self.user.id)
