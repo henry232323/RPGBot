@@ -1,0 +1,386 @@
+Item,Enc,Price,Rarity,"Description, Special",Book
+Backpack,--,50,0,Worn satchel for holding gear; adds 4 to Encumbrance Threshold,Core
+Modular Backpack,--,75,1,Backpack with separate pouches; adds 3 to Encumbrance Threshold,"EU, SS"
+Spacer's Duffel,--,50,0,Large shoulder bag; adds 2 to Encumbrance Threshold; Cumbersome 3,EU
+Military Pack,--,60,0,Large backpack; adds 6 to Encumbrance Threshold; Cumbersome 2,DC
+Load Bearing Gear,--,100,3,Worn system for carrying gear; adds 3 to Encumbrance Threshold,A
+Utility Belt,--,25,0,Worn belt with pouches for storage; adds 1 to Encumbrance Threshold,Core
+Modular Backpack Pouch,--,15,1,"Adds 1 to Encumbrance Threshold of the modular backpack, up to +3","EU, SS"
+Military Belt Pouch,--,10,0,"Worn on belt; holds two 0 Enc items, Incidental to access",DC
+Military Modular Backpack Frame,--,10,2,"backpack frame with room for two modules: temperature control unit, power unit, comms unit, sensor unit, oxygen unit, storage unit - each unit has its own price, Rarity, and Encumbrance ratings and functions",FB
+Wizard Pouch,--,50,4,Worn; adds 1 to Encumbrance Threshold,NP
+Surveyor's Bag,--,50,1,Shoulder bag; adds 2 to Encumbrance Threshold,EU
+Holster/Sheath,--,20,1,Standard holster for pistols or sheath for melee weaons of any size; reduces Encumbrance of weapon by 2 while holstered/sheathed,gm rdl
+Quick-Draw Holster,--,60,3,Custom-made holster that allows quick weapon drawing; Quick Draw (T); reduces Encumbrance of weapon by 2 while holstered/sheathed,gm rdl
+Concealment Holster/Sheath,--,40,3,Compact holster/sheath to conceal small pistols or blades; ■ to Perception to detect,DC
+Breath Mask and Respirator,1,25,1,Allows breathing in contaminated or alien enviroments,Core
+A99 Aquata Breather,0,100,7,Allows amphibious operation,KP
+Mon Cal Organic Gill,1,200,5,Allows amphibious operation,SR
+Space Suit,4,100,1,Allows survival in the vacuum of space,Core
+EVA Powersuit,12,"1,500",7,Powered space suit with built-in tools and movement thrusters,SF
+Glow Rod,1,10,0,Hand-held uni-directional light source,Core
+Fusion Lantern,2,150,2,"A source of light and heat, can also power small devices",Core
+Field Goggles,0,5,0,"Worn, protects the eyes",DC
+Tent,4,100-300,1,Suitable for up to six occupants depending on model,Core
+"Tent, One-Man",3,30,2,"Suitable for one occupant, features integrated heater",DC
+Alliance Plastent,3,300,2,4-person tent; removes ■■ to resist hostile environments and downgrades,FB
+Portable Survival Shelter,2,200,4,"Suitable for one occupant, features weather and environment survivability",EU
+Extra Weapon Reloads,1,25,1,Reload for a weapon; a Maneuver to reload,Core
+Extra Power Pack,1,25,1,Replacement energy source for devices; a Maneuver to replace,Core
+Water Purifier,1,50,2,Purifies one person's daily need of water,SS
+Condenser Unit,2,300,2,gathers water from the air for one person for one day,FB
+Canteen,1,7,1,"Liquid container, features a filtration system to purify water",DC
+Survivalist Mess Kit,0,10,3,"Pots, pans, plate, cup, utensils in one compact unit",SS
+Food Prep System,3,20,1,A small field stove for cooking,DC
+Flashfire Camp Stove,2,60,4,"Kit containing tools, burner, multi-use can for cooking",SS
+Field Kitchen,5,500,4,"Kit containing tools, stoves, datapad, and other equipment for cooking",EU
+Crash Survival Kit,5,300,2,A kit containing a variety of items to help ensure survival after a crash,"E, A"
+Wilderness Survival Kit,5,350,2,A kit containing a variety of items to help ensure survival in the wilderness,F
+Disaster Relief Kit,2,250,2,Sustains basic needs of four individuals for up to a week to ten days,EV
+Fire Paste,0,3,1,Flammable putty with an integrated igniter,DC
+Gravity Belt,--,500,6,???,SF
+Camouflage Netting,4,100,2,A roll of netting to conceal objects; +2 Failures to detect object concealed,DC
+Camouflage Paint,0,40,2,Paint used to conceal objects; +1 Failure to detect object concealed,DC
+Electro-Snare,1,50,5,Stun trap for capturing prey alive,EU
+Beast Call,1,100,3,Electronic tool with pre-recorded sounds to lure beasts,"EU, SS"
+Chem Lure,1,125,4,"Programmed, chemical-based tool to lure beasts",EU
+Field Dressing Kit,3,300,5,"Kit containing tools skin, dress, and preserve prey",EU
+Riding Tack,2,250,4,Saddle and gear for riding a beast,"ST, SS"
+Howdah,5,"5,500",2,"Large basket for very large beasts, multiple occupants",ST
+Saddlebags,--,25,4,Beast packs; adds 4 to Encumbrance Threshold,SS
+Modular Cargo Handling System,--,500,5,Beast pack sytem; adds 6 to Encumbrance Threshold; Silhouette 2+ beasts,SS
+Modular Cargo Container,--,350,4,"Adds 1 to Encumbrance Threshold of the beast cargo system, up to +12",SS
+"Syntherope, 20m",1,5,1,20 meters of rope,EU
+Climbing Gear,1,50,2,"A set of tools, including rope, to assist in climbing",Core
+Ascension Pistol,1,275,4,"Grappling hook gun with auto-winder; uses Ranged (Light) skill, Athletics",DA
+Repulsor Assist Unit,1,620,3,Grappling hook with repulsorlifted assistance; reduce difficulty of climbing by 2,EV
+Jet Pack,2,"4,500",7,Allows flight for an individual being,E
+Jump Boots,2,"2,000",6,Allows limited flight for an individual being,SR
+Foot Speeder,4,"2,000",4,"Single-person, repulsorlift platform",EV
+Entrenching Tool,1,20,1,Collapsible shovel; improvised weapon,"DC, FB"
+Luma Flare,1,50,4,"Launched, rocket-propelled flare",KP
+Urban Compass,1,125,1,Datapad GPS unit with local knowledge,EV
+Tool Kit,4,350,2,A set of basic tools and gear for working on machines and droids,Core
+Custom Tool Kit,5,700,5,Custom-fit tools for specific needs; □ to specific skill check,ST
+Weapon Maintenance Kit,2,450,3,Specialized kits for different types of weapons; □□ to Mechanics checks,SS
+VX-A Intelligent Toolbox,3,"2,500",8,Worn backpack toolkit with arms that respond to verbal commands,SM
+Lightsaber Toolkit,2,R 700,9,Counts a tool kit for most Mechanics checks; adds one Advantage for lightsabers,KP
+Multi-Goo Gun,2,250,1,"All-in-one spray injector with lubricant, adhesive, and cleaning acid. Adds one Advantage to repair droids, vehicles, and ships. Refill cartridges cost 20, Rarity 2",SM
+Rivet Gun,4,900,1,Fastens plating to vehicles and ships. Reduces difficulty of Mechanics by one.,SM
+Hand Grinder,5,500,3,Used to shape and polish metal. Adds one Advantage to checks for such.,SM
+Welding Rod,4,"1,750",5,"Fuses metal together. Adds one Success to repair droids, vehicles, and ships.",SM
+Thermal Cutter,2,125,3,Hand-held; used to cut through ice and snow,NP
+Mechanical Dianoga,4,225,4,Hand-held serpentine tool for working in tight spaces; remove ■■ to checks to remove or repair System Strain damage on ships and vehicles,SM
+Excavator's Tool Kit,5,500,7,Kit with precision tools designed for archaeologists,EU
+Surveyor's Tools,6,500,6,Tools and equipment for mapping and plotting; □ to Perception checks,SS
+Verpine Bond Gauntlets,1,250,6,Long gloves that provide stability to forearms and hands for delicate uses,SR
+Emergency Repair Patch,0,25,1,Single-use item to patch holes in vehicles; also heals 3 Wounds on a droid,"E, A, EV"
+Fusion Cutter,2,175,2,Hand-held torch used for cutting and welding metals,A
+Breaching Gel,1,150,5,Wired substance with igniter designed to cut holes into ship hulls,EU
+Anti-Grav Chute,2,450,5,Worn backpack that uses repulsors to arrest a fall from a height,SF
+Verpine Headband,1,500,6,Worn headband that keeps wearer awake,SR
+Repulsor Clamp,3,250,1,Clamp that lifts objects for ease of repair work: strength limited to 10 encumbrance; removes ■ from checks to repair Hull Trauma on ships and vehicles,SM
+OR-Series Tech Recycle Station,10,"1,500",5,Adds □□ to Perception and Mechanics checks when scavenging and salvaging,SM
+Power Generator,10,550,2,Semi-portable generator for power needs,"LE, FB"
+Water Vaporator,12,"2,000",2,Condenses water from the air,FH
+Instamist Generator,5,150,4,Creates an area of heavy vapor or fog,KP
+CZ-88 Heavy Loader Arm,30,"1,500",3,Mechanical arm system for lifting heavy objects,SM
+Datapad,1,75,1,Hand-held computer and data organizer and storage,Core
+P-2 Pocket Attaché,1,275,4,Encrypted datapad and organizer; Daunting Computers to slice,LNH
+"Comlink, Handheld",0,25,0,Provides audio messaging between two or more parties,Core
+"Comlink, Long Range",2,200,1,"As a standard comlink, but reaching ships outside of orbit",Core
+"Comlink, Hardened",3,450,4,"A bulky comlink, features encryption, long range, and jammer busting",DC
+3-MAL Secure Comlink,0,250,4,■ to checks to intercept and unscramble,FB
+DH77 Headcomm,0,R 400,3,Imperial helmet comlink; ■■■ to checks to intercept and unscramble,FB
+PTP Link,2,100,7,Audio only comms device with 25km range,SR
+A/V Translator,1,750,3,Translator for both verbal and written languages; □ to Lore and Intellect,EU
+Verpine Comlink,1,250,6,Allows communication with Verpines on their frequencies,SR
+Holo-Messenger,0,250,4,As a standard comlink but also provides visual as well,Core
+BPEA-1A Cascader,--,"1,800",8,"Subtle personal holo-emitter; upgrade Charm, Deception, Leadership checks once",LE
+False Voice Transmitter,4,"1,400",6,Replicates voices from samples,SR
+Collar-Amp,0,50,1,"Worn the neck, boosts vocal volume",FH
+Polis Massan Voice Box,1,50,6,Allows Polis Massans to speak aurally,SR
+Integrated PA System,2,600,7,"Backpack case containing microphone, speakers, amplifier, power pack",DA
+Hypertranceiver,5,"1,000",3,Privately-owned tranceivers allow communication without using the HoloNet,SF
+HoloNet Relay,15,"75,000",7,Connects to the HoloNet,FH
+"Remote, Short Range",0,300,4,Remotely activates a vehicle at up to 5km range,SF
+"Remote, Long Range",0,"1,500",7,"Remotely activates a vehicle at up to a parsec range, autopilot as well",SF
+Encryption Module,0,"1,250",7,Encrypts comm signal of a comlink; Formidable Computers to decode,SF
+Personal Distress Beacon,--,50,1,"Automated message-repeating beacon; □□ to Perception, Cumputers, or Surveillance checks to find when activated",EU
+Comms Media Manipulator,6,400,6,"Studio for creating, editing, producing media of many types",DA
+Privacy-7 Audio Curtain,4,500,6,Creates a sound dampened field; Hard Perception to overhear noise within,EV
+Sound Dampener,2,600,7,"Worn on belt, emits sound cancelling waves; ■■ to detect in Short range",DA
+Comm Jammer,4,400,3,"Shuts out local communications signals, strength depends on distance","E, A"
+Comm Scrambler,4,"1,000",3,Encrypts communications signals; ■■ to decode,"E, A"
+Credit Cleaner,12,"R 2,500",7,Electronic routing and encryption system to launder money,LNH
+TacNet Tactical Data Network,7,"1,000",3,"Network of sensor telemetry, comms, and readings from personal equipment",LE
+Electromag-Pulse Disruptor,1,180,5,Hand-held stylus tool used to disrupt electronics; □□ to sabotage electronics,SM
+Dataspike,1,R 100,3,Single-use tool that overloads security programs; reduce difficulty by 2 steps,SM
+Signature Modulation Pad,2,R 250,7,Device designed to help mask slicing signatures; ■■ to acquire slicer's signature,SM
+Personal Transponder,0,100,4,Often worn as jewelry; tracking device,KP
+Starmapper Handheld Navicomp,1,"3,500",8,□□ to Astrogation checks; may be reduced if not connected to Holonet,SS
+Artillery Remote,1,400,7,allows operation of artillery weapons from Medium range; Inaccurate 2 (Q),FB
+Macrobinoculars,1,75,2,"Hand-held, visual magnification",Core
+Electrobinoculars,1,250,1,"Hand-held, light adjusting and magnification; remove ■ from range or lighting",Core
+Sporting Macrobinoculars,1,250,2,Hand-held; visual magnification with video recording; remove ■ from range or lighting,NP
+Infrabinoculars,1,350,5,Hand-held; scan through walls,EV
+"Infrabinoculars, Long-Range",1,500,6,"Hand-held; scan through walls, or remove ■ from range",EV
+General Purpose Scanner,2,500,3,"Hand-held, multi-purpose sensing unit",Core
+Low-Feedback Scanner,4,700,5,passive sensor scanning unit,FB
+Hand Scanner,0,100,2,"Hand-held, specific purpose sensing unit",Core
+Scanner Goggles,0,150,3,"Worn, light amplification and thermal imaging",Core
+Hunting Goggles,0,600,5,"Worn, features light amplification, thermal sensing, image magnification, motion detector, targeting system; □ to Perception checks; remove ■■ due to concealment, darkness, fog, et al. to all Ranged (Light/Heavy)",EU
+Weapon Detection Goggles,1,750,5,"Worn, detects weapons; □□ to Perception checks to spot weapons",SF
+Targetting Goggles,1,"1,000",5,"Worn, allows wearer to consider target one silhouette size greater",ST
+Surveillance Tagger,0,R 175,4,Tiny beacon used to track an individual wearing it,"E, A"
+Combat Scanner,1,"2,000",6,"A full, visored helmet with many of the features of a GP scanner, hardened comlink, datapad, and scanner goggles",DC
+Demolitions Scanner,1,300,4,Hand-held scanner designed to sense explosives,DC
+Long Range Terrain Scanner,6,850,6,Creates a topographical map of an area; Average Computers check to use,EU
+Ground Penetration Scanner,5,950,5,Creates a subsurface map,EU
+Lifeform Scanner,4,900,5,Tracks and identifies up to 24 targets; Average Survival or Hard Computers or Education check to properly use,EU
+SE-Vigilant Automated Sensor,2,"3,000",4,passive motion sensor that then scans and transmits data,FB
+Hyperwave Signal Interceptor,5,"10,500",8,Can covertly listen to audio communications,SF
+Holoscanner,varies,varies,5,"Large, stationary scanners designed to find weapons and contraband",FC
+Cargo Scanner,1,300,4,Multi-use scanning gear for cargo; Average Computers can increase space,FC
+Concealed Recorder,0,175,5,"Miniaturized microphone, camera and recorder; ■■ Perception to find",DA
+Security Sweeper,1,400,6,Scanner designed to spot recorders and espionage devices; Average Computers check; Medium range,DA
+Mk 1 Cat's Eye MP Sensor Suite,12,"R 2,750",5,"(Planetary scale) Long Range sensor; □□ to Perception, Computers, Vigilance checks made by users; ■■ to Stealth checks made by approaching units",LE
+Bardottan Chronoscanner,0,"1,200",2,Hand-held scanner designed to determine the age of an item to within a century,NP
+A-212 Tracing Console,12,"3,000",6,Monitoring equipment designed to help defend against slicing,SM
+PX-7 Heat Sensor,3,250,7,□□ to Perception checks to find heat; □ to Mechanics checks to remove Critical Hits from ships and vehicles or Critical Injuries from droids,KP
+Veridicator 200,1,"4,000",8,often worn as jewelry; acts as a lie detector,KP
+Slicer Gear,2,500,4,A tool kit for slicers to hack into computer systems,"E, A"
+Data Breaker,1,"R 1,000",6,A computer-like device that allows a slicer to hack; □□ to Computers,"E, A"
+Data Dead Drop,0,R 150,7,Hidden compartment for concealing datachips; Daunting Perception to find,DA
+Restraining Bolt,0,35,0,A lockdown device placed on droids; Daunting Discipline to override,Core
+"""Knack"" Restraining Bolt",0,R 750,8,Restraining bolt with extra programming to issue secrets orders to the droid,DA
+Binders,0,25,0,Handcuffs; Daunting Atheltics or Coordination to escape,Core
+MCI-100 Magnacuffs,1,100,4,Handcuffs; Formidable Coordination check to escape,FH
+Stun Cuffs,0,100,5,Handcuffs that stun wearer; Daunting Coordination check to escape,KP
+AL-DR8 Grav-Binders,1,300,7,Full body binders that use repulsor technology to apply artificial gravity,KP
+Security Collar,1,R 300,5,Slave collar; Daunting Skullduggery check to remove,LNH
+Explosive Shackles,2,R 500,6,Collar and belt; Daunting Skullduggery check to remove,LNH
+Electric Perimeter Fence,6,800,5,Creates an energy field that stuns with contact,EU
+Lockpicking Tools,1,R 50,8,Kit of tools designed to pick non-electric locks,FC
+Electronic Lock Breaker,1,"R 1,000",5,Automatic slicing system for defeating electronic locks,Core
+Scramble Key,1,R 750,4,Bypasses simple electronic locks in 5 rounds; may be hurried,EV
+Authentication Tools,1,100,5,Specialized scanner to spot false credentials; □□ to checks to spot fakes,DA
+False Credentials,0,R 800,7,Forged/counterfeit indentification; Hard Computers or Daunting Perception,"FC, DA"
+Disguise Kit,2,100,4,"Kit with make up, wigs, iris chromatics, etc.",Core
+Flesh Camouflage Set,2,"R 2,500",7,An extensive disguise kit allowing dramatic changes; Formidable difficulty,"E, A"
+Fingerprint Masque,0,"R 1,000",7,Conceals or alters fingerprints of user,FC
+Shadowcloak,2,"R 2,500",6,Cloak that creates a field of darkness; Daunting Perception check to view,FC
+Personal Stealth Field,1,"R 20,000",9,Makes the user invisible; Formidable difficulty to spot a user,"E, A"
+Holo Ghillie Suit,1,800,8,Full body suit that holographically blends with surroundings; +1 difficulty,DC
+Shift Coffer,5,"2,500",7,Safe that blends into the walls if stationary; 5 Encubrance capacity,FC
+Magna-Lock Safe,12,"1,000",5,Secure safe; 10 Encumbrance capacity; Formidible Skullduggery to crack,FC
+Sleight Box,2--20,R 400,6,Box with false bottom or walls; Daunting Perception to discover,DA
+Forgery Tools,2,R 650,8,Specialized tool kit to create false credentials,DA
+Poisoner's Ring,0,R 500,7,Poison container disguised as a ring; Skullduggery vs. Vigilance to detect,DA
+Forensics Investigation Kit,4,450,4,Kit with tools and equipment to investigate a crime scene,FH
+Datapad,1,75,1,Small handheld computer for storing and utilizing knowledge,Core
+Species Database,2,150,2,Datapad or computer with detailed physiological knowledge of a species; □□ to Knowledge (Xenology) checks,DA
+Vergence Starchart,0,"1,000",10,Shows the location of a single Vergence; Hard Astrogation check; could be fake,NP
+Vehicle Manual,1,100,varies,Datapad manual for specific vehicle/ship model; downgrade difficulty once,ST
+Mercantiler Datapad,1,250,3,Datapad programmed for merchants and the market; □ to Negotiations,FH
+Insider's Guide,0,25,2,Detailed datapad tour guide for specific planets; +1 Advantage to checks,DA
+Cultural Etiquette Manual,0,35,3,Detailed datapad guide to specific culture; +1 Advantage to checks,DA
+Military Field Manual,1,25,4,Datapad guide of military instruction and knowledge; □ to checks,A
+Holocron,1,"R 100,000",10,Data storage device that requires Force sensitivity to use,F
+Chance Cubes,0,1,0,Six-sided red and blue cubes used in pairs for gambling,E
+"Chance Cubes, Loaded",0,R 100,5,□□ to Deception when gambling; Formidable Perception to notice,LNH
+Sabacc Deck,0,40,0,Electronic deck of cards used for gambling,E
+"Sabacc Deck, Marked",0,R 500,6,□ to Deception when gambling; Hard Perception to notice deck,LNH
+"Sabacc Deck, Marked, Quality",0,"R 1,000",7,□ to Deception when gambling; Daunting Perception to notice deck,LNH
+Skifter,0,R 500,6,A sabacc card rigged to display what the user wants; □  to Skullduggery,FC
+Dejarik Table,10,350,1,"Holographic display table used for playing dejarik, a game of tactics",E
+"Musical Instrument, Common",1--5,50-100,2,Musical intrument,FH
+"Musical Instrument, High Quality",1--5,"500-1,500",4,Musical intrument,FH
+"Musical Instrument, Legendary",1--5,"20,000+",10,Musical intrument,FH
+Thunderhead PES,10,"2,500",4,Suite of tools and equipment for entertainment,FH
+Banal Apparel,0,25,0,Very average attire; upgrade difficulty to checks to identify or remember,DA
+Dress Uniform,1,100,5,□ to social checks for the military,LE
+Utility Vest,--,100,2,Load-bearing vest; adds 2 to Encubrance Threshold,EU
+Cargo Clothing,1,30,0,Clothes with lots of pockets; carry up to 3 Enc 1 items for free,DA
+Thermal Cloak,2,200,1,Garment used to block out the cold and heat; remove ■■ from checks,Core
+Diplomat's Robes,2,400,6,Official attire; □ to social checks of a diplomatic nature,DA
+Noble Regalia,1,750,7,Fancy attire; downgrade difficulty to social checks with nobility and wealthy,DA
+Performer's Attire,0,50,4,Distracting attire; □ to checks to perform or attract attention,DA
+Expensive Jewelry,0,"2,000",7,"Worn; +1 Advantage to Charm, Deception checks; □ to remember wearer",DA
+Signet Ring,0,750,7,Worn; +2 Advantages to checks to establish wearer's identity,DA
+Symbol of Command,1,100,3,□ to social checks for the military,LE
+Ardos Disk,1,"R 10,000",5,Medal that represents the favor and protection of a Hutt,LNH
+Adamite Signet Ring,0,500,8,worn; signifies membership of the Paladins of the Adamite Tower,NP
+WJ-880 Blinding Helmet,3,R 10,8,worn; adds ■■■ to checks involving vision,KP
+"Ration Pack, Field",0,5,0,"Meal, read to eat, for the soldier on the move",Core
+"Field Rations, Army",0,10,2,One week's worth of goopy food,DC
+Ryshcate Cake,0,10,2,A Corellian pastry used to mark special dates and holidays,SF
+Correllian Whiskey,1,25,2,Good whiskey,SF
+"Correllian Whiskey, x25",10,500,2,Good whiskey,SF
+Whyren's Reserve,1,100,4,Really good whiskey,SF
+"Whyren's Reserve, x25",10,"1,500",5,Really good whiskey,SF
+"Nala Tree Frog, x12",1,15,5,"A delicacy, especially among Hutts",LNH
+Marcan Herb,1,20,4,"Pipe tobacco, a favorite of the Hutts",LNH
+"Marcan Herb, x100",25,"1,750",5,"Pipe tobacco, a favorite of the Hutts",LNH
+Sulfur Inhaler (10 doses),0,120,3,□ Brawn and Agility checks for one encounter; suffer 2 Strain; Devaronians only,NP
+Stimstick,0,5,2,remove ■ from checks to stay awake or cheks due to fatigue till end of encounter;,FB
+"Stimpack, Single, Auto-Injector",0,25,2,Auto-injection tube of medication; heals wounds with diminishing returns,Core
+Stimpack Gun,1,150,2,Re-usable applicator with 6 stimpack doses,gm rdl
+Stimpack Gun Cartridge,0,20,2,Replacement stimpack doses for the stimpack gun,gm rdl
+StimDart,0,35,5,Replacement stimpack doses for the Auto-Doc StimDart Pistol/Launcher,gm rdl
+Blood Scanner,1,400,5,Used to check for foreign elements or toxins in blood,KP
+Antidote Set,1,250,5,Kit of antidote doses for a variety of poisons; reduces difficulty of Resilience check to resist poison by 2,DA
+Medpac/Physician's Kit,2,400,2,An advanced medical kit; □ to Medicine checks,Core
+Healer's Kit,2,--,--,Hand-made pack of natural herbs and medicines; every one unique,SS
+Medical Backpack,2,450,4,"A complete, portable field medical system; □ Medicine; -1 difficulty ",EU
+Emergency Medpac,1,100,1,A deluxe first aid kit,Core
+Military Medpac,2,400,3,An advanced medical kit; +1 Medicine,DC
+Military Traumapac,1,50,3,may use Medicine to remove Critical Injuries,FB
+Med-Aid Patch,1,20,4,Single-use bandages infused with bacta and other agents,KP
+Nullicane,0,25,2,ignore Critical Injury till the end of the encounter; 3 Strain,FB
+Anesthetic,0,35,4,Non-lethal; Average or Hard Resilience to resist,Core
+Bacta Tank,12,"4,000",1,Large tank filled with bacta or sanavi for full immersion,Core
+"Bacta, per liter",1,20,1,Healing liquid applied in a variety of ways; accelerates healing,Core
+"Sanavi, per liter",1,25,5,"Healing liquid applied in a variety of ways; accelerates heal., □ to Resilience",gm rdl
+"Synthskin, Synthflesh",--,10,1,Realistic coverings to hide cybernetics,Core
+Cerebral Stabilizer,3,"2,200",7,A full helmet placed on patients who have suffered critical head injuries,DC
+Chem Restraint Harness,2,"1,200",5,"Worn by beast, controls through chemicals rather than training",ST
+Veterinary Kit,3,600,3,"Large medical kit designed for beasts; □ to Medicine, Survival, Knowledge",ST
+XV-20 Veterinary Kit,2,500,3,"Large medical kit designed for beasts; □ to Medicine, Survival, Knowledge",SS
+Speciman Container,0,10,1,Designed to safely contain flora and fauna; Encumbrance capacity of 1,EU
+Speciman Container,1,25,2,Designed to safely contain flora and fauna; Encumbrance capacity of 5,EU
+Speciman Container,3,50,2,Designed to safely contain flora and fauna; Encumbrance capacity of 10,EU
+Speciman Container,5,150,3,Designed to safely contain flora and fauna; Encumbrance capacity of 15,EU
+Cybernetic Brain Implant,--,"10,000",6,Brain enhancement; +1 Intellect; comlink; computer link,Core
+Biofeedback Regulator,--,"3,000",8,Adds 2 to cybernetic implant cap; organics only,SM
+Neural Recorder,--,250,8,Next-best thing to a perfect memory; Easy Discipline checks to recall information,SM
+Cybernetic Eye,--,"7,500",6,Replacement eye; +1 Vigilance and Perception,Core
+Appraiser's Eye,--,700,7,Replacement eye; +1 Advantage to Negotiation and Streetwise when buying and selling on the market,FC
+Retinal Tracker,--,"2,500",6,+1 Advantage to Gunnery and Ranged (Heavy) checks,LNH
+Cyborg/Droid Interface,--,600,4,Direct link to droid brains for communication and interrogation,SR
+Gank Comm Implant,--,250,7,"Internal, silent communication with others who have this implant",LNH
+Immune Implant,--,"5,000",6,Immune system enhancement; +1 Resilience,"E, A"
+Surge Override Switch,--,"1,000",6,Quick reactivation switch for disabled cybernetics,SM
+Avionics Interface,--,"8,000",6,Implanted interface into airspeeder or starship control systems; +1 Pilot,SF
+Adrenal Implant,--,"2,250",5,Rapid Recovery (T),LNH
+Implanted Cyberjack,--,"3,750",6,Direct connection to computers/droids; 2 Strain for -1 difficulty,LNH
+Neuromachine Interface,--,"R 3,500",6,Direct link to vehicular controls; may use Coordination instead of Pilot,LNH
+Implant Armor,--,"7,500",6,Underskin plates; +1 Soak,"E, A"
+Prosthetic Replacement Organ,--,"1,000",4,Organ replacement,Core
+Cybernetic Reflexes,--,"2,750",5,Rapid Reaction (T),LNH
+Cybernetic Respirator,--,"2,000",4,Internal breath mask and respirator; Blooded (T),LNH
+"Cybernetic Arm, Mod V",--,"10,000",6,Arm replacement; +1 Brawn,Core
+"Cybernetic Arm, Mod VI",--,"10,000",6,Arm replacement; +1 Agility,Core
+"Cybernetic Leg, Mod II",--,"10,000",6,"Leg replacement; +1 Brawn; price is for one, but must install in pairs",Core
+"Cybernetic Leg, Mod III",--,"10,000",6,"Leg replacement; +1 Agility; price is for one, but must install in pairs",Core
+Prosthetic Replacement Limb,--,"2,000",4,Limb replacement,Core
+Cybernetic Weapon Implant,--,"4,000",7,Arm replacement with built in light blaster pistol,"E, A"
+Digital Lockpick,--,"R 2,750",5,Replacement finger(s) with tools for picking locks; Bypass Security (T),FC
+Repulsor Fist,--,"4,750",7,Provides brawl weapon; Defensive Stance (T),LNH
+Cyberscanner Limb,--,"4,000",7,Arm replacement with built in portable scanner,Core
+Cybernetic Cavity,--,R 775,3,Small pocket hidden in your body; Hidden Storage (T),FC
+Vessel Courier System,--,"5,000",6,Very discreet subdermal data storage device,SR
+Escape Circuit,--,"R 1,000",6,May resist Restraining Bolts with Easy check; droids only,SM
+Network Slicing Uplink,--,"R 1,250",7,Masks slicing attemps with droid static; droids only,SM
+"Protocol Droid, Basic",--,"8,000",4,Designed to act as communication liaisons between beings,"E, A"
+3PX Series Protocol,--,"7,750",4,Designed to act as communication liaisons between beings,DA
+5YQ Series Protocol,--,"5,500",4,Designed to act as communication liaisons between beings,DA
+TC Series Protocol,--,"10,000",4,Designed to act as communication liaisons between beings,DA
+LOM Series Protocol,--,"8,500",5,Designed to act as communication liaisons between beings,DA
+M-3PO Series Protocol,--,"R 12,000",5,"Designed to act as communications liaison, logistics, analysis for Imperial troops and units",DA
+J9 Worker Drone,--,"7,000",3,Programmed for translation and analysis protocols,SR
+Siak-Series Protocol Droid,--,"10,000",4,Designed to act as general communications liaison,SR
+"Analysis Droid, Basic",--,"7,500",5,"Designed to aid in research, analyzing data",F
+T-Series Tactical Droid,--,"R 8,000",8,Military advisors and leaders; used mostly by Separitists during the Clone Wars,LE
+LRD Series Envoy,--,"15,000",5,Designed to act as communication liaisons between beings,DA
+KLC Series Exchequer,--,"10,000",5,"Programmed for math, negotiations, and mercantilism",EU
+CZ Series Business/Com,--,"9,000",4,"Programmed for math, negotiations, and mercantilism",DA
+SDMN Series Assistant,--,"4,000",5,Programmed to assist and accompany entertainers,FH
+"Medical Droid, Basic",--,"12,000",4,Programmed for medical procedures and caring for beings,"E, A"
+CT-4 Medical Droid,--,"20,000",8,Programmed for medical procedures and caring for beings,SR
+Mini-Med,--,900,3,Designed to aid sapient doctors in administering medical practice,FH
+JC Series Pilot,--,"15,000",7,Designed for piloting,EU
+LC Series Pilot,--,"5,000",8,A pilot droid based on surplus B1 battledroids,gm rdl
+"Astromech Droid, Basic",--,"8,250",3,"Utilitarian droids designed for ship travel, can astrogate and make repairs","E, A"
+R7 Series Astromech,--,"11,000",6,"Utilitarian droids designed for ship travel, can astrogate and make repairs",ST
+Q7 Series Astromech,--,"6,500",8,"Utilitarian droids designed for ship travel, can astrogate and make repairs",ST
+"Maintenance Droid, Basic",--,"7,500",3,Specifically designed for repair work,"E, A"
+DUM-series Pit Droid,--,450,1,Designed for use in general mechanical repairs and salvaging,EV
+G2 Repair Droid,--,"6,000",5,Designed for general use aboard ship with piloting and mechanics,SR
+FD Series Fire Supproession,--,"8,000",10,Specifically designed for putting out fires,SF
+Recycling  Droid,--,"6,500",4,Recycles waste product into more useful product,FH
+Q-4 Borer Droid,--,"2,000",5,Designed for mining and to assist miners,SR
+Stone Guardian,--,,,Guardian droids designed to look like statuary when not activated,NP
+AT-ED,--,"8,900",5,"Designed for exploration and surveying, 2.5 meters tall",EU
+Scout Collector,--,"6,000",6,Designed to capture exotic biological specimens,EU
+Scout Surveyor,--,"2,500",6,Designed to locate exotic biological specimens,"EU, SR"
+Cam,--,800,3,"Small, repulsorlifted unit that records A/V data for rebroadcast",SF
+"Security Droid, Basic",--,"9,600",5,"Programmed for combat, protection, and vigilance",E
+MI Series Security Droid,--,"R 41,225",7,"Programmed for combat, protection, and vigilance",EV
+AC Series Law Enforcement,--,"R 9,600",5,Specialized security droid programmed for law and order,FH
+GU Series Police Droid,--,"8,100",6,Designed for law and order,EV
+DZ-70 Fugitive Tracker,--,"R 9,800",4,Programmed for tracking and pursuing fugitives,FH
+K-9 Series Hunter,--,"7,500",6,"Programmed for hunting and tracking, quadrapedal, 1 meter tall",EU
+Interrogation Droid,--,"R 9,600",8,"Programmed for questioning criminals, spies, malcontents",F
+Probe Droid,--,"R 13,700",7,Designed for scouting and transmitting information,F
+B1 Series Battle Droid,--,"6,500",5,The frontline battle droid of the Separatist armies during the Clone Wars,E
+Assassin Droid,--,"R 65,000",8,Deadly hunters that pursue relentlessly,E
+IG-100 MagnaGuard,--,"R 90,000",10,Master bodyguards and combatants during the Clone Wars,F
+TC-SC Infiltration Droid,--,"R 15,600",8,"Designed for espionage, infiltration, and assassination",EV
+Chamleon Droid,--,R,8,Designed for infiltration and espionage during the Clone Wars,NP
+GV/3-Series Guardian,--,"8,000",7,quadrapedal kanid form; acts as a guard and pet,KP
+Generic Remote,1--2,400,2,Designed to perform simple preprogrammed tasks and follow basic commands,SM
+Butterbug Remote,1,700,4,Designed to transmit information,SM
+Service Patch Remote,1--2,900,3,Programmed for a variety of mechanical and comuter-related tasks,SM
+Shield Remote,2,"1,100",5,Programmed and designed to place itself between the user and attacks,SM
+Marksman-H Combat Remote,1,350,5,Programmed as a training tool,KP
+RMD-20 Camera Remote,1,500,4,Designed for recording footage on the move,KP
+Recon Remote,1,250,1,"Small, repulsorlifted unit that transmits visual data up to 20km away",DC
+Microdroid Listener,0,"R 1,500",6,Records audio then returns to owner when conditions are met,EV
+Biome Generator,45,"9,000",4,Creates specialty environments within ships or other enclosed spaces,FH
+Atmospheric Processor,10k,"4,500,000",7,Massive terraforming installation,FH
+Atmospheric Reactive Damper,300,"200,000",5,Carbon dioxide scrubber,FH
+Diplomatic Authority,--,"R 10,000",8,Official documents that grant official persons access and permissions,DA
+1.4 FD P-Tower Light AV Battery,,"4,000",2,Immobile anti-vehicle laser cannon battery,LE
+DF.11 Anti-Infantry Battery,,"7,500",5,Immobile anti-infantry laser cannon battery,LE
+Planetary Shield Generator,,"460,000",4,Provides 8 points of ranged defense dividable into four quadrants,LE
+Modular Base Structures,,varies,2-3,Various pre-constructed buildings,LE
+Dendriton Toxin,0,R 125,7,Painful paralytic; Daunting Resilience check to resist,LNH
+Dioxis Gas,0,R 100,6,Lethal gas; Hard or Daunting Resilience to resist,LNH
+Neuroparaalytic,0,R 75,6,Paralytic; Hard Resilience to resist,Core
+Neurotoxin,0,R 50,6,Lethal poison; Average or Hard Resilience to resist,Core
+Raquor Venom,0,R 150,7,Paralytic; Daunting Resilience to resist,LNH
+Avabush Spice,0,R 25,6,May only upgrade one Ability Die to a Proficiency Die in any given check; the difficulty to lie or conceal the truth is upgraded once,E
+"Avabush Spice, x100",3,"R 2,000",7,May only upgrade one Ability Die to a Proficiency Die in any given check; the difficulty to lie or conceal the truth is upgraded once,E
+Booster Blue,0,R 10,5,"May upgrade any Agility, Intellect, or Cunning check once; Strain is not auto. recovered at the end of encounters for the rest of the session",E
+"Booster Blue, x100",3,R 750,6,"May upgrade any Agility, Intellect, or Cunning check once; Strain is not auto. recovered at the end of encounters fo rthe rest of the session",E
+Death Stick,0,R 5,1,■ to every task and check; possibly diminishes connection to the Force,E
+"Death Stick, x100",3,R 250,2,■ to every task and check; possibly diminishes connection to the Force,E
+Glitterstim,0,R 100,7,"□□□ to Perception, Vigilance checks; possible telepathy",E
+"Glitterstim, x100",5,"R 5,000",8,"□□□ to Perception, Vigilance checks; possible telepathy",E
+Gunjack Spice,1,R 75,5,"+1 Brawn per dose; +1 difficulty for Agility, Intellect, Cunning checks",LNH
+"Gunjack Spice, x100",25,"R 7,000",6,"+1 Brawn per dose; +1 difficulty for Agility, Intellect, Cunning checks",LNH
+Impact,0,R 125,6,"Upgrade Agility-based checks; ■ Agility-, Cunning-, Intellect-based checks",FC
+"Impact, x100",5,"R 10,000",7,"Upgrade Agility-based checks; ■ Agility-, Cunning-, Intellect-based checks",FC
+Ji Rikknit,0,R 50,6,Mild euphoric; Easy Resilience to avoid addiction,SF
+"Ji Rikknit, x100",5,"R 3,000",7,Mild euphoric; Easy Resilience to avoid addiction,SF
+Karrak Spice,0,R 80,7,"Remove ■■■ added for pain or illness for 12 hours, add one Threat; Force usersbenefit for 24 hours, Force rating counts as one lower",EV
+"Karrak Spice, x100",5,"R 6,400",8,"Remove ■■■ added for pain or illness for 12 hours, add one Threat; Force users benefit for 24 hours, Force rating counts as one lower",EV
+Lesai,0,R 500,9,Removes need to sleep; Strain heals normally,E
+"Lesai, x20",2,"R 7,500",10,Removes need to sleep; Strain heals normally,E
+Longsight,0,R 650,8,+1 Willpower for Encounter; suffer 2 Strain each turn,NP
+Longsight x100,5,"R 5,000",9,+1 Willpower for Encounter; suffer 2 Strain each turn,gm rdl
+Muon Gold,0,R 50,6,"□ Cunning-, Presence-based checks; possible ■ Intellect-, Cunning-based",FC
+"Muon Gold, x100",3,"R 4,500",6,"□ Cunning-, Presence-based checks; possible ■ Intellect-, Cunning-based",FC
+Nannarium Root,0,R 200,6,"Upgrade Intellect-, Cunning-based check once; 2 Strain",SF
+Neutron Pixie,1,R 100,6," +2 Advantages to Agility-, Willpower-based checks; +1 Threat to Brawn-, Intellect-, Cunning-based checks ",LNH
+"Neutron Pixie, x100",25,"R 8,500",7," +2 Advantages to Agility-, Willpower-based checks; +1 Threat to Brawn-, Intellect-, Cunning-based checks",LNH
+Questioner-9,0,R 300,6,Upgrade difficulty on checks to withold information or resist manipulation,EV
+"Questioner-9, x100",5,"R 24,000",7,Upgrade difficulty on checks to withold information or resist manipulation,EV
+Ryll Spice,1,R 50,4,"Temporarily ignore an Easy, Average, or Hard (2 doses) Crit Injury",LNH
+"Ryll Spice, x100",25,"R 4,500",5,"Temporarily ignore an Easy, Average, or Hard (2 doses) Crit Injury",LNH
+Yaladai Spice,0,"R 1,000",7,"Suffer 3 less Strain than normal; Force users add +1 Force die to checks, suffer double Strain and Conflict for using Dark Side pips",EV
+"Yaladai Spice, x100",5,"R 80,000",8,"Suffer 3 less Strain than normal; Force users add +1 Force die to checks, suffer double Strain and Conflict for using Dark Side pips",EV
+Yarrock,0,R 350,8,"Automatically succeed at Fear checks; ■ to Willpower, Presence checks",E
+"Yarrock, x100",3,"R 20,000",9,"Automatically succeed at Fear checks; ■ to Willpower, Presence checks",E
+Frangawl Force Powder,0,"R 2,000",10,Force-Sensitives consuming one dose earns 10 Conflict; adds two Dark Side pips,NP to the next Force power check made

@@ -1,0 +1,3796 @@
+{
+    "Modular Backpack": {
+        "name": "Modular Backpack",
+        "description": "Backpack with separate pouches; adds 3 to Encumbrance Threshold",
+        "meta": {
+            "Book": "EU, SS",
+            "Rarity": "1",
+            "Enc": "--",
+            "Cost": "75"
+        }
+    },
+    "Spacer's Duffel": {
+        "name": "Spacer's Duffel",
+        "description": "Large shoulder bag; adds 2 to Encumbrance Threshold; Cumbersome 3",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "0",
+            "Enc": "--",
+            "Cost": "50"
+        }
+    },
+    "Military Pack": {
+        "name": "Military Pack",
+        "description": "Large backpack; adds 6 to Encumbrance Threshold; Cumbersome 2",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "0",
+            "Enc": "--",
+            "Cost": "60"
+        }
+    },
+    "Load Bearing Gear": {
+        "name": "Load Bearing Gear",
+        "description": "Worn system for carrying gear; adds 3 to Encumbrance Threshold",
+        "meta": {
+            "Book": "A",
+            "Rarity": "3",
+            "Enc": "--",
+            "Cost": "100"
+        }
+    },
+    "Utility Belt": {
+        "name": "Utility Belt",
+        "description": "Worn belt with pouches for storage; adds 1 to Encumbrance Threshold",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "0",
+            "Enc": "--",
+            "Cost": "25"
+        }
+    },
+    "Modular Backpack Pouch": {
+        "name": "Modular Backpack Pouch",
+        "description": "Adds 1 to Encumbrance Threshold of the modular backpack, up to +3",
+        "meta": {
+            "Book": "EU, SS",
+            "Rarity": "1",
+            "Enc": "--",
+            "Cost": "15"
+        }
+    },
+    "Military Belt Pouch": {
+        "name": "Military Belt Pouch",
+        "description": "Worn on belt; holds two 0 Enc items, Incidental to access",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "0",
+            "Enc": "--",
+            "Cost": "10"
+        }
+    },
+    "Military Modular Backpack Frame": {
+        "name": "Military Modular Backpack Frame",
+        "description": "backpack frame with room for two modules: temperature control unit, power unit, comms unit, sensor unit, oxygen unit, storage unit - each unit has its own price, Rarity, and Encumbrance ratings and functions",
+        "meta": {
+            "Book": "FB",
+            "Rarity": "2",
+            "Enc": "--",
+            "Cost": "10"
+        }
+    },
+    "Wizard Pouch": {
+        "name": "Wizard Pouch",
+        "description": "Worn; adds 1 to Encumbrance Threshold",
+        "meta": {
+            "Book": "NP",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "50"
+        }
+    },
+    "Surveyor's Bag": {
+        "name": "Surveyor's Bag",
+        "description": "Shoulder bag; adds 2 to Encumbrance Threshold",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "1",
+            "Enc": "--",
+            "Cost": "50"
+        }
+    },
+    "Holster/Sheath": {
+        "name": "Holster/Sheath",
+        "description": "Standard holster for pistols or sheath for melee weaons of any size; reduces Encumbrance of weapon by 2 while holstered/sheathed",
+        "meta": {
+            "Book": "gm rdl",
+            "Rarity": "1",
+            "Enc": "--",
+            "Cost": "20"
+        }
+    },
+    "Quick-Draw Holster": {
+        "name": "Quick-Draw Holster",
+        "description": "Custom-made holster that allows quick weapon drawing; Quick Draw (T); reduces Encumbrance of weapon by 2 while holstered/sheathed",
+        "meta": {
+            "Book": "gm rdl",
+            "Rarity": "3",
+            "Enc": "--",
+            "Cost": "60"
+        }
+    },
+    "Concealment Holster/Sheath": {
+        "name": "Concealment Holster/Sheath",
+        "description": "Compact holster/sheath to conceal small pistols or blades; \u00e2\u2013\u00a0 to Perception to detect",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "3",
+            "Enc": "--",
+            "Cost": "40"
+        }
+    },
+    "Breath Mask and Respirator": {
+        "name": "Breath Mask and Respirator",
+        "description": "Allows breathing in contaminated or alien enviroments",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "1",
+            "Enc": "1",
+            "Cost": "25"
+        }
+    },
+    "A99 Aquata Breather": {
+        "name": "A99 Aquata Breather",
+        "description": "Allows amphibious operation",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "100"
+        }
+    },
+    "Mon Cal Organic Gill": {
+        "name": "Mon Cal Organic Gill",
+        "description": "Allows amphibious operation",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "200"
+        }
+    },
+    "Space Suit": {
+        "name": "Space Suit",
+        "description": "Allows survival in the vacuum of space",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "1",
+            "Enc": "4",
+            "Cost": "100"
+        }
+    },
+    "EVA Powersuit": {
+        "name": "EVA Powersuit",
+        "description": "Powered space suit with built-in tools and movement thrusters",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "7",
+            "Enc": "12",
+            "Cost": "1,500"
+        }
+    },
+    "Glow Rod": {
+        "name": "Glow Rod",
+        "description": "Hand-held uni-directional light source",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "0",
+            "Enc": "1",
+            "Cost": "10"
+        }
+    },
+    "Fusion Lantern": {
+        "name": "Fusion Lantern",
+        "description": "A source of light and heat, can also power small devices",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "2",
+            "Enc": "2",
+            "Cost": "150"
+        }
+    },
+    "Field Goggles": {
+        "name": "Field Goggles",
+        "description": "Worn, protects the eyes",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "0",
+            "Enc": "0",
+            "Cost": "5"
+        }
+    },
+    "Tent": {
+        "name": "Tent",
+        "description": "Suitable for up to six occupants depending on model",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "1",
+            "Enc": "4",
+            "Cost": "100-300"
+        }
+    },
+    "Tent, One-Man": {
+        "name": "Tent, One-Man",
+        "description": "Suitable for one occupant, features integrated heater",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "2",
+            "Enc": "3",
+            "Cost": "30"
+        }
+    },
+    "Alliance Plastent": {
+        "name": "Alliance Plastent",
+        "description": "4-person tent; removes \u00e2\u2013\u00a0\u00e2\u2013\u00a0 to resist hostile environments and downgrades",
+        "meta": {
+            "Book": "FB",
+            "Rarity": "2",
+            "Enc": "3",
+            "Cost": "300"
+        }
+    },
+    "Portable Survival Shelter": {
+        "name": "Portable Survival Shelter",
+        "description": "Suitable for one occupant, features weather and environment survivability",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "4",
+            "Enc": "2",
+            "Cost": "200"
+        }
+    },
+    "Extra Weapon Reloads": {
+        "name": "Extra Weapon Reloads",
+        "description": "Reload for a weapon; a Maneuver to reload",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "1",
+            "Enc": "1",
+            "Cost": "25"
+        }
+    },
+    "Extra Power Pack": {
+        "name": "Extra Power Pack",
+        "description": "Replacement energy source for devices; a Maneuver to replace",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "1",
+            "Enc": "1",
+            "Cost": "25"
+        }
+    },
+    "Water Purifier": {
+        "name": "Water Purifier",
+        "description": "Purifies one person's daily need of water",
+        "meta": {
+            "Book": "SS",
+            "Rarity": "2",
+            "Enc": "1",
+            "Cost": "50"
+        }
+    },
+    "Condenser Unit": {
+        "name": "Condenser Unit",
+        "description": "gathers water from the air for one person for one day",
+        "meta": {
+            "Book": "FB",
+            "Rarity": "2",
+            "Enc": "2",
+            "Cost": "300"
+        }
+    },
+    "Canteen": {
+        "name": "Canteen",
+        "description": "Liquid container, features a filtration system to purify water",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "1",
+            "Enc": "1",
+            "Cost": "7"
+        }
+    },
+    "Survivalist Mess Kit": {
+        "name": "Survivalist Mess Kit",
+        "description": "Pots, pans, plate, cup, utensils in one compact unit",
+        "meta": {
+            "Book": "SS",
+            "Rarity": "3",
+            "Enc": "0",
+            "Cost": "10"
+        }
+    },
+    "Food Prep System": {
+        "name": "Food Prep System",
+        "description": "A small field stove for cooking",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "1",
+            "Enc": "3",
+            "Cost": "20"
+        }
+    },
+    "Flashfire Camp Stove": {
+        "name": "Flashfire Camp Stove",
+        "description": "Kit containing tools, burner, multi-use can for cooking",
+        "meta": {
+            "Book": "SS",
+            "Rarity": "4",
+            "Enc": "2",
+            "Cost": "60"
+        }
+    },
+    "Field Kitchen": {
+        "name": "Field Kitchen",
+        "description": "Kit containing tools, stoves, datapad, and other equipment for cooking",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "4",
+            "Enc": "5",
+            "Cost": "500"
+        }
+    },
+    "Crash Survival Kit": {
+        "name": "Crash Survival Kit",
+        "description": "A kit containing a variety of items to help ensure survival after a crash",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "2",
+            "Enc": "5",
+            "Cost": "300"
+        }
+    },
+    "Wilderness Survival Kit": {
+        "name": "Wilderness Survival Kit",
+        "description": "A kit containing a variety of items to help ensure survival in the wilderness",
+        "meta": {
+            "Book": "F",
+            "Rarity": "2",
+            "Enc": "5",
+            "Cost": "350"
+        }
+    },
+    "Disaster Relief Kit": {
+        "name": "Disaster Relief Kit",
+        "description": "Sustains basic needs of four individuals for up to a week to ten days",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "2",
+            "Enc": "2",
+            "Cost": "250"
+        }
+    },
+    "Fire Paste": {
+        "name": "Fire Paste",
+        "description": "Flammable putty with an integrated igniter",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "1",
+            "Enc": "0",
+            "Cost": "3"
+        }
+    },
+    "Gravity Belt": {
+        "name": "Gravity Belt",
+        "description": "???",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "500"
+        }
+    },
+    "Camouflage Netting": {
+        "name": "Camouflage Netting",
+        "description": "A roll of netting to conceal objects; +2 Failures to detect object concealed",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "2",
+            "Enc": "4",
+            "Cost": "100"
+        }
+    },
+    "Camouflage Paint": {
+        "name": "Camouflage Paint",
+        "description": "Paint used to conceal objects; +1 Failure to detect object concealed",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "2",
+            "Enc": "0",
+            "Cost": "40"
+        }
+    },
+    "Electro-Snare": {
+        "name": "Electro-Snare",
+        "description": "Stun trap for capturing prey alive",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "50"
+        }
+    },
+    "Beast Call": {
+        "name": "Beast Call",
+        "description": "Electronic tool with pre-recorded sounds to lure beasts",
+        "meta": {
+            "Book": "EU, SS",
+            "Rarity": "3",
+            "Enc": "1",
+            "Cost": "100"
+        }
+    },
+    "Chem Lure": {
+        "name": "Chem Lure",
+        "description": "Programmed, chemical-based tool to lure beasts",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "125"
+        }
+    },
+    "Field Dressing Kit": {
+        "name": "Field Dressing Kit",
+        "description": "Kit containing tools skin, dress, and preserve prey",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "5",
+            "Enc": "3",
+            "Cost": "300"
+        }
+    },
+    "Riding Tack": {
+        "name": "Riding Tack",
+        "description": "Saddle and gear for riding a beast",
+        "meta": {
+            "Book": "ST, SS",
+            "Rarity": "4",
+            "Enc": "2",
+            "Cost": "250"
+        }
+    },
+    "Howdah": {
+        "name": "Howdah",
+        "description": "Large basket for very large beasts, multiple occupants",
+        "meta": {
+            "Book": "ST",
+            "Rarity": "2",
+            "Enc": "5",
+            "Cost": "5,500"
+        }
+    },
+    "Saddlebags": {
+        "name": "Saddlebags",
+        "description": "Beast packs; adds 4 to Encumbrance Threshold",
+        "meta": {
+            "Book": "SS",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "25"
+        }
+    },
+    "Modular Cargo Handling System": {
+        "name": "Modular Cargo Handling System",
+        "description": "Beast pack sytem; adds 6 to Encumbrance Threshold; Silhouette 2+ beasts",
+        "meta": {
+            "Book": "SS",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "500"
+        }
+    },
+    "Modular Cargo Container": {
+        "name": "Modular Cargo Container",
+        "description": "Adds 1 to Encumbrance Threshold of the beast cargo system, up to +12",
+        "meta": {
+            "Book": "SS",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "350"
+        }
+    },
+    "Syntherope, 20m": {
+        "name": "Syntherope, 20m",
+        "description": "20 meters of rope",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "1",
+            "Enc": "1",
+            "Cost": "5"
+        }
+    },
+    "Climbing Gear": {
+        "name": "Climbing Gear",
+        "description": "A set of tools, including rope, to assist in climbing",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "2",
+            "Enc": "1",
+            "Cost": "50"
+        }
+    },
+    "Ascension Pistol": {
+        "name": "Ascension Pistol",
+        "description": "Grappling hook gun with auto-winder; uses Ranged (Light) skill, Athletics",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "275"
+        }
+    },
+    "Repulsor Assist Unit": {
+        "name": "Repulsor Assist Unit",
+        "description": "Grappling hook with repulsorlifted assistance; reduce difficulty of climbing by 2",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "3",
+            "Enc": "1",
+            "Cost": "620"
+        }
+    },
+    "Jet Pack": {
+        "name": "Jet Pack",
+        "description": "Allows flight for an individual being",
+        "meta": {
+            "Book": "E",
+            "Rarity": "7",
+            "Enc": "2",
+            "Cost": "4,500"
+        }
+    },
+    "Jump Boots": {
+        "name": "Jump Boots",
+        "description": "Allows limited flight for an individual being",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "6",
+            "Enc": "2",
+            "Cost": "2,000"
+        }
+    },
+    "Foot Speeder": {
+        "name": "Foot Speeder",
+        "description": "Single-person, repulsorlift platform",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "4",
+            "Enc": "4",
+            "Cost": "2,000"
+        }
+    },
+    "Entrenching Tool": {
+        "name": "Entrenching Tool",
+        "description": "Collapsible shovel; improvised weapon",
+        "meta": {
+            "Book": "DC, FB",
+            "Rarity": "1",
+            "Enc": "1",
+            "Cost": "20"
+        }
+    },
+    "Luma Flare": {
+        "name": "Luma Flare",
+        "description": "Launched, rocket-propelled flare",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "50"
+        }
+    },
+    "Urban Compass": {
+        "name": "Urban Compass",
+        "description": "Datapad GPS unit with local knowledge",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "1",
+            "Enc": "1",
+            "Cost": "125"
+        }
+    },
+    "Tool Kit": {
+        "name": "Tool Kit",
+        "description": "A set of basic tools and gear for working on machines and droids",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "2",
+            "Enc": "4",
+            "Cost": "350"
+        }
+    },
+    "Custom Tool Kit": {
+        "name": "Custom Tool Kit",
+        "description": "Custom-fit tools for specific needs; \u00e2\u2013\u00a1 to specific skill check",
+        "meta": {
+            "Book": "ST",
+            "Rarity": "5",
+            "Enc": "5",
+            "Cost": "700"
+        }
+    },
+    "Weapon Maintenance Kit": {
+        "name": "Weapon Maintenance Kit",
+        "description": "Specialized kits for different types of weapons; \u00e2\u2013\u00a1\u00e2\u2013\u00a1 to Mechanics checks",
+        "meta": {
+            "Book": "SS",
+            "Rarity": "3",
+            "Enc": "2",
+            "Cost": "450"
+        }
+    },
+    "VX-A Intelligent Toolbox": {
+        "name": "VX-A Intelligent Toolbox",
+        "description": "Worn backpack toolkit with arms that respond to verbal commands",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "8",
+            "Enc": "3",
+            "Cost": "2,500"
+        }
+    },
+    "Lightsaber Toolkit": {
+        "name": "Lightsaber Toolkit",
+        "description": "Counts a tool kit for most Mechanics checks; adds one Advantage for lightsabers",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "9",
+            "Enc": "2",
+            "Cost": "R 700"
+        }
+    },
+    "Multi-Goo Gun": {
+        "name": "Multi-Goo Gun",
+        "description": "All-in-one spray injector with lubricant, adhesive, and cleaning acid. Adds one Advantage to repair droids, vehicles, and ships. Refill cartridges cost 20, Rarity 2",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "1",
+            "Enc": "2",
+            "Cost": "250"
+        }
+    },
+    "Rivet Gun": {
+        "name": "Rivet Gun",
+        "description": "Fastens plating to vehicles and ships. Reduces difficulty of Mechanics by one.",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "1",
+            "Enc": "4",
+            "Cost": "900"
+        }
+    },
+    "Hand Grinder": {
+        "name": "Hand Grinder",
+        "description": "Used to shape and polish metal. Adds one Advantage to checks for such.",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "3",
+            "Enc": "5",
+            "Cost": "500"
+        }
+    },
+    "Welding Rod": {
+        "name": "Welding Rod",
+        "description": "Fuses metal together. Adds one Success to repair droids, vehicles, and ships.",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "5",
+            "Enc": "4",
+            "Cost": "1,750"
+        }
+    },
+    "Thermal Cutter": {
+        "name": "Thermal Cutter",
+        "description": "Hand-held; used to cut through ice and snow",
+        "meta": {
+            "Book": "NP",
+            "Rarity": "3",
+            "Enc": "2",
+            "Cost": "125"
+        }
+    },
+    "Mechanical Dianoga": {
+        "name": "Mechanical Dianoga",
+        "description": "Hand-held serpentine tool for working in tight spaces; remove \u00e2\u2013\u00a0\u00e2\u2013\u00a0 to checks to remove or repair System Strain damage on ships and vehicles",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "4",
+            "Enc": "4",
+            "Cost": "225"
+        }
+    },
+    "Excavator's Tool Kit": {
+        "name": "Excavator's Tool Kit",
+        "description": "Kit with precision tools designed for archaeologists",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "7",
+            "Enc": "5",
+            "Cost": "500"
+        }
+    },
+    "Surveyor's Tools": {
+        "name": "Surveyor's Tools",
+        "description": "Tools and equipment for mapping and plotting; \u00e2\u2013\u00a1 to Perception checks",
+        "meta": {
+            "Book": "SS",
+            "Rarity": "6",
+            "Enc": "6",
+            "Cost": "500"
+        }
+    },
+    "Verpine Bond Gauntlets": {
+        "name": "Verpine Bond Gauntlets",
+        "description": "Long gloves that provide stability to forearms and hands for delicate uses",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "6",
+            "Enc": "1",
+            "Cost": "250"
+        }
+    },
+    "Emergency Repair Patch": {
+        "name": "Emergency Repair Patch",
+        "description": "Single-use item to patch holes in vehicles; also heals 3 Wounds on a droid",
+        "meta": {
+            "Book": "E, A, EV",
+            "Rarity": "1",
+            "Enc": "0",
+            "Cost": "25"
+        }
+    },
+    "Fusion Cutter": {
+        "name": "Fusion Cutter",
+        "description": "Hand-held torch used for cutting and welding metals",
+        "meta": {
+            "Book": "A",
+            "Rarity": "2",
+            "Enc": "2",
+            "Cost": "175"
+        }
+    },
+    "Breaching Gel": {
+        "name": "Breaching Gel",
+        "description": "Wired substance with igniter designed to cut holes into ship hulls",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "150"
+        }
+    },
+    "Anti-Grav Chute": {
+        "name": "Anti-Grav Chute",
+        "description": "Worn backpack that uses repulsors to arrest a fall from a height",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "5",
+            "Enc": "2",
+            "Cost": "450"
+        }
+    },
+    "Verpine Headband": {
+        "name": "Verpine Headband",
+        "description": "Worn headband that keeps wearer awake",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "6",
+            "Enc": "1",
+            "Cost": "500"
+        }
+    },
+    "Repulsor Clamp": {
+        "name": "Repulsor Clamp",
+        "description": "Clamp that lifts objects for ease of repair work: strength limited to 10 encumbrance; removes \u00e2\u2013\u00a0 from checks to repair Hull Trauma on ships and vehicles",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "1",
+            "Enc": "3",
+            "Cost": "250"
+        }
+    },
+    "OR-Series Tech Recycle Station": {
+        "name": "OR-Series Tech Recycle Station",
+        "description": "Adds \u00e2\u2013\u00a1\u00e2\u2013\u00a1 to Perception and Mechanics checks when scavenging and salvaging",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "5",
+            "Enc": "10",
+            "Cost": "1,500"
+        }
+    },
+    "Power Generator": {
+        "name": "Power Generator",
+        "description": "Semi-portable generator for power needs",
+        "meta": {
+            "Book": "LE, FB",
+            "Rarity": "2",
+            "Enc": "10",
+            "Cost": "550"
+        }
+    },
+    "Water Vaporator": {
+        "name": "Water Vaporator",
+        "description": "Condenses water from the air",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "2",
+            "Enc": "12",
+            "Cost": "2,000"
+        }
+    },
+    "Instamist Generator": {
+        "name": "Instamist Generator",
+        "description": "Creates an area of heavy vapor or fog",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "4",
+            "Enc": "5",
+            "Cost": "150"
+        }
+    },
+    "CZ-88 Heavy Loader Arm": {
+        "name": "CZ-88 Heavy Loader Arm",
+        "description": "Mechanical arm system for lifting heavy objects",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "3",
+            "Enc": "30",
+            "Cost": "1,500"
+        }
+    },
+    "Datapad": {
+        "name": "Datapad",
+        "description": "Small handheld computer for storing and utilizing knowledge",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "1",
+            "Enc": "1",
+            "Cost": "75"
+        }
+    },
+    "P-2 Pocket Attach\u00c3\u00a9": {
+        "name": "P-2 Pocket Attach\u00c3\u00a9",
+        "description": "Encrypted datapad and organizer; Daunting Computers to slice",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "275"
+        }
+    },
+    "Comlink, Handheld": {
+        "name": "Comlink, Handheld",
+        "description": "Provides audio messaging between two or more parties",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "0",
+            "Enc": "0",
+            "Cost": "25"
+        }
+    },
+    "Comlink, Long Range": {
+        "name": "Comlink, Long Range",
+        "description": "As a standard comlink, but reaching ships outside of orbit",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "1",
+            "Enc": "2",
+            "Cost": "200"
+        }
+    },
+    "Comlink, Hardened": {
+        "name": "Comlink, Hardened",
+        "description": "A bulky comlink, features encryption, long range, and jammer busting",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "4",
+            "Enc": "3",
+            "Cost": "450"
+        }
+    },
+    "3-MAL Secure Comlink": {
+        "name": "3-MAL Secure Comlink",
+        "description": "\u00e2\u2013\u00a0 to checks to intercept and unscramble",
+        "meta": {
+            "Book": "FB",
+            "Rarity": "4",
+            "Enc": "0",
+            "Cost": "250"
+        }
+    },
+    "DH77 Headcomm": {
+        "name": "DH77 Headcomm",
+        "description": "Imperial helmet comlink; \u00e2\u2013\u00a0\u00e2\u2013\u00a0\u00e2\u2013\u00a0 to checks to intercept and unscramble",
+        "meta": {
+            "Book": "FB",
+            "Rarity": "3",
+            "Enc": "0",
+            "Cost": "R 400"
+        }
+    },
+    "PTP Link": {
+        "name": "PTP Link",
+        "description": "Audio only comms device with 25km range",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "7",
+            "Enc": "2",
+            "Cost": "100"
+        }
+    },
+    "A/V Translator": {
+        "name": "A/V Translator",
+        "description": "Translator for both verbal and written languages; \u00e2\u2013\u00a1 to Lore and Intellect",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "3",
+            "Enc": "1",
+            "Cost": "750"
+        }
+    },
+    "Verpine Comlink": {
+        "name": "Verpine Comlink",
+        "description": "Allows communication with Verpines on their frequencies",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "6",
+            "Enc": "1",
+            "Cost": "250"
+        }
+    },
+    "Holo-Messenger": {
+        "name": "Holo-Messenger",
+        "description": "As a standard comlink but also provides visual as well",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "4",
+            "Enc": "0",
+            "Cost": "250"
+        }
+    },
+    "BPEA-1A Cascader": {
+        "name": "BPEA-1A Cascader",
+        "description": "Subtle personal holo-emitter; upgrade Charm, Deception, Leadership checks once",
+        "meta": {
+            "Book": "LE",
+            "Rarity": "8",
+            "Enc": "--",
+            "Cost": "1,800"
+        }
+    },
+    "False Voice Transmitter": {
+        "name": "False Voice Transmitter",
+        "description": "Replicates voices from samples",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "6",
+            "Enc": "4",
+            "Cost": "1,400"
+        }
+    },
+    "Collar-Amp": {
+        "name": "Collar-Amp",
+        "description": "Worn the neck, boosts vocal volume",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "1",
+            "Enc": "0",
+            "Cost": "50"
+        }
+    },
+    "Polis Massan Voice Box": {
+        "name": "Polis Massan Voice Box",
+        "description": "Allows Polis Massans to speak aurally",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "6",
+            "Enc": "1",
+            "Cost": "50"
+        }
+    },
+    "Integrated PA System": {
+        "name": "Integrated PA System",
+        "description": "Backpack case containing microphone, speakers, amplifier, power pack",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "7",
+            "Enc": "2",
+            "Cost": "600"
+        }
+    },
+    "Hypertranceiver": {
+        "name": "Hypertranceiver",
+        "description": "Privately-owned tranceivers allow communication without using the HoloNet",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "3",
+            "Enc": "5",
+            "Cost": "1,000"
+        }
+    },
+    "HoloNet Relay": {
+        "name": "HoloNet Relay",
+        "description": "Connects to the HoloNet",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "7",
+            "Enc": "15",
+            "Cost": "75,000"
+        }
+    },
+    "Remote, Short Range": {
+        "name": "Remote, Short Range",
+        "description": "Remotely activates a vehicle at up to 5km range",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "4",
+            "Enc": "0",
+            "Cost": "300"
+        }
+    },
+    "Remote, Long Range": {
+        "name": "Remote, Long Range",
+        "description": "Remotely activates a vehicle at up to a parsec range, autopilot as well",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "1,500"
+        }
+    },
+    "Encryption Module": {
+        "name": "Encryption Module",
+        "description": "Encrypts comm signal of a comlink; Formidable Computers to decode",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "1,250"
+        }
+    },
+    "Personal Distress Beacon": {
+        "name": "Personal Distress Beacon",
+        "description": "Automated message-repeating beacon; \u00e2\u2013\u00a1\u00e2\u2013\u00a1 to Perception, Cumputers, or Surveillance checks to find when activated",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "1",
+            "Enc": "--",
+            "Cost": "50"
+        }
+    },
+    "Comms Media Manipulator": {
+        "name": "Comms Media Manipulator",
+        "description": "Studio for creating, editing, producing media of many types",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "6",
+            "Enc": "6",
+            "Cost": "400"
+        }
+    },
+    "Privacy-7 Audio Curtain": {
+        "name": "Privacy-7 Audio Curtain",
+        "description": "Creates a sound dampened field; Hard Perception to overhear noise within",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "6",
+            "Enc": "4",
+            "Cost": "500"
+        }
+    },
+    "Sound Dampener": {
+        "name": "Sound Dampener",
+        "description": "Worn on belt, emits sound cancelling waves; \u00e2\u2013\u00a0\u00e2\u2013\u00a0 to detect in Short range",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "7",
+            "Enc": "2",
+            "Cost": "600"
+        }
+    },
+    "Comm Jammer": {
+        "name": "Comm Jammer",
+        "description": "Shuts out local communications signals, strength depends on distance",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "3",
+            "Enc": "4",
+            "Cost": "400"
+        }
+    },
+    "Comm Scrambler": {
+        "name": "Comm Scrambler",
+        "description": "Encrypts communications signals; \u00e2\u2013\u00a0\u00e2\u2013\u00a0 to decode",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "3",
+            "Enc": "4",
+            "Cost": "1,000"
+        }
+    },
+    "Credit Cleaner": {
+        "name": "Credit Cleaner",
+        "description": "Electronic routing and encryption system to launder money",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "7",
+            "Enc": "12",
+            "Cost": "R 2,500"
+        }
+    },
+    "TacNet Tactical Data Network": {
+        "name": "TacNet Tactical Data Network",
+        "description": "Network of sensor telemetry, comms, and readings from personal equipment",
+        "meta": {
+            "Book": "LE",
+            "Rarity": "3",
+            "Enc": "7",
+            "Cost": "1,000"
+        }
+    },
+    "Electromag-Pulse Disruptor": {
+        "name": "Electromag-Pulse Disruptor",
+        "description": "Hand-held stylus tool used to disrupt electronics; \u00e2\u2013\u00a1\u00e2\u2013\u00a1 to sabotage electronics",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "180"
+        }
+    },
+    "Dataspike": {
+        "name": "Dataspike",
+        "description": "Single-use tool that overloads security programs; reduce difficulty by 2 steps",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "3",
+            "Enc": "1",
+            "Cost": "R 100"
+        }
+    },
+    "Signature Modulation Pad": {
+        "name": "Signature Modulation Pad",
+        "description": "Device designed to help mask slicing signatures; \u00e2\u2013\u00a0\u00e2\u2013\u00a0 to acquire slicer's signature",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "7",
+            "Enc": "2",
+            "Cost": "R 250"
+        }
+    },
+    "Personal Transponder": {
+        "name": "Personal Transponder",
+        "description": "Often worn as jewelry; tracking device",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "4",
+            "Enc": "0",
+            "Cost": "100"
+        }
+    },
+    "Starmapper Handheld Navicomp": {
+        "name": "Starmapper Handheld Navicomp",
+        "description": "\u00e2\u2013\u00a1\u00e2\u2013\u00a1 to Astrogation checks; may be reduced if not connected to Holonet",
+        "meta": {
+            "Book": "SS",
+            "Rarity": "8",
+            "Enc": "1",
+            "Cost": "3,500"
+        }
+    },
+    "Artillery Remote": {
+        "name": "Artillery Remote",
+        "description": "allows operation of artillery weapons from Medium range; Inaccurate 2 (Q)",
+        "meta": {
+            "Book": "FB",
+            "Rarity": "7",
+            "Enc": "1",
+            "Cost": "400"
+        }
+    },
+    "Macrobinoculars": {
+        "name": "Macrobinoculars",
+        "description": "Hand-held, visual magnification",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "2",
+            "Enc": "1",
+            "Cost": "75"
+        }
+    },
+    "Electrobinoculars": {
+        "name": "Electrobinoculars",
+        "description": "Hand-held, light adjusting and magnification; remove \u00e2\u2013\u00a0 from range or lighting",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "1",
+            "Enc": "1",
+            "Cost": "250"
+        }
+    },
+    "Sporting Macrobinoculars": {
+        "name": "Sporting Macrobinoculars",
+        "description": "Hand-held; visual magnification with video recording; remove \u00e2\u2013\u00a0 from range or lighting",
+        "meta": {
+            "Book": "NP",
+            "Rarity": "2",
+            "Enc": "1",
+            "Cost": "250"
+        }
+    },
+    "Infrabinoculars": {
+        "name": "Infrabinoculars",
+        "description": "Hand-held; scan through walls",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "350"
+        }
+    },
+    "Infrabinoculars, Long-Range": {
+        "name": "Infrabinoculars, Long-Range",
+        "description": "Hand-held; scan through walls, or remove \u00e2\u2013\u00a0 from range",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "6",
+            "Enc": "1",
+            "Cost": "500"
+        }
+    },
+    "General Purpose Scanner": {
+        "name": "General Purpose Scanner",
+        "description": "Hand-held, multi-purpose sensing unit",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "3",
+            "Enc": "2",
+            "Cost": "500"
+        }
+    },
+    "Low-Feedback Scanner": {
+        "name": "Low-Feedback Scanner",
+        "description": "passive sensor scanning unit",
+        "meta": {
+            "Book": "FB",
+            "Rarity": "5",
+            "Enc": "4",
+            "Cost": "700"
+        }
+    },
+    "Hand Scanner": {
+        "name": "Hand Scanner",
+        "description": "Hand-held, specific purpose sensing unit",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "2",
+            "Enc": "0",
+            "Cost": "100"
+        }
+    },
+    "Scanner Goggles": {
+        "name": "Scanner Goggles",
+        "description": "Worn, light amplification and thermal imaging",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "3",
+            "Enc": "0",
+            "Cost": "150"
+        }
+    },
+    "Hunting Goggles": {
+        "name": "Hunting Goggles",
+        "description": "Worn, features light amplification, thermal sensing, image magnification, motion detector, targeting system; \u00e2\u2013\u00a1 to Perception checks; remove \u00e2\u2013\u00a0\u00e2\u2013\u00a0 due to concealment, darkness, fog, et al. to all Ranged (Light/Heavy)",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "5",
+            "Enc": "0",
+            "Cost": "600"
+        }
+    },
+    "Weapon Detection Goggles": {
+        "name": "Weapon Detection Goggles",
+        "description": "Worn, detects weapons; \u00e2\u2013\u00a1\u00e2\u2013\u00a1 to Perception checks to spot weapons",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "750"
+        }
+    },
+    "Targetting Goggles": {
+        "name": "Targetting Goggles",
+        "description": "Worn, allows wearer to consider target one silhouette size greater",
+        "meta": {
+            "Book": "ST",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "1,000"
+        }
+    },
+    "Surveillance Tagger": {
+        "name": "Surveillance Tagger",
+        "description": "Tiny beacon used to track an individual wearing it",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "4",
+            "Enc": "0",
+            "Cost": "R 175"
+        }
+    },
+    "Combat Scanner": {
+        "name": "Combat Scanner",
+        "description": "A full, visored helmet with many of the features of a GP scanner, hardened comlink, datapad, and scanner goggles",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "6",
+            "Enc": "1",
+            "Cost": "2,000"
+        }
+    },
+    "Demolitions Scanner": {
+        "name": "Demolitions Scanner",
+        "description": "Hand-held scanner designed to sense explosives",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "300"
+        }
+    },
+    "Long Range Terrain Scanner": {
+        "name": "Long Range Terrain Scanner",
+        "description": "Creates a topographical map of an area; Average Computers check to use",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "6",
+            "Enc": "6",
+            "Cost": "850"
+        }
+    },
+    "Ground Penetration Scanner": {
+        "name": "Ground Penetration Scanner",
+        "description": "Creates a subsurface map",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "5",
+            "Enc": "5",
+            "Cost": "950"
+        }
+    },
+    "Lifeform Scanner": {
+        "name": "Lifeform Scanner",
+        "description": "Tracks and identifies up to 24 targets; Average Survival or Hard Computers or Education check to properly use",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "5",
+            "Enc": "4",
+            "Cost": "900"
+        }
+    },
+    "SE-Vigilant Automated Sensor": {
+        "name": "SE-Vigilant Automated Sensor",
+        "description": "passive motion sensor that then scans and transmits data",
+        "meta": {
+            "Book": "FB",
+            "Rarity": "4",
+            "Enc": "2",
+            "Cost": "3,000"
+        }
+    },
+    "Hyperwave Signal Interceptor": {
+        "name": "Hyperwave Signal Interceptor",
+        "description": "Can covertly listen to audio communications",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "8",
+            "Enc": "5",
+            "Cost": "10,500"
+        }
+    },
+    "Holoscanner": {
+        "name": "Holoscanner",
+        "description": "Large, stationary scanners designed to find weapons and contraband",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "5",
+            "Enc": "varies",
+            "Cost": "varies"
+        }
+    },
+    "Cargo Scanner": {
+        "name": "Cargo Scanner",
+        "description": "Multi-use scanning gear for cargo; Average Computers can increase space",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "300"
+        }
+    },
+    "Concealed Recorder": {
+        "name": "Concealed Recorder",
+        "description": "Miniaturized microphone, camera and recorder; \u00e2\u2013\u00a0\u00e2\u2013\u00a0 Perception to find",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "5",
+            "Enc": "0",
+            "Cost": "175"
+        }
+    },
+    "Security Sweeper": {
+        "name": "Security Sweeper",
+        "description": "Scanner designed to spot recorders and espionage devices; Average Computers check; Medium range",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "6",
+            "Enc": "1",
+            "Cost": "400"
+        }
+    },
+    "Mk 1 Cat's Eye MP Sensor Suite": {
+        "name": "Mk 1 Cat's Eye MP Sensor Suite",
+        "description": "(Planetary scale) Long Range sensor; \u00e2\u2013\u00a1\u00e2\u2013\u00a1 to Perception, Computers, Vigilance checks made by users; \u00e2\u2013\u00a0\u00e2\u2013\u00a0 to Stealth checks made by approaching units",
+        "meta": {
+            "Book": "LE",
+            "Rarity": "5",
+            "Enc": "12",
+            "Cost": "R 2,750"
+        }
+    },
+    "Bardottan Chronoscanner": {
+        "name": "Bardottan Chronoscanner",
+        "description": "Hand-held scanner designed to determine the age of an item to within a century",
+        "meta": {
+            "Book": "NP",
+            "Rarity": "2",
+            "Enc": "0",
+            "Cost": "1,200"
+        }
+    },
+    "A-212 Tracing Console": {
+        "name": "A-212 Tracing Console",
+        "description": "Monitoring equipment designed to help defend against slicing",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "6",
+            "Enc": "12",
+            "Cost": "3,000"
+        }
+    },
+    "PX-7 Heat Sensor": {
+        "name": "PX-7 Heat Sensor",
+        "description": "\u00e2\u2013\u00a1\u00e2\u2013\u00a1 to Perception checks to find heat; \u00e2\u2013\u00a1 to Mechanics checks to remove Critical Hits from ships and vehicles or Critical Injuries from droids",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "7",
+            "Enc": "3",
+            "Cost": "250"
+        }
+    },
+    "Veridicator 200": {
+        "name": "Veridicator 200",
+        "description": "often worn as jewelry; acts as a lie detector",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "8",
+            "Enc": "1",
+            "Cost": "4,000"
+        }
+    },
+    "Slicer Gear": {
+        "name": "Slicer Gear",
+        "description": "A tool kit for slicers to hack into computer systems",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "4",
+            "Enc": "2",
+            "Cost": "500"
+        }
+    },
+    "Data Breaker": {
+        "name": "Data Breaker",
+        "description": "A computer-like device that allows a slicer to hack; \u00e2\u2013\u00a1\u00e2\u2013\u00a1 to Computers",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "6",
+            "Enc": "1",
+            "Cost": "R 1,000"
+        }
+    },
+    "Data Dead Drop": {
+        "name": "Data Dead Drop",
+        "description": "Hidden compartment for concealing datachips; Daunting Perception to find",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "R 150"
+        }
+    },
+    "Restraining Bolt": {
+        "name": "Restraining Bolt",
+        "description": "A lockdown device placed on droids; Daunting Discipline to override",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "0",
+            "Enc": "0",
+            "Cost": "35"
+        }
+    },
+    "\"Knack\" Restraining Bolt": {
+        "name": "\"Knack\" Restraining Bolt",
+        "description": "Restraining bolt with extra programming to issue secrets orders to the droid",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "8",
+            "Enc": "0",
+            "Cost": "R 750"
+        }
+    },
+    "Binders": {
+        "name": "Binders",
+        "description": "Handcuffs; Daunting Atheltics or Coordination to escape",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "0",
+            "Enc": "0",
+            "Cost": "25"
+        }
+    },
+    "MCI-100 Magnacuffs": {
+        "name": "MCI-100 Magnacuffs",
+        "description": "Handcuffs; Formidable Coordination check to escape",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "100"
+        }
+    },
+    "Stun Cuffs": {
+        "name": "Stun Cuffs",
+        "description": "Handcuffs that stun wearer; Daunting Coordination check to escape",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "5",
+            "Enc": "0",
+            "Cost": "100"
+        }
+    },
+    "AL-DR8 Grav-Binders": {
+        "name": "AL-DR8 Grav-Binders",
+        "description": "Full body binders that use repulsor technology to apply artificial gravity",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "7",
+            "Enc": "1",
+            "Cost": "300"
+        }
+    },
+    "Security Collar": {
+        "name": "Security Collar",
+        "description": "Slave collar; Daunting Skullduggery check to remove",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "R 300"
+        }
+    },
+    "Explosive Shackles": {
+        "name": "Explosive Shackles",
+        "description": "Collar and belt; Daunting Skullduggery check to remove",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "6",
+            "Enc": "2",
+            "Cost": "R 500"
+        }
+    },
+    "Electric Perimeter Fence": {
+        "name": "Electric Perimeter Fence",
+        "description": "Creates an energy field that stuns with contact",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "5",
+            "Enc": "6",
+            "Cost": "800"
+        }
+    },
+    "Lockpicking Tools": {
+        "name": "Lockpicking Tools",
+        "description": "Kit of tools designed to pick non-electric locks",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "8",
+            "Enc": "1",
+            "Cost": "R 50"
+        }
+    },
+    "Electronic Lock Breaker": {
+        "name": "Electronic Lock Breaker",
+        "description": "Automatic slicing system for defeating electronic locks",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "R 1,000"
+        }
+    },
+    "Scramble Key": {
+        "name": "Scramble Key",
+        "description": "Bypasses simple electronic locks in 5 rounds; may be hurried",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "R 750"
+        }
+    },
+    "Authentication Tools": {
+        "name": "Authentication Tools",
+        "description": "Specialized scanner to spot false credentials; \u00e2\u2013\u00a1\u00e2\u2013\u00a1 to checks to spot fakes",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "100"
+        }
+    },
+    "False Credentials": {
+        "name": "False Credentials",
+        "description": "Forged/counterfeit indentification; Hard Computers or Daunting Perception",
+        "meta": {
+            "Book": "FC, DA",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "R 800"
+        }
+    },
+    "Disguise Kit": {
+        "name": "Disguise Kit",
+        "description": "Kit with make up, wigs, iris chromatics, etc.",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "4",
+            "Enc": "2",
+            "Cost": "100"
+        }
+    },
+    "Flesh Camouflage Set": {
+        "name": "Flesh Camouflage Set",
+        "description": "An extensive disguise kit allowing dramatic changes; Formidable difficulty",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "7",
+            "Enc": "2",
+            "Cost": "R 2,500"
+        }
+    },
+    "Fingerprint Masque": {
+        "name": "Fingerprint Masque",
+        "description": "Conceals or alters fingerprints of user",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "R 1,000"
+        }
+    },
+    "Shadowcloak": {
+        "name": "Shadowcloak",
+        "description": "Cloak that creates a field of darkness; Daunting Perception check to view",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "6",
+            "Enc": "2",
+            "Cost": "R 2,500"
+        }
+    },
+    "Personal Stealth Field": {
+        "name": "Personal Stealth Field",
+        "description": "Makes the user invisible; Formidable difficulty to spot a user",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "9",
+            "Enc": "1",
+            "Cost": "R 20,000"
+        }
+    },
+    "Holo Ghillie Suit": {
+        "name": "Holo Ghillie Suit",
+        "description": "Full body suit that holographically blends with surroundings; +1 difficulty",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "8",
+            "Enc": "1",
+            "Cost": "800"
+        }
+    },
+    "Shift Coffer": {
+        "name": "Shift Coffer",
+        "description": "Safe that blends into the walls if stationary; 5 Encubrance capacity",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "7",
+            "Enc": "5",
+            "Cost": "2,500"
+        }
+    },
+    "Magna-Lock Safe": {
+        "name": "Magna-Lock Safe",
+        "description": "Secure safe; 10 Encumbrance capacity; Formidible Skullduggery to crack",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "5",
+            "Enc": "12",
+            "Cost": "1,000"
+        }
+    },
+    "Sleight Box": {
+        "name": "Sleight Box",
+        "description": "Box with false bottom or walls; Daunting Perception to discover",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "6",
+            "Enc": "2--20",
+            "Cost": "R 400"
+        }
+    },
+    "Forgery Tools": {
+        "name": "Forgery Tools",
+        "description": "Specialized tool kit to create false credentials",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "8",
+            "Enc": "2",
+            "Cost": "R 650"
+        }
+    },
+    "Poisoner's Ring": {
+        "name": "Poisoner's Ring",
+        "description": "Poison container disguised as a ring; Skullduggery vs. Vigilance to detect",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "R 500"
+        }
+    },
+    "Forensics Investigation Kit": {
+        "name": "Forensics Investigation Kit",
+        "description": "Kit with tools and equipment to investigate a crime scene",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "4",
+            "Enc": "4",
+            "Cost": "450"
+        }
+    },
+    "Species Database": {
+        "name": "Species Database",
+        "description": "Datapad or computer with detailed physiological knowledge of a species; \u00e2\u2013\u00a1\u00e2\u2013\u00a1 to Knowledge (Xenology) checks",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "2",
+            "Enc": "2",
+            "Cost": "150"
+        }
+    },
+    "Vergence Starchart": {
+        "name": "Vergence Starchart",
+        "description": "Shows the location of a single Vergence; Hard Astrogation check; could be fake",
+        "meta": {
+            "Book": "NP",
+            "Rarity": "10",
+            "Enc": "0",
+            "Cost": "1,000"
+        }
+    },
+    "Vehicle Manual": {
+        "name": "Vehicle Manual",
+        "description": "Datapad manual for specific vehicle/ship model; downgrade difficulty once",
+        "meta": {
+            "Book": "ST",
+            "Rarity": "varies",
+            "Enc": "1",
+            "Cost": "100"
+        }
+    },
+    "Mercantiler Datapad": {
+        "name": "Mercantiler Datapad",
+        "description": "Datapad programmed for merchants and the market; \u00e2\u2013\u00a1 to Negotiations",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "3",
+            "Enc": "1",
+            "Cost": "250"
+        }
+    },
+    "Insider's Guide": {
+        "name": "Insider's Guide",
+        "description": "Detailed datapad tour guide for specific planets; +1 Advantage to checks",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "2",
+            "Enc": "0",
+            "Cost": "25"
+        }
+    },
+    "Cultural Etiquette Manual": {
+        "name": "Cultural Etiquette Manual",
+        "description": "Detailed datapad guide to specific culture; +1 Advantage to checks",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "3",
+            "Enc": "0",
+            "Cost": "35"
+        }
+    },
+    "Military Field Manual": {
+        "name": "Military Field Manual",
+        "description": "Datapad guide of military instruction and knowledge; \u00e2\u2013\u00a1 to checks",
+        "meta": {
+            "Book": "A",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "25"
+        }
+    },
+    "Holocron": {
+        "name": "Holocron",
+        "description": "Data storage device that requires Force sensitivity to use",
+        "meta": {
+            "Book": "F",
+            "Rarity": "10",
+            "Enc": "1",
+            "Cost": "R 100,000"
+        }
+    },
+    "Chance Cubes": {
+        "name": "Chance Cubes",
+        "description": "Six-sided red and blue cubes used in pairs for gambling",
+        "meta": {
+            "Book": "E",
+            "Rarity": "0",
+            "Enc": "0",
+            "Cost": "1"
+        }
+    },
+    "Chance Cubes, Loaded": {
+        "name": "Chance Cubes, Loaded",
+        "description": "\u00e2\u2013\u00a1\u00e2\u2013\u00a1 to Deception when gambling; Formidable Perception to notice",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "5",
+            "Enc": "0",
+            "Cost": "R 100"
+        }
+    },
+    "Sabacc Deck": {
+        "name": "Sabacc Deck",
+        "description": "Electronic deck of cards used for gambling",
+        "meta": {
+            "Book": "E",
+            "Rarity": "0",
+            "Enc": "0",
+            "Cost": "40"
+        }
+    },
+    "Sabacc Deck, Marked": {
+        "name": "Sabacc Deck, Marked",
+        "description": "\u00e2\u2013\u00a1 to Deception when gambling; Hard Perception to notice deck",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "6",
+            "Enc": "0",
+            "Cost": "R 500"
+        }
+    },
+    "Sabacc Deck, Marked, Quality": {
+        "name": "Sabacc Deck, Marked, Quality",
+        "description": "\u00e2\u2013\u00a1 to Deception when gambling; Daunting Perception to notice deck",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "R 1,000"
+        }
+    },
+    "Skifter": {
+        "name": "Skifter",
+        "description": "A sabacc card rigged to display what the user wants; \u00e2\u2013\u00a1  to Skullduggery",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "6",
+            "Enc": "0",
+            "Cost": "R 500"
+        }
+    },
+    "Dejarik Table": {
+        "name": "Dejarik Table",
+        "description": "Holographic display table used for playing dejarik, a game of tactics",
+        "meta": {
+            "Book": "E",
+            "Rarity": "1",
+            "Enc": "10",
+            "Cost": "350"
+        }
+    },
+    "Musical Instrument, Common": {
+        "name": "Musical Instrument, Common",
+        "description": "Musical intrument",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "2",
+            "Enc": "1--5",
+            "Cost": "50-100"
+        }
+    },
+    "Musical Instrument, High Quality": {
+        "name": "Musical Instrument, High Quality",
+        "description": "Musical intrument",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "4",
+            "Enc": "1--5",
+            "Cost": "500-1,500"
+        }
+    },
+    "Musical Instrument, Legendary": {
+        "name": "Musical Instrument, Legendary",
+        "description": "Musical intrument",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "10",
+            "Enc": "1--5",
+            "Cost": "20,000+"
+        }
+    },
+    "Thunderhead PES": {
+        "name": "Thunderhead PES",
+        "description": "Suite of tools and equipment for entertainment",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "4",
+            "Enc": "10",
+            "Cost": "2,500"
+        }
+    },
+    "Banal Apparel": {
+        "name": "Banal Apparel",
+        "description": "Very average attire; upgrade difficulty to checks to identify or remember",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "0",
+            "Enc": "0",
+            "Cost": "25"
+        }
+    },
+    "Dress Uniform": {
+        "name": "Dress Uniform",
+        "description": "\u00e2\u2013\u00a1 to social checks for the military",
+        "meta": {
+            "Book": "LE",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "100"
+        }
+    },
+    "Utility Vest": {
+        "name": "Utility Vest",
+        "description": "Load-bearing vest; adds 2 to Encubrance Threshold",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "2",
+            "Enc": "--",
+            "Cost": "100"
+        }
+    },
+    "Cargo Clothing": {
+        "name": "Cargo Clothing",
+        "description": "Clothes with lots of pockets; carry up to 3 Enc 1 items for free",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "0",
+            "Enc": "1",
+            "Cost": "30"
+        }
+    },
+    "Thermal Cloak": {
+        "name": "Thermal Cloak",
+        "description": "Garment used to block out the cold and heat; remove \u00e2\u2013\u00a0\u00e2\u2013\u00a0 from checks",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "1",
+            "Enc": "2",
+            "Cost": "200"
+        }
+    },
+    "Diplomat's Robes": {
+        "name": "Diplomat's Robes",
+        "description": "Official attire; \u00e2\u2013\u00a1 to social checks of a diplomatic nature",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "6",
+            "Enc": "2",
+            "Cost": "400"
+        }
+    },
+    "Noble Regalia": {
+        "name": "Noble Regalia",
+        "description": "Fancy attire; downgrade difficulty to social checks with nobility and wealthy",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "7",
+            "Enc": "1",
+            "Cost": "750"
+        }
+    },
+    "Performer's Attire": {
+        "name": "Performer's Attire",
+        "description": "Distracting attire; \u00e2\u2013\u00a1 to checks to perform or attract attention",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "4",
+            "Enc": "0",
+            "Cost": "50"
+        }
+    },
+    "Expensive Jewelry": {
+        "name": "Expensive Jewelry",
+        "description": "Worn; +1 Advantage to Charm, Deception checks; \u00e2\u2013\u00a1 to remember wearer",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "2,000"
+        }
+    },
+    "Signet Ring": {
+        "name": "Signet Ring",
+        "description": "Worn; +2 Advantages to checks to establish wearer's identity",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "750"
+        }
+    },
+    "Symbol of Command": {
+        "name": "Symbol of Command",
+        "description": "\u00e2\u2013\u00a1 to social checks for the military",
+        "meta": {
+            "Book": "LE",
+            "Rarity": "3",
+            "Enc": "1",
+            "Cost": "100"
+        }
+    },
+    "Ardos Disk": {
+        "name": "Ardos Disk",
+        "description": "Medal that represents the favor and protection of a Hutt",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "R 10,000"
+        }
+    },
+    "Adamite Signet Ring": {
+        "name": "Adamite Signet Ring",
+        "description": "worn; signifies membership of the Paladins of the Adamite Tower",
+        "meta": {
+            "Book": "NP",
+            "Rarity": "8",
+            "Enc": "0",
+            "Cost": "500"
+        }
+    },
+    "WJ-880 Blinding Helmet": {
+        "name": "WJ-880 Blinding Helmet",
+        "description": "worn; adds \u00e2\u2013\u00a0\u00e2\u2013\u00a0\u00e2\u2013\u00a0 to checks involving vision",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "8",
+            "Enc": "3",
+            "Cost": "R 10"
+        }
+    },
+    "Ration Pack, Field": {
+        "name": "Ration Pack, Field",
+        "description": "Meal, read to eat, for the soldier on the move",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "0",
+            "Enc": "0",
+            "Cost": "5"
+        }
+    },
+    "Field Rations, Army": {
+        "name": "Field Rations, Army",
+        "description": "One week's worth of goopy food",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "2",
+            "Enc": "0",
+            "Cost": "10"
+        }
+    },
+    "Ryshcate Cake": {
+        "name": "Ryshcate Cake",
+        "description": "A Corellian pastry used to mark special dates and holidays",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "2",
+            "Enc": "0",
+            "Cost": "10"
+        }
+    },
+    "Correllian Whiskey": {
+        "name": "Correllian Whiskey",
+        "description": "Good whiskey",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "2",
+            "Enc": "1",
+            "Cost": "25"
+        }
+    },
+    "Correllian Whiskey, x25": {
+        "name": "Correllian Whiskey, x25",
+        "description": "Good whiskey",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "2",
+            "Enc": "10",
+            "Cost": "500"
+        }
+    },
+    "Whyren's Reserve": {
+        "name": "Whyren's Reserve",
+        "description": "Really good whiskey",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "100"
+        }
+    },
+    "Whyren's Reserve, x25": {
+        "name": "Whyren's Reserve, x25",
+        "description": "Really good whiskey",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "5",
+            "Enc": "10",
+            "Cost": "1,500"
+        }
+    },
+    "Nala Tree Frog, x12": {
+        "name": "Nala Tree Frog, x12",
+        "description": "A delicacy, especially among Hutts",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "15"
+        }
+    },
+    "Marcan Herb": {
+        "name": "Marcan Herb",
+        "description": "Pipe tobacco, a favorite of the Hutts",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "20"
+        }
+    },
+    "Marcan Herb, x100": {
+        "name": "Marcan Herb, x100",
+        "description": "Pipe tobacco, a favorite of the Hutts",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "5",
+            "Enc": "25",
+            "Cost": "1,750"
+        }
+    },
+    "Sulfur Inhaler (10 doses)": {
+        "name": "Sulfur Inhaler (10 doses)",
+        "description": "\u00e2\u2013\u00a1 Brawn and Agility checks for one encounter; suffer 2 Strain; Devaronians only",
+        "meta": {
+            "Book": "NP",
+            "Rarity": "3",
+            "Enc": "0",
+            "Cost": "120"
+        }
+    },
+    "Stimstick": {
+        "name": "Stimstick",
+        "description": "remove \u00e2\u2013\u00a0 from checks to stay awake or cheks due to fatigue till end of encounter;",
+        "meta": {
+            "Book": "FB",
+            "Rarity": "2",
+            "Enc": "0",
+            "Cost": "5"
+        }
+    },
+    "Stimpack, Single, Auto-Injector": {
+        "name": "Stimpack, Single, Auto-Injector",
+        "description": "Auto-injection tube of medication; heals wounds with diminishing returns",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "2",
+            "Enc": "0",
+            "Cost": "25"
+        }
+    },
+    "Stimpack Gun": {
+        "name": "Stimpack Gun",
+        "description": "Re-usable applicator with 6 stimpack doses",
+        "meta": {
+            "Book": "gm rdl",
+            "Rarity": "2",
+            "Enc": "1",
+            "Cost": "150"
+        }
+    },
+    "Stimpack Gun Cartridge": {
+        "name": "Stimpack Gun Cartridge",
+        "description": "Replacement stimpack doses for the stimpack gun",
+        "meta": {
+            "Book": "gm rdl",
+            "Rarity": "2",
+            "Enc": "0",
+            "Cost": "20"
+        }
+    },
+    "StimDart": {
+        "name": "StimDart",
+        "description": "Replacement stimpack doses for the Auto-Doc StimDart Pistol/Launcher",
+        "meta": {
+            "Book": "gm rdl",
+            "Rarity": "5",
+            "Enc": "0",
+            "Cost": "35"
+        }
+    },
+    "Blood Scanner": {
+        "name": "Blood Scanner",
+        "description": "Used to check for foreign elements or toxins in blood",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "400"
+        }
+    },
+    "Antidote Set": {
+        "name": "Antidote Set",
+        "description": "Kit of antidote doses for a variety of poisons; reduces difficulty of Resilience check to resist poison by 2",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "250"
+        }
+    },
+    "Medpac/Physician's Kit": {
+        "name": "Medpac/Physician's Kit",
+        "description": "An advanced medical kit; \u00e2\u2013\u00a1 to Medicine checks",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "2",
+            "Enc": "2",
+            "Cost": "400"
+        }
+    },
+    "Healer's Kit": {
+        "name": "Healer's Kit",
+        "description": "Hand-made pack of natural herbs and medicines; every one unique",
+        "meta": {
+            "Book": "SS",
+            "Rarity": "--",
+            "Enc": "2",
+            "Cost": "--"
+        }
+    },
+    "Medical Backpack": {
+        "name": "Medical Backpack",
+        "description": "A complete, portable field medical system; \u00e2\u2013\u00a1 Medicine; -1 difficulty ",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "4",
+            "Enc": "2",
+            "Cost": "450"
+        }
+    },
+    "Emergency Medpac": {
+        "name": "Emergency Medpac",
+        "description": "A deluxe first aid kit",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "1",
+            "Enc": "1",
+            "Cost": "100"
+        }
+    },
+    "Military Medpac": {
+        "name": "Military Medpac",
+        "description": "An advanced medical kit; +1 Medicine",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "3",
+            "Enc": "2",
+            "Cost": "400"
+        }
+    },
+    "Military Traumapac": {
+        "name": "Military Traumapac",
+        "description": "may use Medicine to remove Critical Injuries",
+        "meta": {
+            "Book": "FB",
+            "Rarity": "3",
+            "Enc": "1",
+            "Cost": "50"
+        }
+    },
+    "Med-Aid Patch": {
+        "name": "Med-Aid Patch",
+        "description": "Single-use bandages infused with bacta and other agents",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "20"
+        }
+    },
+    "Nullicane": {
+        "name": "Nullicane",
+        "description": "ignore Critical Injury till the end of the encounter; 3 Strain",
+        "meta": {
+            "Book": "FB",
+            "Rarity": "2",
+            "Enc": "0",
+            "Cost": "25"
+        }
+    },
+    "Anesthetic": {
+        "name": "Anesthetic",
+        "description": "Non-lethal; Average or Hard Resilience to resist",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "4",
+            "Enc": "0",
+            "Cost": "35"
+        }
+    },
+    "Bacta Tank": {
+        "name": "Bacta Tank",
+        "description": "Large tank filled with bacta or sanavi for full immersion",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "1",
+            "Enc": "12",
+            "Cost": "4,000"
+        }
+    },
+    "Bacta, per liter": {
+        "name": "Bacta, per liter",
+        "description": "Healing liquid applied in a variety of ways; accelerates healing",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "1",
+            "Enc": "1",
+            "Cost": "20"
+        }
+    },
+    "Sanavi, per liter": {
+        "name": "Sanavi, per liter",
+        "description": "Healing liquid applied in a variety of ways; accelerates heal., \u00e2\u2013\u00a1 to Resilience",
+        "meta": {
+            "Book": "gm rdl",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "25"
+        }
+    },
+    "Synthskin, Synthflesh": {
+        "name": "Synthskin, Synthflesh",
+        "description": "Realistic coverings to hide cybernetics",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "1",
+            "Enc": "--",
+            "Cost": "10"
+        }
+    },
+    "Cerebral Stabilizer": {
+        "name": "Cerebral Stabilizer",
+        "description": "A full helmet placed on patients who have suffered critical head injuries",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "7",
+            "Enc": "3",
+            "Cost": "2,200"
+        }
+    },
+    "Chem Restraint Harness": {
+        "name": "Chem Restraint Harness",
+        "description": "Worn by beast, controls through chemicals rather than training",
+        "meta": {
+            "Book": "ST",
+            "Rarity": "5",
+            "Enc": "2",
+            "Cost": "1,200"
+        }
+    },
+    "Veterinary Kit": {
+        "name": "Veterinary Kit",
+        "description": "Large medical kit designed for beasts; \u00e2\u2013\u00a1 to Medicine, Survival, Knowledge",
+        "meta": {
+            "Book": "ST",
+            "Rarity": "3",
+            "Enc": "3",
+            "Cost": "600"
+        }
+    },
+    "XV-20 Veterinary Kit": {
+        "name": "XV-20 Veterinary Kit",
+        "description": "Large medical kit designed for beasts; \u00e2\u2013\u00a1 to Medicine, Survival, Knowledge",
+        "meta": {
+            "Book": "SS",
+            "Rarity": "3",
+            "Enc": "2",
+            "Cost": "500"
+        }
+    },
+    "Speciman Container": {
+        "name": "Speciman Container",
+        "description": "Designed to safely contain flora and fauna; Encumbrance capacity of 15",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "3",
+            "Enc": "5",
+            "Cost": "150"
+        }
+    },
+    "Cybernetic Brain Implant": {
+        "name": "Cybernetic Brain Implant",
+        "description": "Brain enhancement; +1 Intellect; comlink; computer link",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "10,000"
+        }
+    },
+    "Biofeedback Regulator": {
+        "name": "Biofeedback Regulator",
+        "description": "Adds 2 to cybernetic implant cap; organics only",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "8",
+            "Enc": "--",
+            "Cost": "3,000"
+        }
+    },
+    "Neural Recorder": {
+        "name": "Neural Recorder",
+        "description": "Next-best thing to a perfect memory; Easy Discipline checks to recall information",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "8",
+            "Enc": "--",
+            "Cost": "250"
+        }
+    },
+    "Cybernetic Eye": {
+        "name": "Cybernetic Eye",
+        "description": "Replacement eye; +1 Vigilance and Perception",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "7,500"
+        }
+    },
+    "Appraiser's Eye": {
+        "name": "Appraiser's Eye",
+        "description": "Replacement eye; +1 Advantage to Negotiation and Streetwise when buying and selling on the market",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "7",
+            "Enc": "--",
+            "Cost": "700"
+        }
+    },
+    "Retinal Tracker": {
+        "name": "Retinal Tracker",
+        "description": "+1 Advantage to Gunnery and Ranged (Heavy) checks",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "2,500"
+        }
+    },
+    "Cyborg/Droid Interface": {
+        "name": "Cyborg/Droid Interface",
+        "description": "Direct link to droid brains for communication and interrogation",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "600"
+        }
+    },
+    "Gank Comm Implant": {
+        "name": "Gank Comm Implant",
+        "description": "Internal, silent communication with others who have this implant",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "7",
+            "Enc": "--",
+            "Cost": "250"
+        }
+    },
+    "Immune Implant": {
+        "name": "Immune Implant",
+        "description": "Immune system enhancement; +1 Resilience",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "5,000"
+        }
+    },
+    "Surge Override Switch": {
+        "name": "Surge Override Switch",
+        "description": "Quick reactivation switch for disabled cybernetics",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "1,000"
+        }
+    },
+    "Avionics Interface": {
+        "name": "Avionics Interface",
+        "description": "Implanted interface into airspeeder or starship control systems; +1 Pilot",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "8,000"
+        }
+    },
+    "Adrenal Implant": {
+        "name": "Adrenal Implant",
+        "description": "Rapid Recovery (T)",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "2,250"
+        }
+    },
+    "Implanted Cyberjack": {
+        "name": "Implanted Cyberjack",
+        "description": "Direct connection to computers/droids; 2 Strain for -1 difficulty",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "3,750"
+        }
+    },
+    "Neuromachine Interface": {
+        "name": "Neuromachine Interface",
+        "description": "Direct link to vehicular controls; may use Coordination instead of Pilot",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "R 3,500"
+        }
+    },
+    "Implant Armor": {
+        "name": "Implant Armor",
+        "description": "Underskin plates; +1 Soak",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "7,500"
+        }
+    },
+    "Prosthetic Replacement Organ": {
+        "name": "Prosthetic Replacement Organ",
+        "description": "Organ replacement",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "1,000"
+        }
+    },
+    "Cybernetic Reflexes": {
+        "name": "Cybernetic Reflexes",
+        "description": "Rapid Reaction (T)",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "2,750"
+        }
+    },
+    "Cybernetic Respirator": {
+        "name": "Cybernetic Respirator",
+        "description": "Internal breath mask and respirator; Blooded (T)",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "2,000"
+        }
+    },
+    "Cybernetic Arm, Mod V": {
+        "name": "Cybernetic Arm, Mod V",
+        "description": "Arm replacement; +1 Brawn",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "10,000"
+        }
+    },
+    "Cybernetic Arm, Mod VI": {
+        "name": "Cybernetic Arm, Mod VI",
+        "description": "Arm replacement; +1 Agility",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "10,000"
+        }
+    },
+    "Cybernetic Leg, Mod II": {
+        "name": "Cybernetic Leg, Mod II",
+        "description": "Leg replacement; +1 Brawn; price is for one, but must install in pairs",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "10,000"
+        }
+    },
+    "Cybernetic Leg, Mod III": {
+        "name": "Cybernetic Leg, Mod III",
+        "description": "Leg replacement; +1 Agility; price is for one, but must install in pairs",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "10,000"
+        }
+    },
+    "Prosthetic Replacement Limb": {
+        "name": "Prosthetic Replacement Limb",
+        "description": "Limb replacement",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "2,000"
+        }
+    },
+    "Cybernetic Weapon Implant": {
+        "name": "Cybernetic Weapon Implant",
+        "description": "Arm replacement with built in light blaster pistol",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "7",
+            "Enc": "--",
+            "Cost": "4,000"
+        }
+    },
+    "Digital Lockpick": {
+        "name": "Digital Lockpick",
+        "description": "Replacement finger(s) with tools for picking locks; Bypass Security (T)",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "R 2,750"
+        }
+    },
+    "Repulsor Fist": {
+        "name": "Repulsor Fist",
+        "description": "Provides brawl weapon; Defensive Stance (T)",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "7",
+            "Enc": "--",
+            "Cost": "4,750"
+        }
+    },
+    "Cyberscanner Limb": {
+        "name": "Cyberscanner Limb",
+        "description": "Arm replacement with built in portable scanner",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "7",
+            "Enc": "--",
+            "Cost": "4,000"
+        }
+    },
+    "Cybernetic Cavity": {
+        "name": "Cybernetic Cavity",
+        "description": "Small pocket hidden in your body; Hidden Storage (T)",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "3",
+            "Enc": "--",
+            "Cost": "R 775"
+        }
+    },
+    "Vessel Courier System": {
+        "name": "Vessel Courier System",
+        "description": "Very discreet subdermal data storage device",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "5,000"
+        }
+    },
+    "Escape Circuit": {
+        "name": "Escape Circuit",
+        "description": "May resist Restraining Bolts with Easy check; droids only",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "R 1,000"
+        }
+    },
+    "Network Slicing Uplink": {
+        "name": "Network Slicing Uplink",
+        "description": "Masks slicing attemps with droid static; droids only",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "7",
+            "Enc": "--",
+            "Cost": "R 1,250"
+        }
+    },
+    "Protocol Droid, Basic": {
+        "name": "Protocol Droid, Basic",
+        "description": "Designed to act as communication liaisons between beings",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "8,000"
+        }
+    },
+    "3PX Series Protocol": {
+        "name": "3PX Series Protocol",
+        "description": "Designed to act as communication liaisons between beings",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "7,750"
+        }
+    },
+    "5YQ Series Protocol": {
+        "name": "5YQ Series Protocol",
+        "description": "Designed to act as communication liaisons between beings",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "5,500"
+        }
+    },
+    "TC Series Protocol": {
+        "name": "TC Series Protocol",
+        "description": "Designed to act as communication liaisons between beings",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "10,000"
+        }
+    },
+    "LOM Series Protocol": {
+        "name": "LOM Series Protocol",
+        "description": "Designed to act as communication liaisons between beings",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "8,500"
+        }
+    },
+    "M-3PO Series Protocol": {
+        "name": "M-3PO Series Protocol",
+        "description": "Designed to act as communications liaison, logistics, analysis for Imperial troops and units",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "R 12,000"
+        }
+    },
+    "J9 Worker Drone": {
+        "name": "J9 Worker Drone",
+        "description": "Programmed for translation and analysis protocols",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "3",
+            "Enc": "--",
+            "Cost": "7,000"
+        }
+    },
+    "Siak-Series Protocol Droid": {
+        "name": "Siak-Series Protocol Droid",
+        "description": "Designed to act as general communications liaison",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "10,000"
+        }
+    },
+    "Analysis Droid, Basic": {
+        "name": "Analysis Droid, Basic",
+        "description": "Designed to aid in research, analyzing data",
+        "meta": {
+            "Book": "F",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "7,500"
+        }
+    },
+    "T-Series Tactical Droid": {
+        "name": "T-Series Tactical Droid",
+        "description": "Military advisors and leaders; used mostly by Separitists during the Clone Wars",
+        "meta": {
+            "Book": "LE",
+            "Rarity": "8",
+            "Enc": "--",
+            "Cost": "R 8,000"
+        }
+    },
+    "LRD Series Envoy": {
+        "name": "LRD Series Envoy",
+        "description": "Designed to act as communication liaisons between beings",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "15,000"
+        }
+    },
+    "KLC Series Exchequer": {
+        "name": "KLC Series Exchequer",
+        "description": "Programmed for math, negotiations, and mercantilism",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "10,000"
+        }
+    },
+    "CZ Series Business/Com": {
+        "name": "CZ Series Business/Com",
+        "description": "Programmed for math, negotiations, and mercantilism",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "9,000"
+        }
+    },
+    "SDMN Series Assistant": {
+        "name": "SDMN Series Assistant",
+        "description": "Programmed to assist and accompany entertainers",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "4,000"
+        }
+    },
+    "Medical Droid, Basic": {
+        "name": "Medical Droid, Basic",
+        "description": "Programmed for medical procedures and caring for beings",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "12,000"
+        }
+    },
+    "CT-4 Medical Droid": {
+        "name": "CT-4 Medical Droid",
+        "description": "Programmed for medical procedures and caring for beings",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "8",
+            "Enc": "--",
+            "Cost": "20,000"
+        }
+    },
+    "Mini-Med": {
+        "name": "Mini-Med",
+        "description": "Designed to aid sapient doctors in administering medical practice",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "3",
+            "Enc": "--",
+            "Cost": "900"
+        }
+    },
+    "JC Series Pilot": {
+        "name": "JC Series Pilot",
+        "description": "Designed for piloting",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "7",
+            "Enc": "--",
+            "Cost": "15,000"
+        }
+    },
+    "LC Series Pilot": {
+        "name": "LC Series Pilot",
+        "description": "A pilot droid based on surplus B1 battledroids",
+        "meta": {
+            "Book": "gm rdl",
+            "Rarity": "8",
+            "Enc": "--",
+            "Cost": "5,000"
+        }
+    },
+    "Astromech Droid, Basic": {
+        "name": "Astromech Droid, Basic",
+        "description": "Utilitarian droids designed for ship travel, can astrogate and make repairs",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "3",
+            "Enc": "--",
+            "Cost": "8,250"
+        }
+    },
+    "R7 Series Astromech": {
+        "name": "R7 Series Astromech",
+        "description": "Utilitarian droids designed for ship travel, can astrogate and make repairs",
+        "meta": {
+            "Book": "ST",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "11,000"
+        }
+    },
+    "Q7 Series Astromech": {
+        "name": "Q7 Series Astromech",
+        "description": "Utilitarian droids designed for ship travel, can astrogate and make repairs",
+        "meta": {
+            "Book": "ST",
+            "Rarity": "8",
+            "Enc": "--",
+            "Cost": "6,500"
+        }
+    },
+    "Maintenance Droid, Basic": {
+        "name": "Maintenance Droid, Basic",
+        "description": "Specifically designed for repair work",
+        "meta": {
+            "Book": "E, A",
+            "Rarity": "3",
+            "Enc": "--",
+            "Cost": "7,500"
+        }
+    },
+    "DUM-series Pit Droid": {
+        "name": "DUM-series Pit Droid",
+        "description": "Designed for use in general mechanical repairs and salvaging",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "1",
+            "Enc": "--",
+            "Cost": "450"
+        }
+    },
+    "G2 Repair Droid": {
+        "name": "G2 Repair Droid",
+        "description": "Designed for general use aboard ship with piloting and mechanics",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "6,000"
+        }
+    },
+    "FD Series Fire Supproession": {
+        "name": "FD Series Fire Supproession",
+        "description": "Specifically designed for putting out fires",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "10",
+            "Enc": "--",
+            "Cost": "8,000"
+        }
+    },
+    "Recycling  Droid": {
+        "name": "Recycling  Droid",
+        "description": "Recycles waste product into more useful product",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "6,500"
+        }
+    },
+    "Q-4 Borer Droid": {
+        "name": "Q-4 Borer Droid",
+        "description": "Designed for mining and to assist miners",
+        "meta": {
+            "Book": "SR",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "2,000"
+        }
+    },
+    "Stone Guardian": {
+        "name": "Stone Guardian",
+        "description": "Guardian droids designed to look like statuary when not activated",
+        "meta": {
+            "Book": "NP",
+            "Enc": "--"
+        }
+    },
+    "AT-ED": {
+        "name": "AT-ED",
+        "description": "Designed for exploration and surveying, 2.5 meters tall",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "8,900"
+        }
+    },
+    "Scout Collector": {
+        "name": "Scout Collector",
+        "description": "Designed to capture exotic biological specimens",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "6,000"
+        }
+    },
+    "Scout Surveyor": {
+        "name": "Scout Surveyor",
+        "description": "Designed to locate exotic biological specimens",
+        "meta": {
+            "Book": "EU, SR",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "2,500"
+        }
+    },
+    "Cam": {
+        "name": "Cam",
+        "description": "Small, repulsorlifted unit that records A/V data for rebroadcast",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "3",
+            "Enc": "--",
+            "Cost": "800"
+        }
+    },
+    "Security Droid, Basic": {
+        "name": "Security Droid, Basic",
+        "description": "Programmed for combat, protection, and vigilance",
+        "meta": {
+            "Book": "E",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "9,600"
+        }
+    },
+    "MI Series Security Droid": {
+        "name": "MI Series Security Droid",
+        "description": "Programmed for combat, protection, and vigilance",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "7",
+            "Enc": "--",
+            "Cost": "R 41,225"
+        }
+    },
+    "AC Series Law Enforcement": {
+        "name": "AC Series Law Enforcement",
+        "description": "Specialized security droid programmed for law and order",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "R 9,600"
+        }
+    },
+    "GU Series Police Droid": {
+        "name": "GU Series Police Droid",
+        "description": "Designed for law and order",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "8,100"
+        }
+    },
+    "DZ-70 Fugitive Tracker": {
+        "name": "DZ-70 Fugitive Tracker",
+        "description": "Programmed for tracking and pursuing fugitives",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "4",
+            "Enc": "--",
+            "Cost": "R 9,800"
+        }
+    },
+    "K-9 Series Hunter": {
+        "name": "K-9 Series Hunter",
+        "description": "Programmed for hunting and tracking, quadrapedal, 1 meter tall",
+        "meta": {
+            "Book": "EU",
+            "Rarity": "6",
+            "Enc": "--",
+            "Cost": "7,500"
+        }
+    },
+    "Interrogation Droid": {
+        "name": "Interrogation Droid",
+        "description": "Programmed for questioning criminals, spies, malcontents",
+        "meta": {
+            "Book": "F",
+            "Rarity": "8",
+            "Enc": "--",
+            "Cost": "R 9,600"
+        }
+    },
+    "Probe Droid": {
+        "name": "Probe Droid",
+        "description": "Designed for scouting and transmitting information",
+        "meta": {
+            "Book": "F",
+            "Rarity": "7",
+            "Enc": "--",
+            "Cost": "R 13,700"
+        }
+    },
+    "B1 Series Battle Droid": {
+        "name": "B1 Series Battle Droid",
+        "description": "The frontline battle droid of the Separatist armies during the Clone Wars",
+        "meta": {
+            "Book": "E",
+            "Rarity": "5",
+            "Enc": "--",
+            "Cost": "6,500"
+        }
+    },
+    "Assassin Droid": {
+        "name": "Assassin Droid",
+        "description": "Deadly hunters that pursue relentlessly",
+        "meta": {
+            "Book": "E",
+            "Rarity": "8",
+            "Enc": "--",
+            "Cost": "R 65,000"
+        }
+    },
+    "IG-100 MagnaGuard": {
+        "name": "IG-100 MagnaGuard",
+        "description": "Master bodyguards and combatants during the Clone Wars",
+        "meta": {
+            "Book": "F",
+            "Rarity": "10",
+            "Enc": "--",
+            "Cost": "R 90,000"
+        }
+    },
+    "TC-SC Infiltration Droid": {
+        "name": "TC-SC Infiltration Droid",
+        "description": "Designed for espionage, infiltration, and assassination",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "8",
+            "Enc": "--",
+            "Cost": "R 15,600"
+        }
+    },
+    "Chamleon Droid": {
+        "name": "Chamleon Droid",
+        "description": "Designed for infiltration and espionage during the Clone Wars",
+        "meta": {
+            "Book": "NP",
+            "Rarity": "8",
+            "Enc": "--",
+            "Cost": "R"
+        }
+    },
+    "GV/3-Series Guardian": {
+        "name": "GV/3-Series Guardian",
+        "description": "quadrapedal kanid form; acts as a guard and pet",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "7",
+            "Enc": "--",
+            "Cost": "8,000"
+        }
+    },
+    "Generic Remote": {
+        "name": "Generic Remote",
+        "description": "Designed to perform simple preprogrammed tasks and follow basic commands",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "2",
+            "Enc": "1--2",
+            "Cost": "400"
+        }
+    },
+    "Butterbug Remote": {
+        "name": "Butterbug Remote",
+        "description": "Designed to transmit information",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "700"
+        }
+    },
+    "Service Patch Remote": {
+        "name": "Service Patch Remote",
+        "description": "Programmed for a variety of mechanical and comuter-related tasks",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "3",
+            "Enc": "1--2",
+            "Cost": "900"
+        }
+    },
+    "Shield Remote": {
+        "name": "Shield Remote",
+        "description": "Programmed and designed to place itself between the user and attacks",
+        "meta": {
+            "Book": "SM",
+            "Rarity": "5",
+            "Enc": "2",
+            "Cost": "1,100"
+        }
+    },
+    "Marksman-H Combat Remote": {
+        "name": "Marksman-H Combat Remote",
+        "description": "Programmed as a training tool",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "350"
+        }
+    },
+    "RMD-20 Camera Remote": {
+        "name": "RMD-20 Camera Remote",
+        "description": "Designed for recording footage on the move",
+        "meta": {
+            "Book": "KP",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "500"
+        }
+    },
+    "Recon Remote": {
+        "name": "Recon Remote",
+        "description": "Small, repulsorlifted unit that transmits visual data up to 20km away",
+        "meta": {
+            "Book": "DC",
+            "Rarity": "1",
+            "Enc": "1",
+            "Cost": "250"
+        }
+    },
+    "Microdroid Listener": {
+        "name": "Microdroid Listener",
+        "description": "Records audio then returns to owner when conditions are met",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "6",
+            "Enc": "0",
+            "Cost": "R 1,500"
+        }
+    },
+    "Biome Generator": {
+        "name": "Biome Generator",
+        "description": "Creates specialty environments within ships or other enclosed spaces",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "4",
+            "Enc": "45",
+            "Cost": "9,000"
+        }
+    },
+    "Atmospheric Processor": {
+        "name": "Atmospheric Processor",
+        "description": "Massive terraforming installation",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "7",
+            "Enc": "10k",
+            "Cost": "4,500,000"
+        }
+    },
+    "Atmospheric Reactive Damper": {
+        "name": "Atmospheric Reactive Damper",
+        "description": "Carbon dioxide scrubber",
+        "meta": {
+            "Book": "FH",
+            "Rarity": "5",
+            "Enc": "300",
+            "Cost": "200,000"
+        }
+    },
+    "Diplomatic Authority": {
+        "name": "Diplomatic Authority",
+        "description": "Official documents that grant official persons access and permissions",
+        "meta": {
+            "Book": "DA",
+            "Rarity": "8",
+            "Enc": "--",
+            "Cost": "R 10,000"
+        }
+    },
+    "1.4 FD P-Tower Light AV Battery": {
+        "name": "1.4 FD P-Tower Light AV Battery",
+        "description": "Immobile anti-vehicle laser cannon battery",
+        "meta": {
+            "Book": "LE",
+            "Rarity": "2",
+            "Cost": "4,000"
+        }
+    },
+    "DF.11 Anti-Infantry Battery": {
+        "name": "DF.11 Anti-Infantry Battery",
+        "description": "Immobile anti-infantry laser cannon battery",
+        "meta": {
+            "Book": "LE",
+            "Rarity": "5",
+            "Cost": "7,500"
+        }
+    },
+    "Planetary Shield Generator": {
+        "name": "Planetary Shield Generator",
+        "description": "Provides 8 points of ranged defense dividable into four quadrants",
+        "meta": {
+            "Book": "LE",
+            "Rarity": "4",
+            "Cost": "460,000"
+        }
+    },
+    "Modular Base Structures": {
+        "name": "Modular Base Structures",
+        "description": "Various pre-constructed buildings",
+        "meta": {
+            "Book": "LE",
+            "Rarity": "2-3",
+            "Cost": "varies"
+        }
+    },
+    "Dendriton Toxin": {
+        "name": "Dendriton Toxin",
+        "description": "Painful paralytic; Daunting Resilience check to resist",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "R 125"
+        }
+    },
+    "Dioxis Gas": {
+        "name": "Dioxis Gas",
+        "description": "Lethal gas; Hard or Daunting Resilience to resist",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "6",
+            "Enc": "0",
+            "Cost": "R 100"
+        }
+    },
+    "Neuroparaalytic": {
+        "name": "Neuroparaalytic",
+        "description": "Paralytic; Hard Resilience to resist",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "6",
+            "Enc": "0",
+            "Cost": "R 75"
+        }
+    },
+    "Neurotoxin": {
+        "name": "Neurotoxin",
+        "description": "Lethal poison; Average or Hard Resilience to resist",
+        "meta": {
+            "Book": "Core",
+            "Rarity": "6",
+            "Enc": "0",
+            "Cost": "R 50"
+        }
+    },
+    "Raquor Venom": {
+        "name": "Raquor Venom",
+        "description": "Paralytic; Daunting Resilience to resist",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "R 150"
+        }
+    },
+    "Avabush Spice": {
+        "name": "Avabush Spice",
+        "description": "May only upgrade one Ability Die to a Proficiency Die in any given check; the difficulty to lie or conceal the truth is upgraded once",
+        "meta": {
+            "Book": "E",
+            "Rarity": "6",
+            "Enc": "0",
+            "Cost": "R 25"
+        }
+    },
+    "Avabush Spice, x100": {
+        "name": "Avabush Spice, x100",
+        "description": "May only upgrade one Ability Die to a Proficiency Die in any given check; the difficulty to lie or conceal the truth is upgraded once",
+        "meta": {
+            "Book": "E",
+            "Rarity": "7",
+            "Enc": "3",
+            "Cost": "R 2,000"
+        }
+    },
+    "Booster Blue": {
+        "name": "Booster Blue",
+        "description": "May upgrade any Agility, Intellect, or Cunning check once; Strain is not auto. recovered at the end of encounters for the rest of the session",
+        "meta": {
+            "Book": "E",
+            "Rarity": "5",
+            "Enc": "0",
+            "Cost": "R 10"
+        }
+    },
+    "Booster Blue, x100": {
+        "name": "Booster Blue, x100",
+        "description": "May upgrade any Agility, Intellect, or Cunning check once; Strain is not auto. recovered at the end of encounters fo rthe rest of the session",
+        "meta": {
+            "Book": "E",
+            "Rarity": "6",
+            "Enc": "3",
+            "Cost": "R 750"
+        }
+    },
+    "Death Stick": {
+        "name": "Death Stick",
+        "description": "\u00e2\u2013\u00a0 to every task and check; possibly diminishes connection to the Force",
+        "meta": {
+            "Book": "E",
+            "Rarity": "1",
+            "Enc": "0",
+            "Cost": "R 5"
+        }
+    },
+    "Death Stick, x100": {
+        "name": "Death Stick, x100",
+        "description": "\u00e2\u2013\u00a0 to every task and check; possibly diminishes connection to the Force",
+        "meta": {
+            "Book": "E",
+            "Rarity": "2",
+            "Enc": "3",
+            "Cost": "R 250"
+        }
+    },
+    "Glitterstim": {
+        "name": "Glitterstim",
+        "description": "\u00e2\u2013\u00a1\u00e2\u2013\u00a1\u00e2\u2013\u00a1 to Perception, Vigilance checks; possible telepathy",
+        "meta": {
+            "Book": "E",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "R 100"
+        }
+    },
+    "Glitterstim, x100": {
+        "name": "Glitterstim, x100",
+        "description": "\u00e2\u2013\u00a1\u00e2\u2013\u00a1\u00e2\u2013\u00a1 to Perception, Vigilance checks; possible telepathy",
+        "meta": {
+            "Book": "E",
+            "Rarity": "8",
+            "Enc": "5",
+            "Cost": "R 5,000"
+        }
+    },
+    "Gunjack Spice": {
+        "name": "Gunjack Spice",
+        "description": "+1 Brawn per dose; +1 difficulty for Agility, Intellect, Cunning checks",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "5",
+            "Enc": "1",
+            "Cost": "R 75"
+        }
+    },
+    "Gunjack Spice, x100": {
+        "name": "Gunjack Spice, x100",
+        "description": "+1 Brawn per dose; +1 difficulty for Agility, Intellect, Cunning checks",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "6",
+            "Enc": "25",
+            "Cost": "R 7,000"
+        }
+    },
+    "Impact": {
+        "name": "Impact",
+        "description": "Upgrade Agility-based checks; \u00e2\u2013\u00a0 Agility-, Cunning-, Intellect-based checks",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "6",
+            "Enc": "0",
+            "Cost": "R 125"
+        }
+    },
+    "Impact, x100": {
+        "name": "Impact, x100",
+        "description": "Upgrade Agility-based checks; \u00e2\u2013\u00a0 Agility-, Cunning-, Intellect-based checks",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "7",
+            "Enc": "5",
+            "Cost": "R 10,000"
+        }
+    },
+    "Ji Rikknit": {
+        "name": "Ji Rikknit",
+        "description": "Mild euphoric; Easy Resilience to avoid addiction",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "6",
+            "Enc": "0",
+            "Cost": "R 50"
+        }
+    },
+    "Ji Rikknit, x100": {
+        "name": "Ji Rikknit, x100",
+        "description": "Mild euphoric; Easy Resilience to avoid addiction",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "7",
+            "Enc": "5",
+            "Cost": "R 3,000"
+        }
+    },
+    "Karrak Spice": {
+        "name": "Karrak Spice",
+        "description": "Remove \u00e2\u2013\u00a0\u00e2\u2013\u00a0\u00e2\u2013\u00a0 added for pain or illness for 12 hours, add one Threat; Force usersbenefit for 24 hours, Force rating counts as one lower",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "R 80"
+        }
+    },
+    "Karrak Spice, x100": {
+        "name": "Karrak Spice, x100",
+        "description": "Remove \u00e2\u2013\u00a0\u00e2\u2013\u00a0\u00e2\u2013\u00a0 added for pain or illness for 12 hours, add one Threat; Force users benefit for 24 hours, Force rating counts as one lower",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "8",
+            "Enc": "5",
+            "Cost": "R 6,400"
+        }
+    },
+    "Lesai": {
+        "name": "Lesai",
+        "description": "Removes need to sleep; Strain heals normally",
+        "meta": {
+            "Book": "E",
+            "Rarity": "9",
+            "Enc": "0",
+            "Cost": "R 500"
+        }
+    },
+    "Lesai, x20": {
+        "name": "Lesai, x20",
+        "description": "Removes need to sleep; Strain heals normally",
+        "meta": {
+            "Book": "E",
+            "Rarity": "10",
+            "Enc": "2",
+            "Cost": "R 7,500"
+        }
+    },
+    "Longsight": {
+        "name": "Longsight",
+        "description": "+1 Willpower for Encounter; suffer 2 Strain each turn",
+        "meta": {
+            "Book": "NP",
+            "Rarity": "8",
+            "Enc": "0",
+            "Cost": "R 650"
+        }
+    },
+    "Longsight x100": {
+        "name": "Longsight x100",
+        "description": "+1 Willpower for Encounter; suffer 2 Strain each turn",
+        "meta": {
+            "Book": "gm rdl",
+            "Rarity": "9",
+            "Enc": "5",
+            "Cost": "R 5,000"
+        }
+    },
+    "Muon Gold": {
+        "name": "Muon Gold",
+        "description": "\u00e2\u2013\u00a1 Cunning-, Presence-based checks; possible \u00e2\u2013\u00a0 Intellect-, Cunning-based",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "6",
+            "Enc": "0",
+            "Cost": "R 50"
+        }
+    },
+    "Muon Gold, x100": {
+        "name": "Muon Gold, x100",
+        "description": "\u00e2\u2013\u00a1 Cunning-, Presence-based checks; possible \u00e2\u2013\u00a0 Intellect-, Cunning-based",
+        "meta": {
+            "Book": "FC",
+            "Rarity": "6",
+            "Enc": "3",
+            "Cost": "R 4,500"
+        }
+    },
+    "Nannarium Root": {
+        "name": "Nannarium Root",
+        "description": "Upgrade Intellect-, Cunning-based check once; 2 Strain",
+        "meta": {
+            "Book": "SF",
+            "Rarity": "6",
+            "Enc": "0",
+            "Cost": "R 200"
+        }
+    },
+    "Neutron Pixie": {
+        "name": "Neutron Pixie",
+        "description": " +2 Advantages to Agility-, Willpower-based checks; +1 Threat to Brawn-, Intellect-, Cunning-based checks ",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "6",
+            "Enc": "1",
+            "Cost": "R 100"
+        }
+    },
+    "Neutron Pixie, x100": {
+        "name": "Neutron Pixie, x100",
+        "description": " +2 Advantages to Agility-, Willpower-based checks; +1 Threat to Brawn-, Intellect-, Cunning-based checks",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "7",
+            "Enc": "25",
+            "Cost": "R 8,500"
+        }
+    },
+    "Questioner-9": {
+        "name": "Questioner-9",
+        "description": "Upgrade difficulty on checks to withold information or resist manipulation",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "6",
+            "Enc": "0",
+            "Cost": "R 300"
+        }
+    },
+    "Questioner-9, x100": {
+        "name": "Questioner-9, x100",
+        "description": "Upgrade difficulty on checks to withold information or resist manipulation",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "7",
+            "Enc": "5",
+            "Cost": "R 24,000"
+        }
+    },
+    "Ryll Spice": {
+        "name": "Ryll Spice",
+        "description": "Temporarily ignore an Easy, Average, or Hard (2 doses) Crit Injury",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "4",
+            "Enc": "1",
+            "Cost": "R 50"
+        }
+    },
+    "Ryll Spice, x100": {
+        "name": "Ryll Spice, x100",
+        "description": "Temporarily ignore an Easy, Average, or Hard (2 doses) Crit Injury",
+        "meta": {
+            "Book": "LNH",
+            "Rarity": "5",
+            "Enc": "25",
+            "Cost": "R 4,500"
+        }
+    },
+    "Yaladai Spice": {
+        "name": "Yaladai Spice",
+        "description": "Suffer 3 less Strain than normal; Force users add +1 Force die to checks, suffer double Strain and Conflict for using Dark Side pips",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "7",
+            "Enc": "0",
+            "Cost": "R 1,000"
+        }
+    },
+    "Yaladai Spice, x100": {
+        "name": "Yaladai Spice, x100",
+        "description": "Suffer 3 less Strain than normal; Force users add +1 Force die to checks, suffer double Strain and Conflict for using Dark Side pips",
+        "meta": {
+            "Book": "EV",
+            "Rarity": "8",
+            "Enc": "5",
+            "Cost": "R 80,000"
+        }
+    },
+    "Yarrock": {
+        "name": "Yarrock",
+        "description": "Automatically succeed at Fear checks; \u00e2\u2013\u00a0 to Willpower, Presence checks",
+        "meta": {
+            "Book": "E",
+            "Rarity": "8",
+            "Enc": "0",
+            "Cost": "R 350"
+        }
+    },
+    "Yarrock, x100": {
+        "name": "Yarrock, x100",
+        "description": "Automatically succeed at Fear checks; \u00e2\u2013\u00a0 to Willpower, Presence checks",
+        "meta": {
+            "Book": "E",
+            "Rarity": "9",
+            "Enc": "3",
+            "Cost": "R 20,000"
+        }
+    },
+    "Frangawl Force Powder": {
+        "name": "Frangawl Force Powder",
+        "description": "Force-Sensitives consuming one dose earns 10 Conflict; adds two Dark Side pips",
+        "meta": {
+            "Book": "NP to the next Force power check made",
+            "Rarity": "10",
+            "Enc": "0",
+            "Cost": "R 2,000"
+        }
+    }
+}

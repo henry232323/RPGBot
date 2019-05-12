@@ -223,6 +223,29 @@ class Settings(commands.Cog):
     @checks.no_pm()
     @commands.command()
     @checks.admin_or_permissions()
+    async def loadstarwars(self, ctx):
+        """This command will pre-load all D&D items and make them available to give"""
+        await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.switems.values()))
+        await ctx.send(await _(ctx, "Successfully added all Star Wars items!"))
+
+    @checks.no_pm()
+    @commands.command()
+    @checks.admin_or_permissions()
+    async def loadstarwarsshop(self, ctx):
+        """This command will pre-load all D&D items and make them available in shop"""
+        items = {}
+        for item, value in self.bot.switems.items():
+            try:
+                items[item] = dict(buy=int("".join(filter(str.isdigit, value["meta"]["Cost"].split(" ")[0]))), sell=0, level=0)
+            except:
+                continue
+
+        await self.bot.di.add_shop_items(ctx.guild, items)
+        await ctx.send(await _(ctx, "Successfully added all Star Wars items to shop!"))
+
+    @checks.no_pm()
+    @commands.command()
+    @checks.admin_or_permissions()
     async def loaddndshop(self, ctx):
         """This command will pre-load all D&D items and make them available in shop"""
         items = {}
@@ -278,16 +301,19 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.mod_or_permissions()
     async def unload(self, ctx, name: str):
-        """Unload Pokemon, D&D, or D&D Magic items. `rp!unload pokemon` `rp!unload dnd` `rp!unload dndmagic`"""
+        """Unload Pokemon, D&D, D&D Magic, or Star Wars items. `rp!unload {name}` where name is either dnd, dndmagic, pokemon or starwars"""
         if name == "dnd":
             items = self.bot.dnditems
         elif name == "dndmagic":
             items = self.bot.dndmagic
         elif name == "pokemon":
             items = self.bot.pokemonitems
+        elif name == "starwars":
+            items = self.bot.switems
         else:
             await ctx.send(await _(ctx, "That is not a valid input, look at `rp!help unload`"))
             return
 
         await self.bot.di.remove_items(ctx.guild, *items)
+        await self.bot.di.remove_shop_items(ctx.guild, *items)
         await ctx.send((await _(ctx, "Successfully removed all {} items!")).format(name))
