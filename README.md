@@ -37,6 +37,8 @@ Made by Henry#6174
   - [characters](#characters)
 - [Economy Commands](#economy-commands)
   - [baltop](#baltop)
+  - [bank deposit](#bank-deposit)
+  - [bank withdraw](#bank-withdraw)
   - [bid](#bid)
   - [economy](#economy)
   - [givemoney](#givemoney)
@@ -109,15 +111,17 @@ Made by Henry#6174
   - [map up](#map-up)
 - [Misc Commands](#misc-commands)
   - [donate](#donate)
+  - [feedback](#feedback)
   - [info](#info)
   - [ping](#ping)
   - [rtd](#rtd)
   - [source](#source)
   - [totalcmds](#totalcmds)
-- [Pet Commands](#pet-commands)
+- [Pets Commands](#pets-commands)
   - [box](#box)
   - [pet](#pet)
   - [pet create](#pet-create)
+  - [pet edit](#pet-edit)
   - [pet info](#pet-info)
   - [pet release](#pet-release)
   - [pet trade](#pet-trade)
@@ -135,7 +139,9 @@ Made by Henry#6174
   - [loaddndmagic](#loaddndmagic)
   - [loaddndshop](#loaddndshop)
   - [loadmagicshop](#loadmagicshop)
-  - [loadpet](#loadpet)
+  - [loadpokemon](#loadpokemon)
+  - [loadstarwars](#loadstarwars)
+  - [loadstarwarsshop](#loadstarwarsshop)
   - [setstart](#setstart)
   - [settings](#settings)
   - [settings additem](#settings-additem)
@@ -210,6 +216,16 @@ Usage: rp!character remattr John hair color
 >**Description:** Get the top 10 server balances
 
 >**Usage:** `rp!baltop`
+
+#### bank deposit
+>**Description:** Deposit `amount` into the bank
+
+>**Usage:** `rp!bank deposit <amount>`
+
+#### bank withdraw
+>**Description:** Withdraw `amount` from the bank
+
+>**Usage:** `rp!bank withdraw <amount>`
 
 #### bid
 >**Description:** Place a bid on the current bidding item in the channel
@@ -518,7 +534,7 @@ To make an item usable, you must put the key `used: <message>` when you are addi
 >**Usage:** `rp!use <item> [number=1]`
 
 #### wipeinv
->**Description:** Wipe all inventories. Must be administrator
+>**Description:** Wipe all listed inventories. Must be administrator. To wipe ALL inventories do `rp!wipeinv everyone`
 
 >**Usage:** `rp!wipeinv [members...]`
 
@@ -584,6 +600,11 @@ Usage: `rp!map create Earth 64 64`
 
 >**Usage:** `rp!donate`
 
+#### feedback
+>**Description:** Give me some feedback on the bot
+
+>**Usage:** `rp!feedback <feedback>`
+
 #### info
 >**Description:** Bot Info
 
@@ -621,7 +642,7 @@ periods, e.g. tag.create for the create subcommand of the tag command.
 
 >**Usage:** `rp!totalcmds`
 
-## Pet Commands
+## Pets Commands
 
 #### box
 >**Description:** Check the pet in your box
@@ -638,6 +659,18 @@ Same use as rp!box
 >**Description:** Create a new Pet to add to your box
 
 >**Usage:** `rp!pet [create|new]`
+
+#### pet edit
+>**Description:** Edit a pet
+Usage: rp!pet edit 5 description John likes bananas!
+Valid values for the [item] (second argument):
+    name: the character's name
+    description: the description of the character
+    level: an integer representing the character's level
+    meta: used like the additional info section when creating; can be used to edit/remove all attributes
+Anything else will edit single attributes in the additional info section
+
+>**Usage:** `rp!pet edit <pet_id> <attribute> <value>`
 
 #### pet info
 >**Description:** Get info on a Pet
@@ -661,7 +694,7 @@ Same use as rp!box
 #### ***Salary commands***
 
 #### salaries
->**Description:** See guild salaries
+>**Description:** See server salaries
 
 >**Usage:** `rp!salaries`
 
@@ -727,10 +760,20 @@ For example
 
 >**Usage:** `rp!loadmagicshop`
 
-#### loadpet
->**Description:** This command will pre-load all Pet items and make them available to give
+#### loadpokemon
+>**Description:** This command will pre-load all Pokemon items and make them available to give
 
->**Usage:** `rp!loadpet`
+>**Usage:** `rp!loadpokemon`
+
+#### loadstarwars
+>**Description:** This command will pre-load all D&D items and make them available to give
+
+>**Usage:** `rp!loadstarwars`
+
+#### loadstarwarsshop
+>**Description:** This command will pre-load all D&D items and make them available in shop
+
+>**Usage:** `rp!loadstarwarsshop`
 
 #### setstart
 >**Description:** Set the money start amount for a guild
@@ -766,7 +809,7 @@ Custom keys that can be used for special additions:
 >**Usage:** `rp!settings [removeitem|deleteitem] <name>`
 
 #### unload
->**Description:** Unload Pet, D&D, or D&D Magic items. `rp!unload pet` `rp!unload dnd` `rp!unload dndmagic`
+>**Description:** Unload Pokemon, D&D, or D&D Magic items. `rp!unload pokemon` `rp!unload dnd` `rp!unload dndmagic`
 
 >**Usage:** `rp!unload <name>`
 
