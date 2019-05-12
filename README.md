@@ -3,25 +3,30 @@ Pet boxes and server configurations.
 
 Made by Henry#6174
 
+[![Discord Bots](https://discordbots.org/api/widget/305177429612298242.svg)](https://discordbots.org/bot/305177429612298242)
+
 [**Add to your server**](https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=805694529)
 
-[**Support Server**](https://discord.gg/UYJb8fQ)
+[**Support Server**](https://discord.gg/mXZg2mk)
 
 ### Translators
 #### French
 - @wRadion#5043 https://github.com/wRadion
 - Me (@Henry#6174)
 - https://github.com/youqad
+- https://github.com/Philip-Nicolas
 #### Russian
 - https://github.com/Mozyl
+- https://github.com/Atmyre
 #### German
 - https://github.com/LW001
+- @Potzerus#3950 https://github.com/Potzerus
 #### Spanish
 - https://github.com/Luistorch
 - https://github.com/Looker845
 
-
-
+### Contributors
+- @terabix#1770 
 
 
 # Commands
@@ -160,8 +165,6 @@ Made by Henry#6174
   - [experience enable](#experience-enable)
   - [experience setlevel](#experience-setlevel)
   - [userinfo](#userinfo)
-
-## Admin Commands
 
 ## Characters Commands
 
