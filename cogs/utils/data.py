@@ -322,6 +322,7 @@ default_server = {
     "guilds": dict(),
     "shop_items": dict(),
     "recipes": dict(),
+    "prefix": ['rp!', 'pb!', '<@305177429612298242> ', 'Rp!']
 }
 
 example_pet = {
@@ -861,3 +862,8 @@ class DataInteraction(object):
         for item in items:
             gd["shop"].pop(item)
         await self.db.update_guild_data(guild, gd)
+
+    async def set_prefix(self, guild, prefix):
+        gd = await self.db.get_guild_data(guild)
+        gd["prefix"] = prefix
+        return await self.db.update_guild_data(guild, gd)

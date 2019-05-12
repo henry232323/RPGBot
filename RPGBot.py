@@ -157,6 +157,7 @@ class Bot(commands.AutoShardedBot):
                             return
                         content = msg.content
                         files = msg.attachments
+                        dfiles = [await f.save() for f in files]
                         embeds = msg.embeds
                         if hook.channel.id != msg.channel.id:
                             await hook.delete()
@@ -312,7 +313,7 @@ class Bot(commands.AutoShardedBot):
         await self.session.close()
 
 
-prefix = ['rp!', 'pb!', '<@305177429612298242> ', 'Rp!'] if "debug" not in sys.argv else 'rp$'
+prefixes = ['rp!', 'pb!', '<@305177429612298242> ', 'Rp!'] if "debug" not in sys.argv else 'rp$'
 invlink = "https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=322625"
 servinv = "https://discord.gg/UYJb8fQ"
 sourcelink = "https://github.com/henry232323/RPGBot"
@@ -331,6 +332,16 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
 
 with open("resources/auth") as af:
     _auth = json.loads(af.read())
+
+async def prefix(bot, msg):
+    if msg.guild:
+        prefix = await bot.db.guild_item(msg.guild, "prefix")
+        if isinstance(prefix, str):
+            return prefixes + [prefix]
+        else:
+            return prefixes + prefix
+    else:
+        return prefixes
 
 prp = Bot(command_prefix=prefix, description=description, pm_help=True)
 prp.run(_auth[0])

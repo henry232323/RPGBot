@@ -31,7 +31,6 @@ Made by Henry#6174
 
 # Commands
 
-- [Admin Commands](#admin-commands)
 - [Characters Commands](#characters-commands)
   - [allchars](#allchars)
   - [character](#character)
