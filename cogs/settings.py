@@ -240,7 +240,7 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.admin_or_permissions()
     async def loadstarwarsshop(self, ctx):
-        """This command will pre-load all D&D items and make them available in shop"""
+        """This command will pre-load all Star Wars items and make them available in shop"""
         items = {}
         for item, value in self.bot.switems.items():
             try:
@@ -325,3 +325,16 @@ class Settings(commands.Cog):
         await self.bot.di.remove_items(ctx.guild, *items)
         await self.bot.di.remove_shop_items(ctx.guild, *items)
         await ctx.send((await _(ctx, "Successfully removed all {} items!")).format(name))
+
+    @commands.command()
+    @checks.no_pm()
+    @checks.admin_or_permissions()
+    async def setprefix(self, ctx, value: str):
+        await self.bot.di.set_prefix(ctx.guild, value)
+        await ctx.send(await _(ctx, "Updated server prefix"))
+
+    @commands.command()
+    @checks.no_pm()
+    async def prefix(self, ctx):
+        prefix = await ctx.bot.db.guild_item(ctx.guild, "prefix")
+        await ctx.send(prefix)

@@ -133,12 +133,16 @@ class Bot(commands.AutoShardedBot):
         self.stats = ThreadStats()
         self.stats.start()
 
+        self._first = True
+
     async def on_ready(self):
         print('Logged in as')
         print(self.user.name)
         print(self.user.id)
         print('------')
-        self.loop.create_task(self.update_stats())
+        if self._first:
+            self.loop.create_task(self.update_stats())
+            self._first = False
 
     async def on_message(self, msg):
         if msg.author.id not in self.blacklist:
