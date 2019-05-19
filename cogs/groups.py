@@ -455,7 +455,7 @@ class Groups(commands.Cog):
                 guilds = await self.bot.di.get_guild_guilds(ctx.guild)
                 guild = guilds.get(guild_name)
 
-                if guild_name is None:
+                if guild_name is None or guild is None:
                     await self.bot.di.set_guild(ctx.author, None)
                     await ctx.send(await _(ctx, "You aren't in a guild!"))
                     return

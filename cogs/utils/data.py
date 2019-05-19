@@ -609,7 +609,7 @@ class DataInteraction(object):
         """Remove a server item"""
         gd = await self.db.get_guild_data(guild)
         for item in items:
-            gd["items"].pop(item)
+            gd["items"].pop(item, None)
         await self.db.update_guild_data(guild, gd)
 
     async def add_character(self, guild, character):
@@ -860,7 +860,7 @@ class DataInteraction(object):
         """Remove a server item"""
         gd = await self.db.get_guild_data(guild)
         for item in items:
-            gd["shop"].pop(item)
+            gd["shop_items"].pop(item, None)
         await self.db.update_guild_data(guild, gd)
 
     async def set_prefix(self, guild, prefix):

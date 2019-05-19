@@ -154,7 +154,7 @@ class Misc(commands.Cog):
         """Bot Info"""
         me = self.bot.user if not ctx.guild else ctx.guild.me
         appinfo = await self.bot.application_info()
-        embed = discord.Embed(color=randint(0, 0xFFFFFF),)
+        embed = discord.Embed(color=randint(0, 0xFFFFFF), )
         embed.set_author(name=me.display_name, icon_url=appinfo.owner.avatar_url,
                          url="https://github.com/henry232323/RPGBot")
         embed.add_field(name=await _(ctx, "Author"), value='Henry#6174 (Discord ID: 122739797646245899)')
@@ -179,15 +179,15 @@ class Misc(commands.Cog):
                         value=(await _(ctx, 'Currently running {} shards. This server is on shard {}')).format(
                             ctx.bot.shard_count, getattr(ctx.guild, "shard_id", 0)))
 
-        #a = monotonic()
-        #await (await ctx.bot.shards[getattr(ctx.guild, "shard_id", 0)].ws.ping())
-        #b = monotonic()
-        #ping = "{:.3f}ms".format((b - a) * 1000)
+        # a = monotonic()
+        # await (await ctx.bot.shards[getattr(ctx.guild, "shard_id", 0)].ws.ping())
+        # b = monotonic()
+        # ping = "{:.3f}ms".format((b - a) * 1000)
 
         embed.add_field(name=await _(ctx, "CPU Percentage"), value="{}%".format(psutil.cpu_percent()))
         embed.add_field(name=await _(ctx, "Memory Usage"), value=self.bot.get_ram())
         embed.add_field(name=await _(ctx, "Observed Events"), value=sum(self.bot.socket_stats.values()))
-        #embed.add_field(name=await _(ctx, "Ping"), value=ping)
+        # embed.add_field(name=await _(ctx, "Ping"), value=ping)
 
         embed.add_field(name=await _(ctx, "Source"), value="[Github](https://github.com/henry232323/RPGBot)")
 
@@ -198,7 +198,7 @@ class Misc(commands.Cog):
     @commands.command()
     async def totalcmds(self, ctx):
         """Get totals of commands and their number of uses"""
-        embed = discord.Embed(color=randint(0, 0xFFFFFF),)
+        embed = discord.Embed(color=randint(0, 0xFFFFFF), )
         embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
         for val in self.bot.commands_used.most_common(25):
             embed.add_field(name=val[0], value=val[1])
@@ -310,10 +310,3 @@ class Misc(commands.Cog):
 
         fp = io.BytesIO((index.rstrip() + '\n\n' + data.strip()).encode('utf-8'))
         await ctx.author.send(file=discord.File(fp, 'commands.md'))
-
-    @commands.command()
-    @checks.no_pm()
-    @checks.admin_or_permissions()
-    async def setprefix(self, ctx, value: str):
-        await self.bot.di.set_prefix(ctx.guild, value)
-        await ctx.send(await _(ctx, "Updated server prefix"))
