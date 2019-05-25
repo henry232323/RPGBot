@@ -1,18 +1,10 @@
 import asyncio
 import logging
 import secrets
-from urllib.parse import urlencode
+from urllib.parse import urlencode, unquote
 
 import discord
 import aiohttp
-
-'''
-from kyoukai import Kyoukai
-from kyoukai.util import as_html, as_json
-from kyoukai.asphalt import HTTPRequestContext, Response
-from werkzeug.exceptions import HTTPException
-from werkzeug.utils import redirect
-'''
 
 from aiohttp import web
 
@@ -94,13 +86,13 @@ class API(web.Application):
             web.get('/hub', self.hub),
             web.get('/guilds', self.guilds),
             web.get('/authorize', self.mydata),
-            web.get('/user/{guild}/{user}/', self.getuser),
-            web.get('/guild/{guild}', self.getguild),
             web.get('/', self.index),
             web.get('/register', self.register),
             web.get('/add/', self.add),
-            web.get('/bots/{snowflake}/', self.convert),
-            web.post('/bots/{snowflake}/', self.convert),
+            web.get('/bots/{snowflake:\d+}/', self.convert),
+            web.post('/bots/{snowflake:\d+}/', self.convert),
+            web.get('/user/{guild:\d+}/{user:\d+}{tail:.*}', self.getuser),
+            web.get('/guild/{guild:\d+}{tail:.*}', self.getguild),
         ])
 
     async def host(self):  # Start the connection to the DB and then start the Kyoukai server
@@ -333,31 +325,53 @@ class API(web.Application):
 
     # @server.route("/user/{guild}/{user}/", methods=["GET"])
     async def getuser(self, request: web.Request):
-        try:
-            guild = int(request.match_info['guild'])
-            user = int(request.match_info['user'])
-        except:
-            raise web.HTTPBadRequest(reason="Malformed request")
+        guild = int(request.match_info['guild'])
+        user = int(request.match_info['user'])
 
         req = f"""SELECT info FROM userdata WHERE UUID = {user}"""
         async with self.bot.db._conn.acquire() as connection:
             response = await connection.fetchval(req)
         if response:
-            return web.json_response(json.decode(response)[str(int(guild))])
+            data = json.loads(response)[str(int(guild))]
+
+            fdata = data
+            for item in request.match_info['tail'].split("/"):
+                if not item:
+                    continue
+                try:
+                    key = unquote(item)
+                    if isinstance(fdata, list):
+                        key = int(key)
+                    fdata = fdata[key]
+                except:
+                    raise web.HTTPNotFound()
+
+            return web.json_response(fdata)
+
         raise web.HTTPForbidden()
 
     # @server.route("/guild/<int:guild>/", methods=["GET"])
     async def getguild(self, request: web.Request):
-        try:
-            guild = int(request.match_info['guild'])
-        except:
-            raise web.HTTPBadRequest(reason="Malformed request")
-
+        guild = int(request.match_info['guild'])
         req = f"""SELECT info FROM servdata WHERE UUID = {guild}"""
         async with self.bot.db._conn.acquire() as connection:
             response = await connection.fetchval(req)
         if response:
-            return web.json_response(json.decode(response))
+            data = json.loads(response)
+
+            fdata = data
+            for item in request.match_info['tail'].split("/"):
+                if not item:
+                    continue
+                try:
+                    key = unquote(item)
+                    if isinstance(fdata, list):
+                        key = int(key)
+                    fdata = fdata[key]
+                except:
+                    raise web.HTTPNotFound()
+
+            return web.json_response(fdata)
         raise web.HTTPForbidden()
 
     # @server.route("/", methods=["GET"])
