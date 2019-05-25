@@ -44,21 +44,21 @@ class Database:
         req = f"""INSERT INTO userdata (UUID, info) VALUES ({member.id}, '{jd}')"""
         async with self._conn.acquire() as connection:
             response = await connection.fetchval(req)
-            return json.decode(response) if response else response
+            return json.loads(response) if response else response
 
     async def user_select(self, member):
         """Select a user's data for a specified server"""
         req = f"""SELECT info -> '{member.guild.id}' FROM userdata WHERE UUID = {member.id}"""
         async with self._conn.acquire() as connection:
             response = await connection.fetchval(req)
-        return json.decode(response) if response else response
+        return json.loads(response) if response else response
 
     async def user_full_select(self, member):
         """Select a user's data for a specified server"""
         req = f"""SELECT info FROM userdata WHERE UUID = {member.id}"""
         async with self._conn.acquire() as connection:
             response = await connection.fetchval(req)
-        return json.decode(response) if response else response
+        return json.loads(response) if response else response
 
     async def user_update(self, member, data):
         """Update a user's data for a specific server"""
@@ -68,7 +68,7 @@ class Database:
         WHERE UUID = {member.id}"""
         async with self._conn.acquire() as connection:
             response = await connection.fetchval(req)
-        return json.decode(response) if response else response
+        return json.loads(response) if response else response
 
     async def user_exists(self, member):
         """Check if a user has an entry in the db"""
@@ -110,7 +110,7 @@ class Database:
         req = f"""SELECT info FROM userdata WHERE UUID = {member.id}"""
         async with self._conn.acquire() as connection:
             response = await connection.fetchval(req)
-        return json.decode(response) if response else response
+        return json.loads(response) if response else response
 
     # Server functions
     ########################################################################
@@ -120,14 +120,14 @@ class Database:
         req = f"""INSERT INTO servdata (UUID, info) VALUES ({guild.id}, '{jd}')"""
         async with self._conn.acquire() as connection:
             response = await connection.fetchval(req)
-        return json.decode(response) if response else response
+        return json.loads(response) if response else response
 
     async def guild_select(self, guild):
         """Get a guild from the db"""
         req = f"""SELECT info FROM servdata WHERE UUID = {guild.id}"""
         async with self._conn.acquire() as connection:
             response = await connection.fetchval(req)
-        return json.decode(response) if response else response
+        return json.loads(response) if response else response
 
     async def guild_update(self, guild, data):
         """Update a guild"""
@@ -137,7 +137,7 @@ class Database:
         WHERE UUID = {guild.id}"""
         async with self._conn.acquire() as connection:
             response = await connection.fetchval(req)
-        return json.decode(response) if response else response
+        return json.loads(response) if response else response
 
     async def add_guild(self, guild, data=None):
         """Add a guild to the db"""

@@ -432,7 +432,7 @@ class DataInteraction(object):
     async def get_box(self, member):
         """Get user's Pet box"""
         ub = await self.db.user_item(member, "box")
-        return [Pet(*x) for x in json.decode(ub)]
+        return [Pet(*x) for x in json.loads(ub)]
 
     async def get_balance(self, member):
         """Get user's balance"""
@@ -447,7 +447,7 @@ class DataInteraction(object):
     async def get_inventory(self, member):
         """Get user's inventory"""
         ui = await self.db.user_item(member, "items")
-        return json.decode(ui)
+        return json.loads(ui)
 
     async def get_salary_ctime(self, member):
         """Get user's inventory"""
