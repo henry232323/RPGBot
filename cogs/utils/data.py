@@ -34,12 +34,65 @@ from .translation import _
 
 Pet = namedtuple("Pet", ["id", "name", "type", "stats", "meta"])
 ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
-Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
+#Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
+
 gc = namedtuple("Guild",
                 ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites",
                  "mods"])
 Map = namedtuple("Map", ["tiles", "generators", "spawners", "spawn", "maxx", "maxy"])
 AdvancedMap = namedtuple("AdvancedMap", ["tiles", "generators", "spawners", "spawnables", "spawn", "type"])
+
+from builtins import property as _property, tuple as _tuple
+from operator import itemgetter as _itemgetter
+from collections import OrderedDict
+
+
+class Character(tuple):
+    'Character(name, owner, description, level, team, meta)'
+    __slots__ = ()
+    _fields = ('name', 'owner', 'description', 'level', 'team', 'meta', 'ustats')
+
+    def __new__(_cls, name, owner, description, level, team, meta, ustats=None):
+        'Create new instance of Character(name, owner, description, level, team, meta)'
+        if ustats is None:
+            ustats = {}
+        return _tuple.__new__(_cls, (name, owner, description, level, team, meta, ustats))
+
+    @classmethod
+    def _make(cls, iterable, new=tuple.__new__, len=len):
+        'Make a new Character object from a sequence or iterable'
+        result = new(cls, iterable)
+        if len(result) != 6:
+            raise TypeError('Expected 6 arguments, got %d' % len(result))
+        return result
+
+    def _replace(_self, **kwds):
+        'Return a new Character object replacing specified fields with new values'
+        result = _self._make(map(kwds.pop, ('name', 'owner', 'description', 'level', 'team', 'meta'), _self))
+        if kwds:
+            raise ValueError('Got unexpected field names: %r' % list(kwds))
+        return result
+
+    def __repr__(self):
+        'Return a nicely formatted representation string'
+        return self.__class__.__name__ + '(name=%r, owner=%r, description=%r, level=%r, team=%r, meta=%r, ustats=%r)' % self
+
+    def _asdict(self):
+        'Return a new OrderedDict which maps field names to their values.'
+        return OrderedDict(zip(self._fields, self))
+
+    def __getnewargs__(self):
+        'Return self as a plain tuple.  Used by copy and pickle.'
+        return tuple(self)
+
+    name = _property(_itemgetter(0), doc='Alias for field number 0')
+    owner = _property(_itemgetter(1), doc='Alias for field number 1')
+    description = _property(_itemgetter(2), doc='Alias for field number 2')
+    level = _property(_itemgetter(3), doc='Alias for field number 3')
+    team = _property(_itemgetter(4), doc='Alias for field number 4')
+    meta = _property(_itemgetter(5), doc='Alias for field number 5')
+    ustats = _property(_itemgetter(5), doc='Alias for field number 6')
+
 
 converters = {
     discord.Member: commands.MemberConverter,

@@ -35,16 +35,32 @@ class Inventory(commands.Cog):
         self.bot = bot
         self.trades = {}
 
-    @commands.group(invoke_without_command=True, aliases=['i', 'inv'])
+    @commands.command(aliases=['i', 'inv'])
     @checks.no_pm()
     async def inventory(self, ctx, *, member: discord.Member = None):
         """Check your or another users inventory. Example: rp!inventory @Henry#6174 or just rp!inventory"""
+        dest = ctx.channel
         if member is None:
-            member = ctx.message.author
+            member = ctx.author
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        try:
+            is_mod = checks.role_or_permissions(ctx,
+                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
+
+        hide = gd.get("hideinv", False)
+
+        if not is_mod and hide:
+            member = ctx.author
+
+        if hide:
+            dest = ctx.author
 
         inv = await self.bot.di.get_inventory(member)
         if not inv:
-            await ctx.send(await _(ctx, "This inventory is empty!"))
+            await dest.send(await _(ctx, "This inventory is empty!"))
             return
 
         fmap = map(lambda x: f"{x[0]} x{x[1]}", sorted(inv.items()))
@@ -53,7 +69,10 @@ class Inventory(commands.Cog):
         for chunk in chunks:
             embed = discord.Embed(description="\n".join(chunk), color=randint(0, 0xFFFFFF))
             embed.set_author(name=member.display_name, icon_url=member.avatar_url)
-            await ctx.send(embed=embed)
+            try:
+                await dest.send(embed=embed)
+            except discord.Forbidden:
+                await dest.send(chunk)
 
     @checks.mod_or_permissions()
     @commands.command(aliases=["take"])
@@ -127,7 +146,7 @@ class Inventory(commands.Cog):
         """
         number = abs(number)
         items = await self.bot.di.get_guild_items(ctx.guild)
-        msg = items.get(item).meta.get('used').format(mention=ctx.author.mention, name=ctx.author.display_name, channel=ctx.channel)
+        msg = items.get(item).meta.get('used')
         if msg is None:
             await ctx.send(await _(ctx, "This item is not usable!"))
             return
@@ -137,7 +156,9 @@ class Inventory(commands.Cog):
             await ctx.send(await _(ctx, "You do not have that many to use!"))
             return
 
-        await ctx.send(msg)
+        await ctx.send(msg.format(mention=ctx.author.mention,
+                                  name=ctx.author.display_name,
+                                  channel=ctx.channel))
         await ctx.send((await _(ctx, "Used {} {}s")).format(number, item))
 
     @checks.no_pm()

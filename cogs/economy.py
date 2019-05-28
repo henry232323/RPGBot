@@ -48,35 +48,46 @@ class Economy(commands.Cog):
 
     @checks.no_pm()
     @commands.group(aliases=["bal", "balance", "eco", "e"], invoke_without_command=True)
-    async def economy(self, ctx, member: discord.Member = None):
+    async def economy(self, ctx, *, member: discord.Member = None):
         """Check your or another users balance"""
+        dest = ctx.channel
         if member is None:
-            bal = await ctx.bot.di.get_all_balances(ctx.author)
+            member = ctx.author
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        try:
+            is_mod = checks.role_or_permissions(ctx,
+                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
 
-            data = """
-            On you:\t\t{} dollars
-            In the bank:\t{} dollars in the bank
-            Total:\t\t{} dollars
-            """
+        hide = gd.get("hideinv", False)
 
-            embed = discord.Embed(
-                description=(await _(ctx, data)).format(int(bal[0]) if int(bal[0]) == bal[0] else bal[0],
-                                                        int(bal[1]) if int(bal[1]) == bal[1] else bal[1],
-                                                        sum(bal)
-                                                        ),
-                color=randint(0, 0xFFFFFF),
-            )
+        if not is_mod and hide:
+            member = ctx.author
 
-            embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
-            embed.set_thumbnail(url="https://opengameart.org/sites/default/files/styles/medium/public/gold_pile_0.png")
-            await ctx.send(embed=embed)
+        if hide:
+            dest = ctx.author
 
-        else:
-            bal = await self.bot.di.get_balance(member)
+        bal = await ctx.bot.di.get_all_balances(member)
 
-            await ctx.send(
-                (await _(ctx, "{} has {} dollars")).format(member.display_name, int(bal) if int(bal) == bal else bal)
-            )
+        data = """
+On you:\t\t {} dollars
+In the bank:\t {} dollars in the bank
+Total:\t\t {} dollars
+        """
+
+        embed = discord.Embed(
+            description=(await _(ctx, data)).format(int(bal[0]) if int(bal[0]) == bal[0] else bal[0],
+                                                    int(bal[1]) if int(bal[1]) == bal[1] else bal[1],
+                                                    sum(bal)
+                                                    ),
+            color=randint(0, 0xFFFFFF),
+        )
+
+        embed.set_author(name=member.display_name, icon_url=member.avatar_url)
+        embed.set_thumbnail(url="https://opengameart.org/sites/default/files/styles/medium/public/gold_pile_0.png")
+        await dest.send(embed=embed)
 
     @checks.no_pm()
     @checks.mod_or_permissions()
@@ -569,7 +580,8 @@ class Economy(commands.Cog):
         Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot Moderator or Admin"""
         gd = await self.bot.db.get_guild_data(ctx.guild)
         if name not in gd["items"]:
-            await ctx.send(await _(ctx, "This item doesn't exist! Try creating the item first with `rp!settings additem`"))
+            await ctx.send(
+                await _(ctx, "This item doesn't exist! Try creating the item first with `rp!settings additem`"))
             return
 
         shop = gd.get("shop_items", dict())
@@ -785,7 +797,8 @@ class Economy(commands.Cog):
         await ctx.bot.di.set_balances(ctx.author, bal[0] - amount, bal[1] + amount)
 
         await ctx.send(
-            (await _(ctx, "Successfully transferred {} dollars to your bank. You have {} dollars total in the bank")).format(
+            (await _(ctx,
+                     "Successfully transferred {} dollars to your bank. You have {} dollars total in the bank")).format(
                 amount,
                 bal[1] + amount))
 

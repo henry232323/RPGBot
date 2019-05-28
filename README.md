@@ -26,7 +26,13 @@ Made by Henry#6174
 - https://github.com/Looker845
 
 ### Contributors
-- @terabix#1770 
+- @terabix#1770 (141211057485119488)
+
+### Art Credits
+All bot icons used were made by @MOSE-FR#5388 (249894348567740416)
+Also thanks to @Volgrim Evrazasvae#5252 (335604493192396801)
+
+
 
 
 # Commands
@@ -34,11 +40,24 @@ Made by Henry#6174
 - [Characters Commands](#characters-commands)
   - [allchars](#allchars)
   - [character](#character)
+  - [character assume](#character-assume)
   - [character create](#character-create)
   - [character delete](#character-delete)
   - [character edit](#character-edit)
   - [character remattr](#character-remattr)
+  - [character unassume](#character-unassume)
   - [characters](#characters)
+  - [chareco](#chareco)
+  - [chareco givemoney](#chareco-givemoney)
+  - [chareco pay](#chareco-pay)
+  - [chareco setbalance](#chareco-setbalance)
+  - [chareco takemoney](#chareco-takemoney)
+  - [charinv](#charinv)
+  - [charinv craft](#charinv-craft)
+  - [charinv give](#charinv-give)
+  - [charinv giveitem](#charinv-giveitem)
+  - [charinv takeitem](#charinv-takeitem)
+  - [charinv use](#charinv-use)
 - [Economy Commands](#economy-commands)
   - [baltop](#baltop)
   - [bank deposit](#bank-deposit)
@@ -138,6 +157,7 @@ Made by Henry#6174
 - [Settings Commands](#settings-commands)
   - [currency](#currency)
   - [deleteafter](#deleteafter)
+  - [hideinv](#hideinv)
   - [language](#language)
   - [loaddnd](#loaddnd)
   - [loaddndmagic](#loaddndmagic)
@@ -164,6 +184,7 @@ Made by Henry#6174
   - [experience enable](#experience-enable)
   - [experience setlevel](#experience-setlevel)
   - [userinfo](#userinfo)
+  
 
 ## Characters Commands
 
@@ -176,6 +197,11 @@ Made by Henry#6174
 >**Description:** Get info on a character
 
 >**Usage:** `rp![character|c|char|personnage] <name>`
+
+#### character assume
+>**Description:** Assume a character. You will send messages with this character's icon and name. Necessary for some character inventory and economy commands
+
+>**Usage:** `rp!character assume <name>`
 
 #### character create
 >**Description:** Create a new character
@@ -205,10 +231,72 @@ Usage: rp!character remattr John hair color
 
 >**Usage:** `rp!character remattr <character> <attribute>`
 
+#### character unassume
+>**Description:** Unassume a character
+
+>**Usage:** `rp!character unassume <character>`
+
 #### characters
 >**Description:** List all your characters
 
 >**Usage:** `rp![characters|chars|personnages] [user]`
+
+#### chareco
+>**Description:** Check your or another character's balance
+
+>**Usage:** `rp![chareco|ceco|ce|cbal] [name]`
+
+#### chareco givemoney
+>**Description:** Give the member's money (Moderators)
+
+>**Usage:** `rp!chareco givemoney <amount> [names...]`
+
+#### chareco pay
+>**Description:** Pay another user money
+
+>**Usage:** `rp!chareco pay <amount> <other>`
+
+#### chareco setbalance
+>**Description:** Set the balance of the given members to an amount
+
+>**Usage:** `rp!chareco [setbalance|set] <amount> [names...]`
+
+#### chareco takemoney
+>**Description:** Take the member's money (Moderators)
+
+>**Usage:** `rp!chareco takemoney <amount> [names...]`
+
+#### charinv
+>**Description:** Check your or another character's inventory. Example: rp!cinv Name or just rp!ci
+
+>**Usage:** `rp![charinv|ci|cinv] [name]`
+
+#### charinv craft
+>**Description:** Craft a recipe with a given name from the available server recipes; e.g. rp!craft 5 Apple Pie
+
+>**Usage:** `rp!charinv craft <number> <name>`
+
+#### charinv give
+>**Description:** Give items ({item}x{#}) to a character; ie: rp!ci give Name Pokeballx3
+
+>**Usage:** `rp!charinv give <other> [items...]`
+
+#### charinv giveitem
+>**Description:** Give an item to a character (Not out of your inventory)
+Example: rp!ci giveitem Banana 32 Char1 Char2 Char3
+
+>**Usage:** `rp!charinv giveitem <item> <num> [names...]`
+
+#### charinv takeitem
+>**Description:** Remove an item from a character's inventory
+
+>**Usage:** `rp!charinv [takeitem|take] <item> <num> [names...]`
+
+#### charinv use
+>**Description:** Use an item. Example `rp!use Banana` or `rp!use Banana 5`
+To make an item usable, you must put the key `used: <message>` when you are adding additional information for an item
+
+>**Usage:** `rp!charinv use <item> [number=1]`
 
 ## Economy Commands
 
@@ -630,7 +718,7 @@ Optional Additions:
         
         -> Roll failed (30 > 32) ([8 + 7 + 6 + 6] + -12 + 15) (Grabbed top 4 out of 8)
 
->**Usage:** `rp![rtd|rollthedice|dice] [dice...]`
+>**Usage:** `rp![rtd|rollthedice|dice|roll] [dice...]`
 
 #### source
 >**Description:** Displays my full source code or for a specific command.
@@ -733,9 +821,14 @@ For example
 >**Usage:** `rp!currency <currency>`
 
 #### deleteafter
->**Description:** Set a time for messages to be automatically deleted after running. `rp!deleteafter 0` to make messages never be deleted
+>**Description:** Set a time for messages to be automatically deleted after running in seconds. `rp!deleteafter 0` to make messages never be deleted
 
 >**Usage:** `rp!deleteafter <time>`
+
+#### hideinv
+>**Description:** Set whether or not user inventories are hidden. If enabled, inventories will be sent via DMs.
+
+>**Usage:** `rp!hideinv <value>`
 
 #### language
 >**Description:** Set the guild language or check the language
@@ -773,7 +866,7 @@ For example
 >**Usage:** `rp!loadstarwars`
 
 #### loadstarwarsshop
->**Description:** This command will pre-load all D&D items and make them available in shop
+>**Description:** This command will pre-load all Star Wars items and make them available in shop
 
 >**Usage:** `rp!loadstarwarsshop`
 
@@ -789,9 +882,16 @@ For example
 
 #### settings additem
 >**Description:** Add a custom item.
-Custom keys that can be used for special additions:
-   `image` Setting this to a URL will give that item a special thumbnail when info is viewed for it
-   
+ Custom keys that can be used for special additions:
+    `image` Setting this to a URL will give that item a special thumbnail when info is viewed for it
+    `used` A message for when the item is used
+>Henry: rp!settings additem Example
+RPGBot: Describe the item (a description for the item)
+Henry: This is an example item
+RPGBot: Additional information? (Attributes formatted in a list i.e color: 400, value: 200 Set an image for this item with the image key i.e. image: http://image.com/image.png Set this item as usable by adding used key i.e. used: You open the jar and the bird flies away
+Henry: used: You used this item!, image: http://www.sourcecertain.com/img/Example.png
+RPGBot:  Item successfully created
+    
 
 >**Usage:** `rp!settings additem <name>`
 
@@ -811,7 +911,7 @@ Custom keys that can be used for special additions:
 >**Usage:** `rp!settings [removeitem|deleteitem] <name>`
 
 #### unload
->**Description:** Unload Pokemon, D&D, or D&D Magic items. `rp!unload pokemon` `rp!unload dnd` `rp!unload dndmagic`
+>**Description:** Unload Pokemon, D&D, D&D Magic, or Star Wars items. `rp!unload {name}` where name is either dnd, dndmagic, pokemon or starwars
 
 >**Usage:** `rp!unload <name>`
 

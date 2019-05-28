@@ -448,31 +448,33 @@ class Groups(commands.Cog):
     @checks.no_pm()
     async def deposit(self, ctx, amount: NumberConverter, guild_name: str = None):
         """Deposit an amount of money into the guild bank"""
-        try:
-            amount = abs(amount)
-            if not guild_name:
-                guild_name = await self.bot.di.get_user_guild(ctx.author)
-                guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-                guild = guilds.get(guild_name)
+        amount = abs(amount)
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
 
-                if guild_name is None or guild is None:
-                    await self.bot.di.set_guild(ctx.author, None)
-                    await ctx.send(await _(ctx, "You aren't in a guild!"))
-                    return
+        if not guild_name:
+            guild_name = await self.bot.di.get_user_guild(ctx.author)
+            guild = guilds.get(guild_name)
 
-            try:
-                await self.bot.di.add_eco(ctx.author, -amount)
-            except ValueError:
-                await ctx.send(await _(ctx, "You don't have enough to deposit!"))
+            if guild_name is None or guild is None:
+                await self.bot.di.set_guild(ctx.author, None)
+                await ctx.send(await _(ctx, "You aren't in a guild!"))
+                return
+        else:
+            guild = guilds.get(guild_name)
+            if guild is None:
+                await ctx.send(await _(ctx, "That guild is invalid!"))
                 return
 
-            guild.bank += amount
-            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-            await ctx.send(
-                (await _(ctx, "Successfully deposited {} dollars into {}'s bank")).format(amount, guild_name))
-        except:
-            from traceback import print_exc
-            print_exc()
+        try:
+            await self.bot.di.add_eco(ctx.author, -amount)
+        except ValueError:
+            await ctx.send(await _(ctx, "You don't have enough to deposit!"))
+            return
+
+        guild.bank += amount
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send(
+            (await _(ctx, "Successfully deposited {} dollars into {}'s bank")).format(amount, guild_name))
 
     @guild.command()
     @checks.no_pm()

@@ -55,7 +55,7 @@ class Admin(commands.Cog):
             return '```py\n{0.__class__.__name__}: {0}\n```'.format(e)
         return '```py\n{0.text}{1:>{0.offset}}\n{2}: {0}```'.format(e, '^', type(e).__name__)
 
-    @checks.is_owner()
+    @commands.is_owner()
     @commands.command(hidden=True)
     async def eval(self, ctx, *, body: str):
         """Don't snoop buddy"""
@@ -105,7 +105,7 @@ class Admin(commands.Cog):
                 await ctx.send('```py\n%s%s\n```' % (value, ret))
 
     @commands.command(hidden=True)
-    @checks.is_owner()
+    @commands.is_owner()
     async def repeatcommand(self, ctx, times: int, *, command):
         """Repeats a command a specified number of times."""
         msg = copy.copy(ctx.message)
@@ -115,7 +115,7 @@ class Admin(commands.Cog):
 
     @checks.no_pm()
     @commands.command(hidden=True)
-    @checks.owner_or_permissions(manage_messagees=True)
+    @checks.admin_or_permissions(manage_messagees=True)
     async def purge(self, ctx, number: int):
         """Purge messages"""
         if number > 100:
@@ -125,7 +125,7 @@ class Admin(commands.Cog):
         await ctx.message.channel.purge(limit=number)
 
     @commands.command(hidden=True)
-    @checks.is_owner()
+    @commands.is_owner()
     async def logout(self, ctx):
         await ctx.send("Logging out")
         self.bot.running = False

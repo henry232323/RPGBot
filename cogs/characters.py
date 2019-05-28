@@ -18,6 +18,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
+from collections import Counter
 
 import discord
 from discord.ext import commands
@@ -26,7 +27,7 @@ from random import randint
 import asyncio
 
 from .utils import checks
-from .utils.data import Character
+from .utils.data import Character, MemberConverter, NumberConverter, IntConverter, chain, chunkn
 from .utils.translation import _
 
 
@@ -46,7 +47,7 @@ class Characters(commands.Cog):
             await ctx.send((await _(ctx, "{} has no characters to display")).format(user))
             return
 
-        embed = discord.Embed(description="\n".join(characters), color=randint(0, 0xFFFFFF),)
+        embed = discord.Embed(description="\n".join(characters), color=randint(0, 0xFFFFFF), )
         embed.set_author(name=user.display_name, icon_url=user.avatar_url)
         await ctx.send(embed=embed)
 
@@ -59,7 +60,7 @@ class Characters(commands.Cog):
             await ctx.send(await _(ctx, "No characters to display"))
             return
 
-        embed = discord.Embed(color=randint(0, 0xFFFFFF),)
+        embed = discord.Embed(color=randint(0, 0xFFFFFF), )
         words = dict()
         for x in characters.keys():
             if x[0].casefold() in words:
@@ -123,8 +124,9 @@ class Characters(commands.Cog):
             user = ctx.author
         else:
             try:
-                has_role = checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
-                                              manage_server=True)
+                has_role = checks.role_or_permissions(ctx,
+                                                      lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                      manage_server=True)
             except:
                 has_role = False
             if not has_role:
@@ -201,7 +203,6 @@ class Characters(commands.Cog):
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
 
-
         if character.owner != ctx.author.id:
             try:
                 is_mod = checks.role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
@@ -246,14 +247,14 @@ class Characters(commands.Cog):
         if character.owner != ctx.author.id and not is_mod:
             await ctx.send(await _(ctx, "You do not own this character!"))
             return
-        
+
         if attribute == "description" and len(value) > 3500:
             await ctx.send(await _(ctx, "Can't have a description longer than 3500 characters!"))
             return
         elif len(attribute) + len(value) > 1024:
             await ctx.send(await _(ctx, "Can't have an attribute longer than 1024 characters!"))
             return
-        
+
         character = list(character)
         if attribute == "name":
             await self.bot.di.remove_character(ctx.guild, character[0])
@@ -329,6 +330,7 @@ class Characters(commands.Cog):
     @checks.no_pm()
     @character.command()
     async def assume(self, ctx, name: str):
+        """Assume a character. You will send messages with this character's icon and name. Necessary for some character inventory and economy commands"""
         chars = await self.bot.di.get_guild_characters(ctx.guild)
         character = chars.get(name)
         if character is None:
@@ -357,5 +359,353 @@ class Characters(commands.Cog):
     @checks.no_pm()
     @character.command(name="unassume")
     async def c_unassume(self, ctx, character: str):
+        """Unassume a character"""
         await self.unassume(ctx.author, character, 0)
         await ctx.send(await _(ctx, "Character unassumed!"))
+
+    async def c_inventory(self, guild, name):
+        char = await self.bot.di.get_character(guild, name)
+        if 'items' not in char.ustats:
+            char.ustats['items'] = {}
+        return char.ustats['items']
+
+    @commands.group(invoke_without_command=True, aliases=['ci', 'cinv'])
+    @checks.no_pm()
+    async def charinv(self, ctx, *, name: str = None):
+        """Check your or another character's inventory. Example: rp!cinv Name or just rp!ci"""
+        dest = ctx.channel
+        if name is None:
+            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        try:
+            is_mod = checks.role_or_permissions(ctx,
+                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
+
+        hide = gd.get("hideinv", False)
+
+        if not is_mod and hide:
+            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+
+        if name is None:
+            await ctx.send(await _(ctx,
+                                   "You are not currently a character! "
+                                   "Use the command again with the name of the character to check "
+                                   "or use `rp!char assume` to assume a character"))
+            return
+
+        if hide:
+            dest = ctx.author
+
+        char = await self.bot.di.get_character(ctx.guild, name)
+        if 'items' not in char.ustats:
+            char.ustats['items'] = {}
+        inv = char.ustats['items']
+
+        if not inv:
+            await dest.send(await _(ctx, "This inventory is empty!"))
+            return
+
+        fmap = map(lambda x: f"{x[0]} x{x[1]}", sorted(inv.items()))
+        fmt = "\n".join(fmap)
+        chunks = chunkn(fmt, 2000)  # [("Items: ", v) for v in chunkn(fmt, 400)]
+        for chunk in chunks:
+            embed = discord.Embed(description="\n".join(chunk), color=randint(0, 0xFFFFFF))
+            embed.set_author(name=name, icon_url=(char.meta.get("icon")))
+            try:
+                await dest.send(embed=embed)
+            except discord.Forbidden:
+                await dest.send(chunk)
+
+    async def c_takeitem(self, guild, name, *items):
+        char = await self.bot.di.get_character(guild, name)
+        if 'items' not in char.ustats:
+            char.ustats['items'] = {}
+
+        char.ustats["items"] = Counter(char.ustats["items"])
+        char.ustats["items"].subtract(dict(items))
+
+        #print(char.ustats["items"])
+        for item, value in list(char.ustats["items"].items()):
+            if value < 0:
+                raise ValueError(f"Cannot take more items than {name} has!")
+            if value == 0:
+                del char.ustats["items"][item]
+
+        await self.bot.di.add_character(guild, char)
+
+    @checks.mod_or_permissions()
+    @charinv.command(aliases=["take"])
+    @checks.no_pm()
+    async def takeitem(self, ctx, item: str, num: IntConverter, *names: str):
+        """Remove an item from a character's inventory"""
+        num = abs(num)
+        for name in names:
+            await self.c_takeitem(ctx.guild, name, (item, num))
+
+        await ctx.send(await _(ctx, "Items taken!"))
+
+    async def c_giveitem(self, guild, name, *items):
+        char = await self.bot.di.get_character(guild, name)
+        if 'items' not in char.ustats:
+            char.ustats['items'] = {}
+
+        ud = char.ustats
+        ud["items"] = Counter(ud["items"])
+        ud["items"].update(dict(items))
+        await self.bot.di.add_character(guild, char)
+
+    @checks.mod_or_permissions()
+    @charinv.command()
+    @checks.no_pm()
+    async def giveitem(self, ctx, item: str, num: IntConverter, *names: str):
+        """Give an item to a character (Not out of your inventory)
+        Example: rp!ci giveitem Banana 32 Char1 Char2 Char3"""
+
+        items = await self.bot.di.get_guild_items(ctx.guild)
+        if item not in items:
+            await ctx.send(await _(ctx, "That is not a valid item!"))
+            return
+
+        num = abs(num)
+        for name in names:
+            await self.c_giveitem(ctx.guild, name, (item, num))
+
+        await ctx.send(await _(ctx, "Items given!"))
+
+    @charinv.command()
+    @checks.no_pm()
+    async def give(self, ctx, other: str, *items: str):
+        """Give items ({item}x{#}) to a character; ie: rp!ci give Name Pokeballx3"""
+        fitems = []
+        name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+        if name is None:
+            await ctx.send(await _(ctx,
+                                   "You are not currently a character! Use `rp!char assume` to assume a character"))
+            return
+
+        for item in items:
+            split = item.split('x')
+            split, num = "x".join(split[:-1]), abs(int(split[-1]))
+            fitems.append((split, num))
+
+        try:
+            await self.c_takeitem(ctx.guild, name, *fitems)
+            await self.c_giveitem(ctx.guild, other, *fitems)
+            await ctx.send((await _(ctx, "Successfully gave {} {}")).format(other, items))
+        except:
+            await ctx.send(await _(ctx, "You do not have enough to give away!"))
+
+    @charinv.command()
+    @checks.no_pm()
+    async def use(self, ctx, item, number: int = 1):
+        """Use an item. Example `rp!use Banana` or `rp!use Banana 5`
+        To make an item usable, you must put the key `used: <message>` when you are adding additional information for an item
+        """
+        number = abs(number)
+        items = await self.bot.di.get_guild_items(ctx.guild)
+        msg = items.get(item).meta.get('used')
+        if msg is None:
+            await ctx.send(await _(ctx, "This item is not usable!"))
+            return
+        try:
+            await self.bot.di.take_items(ctx.author, (item, number))
+        except ValueError:
+            await ctx.send(await _(ctx, "You do not have that many to use!"))
+            return
+
+        await ctx.send(msg.format(mention=ctx.author.mention,
+                                  name=ctx.author.display_name,
+                                  channel=ctx.channel))
+        await ctx.send((await _(ctx, "Used {} {}s")).format(number, item))
+
+    @charinv.command()
+    @checks.no_pm()
+    async def craft(self, ctx, number: int, *, name: str):
+        """Craft a recipe with a given name from the available server recipes; e.g. rp!craft 5 Apple Pie"""
+        recipes = await ctx.bot.di.get_guild_recipes(ctx.guild)
+        recipe = recipes.get(name)
+        if recipe is None:
+            await ctx.send(await _(ctx, "That recipe doesn't exist!"))
+            return
+
+        uname = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+        if uname is None:
+            await ctx.send(await _(ctx,
+                                   "You are not currently a character! Use `rp!char assume` to assume a character"))
+            return
+
+
+        uinv = await self.c_inventory(ctx.guild, uname)
+        for item, n in recipe[0].items():
+            if uinv.get(item, 0) < n * number:
+                await ctx.send(
+                    (await _(ctx, "You need {} {} to craft this! You only have {}")).format(n * number, item,
+                                                                                            uinv.get(item)))
+                return
+
+        await self.c_takeitem(ctx.guild, uname, *((a, b * number) for a, b in recipe[0].items()))
+        await self.c_giveitem(ctx.guild, uname, *((a, b * number) for a, b in recipe[1].items()))
+
+        await ctx.send((await _(ctx, "Successfully crafted {} {}")).format(number, name))
+
+    async def c_balances(self, guild, name):
+        char = await self.bot.di.get_character(guild, name)
+        if 'money' not in char.ustats:
+            char.ustats['money'] = 0
+        if 'bank' not in char.ustats:
+            char.ustats['bank'] = 0
+
+        return char.ustats['money'], char.ustats['bank']
+
+    @checks.no_pm()
+    @commands.group(aliases=["ceco", "ce", "cbal"], invoke_without_command=True)
+    async def chareco(self, ctx, *, name: str = None):
+        """Check your or another character's balance"""
+        dest = ctx.channel
+        if name is None:
+            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        try:
+            is_mod = checks.role_or_permissions(ctx,
+                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
+
+        hide = gd.get("hideinv", False)
+
+        if not is_mod and hide:
+            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+
+        if name is None:
+            await ctx.send(await _(ctx,
+                                   "You are not currently a character! "
+                                   "Use the command again with the name of the character to check "
+                                   "or use `rp!char assume` to assume a character"))
+
+        if hide:
+            dest = ctx.author
+
+        bal = await self.c_balances(ctx.guild, name)
+        char = await self.bot.di.get_character(ctx.guild, name)
+
+        data = """
+On you:\t\t {} dollars
+In the bank:\t {} dollars in the bank
+Total:\t\t {} dollars
+        """
+
+        embed = discord.Embed(
+            description=(await _(ctx, data)).format(int(bal[0]) if int(bal[0]) == bal[0] else bal[0],
+                                                    int(bal[1]) if int(bal[1]) == bal[1] else bal[1],
+                                                    sum(bal)
+                                                    ),
+            color=randint(0, 0xFFFFFF),
+        )
+
+        embed.set_author(name=name, icon_url=(char.meta.get("icon")))
+        embed.set_thumbnail(url="https://opengameart.org/sites/default/files/styles/medium/public/gold_pile_0.png")
+        await dest.send(embed=embed)
+
+    async def c_setbalance(self, guild, name, amount):
+        char = await self.bot.di.get_character(guild, name)
+        if 'money' not in char.ustats:
+            char.ustats['money'] = 0
+        if 'bank' not in char.ustats:
+            char.ustats['bank'] = 0
+        char.ustats['money'] = amount
+        char.ustats['bank'] = 0
+
+        await self.bot.di.add_character(guild, char)
+
+    @checks.no_pm()
+    @checks.mod_or_permissions()
+    @chareco.command(aliases=["set"])
+    async def setbalance(self, ctx, amount: NumberConverter, *names: str):
+        """Set the balance of the given members to an amount"""
+
+        for name in names:
+            await self.c_setbalance(ctx.guild, name, amount)
+
+        await ctx.send(await _(ctx, "Balances changed"))
+
+    async def c_addeco(self, guild, name, amount):
+        char = await self.bot.di.get_character(guild, name)
+        if 'money' not in char.ustats:
+            char.ustats['money'] = 0
+        if 'bank' not in char.ustats:
+            char.ustats['bank'] = 0
+        char.ustats['money'] += amount
+
+        if char.ustats['money'] < 0:
+            raise ValueError("Cannot take more than user has!")
+
+        await self.bot.di.add_character(guild, char)
+
+    async def c_takeeco(self, guild, name, amount):
+        char = await self.bot.di.get_character(guild, name)
+        if 'money' not in char.ustats:
+            char.ustats['money'] = 0
+        if 'bank' not in char.ustats:
+            char.ustats['bank'] = 0
+        char.ustats['money'] += amount
+        if char.ustats['money'] < 0:
+            char.ustats['bank'] += char.ustats['money']
+            char.ustats['money'] = 0
+
+        if char.ustats['bank'] < 0:
+            raise ValueError("Cannot take more than user has!")
+
+        await self.bot.di.add_character(guild, char)
+
+    @checks.no_pm()
+    @checks.mod_or_permissions()
+    @chareco.command()
+    async def givemoney(self, ctx, amount: NumberConverter, *names: str):
+        """Give the member's money (Moderators)"""
+
+        for name in names:
+            await self.c_addeco(ctx.guild, name, amount)
+
+        await ctx.send(await _(ctx, "Money given"))
+
+    @checks.no_pm()
+    @checks.mod_or_permissions()
+    @chareco.command()
+    async def takemoney(self, ctx, amount: NumberConverter, *names: str):
+        """Take the member's money (Moderators)"""
+        succ = False
+
+        for name in names:
+            try:
+                await self.c_takeeco(ctx.guild, name, amount)
+                succ = True
+            except ValueError:
+                await ctx.send((await _(ctx, "Could not take money from {}, user does not have enough")))
+
+        if succ:
+            await ctx.send(await _(ctx, "Money taken"))
+
+    @checks.no_pm()
+    @chareco.command()
+    async def pay(self, ctx, amount: NumberConverter, other: str):
+        """Pay another user money"""
+        amount = abs(amount)
+
+        name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+        if name is None:
+            await ctx.send(await _(ctx,
+                                   "You are not currently a character! "
+                                   "Use the command again with the name of the character to check "
+                                   "or use `rp!char assume` to assume a character"))
+
+        try:
+            await self.c_addeco(ctx.guild, name, -amount)
+        except ValueError:
+            await ctx.send(await _(ctx, "You cannot afford to pay that!"))
+        await self.c_addeco(ctx.guild, other, amount)
+        await ctx.send((await _(ctx, "Successfully paid {} dollars to {}")).format(amount, other))

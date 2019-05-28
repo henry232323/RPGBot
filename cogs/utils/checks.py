@@ -35,21 +35,29 @@ def role_or_permissions(ctx, check, **perms):
     if check_permissions(ctx, perms):
         return True
 
+    if callable(check):
+        fcheck = check
+    else:
+        fcheck = lambda r: r.name in check
+
     ch = ctx.message.channel
     author = ctx.message.author
     if isinstance(ch, (discord.DMChannel, discord.GroupChannel)):
         return False  # can't have roles in PMs
 
-    role = discord.utils.find(check, author.roles)
+    role = discord.utils.find(fcheck, author.roles)
     if role is None:
-        raise commands.CommandError(
-            "You need a special role to do this! (A discord role with the name \"Bot Mod\" or \"Bot Admin\")")
+        if callable(check):
+            raise commands.CommandError("You do not have permission to use this command!")
+        else:
+            raise commands.CommandError(
+                "You need a special role to do this! ({})".format(", ".join(f"'{n}'" for n in check)))
     return True
 
 
 def mod_or_inv():
     def predicate(ctx):
-        return role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Inventory', 'Bot Moderator'),
+        return role_or_permissions(ctx,('Bot Mod', 'Bot Admin', 'Bot Inventory', 'Bot Moderator'),
                                    manage_server=True)
 
     return commands.check(predicate)
@@ -61,7 +69,7 @@ def modpredicate(ctx):
 
 def mod_or_permissions(**perms):
     def predicate(ctx):
-        return role_or_permissions(ctx, lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+        return role_or_permissions(ctx, ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
                                    manage_server=True, **perms)
 
     return commands.check(predicate)
@@ -69,7 +77,7 @@ def mod_or_permissions(**perms):
 
 def admin_or_permissions(**perms):
     def predicate(ctx):
-        return role_or_permissions(ctx, lambda r: r.name == 'Bot Admin', manage_server=True, **perms)
+        return role_or_permissions(ctx, ('Bot Admin',), manage_server=True, **perms)
 
     return commands.check(predicate)
 
