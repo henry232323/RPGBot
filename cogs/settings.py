@@ -52,6 +52,8 @@ class Settings(commands.Cog):
         embed.add_field(name=await _(ctx, "Currency"), value=f"{settings.get('currency', 'dollars')}")
         embed.add_field(name=await _(ctx, "Language"), value=f"{settings.get('language', 'en')}")
         embed.add_field(name=await _(ctx, "Experience Enabled"), value=f"{settings.get('exp', True)}")
+        embed.add_field(name=await _(ctx, "Prefix"), value=f"{settings.get('prefix', 'rp!')}")
+        embed.add_field(name=await _(ctx, "Hide Inventories"), value=f"{settings.get('hideinv', False)}")
         time = settings.get('msgdel', 0)
         embed.add_field(name=await _(ctx, "Message Auto Delete Time"), value=f"{time if time is not 0 else 'Never'}")
         await ctx.send(embed=embed)
@@ -301,7 +303,7 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.mod_or_permissions()
     async def deleteafter(self, ctx, time: int):
-        """Set a time for messages to be automatically deleted after running. `rp!deleteafter 0` to make messages never be deleted"""
+        """Set a time for messages to be automatically deleted after running in seconds. `rp!deleteafter 0` to make messages never be deleted"""
         await self.bot.di.set_delete_time(ctx.guild, time)
         await ctx.send(await _(ctx, "Updated settings"))
 
@@ -338,3 +340,14 @@ class Settings(commands.Cog):
     async def prefix(self, ctx):
         prefix = await ctx.bot.db.guild_item(ctx.guild, "prefix")
         await ctx.send(prefix)
+
+    @commands.command()
+    @checks.no_pm()
+    @checks.admin_or_permissions()
+    async def hideinv(self, ctx, value: bool):
+        """Set whether or not user inventories are hidden. If enabled, inventories will be sent via DMs."""
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        gd["hideinv"] = value
+        await self.bot.db.update_guild_data(ctx.guild, gd)
+        await ctx.send(await _(ctx, "Updated inventory setting"))
+

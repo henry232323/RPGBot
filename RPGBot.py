@@ -169,7 +169,7 @@ class Bot(commands.AutoShardedBot):
                         await msg.delete()
                         url = (await self.di.get_character(ctx.guild, char))[5].get("icon")
                         await hook.send(content, avatar_url=url,
-                                        files=files, embeds=embeds)
+                                        files=dfiles, embeds=embeds)
 
     async def update_stats(self):
         url = "https://bots.discord.pw/api/bots/{}/stats".format(self.user.id)
@@ -237,12 +237,17 @@ class Bot(commands.AutoShardedBot):
     async def on_command_error(self, ctx, exception):
         self.stats.increment("RPGBot.errors", tags=["RPGBot:errors"], host="scw-8112e8")
         logging.info(f"Exception in {ctx.command} {ctx.guild}:{ctx.channel} {exception}")
-        if isinstance(exception, commands.MissingRequiredArgument):
-            await ctx.send(f"```{exception}```")
-        elif isinstance(exception, TimeoutError):
-            await ctx.send(await _(ctx, "This operation ran out of time! Please try again"))
-        else:
-            await ctx.send(f"`The command generated the following exception: {exception}. If this is unexpected, please report this to the bot creator`")
+        try:
+            if isinstance(exception, commands.MissingRequiredArgument):
+                await ctx.send(f"```{exception}```")
+            elif isinstance(exception, TimeoutError):
+                await ctx.send(await _(ctx, "This operation ran out of time! Please try again"))
+            elif isinstance(exception, discord.Forbidden):
+                await ctx.send(await _(ctx, "Error: This command requires the bot to have permission to send links."))
+            else:
+                await ctx.send(f"`{exception}. If this is unexpected, please report this to the bot creator`")
+        except discord.Forbidden:
+            pass
 
     async def on_guild_join(self, guild):
         if guild.id in self.blacklist:

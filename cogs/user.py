@@ -42,12 +42,13 @@ class User(commands.Cog):
         if user is None:
             user = ctx.author
 
-        embed = discord.Embed(color=randint(0, 0xFFFFFF), )
+        embed = discord.Embed(color=randint(0, 0xFFFFFF))
         embed.set_author(name=user.display_name, icon_url=user.avatar_url)
         embed.set_thumbnail(url=user.avatar_url)
 
         ud = await self.bot.db.get_user_data(user)
         gd = await self.bot.db.get_guild_data(ctx.guild)
+        hide = gd.get("hideinv", False)
 
         pet = [f"{x[0]}: **{x[1]}**" for x in ud["box"]]
         pl = len(pet)
@@ -56,25 +57,33 @@ class User(commands.Cog):
             pet.append((await _(ctx, "\nand {} more...")).format(pl - 20))
         boxitems = "\n".join(pet)
 
-        imap = [f"{x[0]} x{x[1]}" for x in ud["items"].items()]
-        il = len(imap)
-        if il > 20:
-            imap = imap[:20]
-            imap.append((await _(ctx, "\nand {} more...")).format(il - 20))
-        invitems = "\n".join(imap) or await _(ctx, "No Items")
+        characters = [x for x, y in gd["characters"].items() if y[1] == user.id]
+        if characters:
+            embed.add_field(name=await _(ctx, "Characters"), value="\n".join(characters))
 
-        embed.add_field(name=await _(ctx, "Balance"), value=f"{ud['money']} {gd.get('currency', 'dollars')}")
-        if user == ctx.author:
-            embed.add_field(name=await _(ctx, "Bank"), value=f"{ud.get('bank', 0)} {gd.get('currency', 'dollars')}")
-            embed.add_field(name=await _(ctx, "Total Money"), value=f"{ud.get('bank', 0) + ud['money']} {gd.get('currency', 'dollars')}")
+        if not hide:
+            imap = [f"{x[0]} x{x[1]}" for x in ud["items"].items()]
+            il = len(imap)
+            if il > 20:
+                imap = imap[:20]
+                imap.append((await _(ctx, "\nand {} more...")).format(il - 20))
+            invitems = "\n".join(imap) or await _(ctx, "No Items")
+
+            embed.add_field(name=await _(ctx, "Items"), value=invitems)
+            embed.add_field(name=await _(ctx, "Balance"), value=f"{ud['money']} {gd.get('currency', 'dollars')}")
+            if user == ctx.author:
+                embed.add_field(name=await _(ctx, "Bank"), value=f"{ud.get('bank', 0)} {gd.get('currency', 'dollars')}")
+                embed.add_field(name=await _(ctx, "Total Money"), value=f"{ud.get('bank', 0) + ud['money']} {gd.get('currency', 'dollars')}")
+
         embed.add_field(name=await _(ctx, "Guild"), value=ud.get("guild", await _(ctx, "None")))
-        embed.add_field(name=await _(ctx, "Items"), value=invitems)
         embed.add_field(name=await _(ctx, "Box"), value=boxitems) if boxitems else None
-        embed.add_field(name=await _(ctx, "Experience"),
-                        value=(await _(ctx, "Level: {}\nExperience: {}/{}")).format(ud.get('level', 1),
-                                                                                    ud.get('exp', 0),
-                                                                                    self.bot.get_exp(
-                                                                                        ud.get('level', 1))))
+        if gd.get('exp', True):
+            embed.add_field(name=await _(ctx, "Experience"),
+                            value=(await _(ctx, "Level: {}\nExperience: {}/{}")).format(ud.get('level', 1),
+                                                                                        ud.get('exp', 0),
+                                                                                        self.bot.get_exp(
+                                                                                            ud.get('level', 1))))
+
 
         await ctx.send(embed=embed)
 
