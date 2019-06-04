@@ -326,6 +326,7 @@ prefixes = ['rp!', 'pb!', '<@305177429612298242> ', 'Rp!'] if "debug" not in sys
 invlink = "https://discordapp.com/oauth2/authorize?client_id=305177429612298242&scope=bot&permissions=322625"
 servinv = "https://discord.gg/UYJb8fQ"
 sourcelink = "https://github.com/henry232323/RPGBot"
+tutoriallink = "https://github.com/henry232323/RPGBot/blob/master/tutorial.md"
 description = f"A Bot for assisting with RPG made by Henry#6174," \
               " with a working inventory, market and economy," \
               " team setups and characters as well. Each user has a server unique inventory and balance." \
@@ -334,10 +335,9 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
               "Server administrators may add and give items to the server and its users.```\n" \
               f"**Add to your server**: <{invlink}>\n" \
               f"**Support Server**: {servinv}\n" \
-              f"**Source**: <{sourcelink}>\n" \
-              "**Help**: <https://github.com/henry232323/RPGBot/blob/master/README.md>\n" \
-              "**Patreon**: <https://www.patreon.com/henry232323>\n" \
-              "**Buy Me a Coffee**: <https://ko-fi.com/henrys>\n```"
+              f"**Command List**: <{sourcelink}>\n" \
+              f"**Tutorial**: <{tutoriallink}>\n" \
+              "**Support Me on Patreon**: <https://www.patreon.com/henry232323>\n"
 
 with open("resources/auth") as af:
     _auth = json.loads(af.read())

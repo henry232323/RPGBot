@@ -27,7 +27,7 @@ from random import randint
 import asyncio
 
 from .utils import checks
-from .utils.data import Character, MemberConverter, NumberConverter, IntConverter, chain, chunkn
+from .utils.data import Character, NumberConverter, IntConverter, chunkn
 from .utils.translation import _
 
 
@@ -79,9 +79,8 @@ class Characters(commands.Cog):
     @commands.group(invoke_without_command=True, aliases=["c", "char", "personnage"])
     async def character(self, ctx, *, name: str):
         """Get info on a character"""
-        try:
-            char = (await self.bot.di.get_guild_characters(ctx.guild))[name]
-        except KeyError:
+        char = await self.bot.di.get_character(ctx.guild, name)
+        if char is None:
             await ctx.send((await _(ctx, "Character {} does not exist!")).format(name))
             return
 
@@ -133,8 +132,10 @@ class Characters(commands.Cog):
                 await ctx.send(await _(ctx, "Only Bot Mods/Bot Admins may make characters for other players!"))
                 return
 
-        characters = await self.bot.di.get_guild_characters(ctx.guild)
-        if name in characters:
+        data = await self.bot.db.get_guild_data(ctx.guild)
+        characters = await ctx.bot.di.get_character(ctx.guild, name)
+        aliases = data["caliases"]
+        if name in characters or name in aliases:
             await ctx.send(await _(ctx, "A character with this name already exists!"))
             return
 
@@ -197,8 +198,7 @@ class Characters(commands.Cog):
     @character.command(aliases=["remove", "supprimer"])
     async def delete(self, ctx, *, name: str):
         """Delete a character of the given name (you must be the owner)"""
-        characters = await self.bot.di.get_guild_characters(ctx.guild)
-        character = characters.get(name)
+        character = await self.bot.di.get_character(ctx.guild, name)
         if character is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
@@ -223,7 +223,7 @@ class Characters(commands.Cog):
 
     @checks.no_pm()
     @character.command()
-    async def edit(self, ctx, character: str, attribute: str, *, value: str):
+    async def edit(self, ctx, name: str, attribute: str, *, value: str):
         """Edit a character
         Usage: rp!character edit John description John likes bananas!
         Valid values for the [item] (second argument):
@@ -233,8 +233,7 @@ class Characters(commands.Cog):
             meta: used like the additional info section when creating; can be used to edit/remove all attributes
         Anything else will edit single attributes in the additional info section
         """
-        chars = await self.bot.di.get_guild_characters(ctx.guild)
-        character = chars.get(character)
+        character = await self.bot.get_character(ctx.guild, name)
         if character is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
@@ -287,13 +286,12 @@ class Characters(commands.Cog):
 
     @checks.no_pm()
     @character.command()
-    async def remattr(self, ctx, character: str, *, attribute: str):
+    async def remattr(self, ctx, name: str, *, attribute: str):
         """Delete a character attribute
         Usage: rp!character remattr John hair color
         """
         attribute = attribute
-        chars = await self.bot.di.get_guild_characters(ctx.guild)
-        character = chars.get(character)
+        character = await self.bot.di.get_character(ctx.guild, name)
         if character is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
@@ -316,7 +314,7 @@ class Characters(commands.Cog):
         await self.bot.di.add_character(ctx.guild, Character(*character))
         await ctx.send(await _(ctx, "Removed attribute!"))
 
-    async def unassume(self, author, character, wait=3600):
+    async def unassume(self, author, character, wait=60 * 60 * 24):
         await asyncio.sleep(wait)
         if self.bot.in_character[author.guild.id][author.id] != character:
             return
@@ -331,8 +329,7 @@ class Characters(commands.Cog):
     @character.command()
     async def assume(self, ctx, name: str):
         """Assume a character. You will send messages with this character's icon and name. Necessary for some character inventory and economy commands"""
-        chars = await self.bot.di.get_guild_characters(ctx.guild)
-        character = chars.get(name)
+        character = await self.bot.di.get_character(ctx.guild, name)
         if character is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
@@ -709,3 +706,23 @@ Total:\t\t {} dollars
             await ctx.send(await _(ctx, "You cannot afford to pay that!"))
         await self.c_addeco(ctx.guild, other, amount)
         await ctx.send((await _(ctx, "Successfully paid {} dollars to {}")).format(amount, other))
+
+    @character.command()
+    @checks.no_pm()
+    async def alias(self, ctx, alias_name: str, *, character_name: str):
+        data = await self.bot.db.get_guild_data(ctx.guild)
+        if "caliases" not in data:
+            data["caliases"] = {}
+
+        if alias_name in data["characters"]:
+            await ctx.send(await _(ctx, "A character with this name already exists!"))
+            return
+
+        if alias_name in data["caliases"]:
+            await ctx.send(await _(ctx, "An alias with this name already exists!"))
+            return
+
+        data["caliases"][alias_name] = character_name
+
+        await ctx.bot.db.update_guild_data(ctx.guild, data)
+        await ctx.send((await _(ctx, "Created a new alias {0} for character {1}")).format(alias_name, character_name))

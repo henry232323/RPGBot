@@ -11,8 +11,8 @@ Made by Henry#6174
 
 ### Translators
 #### French
-- @wRadion#5043 https://github.com/wRadion
-- Me (@Henry#6174)
+- [@wRadion#5043](https://discordapp.com/channels/@me/98073537113247744) https://github.com/wRadion
+- [@Henry#6174](https://discordapp.com/channels/@me/122739797646245899) (Me) https://github.com/henry232323
 - https://github.com/youqad
 - https://github.com/Philip-Nicolas
 #### Russian
@@ -20,17 +20,17 @@ Made by Henry#6174
 - https://github.com/Atmyre
 #### German
 - https://github.com/LW001
-- @Potzerus#3950 https://github.com/Potzerus
+- [@Potzerus#3950](https://discordapp.com/channels/@me/125660719323676672) https://github.com/Potzerus
 #### Spanish
 - https://github.com/Luistorch
 - https://github.com/Looker845
 
 ### Contributors
-- @terabix#1770 (141211057485119488)
+- [@terabix#1770](https://discordapp.com/channels/@me/141211057485119488)
 
 ### Art Credits
-All bot icons used were made by @MOSE-FR#5388 (249894348567740416)
-Also thanks to @Volgrim Evrazasvae#5252 (335604493192396801)
+- All bot icons used were made by [@MOSE-FR#5388](https://discordapp.com/channels/@me/249894348567740416)
+- Also thanks to [@Volgrim Evrazasvae#5252](https://discordapp.com/channels/@me/335604493192396801)
 
 
 

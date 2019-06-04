@@ -470,7 +470,7 @@ Total:\t\t {} dollars
     async def lotto(self, ctx):
         """List the currently running lottos."""
         if ctx.guild.id in self.bot.lotteries:
-            embed = discord.Embed(color=randint(0, 0xFFFFFF), )
+            embed = discord.Embed(color=randint(0, 0xFFFFFF))
             embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
             embed.set_thumbnail(
                 url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/196b9d18843737.562d0472d523f.png"
@@ -511,7 +511,7 @@ Total:\t\t {} dollars
         self.bot.lotteries[ctx.guild.id][name] = current
         await ctx.send(await _(ctx, "Lottery created!"))
         await asyncio.sleep(time)
-        if current["players"]:
+        if name in self.bot.lotteries[ctx.guild.id]:
             winner = discord.utils.get(ctx.guild.members, id=choice(current["players"]))
             await self.bot.di.add_eco(winner, current["jackpot"])
             await ctx.send(
@@ -678,7 +678,8 @@ Total:\t\t {} dollars
     @checks.no_pm()
     @shop.command(name="sell")
     async def _sell(self, ctx, item: str, amount: IntConverter):
-        """Sell an item to the shop"""
+        """Sell an item to the shop
+        Example: rp!shop sell Apple 5"""
         amount = abs(amount)
         shop = await self.bot.di.get_guild_shop(ctx.guild)
         iobj = shop[item]
@@ -698,7 +699,9 @@ Total:\t\t {} dollars
     @checks.no_pm()
     @commands.command()
     async def startbid(self, ctx, item: str, amount: NumberConverter, startbid: NumberConverter):
-        """Start a bid for an item"""
+        """Start a bid for an item
+        Example: `rp!startbid Banana 5 40` This will start a bid for 5 Bananas, starting at $40"""
+
         if ctx.channel.id in self.bids:
             await ctx.send(await _(ctx, "This channel already has a bid going!"))
             return

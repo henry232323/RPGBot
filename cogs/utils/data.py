@@ -560,7 +560,10 @@ class DataInteraction(object):
         return {y: Character(*x) for y, x in gd["characters"].items()}
 
     async def get_character(self, guild, name):
-        chrs = await self.get_guild_characters(guild)
+        data = await self.db.get_guild_data(guild)
+        chrs = {y: Character(*x) for y, x in data["characters"].items()}
+        if name in data["caliases"]:
+            name = data["caliases"][name]
         return chrs.get(name)
 
     async def get_map(self, guild, name):
