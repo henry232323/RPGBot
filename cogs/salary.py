@@ -106,7 +106,7 @@ class Salary(commands.Cog):
     @checks.no_pm()
     async def salary(self, ctx, role: discord.Role):
         """Get a role's salary. Also includes salary subcommands"""
-        salary = (await self.bot.di.get_salaries(ctx.guild)).get(role.id, None)
+        salary = (await self.bot.di.get_salaries(ctx.guild)).get(str(role.id), None)
         if salary is None:
             await ctx.send(await _(ctx, "That role does not have a salary!"))
         else:

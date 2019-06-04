@@ -249,8 +249,8 @@ class Misc(commands.Cog):
         await ctx.send(await _(ctx, "Keeping the bots running takes money, "
                                     "if several people would buy me a coffee each month, "
                                     "I wouldn't have to worry about it coming out of my pocket. "
-                                    "If you'd like, you can donate to me here: https://ko-fi.com/henrys "
-                                    "Or subscribe to my Patreon here: https://www.patreon.com/henry232323"))
+                                    "If you'd like, you can subscribe to my Patreon here: https://www.patreon.com/henry232323, "
+                                    "or try !donate in the support server to support me through the Donate Bot"))
 
     @commands.command()
     async def feedback(self, ctx, *, feedback):
