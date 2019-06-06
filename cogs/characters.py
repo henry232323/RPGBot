@@ -78,7 +78,7 @@ class Characters(commands.Cog):
     @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=["c", "char", "personnage"])
     async def character(self, ctx, *, name: str):
-        """Get info on a character"""
+        """Get info on a character. Example: rp!c Hank"""
         char = await self.bot.di.get_character(ctx.guild, name)
         if char is None:
             await ctx.send((await _(ctx, "Character {} does not exist!")).format(name))
@@ -118,7 +118,23 @@ class Characters(commands.Cog):
     @checks.no_pm()
     @character.command(aliases=["new", "nouveau", "creer"])
     async def create(self, ctx, name: str, user: discord.Member = None):
-        """Create a new character"""
+        """Create a new character
+        Example:
+            Henry:      rp!character create Bobby Hill
+            RPGBot:     Member "Hill" not found. If this is unexpected, please report this to the bot creator
+            Henry:      rp!character create "Bobby Hill"
+            RPGBot:     Describe the character (Relevant character sheet) (Say done when you're done describing)
+            Henry:      He's a little round, but he's a good boy
+            Henry:      done
+            RPGBot:     Any additional info? (Add a character image using the image keyword or use the icon keyword to give the character an icon. Formats use regular syntax e.g. image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin (Separate keys with commas or newlines)
+            Henry:
+                    Hair Color: Blonde
+                    Body Type: Round
+                    Father: Hank Hill
+                    image: https://i.ytimg.com/vi/mPCEODZSotE/maxresdefault.jpg
+                    icon: https://vignette.wikia.nocookie.net/kingofthehill/images/c/c7/Bobby.png/revision/latest?cb=20150524012917
+
+            RPGBot      Character created!"""
         if user is None or user == ctx.author:
             user = ctx.author
         else:
@@ -133,7 +149,9 @@ class Characters(commands.Cog):
                 return
 
         data = await self.bot.db.get_guild_data(ctx.guild)
-        characters = await ctx.bot.di.get_character(ctx.guild, name)
+        characters = await ctx.bot.di.get_guild_characters(ctx.guild)
+        if "caliases" not in data:
+            data["caliases"] = {}
         aliases = data["caliases"]
         if name in characters or name in aliases:
             await ctx.send(await _(ctx, "A character with this name already exists!"))
@@ -197,7 +215,7 @@ class Characters(commands.Cog):
     @checks.no_pm()
     @character.command(aliases=["remove", "supprimer"])
     async def delete(self, ctx, *, name: str):
-        """Delete a character of the given name (you must be the owner)"""
+        """Delete a character of the given name (you must be the owner or be a Bot Mod / Bot Admin)"""
         character = await self.bot.di.get_character(ctx.guild, name)
         if character is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
@@ -232,8 +250,10 @@ class Characters(commands.Cog):
             level: an integer representing the character's level
             meta: used like the additional info section when creating; can be used to edit/remove all attributes
         Anything else will edit single attributes in the additional info section
+
+        Bot Moderator or Bot Admin are required to edit other people's characters
         """
-        character = await self.bot.get_character(ctx.guild, name)
+        character = await self.bot.di.get_character(ctx.guild, name)
         if character is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return

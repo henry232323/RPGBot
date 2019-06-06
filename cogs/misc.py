@@ -250,7 +250,7 @@ class Misc(commands.Cog):
                                     "if several people would buy me a coffee each month, "
                                     "I wouldn't have to worry about it coming out of my pocket. "
                                     "If you'd like, you can subscribe to my Patreon here: https://www.patreon.com/henry232323, "
-                                    "or try !donate in the support server to support me through the Donate Bot"))
+                                    "or try `.donate` in the support server to support me through the Donate Bot"))
 
     @commands.command()
     async def feedback(self, ctx, *, feedback):

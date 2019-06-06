@@ -562,6 +562,8 @@ class DataInteraction(object):
     async def get_character(self, guild, name):
         data = await self.db.get_guild_data(guild)
         chrs = {y: Character(*x) for y, x in data["characters"].items()}
+        if "caliases" not in data:
+            data["caliases"] = {}
         if name in data["caliases"]:
             name = data["caliases"][name]
         return chrs.get(name)
