@@ -548,6 +548,109 @@ class Groups(commands.Cog):
 
     @guild.command()
     @checks.no_pm()
+    @checks.mod_or_permissions()
+    async def give(self, ctx, name: str, *items: str):
+        """Put items into the guild's storage, uses {item}x{#} notation. Does not take from inventory
+        Example: rp!guild give MyGuild Bananax5 Orangex10
+        Requires Bot Moderator or Bot Admin"""
+
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+        guild = guilds.get(name)
+
+        if guild is None:
+            await ctx.send(await _(ctx, "That guild is invalid!"))
+            return
+
+        fitems = []
+        for item in items:
+            split = item.split('x')
+            split, num = "x".join(split[:-1]), abs(int(split[-1]))
+            fitems.append((split, num))
+
+        guild.items = Counter(guild.items)
+        guild.items.update(dict(fitems))
+
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send(await _(ctx, "Successfully deposited items!"))
+
+    @guild.command()
+    @checks.no_pm()
+    @checks.mod_or_permissions()
+    async def take(self, ctx, name: str, *items: str):
+        """Take items from the guild. Does not take from inventory
+        Example: rp!guild take MyGuild Bananax5 Orangex10
+        Requires Bot Moderator or Bot Admin"""
+
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+        guild = guilds.get(name)
+
+        if guild is None:
+            await ctx.send(await _(ctx, "That guild is invalid!"))
+            return
+
+        fitems = []
+        for item in items:
+            split = item.split('x')
+            split, num = "x".join(split[:-1]), abs(int(split[-1]))
+            fitems.append((split, num))
+
+        guild.items = Counter(guild.items)
+        guild.items.subtract(dict(fitems))
+
+        for item, value in list(guild.items.items()):
+            if value < 0:
+                await ctx.send(await _(ctx, "The guild does not have enough items to take!"))
+                return
+            if value == 0:
+                del guild.items[item]
+
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send(await _(ctx, "Successfully withdrew items"))
+
+    @guild.command()
+    @checks.no_pm()
+    async def givemoney(self, ctx, guild_name: str, amount: NumberConverter):
+        """Deposit an amount of money into the bank of a guild. Does not take from user's bank.
+        Example: rp!guild givemoney MyGuild 500
+        Requires Bot Moderator or Bot Admin"""
+        amount = abs(amount)
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+
+        guild = guilds.get(guild_name)
+
+        if guild is None:
+            await ctx.send(await _(ctx, "That guild is invalid!"))
+            return
+
+
+        guild.bank += amount
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send(
+            (await _(ctx, "Successfully deposited {} dollars into {}'s bank")).format(amount, guild_name))
+
+    @guild.command()
+    @checks.no_pm()
+    async def takemoney(self, ctx, guild_name: str, amount: NumberConverter):
+        """Take money from the guild bank.
+        Example: rp!guild takemoney MyGuild 500
+        Requires Bot Moderator or Bot Admin"""
+        amount = abs(amount)
+        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+        guild = guilds.get(guild_name)
+        if guild is None:
+            await ctx.send(await _(ctx, "That guild is invalid!"))
+            return
+
+        guild.bank -= amount
+        if guild.bank < 0:
+            await ctx.send(await _(ctx, "Cannot withdraw more than the guild has!"))
+            return
+
+        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+        await ctx.send((await _(ctx, "Successfully withdrew {} dollars")).format(amount))
+
+    @guild.command()
+    @checks.no_pm()
     async def deposititems(self, ctx, *items: str):
         """Deposit items into the guild's storage, uses {item}x{#} notation
         Example: rp!guild deposititems Bananax5 Orangex10

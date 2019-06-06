@@ -122,6 +122,8 @@ class Salary(commands.Cog):
          For example
          `rp!salary create @Bot Creator 500` Will create a salary of $500 for a user daily
          `rp!salary create @Bot Creator Bananax3 Orangex4` Will create a salary of 3 Bananas and 4 Oranges for a user daily
+
+        Requires Bot Moderator or Bot Admin
          """
         sals = await self.bot.di.get_salaries(ctx.guild)
         if len(items_or_number) == 1 and isinstance(items_or_number[0], int):
@@ -135,7 +137,8 @@ class Salary(commands.Cog):
     @checks.no_pm()
     @checks.mod_or_permissions()
     async def delete(self, ctx, *, role: discord.Role):
-        """Remove a created salary"""
+        """Remove a created salary
+        Requires Bot Moderator or Bot Admin"""
         sals = await self.bot.di.get_salaries(ctx.guild)
         if str(role.id) in sals:
             del sals[str(role.id)]
@@ -148,7 +151,8 @@ class Salary(commands.Cog):
     @checks.no_pm()
     @checks.mod_or_permissions()
     async def payout(self, ctx, role: discord.Role = None):
-        """Manually pay out salaries for a role or all roles"""
+        """Manually pay out salaries for a role or all roles
+        Requires Bot Moderator or Bot Admin"""
         dels = []
         roles = await self.bot.di.get_salaries(ctx.guild)
         try:
@@ -191,6 +195,7 @@ class Salary(commands.Cog):
     @salary.command()
     @checks.no_pm()
     async def collect(self, ctx: commands.Context):
+        """Collect your salary for all available roles"""
         salaries = await self.bot.di.get_salaries(ctx.guild)
         spayments = await self.bot.di.get_salary_ctime(ctx.author)
         ctime = time.time()

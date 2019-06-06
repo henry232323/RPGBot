@@ -133,6 +133,8 @@ class Settings(commands.Cog):
         RPGBot: Additional information? (Attributes formatted in a list i.e color: 400, value: 200 Set an image for this item with the image key i.e. image: http://image.com/image.png Set this item as usable by adding used key i.e. used: You open the jar and the bird flies away
         Henry: used: You used this item!, image: http://www.sourcecertain.com/img/Example.png
         RPGBot:  Item successfully created
+
+        Requires Bot Moderator or Bot Admin
             """
         try:
             item = dict()
@@ -184,7 +186,8 @@ class Settings(commands.Cog):
     @settings.command(aliases=["deleteitem"])
     @checks.no_pm()
     async def removeitem(self, ctx, *, name: str):
-        """Remove a custom item"""
+        """Remove a custom item
+        Requires Bot Moderator or Bot Admin"""
         try:
             await self.bot.di.remove_item(ctx.guild, name)
             await ctx.send((await _(ctx, "Successfully removed {}")).format(name))
@@ -195,7 +198,8 @@ class Settings(commands.Cog):
     @checks.no_pm()
     @commands.command()
     async def setstart(self, ctx, amount: NumberConverter):
-        """Set the money start amount for a guild"""
+        """Set the money start amount for a guild
+        Requires Bot Moderator or Bot Admin"""
         await self.bot.di.set_start(ctx.guild, amount)
         await ctx.send((await _(ctx, "Starting amount changed to {} dollars")).format(amount))
 
@@ -203,7 +207,8 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.admin_or_permissions()
     async def language(self, ctx, language: str = None):
-        """Set the guild language or check the language"""
+        """Set the guild language or check the language
+        Requires Bot Moderator or Bot Admin"""
         if language is None:
             lang = await self.bot.di.get_language(ctx.guild)
             await ctx.send((await _(ctx, "The guild language is set to {}")).format(lang))
@@ -218,7 +223,8 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.admin_or_permissions()
     async def currency(self, ctx, currency: str):
-        """Set the guild currency"""
+        """Set the guild currency
+        Requires Bot Moderator or Bot Admin"""
         await self.bot.di.set_currency(ctx.guild, currency)
         await ctx.send(await _(ctx, "Currency successfully set!"))
 
@@ -226,7 +232,8 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.admin_or_permissions()
     async def loaddnd(self, ctx):
-        """This command will pre-load all D&D items and make them available to give"""
+        """This command will pre-load all D&D items and make them available to give
+        Requires Bot Moderator or Bot Admin"""
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.dnditems.values()))
         await ctx.send(await _(ctx, "Successfully added all D&D items!"))
 
@@ -234,7 +241,8 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.admin_or_permissions()
     async def loadstarwars(self, ctx):
-        """This command will pre-load all D&D items and make them available to give"""
+        """This command will pre-load all D&D items and make them available to give
+        Requires Bot Moderator or Bot Admin"""
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.switems.values()))
         await ctx.send(await _(ctx, "Successfully added all Star Wars items!"))
 
@@ -242,7 +250,8 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.admin_or_permissions()
     async def loadstarwarsshop(self, ctx):
-        """This command will pre-load all Star Wars items and make them available in shop"""
+        """This command will pre-load all Star Wars items and make them available in shop
+        Requires Bot Moderator or Bot Admin"""
         items = {}
         for item, value in self.bot.switems.items():
             try:
@@ -257,7 +266,8 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.admin_or_permissions()
     async def loaddndshop(self, ctx):
-        """This command will pre-load all D&D items and make them available in shop"""
+        """This command will pre-load all D&D items and make them available in shop
+        Requires Bot Moderator or Bot Admin"""
         items = {}
         for item, value in self.bot.dnditems.items():
             try:
@@ -272,7 +282,8 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.admin_or_permissions()
     async def loadmagicshop(self, ctx):
-        """This command will pre-load all D&D Magic items and make them available in shop"""
+        """This command will pre-load all D&D Magic items and make them available in shop
+        Requires Bot Moderator or Bot Admin"""
         items = {}
         for item, value in self.bot.dndmagic.items():
             try:
@@ -287,7 +298,8 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.admin_or_permissions()
     async def loaddndmagic(self, ctx):
-        """This command will pre-load all D&D Magic items and make them available to give"""
+        """This command will pre-load all D&D Magic items and make them available to give
+        Requires Bot Moderator or Bot Admin"""
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.dndmagic.values()))
         await ctx.send(await _(ctx, "Successfully added all D&D items!"))
 
@@ -295,7 +307,8 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.admin_or_permissions()
     async def loadpokemon(self, ctx):
-        """This command will pre-load all Pokemon items and make them available to give"""
+        """This command will pre-load all Pokemon items and make them available to give
+        Requires Bot Moderator or Bot Admin"""
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.pokemonitems.values()))
         await ctx.send(await _(ctx, "Successfully added all Pokemon items!"))
 
@@ -303,7 +316,8 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.mod_or_permissions()
     async def deleteafter(self, ctx, time: int):
-        """Set a time for messages to be automatically deleted after running in seconds. `rp!deleteafter 0` to make messages never be deleted"""
+        """Set a time for messages to be automatically deleted after running in seconds. `rp!deleteafter 0` to make messages never be deleted
+        Requires Bot Moderator or Bot Admin"""
         await self.bot.di.set_delete_time(ctx.guild, time)
         await ctx.send(await _(ctx, "Updated settings"))
 
@@ -311,7 +325,8 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.mod_or_permissions()
     async def unload(self, ctx, name: str):
-        """Unload Pokemon, D&D, D&D Magic, or Star Wars items. `rp!unload {name}` where name is either dnd, dndmagic, pokemon or starwars"""
+        """Unload Pokemon, D&D, D&D Magic, or Star Wars items. `rp!unload {name}` where name is either dnd, dndmagic, pokemon or starwars
+        Requires Bot Moderator or Bot Admin"""
         if name == "dnd":
             items = self.bot.dnditems
         elif name == "dndmagic":
@@ -332,12 +347,20 @@ class Settings(commands.Cog):
     @checks.no_pm()
     @checks.admin_or_permissions()
     async def setprefix(self, ctx, value: str):
+        """Set the server's custom prefix. The default prefix will continue to work.
+        Example:
+            rp!setprefix ! --> !setprefix rp!
+
+        Requires Bot Moderator or Bot Admin"""
         await self.bot.di.set_prefix(ctx.guild, value)
         await ctx.send(await _(ctx, "Updated server prefix"))
 
     @commands.command()
     @checks.no_pm()
     async def prefix(self, ctx):
+        """View the current custom prefix for the server
+
+        Requires Bot Moderator or Bot Admin"""
         prefix = await ctx.bot.db.guild_item(ctx.guild, "prefix")
         await ctx.send(prefix)
 
@@ -345,7 +368,8 @@ class Settings(commands.Cog):
     @checks.no_pm()
     @checks.admin_or_permissions()
     async def hideinv(self, ctx, value: bool):
-        """Set whether or not user inventories are hidden. If enabled, inventories will be sent via DMs."""
+        """Set whether or not user inventories are hidden. If enabled, inventories will be sent via DMs.
+        Requires Bot Moderator or Bot Admin"""
         gd = await self.bot.db.get_guild_data(ctx.guild)
         gd["hideinv"] = value
         await self.bot.db.update_guild_data(ctx.guild, gd)
