@@ -97,7 +97,7 @@ class Bot(commands.AutoShardedBot):
         self.di: data.DataInteraction = data.DataInteraction(self)
         self.default_udata = data.default_user
         self.default_servdata = data.default_server
-        self.rnd = "1234567890abcdefghijklmnopqrstuvwxyz"
+        self.rnd = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
         with open("resources/patrons.json") as pj:
             self.patrons = {int(k): v for k, v in json.loads(pj.read()).items()}

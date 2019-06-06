@@ -1,7 +1,7 @@
 A RPG bot, with a working inventory, market and economy, team setups and characters aswell. Each user has a server unique inventory and balance. Players may list items on a market for other users to buy. Users may create characters with teams from Pet in their storage box. Server administrators may add and give items to the server and its users.
 Pet boxes and server configurations. 
 
-Made by Henry#6174
+Made by [@Henry#6174](https://discordapp.com/channels/@me/122739797646245899)
 
 [![Discord Bots](https://discordbots.org/api/widget/305177429612298242.svg)](https://discordbots.org/bot/305177429612298242)
 

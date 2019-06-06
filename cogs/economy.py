@@ -144,7 +144,8 @@ Total:\t\t {} dollars
     @checks.no_pm()
     @commands.command()
     async def pay(self, ctx, amount: NumberConverter, member: discord.Member):
-        """Pay another user money"""
+        """Pay another user money
+        Example: rp!pay 500 @Henry#6174"""
         amount = abs(amount)
         await self.bot.di.add_eco(ctx.author, -amount)
         await self.bot.di.add_eco(member, amount)
@@ -282,7 +283,11 @@ Total:\t\t {} dollars
     @checks.no_pm()
     @market.command(aliases=["createlisting", "new", "listitem", "list"])
     async def create(self, ctx, cost: NumberConverter, amount: IntConverter, *, item: str):
-        """Create a new market listing"""
+        """Create a new market listing. The listing will return a unique identifier for the item.
+         This is used to buy the item later.
+
+        Example: rp!market list 500 12 Apple
+        This will list 12 Apples from your inventory for $500"""
         amount = abs(amount)
         cost = abs(cost)
         market = await self.bot.di.get_guild_market(ctx.guild)
@@ -298,12 +303,15 @@ Total:\t\t {} dollars
 
         await self.bot.di.update_guild_market(ctx.guild, market)
 
-        await ctx.send(await _(ctx, "Item listed!"))
+        await ctx.send((await _(ctx, "Item listed with ID {}")).format(id))
 
     @checks.no_pm()
     @market.command(aliases=["purchase", "acheter"])
     async def buy(self, ctx, id: str):
-        """Buy a given amount of an item from the player market at the cheapest given price"""
+        """Buy a given amount of an item from the player market at the cheapest given price.
+
+        Example: rp!market buy CRP1I7
+        IDs for items can be found in rp!market"""
         market = await self.bot.di.get_guild_market(ctx.guild)
         item = market.pop(id)
 
@@ -333,7 +341,8 @@ Total:\t\t {} dollars
     @checks.no_pm()
     @market.command()
     async def search(self, ctx, *, item: str):
-        """Search the market for an item"""
+        """Search the market for an item.
+        Example: rp!market search Banana"""
         um = await self.bot.di.get_guild_market(ctx.guild)
         market = [i for i in um.values() if i['item'] == item]
         desc = await _(ctx, """
