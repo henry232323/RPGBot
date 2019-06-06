@@ -86,7 +86,7 @@ class Settings(commands.Cog):
     @settings.command()
     @checks.no_pm()
     async def items(self, ctx, letter: str = None):
-        """See all items for a guild"""
+        """See all items for a server"""
         items = await self.bot.di.get_guild_items(ctx.guild)
 
         if not items:

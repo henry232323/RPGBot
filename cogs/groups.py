@@ -40,7 +40,11 @@ class Groups(commands.Cog):
     @checks.no_pm()
     @commands.group(aliases=["g"], invoke_without_command=True)
     async def guild(self, ctx, member: discord.Member = None):
-        """Get info on a member's guild. Subcommands for guild management"""
+        """Get info on a member's guild. Subcommands for guild management
+        Example:
+            rp!guild @Henry#6174
+            rp!guild
+        """
         if member is None:
             member = ctx.author
 
@@ -176,7 +180,8 @@ class Groups(commands.Cog):
 
     @guild.command()
     async def info(self, ctx, *, name: str):
-        """Get info on a guild"""
+        """Get info on a guild
+        Example: rp!guild info MyGuild"""
         guild = (await self.bot.di.get_guild_guilds(ctx.guild)).get(name)
         if guild is None:
             await ctx.send(await _(ctx, "That guild doesn't exist here!"))
@@ -208,7 +213,21 @@ class Groups(commands.Cog):
     @checks.no_pm()
     @guild.command()
     async def create(self, ctx, *, name: str):
-        """Create a new guild"""
+        """Create a new guild
+        Example:
+            Henry:  rp!guild create MyGuild
+            RPGBot: 'cancel' or 'skip' to cancel creation or skip a step
+                    Describe the Guild (guild description)
+            Henry:  This guild is super cool
+            RPGBot: Is this guild open to everyone? Or is an invite necessary? (yes or no, no is assumed)
+            Henry:  yes
+            RPGBot: If you'd like give a URL to an image for the guild
+            Henry:  https://i.ytimg.com/vi/mPCEODZSotE/maxresdefault.jpg
+            RPGBot: Finally, you can also set an icon for the guild
+            Henry:  https://vignette.wikia.nocookie.net/kingofthehill/images/c/c7/Bobby.png/revision/latest?cb=20150524012917
+            RPGBot: Guild successfully created!
+
+            """
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is not None:
             await ctx.send(await _(ctx, "You're already in a guild! Leave this guild to create a new one"))
@@ -298,7 +317,7 @@ class Groups(commands.Cog):
     @guild.command()
     @checks.no_pm()
     async def join(self, ctx, *, name: str):
-        """Join a guild (if you have an invite for closed guilds)"""
+        """Join a guild. (if you have an invite for closed guilds)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is not None:
             await ctx.send(await _(ctx, "You're already in a guild! Leave this guild to join a new one"))
@@ -326,7 +345,7 @@ class Groups(commands.Cog):
     @guild.command()
     @checks.no_pm()
     async def leave(self, ctx):
-        """Leave your guild"""
+        """Leave your guild. Will ask you to delete your guild if you are the owner."""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send(await _(ctx, "You aren't in a guild!"))
@@ -369,7 +388,7 @@ class Groups(commands.Cog):
     @guild.command()
     @checks.no_pm()
     async def kick(self, ctx, *, user: discord.Member):
-        """Kick a member from a guild"""
+        """Kick a member from a guild."""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send(await _(ctx, "You aren't in a guild!"))
@@ -411,7 +430,8 @@ class Groups(commands.Cog):
     @guild.command()
     @checks.no_pm()
     async def delete(self, ctx, *, name: str=None):
-        """Delete your guild"""
+        """Delete your guild.
+        To delete a guild you do not own, you must have Bot Moderator or Bot Admin"""
         if name is not None:
             assert checks.modpredicate(ctx)
             ug = name
@@ -447,7 +467,8 @@ class Groups(commands.Cog):
     @guild.command()
     @checks.no_pm()
     async def deposit(self, ctx, amount: NumberConverter, guild_name: str = None):
-        """Deposit an amount of money into the guild bank"""
+        """Deposit an amount of money into the guild bank.
+        To deposit into a guild are not a member of, you must have Bot Moderator or Bot Admin"""
         amount = abs(amount)
         guilds = await self.bot.di.get_guild_guilds(ctx.guild)
 
@@ -479,7 +500,8 @@ class Groups(commands.Cog):
     @guild.command()
     @checks.no_pm()
     async def withdraw(self, ctx, amount: NumberConverter):
-        """Take money from the guild bank"""
+        """Take money from the guild bank (guild mods only)
+        To withdraw from a guild you are not a member of, you must have Bot Moderator or Bot Admin"""
         amount = abs(amount)
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
@@ -527,7 +549,9 @@ class Groups(commands.Cog):
     @guild.command()
     @checks.no_pm()
     async def deposititems(self, ctx, *items: str):
-        """Deposit items into the guild's storage, uses {item}x{#} notation"""
+        """Deposit items into the guild's storage, uses {item}x{#} notation
+        Example: rp!guild deposititems Bananax5 Orangex10
+        To deposit into a guild you are not a member of, you must have Bot Moderator or Bot Admin"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send(await _(ctx, "You aren't in a guild!"))
@@ -556,7 +580,9 @@ class Groups(commands.Cog):
     @guild.command()
     @checks.no_pm()
     async def withdrawitems(self, ctx, *items: str):
-        """Withdraw items from the guild (guild mods only)"""
+        """Withdraw items from the guild (guild mods only)
+        Example: rp!guild withdrawitems Bananax5 Orangex10
+        To withdraw from a guild you are not a member of, you must have Bot Moderator or Bot Admin"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send(await _(ctx, "You aren't in a guild!"))
@@ -591,7 +617,7 @@ class Groups(commands.Cog):
     @guild.command()
     @checks.no_pm()
     async def toggleopen(self, ctx):
-        """Toggle the Guilds open state"""
+        """Toggle the Guilds open state (guild owner only)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send(await _(ctx, "You aren't in a guild!"))
@@ -611,7 +637,7 @@ class Groups(commands.Cog):
     @guild.command()
     @checks.no_pm()
     async def seticon(self, ctx, url: str):
-        """Set the guild's icon"""
+        """Set the guild's icon (guild mods only)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send(await _(ctx, "You aren't in a guild!"))
@@ -630,7 +656,7 @@ class Groups(commands.Cog):
     @guild.command()
     @checks.no_pm()
     async def setimage(self, ctx, url: str):
-        """Set the guild's image"""
+        """Set the guild's image (guild mods only)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send(await _(ctx, "You aren't in a guild!"))
@@ -649,7 +675,7 @@ class Groups(commands.Cog):
     @guild.command(aliases=["setdesc"])
     @checks.no_pm()
     async def setdescription(self, ctx, *, description):
-        """Set the guild's description"""
+        """Set the guild's description (guild mods only)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send(await _(ctx, "You aren't in a guild!"))
@@ -668,7 +694,7 @@ class Groups(commands.Cog):
     @guild.command()
     @checks.no_pm()
     async def transfer(self, ctx, user: discord.Member):
-        """Transfer ownership of a guild to someone else"""
+        """Transfer ownership of a guild to someone else (guild owner only)"""
         ug = await self.bot.di.get_user_guild(ctx.author)
         if ug is None:
             await ctx.send(await _(ctx, "You aren't in a guild!"))

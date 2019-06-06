@@ -38,7 +38,8 @@ class Inventory(commands.Cog):
     @commands.command(aliases=['i', 'inv'])
     @checks.no_pm()
     async def inventory(self, ctx, *, member: discord.Member = None):
-        """Check your or another users inventory. Example: rp!inventory @Henry#6174 or just rp!inventory"""
+        """Check your or another users inventory.
+        Example: rp!inventory @Henry#6174 or just rp!inventory"""
         dest = ctx.channel
         if member is None:
             member = ctx.author
@@ -78,7 +79,9 @@ class Inventory(commands.Cog):
     @commands.command(aliases=["take"])
     @checks.no_pm()
     async def takeitem(self, ctx, item: str, num: IntConverter, *members: MemberConverter):
-        """Remove an item from a person's inventory"""
+        """Remove an item from a person's inventory
+        Example: rp!takeitem Banana 5 @Henry#6174 @JohnDoe#0001
+        Requires Bot Moderator or Bot Admin"""
         members = chain(members)
 
         num = abs(num)
@@ -92,7 +95,8 @@ class Inventory(commands.Cog):
     @checks.no_pm()
     async def giveitem(self, ctx, item: str, num: IntConverter, *members: MemberConverter):
         """Give an item to a person (Not out of your inventory)
-        Example: rp!giveitem Banana 32 @Henry#6174 @RPGBot#8700 @JoeShmoe#3012"""
+        Example: rp!giveitem Banana 32 @Henry#6174 @RPGBot#8700 @JoeShmoe#3012
+        Requires Bot Moderator or Bot Admin"""
         members = chain(members)
 
         items = await self.bot.di.get_guild_items(ctx.guild)
@@ -109,7 +113,8 @@ class Inventory(commands.Cog):
     @commands.command()
     @checks.no_pm()
     async def give(self, ctx, other: discord.Member, *items: str):
-        """Give items ({item}x{#}) to a member; ie: rp!give @Henry#6174 Pokeballx3"""
+        """Give items ({item}x{#}) to a member
+        Example: rp!give @Henry#6174 Pokeballx3 Orangex5"""
         fitems = []
         for item in items:
             split = item.split('x')
@@ -141,8 +146,21 @@ class Inventory(commands.Cog):
     @commands.command()
     @checks.no_pm()
     async def use(self, ctx, item, number: int = 1):
-        """Use an item. Example `rp!use Banana` or `rp!use Banana 5`
-        To make an item usable, you must put the key `used: <message>` when you are adding additional information for an item
+        """Use an item. Example: `rp!use Banana` or `rp!use Banana 5`
+        To make an item usable, you must put the key `used: <message>` when you are adding additional information for an item.
+        Example:
+            Henry: rp!s additem Potion
+            RPGBot: Describe the item (a description for the item)
+            Henry: A potion
+            RPGBot: Additional information? (...)
+            Henry: used: The potion restored 500 health
+            RPGBot: Item successfully created
+
+            ...
+
+            Henry: rp!use Potion 3
+            RPGBot: The potion restored 500 health
+                    Used 5 Potions
         """
         number = abs(number)
         items = await self.bot.di.get_guild_items(ctx.guild)
@@ -209,13 +227,24 @@ class Inventory(commands.Cog):
     async def _create(self, ctx, name: str, cost: ItemOrNumber, *items: str):
         """Create a new lootbox, under the given `name` for the given cost
         Use {item}x{#} notation to add items with {#} weight
-        Weight being an integer. For example:
-        rp!lootbox create MyBox 500 bananax2 orangex3. The outcome of the box will be
-        Random Choice[banana, banana, orange, orange, orange]
-        The price can also be an item (or several items), for example
-        rp!lootbox create MyBox Key bananax2 orangex3
-        or
-        rp!lootbox create MyBox Keyx2 bananax3 orangex3
+        Weight being an integer.
+        Example:
+            rp!lootbox create MyBox 500 bananax2 orangex3. The outcome of the box will be
+            Random Choice[banana, banana, orange, orange, orange]
+            The price can also be an item (or several items), for example
+            rp!lootbox create MyBox Key bananax2 orangex3
+            or
+            rp!lootbox create MyBox Keyx2 bananax3 orangex3
+
+        If you use 10 total items:
+            Keyx3
+            Bananax4
+            Orangex3
+
+            There will be:
+                - A 3/10 chance of getting a Key
+                - A 3/10 chance of getting an Orange
+                - A 4/10 chance of getting a Banana
         """
 
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
@@ -245,7 +274,8 @@ class Inventory(commands.Cog):
     @checks.no_pm()
     @lootbox.command(name="buy")
     async def _lootbox_buy(self, ctx, *, name: str):
-        """Buy a lootbox of the given name"""
+        """Buy a lootbox of the given name
+        Example: rp!lootbox buy MyLootBox"""
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
         try:
             box = boxes[name]
@@ -280,7 +310,9 @@ class Inventory(commands.Cog):
     @lootbox.command(name="delete", aliases=["remove"])
     @checks.mod_or_permissions()
     async def _lootbox_delete(self, ctx, *, name: str):
-        """Delete a lootbox with the given name"""
+        """Delete a lootbox with the given name
+        Example: rp!lootbox delete MyLootBox
+        Requires Bot Moderator or Bot Admin"""
         boxes = await self.bot.di.get_guild_lootboxes(ctx.guild)
         if name in boxes:
             del boxes[name]
@@ -289,20 +321,23 @@ class Inventory(commands.Cog):
         else:
             await ctx.send(await _(ctx, "Invalid loot box"))
 
-    @commands.command()
+    @commands.group()
     @checks.no_pm()
-    async def offer(self, ctx, other: discord.Member, *items: str):
-        """Send a trade offer to another user. Usage: rp!inventory offer @Henry bananax3 applex1 --Format items as {item}x{#}"""
+    async def trade(self, ctx, other: discord.Member, *items: str):
+        """Send a trade offer to another user.
+        Example: rp!trade @Henry Bananax3 Applex1 --Format items as {item}x{#}"""
         self.trades[other] = (ctx, items)
-        await ctx.send("Say rp!respond @User ")
+        await ctx.send((await _(ctx, "{} has 5 minutes to respond to this request using rp!trade respond. See rp!help trade respond for details")).format(other))
         await asyncio.sleep(300)
         if self.trades.pop(other) is None:
             await ctx.send((await _(ctx, "{} failed to respond")).format(other))
 
-    @commands.command()
+    @trade.command()
     @checks.no_pm()
     async def respond(self, ctx, other: discord.Member, *items: str):
-        """Respond to a trade offer by another user. Usage: rp!inventory respond @Henry grapex8 applex1 --Format items as {item}x{#}"""
+        """Respond to a trade offer by another user.
+        Example: rp!inventory respond @Henry Grapex8 Applex1
+            --Format items as {item}x{#}"""
         sender = ctx.message.author
         if sender in self.trades and other == self.trades[sender][0].message.author:
             await ctx.send(
@@ -411,7 +446,8 @@ class Inventory(commands.Cog):
     @commands.command()
     @checks.no_pm()
     async def craft(self, ctx, number: int, *, name: str):
-        """Craft a recipe with a given name from the available server recipes; e.g. rp!craft 5 Apple Pie"""
+        """Craft a recipe with a given name from the available server recipes;
+         Example: rp!craft 5 Apple Pie"""
         recipes = await ctx.bot.di.get_guild_recipes(ctx.guild)
         recipe = recipes.get(name)
         if recipe is None:
@@ -461,7 +497,7 @@ class Inventory(commands.Cog):
     @commands.group(invoke_without_command=True)
     @checks.no_pm()
     async def recipe(self, ctx, *, name: str):
-        """Subcommands for recipes. See data on a specific recipe; e.g. rp!recipe Banana"""
+        """See data on a specific recipe; Example: rp!recipe Banana"""
         recipes = await ctx.bot.di.get_guild_recipes(ctx.guild)
 
         if name is not None:
@@ -493,13 +529,14 @@ class Inventory(commands.Cog):
     @checks.no_pm()
     @checks.mod_or_permissions()
     async def create(self, ctx, *, name: str):
-        """Create a new recipe; e.g.
-        > rp!recipe create Apple Pie
-        >> What items must be consumed to follow this recipe? e.g. Applex5 Breadx2
-        > Applex5 Breadx15 "Pie Tinx1"
-        >> What items will be given upon the completion of this recipe? e.g. "Apple Piex1"
-        > "Apple Piex1" "Pie Tinx1"
-        >> Successfully created new recipe!
+        """Create a new recipe;
+        Example
+            > rp!recipe create Apple Pie
+            >> What items must be consumed to follow this recipe? e.g. Applex5 Breadx2
+            > Applex5 Breadx15 "Pie Tinx1"
+            >> What items will be given upon the completion of this recipe? e.g. "Apple Piex1"
+            > "Apple Piex1" "Pie Tinx1"
+            >> Successfully created new recipe!
         """
         await ctx.send(await _(ctx, "What items must be consumed to follow this recipe? e.g. "
                                     "Applex5 Breadx2"))
@@ -555,6 +592,7 @@ class Inventory(commands.Cog):
     @checks.no_pm()
     @checks.mod_or_permissions()
     async def delete(self, ctx, *, name: str):
-        """Delete the recipe with the given name; e.g. rp!recipe delete Apple Pie"""
+        """Delete the recipe with the given name; Example: rp!recipe delete Apple Pie
+        Requires Bot Moderator or Bot Admin"""
         await ctx.bot.di.remove_recipe(ctx.guild, name)
         await ctx.send(await _(ctx, "Successfully deleted the recipe"))

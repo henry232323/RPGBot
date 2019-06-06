@@ -49,7 +49,9 @@ class Economy(commands.Cog):
     @checks.no_pm()
     @commands.group(aliases=["bal", "balance", "eco", "e"], invoke_without_command=True)
     async def economy(self, ctx, *, member: discord.Member = None):
-        """Check your or another users balance"""
+        """Check your or another users balance.
+        Example: rp!e @Henry#6174
+        Will not display others' balances if inventory hiding is enabled."""
         dest = ctx.channel
         if member is None:
             member = ctx.author
@@ -93,7 +95,10 @@ Total:\t\t {} dollars
     @checks.mod_or_permissions()
     @commands.command(aliases=["set"])
     async def setbalance(self, ctx, amount: NumberConverter, *members: MemberConverter):
-        """Set the balance of the given members to an amount"""
+        """Set the balance of the given members to an amount
+        Example: rp!setbalance 500 everyone
+        Example: rp!setbalance 500 @Henry#6174 @JohnDoe#0001
+        Requires Bot Moderator or Bot Admin"""
         members = chain(members)
 
         for member in members:
@@ -105,7 +110,10 @@ Total:\t\t {} dollars
     @checks.mod_or_permissions()
     @commands.command()
     async def givemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
-        """Give the member's money (Moderators)"""
+        """Give the member's money
+        Example: rp!givemoney 5000 @Henry#6174 @JohnDoe#0001
+        Example: rp!givemoney 50 everyone (or @\u200beveryone)
+        Requires Bot Moderator or Bot Admin"""
         members = chain(members)
 
         for member in members:
@@ -117,7 +125,9 @@ Total:\t\t {} dollars
     @checks.mod_or_permissions()
     @commands.command()
     async def takemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
-        """Take the member's money (Moderators)"""
+        """Take the member's money
+        Example: rp!givemoney 5000 @Henry#6174
+        Requires Bot Moderator or Bot Admin"""
         members = chain(members)
         succ = False
 
@@ -491,7 +501,9 @@ Total:\t\t {} dollars
     @checks.mod_or_permissions()
     @lotto.command(aliases=["delete"])
     async def cancel(self, ctx, name: str):
-        """Cancel a lottery"""
+        """Cancel a lottery
+        Example: rp!lotto cancel MyLotto
+        Requires Bot Moderator or Bot Admin"""
         try:
             del self.bot.lotteries[ctx.guild.id][name]
         except KeyError:
@@ -501,7 +513,10 @@ Total:\t\t {} dollars
     @checks.mod_or_permissions()
     @lotto.command(aliases=["create"])
     async def new(self, ctx, name: str, jackpot: NumberConverter, time: NumberConverter):
-        """Create a new lotto, with jacpot payout lasting time in seconds"""
+        """Create a new lotto, with jackpot payout lasting time in seconds.
+        Requires Bot Moderator or Bot Admin
+        For example: `rp!lotto create MyLotto 5000 3600` will create a new lotto called MyLotto
+        (rp!lotto enter MyLotto to join), which has a jackpot of 5000 and lasts 1 hour (3600 seconds)"""
         if ctx.guild.id not in self.bot.lotteries:
             self.bot.lotteries[ctx.guild.id] = dict()
         if name in self.bot.lotteries[ctx.guild.id]:
@@ -512,19 +527,21 @@ Total:\t\t {} dollars
         await ctx.send(await _(ctx, "Lottery created!"))
         await asyncio.sleep(time)
         if name in self.bot.lotteries[ctx.guild.id]:
-            winner = discord.utils.get(ctx.guild.members, id=choice(current["players"]))
-            await self.bot.di.add_eco(winner, current["jackpot"])
-            await ctx.send(
-                (await _(ctx, "Lottery {} is now over!\n{} won {}! Congratulations!")).format(name, winner.mention,
-                                                                                              current["jackpot"]))
-        else:
-            await ctx.send((await _(ctx, "Nobody entered {}! Its over now.")).format(name))
-        del self.bot.lotteries[ctx.guild.id][name]
+            if current["players"]:
+                winner = discord.utils.get(ctx.guild.members, id=choice(current["players"]))
+                await self.bot.di.add_eco(winner, current["jackpot"])
+                await ctx.send(
+                    (await _(ctx, "Lottery {} is now over!\n{} won {}! Congratulations!")).format(name, winner.mention,
+                                                                                                  current["jackpot"]))
+            else:
+                await ctx.send((await _(ctx, "Nobody entered {}! Its over now.")).format(name))
+            del self.bot.lotteries[ctx.guild.id][name]
 
     @checks.no_pm()
     @lotto.command(aliases=["join"])
     async def enter(self, ctx, *, name: str):
-        """Enter the lottery with the given name."""
+        """Enter the lottery with the given name.
+        For example: `rp!lotto enter MyLotto` to join the lotto with the name MyLotto"""
         if ctx.guild.id in self.bot.lotteries:
             if name in self.bot.lotteries[ctx.guild.id]:
                 if ctx.author.id not in self.bot.lotteries[ctx.guild.id][name]["players"]:
@@ -574,10 +591,11 @@ Total:\t\t {} dollars
     @checks.mod_or_permissions()
     async def additem(self, ctx, *, name: str):
         """Add an item to the server shop, to make an item unsaleable or unbuyable set their respective values to 0
-        pb!additem Pokeball
+        rp!shop additem Pokeball
         -> 0
         -> 10
-        Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot Moderator or Admin"""
+        Can be sold for 10 and cannot be bought. Must be an existing item (Use rp!settings additem first)!
+          Requires Bot Moderator or Admin"""
         gd = await self.bot.db.get_guild_data(ctx.guild)
         if name not in gd["items"]:
             await ctx.send(
@@ -639,10 +657,12 @@ Total:\t\t {} dollars
         await ctx.send(await _(ctx, "Guild shop updated"))
 
     @checks.no_pm()
-    @shop.command()
+    @shop.command(aliases=["remove"])
     @checks.mod_or_permissions()
     async def removeitem(self, ctx, *, name: str):
-        """Remove a listed item"""
+        """Remove a listed item
+        Example: `rp!shop remove Pokeball`
+        Requires Bot Moderator or Bot Admin"""
         shop = await self.bot.di.get_guild_shop(ctx.guild)
         try:
             del shop[name]
@@ -761,7 +781,7 @@ Total:\t\t {} dollars
     @checks.no_pm()
     @commands.command()
     async def bid(self, ctx):
-        """Place a bid on the current bidding item in the channel"""
+        """Place a bid on the current bidding item in the channel. `rp!bid 5`"""
 
     @checks.no_pm()
     @commands.command()
@@ -792,7 +812,8 @@ Total:\t\t {} dollars
     @checks.no_pm()
     @bank.command()
     async def deposit(self, ctx, amount: float):
-        """Deposit `amount` into the bank"""
+        """Deposit `amount` into the bank.
+        Example: rp!bank deposit 500.3"""
         bal = (await self.bot.di.get_all_balances(ctx.author))
         if amount > bal[0]:
             await ctx.send(await _(ctx, "You don't have enough to deposit!"))
@@ -808,7 +829,8 @@ Total:\t\t {} dollars
     @checks.no_pm()
     @bank.command()
     async def withdraw(self, ctx, amount: float):
-        """Withdraw `amount` from the bank"""
+        """Withdraw `amount` from the bank
+        Example: rp!bank withdraw 499"""
         bal = (await self.bot.di.get_all_balances(ctx.author))
         if amount > bal[1]:
             await ctx.send(await _(ctx, "You don't have enough to withdraw!"))

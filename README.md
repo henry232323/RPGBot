@@ -112,13 +112,13 @@ Made by Henry#6174
   - [lootbox buy](#lootbox-buy)
   - [lootbox create](#lootbox-create)
   - [lootbox delete](#lootbox-delete)
-  - [offer](#offer)
   - [recipe](#recipe)
   - [recipe create](#recipe-create)
   - [recipe delete](#recipe-delete)
   - [recipes](#recipes)
-  - [respond](#respond)
   - [takeitem](#takeitem)
+  - [trade](#trade)
+  - [trade respond](#trade-respond)
   - [use](#use)
   - [wipeinv](#wipeinv)
 - [Mapping Commands](#mapping-commands)
@@ -184,7 +184,8 @@ Made by Henry#6174
   - [experience enable](#experience-enable)
   - [experience setlevel](#experience-setlevel)
   - [userinfo](#userinfo)
-  
+
+## Admin Commands
 
 ## Characters Commands
 
@@ -194,7 +195,7 @@ Made by Henry#6174
 >**Usage:** `rp!allchars`
 
 #### character
->**Description:** Get info on a character
+>**Description:** Get info on a character. Example: rp!c Hank
 
 >**Usage:** `rp![character|c|char|personnage] <name>`
 
@@ -205,11 +206,26 @@ Made by Henry#6174
 
 #### character create
 >**Description:** Create a new character
+Example:
+    Henry:      rp!character create Bobby Hill
+    RPGBot:     Member "Hill" not found. If this is unexpected, please report this to the bot creator
+    Henry:      rp!character create "Bobby Hill"
+    RPGBot:     Describe the character (Relevant character sheet) (Say done when you're done describing)
+    Henry:      He's a little round, but he's a good boy
+    Henry:      done
+    RPGBot:     Any additional info? (Add a character image using the image keyword or use the icon keyword to give the character an icon. Formats use regular syntax e.g. image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin (Separate keys with commas or newlines)
+    Henry:
+            Hair Color: Blonde
+            Body Type: Round
+            Father: Hank Hill
+            image: https://i.ytimg.com/vi/mPCEODZSotE/maxresdefault.jpg
+            icon: https://vignette.wikia.nocookie.net/kingofthehill/images/c/c7/Bobby.png/revision/latest?cb=20150524012917
+>    RPGBot      Character created!
 
 >**Usage:** `rp!character [create|new|nouveau|creer] <name> [user]`
 
 #### character delete
->**Description:** Delete a character of the given name (you must be the owner)
+>**Description:** Delete a character of the given name (you must be the owner or be a Bot Mod / Bot Admin)
 
 >**Usage:** `rp!character [delete|remove|supprimer] <name>`
 
@@ -222,14 +238,15 @@ Valid values for the [item] (second argument):
     level: an integer representing the character's level
     meta: used like the additional info section when creating; can be used to edit/remove all attributes
 Anything else will edit single attributes in the additional info section
+>Bot Moderator or Bot Admin are required to edit other people's characters
 
->**Usage:** `rp!character edit <character> <attribute> <value>`
+>**Usage:** `rp!character edit <name> <attribute> <value>`
 
 #### character remattr
 >**Description:** Delete a character attribute
 Usage: rp!character remattr John hair color
 
->**Usage:** `rp!character remattr <character> <attribute>`
+>**Usage:** `rp!character remattr <name> <attribute>`
 
 #### character unassume
 >**Description:** Unassume a character
@@ -308,27 +325,34 @@ To make an item usable, you must put the key `used: <message>` when you are addi
 >**Usage:** `rp!baltop`
 
 #### bank deposit
->**Description:** Deposit `amount` into the bank
+>**Description:** Deposit `amount` into the bank.
+Example: rp!bank deposit 500.3
 
 >**Usage:** `rp!bank deposit <amount>`
 
 #### bank withdraw
 >**Description:** Withdraw `amount` from the bank
+Example: rp!bank withdraw 499
 
 >**Usage:** `rp!bank withdraw <amount>`
 
 #### bid
->**Description:** Place a bid on the current bidding item in the channel
+>**Description:** Place a bid on the current bidding item in the channel. `rp!bid 5`
 
 >**Usage:** `rp!bid`
 
 #### economy
->**Description:** Check your or another users balance
+>**Description:** Check your or another users balance.
+Example: rp!e @Henry#6174
+Will not display others' balances if inventory hiding is enabled.
 
 >**Usage:** `rp![economy|bal|balance|eco|e] [member]`
 
 #### givemoney
->**Description:** Give the member's money (Moderators)
+>**Description:** Give the member's money
+Example: rp!givemoney 5000 @Henry#6174 @JohnDoe#0001
+Example: rp!givemoney 50 everyone (or @​everyone)
+Requires Bot Moderator or Bot Admin
 
 >**Usage:** `rp!givemoney <amount> [members...]`
 
@@ -339,16 +363,22 @@ To make an item usable, you must put the key `used: <message>` when you are addi
 
 #### lotto cancel
 >**Description:** Cancel a lottery
+Example: rp!lotto cancel MyLotto
+Requires Bot Moderator or Bot Admin
 
 >**Usage:** `rp!lotto [cancel|delete] <name>`
 
 #### lotto enter
 >**Description:** Enter the lottery with the given name.
+For example: `rp!lotto enter MyLotto` to join the lotto with the name MyLotto
 
 >**Usage:** `rp!lotto [enter|join] <name>`
 
 #### lotto new
->**Description:** Create a new lotto, with jacpot payout lasting time in seconds
+>**Description:** Create a new lotto, with jackpot payout lasting time in seconds.
+Requires Bot Moderator or Bot Admin
+For example: `rp!lotto create MyLotto 5000 3600` will create a new lotto called MyLotto
+(rp!lotto enter MyLotto to join), which has a jackpot of 5000 and lasts 1 hour (3600 seconds)
 
 >**Usage:** `rp!lotto [new|create] <name> <jackpot> <time>`
 
@@ -384,6 +414,9 @@ To make an item usable, you must put the key `used: <message>` when you are addi
 
 #### setbalance
 >**Description:** Set the balance of the given members to an amount
+Example: rp!setbalance 500 everyone
+Example: rp!setbalance 500 @Henry#6174 @JohnDoe#0001
+Requires Bot Moderator or Bot Admin
 
 >**Usage:** `rp![setbalance|set] <amount> [members...]`
 
@@ -394,10 +427,11 @@ To make an item usable, you must put the key `used: <message>` when you are addi
 
 #### shop additem
 >**Description:** Add an item to the server shop, to make an item unsaleable or unbuyable set their respective values to 0
-pb!additem Pokeball
+rp!shop additem Pokeball
 -> 0
 -> 10
-Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot Moderator or Admin
+Can be sold for 10 and cannot be bought. Must be an existing item (Use rp!settings additem first)!
+  Requires Bot Moderator or Admin
 
 >**Usage:** `rp!shop [additem|add] <name>`
 
@@ -408,21 +442,27 @@ Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot 
 
 #### shop removeitem
 >**Description:** Remove a listed item
+Example: `rp!shop remove Pokeball`
+Requires Bot Moderator or Bot Admin
 
->**Usage:** `rp!shop removeitem <name>`
+>**Usage:** `rp!shop [removeitem|remove] <name>`
 
 #### shop sell
 >**Description:** Sell an item to the shop
+Example: rp!shop sell Apple 5
 
 >**Usage:** `rp!shop sell <item> <amount>`
 
 #### startbid
 >**Description:** Start a bid for an item
+Example: `rp!startbid Banana 5 40` This will start a bid for 5 Bananas, starting at $40
 
 >**Usage:** `rp!startbid <item> <amount> <startbid>`
 
 #### takemoney
->**Description:** Take the member's money (Moderators)
+>**Description:** Take the member's money
+Example: rp!givemoney 5000 @Henry#6174
+Requires Bot Moderator or Bot Admin
 
 >**Usage:** `rp!takemoney <amount> [members...]`
 
@@ -432,31 +472,52 @@ Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot 
 
 #### guild
 >**Description:** Get info on a member's guild. Subcommands for guild management
+Example:
+    rp!guild @Henry#6174
+    rp!guild
 
 >**Usage:** `rp![guild|g] [member]`
 
 #### guild create
 >**Description:** Create a new guild
+Example:
+    Henry:  rp!guild create MyGuild
+    RPGBot: 'cancel' or 'skip' to cancel creation or skip a step
+            Describe the Guild (guild description)
+    Henry:  This guild is super cool
+    RPGBot: Is this guild open to everyone? Or is an invite necessary? (yes or no, no is assumed)
+    Henry:  yes
+    RPGBot: If you'd like give a URL to an image for the guild
+    Henry:  https://i.ytimg.com/vi/mPCEODZSotE/maxresdefault.jpg
+    RPGBot: Finally, you can also set an icon for the guild
+    Henry:  https://vignette.wikia.nocookie.net/kingofthehill/images/c/c7/Bobby.png/revision/latest?cb=20150524012917
+    RPGBot: Guild successfully created!
+>    
 
 >**Usage:** `rp!guild create <name>`
 
 #### guild delete
->**Description:** Delete your guild
+>**Description:** Delete your guild.
+To delete a guild you do not own, you must have Bot Moderator or Bot Admin
 
 >**Usage:** `rp!guild delete [name]`
 
 #### guild deposit
->**Description:** Deposit an amount of money into the guild bank
+>**Description:** Deposit an amount of money into the guild bank.
+To deposit into a guild are not a member of, you must have Bot Moderator or Bot Admin
 
 >**Usage:** `rp!guild deposit <amount> [guild_name]`
 
 #### guild deposititems
 >**Description:** Deposit items into the guild's storage, uses {item}x{#} notation
+Example: rp!guild deposititems Bananax5 Orangex10
+To deposit into a guild you are not a member of, you must have Bot Moderator or Bot Admin
 
 >**Usage:** `rp!guild deposititems [items...]`
 
 #### guild info
 >**Description:** Get info on a guild
+Example: rp!guild info MyGuild
 
 >**Usage:** `rp!guild info <name>`
 
@@ -466,32 +527,32 @@ Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot 
 >**Usage:** `rp!guild invite <user>`
 
 #### guild join
->**Description:** Join a guild (if you have an invite for closed guilds)
+>**Description:** Join a guild. (if you have an invite for closed guilds)
 
 >**Usage:** `rp!guild join <name>`
 
 #### guild kick
->**Description:** Kick a member from a guild
+>**Description:** Kick a member from a guild.
 
 >**Usage:** `rp!guild kick <user>`
 
 #### guild leave
->**Description:** Leave your guild
+>**Description:** Leave your guild. Will ask you to delete your guild if you are the owner.
 
 >**Usage:** `rp!guild leave`
 
 #### guild setdescription
->**Description:** Set the guild's description
+>**Description:** Set the guild's description (guild mods only)
 
 >**Usage:** `rp!guild [setdescription|setdesc] <description>`
 
 #### guild seticon
->**Description:** Set the guild's icon
+>**Description:** Set the guild's icon (guild mods only)
 
 >**Usage:** `rp!guild seticon <url>`
 
 #### guild setimage
->**Description:** Set the guild's image
+>**Description:** Set the guild's image (guild mods only)
 
 >**Usage:** `rp!guild setimage <url>`
 
@@ -501,22 +562,25 @@ Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot 
 >**Usage:** `rp!guild setmod [members...]`
 
 #### guild toggleopen
->**Description:** Toggle the Guilds open state
+>**Description:** Toggle the Guilds open state (guild owner only)
 
 >**Usage:** `rp!guild toggleopen`
 
 #### guild transfer
->**Description:** Transfer ownership of a guild to someone else
+>**Description:** Transfer ownership of a guild to someone else (guild owner only)
 
 >**Usage:** `rp!guild transfer <user>`
 
 #### guild withdraw
->**Description:** Take money from the guild bank
+>**Description:** Take money from the guild bank (guild mods only)
+To withdraw from a guild you are not a member of, you must have Bot Moderator or Bot Admin
 
 >**Usage:** `rp!guild withdraw <amount>`
 
 #### guild withdrawitems
 >**Description:** Withdraw items from the guild (guild mods only)
+Example: rp!guild withdrawitems Bananax5 Orangex10
+To withdraw from a guild you are not a member of, you must have Bot Moderator or Bot Admin
 
 >**Usage:** `rp!guild withdrawitems [items...]`
 
@@ -528,23 +592,27 @@ Can be sold for 10 and cannot be bought. Must be an existing item! Requires Bot 
 ## Inventory Commands
 
 #### craft
->**Description:** Craft a recipe with a given name from the available server recipes; e.g. rp!craft 5 Apple Pie
+>**Description:** Craft a recipe with a given name from the available server recipes;
+Example: rp!craft 5 Apple Pie
 
 >**Usage:** `rp!craft <number> <name>`
 
 #### give
->**Description:** Give items ({item}x{#}) to a member; ie: rp!give @Henry#6174 Pokeballx3
+>**Description:** Give items ({item}x{#}) to a member
+Example: rp!give @Henry#6174 Pokeballx3 Orangex5
 
 >**Usage:** `rp!give <other> [items...]`
 
 #### giveitem
 >**Description:** Give an item to a person (Not out of your inventory)
 Example: rp!giveitem Banana 32 @Henry#6174 @RPGBot#8700 @JoeShmoe#3012
+Requires Bot Moderator or Bot Admin
 
 >**Usage:** `rp!giveitem <item> <num> [members...]`
 
 #### inventory
->**Description:** Check your or another users inventory. Example: rp!inventory @Henry#6174 or just rp!inventory
+>**Description:** Check your or another users inventory.
+Example: rp!inventory @Henry#6174 or just rp!inventory
 
 >**Usage:** `rp![inventory|i|inv] [member]`
 
@@ -555,50 +623,59 @@ Example: rp!giveitem Banana 32 @Henry#6174 @RPGBot#8700 @JoeShmoe#3012
 
 #### lootbox buy
 >**Description:** Buy a lootbox of the given name
+Example: rp!lootbox buy MyLootBox
 
 >**Usage:** `rp!lootbox buy <name>`
 
 #### lootbox create
 >**Description:** Create a new lootbox, under the given `name` for the given cost
 Use {item}x{#} notation to add items with {#} weight
-Weight being an integer. For example:
-rp!lootbox create MyBox 500 bananax2 orangex3. The outcome of the box will be
-Random Choice[banana, banana, orange, orange, orange]
-The price can also be an item (or several items), for example
-rp!lootbox create MyBox Key bananax2 orangex3
-or
-rp!lootbox create MyBox Keyx2 bananax3 orangex3
+Weight being an integer.
+Example:
+    rp!lootbox create MyBox 500 bananax2 orangex3. The outcome of the box will be
+    Random Choice[banana, banana, orange, orange, orange]
+    The price can also be an item (or several items), for example
+    rp!lootbox create MyBox Key bananax2 orangex3
+    or
+    rp!lootbox create MyBox Keyx2 bananax3 orangex3
+>If you use 10 total items:
+    Keyx3
+    Bananax4
+    Orangex3
+>    There will be:
+        - A 3/10 chance of getting a Key
+        - A 3/10 chance of getting an Orange
+        - A 4/10 chance of getting a Banana
 
 >**Usage:** `rp!lootbox [create|new] <name> <cost> [items...]`
 
 #### lootbox delete
 >**Description:** Delete a lootbox with the given name
+Example: rp!lootbox delete MyLootBox
+Requires Bot Moderator or Bot Admin
 
 >**Usage:** `rp!lootbox [delete|remove] <name>`
 
-#### offer
->**Description:** Send a trade offer to another user. Usage: rp!inventory offer @Henry bananax3 applex1 --Format items as {item}x{#}
-
->**Usage:** `rp!offer <other> [items...]`
-
 #### recipe
->**Description:** Subcommands for recipes. See data on a specific recipe; e.g. rp!recipe Banana
+>**Description:** See data on a specific recipe; Example: rp!recipe Banana
 
 >**Usage:** `rp!recipe <name>`
 
 #### recipe create
->**Description:** Create a new recipe; e.g.
-> rp!recipe create Apple Pie
->> What items must be consumed to follow this recipe? e.g. Applex5 Breadx2
-> Applex5 Breadx15 "Pie Tinx1"
->> What items will be given upon the completion of this recipe? e.g. "Apple Piex1"
-> "Apple Piex1" "Pie Tinx1"
->> Successfully created new recipe!
+>**Description:** Create a new recipe;
+Example
+    > rp!recipe create Apple Pie
+    >> What items must be consumed to follow this recipe? e.g. Applex5 Breadx2
+    > Applex5 Breadx15 "Pie Tinx1"
+    >> What items will be given upon the completion of this recipe? e.g. "Apple Piex1"
+    > "Apple Piex1" "Pie Tinx1"
+    >> Successfully created new recipe!
 
 >**Usage:** `rp!recipe create <name>`
 
 #### recipe delete
->**Description:** Delete the recipe with the given name; e.g. rp!recipe delete Apple Pie
+>**Description:** Delete the recipe with the given name; Example: rp!recipe delete Apple Pie
+Requires Bot Moderator or Bot Admin
 
 >**Usage:** `rp!recipe delete <name>`
 
@@ -607,19 +684,40 @@ rp!lootbox create MyBox Keyx2 bananax3 orangex3
 
 >**Usage:** `rp!recipes`
 
-#### respond
->**Description:** Respond to a trade offer by another user. Usage: rp!inventory respond @Henry grapex8 applex1 --Format items as {item}x{#}
-
->**Usage:** `rp!respond <other> [items...]`
-
 #### takeitem
 >**Description:** Remove an item from a person's inventory
+Example: rp!takeitem Banana 5 @Henry#6174 @JohnDoe#0001
+Requires Bot Moderator or Bot Admin
 
 >**Usage:** `rp![takeitem|take] <item> <num> [members...]`
 
+#### trade
+>**Description:** Send a trade offer to another user.
+Example: rp!trade @Henry Bananax3 Applex1 --Format items as {item}x{#}
+
+>**Usage:** `rp!trade <other> [items...]`
+
+#### trade respond
+>**Description:** Respond to a trade offer by another user.
+Example: rp!inventory respond @Henry Grapex8 Applex1
+    --Format items as {item}x{#}
+
+>**Usage:** `rp!trade respond <other> [items...]`
+
 #### use
->**Description:** Use an item. Example `rp!use Banana` or `rp!use Banana 5`
-To make an item usable, you must put the key `used: <message>` when you are adding additional information for an item
+>**Description:** Use an item. Example: `rp!use Banana` or `rp!use Banana 5`
+To make an item usable, you must put the key `used: <message>` when you are adding additional information for an item.
+Example:
+    Henry: rp!s additem Potion
+    RPGBot: Describe the item (a description for the item)
+    Henry: A potion
+    RPGBot: Additional information? (...)
+    Henry: used: The potion restored 500 health
+    RPGBot: Item successfully created
+>    ...
+>    Henry: rp!use Potion 3
+    RPGBot: The potion restored 500 health
+            Used 5 Potions
 
 >**Usage:** `rp!use <item> [number=1]`
 
@@ -901,7 +999,7 @@ RPGBot:  Item successfully created
 >**Usage:** `rp!settings iteminfo <item>`
 
 #### settings items
->**Description:** See all items for a guild
+>**Description:** See all items for a server
 
 >**Usage:** `rp!settings items [letter]`
 
