@@ -95,9 +95,10 @@ class Characters(commands.Cog):
             if char.level is not None:
                 embed.add_field(name=await _(ctx, "Level"), value=char.level)
             team = await self.bot.di.get_team(ctx.guild, char.name)
-            tfmt = "\n".join(f"{p.name} ({p.type})" for p in team) if team else await _(ctx, "Empty")
-            embed.add_field(name=await _(ctx, "Team"), value=tfmt)
-            mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items())
+            if team:
+                tfmt = "\n".join(f"{p.name} ({p.type})" for p in team)
+                embed.add_field(name=await _(ctx, "Team"), value=tfmt)
+            mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items() if x not in ("icon", "image"))
             if mfmt.strip():
                 embed.add_field(name=await _(ctx, "Additional Info"), value=mfmt)
 
@@ -105,10 +106,15 @@ class Characters(commands.Cog):
         except:
             owner = discord.utils.get(ctx.guild.members, id=char.owner)
             embed = discord.Embed(description=char.description)
-            embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
+            embed.set_author(name=char.name, icon_url=owner.avatar_url)
             embed.add_field(name=await _(ctx, "Name"), value=char.name)
             embed.add_field(name=await _(ctx, "Owner"), value=str(owner))
-            embed.add_field(name=await _(ctx, "Level"), value=char.level)
+            if char.level is not None:
+                embed.add_field(name=await _(ctx, "Level"), value=char.level)
+            team = await self.bot.di.get_team(ctx.guild, char.name)
+            if team:
+                tfmt = "\n".join(f"{p.name} ({p.type})" for p in team)
+                embed.add_field(name=await _(ctx, "Team"), value=tfmt)
             mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items())
             if mfmt.strip():
                 embed.add_field(name=await _(ctx, "Additional Info"), value=mfmt)
@@ -430,7 +436,10 @@ class Characters(commands.Cog):
         chunks = chunkn(fmt, 2000)  # [("Items: ", v) for v in chunkn(fmt, 400)]
         for chunk in chunks:
             embed = discord.Embed(description="\n".join(chunk), color=randint(0, 0xFFFFFF))
-            embed.set_author(name=name, icon_url=(char.meta.get("icon", discord.Embed.Empty)))
+            if char.meta.get("icon"):
+                embed.set_author(name=name, icon_url=char.meta["icon"])
+            else:
+                embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar_url)
             try:
                 await dest.send(embed=embed)
             except discord.Forbidden:
@@ -528,7 +537,7 @@ class Characters(commands.Cog):
             await ctx.send(await _(ctx, "This item is not usable!"))
             return
         try:
-            await self.bot.di.take_items(ctx.author, (item, number))
+            await self.c_takeitem(ctx.guild, item, number)
         except ValueError:
             await ctx.send(await _(ctx, "You do not have that many to use!"))
             return
