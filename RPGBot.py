@@ -245,7 +245,7 @@ class Bot(commands.AutoShardedBot):
             elif isinstance(exception, discord.Forbidden):
                 await ctx.send(await _(ctx, "Error: This command requires the bot to have permission to send links."))
             else:
-                await ctx.send(f"`{exception}. If this is unexpected, please report this to the bot creator`")
+                await ctx.send(f"`{exception} If this is unexpected, please report this to the bot creator`")
         except discord.Forbidden:
             pass
 

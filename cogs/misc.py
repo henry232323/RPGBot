@@ -139,13 +139,11 @@ class Misc(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx):
-        '''
-        Test the bot's connection ping
-        '''
+        """Test the bot's connection ping"""
         a = monotonic()
         await (await ctx.bot.shards[getattr(ctx.guild, "shard_id", 0)].ws.ping())
         b = monotonic()
-        ping = "`{:.3f}ms`".format((b - a) * 1000)
+        ping = "{:.3f}ms".format((b - a) * 1000)
         msg = f"P{choice('aeiou')}ng {ping}"
         await ctx.send(msg)
 
