@@ -53,7 +53,7 @@ def role_or_permissions(ctx, check, **perms):
             for role in ctx.guild.roles:
                 if role.name in check:
                     raise commands.CommandError(
-                        "You need a special role to do this! ({})")
+                        "You need a special role to do this! ({})".format(", ".join(f"'{n}'" for n in check)))
             else:
                 raise commands.CommandError("You need to create a role with one of the following names and give it to "
                                             "yourself: {}".format(", ".join(f"'{n}'" for n in check)))

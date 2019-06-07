@@ -91,7 +91,7 @@ class Character(tuple):
     level = _property(_itemgetter(3), doc='Alias for field number 3')
     team = _property(_itemgetter(4), doc='Alias for field number 4')
     meta = _property(_itemgetter(5), doc='Alias for field number 5')
-    ustats = _property(_itemgetter(5), doc='Alias for field number 6')
+    ustats = _property(_itemgetter(6), doc='Alias for field number 6')
 
 
 converters = {

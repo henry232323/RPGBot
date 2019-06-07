@@ -72,7 +72,8 @@ class Groups(commands.Cog):
         litems = guild.items.items() if len(guild.items) < 20 else list(guild.items.items())[20:]
         items = "\n".join(f"{x} x{y}" for x, y in litems)
 
-        embed = discord.Embed(description=guild.description or await _(ctx, "This guild doesn't have a description"), color=randint(0, 0xFFFFFF))
+        embed = discord.Embed(description=guild.description or await _(ctx, "This guild doesn't have a description"),
+                              color=randint(0, 0xFFFFFF))
         embed.set_author(name=guild.name, icon_url=guild.icon or ctx.guild.icon_url)
         if guild.icon is not None:
             embed.set_thumbnail(url=guild.icon)
@@ -195,7 +196,8 @@ class Groups(commands.Cog):
         litems = guild.items.items() if len(guild.items) < 20 else list(guild.items.items())[20:]
         items = "\n".join(f"{x} x{y}" for x, y in litems)
 
-        embed = discord.Embed(description=guild.description or await _(ctx, "This guild doesn't have a description"), color=randint(0, 0xFFFFFF))
+        embed = discord.Embed(description=guild.description or await _(ctx, "This guild doesn't have a description"),
+                              color=randint(0, 0xFFFFFF))
         embed.set_author(name=guild.name, icon_url=guild.icon or ctx.guild.icon_url)
         if guild.icon is not None:
             embed.set_thumbnail(url=guild.icon)
@@ -429,7 +431,7 @@ class Groups(commands.Cog):
 
     @guild.command()
     @checks.no_pm()
-    async def delete(self, ctx, *, name: str=None):
+    async def delete(self, ctx, *, name: str = None):
         """Delete your guild.
         To delete a guild you do not own, you must have Bot Moderator or Bot Admin"""
         if name is not None:
@@ -609,6 +611,7 @@ class Groups(commands.Cog):
 
     @guild.command()
     @checks.no_pm()
+    @checks.mod_or_permissions()
     async def givemoney(self, ctx, guild_name: str, amount: NumberConverter):
         """Deposit an amount of money into the bank of a guild. Does not take from user's bank.
         Example: rp!guild givemoney MyGuild 500
@@ -622,7 +625,6 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "That guild is invalid!"))
             return
 
-
         guild.bank += amount
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send(
@@ -630,6 +632,7 @@ class Groups(commands.Cog):
 
     @guild.command()
     @checks.no_pm()
+    @checks.mod_or_permissions()
     async def takemoney(self, ctx, guild_name: str, amount: NumberConverter):
         """Take money from the guild bank.
         Example: rp!guild takemoney MyGuild 500

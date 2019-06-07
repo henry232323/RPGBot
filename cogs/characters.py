@@ -430,7 +430,7 @@ class Characters(commands.Cog):
         chunks = chunkn(fmt, 2000)  # [("Items: ", v) for v in chunkn(fmt, 400)]
         for chunk in chunks:
             embed = discord.Embed(description="\n".join(chunk), color=randint(0, 0xFFFFFF))
-            embed.set_author(name=name, icon_url=(char.meta.get("icon")))
+            embed.set_author(name=name, icon_url=(char.meta.get("icon", discord.Embed.Empty)))
             try:
                 await dest.send(embed=embed)
             except discord.Forbidden:
