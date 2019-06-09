@@ -25,6 +25,7 @@ import logging
 import os
 import sys
 import ujson as json
+from io import BytesIO
 from collections import Counter, defaultdict
 from random import choice, sample
 
@@ -161,7 +162,11 @@ class Bot(commands.AutoShardedBot):
                             return
                         content = msg.content
                         files = msg.attachments
-                        dfiles = [await f.save() for f in files]
+                        dfiles = []
+                        for f in files:
+                            dio = BytesIO()
+                            await f.save(dio)
+                            dfiles.append(discord.File(dio, f.filename, spoiler=f.is_spoiler()))
                         embeds = msg.embeds
                         if hook.channel.id != msg.channel.id:
                             await hook.delete()

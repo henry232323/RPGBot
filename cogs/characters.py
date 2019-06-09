@@ -533,11 +533,18 @@ class Characters(commands.Cog):
         number = abs(number)
         items = await self.bot.di.get_guild_items(ctx.guild)
         msg = items.get(item).meta.get('used')
+
+        char = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+        if char is None:
+            await ctx.send(await _(ctx,
+                                   "You are not currently a character! Use `rp!char assume` to assume a character"))
+            return
+
         if msg is None:
             await ctx.send(await _(ctx, "This item is not usable!"))
             return
         try:
-            await self.c_takeitem(ctx.guild, item, number)
+            await self.c_takeitem(ctx.guild, char, (item, number))
         except ValueError:
             await ctx.send(await _(ctx, "You do not have that many to use!"))
             return
@@ -739,6 +746,9 @@ Total:\t\t {} dollars
     @character.command()
     @checks.no_pm()
     async def alias(self, ctx, alias_name: str, *, character_name: str):
+        """Create an alias for a character.
+        Example: rp!c alias Tom Tom Hanks
+        This will make the name Tom point to the name Tom Hanks"""
         data = await self.bot.db.get_guild_data(ctx.guild)
         if "caliases" not in data:
             data["caliases"] = {}
@@ -752,6 +762,28 @@ Total:\t\t {} dollars
             return
 
         data["caliases"][alias_name] = character_name
+
+        await ctx.bot.db.update_guild_data(ctx.guild, data)
+        await ctx.send((await _(ctx, "Created a new alias {0} for character {1}")).format(alias_name, character_name))
+
+    @character.command()
+    @checks.no_pm()
+    async def removealias(self, ctx, alias_name: str):
+        """Remove an alias
+        Example: rp!c removealias Tom
+        Only character owners may remove the aliases of their characters."""
+        data = await self.bot.db.get_guild_data(ctx.guild)
+        if "caliases" not in data:
+            data["caliases"] = {}
+
+        if alias_name not in data["caliases"]:
+            await ctx.send(await _(ctx, "This alias doesn't exist!"))
+            return
+
+        if data["characters"][data["caliases"][alias_name]][1] != ctx.author:
+            await ctx.send(await _(ctx, "You cannot delete other people's aliases!"))
+
+        del data["caliases"][alias_name]
 
         await ctx.bot.db.update_guild_data(ctx.guild, data)
         await ctx.send((await _(ctx, "Created a new alias {0} for character {1}")).format(alias_name, character_name))
