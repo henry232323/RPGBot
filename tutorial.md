@@ -54,12 +54,18 @@ to add a number of premade items from popular games such as D&D and Pokemon. If 
 you may also create a spreadsheet of all the items and export it to CSV, which the bot can read and load items from.
 
 The rp!loaditems command requires a file (or several) to be attached, which it will then read and use to create the new
-items. 
+items.
 
+An example file appears as follows (find files [here](https://github.com/henry232323/RPGBot/tree/master/resources/import_items))
+[!Example](https://github.com/henry232323/RPGBot/raw/master/resources/import_items/Items%20Example.JPG)
+To turn a Google spreadsheet into a CSV, goto File -> Download As -> Comma Separated Values (.csv)
 
-To retrieve a summary all of the settings, use the following command.
-- rp![settings|s|configuration|conf] 
-To begin adding items
+When creating items, the columns should be named with the following specification:
+  - name: this will be the name of the item
+  - description: this will be the description of the item
+  - buyprice: this is the buy price that will be used for the item in the shop. Set to 0 to make this unbuyable
+  - sellprice: this is the sell price that will be used for the item in the shop. Set to 0 to make this unsellable. If both buyprice and sellprice are 0 it will not be listed in the shop
+  - Any other attributes will be listed as "Additional Info." To exclude an attribute from an item, set the value in that column to `--`
 
 ## Guilds
 
