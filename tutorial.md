@@ -11,13 +11,13 @@ Here in this compendium, I'll be going over some of the house specials RPGBot ha
   - Command actions with a name containing spaces require "My Character One" surrounding the name. Often, if it is the last argument, the quotation marks can be omitted.
   - Some commands that may need you to list multiple items and the number of each of those items may use a special syntax called Item x Number notation. This means you will put the item name, followed by an x (meaning times), then the number of that item you want. For example `rp!give @Henry#6174 Bananax3 Orangex5`. Some items may have multiple words in them, for these format them as follows: `rp!give @Henry#6174 "Old Bookx3"` (with quotation marks)
   
+  
   **NOTE: All example brackets are not used in the actual comand.**
   For example, if the signature of the command is `rp![character|char|c|personnage] <name>`, that means to use the command we may do one of the following:
     - `rp!character Henry`
     - `rp!personnage Henry`
     - `rp!c My Character's Name Here` 
 
-Now, on to the the patron favorites.
 
 ## Characters
   - rp![character|char|c|personnage] <name>
@@ -26,6 +26,40 @@ Now, on to the the patron favorites.
   - rp!allchars
 
 Entering the `rp!character` command will give you details on that character. Characters can be created by anyone but you must have the Bot Mod role to create characters for other users. You may view all of your owned characters with the `rp!characters` command or all of the characters in the server with `rp!allchars`.
+
+## Settings
+  - rp![settings|s|configuration|conf]
+  - rp!settings additem <name>
+  - rp!settings [removeitem|deleteitem] <name>
+  - rp!settings iteminfo <item>
+  - rp!currency <currency>
+  - rp!setstart <amount>
+  - rp!deleteafter <time>
+  - rp!hideinv <value>
+  - rp!language [language]
+  - rp!loaddnd
+  - rp!loaddndmagic
+  - rp!loaddndshop
+  - rp!loadmagicshop
+  - rp!loadpokemon
+  - rp!loadstarwars
+  - rp!loadstarwarsshop
+  - rp!unload <name>
+  - rp!loaditems
+  
+For players wishing to use the inventory system, there are a number of ways to get started. The most important command 
+for adding items manually is rp!settings additem. This command is used to manually begin creating an item which may be given 
+to players. Alternatively, all commands listed above beginning with "load" are commands whose function is to allow players 
+to add a number of premade items from popular games such as D&D and Pokemon. If you wish to add your own commands en masse, 
+you may also create a spreadsheet of all the items and export it to CSV, which the bot can read and load items from.
+
+The rp!loaditems command requires a file (or several) to be attached, which it will then read and use to create the new
+items. 
+
+
+To retrieve a summary all of the settings, use the following command.
+- rp![settings|s|configuration|conf] 
+To begin adding items
 
 ## Guilds
 
