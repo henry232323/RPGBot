@@ -57,7 +57,7 @@ The rp!loaditems command requires a file (or several) to be attached, which it w
 items.
 
 An example file appears as follows (find files [here](https://github.com/henry232323/RPGBot/tree/master/resources/import_items))
-[!Example](https://github.com/henry232323/RPGBot/raw/master/resources/import_items/Items%20Example.JPG)
+![Example](https://github.com/henry232323/RPGBot/raw/master/resources/import_items/Items%20Example.JPG)
 To turn a Google spreadsheet into a CSV, goto File -> Download As -> Comma Separated Values (.csv)
 
 When creating items, the columns should be named with the following specification:
