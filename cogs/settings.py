@@ -18,12 +18,15 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
+import csv
 
 from discord.ext import commands
 import discord
 import asyncio
 
 from random import randint
+
+from io import BytesIO, StringIO
 
 from .utils.data import ServerItem, NumberConverter, create_pages
 from .utils import checks
@@ -311,6 +314,52 @@ class Settings(commands.Cog):
         Requires Bot Moderator or Bot Admin"""
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.pokemonitems.values()))
         await ctx.send(await _(ctx, "Successfully added all Pokemon items!"))
+
+    @checks.no_pm()
+    @commands.command()
+    @checks.admin_or_permissions()
+    async def loaditems(self, ctx):
+        """This command load all the items in the attached file.
+        See an example file here: https://github.com/henry232323/RPGBot/blob/master/tutorial.md
+        Requires Bot Moderator or Bot Admin"""
+        items = []
+        if not ctx.message.attachments:
+            await ctx.send(await _(ctx, "This command needs to have a file attached!"))
+            return
+
+        attachment = ctx.message.attachments.pop()
+        size = attachment.size
+        if size > 2 ** 20:
+            await ctx.send(await _(ctx, "This file is too large!"))
+            return
+
+        file = BytesIO()
+        await attachment.save(file)
+        file.seek(0)
+
+        nfile = StringIO(file.getvalue().decode())
+        nfile.seek(0)
+
+        csv_reader = csv.DictReader(nfile)
+        shop_items = {}
+
+        for row in csv_reader:
+            items.append(dict(
+                name=row["name"],
+                description=row.get("description", "No description."),
+                meta={}
+            ))
+            for k, v in row.items():
+                if k not in ["name", "description", "buyprice", "sellprice"]:
+                    if v:
+                        items[-1]["meta"][k] = v
+
+            if float(row.get("buyprice", 0)) or float(row.get("sellprice", 0)):
+                shop_items[row["name"]] = dict(buy=float(row.get("buyprice", 0)), sell=float(row.get("sellprice", 0)), level=0)
+
+        await self.bot.di.add_shop_items(ctx.guild, shop_items)
+        await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in items))
+        await ctx.send(await _(ctx, "Successfully loaded all items!"))
 
     @checks.no_pm()
     @commands.command()

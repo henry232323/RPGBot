@@ -58,18 +58,17 @@ items.
 
 An example file appears as follows (find files [here](https://github.com/henry232323/RPGBot/tree/master/resources/import_items))
 ![Example](https://github.com/henry232323/RPGBot/raw/master/resources/import_items/Items%20Example.JPG)
-To turn a Google spreadsheet into a CSV, goto File -> Download As -> Comma Separated Values (.csv)
+
+To turn a Google spreadsheet into a CSV, goto `File -> Download As -> Comma Separated Values (.csv)`
 
 When creating items, the columns should be named with the following specification:
   - name: this will be the name of the item
   - description: this will be the description of the item
   - buyprice: this is the buy price that will be used for the item in the shop. Set to 0 to make this unbuyable
   - sellprice: this is the sell price that will be used for the item in the shop. Set to 0 to make this unsellable. If both buyprice and sellprice are 0 it will not be listed in the shop
-  - Any other attributes will be listed as "Additional Info." To exclude an attribute from an item, set the value in that column to `--`
+  - Any other attributes will be listed as "Additional Info." To exclude an attribute from an item, leave the value in that column blank
 
 ## Guilds
-
-## Teams
 
 ## Economy
   - rp![economy|eco|e|balance|bal] [user]
