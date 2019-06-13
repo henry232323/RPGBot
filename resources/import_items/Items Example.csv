@@ -1,0 +1,4 @@
+name,description,buyprice,sellprice,color,weight
+Book,Its a book,50,25,green,1 lb
+Apple,Just an apple,10,2.5,red,3 oz
+Driver's License,You can drive!,0,0,--,--
