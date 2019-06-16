@@ -2,6 +2,7 @@ A RPG bot, with a working inventory, market and economy, team setups and charact
 Pet boxes and server configurations. 
 
 Made by [@henry232323](https://discordapp.com/channels/@me/0)
+[Tutorial](https://github.com/henry232323/RPGBot/blob/master/tutorial.md)
 
 [![Discord Bots](https://discordbots.org/api/widget/305177429612298242.svg)](https://discordbots.org/bot/305177429612298242)
 
