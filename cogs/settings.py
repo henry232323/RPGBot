@@ -349,6 +349,9 @@ class Settings(commands.Cog):
                 description=row.get("description", "No description."),
                 meta={}
             ))
+            if not row["name"]:
+                await ctx.send(await _(ctx, "Error: There is an item with a missing name!"))
+                return
             for k, v in row.items():
                 if k not in ["name", "description", "buyprice", "sellprice"]:
                     if v:

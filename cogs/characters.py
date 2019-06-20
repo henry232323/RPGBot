@@ -340,7 +340,12 @@ class Characters(commands.Cog):
         await self.bot.di.add_character(ctx.guild, Character(*character))
         await ctx.send(await _(ctx, "Removed attribute!"))
 
-    async def unassume(self, author, character, wait=60 * 60 * 24):
+    async def unassume(self, ctx, author, character, wait=60 * 60 * 24):
+        data = await self.bot.db.get_guild_data(ctx.guild)
+        if "caliases" not in data:
+            data["caliases"] = {}
+
+        character = data["caliases"].get(character, character)
         await asyncio.sleep(wait)
         if self.bot.in_character[author.guild.id][author.id] != character:
             return
@@ -354,7 +359,13 @@ class Characters(commands.Cog):
     @checks.no_pm()
     @character.command()
     async def assume(self, ctx, name: str):
-        """Assume a character. You will send messages with this character's icon and name. Necessary for some character inventory and economy commands"""
+        """Assume a character. You will send messages with this character's icon and name. Necessary for some character inventory and economy commands. Lasts one day"""
+        data = await self.bot.db.get_guild_data(ctx.guild)
+        if "caliases" not in data:
+            data["caliases"] = {}
+
+        name = data["caliases"].get(name, name)
+
         character = await self.bot.di.get_character(ctx.guild, name)
         if character is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
@@ -376,7 +387,7 @@ class Characters(commands.Cog):
         if hook is None:
             await ctx.channel.create_webhook(name=name)
 
-        await ctx.send((await _(ctx, "You are now {} for the next hour")).format(name))
+        await ctx.send((await _(ctx, "You are now {} for the next 24 hours")).format(name))
         self.bot.loop.create_task(self.unassume(ctx.author, name))
 
     @checks.no_pm()
