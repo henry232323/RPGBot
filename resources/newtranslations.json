@@ -84,10 +84,10 @@
     "es": "¿Cuál es el nivel del personaje?"
   },
   "Any additional info? (Add a character image using the image keyword. Formats use regular syntax e.g.  (Separate keys with commas or newlines)": {
-    "fr": "Des informations supplémentaires ? (Ajouter une image au personnage avec le mot-clé `image`, comme ceci : `image: http://image.com/image.jpg, cheveux: bruns` (Separer les mot-clés avec des virgules ou des retours à la ligne)",
-    "de": "Irgendwelche zusätzlichen Informationen? (Durch das Hinzufügen von Schlüsselwörtern kannst du zusätzliche Information hinzufügen. Zum Beispiel `image: https://image.com/image.jpg,` fügt ein Bild für den Charakter ein. Einzelne Schlüsselwörter müssen mit Komma oder Umschalt+Eingabe getrennt werden)",
-    "ru": "Дополнительная информация. (Добавьте персонажу картинку используя атрибуты: `image: http://image.com/image.jpg, hair_color:Темные волосы, nickname:Кевин` (Разделяйте атрибуты запятыми)",
-    "es": "¿Alguna información adicional? (Añade una imágen al personaje  usango la palabra clave image. El formato debe seguir la sintaxis regular p.e. `image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin`(Separe las claves con comas u otra línea))"
+    "fr": "Des informations supplémentaires ? (Ajouter une image au personnage avec le mot-clé `image`, comme ceci : `image: http://example.com/image.jpg, cheveux: bruns` (Separer les mot-clés avec des virgules ou des retours à la ligne)",
+    "de": "Irgendwelche zusätzlichen Informationen? (Durch das Hinzufügen von Schlüsselwörtern kannst du zusätzliche Information hinzufügen. Zum Beispiel `image: https://example.com/image.jpg,` fügt ein Bild für den Charakter ein. Einzelne Schlüsselwörter müssen mit Komma oder Umschalt+Eingabe getrennt werden)",
+    "ru": "Дополнительная информация. (Добавьте персонажу картинку используя атрибуты: `image: http://example.com/image.jpg, hair_color:Темные волосы, nickname:Кевин` (Разделяйте атрибуты запятыми)",
+    "es": "¿Alguna información adicional? (Añade una imágen al personaje  usango la palabra clave image. El formato debe seguir la sintaxis regular p.e. `image: http://example.com/image.jpg, hair_color: blond, nickname: Kevin`(Separe las claves con comas u otra línea))"
   },
   "Cancelling!": {
     "fr": "Commande annulée !",
@@ -1355,10 +1355,10 @@
     "de": "Beschreibe den Gegenstand (eine Beschreibung für den Gegenstand)",
     "ru": "Опишите вещь (это будет описание предмета)"
   },
-  "Additional information? (Attributes formatted in a list e.g `color: 400, value: 200` Set an image for this item with the `image` key e.g. `image: http://image.com/image.png` Set this item as usable by adding `used` key e.g. `used: You open the jar and the bird flies away`": {
-    "fr": "Des informations supplémentaires ? (Attributs écrits dans une liste, par exemple : `color: green, cout: 300` Ajouter une image pour cet item avec la clé `image`, par exemple : `image: http://image.com/image.png` Ajouter cet item comme utilisable en ajoutant la clé `used`, par exemple : `used: Vous ouvrez le jar et l'oiseau s'envole`",
-    "de": "Zusätzliche Informationen? (Attribute in einer liste formatiert z.B. `color: 400, value: 200` Mit `image: https://image.com/image.jpg` kannst du ein Bild für den Gegenstand einrichten. Du kannst den Gegenstand auch nutzbar machen in dem du z.B. `used: Du öffnest das glas und die Glühwürmchen fliegen davon` damit der eingegebene Text angezeigt wird wenn der Gegenstand benutzt wird",
-    "ru": "Может, что-нибудь еще? (Атрибуты пишите в формате списка, например `color: 400, value: 200` (где color - цвет, где value - количество). Добавьте изображение, к примеру `image: https://image.com/image.jpg`. Сделайте предмет доступным для использования, указав значение `used`, к примеру: `used: Вы открыли коробку и оттуда вылетели птицы`"
+  "Additional information? (Attributes formatted in a list e.g `color: 400, value: 200` Set an image for this item with the `image` key e.g. `image: http://example.com/image.png` Set this item as usable by adding `used` key e.g. `used: You open the jar and the bird flies away`": {
+    "fr": "Des informations supplémentaires ? (Attributs écrits dans une liste, par exemple : `color: green, cout: 300` Ajouter une image pour cet item avec la clé `image`, par exemple : `image: http://example.com/image.png` Ajouter cet item comme utilisable en ajoutant la clé `used`, par exemple : `used: Vous ouvrez le jar et l'oiseau s'envole`",
+    "de": "Zusätzliche Informationen? (Attribute in einer liste formatiert z.B. `color: 400, value: 200` Mit `image: https://example.com/image.jpg` kannst du ein Bild für den Gegenstand einrichten. Du kannst den Gegenstand auch nutzbar machen in dem du z.B. `used: Du öffnest das glas und die Glühwürmchen fliegen davon` damit der eingegebene Text angezeigt wird wenn der Gegenstand benutzt wird",
+    "ru": "Может, что-нибудь еще? (Атрибуты пишите в формате списка, например `color: 400, value: 200` (где color - цвет, где value - количество). Добавьте изображение, к примеру `image: https://example.com/image.jpg`. Сделайте предмет доступным для использования, указав значение `used`, к примеру: `used: Вы открыли коробку и оттуда вылетели птицы`"
   },
   "Item successfully created": {
     "fr": "Item créé avec succès",
