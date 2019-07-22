@@ -20,6 +20,7 @@ Made by [@Henry#6174](https://discordapp.com/channels/@me/122739797646245899)
 #### Russian
 - https://github.com/Mozyl
 - https://github.com/Atmyre
+- https://github.com/D3rise
 #### German
 - https://github.com/LW001
 - [@Potzerus#3950](https://discordapp.com/channels/@me/125660719323676672) https://github.com/Potzerus
@@ -215,7 +216,7 @@ Example:
     RPGBot:     Describe the character (Relevant character sheet) (Say done when you're done describing)
     Henry:      He's a little round, but he's a good boy
     Henry:      done
-    RPGBot:     Any additional info? (Add a character image using the image keyword or use the icon keyword to give the character an icon. Formats use regular syntax e.g. image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin (Separate keys with commas or newlines)
+    RPGBot:     Any additional info? (Add a character image using the image keyword or use the icon keyword to give the character an icon. Formats use regular syntax e.g. image: http://example.com/image.jpg, hair_color: blond, nickname: Kevin (Separate keys with commas or newlines)
     Henry:
             Hair Color: Blonde
             Body Type: Round
@@ -988,7 +989,7 @@ For example
 >Henry: rp!settings additem Example
 RPGBot: Describe the item (a description for the item)
 Henry: This is an example item
-RPGBot: Additional information? (Attributes formatted in a list i.e color: 400, value: 200 Set an image for this item with the image key i.e. image: http://image.com/image.png Set this item as usable by adding used key i.e. used: You open the jar and the bird flies away
+RPGBot: Additional information? (Attributes formatted in a list i.e color: 400, value: 200 Set an image for this item with the image key i.e. image: http://example.com/image.png Set this item as usable by adding used key i.e. used: You open the jar and the bird flies away
 Henry: used: You used this item!, image: http://www.sourcecertain.com/img/Example.png
 RPGBot:  Item successfully created
     

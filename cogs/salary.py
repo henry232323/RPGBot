@@ -90,10 +90,11 @@ class Salary(commands.Cog):
         else:
             dels = []
             for role, amount in sals.items():
-                roleobj = discord.utils.get(ctx.guild.roles, id=int(role)).name
+                roleobj = discord.utils.get(ctx.guild.roles, id=int(role))
                 if roleobj is None:
                     dels.append(role)
-                embed.add_field(name=roleobj,
+                    continue
+                embed.add_field(name=roleobj.name,
                                 value="{} {}".format(amount, await ctx.bot.di.get_currency(ctx.guild)))
             for d in dels:
                 del sals[d]

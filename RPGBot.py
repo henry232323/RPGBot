@@ -342,7 +342,7 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
               f"**Support Server**: {servinv}\n" \
               f"**Command List**: <{sourcelink}>\n" \
               f"**Tutorial**: <{tutoriallink}>\n" \
-              "**Support Me on Patreon**: <https://www.patreon.com/henry232323>\n"
+              "**Support Me on Patreon**: <https://www.patreon.com/henry232323>\n```"
 
 with open("resources/auth") as af:
     _auth = json.loads(af.read())

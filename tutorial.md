@@ -129,7 +129,7 @@ An example map file can be found [here](https://github.com/henry232323/RPGBot/bl
     Henry: rp!settings additem Example
     RPGBot: Describe the item (a description for the item)
     Henry: This is an example item
-    RPGBot: Additional information? (Attributes formatted in a list i.e color: 400, value: 200 Set an image for this item with the image key i.e. image: http://image.com/image.png Set this item as usable by adding used key i.e. used: You open the jar and the bird flies away
+    RPGBot: Additional information? (Attributes formatted in a list i.e color: 400, value: 200 Set an image for this item with the image key i.e. image: http://example.com/image.png Set this item as usable by adding used key i.e. used: You open the jar and the bird flies away
     Henry: used: You used this item!, image: http://www.sourcecertain.com/img/Example.png
     RPGBot:  Item successfully created
 

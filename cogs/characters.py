@@ -89,7 +89,7 @@ class Characters(commands.Cog):
             embed = discord.Embed(description=char.description)
             embed.set_author(name=char.name, icon_url=owner.avatar_url)
             if char.meta.get("image"):
-                embed.set_thumbnail(url=char.meta.get("image"))
+                embed.set_thumbnail(url=char.meta["image"])
             embed.add_field(name=await _(ctx, "Name"), value=char.name)
             embed.add_field(name=await _(ctx, "Owner"), value=str(owner))
             if char.level is not None:
@@ -132,7 +132,7 @@ class Characters(commands.Cog):
             RPGBot:     Describe the character (Relevant character sheet) (Say done when you're done describing)
             Henry:      He's a little round, but he's a good boy
             Henry:      done
-            RPGBot:     Any additional info? (Add a character image using the image keyword or use the icon keyword to give the character an icon. Formats use regular syntax e.g. image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin (Separate keys with commas or newlines)
+            RPGBot:     Any additional info? (Add a character image using the image keyword or use the icon keyword to give the character an icon. Formats use regular syntax e.g. image: http://example.com/image.jpg, hair_color: blond, nickname: Kevin (Separate keys with commas or newlines)
             Henry:
                     Hair Color: Blonde
                     Body Type: Round
@@ -182,7 +182,7 @@ class Characters(commands.Cog):
             await _(ctx,
                     "Any additional info? (Add a character image using the image keyword or"
                     " use the icon keyword to give the character an icon. Formats use regular syntax e.g. "
-                    "`image: http://image.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)"
+                    "`image: http://example.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)"
                     ))
         while True:
             response = await self.bot.wait_for("message", check=check, timeout=300)
@@ -340,7 +340,8 @@ class Characters(commands.Cog):
         await self.bot.di.add_character(ctx.guild, Character(*character))
         await ctx.send(await _(ctx, "Removed attribute!"))
 
-    async def unassume(self, ctx, author, character, wait=60 * 60 * 24):
+    async def unassume(self, ctx, character, wait=60 * 60 * 24):
+        author = ctx.author
         data = await self.bot.db.get_guild_data(ctx.guild)
         if "caliases" not in data:
             data["caliases"] = {}
@@ -388,13 +389,13 @@ class Characters(commands.Cog):
             await ctx.channel.create_webhook(name=name)
 
         await ctx.send((await _(ctx, "You are now {} for the next 24 hours")).format(name))
-        self.bot.loop.create_task(self.unassume(ctx.author, name))
+        self.bot.loop.create_task(self.unassume(ctx, name))
 
     @checks.no_pm()
     @character.command(name="unassume")
     async def c_unassume(self, ctx, character: str):
         """Unassume a character"""
-        await self.unassume(ctx.author, character, 0)
+        await self.unassume(ctx, character, 0)
         await ctx.send(await _(ctx, "Character unassumed!"))
 
     async def c_inventory(self, guild, name):
@@ -651,7 +652,7 @@ Total:\t\t {} dollars
             color=randint(0, 0xFFFFFF),
         )
 
-        embed.set_author(name=name, icon_url=(char.meta.get("icon")))
+        embed.set_author(name=name, icon_url=(char.meta.get("icon", discord.Embed.EmptyEmbed)))
         embed.set_thumbnail(url="https://opengameart.org/sites/default/files/styles/medium/public/gold_pile_0.png")
         await dest.send(embed=embed)
 
@@ -797,4 +798,4 @@ Total:\t\t {} dollars
         del data["caliases"][alias_name]
 
         await ctx.bot.db.update_guild_data(ctx.guild, data)
-        await ctx.send((await _(ctx, "Created a new alias {0} for character {1}")).format(alias_name, character_name))
+        await ctx.send((await _(ctx, "Removed alias {0}")).format(alias_name))
