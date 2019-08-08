@@ -172,7 +172,7 @@ class Bot(commands.AutoShardedBot):
                             await hook.delete()
                             hook = await msg.channel.create_webhook(name=char)
                         await msg.delete()
-                        url = (await self.di.get_character(ctx.guild, char))[5].get("icon")
+                        url = (await self.di.get_character(ctx.guild, char)).meta.get("icon")
                         await hook.send(content, avatar_url=url,
                                         files=dfiles, embeds=embeds)
 
@@ -238,6 +238,11 @@ class Bot(commands.AutoShardedBot):
         amount = await self.di.get_guild_start(member.guild)
         if amount:
             await self.di.set_eco(member, amount)
+
+    async def on_member_remove(self, member):
+        setting = await self.di.get_leave_setting(member.guild)
+        if setting:
+            await self.db.update_user_data(member, {})
 
     async def on_command_error(self, ctx, exception):
         self.stats.increment("RPGBot.errors", tags=["RPGBot:errors"], host="scw-8112e8")

@@ -925,3 +925,12 @@ class DataInteraction(object):
         gd = await self.db.get_guild_data(guild)
         gd["prefix"] = prefix
         return await self.db.update_guild_data(guild, gd)
+
+    async def set_leave_setting(self, guild, prefix):
+        gd = await self.db.get_guild_data(guild)
+        gd["wipeonleave"] = prefix
+        return await self.db.update_guild_data(guild, gd)
+
+    async def get_leave_setting(self, guild):
+        gd = await self.db.get_guild_data(guild)
+        return await self.db.update_guild_data(guild, gd.get("wipeonleave"))
