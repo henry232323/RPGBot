@@ -53,6 +53,8 @@ to players. Alternatively, all commands listed above beginning with "load" are c
 to add a number of premade items from popular games such as D&D and Pokemon. If you wish to add your own commands en masse, 
 you may also create a spreadsheet of all the items and export it to CSV, which the bot can read and load items from.
 
+### Loading Items
+
 The rp!loaditems command requires a file (or several) to be attached, which it will then read and use to create the new
 items.
 
