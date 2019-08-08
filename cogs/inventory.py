@@ -86,7 +86,10 @@ class Inventory(commands.Cog):
 
         num = abs(num)
         for member in members:
-            await self.bot.di.take_items(member, (item, num))
+            try:
+                await self.bot.di.take_items(member, (item, num))
+            except ValueError:
+                await ctx.send((await _(ctx, "Failed to take items from {}")).format(member.display_name))
 
         await ctx.send(await _(ctx, "Items taken!"))
 
