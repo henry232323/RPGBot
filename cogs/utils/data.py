@@ -933,4 +933,4 @@ class DataInteraction(object):
 
     async def get_leave_setting(self, guild):
         gd = await self.db.get_guild_data(guild)
-        return await self.db.update_guild_data(guild, gd.get("wipeonleave"))
+        return gd.get("wipeonleave", False)
