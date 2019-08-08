@@ -631,6 +631,7 @@ class Characters(commands.Cog):
                                    "You are not currently a character! "
                                    "Use the command again with the name of the character to check "
                                    "or use `rp!char assume` to assume a character"))
+            return
 
         if hide:
             dest = ctx.author
@@ -652,7 +653,7 @@ Total:\t\t {} dollars
             color=randint(0, 0xFFFFFF),
         )
 
-        embed.set_author(name=name, icon_url=(char.meta.get("icon", discord.Embed.EmptyEmbed)))
+        embed.set_author(name=name, icon_url=(char.meta.get("icon", discord.EmptyEmbed)))
         embed.set_thumbnail(url="https://opengameart.org/sites/default/files/styles/medium/public/gold_pile_0.png")
         await dest.send(embed=embed)
 
@@ -747,6 +748,7 @@ Total:\t\t {} dollars
                                    "You are not currently a character! "
                                    "Use the command again with the name of the character to check "
                                    "or use `rp!char assume` to assume a character"))
+            return
 
         try:
             await self.c_addeco(ctx.guild, name, -amount)

@@ -57,6 +57,7 @@ class Settings(commands.Cog):
         embed.add_field(name=await _(ctx, "Experience Enabled"), value=f"{settings.get('exp', True)}")
         embed.add_field(name=await _(ctx, "Prefix"), value=f"{settings.get('prefix', 'rp!')}")
         embed.add_field(name=await _(ctx, "Hide Inventories"), value=f"{settings.get('hideinv', False)}")
+        embed.add_field(name=await _(ctx, "Wipe Userdata on Leave"), value=f"{settings.get('wipeonleave', False)}")
         time = settings.get('msgdel', 0)
         embed.add_field(name=await _(ctx, "Message Auto Delete Time"), value=f"{time if time is not 0 else 'Never'}")
         await ctx.send(embed=embed)
@@ -415,6 +416,18 @@ class Settings(commands.Cog):
         Requires Bot Moderator or Bot Admin"""
         prefix = await ctx.bot.db.guild_item(ctx.guild, "prefix")
         await ctx.send(prefix)
+
+    @commands.command()
+    @checks.no_pm()
+    @checks.admin_or_permissions()
+    async def wipeonleave(self, ctx, value: str):
+        """Set the server's setting for what to do when a player leaves. Set to true to wipe player data.
+        Example:
+            rp!setprefix ! --> !setprefix rp!
+
+        Requires Bot Moderator or Bot Admin"""
+        await self.bot.di.set_leave_setting(ctx.guild, value)
+        await ctx.send(await _(ctx, "Updated server setting"))
 
     @commands.command()
     @checks.no_pm()
