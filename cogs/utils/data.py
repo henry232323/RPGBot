@@ -375,7 +375,8 @@ default_server = {
     "guilds": dict(),
     "shop_items": dict(),
     "recipes": dict(),
-    "prefix": ['rp!', 'pb!', '<@305177429612298242> ', 'Rp!']
+    "prefix": ['rp!', 'pb!', '<@305177429612298242> ', 'Rp!'],
+    "cmdprefixes": {},
 }
 
 example_pet = {
@@ -705,6 +706,19 @@ class DataInteraction(object):
         await self.db.update_user_data(member, ud)
         return ud["items"]
 
+    async def take_items_override(self, member, *items):
+        """Take items from a user (set to zero instead of error)"""
+        ud = await self.db.get_user_data(member)
+        ud["items"] = Counter(ud["items"])
+        ud["items"].subtract(dict(items))
+
+        for item, value in list(ud["items"].items()):
+            if value <= 0:
+                del ud["items"][item]
+
+        await self.db.update_user_data(member, ud)
+        return ud["items"]
+
     async def update_items(self, member, *items):
         """Take items from a user"""
         ud = await self.db.get_user_data(member)
@@ -924,6 +938,13 @@ class DataInteraction(object):
     async def set_prefix(self, guild, prefix):
         gd = await self.db.get_guild_data(guild)
         gd["prefix"] = prefix
+        return await self.db.update_guild_data(guild, gd)
+
+    async def set_cmd_prefixes(self, guild, name, prefix):
+        gd = await self.db.get_guild_data(guild)
+        if "cmdprefixes" not in gd:
+            gd["cmdprefixes"] = {}
+        gd["cmdprefixes"][name] = prefix
         return await self.db.update_guild_data(guild, gd)
 
     async def set_leave_setting(self, guild, prefix):

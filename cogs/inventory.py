@@ -87,7 +87,7 @@ class Inventory(commands.Cog):
         num = abs(num)
         for member in members:
             try:
-                await self.bot.di.take_items(member, (item, num))
+                await self.bot.di.take_items_override(member, (item, num))
             except ValueError:
                 await ctx.send((await _(ctx, "Failed to take items from {}")).format(member.display_name))
 
@@ -324,7 +324,7 @@ class Inventory(commands.Cog):
         else:
             await ctx.send(await _(ctx, "Invalid loot box"))
 
-    @commands.group()
+    @commands.group(invoke_without_command=True)
     @checks.no_pm()
     async def trade(self, ctx, other: discord.Member, *items: str):
         """Send a trade offer to another user.

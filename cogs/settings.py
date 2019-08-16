@@ -143,7 +143,7 @@ class Settings(commands.Cog):
         try:
             item = dict()
             item["name"] = name
-            check = lambda x: x.channel is ctx.channel and x.author is ctx.author
+            check = lambda x: x.channel == ctx.channel and x.author == ctx.author
             await ctx.send(await _(ctx, "Describe the item (a description for the item)"))
             response = await self.bot.wait_for("message", timeout=120, check=check)
             if response.content.lower() == "cancel":
@@ -416,6 +416,29 @@ class Settings(commands.Cog):
         Requires Bot Moderator or Bot Admin"""
         prefix = await ctx.bot.db.guild_item(ctx.guild, "prefix")
         await ctx.send(prefix)
+
+    @commands.command()
+    @checks.no_pm()
+    @checks.admin_or_permissions()
+    async def setcmdprefix(self, ctx, cmdpath: str, *, value: str):
+        """Set a custom prefix for a command. The default prefix will continue to work.
+        Example:
+            Henry: rp!setcmdprefix rtd /
+            Henry: /1d20
+            RPGBot: Henry rolled Roll 9 ([9])
+
+        Requires Bot Moderator or Bot Admin"""
+        await self.bot.di.set_cmd_prefixes(ctx.guild, value)
+        await ctx.send(await _(ctx, "Updated command prefix"))
+
+    @commands.command()
+    @checks.no_pm()
+    async def prefixes(self, ctx):
+        """View the current custom command prefixes for the server
+
+        Requires Bot Moderator or Bot Admin"""
+        prefixes = await ctx.bot.db.guild_item(ctx.guild, "cmdprefixes")
+        await ctx.send("\n".join(f"{k}: {v}" for k, v in prefixes.items()))
 
     @commands.command()
     @checks.no_pm()
