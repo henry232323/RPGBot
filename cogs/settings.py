@@ -428,7 +428,7 @@ class Settings(commands.Cog):
             RPGBot: Henry rolled Roll 9 ([9])
 
         Requires Bot Moderator or Bot Admin"""
-        await self.bot.di.set_cmd_prefixes(ctx.guild, value)
+        await self.bot.di.set_cmd_prefixes(ctx.guild, cmdpath, value)
         await ctx.send(await _(ctx, "Updated command prefix"))
 
     @commands.command()
@@ -437,7 +437,7 @@ class Settings(commands.Cog):
         """View the current custom command prefixes for the server
 
         Requires Bot Moderator or Bot Admin"""
-        prefixes = await ctx.bot.db.guild_item(ctx.guild, "cmdprefixes")
+        prefixes = await self.bot.di.get_cmd_prefixes(ctx.guild)
         await ctx.send("\n".join(f"{k}: {v}" for k, v in prefixes.items()))
 
     @commands.command()

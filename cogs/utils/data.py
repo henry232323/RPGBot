@@ -947,6 +947,10 @@ class DataInteraction(object):
         gd["cmdprefixes"][name] = prefix
         return await self.db.update_guild_data(guild, gd)
 
+    async def get_cmd_prefixes(self, guild):
+        gd = await self.db.get_guild_data(guild)
+        return gd.get("cmdprefixes", {})
+
     async def set_leave_setting(self, guild, prefix):
         gd = await self.db.get_guild_data(guild)
         gd["wipeonleave"] = prefix
