@@ -104,7 +104,7 @@ class Characters(commands.Cog):
 
             await ctx.send(embed=embed)
         except:
-            owner = discord.utils.get(ctx.guild.members, id=char.owner)
+            owner = await ctx.bot.get_user(char.owner)
             embed = discord.Embed(description=char.description)
             embed.set_author(name=char.name, icon_url=owner.avatar_url)
             embed.add_field(name=await _(ctx, "Name"), value=char.name)
@@ -636,8 +636,11 @@ class Characters(commands.Cog):
         if hide:
             dest = ctx.author
 
-        bal = await self.c_balances(ctx.guild, name)
         char = await self.bot.di.get_character(ctx.guild, name)
+        if char is None:
+            await ctx.send((await _(ctx, "Character {} does not exist!")).format(name))
+
+        bal = await self.c_balances(ctx.guild, name)
 
         data = """
 On you:\t\t {} dollars
@@ -653,7 +656,7 @@ Total:\t\t {} dollars
             color=randint(0, 0xFFFFFF),
         )
 
-        embed.set_author(name=name, icon_url=(char.meta.get("icon", discord.EmptyEmbed)))
+        embed.set_author(name=name, icon_url=(char.meta.get("icon", discord.Embed.Empty)))
         embed.set_thumbnail(url="https://opengameart.org/sites/default/files/styles/medium/public/gold_pile_0.png")
         await dest.send(embed=embed)
 

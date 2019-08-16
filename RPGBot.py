@@ -147,6 +147,12 @@ class Bot(commands.AutoShardedBot):
 
     async def on_message(self, msg):
         if msg.author.id not in self.blacklist:
+            if msg.guild:
+                prefixes = await self.db.guild_item(msg.guild, "cmdprefixes")
+                for cmd, prefix in prefixes.items():
+                    if msg.startswith(prefix):
+                        msg.content = msg.content.replace(prefix, self.command_prefix + (cmd.replace(".", " ")), 1)
+
             ctx = await self.get_context(msg)
             await self.invoke(ctx)
 

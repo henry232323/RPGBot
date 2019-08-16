@@ -63,7 +63,7 @@ class Misc(commands.Cog):
             for die in dice:
                 try:
                     number, sides = die.split("d")
-                    number, sides = int(number), int(sides)
+                    number, sides = int(number or "1"), int(sides)
                     if number > 10:
                         await ctx.send(await _(ctx, "Too many dice! Cant roll that many!"))
                         return
