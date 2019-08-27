@@ -515,12 +515,12 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "Only mods can withdraw money!"))
             return
 
-        await self.bot.di.add_eco(ctx.author, amount)
-
         guild.bank -= amount
         if guild.bank < 0:
             await ctx.send(await _(ctx, "Cannot withdraw more than the guild has!"))
             return
+
+        await self.bot.di.add_eco(ctx.author, amount)
 
         await self.bot.di.update_guild_guilds(ctx.guild, guilds)
         await ctx.send((await _(ctx, "Successfully withdrew {} dollars")).format(amount))
