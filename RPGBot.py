@@ -56,7 +56,8 @@ elif os.getcwd().endswith("rpgtest"):
 
 class Bot(commands.AutoShardedBot):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, shard_count=5, game=discord.Game(name="rp!help for help!"), **kwargs)
+        super().__init__(*args, game=discord.Game(name="rp!help for help!"), **kwargs)
+        self.prefixes = {}
         self.owner_id = 122739797646245899
         self.lounge_id = 166349353999532035
         self.uptime = datetime.datetime.utcnow()
@@ -93,6 +94,7 @@ class Bot(commands.AutoShardedBot):
             self.switems = json.loads(swf.read())
 
         self.httpserver = server.API(self)
+        self.loop.create_task(self.httpserver.host())
 
         self.db: db.Database = db.Database(self)
         self.di: data.DataInteraction = data.DataInteraction(self)
@@ -103,12 +105,16 @@ class Bot(commands.AutoShardedBot):
         with open("resources/patrons.json") as pj:
             self.patrons = {int(k): v for k, v in json.loads(pj.read()).items()}
 
-        with open("resources/newtranslations.json") as trf:
-            self.translations = json.loads(trf.read())
+        with open("resources/newtranslations.json", 'rb') as trf:
+            self.translations = json.loads(trf.read().decode())
         self.languages = ["en", "fr", "de", "ru", "es"]
 
         with open("resources/blacklist.json") as blf:
             self.blacklist = json.loads(blf.read())
+
+        with open("savedata/prefixes.json") as prf:
+            self.prefixes = json.loads(prf.read())
+
 
         icogs = [
             cogs.admin.Admin(self),
@@ -128,7 +134,6 @@ class Bot(commands.AutoShardedBot):
             self.add_cog(cog)
 
         # self.loop.create_task(self.start_serv())
-        self.loop.create_task(self.httpserver.host())
 
         init_dd(self._auth[3], self._auth[4])
         self.stats = ThreadStats()
@@ -145,14 +150,17 @@ class Bot(commands.AutoShardedBot):
             self.loop.create_task(self.update_stats())
             self._first = False
 
+
     async def on_message(self, msg):
         if msg.author.id not in self.blacklist:
-            if msg.guild:
+            """
+            if False and msg.guild:
                 prefixes = await self.di.get_cmd_prefixes(msg.guild)
                 for cmd, prefix in prefixes.items():
                     if msg.content.startswith(prefix):
                         msg.content = msg.content.replace(prefix, "rp!" + (cmd.replace(".", " ")) + " ", 1)
                         break
+            """
 
             ctx = await self.get_context(msg)
             await self.invoke(ctx)
@@ -164,7 +172,7 @@ class Bot(commands.AutoShardedBot):
                         hooks = await ctx.guild.webhooks()
                         hook = discord.utils.get(hooks, name=char)
                         if hook is None:
-                            #await ctx.send(await _(ctx, "Webhook missing!"))
+                            # await ctx.send(await _(ctx, "Webhook missing!"))
                             del self.in_character[ctx.guild.id][ctx.author.id]
                             return
                         content = msg.content
@@ -336,6 +344,9 @@ class Bot(commands.AutoShardedBot):
         return "\n".join(fin)
 
     async def shutdown(self):
+        with open("savedata/prefixes.json", 'w') as prf:
+            json.dump(self.prefixes, prf)
+
         await self.session.close()
 
 
@@ -359,9 +370,11 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
 with open("resources/auth") as af:
     _auth = json.loads(af.read())
 
+
 async def prefix(bot, msg):
     if msg.guild:
-        prefix = await bot.db.guild_item(msg.guild, "prefix")
+        #prefix = await bot.db.guild_item(msg.guild, "prefix")
+        prefix = bot.prefixes.get(str(msg.guild.id), [])
         if isinstance(prefix, str):
             return prefixes + [prefix]
         else:
@@ -369,5 +382,13 @@ async def prefix(bot, msg):
     else:
         return prefixes
 
-prp = Bot(command_prefix=prefix, description=description, pm_help=True)
+"""
+logger = logging.getLogger('discord')
+logger.setLevel(logging.DEBUG)
+handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='a')
+handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger.addHandler(handler)
+"""
+
+prp = Bot(command_prefix=prefix, description=description, pm_help=True, shard_count=7)
 prp.run(_auth[0])

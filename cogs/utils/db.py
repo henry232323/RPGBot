@@ -162,7 +162,8 @@ class Database:
             return values
         else:
             await self.guild_insert(guild, self.bot.default_servdata)
-            return await self.get_guild_data(guild)
+            return copy.deepcopy(self.bot.default_servdata)
+            #return await self.get_guild_data(guild)
 
     async def guild_item(self, guild, name: str):
         req = f"""SELECT info ->> '{name}' FROM servdata WHERE UUID = {guild.id}"""

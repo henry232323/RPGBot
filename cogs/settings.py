@@ -405,7 +405,7 @@ class Settings(commands.Cog):
             rp!setprefix ! --> !setprefix rp!
 
         Requires Bot Moderator or Bot Admin"""
-        await self.bot.di.set_prefix(ctx.guild, value)
+        self.bot.prefixes[str(ctx.guild.id)] = value
         await ctx.send(await _(ctx, "Updated server prefix"))
 
     @commands.command()
@@ -414,7 +414,7 @@ class Settings(commands.Cog):
         """View the current custom prefix for the server
 
         Requires Bot Moderator or Bot Admin"""
-        prefix = await ctx.bot.db.guild_item(ctx.guild, "prefix")
+        prefix = self.bot.prefixes.get(str(ctx.guild.id))
         await ctx.send(prefix)
 
     @commands.command()
