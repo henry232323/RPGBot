@@ -111,7 +111,7 @@ def parse_varargs(s):
     end = []
     while True:
         view.skip_ws()
-        next = commands.view.quoted_word(view)
+        next = view.get_quoted_word()
         if next is None:
             break
         end.append(next.strip())

@@ -85,7 +85,7 @@ class Characters(commands.Cog):
             return
 
         try:
-            owner = discord.utils.get(ctx.guild.members, id=char.owner)
+            owner = await ctx.bot.fetch_user(char.owner)
             embed = discord.Embed(description=char.description)
             embed.set_author(name=char.name, icon_url=owner.avatar_url)
             if char.meta.get("image"):
@@ -94,10 +94,10 @@ class Characters(commands.Cog):
             embed.add_field(name=await _(ctx, "Owner"), value=str(owner))
             if char.level is not None:
                 embed.add_field(name=await _(ctx, "Level"), value=char.level)
-            team = await self.bot.di.get_team(ctx.guild, char.name)
-            if team:
-                tfmt = "\n".join(f"{p.name} ({p.type})" for p in team)
-                embed.add_field(name=await _(ctx, "Team"), value=tfmt)
+            #team = await self.bot.di.get_team(ctx.guild, char.name)
+            #if team:
+            #    tfmt = "\n".join(f"{p.name} ({p.type})" for p in team)
+            #    embed.add_field(name=await _(ctx, "Team"), value=tfmt)
             mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items() if x not in ("icon", "image"))
             if mfmt.strip():
                 embed.add_field(name=await _(ctx, "Additional Info"), value=mfmt)
@@ -111,10 +111,10 @@ class Characters(commands.Cog):
             embed.add_field(name=await _(ctx, "Owner"), value=str(owner))
             if char.level is not None:
                 embed.add_field(name=await _(ctx, "Level"), value=char.level)
-            team = await self.bot.di.get_team(ctx.guild, char.name)
-            if team:
-                tfmt = "\n".join(f"{p.name} ({p.type})" for p in team)
-                embed.add_field(name=await _(ctx, "Team"), value=tfmt)
+            #team = await self.bot.di.get_team(ctx.guild, char.name)
+            #if team:
+            #    tfmt = "\n".join(f"{p.name} ({p.type})" for p in team)
+            #    embed.add_field(name=await _(ctx, "Team"), value=tfmt)
             mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items())
             if mfmt.strip():
                 embed.add_field(name=await _(ctx, "Additional Info"), value=mfmt)
