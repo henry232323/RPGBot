@@ -27,7 +27,7 @@ import sys
 import ujson as json
 from io import BytesIO
 from collections import Counter, defaultdict
-from random import choice, sample
+from random import choice, sample, seed
 
 import aiohttp
 import discord
@@ -214,6 +214,8 @@ class Bot(commands.AutoShardedBot):
         self.stats.increment(f"RPGBot.commands.{str(ctx.command).replace(' ', '.')}", tags=["RPGBot:commands"],
                              host="scw-8112e8")
         self.commands_used[ctx.command] += 1
+        if self.commands_used[ctx.command] % 100 == 0:
+            seed(self.socket_stats["PRESENCE_UPDATE"])
         if isinstance(ctx.author, discord.Member):
             self.server_commands[ctx.guild.id] += 1
             if ctx.guild.id not in self.patrons:

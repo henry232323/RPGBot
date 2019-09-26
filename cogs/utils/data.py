@@ -34,7 +34,7 @@ from .translation import _
 
 Pet = namedtuple("Pet", ["id", "name", "type", "stats", "meta"])
 ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
-#Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
+# Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
 
 gc = namedtuple("Guild",
                 ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites",
@@ -45,6 +45,45 @@ AdvancedMap = namedtuple("AdvancedMap", ["tiles", "generators", "spawners", "spa
 from builtins import property as _property, tuple as _tuple
 from operator import itemgetter as _itemgetter
 from collections import OrderedDict
+
+
+class ContextManagerLockWrapper:
+    def __init__(self, manager, resource):
+        self.manager = manager
+        self.resource = resource
+
+    async def __aenter__(self):
+        await self.manager.acquire(self.resource)
+
+    async def __aexit__(self):
+        await self.manager.release(self.resource)
+
+
+class ResourceManager:
+    def __init__(self, lock_factory=asyncio.Lock):
+        """A class for managing multiple locks on arbitrary resources."""
+        self.locks = {}
+        self._lock_factory = lock_factory
+
+    async def acquire(self, resource):
+        if resource in self.locks:
+            await self.locks[resource].acquire()
+        else:
+            lock = self.locks[resource] = self._lock_factory()
+            await lock.acquire()
+
+    async def release(self, resource):
+        if resource in self.locks:
+            lock = self.locks[resource]
+            await lock.release()
+            if lock.holder is None:
+                del self.locks[resource]
+        else:
+            raise RuntimeError("This lock is not being held!")
+
+    def lock(self, resource):
+        return ContextManagerLockWrapper(self, resource)
+
 
 
 class Character(tuple):
@@ -472,6 +511,7 @@ class DataInteraction(object):
     def __init__(self, bot):
         self.bot = bot
         self.db = self.bot.db
+        self.rm = ResourceManager()
 
     async def get_team(self, guild, character):
         gd = await self.db.get_guild_data(guild)
