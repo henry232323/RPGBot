@@ -55,7 +55,7 @@ class ContextManagerLockWrapper:
     async def __aenter__(self):
         await self.manager.acquire(self.resource)
 
-    async def __aexit__(self):
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
         await self.manager.release(self.resource)
 
 
