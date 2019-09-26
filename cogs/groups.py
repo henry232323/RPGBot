@@ -230,323 +230,346 @@ class Groups(commands.Cog):
             RPGBot: Guild successfully created!
 
             """
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is not None:
-            await ctx.send(await _(ctx, "You're already in a guild! Leave this guild to create a new one"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        if name in guilds:
-            await ctx.send(await _(ctx, "A guild with this name already exists!"))
-            return
-        owner = discord.utils.get(guilds.values(), owner=ctx.author.id)
-        if owner is not None:
-            await ctx.send(await _(ctx, "You already own a guild!"))
-            return
-        try:
-            check = lambda x: x.channel is ctx.channel and x.author is ctx.author
-            guild = dict(name=name,
-                         owner=ctx.author.id,
-                         description="",
-                         members=set(),
-                         bank=0,
-                         items=dict(),
-                         open=False,
-                         image=None,
-                         invites=set())
-            await ctx.send(await _(ctx, "'cancel' or 'skip' to cancel creation or skip a step"))
-            await ctx.send(await _(ctx, "Describe the Guild (guild description)"))
-            response = await self.bot.wait_for("message", check=check, timeout=120)
-            if response.content.lower() == "cancel":
-                await ctx.send(await _(ctx, "Cancelling!"))
-                return
-            elif response.content.lower() == "skip":
-                await ctx.send(await _(ctx, "Skipping!"))
-            else:
-                guild["description"] = response.content
-            await ctx.send(
-                await _(ctx, "Is this guild open to everyone? Or is an invite necessary? (yes or no, no is assumed)"))
-            response = await self.bot.wait_for("message", timeout=60, check=check)
-            if response.content.lower() == "cancel":
-                await ctx.send(await _(ctx, "Cancelling!"))
-                return
-            elif response.content.lower() == "skip":
-                await ctx.send(await _(ctx, "Skipping!"))
-                guild["open"] = False
-            else:
-                guild["open"] = response.content.lower() == "yes"
 
-            await ctx.send(await _(ctx, "If you'd like give a URL to an image for the guild"))
-            while True:
-                response = await self.bot.wait_for("message", timeout=60, check=check)
-                if response.content.lower() == "cancel":
-                    await ctx.send(await _(ctx, "Cancelling!"))
+        async with self.bot.di.rm.lock(ctx.author.id):
+            async with self.bot.di.rm.lock(ctx.guild.id):
+                ug = await self.bot.di.get_user_guild(ctx.author)
+                if ug is not None:
+                    await ctx.send(await _(ctx, "You're already in a guild! Leave this guild to create a new one"))
                     return
-                elif response.content.lower() == "skip":
-                    await ctx.send(await _(ctx, "Skipping!"))
-                    break
-                else:
-                    if validate_url(response.content):
-                        guild["image"] = response.content
-                        break
-                    else:
-                        await ctx.send(await _(ctx, "That isn't a valid URL!"))
-
-            await ctx.send(await _(ctx, "Finally, you can also set an icon for the guild"))
-            while True:
-                response = await self.bot.wait_for("message", timeout=60, check=check)
-                if response.content.lower() == "cancel":
-                    await ctx.send(await _(ctx, "Cancelling!"))
+                guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+                if name in guilds:
+                    await ctx.send(await _(ctx, "A guild with this name already exists!"))
                     return
-                elif response.content.lower() == "skip":
-                    await ctx.send(await _(ctx, "Skipping!"))
-                    break
-                else:
-                    if validate_url(response.content):
-                        guild["image"] = response.content
-                        break
+                owner = discord.utils.get(guilds.values(), owner=ctx.author.id)
+                if owner is not None:
+                    await ctx.send(await _(ctx, "You already own a guild!"))
+                    return
+                try:
+                    check = lambda x: x.channel is ctx.channel and x.author is ctx.author
+                    guild = dict(name=name,
+                                 owner=ctx.author.id,
+                                 description="",
+                                 members=set(),
+                                 bank=0,
+                                 items=dict(),
+                                 open=False,
+                                 image=None,
+                                 invites=set())
+                    await ctx.send(await _(ctx, "'cancel' or 'skip' to cancel creation or skip a step"))
+                    await ctx.send(await _(ctx, "Describe the Guild (guild description)"))
+                    response = await self.bot.wait_for("message", check=check, timeout=120)
+                    if response.content.lower() == "cancel":
+                        await ctx.send(await _(ctx, "Cancelling!"))
+                        return
+                    elif response.content.lower() == "skip":
+                        await ctx.send(await _(ctx, "Skipping!"))
                     else:
-                        await ctx.send(await _(ctx, "That isn't a valid URL!"))
+                        guild["description"] = response.content
+                    await ctx.send(
+                        await _(ctx,
+                                "Is this guild open to everyone? Or is an invite necessary? (yes or no, no is assumed)"))
+                    response = await self.bot.wait_for("message", timeout=60, check=check)
+                    if response.content.lower() == "cancel":
+                        await ctx.send(await _(ctx, "Cancelling!"))
+                        return
+                    elif response.content.lower() == "skip":
+                        await ctx.send(await _(ctx, "Skipping!"))
+                        guild["open"] = False
+                    else:
+                        guild["open"] = response.content.lower() == "yes"
 
-            guild["members"].add(ctx.author.id)
-            guilds[name] = Guild(**guild)
-            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-            await self.bot.di.set_guild(ctx.author, guild["name"])
+                    await ctx.send(await _(ctx, "If you'd like give a URL to an image for the guild"))
+                    while True:
+                        response = await self.bot.wait_for("message", timeout=60, check=check)
+                        if response.content.lower() == "cancel":
+                            await ctx.send(await _(ctx, "Cancelling!"))
+                            return
+                        elif response.content.lower() == "skip":
+                            await ctx.send(await _(ctx, "Skipping!"))
+                            break
+                        else:
+                            if validate_url(response.content):
+                                guild["image"] = response.content
+                                break
+                            else:
+                                await ctx.send(await _(ctx, "That isn't a valid URL!"))
 
-            await ctx.send(await _(ctx, "Guild successfully created!"))
-        except asyncio.TimeoutError:
-            await ctx.send(await _(ctx, "Timed out! Try again"))
+                    await ctx.send(await _(ctx, "Finally, you can also set an icon for the guild"))
+                    while True:
+                        response = await self.bot.wait_for("message", timeout=60, check=check)
+                        if response.content.lower() == "cancel":
+                            await ctx.send(await _(ctx, "Cancelling!"))
+                            return
+                        elif response.content.lower() == "skip":
+                            await ctx.send(await _(ctx, "Skipping!"))
+                            break
+                        else:
+                            if validate_url(response.content):
+                                guild["image"] = response.content
+                                break
+                            else:
+                                await ctx.send(await _(ctx, "That isn't a valid URL!"))
+
+                    guild["members"].add(ctx.author.id)
+                    guilds[name] = Guild(**guild)
+                    await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+                    await self.bot.di.set_guild(ctx.author, guild["name"])
+
+                    await ctx.send(await _(ctx, "Guild successfully created!"))
+                except asyncio.TimeoutError:
+                    await ctx.send(await _(ctx, "Timed out! Try again"))
 
     @guild.command()
     @checks.no_pm()
     async def join(self, ctx, *, name: str):
         """Join a guild. (if you have an invite for closed guilds)"""
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is not None:
-            await ctx.send(await _(ctx, "You're already in a guild! Leave this guild to join a new one"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(name)
-        if guild is None:
-            await ctx.send(await _(ctx, "That guild doesnt exist!"))
-            return
+        async with self.bot.di.rm.lock(ctx.author.id):
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is not None:
+                await ctx.send(await _(ctx, "You're already in a guild! Leave this guild to join a new one"))
+                return
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(name)
+            if guild is None:
+                await ctx.send(await _(ctx, "That guild doesnt exist!"))
+                return
 
-        guild.members = set(guild.members)
+            guild.members = set(guild.members)
 
-        if not guild.open and ctx.author.id not in guild.invites:
-            await ctx.send(await _(ctx, "This guild is closed and you don't have an invite!"))
-            return
+            if not guild.open and ctx.author.id not in guild.invites:
+                await ctx.send(await _(ctx, "This guild is closed and you don't have an invite!"))
+                return
 
-        if ctx.author.id in guild.invites:
-            guild.invites.remove(ctx.author.id)
+            if ctx.author.id in guild.invites:
+                guild.invites.remove(ctx.author.id)
 
-        guild.members.add(ctx.author.id)
-        await self.bot.di.set_guild(ctx.author, guild.name)
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(await _(ctx, "Guild joined!"))
+            guild.members.add(ctx.author.id)
+            await self.bot.di.set_guild(ctx.author, guild.name)
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send(await _(ctx, "Guild joined!"))
 
     @guild.command()
     @checks.no_pm()
     async def leave(self, ctx):
         """Leave your guild. Will ask you to delete your guild if you are the owner."""
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send(await _(ctx, "You aren't in a guild!"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+        async with self.bot.di.rm.lock(ctx.author.id):
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is None:
+                await ctx.send(await _(ctx, "You aren't in a guild!"))
+                return
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
 
-        if ug not in guilds:
+            if ug not in guilds:
+                await self.bot.di.set_guild(ctx.author, None)
+                await ctx.send(await _(ctx, "Guild left."))
+                return
+
+            guild = guilds[ug]
+            if guild.owner == ctx.author.id:
+                try:
+                    await ctx.send(await _(ctx, "Guild will be deleted is this alright? {yes / no}"))
+                    resp = await self.bot.wait_for("message",
+                                                   check=lambda x: x.author is ctx.author and x.channel is ctx.channel)
+                except TimeoutError:
+                    await ctx.send(await _(ctx, "Didn't respond in time! Cancelling"))
+                    return
+
+                if resp.content == "yes":
+                    await ctx.send(await _(ctx, "Alright then!"))
+
+                    await ctx.bot.di.add_eco(Object(id=guild.owner, guild=ctx.guild), guild.bank)
+                    await ctx.bot.di.give_items(Object(id=guild.owner, guild=ctx.guild), *guild.items.items())
+                    await self.bot.di.remove_guild(ctx.guild, guild.name)
+                    await ctx.send(await _(ctx, "Guild removed!"))
+                    await self.bot.di.set_guild(ctx.author, None)
+                    return
+                else:
+                    await ctx.send(await _(ctx, "Cancelling!"))
+                    return
+
+            guild.members.remove(ctx.author.id)
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
             await self.bot.di.set_guild(ctx.author, None)
             await ctx.send(await _(ctx, "Guild left."))
-            return
-
-        guild = guilds[ug]
-        if guild.owner == ctx.author.id:
-            try:
-                await ctx.send(await _(ctx, "Guild will be deleted is this alright? {yes / no}"))
-                resp = await self.bot.wait_for("message",
-                                               check=lambda x: x.author is ctx.author and x.channel is ctx.channel)
-            except TimeoutError:
-                await ctx.send(await _(ctx, "Didn't respond in time! Cancelling"))
-                return
-
-            if resp.content == "yes":
-                await ctx.send(await _(ctx, "Alright then!"))
-
-                await ctx.bot.di.add_eco(Object(id=guild.owner, guild=ctx.guild), guild.bank)
-                await ctx.bot.di.give_items(Object(id=guild.owner, guild=ctx.guild), *guild.items.items())
-                await self.bot.di.remove_guild(ctx.guild, guild.name)
-                await ctx.send(await _(ctx, "Guild removed!"))
-                await self.bot.di.set_guild(ctx.author, None)
-                return
-            else:
-                await ctx.send(await _(ctx, "Cancelling!"))
-                return
-
-        guild.members.remove(ctx.author.id)
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await self.bot.di.set_guild(ctx.author, None)
-        await ctx.send(await _(ctx, "Guild left."))
 
     @guild.command()
     @checks.no_pm()
     async def kick(self, ctx, *, user: discord.Member):
         """Kick a member from a guild."""
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send(await _(ctx, "You aren't in a guild!"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
-        if guild.owner != ctx.author.id:
-            await ctx.send(await _(ctx, "You do not own this guild!"))
-            return
 
-        if user.id not in guild.members:
-            await ctx.send(await _(ctx, "User isn't in this guild!"))
-            return
+        async with self.bot.di.rm.lock(ctx.author.id):
+            async with self.bot.di.rm.lock(user.id):
+                ug = await self.bot.di.get_user_guild(ctx.author)
+                if ug is None:
+                    await ctx.send(await _(ctx, "You aren't in a guild!"))
+                    return
+                guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+                guild = guilds.get(ug)
+                if guild.owner != ctx.author.id:
+                    await ctx.send(await _(ctx, "You do not own this guild!"))
+                    return
 
-        guild.members.remove(user.id)
-        await self.bot.di.set_guild(user, None)
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(await _(ctx, "User kicked"))
+                if user.id not in guild.members:
+                    await ctx.send(await _(ctx, "User isn't in this guild!"))
+                    return
+
+                guild.members.remove(user.id)
+                await self.bot.di.set_guild(user, None)
+                await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+                await ctx.send(await _(ctx, "User kicked"))
 
     @guild.command()
     @checks.no_pm()
     async def invite(self, ctx, user: discord.Member):
         """Invite a user your closed guild"""
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send(await _(ctx, "You aren't in a guild!"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
-        guild.invites = set(guild.invites)
-        if guild.owner != ctx.author.id:
-            await ctx.send(await _(ctx, "You do not own this guild!"))
-            return
 
-        guild.invites.add(user.id)
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send((await _(ctx, "Sent a guild invite to {}")).format(user))
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is None:
+                await ctx.send(await _(ctx, "You aren't in a guild!"))
+                return
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(ug)
+            guild.invites = set(guild.invites)
+            if guild.owner != ctx.author.id:
+                await ctx.send(await _(ctx, "You do not own this guild!"))
+                return
+
+            guild.invites.add(user.id)
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send((await _(ctx, "Sent a guild invite to {}")).format(user))
 
     @guild.command()
     @checks.no_pm()
     async def delete(self, ctx, *, name: str = None):
         """Delete your guild.
         To delete a guild you do not own, you must have Bot Moderator or Bot Admin"""
-        if name is not None:
-            assert checks.modpredicate(ctx)
-            ug = name
-        else:
-            ug = await self.bot.di.get_user_guild(ctx.author)
-            if ug is None:
-                await ctx.send(await _(ctx, "You aren't in a guild!"))
+
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            if name is not None:
+                assert checks.modpredicate(ctx)
+                ug = name
+            else:
+                ug = await self.bot.di.get_user_guild(ctx.author)
+                if ug is None:
+                    await ctx.send(await _(ctx, "You aren't in a guild!"))
+                    return
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds[ug]
+            if name is None and guild.owner != ctx.author.id:
+                await ctx.send(await _(ctx, "You do not own this guild!"))
                 return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds[ug]
-        if name is None and guild.owner != ctx.author.id:
-            await ctx.send(await _(ctx, "You do not own this guild!"))
-            return
 
-        await ctx.send(await _(ctx, "Are you sure you want to delete the guild? {yes/no}"))
-        try:
-            resp = await self.bot.wait_for("message", timeout=60,
-                                           check=lambda x: x.author is ctx.author and x.channel == ctx.channel)
-        except asyncio.TimeoutError:
-            await ctx.send(await _(ctx, "Timed out! Try again"))
-            return
+            await ctx.send(await _(ctx, "Are you sure you want to delete the guild? {yes/no}"))
+            try:
+                resp = await self.bot.wait_for("message", timeout=60,
+                                               check=lambda x: x.author is ctx.author and x.channel == ctx.channel)
+            except asyncio.TimeoutError:
+                await ctx.send(await _(ctx, "Timed out! Try again"))
+                return
 
-        if resp.content.lower() == "yes":
-            await ctx.send(await _(ctx, "Alright then!"))
+            if resp.content.lower() == "yes":
+                await ctx.send(await _(ctx, "Alright then!"))
 
-            await ctx.bot.di.add_eco(Object(id=guild.owner, guild=ctx.guild), guild.bank)
-            await ctx.bot.di.give_items(Object(id=guild.owner, guild=ctx.guild), *guild.items.items())
-            await self.bot.di.remove_guild(ctx.guild, guild.name)
-            await ctx.send(await _(ctx, "Guild removed!"))
-        else:
-            await ctx.send(await _(ctx, "Cancelling!"))
+                async with self.bot.di.rm.lock(guild.owner):
+                    await ctx.bot.di.add_eco(Object(id=guild.owner, guild=ctx.guild), guild.bank)
+                    await ctx.bot.di.give_items(Object(id=guild.owner, guild=ctx.guild), *guild.items.items())
+                await self.bot.di.remove_guild(ctx.guild, guild.name)
+                await ctx.send(await _(ctx, "Guild removed!"))
+            else:
+                await ctx.send(await _(ctx, "Cancelling!"))
 
     @guild.command()
     @checks.no_pm()
     async def deposit(self, ctx, amount: NumberConverter, guild_name: str = None):
         """Deposit an amount of money into the guild bank.
         To deposit into a guild are not a member of, you must have Bot Moderator or Bot Admin"""
-        amount = abs(amount)
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
 
-        if not guild_name:
-            guild_name = await self.bot.di.get_user_guild(ctx.author)
-            guild = guilds.get(guild_name)
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            amount = abs(amount)
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
 
-            if guild_name is None or guild is None:
-                await self.bot.di.set_guild(ctx.author, None)
-                await ctx.send(await _(ctx, "You aren't in a guild!"))
+            if not guild_name:
+                guild_name = await self.bot.di.get_user_guild(ctx.author)
+                guild = guilds.get(guild_name)
+
+                if guild_name is None or guild is None:
+                    await self.bot.di.set_guild(ctx.author, None)
+                    await ctx.send(await _(ctx, "You aren't in a guild!"))
+                    return
+            else:
+                guild = guilds.get(guild_name)
+                if guild is None:
+                    await ctx.send(await _(ctx, "That guild is invalid!"))
+                    return
+
+            try:
+
+                async with self.bot.di.rm.lock(ctx.author.id):
+                    await self.bot.di.add_eco(ctx.author, -amount)
+            except ValueError:
+                await ctx.send(await _(ctx, "You don't have enough to deposit!"))
                 return
-        else:
-            guild = guilds.get(guild_name)
-            if guild is None:
-                await ctx.send(await _(ctx, "That guild is invalid!"))
-                return
 
-        try:
-            await self.bot.di.add_eco(ctx.author, -amount)
-        except ValueError:
-            await ctx.send(await _(ctx, "You don't have enough to deposit!"))
-            return
-
-        guild.bank += amount
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(
-            (await _(ctx, "Successfully deposited {} dollars into {}'s bank")).format(amount, guild_name))
+            guild.bank += amount
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send(
+                (await _(ctx, "Successfully deposited {} dollars into {}'s bank")).format(amount, guild_name))
 
     @guild.command()
     @checks.no_pm()
     async def withdraw(self, ctx, amount: NumberConverter):
         """Take money from the guild bank (guild mods only)
         To withdraw from a guild you are not a member of, you must have Bot Moderator or Bot Admin"""
-        amount = abs(amount)
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send(await _(ctx, "You aren't in a guild!"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
-        if ctx.author.id not in guild.mods and ctx.author.id != guild.owner:
-            await ctx.send(await _(ctx, "Only mods can withdraw money!"))
-            return
 
-        guild.bank -= amount
-        if guild.bank < 0:
-            await ctx.send(await _(ctx, "Cannot withdraw more than the guild has!"))
-            return
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            amount = abs(amount)
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is None:
+                await ctx.send(await _(ctx, "You aren't in a guild!"))
+                return
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(ug)
+            if ctx.author.id not in guild.mods and ctx.author.id != guild.owner:
+                await ctx.send(await _(ctx, "Only mods can withdraw money!"))
+                return
 
-        await self.bot.di.add_eco(ctx.author, amount)
+            guild.bank -= amount
+            if guild.bank < 0:
+                await ctx.send(await _(ctx, "Cannot withdraw more than the guild has!"))
+                return
 
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send((await _(ctx, "Successfully withdrew {} dollars")).format(amount))
+            async with self.bot.di.rm.lock(ctx.author.id):
+                await self.bot.di.add_eco(ctx.author, amount)
+
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send((await _(ctx, "Successfully withdrew {} dollars")).format(amount))
 
     @guild.command()
     @checks.no_pm()
     async def setmod(self, ctx, *members: discord.Member):
         """Give the listed users mod for your guild (guild owner only)"""
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send(await _(ctx, "You aren't in a guild!"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
-        if ctx.author.id != guild.owner:
-            await ctx.send(await _(ctx, "Only the guild owner can add mods"))
-            return
-        guild.mods = set(guild.invites)
-        for member in members:
-            if member.id not in guild.members:
-                await ctx.send((await _(ctx, "{} couldn't be added! Not in guild!")).format(member))
-            else:
-                guild.mods.add(member.id)
 
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(await _(ctx, "Successfully added mods!"))
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is None:
+                await ctx.send(await _(ctx, "You aren't in a guild!"))
+                return
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(ug)
+            if ctx.author.id != guild.owner:
+                await ctx.send(await _(ctx, "Only the guild owner can add mods"))
+                return
+            guild.mods = set(guild.invites)
+            for member in members:
+                if member.id not in guild.members:
+                    await ctx.send((await _(ctx, "{} couldn't be added! Not in guild!")).format(member))
+                else:
+                    guild.mods.add(member.id)
+
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send(await _(ctx, "Successfully added mods!"))
 
     @guild.command()
     @checks.no_pm()
@@ -556,24 +579,25 @@ class Groups(commands.Cog):
         Example: rp!guild give MyGuild Bananax5 Orangex10
         Requires Bot Moderator or Bot Admin"""
 
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(name)
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(name)
 
-        if guild is None:
-            await ctx.send(await _(ctx, "That guild is invalid!"))
-            return
+            if guild is None:
+                await ctx.send(await _(ctx, "That guild is invalid!"))
+                return
 
-        fitems = []
-        for item in items:
-            split = item.split('x')
-            split, num = "x".join(split[:-1]), abs(int(split[-1]))
-            fitems.append((split, num))
+            fitems = []
+            for item in items:
+                split = item.split('x')
+                split, num = "x".join(split[:-1]), abs(int(split[-1]))
+                fitems.append((split, num))
 
-        guild.items = Counter(guild.items)
-        guild.items.update(dict(fitems))
+            guild.items = Counter(guild.items)
+            guild.items.update(dict(fitems))
 
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(await _(ctx, "Successfully deposited items!"))
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send(await _(ctx, "Successfully deposited items!"))
 
     @guild.command()
     @checks.no_pm()
@@ -583,31 +607,32 @@ class Groups(commands.Cog):
         Example: rp!guild take MyGuild Bananax5 Orangex10
         Requires Bot Moderator or Bot Admin"""
 
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(name)
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(name)
 
-        if guild is None:
-            await ctx.send(await _(ctx, "That guild is invalid!"))
-            return
-
-        fitems = []
-        for item in items:
-            split = item.split('x')
-            split, num = "x".join(split[:-1]), abs(int(split[-1]))
-            fitems.append((split, num))
-
-        guild.items = Counter(guild.items)
-        guild.items.subtract(dict(fitems))
-
-        for item, value in list(guild.items.items()):
-            if value < 0:
-                await ctx.send(await _(ctx, "The guild does not have enough items to take!"))
+            if guild is None:
+                await ctx.send(await _(ctx, "That guild is invalid!"))
                 return
-            if value == 0:
-                del guild.items[item]
 
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(await _(ctx, "Successfully withdrew items"))
+            fitems = []
+            for item in items:
+                split = item.split('x')
+                split, num = "x".join(split[:-1]), abs(int(split[-1]))
+                fitems.append((split, num))
+
+            guild.items = Counter(guild.items)
+            guild.items.subtract(dict(fitems))
+
+            for item, value in list(guild.items.items()):
+                if value < 0:
+                    await ctx.send(await _(ctx, "The guild does not have enough items to take!"))
+                    return
+                if value == 0:
+                    del guild.items[item]
+
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send(await _(ctx, "Successfully withdrew items"))
 
     @guild.command()
     @checks.no_pm()
@@ -616,19 +641,21 @@ class Groups(commands.Cog):
         """Deposit an amount of money into the bank of a guild. Does not take from user's bank.
         Example: rp!guild givemoney MyGuild 500
         Requires Bot Moderator or Bot Admin"""
-        amount = abs(amount)
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
 
-        guild = guilds.get(guild_name)
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            amount = abs(amount)
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
 
-        if guild is None:
-            await ctx.send(await _(ctx, "That guild is invalid!"))
-            return
+            guild = guilds.get(guild_name)
 
-        guild.bank += amount
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(
-            (await _(ctx, "Successfully deposited {} dollars into {}'s bank")).format(amount, guild_name))
+            if guild is None:
+                await ctx.send(await _(ctx, "That guild is invalid!"))
+                return
+
+            guild.bank += amount
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send(
+                (await _(ctx, "Successfully deposited {} dollars into {}'s bank")).format(amount, guild_name))
 
     @guild.command()
     @checks.no_pm()
@@ -637,20 +664,22 @@ class Groups(commands.Cog):
         """Take money from the guild bank.
         Example: rp!guild takemoney MyGuild 500
         Requires Bot Moderator or Bot Admin"""
-        amount = abs(amount)
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(guild_name)
-        if guild is None:
-            await ctx.send(await _(ctx, "That guild is invalid!"))
-            return
 
-        guild.bank -= amount
-        if guild.bank < 0:
-            await ctx.send(await _(ctx, "Cannot withdraw more than the guild has!"))
-            return
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            amount = abs(amount)
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(guild_name)
+            if guild is None:
+                await ctx.send(await _(ctx, "That guild is invalid!"))
+                return
 
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send((await _(ctx, "Successfully withdrew {} dollars")).format(amount))
+            guild.bank -= amount
+            if guild.bank < 0:
+                await ctx.send(await _(ctx, "Cannot withdraw more than the guild has!"))
+                return
+
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send((await _(ctx, "Successfully withdrew {} dollars")).format(amount))
 
     @guild.command()
     @checks.no_pm()
@@ -658,30 +687,33 @@ class Groups(commands.Cog):
         """Deposit items into the guild's storage, uses {item}x{#} notation
         Example: rp!guild deposititems Bananax5 Orangex10
         To deposit into a guild you are not a member of, you must have Bot Moderator or Bot Admin"""
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send(await _(ctx, "You aren't in a guild!"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
 
-        fitems = []
-        for item in items:
-            split = item.split('x')
-            split, num = "x".join(split[:-1]), abs(int(split[-1]))
-            fitems.append((split, num))
+        async with self.bot.di.rm.lock(ctx.author.id):
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is None:
+                await ctx.send(await _(ctx, "You aren't in a guild!"))
+                return
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(ug)
 
-        try:
-            await self.bot.di.take_items(ctx.author, *fitems)
-        except ValueError:
-            await ctx.send(await _(ctx, "You don't have enough to give!"))
-            return
+            fitems = []
+            for item in items:
+                split = item.split('x')
+                split, num = "x".join(split[:-1]), abs(int(split[-1]))
+                fitems.append((split, num))
 
-        guild.items = Counter(guild.items)
-        guild.items.update(dict(fitems))
+            try:
+                async with self.bot.di.rm.lock(ctx.author.id):
+                    await self.bot.di.take_items(ctx.author, *fitems)
+            except ValueError:
+                await ctx.send(await _(ctx, "You don't have enough to give!"))
+                return
 
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(await _(ctx, "Successfully deposited items!"))
+            guild.items = Counter(guild.items)
+            guild.items.update(dict(fitems))
+
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send(await _(ctx, "Successfully deposited items!"))
 
     @guild.command()
     @checks.no_pm()
@@ -689,133 +721,144 @@ class Groups(commands.Cog):
         """Withdraw items from the guild (guild mods only)
         Example: rp!guild withdrawitems Bananax5 Orangex10
         To withdraw from a guild you are not a member of, you must have Bot Moderator or Bot Admin"""
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send(await _(ctx, "You aren't in a guild!"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
 
-        if ctx.author.id not in guild.mods and ctx.author.id != guild.owner:
-            await ctx.send(await _(ctx, "Only mods can withdraw items!"))
-            return
-
-        fitems = []
-        for item in items:
-            split = item.split('x')
-            split, num = "x".join(split[:-1]), abs(int(split[-1]))
-            fitems.append((split, num))
-
-        guild.items = Counter(guild.items)
-        guild.items.subtract(dict(fitems))
-
-        for item, value in list(guild.items.items()):
-            if value < 0:
-                await ctx.send(await _(ctx, "The guild does not have enough items to take!"))
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is None:
+                await ctx.send(await _(ctx, "You aren't in a guild!"))
                 return
-            if value == 0:
-                del guild.items[item]
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(ug)
 
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await self.bot.di.give_items(ctx.author, *fitems)
+            if ctx.author.id not in guild.mods and ctx.author.id != guild.owner:
+                await ctx.send(await _(ctx, "Only mods can withdraw items!"))
+                return
+
+            fitems = []
+            for item in items:
+                split = item.split('x')
+                split, num = "x".join(split[:-1]), abs(int(split[-1]))
+                fitems.append((split, num))
+
+            guild.items = Counter(guild.items)
+            guild.items.subtract(dict(fitems))
+
+            for item, value in list(guild.items.items()):
+                if value < 0:
+                    await ctx.send(await _(ctx, "The guild does not have enough items to take!"))
+                    return
+                if value == 0:
+                    del guild.items[item]
+
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+
+        async with self.bot.di.rm.lock(ctx.author.id):
+            await self.bot.di.give_items(ctx.author, *fitems)
         await ctx.send(await _(ctx, "Successfully withdrew items"))
 
     @guild.command()
     @checks.no_pm()
     async def toggleopen(self, ctx):
         """Toggle the Guilds open state (guild owner only)"""
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send(await _(ctx, "You aren't in a guild!"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
 
-        if ctx.author.id != guild.owner:
-            await ctx.send(await _(ctx, "Only the owner can toggle this!"))
-            return
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is None:
+                await ctx.send(await _(ctx, "You aren't in a guild!"))
+                return
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(ug)
 
-        guild.open = not guild.open
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(
-            (await _(ctx, "Guild is now {}")).format(await _(ctx, 'open') if guild.open else await _(ctx, 'closed')))
+            if ctx.author.id != guild.owner:
+                await ctx.send(await _(ctx, "Only the owner can toggle this!"))
+                return
+
+            guild.open = not guild.open
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send(
+                (await _(ctx, "Guild is now {}")).format(
+                    await _(ctx, 'open') if guild.open else await _(ctx, 'closed')))
 
     @guild.command()
     @checks.no_pm()
     async def seticon(self, ctx, url: str):
         """Set the guild's icon (guild mods only)"""
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send(await _(ctx, "You aren't in a guild!"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is None:
+                await ctx.send(await _(ctx, "You aren't in a guild!"))
+                return
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(ug)
 
-        if ctx.author.id != guild.owner and ctx.author.id not in guild.mods:
-            await ctx.send(await _(ctx, "Only guild mods may set this!"))
-            return
+            if ctx.author.id != guild.owner and ctx.author.id not in guild.mods:
+                await ctx.send(await _(ctx, "Only guild mods may set this!"))
+                return
 
-        guild.icon = url
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(await _(ctx, "Updated guild icon url!"))
+            guild.icon = url
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send(await _(ctx, "Updated guild icon url!"))
 
     @guild.command()
     @checks.no_pm()
     async def setimage(self, ctx, url: str):
         """Set the guild's image (guild mods only)"""
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send(await _(ctx, "You aren't in a guild!"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is None:
+                await ctx.send(await _(ctx, "You aren't in a guild!"))
+                return
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(ug)
 
-        if ctx.author.id != guild.owner and ctx.author.id not in guild.mods:
-            await ctx.send(await _(ctx, "Only guild mods may set this!"))
-            return
+            if ctx.author.id != guild.owner and ctx.author.id not in guild.mods:
+                await ctx.send(await _(ctx, "Only guild mods may set this!"))
+                return
 
-        guild.image = url
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(await _(ctx, "Updated guild image url!"))
+            guild.image = url
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send(await _(ctx, "Updated guild image url!"))
 
     @guild.command(aliases=["setdesc"])
     @checks.no_pm()
     async def setdescription(self, ctx, *, description):
         """Set the guild's description (guild mods only)"""
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send(await _(ctx, "You aren't in a guild!"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is None:
+                await ctx.send(await _(ctx, "You aren't in a guild!"))
+                return
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(ug)
 
-        if ctx.author.id != guild.owner and ctx.author.id not in guild.mods:
-            await ctx.send(await _(ctx, "Only guild mods may set this!"))
-            return
+            if ctx.author.id != guild.owner and ctx.author.id not in guild.mods:
+                await ctx.send(await _(ctx, "Only guild mods may set this!"))
+                return
 
-        guild.description = description
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(await _(ctx, "Updated guild's description!"))
+            guild.description = description
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send(await _(ctx, "Updated guild's description!"))
 
     @guild.command()
     @checks.no_pm()
     async def transfer(self, ctx, user: discord.Member):
         """Transfer ownership of a guild to someone else (guild owner only)"""
-        ug = await self.bot.di.get_user_guild(ctx.author)
-        if ug is None:
-            await ctx.send(await _(ctx, "You aren't in a guild!"))
-            return
-        guilds = await self.bot.di.get_guild_guilds(ctx.guild)
-        guild = guilds.get(ug)
-        if guild.owner != ctx.author.id:
-            await ctx.send(await _(ctx, "You do not own this guild!"))
-            return
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            ug = await self.bot.di.get_user_guild(ctx.author)
+            if ug is None:
+                await ctx.send(await _(ctx, "You aren't in a guild!"))
+                return
+            guilds = await self.bot.di.get_guild_guilds(ctx.guild)
+            guild = guilds.get(ug)
+            if guild.owner != ctx.author.id:
+                await ctx.send(await _(ctx, "You do not own this guild!"))
+                return
 
-        if user.id not in guild.members:
-            await ctx.send(await _(ctx, "User isn't in this guild!"))
-            return
+            if user.id not in guild.members:
+                await ctx.send(await _(ctx, "User isn't in this guild!"))
+                return
 
-        guild.owner = user.id
+            guild.owner = user.id
 
-        await self.bot.di.update_guild_guilds(ctx.guild, guilds)
-        await ctx.send(await _(ctx, "Successfully transferred ownership"))
+            await self.bot.di.update_guild_guilds(ctx.guild, guilds)
+            await ctx.send(await _(ctx, "Successfully transferred ownership"))

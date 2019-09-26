@@ -150,7 +150,8 @@ class Database:
 
         await self.guild_insert(guild, data)
 
-    async def update_guild_data(self, guild, data):
+    async def update_guild_data(self, guild, data, lock=False):
+        #await self.guild_insert(guild, data)
         if await self.guild_select(guild):
             await self.guild_update(guild, data)
         else:

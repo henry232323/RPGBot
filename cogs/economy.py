@@ -102,7 +102,8 @@ Total:\t\t {} dollars
         members = chain(members)
 
         for member in members:
-            await self.bot.di.set_eco(member, amount)
+            async with self.bot.di.rm.lock(member.id):
+                await self.bot.di.set_eco(member, amount)
 
         await ctx.send(await _(ctx, "Balances changed"))
 
@@ -117,7 +118,8 @@ Total:\t\t {} dollars
         members = chain(members)
 
         for member in members:
-            await self.bot.di.add_eco(member, amount)
+            async with self.bot.di.rm.lock(member.id):
+                await self.bot.di.add_eco(member, amount)
 
         await ctx.send(await _(ctx, "Money given"))
 
@@ -132,11 +134,12 @@ Total:\t\t {} dollars
         succ = False
 
         for member in members:
-            try:
-                await self.bot.di.take_from_bank(member, amount)
-                succ = True
-            except ValueError:
-                await ctx.send((await _(ctx, "Could not take money from {}, user does not have enough")))
+            async with self.bot.di.rm.lock(member.id):
+                try:
+                    await self.bot.di.take_from_bank(member, amount)
+                    succ = True
+                except ValueError:
+                    await ctx.send((await _(ctx, "Could not take money from {}, user does not have enough")))
 
         if succ:
             await ctx.send(await _(ctx, "Money taken"))
@@ -147,8 +150,10 @@ Total:\t\t {} dollars
         """Pay another user money
         Example: rp!pay 500 @Henry#6174"""
         amount = abs(amount)
-        await self.bot.di.add_eco(ctx.author, -amount)
-        await self.bot.di.add_eco(member, amount)
+        async with self.bot.di.rm.lock(ctx.author.id):
+            await self.bot.di.add_eco(ctx.author, -amount)
+        async with self.bot.di.rm.lock(member.id):
+            await self.bot.di.add_eco(member, amount)
         await ctx.send((await _(ctx, "Successfully paid {} dollars to {}")).format(amount, member))
 
     @checks.no_pm()
@@ -292,46 +297,55 @@ Total:\t\t {} dollars
         cost = abs(cost)
         market = await self.bot.di.get_guild_market(ctx.guild)
 
-        try:
-            await self.bot.di.take_items(ctx.author, (item, amount))
-        except ValueError:
-            await ctx.send(await _(ctx, "You don't have enough of these to sell!"))
-            return
+        async with self.bot.di.rm.lock(ctx.author.id):
+            try:
+                await self.bot.di.take_items(ctx.author, (item, amount))
+            except ValueError:
+                await ctx.send(await _(ctx, "You don't have enough of these to sell!"))
+                return
 
         id = self.bot.randsample()
         market[id] = dict(id=id, item=item, user=ctx.author.id, cost=cost, amount=amount)
 
-        await self.bot.di.update_guild_market(ctx.guild, market)
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            await self.bot.di.update_guild_market(ctx.guild, market)
 
         await ctx.send((await _(ctx, "Item listed with ID {}")).format(id))
 
     @checks.no_pm()
     @market.command(aliases=["purchase", "acheter"])
     async def buy(self, ctx, id: str):
-        """Buy a given amount of an item from the player market at the cheapest given price.
+        """Buy a listing from the player market.
 
         Example: rp!market buy CRP1I7
         IDs for items can be found in rp!market"""
-        market = await self.bot.di.get_guild_market(ctx.guild)
-        item = market.pop(id)
 
-        if not item:
-            await ctx.send(await _(ctx, "That is not a valid ID!"))
-            return
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            market = await self.bot.di.get_guild_market(ctx.guild)
+            item = market.pop(id)
 
-        try:
-            await self.bot.di.add_eco(ctx.author, -item['cost'])
-        except ValueError:
-            await ctx.send(await _(ctx, "You cant afford this item!"))
-            return
+            if not item:
+                await ctx.send(await _(ctx, "That is not a valid ID!"))
+                return
 
-        owner = discord.utils.get(ctx.guild.members, id=item["user"])
-        if owner is None:
-            owner = discord.Object(item["user"])
-            owner.guild = ctx.guild
-        await self.bot.di.add_eco(owner, item['cost'])
-        await self.bot.di.give_items(ctx.author, (item["item"], item["amount"]))
-        await self.bot.di.update_guild_market(ctx.guild, market)
+            try:
+                await self.bot.di.add_eco(ctx.author, -item['cost'])
+            except ValueError:
+                await ctx.send(await _(ctx, "You cant afford this item!"))
+                return
+
+            owner = discord.utils.get(ctx.guild.members, id=item["user"])
+            if owner is None:
+                owner = discord.Object(item["user"])
+                owner.guild = ctx.guild
+
+            async with self.bot.di.rm.lock(owner.id):
+                await self.bot.di.add_eco(owner, item['cost'])
+
+            async with self.bot.di.rm.lock(ctx.author.id):
+                await self.bot.di.give_items(ctx.author, (item["item"], item["amount"]))
+
+            await self.bot.di.update_guild_market(ctx.guild, market)
         await ctx.send(await _(ctx, "Items successfully bought"))
         if not isinstance(owner, discord.Object):
             await owner.send((await _(ctx,
@@ -471,18 +485,20 @@ Total:\t\t {} dollars
     @market.command(aliases=["rm"], name="remove")
     async def _market_remove(self, ctx, id: str):
         """Remove an item from the market"""
-        market = await self.bot.di.get_guild_market(ctx.guild)
-        try:
-            item = market.pop(id)
-        except KeyError:
-            await ctx.send(await _(ctx, "That is not a valid ID!"))
-            return
 
-        if item["user"] == ctx.author.id:
-            await self.bot.di.give_items(ctx.author, (item["item"], item["amount"]))
-            await self.bot.di.update_guild_market(ctx.guild, market)
-        else:
-            await ctx.send(await _(ctx, "This is not your item to remove!"))
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            market = await self.bot.di.get_guild_market(ctx.guild)
+            try:
+                item = market.pop(id)
+            except KeyError:
+                await ctx.send(await _(ctx, "That is not a valid ID!"))
+                return
+
+            if item["user"] == ctx.author.id:
+                await self.bot.di.give_items(ctx.author, (item["item"], item["amount"]))
+                await self.bot.di.update_guild_market(ctx.guild, market)
+            else:
+                await ctx.send(await _(ctx, "This is not your item to remove!"))
 
     @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=['lottery'])
@@ -538,7 +554,9 @@ Total:\t\t {} dollars
         if name in self.bot.lotteries[ctx.guild.id]:
             if current["players"]:
                 winner = discord.utils.get(ctx.guild.members, id=choice(current["players"]))
-                await self.bot.di.add_eco(winner, current["jackpot"])
+
+                async with self.bot.di.rm.lock(winner.id):
+                    await self.bot.di.add_eco(winner, current["jackpot"])
                 await ctx.send(
                     (await _(ctx, "Lottery {} is now over!\n{} won {}! Congratulations!")).format(name, winner.mention,
                                                                                                   current["jackpot"]))
@@ -605,65 +623,67 @@ Total:\t\t {} dollars
         -> 10
         Can be sold for 10 and cannot be bought. Must be an existing item (Use rp!settings additem first)!
           Requires Bot Moderator or Admin"""
-        gd = await self.bot.db.get_guild_data(ctx.guild)
-        if name not in gd["items"]:
-            await ctx.send(
-                await _(ctx, "This item doesn't exist! Try creating the item first with `rp!settings additem`"))
-            return
 
-        shop = gd.get("shop_items", dict())
-        item = dict(buy=0, sell=0, level=0)
-        shop[name] = item
-        check = lambda x: x.author is ctx.author and x.channel is ctx.channel
-
-        await ctx.send(await _(ctx, "Say 'cancel' to cancel or 'skip' to skip a step"))
-        try:
-            while True:
-                await ctx.send(await _(ctx, "How much should this be buyable for? 0 for not buyable"))
-                resp = await self.bot.wait_for("message", check=check)
-                try:
-                    item["buy"] = float(resp.content)
-                except ValueError:
-                    if resp.content.lower() == "cancel":
-                        await ctx.send(await _(ctx, "Cancelling!"))
-                    await ctx.send(await _(ctx, "That is not a valid number!"))
-                    continue
-                break
-
-            while True:
-                await ctx.send(await _(ctx, "How much should this be sellable for? 0 for not sellable"))
-                resp = await self.bot.wait_for("message", check=check)
-                try:
-                    item["sell"] = float(resp.content)
-                except ValueError:
-                    if resp.content.lower() == "cancel":
-                        await ctx.send(await _(ctx, "Cancelling!"))
-                    await ctx.send(await _(ctx, "That is not a valid number!"))
-                    continue
-                break
-
-            while True:
-                await ctx.send(await _(ctx, "What is the minimum level a user must be for this item? 0 for no minimum"))
-                resp = await self.bot.wait_for("message", check=check)
-                try:
-                    item["level"] = int(resp.content)
-                except ValueError:
-                    if resp.content.lower() == "cancel":
-                        await ctx.send(await _(ctx, "Cancelling!"))
-                    await ctx.send(await _(ctx, "That is not a valid number!"))
-                    continue
-                break
-
-            if not sum(item.values()):
-                await ctx.send(await _(ctx, "You can't make an item with 0 for every value! Cancelling, try again."))
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            gd = await self.bot.db.get_guild_data(ctx.guild)
+            if name not in gd["items"]:
+                await ctx.send(
+                    await _(ctx, "This item doesn't exist! Try creating the item first with `rp!settings additem`"))
                 return
 
-        except asyncio.TimeoutError:
-            await ctx.send(await _(ctx, "Timed out! Cancelling"))
-            return
+            shop = gd.get("shop_items", dict())
+            item = dict(buy=0, sell=0, level=0)
+            shop[name] = item
+            check = lambda x: x.author is ctx.author and x.channel is ctx.channel
 
-        await self.bot.di.update_guild_shop(ctx.guild, shop)
-        await ctx.send(await _(ctx, "Guild shop updated"))
+            await ctx.send(await _(ctx, "Say 'cancel' to cancel or 'skip' to skip a step"))
+            try:
+                while True:
+                    await ctx.send(await _(ctx, "How much should this be buyable for? 0 for not buyable"))
+                    resp = await self.bot.wait_for("message", check=check)
+                    try:
+                        item["buy"] = float(resp.content)
+                    except ValueError:
+                        if resp.content.lower() == "cancel":
+                            await ctx.send(await _(ctx, "Cancelling!"))
+                        await ctx.send(await _(ctx, "That is not a valid number!"))
+                        continue
+                    break
+
+                while True:
+                    await ctx.send(await _(ctx, "How much should this be sellable for? 0 for not sellable"))
+                    resp = await self.bot.wait_for("message", check=check)
+                    try:
+                        item["sell"] = float(resp.content)
+                    except ValueError:
+                        if resp.content.lower() == "cancel":
+                            await ctx.send(await _(ctx, "Cancelling!"))
+                        await ctx.send(await _(ctx, "That is not a valid number!"))
+                        continue
+                    break
+
+                while True:
+                    await ctx.send(await _(ctx, "What is the minimum level a user must be for this item? 0 for no minimum"))
+                    resp = await self.bot.wait_for("message", check=check)
+                    try:
+                        item["level"] = int(resp.content)
+                    except ValueError:
+                        if resp.content.lower() == "cancel":
+                            await ctx.send(await _(ctx, "Cancelling!"))
+                        await ctx.send(await _(ctx, "That is not a valid number!"))
+                        continue
+                    break
+
+                if not sum(item.values()):
+                    await ctx.send(await _(ctx, "You can't make an item with 0 for every value! Cancelling, try again."))
+                    return
+
+            except asyncio.TimeoutError:
+                await ctx.send(await _(ctx, "Timed out! Cancelling"))
+                return
+
+            await self.bot.di.update_guild_shop(ctx.guild, shop)
+            await ctx.send(await _(ctx, "Guild shop updated"))
 
     @checks.no_pm()
     @shop.command(aliases=["remove"])
@@ -672,20 +692,23 @@ Total:\t\t {} dollars
         """Remove a listed item
         Example: `rp!shop remove Pokeball`
         Requires Bot Moderator or Bot Admin"""
-        shop = await self.bot.di.get_guild_shop(ctx.guild)
-        try:
-            del shop[name]
-        except KeyError:
-            await ctx.send(await _(ctx, "That item isn't listed!"))
-            return
-        await self.bot.di.update_guild_shop(ctx.guild, shop)
-        await ctx.send(await _(ctx, "Successfully removed item"))
+
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            shop = await self.bot.di.get_guild_shop(ctx.guild)
+            try:
+                del shop[name]
+            except KeyError:
+                await ctx.send(await _(ctx, "That item isn't listed!"))
+                return
+            await self.bot.di.update_guild_shop(ctx.guild, shop)
+            await ctx.send(await _(ctx, "Successfully removed item"))
 
     @checks.no_pm()
     @shop.command(name="buy")
     async def _buy(self, ctx, item: str, amount: IntConverter):
         """Buy an item from the shop"""
         amount = abs(amount)
+
         shop = await self.bot.di.get_guild_shop(ctx.guild)
         ulvl, uexp = await self.bot.di.get_user_level(ctx.author)
         try:
@@ -696,12 +719,15 @@ Total:\t\t {} dollars
             if iobj["level"] > ulvl:
                 await ctx.send(await _(ctx, "You aren't high enough level for this item!"))
                 return
-            await self.bot.di.add_eco(ctx.author, -iobj["buy"] * amount)
+
+            async with self.bot.di.rm.lock(ctx.author.id):
+                await self.bot.di.add_eco(ctx.author, -iobj["buy"] * amount)
         except ValueError:
             await ctx.send(await _(ctx, "You can't afford this many!"))
             return
 
-        await self.bot.di.give_items(ctx.author, (item, amount))
+        async with self.bot.di.rm.lock(ctx.author.id):
+            await self.bot.di.give_items(ctx.author, (item, amount))
         await ctx.send((await _(ctx, "Successfully bought {} {}s")).format(amount, item))
 
     @checks.no_pm()
@@ -716,13 +742,15 @@ Total:\t\t {} dollars
             await ctx.send(await _(ctx, "This item cannot be sold!"))
             return
 
-        try:
-            await self.bot.di.take_items(ctx.author, (item, amount))
-        except ValueError:
-            await ctx.send(await _(ctx, "You don't have enough to sell"))
-            return
 
-        await self.bot.di.add_eco(ctx.author, iobj["sell"] * amount)
+        async with self.bot.di.rm.lock(ctx.author.id):
+            try:
+                await self.bot.di.take_items(ctx.author, (item, amount))
+            except ValueError:
+                await ctx.send(await _(ctx, "You don't have enough to sell"))
+                return
+
+            await self.bot.di.add_eco(ctx.author, iobj["sell"] * amount)
         await ctx.send((await _(ctx, "Successfully sold {} {}s")).format(amount, item))
 
     @checks.no_pm()
@@ -736,11 +764,13 @@ Total:\t\t {} dollars
             return
 
         amount = abs(amount)
-        try:
-            await self.bot.di.take_items(ctx.author, (item, amount))
-        except ValueError:
-            await ctx.send((await _(ctx, "You do not have x{} {}!")).format(amount, item))
-            return
+
+        async with self.bot.di.rm.lock(ctx.author.id):
+            try:
+                await self.bot.di.take_items(ctx.author, (item, amount))
+            except ValueError:
+                await ctx.send((await _(ctx, "You do not have x{} {}!")).format(amount, item))
+                return
 
         self.bids.append(ctx.channel.id)
         await ctx.send((await _(ctx,
@@ -768,7 +798,9 @@ Total:\t\t {} dollars
 
         if not cb:
             await ctx.send(await _(ctx, "Nobody bid!"))
-            await self.bot.di.give_items(ctx.author, (item, amount))
+
+            async with self.bot.di.rm.lock(ctx.author.id):
+                await self.bot.di.give_items(ctx.author, (item, amount))
             self.bids.remove(ctx.channel.id)
             return
 
@@ -776,14 +808,18 @@ Total:\t\t {} dollars
             winner, wamount = cb.most_common(x + 1)[x]
             wb = await self.bot.di.get_balance(winner)
             if wb >= wamount:
-                await ctx.send((await _(ctx, "{} won the bid for {} dollars!")).format(winner, amount))
-                await self.bot.di.add_eco(winner, -wamount)
-                await self.bot.di.add_eco(ctx.author, wamount)
-                await self.bot.di.give_items(winner, (item, amount))
+                async with self.bot.di.rm.lock(winner.id):
+                    await ctx.send((await _(ctx, "{} won the bid for {} dollars!")).format(winner, amount))
+                    await self.bot.di.add_eco(winner, -wamount)
+                    await self.bot.di.give_items(winner, (item, amount))
+
+                async with self.bot.di.rm.lock(ctx.author.id):
+                    await self.bot.di.add_eco(ctx.author, wamount)
                 break
         else:
             await ctx.send(await _(ctx, "Nobody bid and had enough money to pay for it!"))
-            await self.bot.di.give_items(ctx.author, (item, amount))
+            async with self.bot.di.rm.lock(ctx.author.id):
+                await self.bot.di.give_items(ctx.author, (item, amount))
 
         self.bids.remove(ctx.channel.id)
 
@@ -823,29 +859,33 @@ Total:\t\t {} dollars
     async def deposit(self, ctx, amount: float):
         """Deposit `amount` into the bank.
         Example: rp!bank deposit 500.3"""
-        bal = (await self.bot.di.get_all_balances(ctx.author))
-        if amount > bal[0]:
-            await ctx.send(await _(ctx, "You don't have enough to deposit!"))
-            return
-        await ctx.bot.di.set_balances(ctx.author, bal[0] - amount, bal[1] + amount)
 
-        await ctx.send(
-            (await _(ctx,
-                     "Successfully transferred {} dollars to your bank. You have {} dollars total in the bank")).format(
-                amount,
-                bal[1] + amount))
+        async with self.bot.di.rm.lock(ctx.author.id):
+            bal = (await self.bot.di.get_all_balances(ctx.author))
+            if amount > bal[0]:
+                await ctx.send(await _(ctx, "You don't have enough to deposit!"))
+                return
+            await ctx.bot.di.set_balances(ctx.author, bal[0] - amount, bal[1] + amount)
+
+            await ctx.send(
+                (await _(ctx,
+                         "Successfully transferred {} dollars to your bank. You have {} dollars total in the bank")).format(
+                    amount,
+                    bal[1] + amount))
 
     @checks.no_pm()
     @bank.command()
     async def withdraw(self, ctx, amount: float):
         """Withdraw `amount` from the bank
         Example: rp!bank withdraw 499"""
-        bal = (await self.bot.di.get_all_balances(ctx.author))
-        if amount > bal[1]:
-            await ctx.send(await _(ctx, "You don't have enough to withdraw!"))
-            return
-        await ctx.bot.di.set_balances(ctx.author, bal[0] + amount, bal[1] - amount)
 
-        await ctx.send((await _(ctx,
-                                "Successfully transferred {} dollars from your bank. You have {} dollars total in the bank")).format(
-            amount, bal[1] - amount))
+        async with self.bot.di.rm.lock(ctx.author.id):
+            bal = (await self.bot.di.get_all_balances(ctx.author))
+            if amount > bal[1]:
+                await ctx.send(await _(ctx, "You don't have enough to withdraw!"))
+                return
+            await ctx.bot.di.set_balances(ctx.author, bal[0] + amount, bal[1] - amount)
+
+            await ctx.send((await _(ctx,
+                                    "Successfully transferred {} dollars from your bank. You have {} dollars total in the bank")).format(
+                amount, bal[1] - amount))

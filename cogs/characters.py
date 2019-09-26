@@ -214,7 +214,8 @@ class Characters(commands.Cog):
 
         character["level"] = character["meta"].pop("level", None)
 
-        await self.bot.di.add_character(ctx.guild, Character(**character))
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            await self.bot.di.add_character(ctx.guild, Character(**character))
         await ctx.send(
             await _(ctx, "Character created!"))
 
@@ -239,10 +240,14 @@ class Characters(commands.Cog):
                 return
 
             else:
-                await self.bot.di.remove_character(ctx.guild, name)
+
+                async with self.bot.di.rm.lock(ctx.author.id):
+                    await self.bot.di.remove_character(ctx.guild, name)
                 await ctx.send(await _(ctx, "Character deleted"))
         else:
-            await self.bot.di.remove_character(ctx.guild, name)
+
+            async with self.bot.di.rm.lock(ctx.guild.id):
+                await self.bot.di.remove_character(ctx.guild, name)
             await ctx.send(await _(ctx, "Character deleted"))
 
     @checks.no_pm()
@@ -307,7 +312,9 @@ class Characters(commands.Cog):
         else:
             character[5][attribute] = value
 
-        await self.bot.di.add_character(ctx.guild, Character(*character))
+
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            await self.bot.di.add_character(ctx.guild, Character(*character))
         await ctx.send(await _(ctx, "Character edited!"))
 
     @checks.no_pm()
@@ -337,7 +344,8 @@ class Characters(commands.Cog):
 
         del character[5][attribute]
 
-        await self.bot.di.add_character(ctx.guild, Character(*character))
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            await self.bot.di.add_character(ctx.guild, Character(*character))
         await ctx.send(await _(ctx, "Removed attribute!"))
 
     async def unassume(self, ctx, character, wait=60 * 60 * 24):
@@ -479,9 +487,11 @@ class Characters(commands.Cog):
     @checks.no_pm()
     async def takeitem(self, ctx, item: str, num: IntConverter, *names: str):
         """Remove an item from a character's inventory"""
-        num = abs(num)
-        for name in names:
-            await self.c_takeitem(ctx.guild, name, (item, num))
+
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            num = abs(num)
+            for name in names:
+                await self.c_takeitem(ctx.guild, name, (item, num))
 
         await ctx.send(await _(ctx, "Items taken!"))
 
@@ -502,14 +512,15 @@ class Characters(commands.Cog):
         """Give an item to a character (Not out of your inventory)
         Example: rp!ci giveitem Banana 32 Char1 Char2 Char3"""
 
-        items = await self.bot.di.get_guild_items(ctx.guild)
-        if item not in items:
-            await ctx.send(await _(ctx, "That is not a valid item!"))
-            return
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            items = await self.bot.di.get_guild_items(ctx.guild)
+            if item not in items:
+                await ctx.send(await _(ctx, "That is not a valid item!"))
+                return
 
-        num = abs(num)
-        for name in names:
-            await self.c_giveitem(ctx.guild, name, (item, num))
+            num = abs(num)
+            for name in names:
+                await self.c_giveitem(ctx.guild, name, (item, num))
 
         await ctx.send(await _(ctx, "Items given!"))
 
@@ -529,12 +540,14 @@ class Characters(commands.Cog):
             split, num = "x".join(split[:-1]), abs(int(split[-1]))
             fitems.append((split, num))
 
-        try:
-            await self.c_takeitem(ctx.guild, name, *fitems)
-            await self.c_giveitem(ctx.guild, other, *fitems)
-            await ctx.send((await _(ctx, "Successfully gave {} {}")).format(other, items))
-        except:
-            await ctx.send(await _(ctx, "You do not have enough to give away!"))
+
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            try:
+                await self.c_takeitem(ctx.guild, name, *fitems)
+                await self.c_giveitem(ctx.guild, other, *fitems)
+                await ctx.send((await _(ctx, "Successfully gave {} {}")).format(other, items))
+            except:
+                await ctx.send(await _(ctx, "You do not have enough to give away!"))
 
     @charinv.command()
     @checks.no_pm()
@@ -542,59 +555,63 @@ class Characters(commands.Cog):
         """Use an item. Example `rp!use Banana` or `rp!use Banana 5`
         To make an item usable, you must put the key `used: <message>` when you are adding additional information for an item
         """
-        number = abs(number)
-        items = await self.bot.di.get_guild_items(ctx.guild)
-        msg = items.get(item).meta.get('used')
 
-        char = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
-        if char is None:
-            await ctx.send(await _(ctx,
-                                   "You are not currently a character! Use `rp!char assume` to assume a character"))
-            return
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            number = abs(number)
+            items = await self.bot.di.get_guild_items(ctx.guild)
+            msg = items.get(item).meta.get('used')
 
-        if msg is None:
-            await ctx.send(await _(ctx, "This item is not usable!"))
-            return
-        try:
-            await self.c_takeitem(ctx.guild, char, (item, number))
-        except ValueError:
-            await ctx.send(await _(ctx, "You do not have that many to use!"))
-            return
+            char = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+            if char is None:
+                await ctx.send(await _(ctx,
+                                       "You are not currently a character! Use `rp!char assume` to assume a character"))
+                return
 
-        await ctx.send(msg.format(mention=ctx.author.mention,
-                                  name=ctx.author.display_name,
-                                  channel=ctx.channel))
-        await ctx.send((await _(ctx, "Used {} {}s")).format(number, item))
+            if msg is None:
+                await ctx.send(await _(ctx, "This item is not usable!"))
+                return
+            try:
+                await self.c_takeitem(ctx.guild, char, (item, number))
+            except ValueError:
+                await ctx.send(await _(ctx, "You do not have that many to use!"))
+                return
+
+            await ctx.send(msg.format(mention=ctx.author.mention,
+                                      name=ctx.author.display_name,
+                                      channel=ctx.channel))
+            await ctx.send((await _(ctx, "Used {} {}s")).format(number, item))
 
     @charinv.command()
     @checks.no_pm()
     async def craft(self, ctx, number: int, *, name: str):
         """Craft a recipe with a given name from the available server recipes; e.g. rp!craft 5 Apple Pie"""
-        recipes = await ctx.bot.di.get_guild_recipes(ctx.guild)
-        recipe = recipes.get(name)
-        if recipe is None:
-            await ctx.send(await _(ctx, "That recipe doesn't exist!"))
-            return
 
-        uname = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
-        if uname is None:
-            await ctx.send(await _(ctx,
-                                   "You are not currently a character! Use `rp!char assume` to assume a character"))
-            return
-
-
-        uinv = await self.c_inventory(ctx.guild, uname)
-        for item, n in recipe[0].items():
-            if uinv.get(item, 0) < n * number:
-                await ctx.send(
-                    (await _(ctx, "You need {} {} to craft this! You only have {}")).format(n * number, item,
-                                                                                            uinv.get(item)))
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            recipes = await ctx.bot.di.get_guild_recipes(ctx.guild)
+            recipe = recipes.get(name)
+            if recipe is None:
+                await ctx.send(await _(ctx, "That recipe doesn't exist!"))
                 return
 
-        await self.c_takeitem(ctx.guild, uname, *((a, b * number) for a, b in recipe[0].items()))
-        await self.c_giveitem(ctx.guild, uname, *((a, b * number) for a, b in recipe[1].items()))
+            uname = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+            if uname is None:
+                await ctx.send(await _(ctx,
+                                       "You are not currently a character! Use `rp!char assume` to assume a character"))
+                return
 
-        await ctx.send((await _(ctx, "Successfully crafted {} {}")).format(number, name))
+
+            uinv = await self.c_inventory(ctx.guild, uname)
+            for item, n in recipe[0].items():
+                if uinv.get(item, 0) < n * number:
+                    await ctx.send(
+                        (await _(ctx, "You need {} {} to craft this! You only have {}")).format(n * number, item,
+                                                                                                uinv.get(item)))
+                    return
+
+            await self.c_takeitem(ctx.guild, uname, *((a, b * number) for a, b in recipe[0].items()))
+            await self.c_giveitem(ctx.guild, uname, *((a, b * number) for a, b in recipe[1].items()))
+
+            await ctx.send((await _(ctx, "Successfully crafted {} {}")).format(number, name))
 
     async def c_balances(self, guild, name):
         char = await self.bot.di.get_character(guild, name)
@@ -677,8 +694,9 @@ Total:\t\t {} dollars
     async def setbalance(self, ctx, amount: NumberConverter, *names: str):
         """Set the balance of the given members to an amount"""
 
-        for name in names:
-            await self.c_setbalance(ctx.guild, name, amount)
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            for name in names:
+                await self.c_setbalance(ctx.guild, name, amount)
 
         await ctx.send(await _(ctx, "Balances changed"))
 
@@ -715,26 +733,29 @@ Total:\t\t {} dollars
     @checks.mod_or_permissions()
     @chareco.command()
     async def givemoney(self, ctx, amount: NumberConverter, *names: str):
-        """Give the member's money (Moderators)"""
+        """Give the character's money (Moderators)"""
 
-        for name in names:
-            await self.c_addeco(ctx.guild, name, amount)
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            for name in names:
+                await self.c_addeco(ctx.guild, name, amount)
 
-        await ctx.send(await _(ctx, "Money given"))
+            await ctx.send(await _(ctx, "Money given"))
 
     @checks.no_pm()
     @checks.mod_or_permissions()
     @chareco.command()
     async def takemoney(self, ctx, amount: NumberConverter, *names: str):
-        """Take the member's money (Moderators)"""
-        succ = False
+        """Take the character's money (Moderators)"""
 
-        for name in names:
-            try:
-                await self.c_takeeco(ctx.guild, name, amount)
-                succ = True
-            except ValueError:
-                await ctx.send((await _(ctx, "Could not take money from {}, user does not have enough")))
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            succ = False
+
+            for name in names:
+                try:
+                    await self.c_takeeco(ctx.guild, name, amount)
+                    succ = True
+                except ValueError:
+                    await ctx.send((await _(ctx, "Could not take money from {}, user does not have enough")))
 
         if succ:
             await ctx.send(await _(ctx, "Money taken"))
@@ -742,23 +763,25 @@ Total:\t\t {} dollars
     @checks.no_pm()
     @chareco.command()
     async def pay(self, ctx, amount: NumberConverter, other: str):
-        """Pay another user money"""
-        amount = abs(amount)
+        """Pay another character money"""
 
-        name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
-        if name is None:
-            await ctx.send(await _(ctx,
-                                   "You are not currently a character! "
-                                   "Use the command again with the name of the character to check "
-                                   "or use `rp!char assume` to assume a character"))
-            return
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            amount = abs(amount)
 
-        try:
-            await self.c_addeco(ctx.guild, name, -amount)
-        except ValueError:
-            await ctx.send(await _(ctx, "You cannot afford to pay that!"))
-        await self.c_addeco(ctx.guild, other, amount)
-        await ctx.send((await _(ctx, "Successfully paid {} dollars to {}")).format(amount, other))
+            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+            if name is None:
+                await ctx.send(await _(ctx,
+                                       "You are not currently a character! "
+                                       "Use the command again with the name of the character to check "
+                                       "or use `rp!char assume` to assume a character"))
+                return
+
+            try:
+                await self.c_addeco(ctx.guild, name, -amount)
+            except ValueError:
+                await ctx.send(await _(ctx, "You cannot afford to pay that!"))
+            await self.c_addeco(ctx.guild, other, amount)
+            await ctx.send((await _(ctx, "Successfully paid {} dollars to {}")).format(amount, other))
 
     @character.command()
     @checks.no_pm()
@@ -766,21 +789,23 @@ Total:\t\t {} dollars
         """Create an alias for a character.
         Example: rp!c alias Tom Tom Hanks
         This will make the name Tom point to the name Tom Hanks"""
-        data = await self.bot.db.get_guild_data(ctx.guild)
-        if "caliases" not in data:
-            data["caliases"] = {}
 
-        if alias_name in data["characters"]:
-            await ctx.send(await _(ctx, "A character with this name already exists!"))
-            return
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            data = await self.bot.db.get_guild_data(ctx.guild)
+            if "caliases" not in data:
+                data["caliases"] = {}
 
-        if alias_name in data["caliases"]:
-            await ctx.send(await _(ctx, "An alias with this name already exists!"))
-            return
+            if alias_name in data["characters"]:
+                await ctx.send(await _(ctx, "A character with this name already exists!"))
+                return
 
-        data["caliases"][alias_name] = character_name
+            if alias_name in data["caliases"]:
+                await ctx.send(await _(ctx, "An alias with this name already exists!"))
+                return
 
-        await ctx.bot.db.update_guild_data(ctx.guild, data)
+            data["caliases"][alias_name] = character_name
+
+            await ctx.bot.db.update_guild_data(ctx.guild, data)
         await ctx.send((await _(ctx, "Created a new alias {0} for character {1}")).format(alias_name, character_name))
 
     @character.command()
@@ -789,18 +814,20 @@ Total:\t\t {} dollars
         """Remove an alias
         Example: rp!c removealias Tom
         Only character owners may remove the aliases of their characters."""
-        data = await self.bot.db.get_guild_data(ctx.guild)
-        if "caliases" not in data:
-            data["caliases"] = {}
 
-        if alias_name not in data["caliases"]:
-            await ctx.send(await _(ctx, "This alias doesn't exist!"))
-            return
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            data = await self.bot.db.get_guild_data(ctx.guild)
+            if "caliases" not in data:
+                data["caliases"] = {}
 
-        if data["characters"][data["caliases"][alias_name]][1] != ctx.author:
-            await ctx.send(await _(ctx, "You cannot delete other people's aliases!"))
+            if alias_name not in data["caliases"]:
+                await ctx.send(await _(ctx, "This alias doesn't exist!"))
+                return
 
-        del data["caliases"][alias_name]
+            if data["characters"][data["caliases"][alias_name]][1] != ctx.author:
+                await ctx.send(await _(ctx, "You cannot delete other people's aliases!"))
 
-        await ctx.bot.db.update_guild_data(ctx.guild, data)
+            del data["caliases"][alias_name]
+
+            await ctx.bot.db.update_guild_data(ctx.guild, data)
         await ctx.send((await _(ctx, "Removed alias {0}")).format(alias_name))
