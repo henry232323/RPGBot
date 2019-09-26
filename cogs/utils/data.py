@@ -76,7 +76,7 @@ class ResourceManager:
         if resource in self.locks:
             lock = self.locks[resource]
             lock.release()
-            if lock.holder is None:
+            if lock.locked():
                 del self.locks[resource]
         else:
             raise RuntimeError("This lock is not being held!")
