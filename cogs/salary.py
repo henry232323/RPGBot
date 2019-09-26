@@ -8,6 +8,7 @@ import discord
 from discord.ext import commands
 from random import randint
 
+from cogs.utils.data import NumberConverter
 from .utils import data, checks
 from .utils.translation import _
 
@@ -19,8 +20,8 @@ class Salary(commands.Cog):
         self.bot = bot
         self.first = True
 
-    #async def on_ready(self):
-        #self.bot.loop.create_task(self.run_salaries())
+    # async def on_ready(self):
+    # self.bot.loop.create_task(self.run_salaries())
 
     async def run_salaries(self):
         if self.first:
@@ -83,7 +84,8 @@ class Salary(commands.Cog):
     @checks.no_pm()
     async def salaries(self, ctx):
         """See server salaries"""
-        embed = discord.Embed(color=randint(0, 0xFFFFFF),)
+        embed = discord.Embed(color=randint(0, 0xFFFFFF), )
+        currency = await ctx.bot.di.get_currency(ctx.guild)
         sals = await self.bot.di.get_salaries(ctx.guild)
         if not sals:
             await ctx.send(await _(ctx, "There are no current salaries on this server"))
@@ -94,8 +96,15 @@ class Salary(commands.Cog):
                 if roleobj is None:
                     dels.append(role)
                     continue
-                embed.add_field(name=roleobj.name,
-                                value="{} {}".format(amount, await ctx.bot.di.get_currency(ctx.guild)))
+                interval = 60 * 60 * 24
+                if isinstance(amount, dict):
+                    interval = amount['int']
+                    amount = amount['val']
+                embed.add_field(name=f"{roleobj.name} - {interval}s",
+                                value="\n".join(
+                                ("{} {}".format(item, currency)
+                                 if isinstance(item, (int, float)) else "{}x{}".format(*item)) for item in amount)
+                                )
             for d in dels:
                 del sals[d]
             if dels:
@@ -116,21 +125,21 @@ class Salary(commands.Cog):
     @salary.command()
     @checks.no_pm()
     @checks.mod_or_permissions()
-    async def create(self, ctx, role: discord.Role, *items_or_number: data.ItemOrNumber):
+    async def create(self, ctx, role: discord.Role, interval: NumberConverter, *items_or_number: data.ItemOrNumber):
         """Create a daily salary for a user with the given role.
-         Roles are paid every day at 24:00, every user with the role will receive the amount specified.
+         The time interval is the interval which must pass before the user may collect the salary again, in seconds.
          If a role with a salary is deleted, the salary will also be deleted.
          For example
-         `rp!salary create @Bot Creator 500` Will create a salary of $500 for a user daily
-         `rp!salary create @Bot Creator Bananax3 Orangex4` Will create a salary of 3 Bananas and 4 Oranges for a user daily
+         `rp!salary create @Bot Creator 3600 500` Will create a salary of $500 for a user hourly
+         `rp!salary create @Bot Creator 86400 Bananax3 Orangex4` Will create a salary of 3 Bananas and 4 Oranges for a user daily
 
         Requires Bot Moderator or Bot Admin
-         """
+        """
         sals = await self.bot.di.get_salaries(ctx.guild)
         if len(items_or_number) == 1 and isinstance(items_or_number[0], int):
             items_or_number = items_or_number[0]
 
-        sals[role.id] = items_or_number
+        sals[role.id] = {'int': interval, 'val': items_or_number}
         await self.bot.di.update_salaries(ctx.guild, sals)
         await ctx.send((await _(ctx, "Successfully created a daily salary of {} for {}")).format(items_or_number, role))
 
@@ -171,6 +180,9 @@ class Salary(commands.Cog):
                         except ValueError:
                             await self.bot.di.set_eco(member, 0)
                     else:
+                        if isinstance(amount, dict):
+                            amount = amount["val"]
+
                         payamount, giveamount = sum(
                             filter(lambda x: isinstance(x, (int, float)), amount)), tuple(filter(
                             lambda x: isinstance(x, (list, tuple)), amount))
@@ -206,10 +218,13 @@ class Salary(commands.Cog):
         collected = False
         for role in roles:
             if str(role.id) in salaries:
-                if (ctime - spayments.get(str(role.id), 0)) > (3600 * 24):
+                amount = salaries[str(role.id)]
+                if isinstance(amount, dict):
+                    interval, amount = amount['int'], amount['val']
+                else:
+                    interval = 3600 * 24
+                if (ctime - spayments.get(str(role.id), 0)) > interval:
                     spayments[str(role.id)] = ctime
-
-                    amount = salaries[str(role.id)]
 
                     if isinstance(amount, (int, float)):
                         try:
@@ -230,7 +245,8 @@ class Salary(commands.Cog):
                     collected = True
 
                 else:
-                    delta = datetime.timedelta(days=1) - (datetime.timedelta(seconds=time.time() - spayments[str(role.id)]))
+                    delta = datetime.timedelta(seconds=interval) - (
+                        datetime.timedelta(seconds=time.time() - spayments[str(role.id)]))
                     await ctx.send((await _(ctx, "{} cannot be collected for another {}")).format(role, delta))
 
         if collected:
