@@ -37,8 +37,15 @@ class Settings(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    def cog_check(self, ctx):
+        def predicate(ctx):
+            if ctx.guild is None:
+                raise commands.NoPrivateMessage()
+            return True
+
+        return commands.check(predicate(ctx))
+
     @commands.group(aliases=["s", "configuration", "conf"], invoke_without_command=True)
-    @checks.no_pm()
     async def settings(self, ctx):
         """Get the current server settings"""
         settings = await self.bot.db.get_guild_data(ctx.guild)
@@ -63,7 +70,6 @@ class Settings(commands.Cog):
         await ctx.send(embed=embed)
 
     @settings.command()
-    @checks.no_pm()
     async def iteminfo(self, ctx, *, item: str):
         """Get info on a server item"""
         items = await self.bot.di.get_guild_items(ctx.guild)
@@ -88,7 +94,6 @@ class Settings(commands.Cog):
         await ctx.send(embed=embed)
 
     @settings.command()
-    @checks.no_pm()
     async def items(self, ctx, letter: str = None):
         """See all items for a server"""
         items = await self.bot.di.get_guild_items(ctx.guild)
@@ -124,7 +129,6 @@ class Settings(commands.Cog):
 
     @checks.mod_or_permissions()
     @settings.command()
-    @checks.no_pm()
     async def additem(self, ctx, *, name: str):
         """Add a custom item.
          Custom keys that can be used for special additions:
@@ -188,7 +192,6 @@ class Settings(commands.Cog):
 
     @checks.mod_or_permissions()
     @settings.command(aliases=["deleteitem"])
-    @checks.no_pm()
     async def removeitem(self, ctx, *, name: str):
         """Remove a custom item
         Requires Bot Moderator or Bot Admin"""
@@ -199,7 +202,6 @@ class Settings(commands.Cog):
             await ctx.send(await _(ctx, "That item doesn't exist"))
 
     @checks.mod_or_permissions()
-    @checks.no_pm()
     @commands.command()
     async def setstart(self, ctx, amount: NumberConverter):
         """Set the money start amount for a guild
@@ -207,7 +209,6 @@ class Settings(commands.Cog):
         await self.bot.di.set_start(ctx.guild, amount)
         await ctx.send((await _(ctx, "Starting amount changed to {} dollars")).format(amount))
 
-    @checks.no_pm()
     @commands.command()
     @checks.admin_or_permissions()
     async def language(self, ctx, language: str = None):
@@ -223,7 +224,6 @@ class Settings(commands.Cog):
             await self.bot.di.set_language(ctx.guild, language)
             await ctx.send(await _(ctx, "Language successfully set!"))
 
-    @checks.no_pm()
     @commands.command()
     @checks.admin_or_permissions()
     async def currency(self, ctx, currency: str):
@@ -232,7 +232,6 @@ class Settings(commands.Cog):
         await self.bot.di.set_currency(ctx.guild, currency)
         await ctx.send(await _(ctx, "Currency successfully set!"))
 
-    @checks.no_pm()
     @commands.command()
     @checks.admin_or_permissions()
     async def loaddnd(self, ctx):
@@ -241,7 +240,6 @@ class Settings(commands.Cog):
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.dnditems.values()))
         await ctx.send(await _(ctx, "Successfully added all D&D items!"))
 
-    @checks.no_pm()
     @commands.command()
     @checks.admin_or_permissions()
     async def loadstarwars(self, ctx):
@@ -250,7 +248,6 @@ class Settings(commands.Cog):
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.switems.values()))
         await ctx.send(await _(ctx, "Successfully added all Star Wars items!"))
 
-    @checks.no_pm()
     @commands.command()
     @checks.admin_or_permissions()
     async def loadstarwarsshop(self, ctx):
@@ -266,7 +263,6 @@ class Settings(commands.Cog):
         await self.bot.di.add_shop_items(ctx.guild, items)
         await ctx.send(await _(ctx, "Successfully added all Star Wars items to shop!"))
 
-    @checks.no_pm()
     @commands.command()
     @checks.admin_or_permissions()
     async def loaddndshop(self, ctx):
@@ -282,7 +278,6 @@ class Settings(commands.Cog):
         await self.bot.di.add_shop_items(ctx.guild, items)
         await ctx.send(await _(ctx, "Successfully added all D&D items to shop!"))
 
-    @checks.no_pm()
     @commands.command()
     @checks.admin_or_permissions()
     async def loadmagicshop(self, ctx):
@@ -298,7 +293,6 @@ class Settings(commands.Cog):
         await self.bot.di.add_shop_items(ctx.guild, items)
         await ctx.send(await _(ctx, "Successfully added all D&D magic items to shop!"))
 
-    @checks.no_pm()
     @commands.command()
     @checks.admin_or_permissions()
     async def loaddndmagic(self, ctx):
@@ -307,7 +301,6 @@ class Settings(commands.Cog):
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.dndmagic.values()))
         await ctx.send(await _(ctx, "Successfully added all D&D items!"))
 
-    @checks.no_pm()
     @commands.command()
     @checks.admin_or_permissions()
     async def loadpokemon(self, ctx):
@@ -316,7 +309,6 @@ class Settings(commands.Cog):
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.pokemonitems.values()))
         await ctx.send(await _(ctx, "Successfully added all Pokemon items!"))
 
-    @checks.no_pm()
     @commands.command()
     @checks.admin_or_permissions()
     async def loaditems(self, ctx):
@@ -365,7 +357,6 @@ class Settings(commands.Cog):
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in items))
         await ctx.send(await _(ctx, "Successfully loaded all items!"))
 
-    @checks.no_pm()
     @commands.command()
     @checks.mod_or_permissions()
     async def deleteafter(self, ctx, time: int):
@@ -374,7 +365,6 @@ class Settings(commands.Cog):
         await self.bot.di.set_delete_time(ctx.guild, time)
         await ctx.send(await _(ctx, "Updated settings"))
 
-    @checks.no_pm()
     @commands.command()
     @checks.mod_or_permissions()
     async def unload(self, ctx, name: str):
@@ -397,7 +387,6 @@ class Settings(commands.Cog):
         await ctx.send((await _(ctx, "Successfully removed all {} items!")).format(name))
 
     @commands.command()
-    @checks.no_pm()
     @checks.admin_or_permissions()
     async def setprefix(self, ctx, value: str):
         """Set the server's custom prefix. The default prefix will continue to work.
@@ -409,7 +398,6 @@ class Settings(commands.Cog):
         await ctx.send(await _(ctx, "Updated server prefix"))
 
     @commands.command()
-    @checks.no_pm()
     async def prefix(self, ctx):
         """View the current custom prefix for the server
 
@@ -418,7 +406,6 @@ class Settings(commands.Cog):
         await ctx.send(prefix)
 
     @commands.command()
-    @checks.no_pm()
     @checks.admin_or_permissions()
     async def setcmdprefix(self, ctx, cmdpath: str, *, value: str):
         """Set a custom prefix for a command. The default prefix will continue to work.
@@ -432,7 +419,6 @@ class Settings(commands.Cog):
         await ctx.send(await _(ctx, "Updated command prefix"))
 
     @commands.command()
-    @checks.no_pm()
     async def prefixes(self, ctx):
         """View the current custom command prefixes for the server
 
@@ -441,7 +427,6 @@ class Settings(commands.Cog):
         await ctx.send("\n".join(f"{k}: {v}" for k, v in prefixes.items()))
 
     @commands.command()
-    @checks.no_pm()
     @checks.admin_or_permissions()
     async def wipeonleave(self, ctx, value: str):
         """Set the server's setting for what to do when a player leaves. Set to true to wipe player data.
@@ -453,7 +438,6 @@ class Settings(commands.Cog):
         await ctx.send(await _(ctx, "Updated server setting"))
 
     @commands.command()
-    @checks.no_pm()
     @checks.admin_or_permissions()
     async def hideinv(self, ctx, value: bool):
         """Set whether or not user inventories are hidden. If enabled, inventories will be sent via DMs.

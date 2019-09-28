@@ -35,7 +35,14 @@ class Characters(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @checks.no_pm()
+    def cog_check(self, ctx):
+        def predicate(ctx):
+            if ctx.guild is None:
+                raise commands.NoPrivateMessage()
+            return True
+
+        return commands.check(predicate(ctx))
+
     @commands.command(aliases=["chars", "personnages"])
     async def characters(self, ctx, user: discord.Member = None):
         """List all your characters"""
@@ -51,7 +58,6 @@ class Characters(commands.Cog):
         embed.set_author(name=user.display_name, icon_url=user.avatar_url)
         await ctx.send(embed=embed)
 
-    @checks.no_pm()
     @commands.command()
     async def allchars(self, ctx):
         """List all guild characters"""
@@ -75,7 +81,6 @@ class Characters(commands.Cog):
         embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
         await ctx.send(embed=embed)
 
-    @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=["c", "char", "personnage"])
     async def character(self, ctx, *, name: str):
         """Get info on a character. Example: rp!c Hank"""
@@ -121,7 +126,6 @@ class Characters(commands.Cog):
 
             await ctx.send(embed=embed)
 
-    @checks.no_pm()
     @character.command(aliases=["new", "nouveau", "creer"])
     async def create(self, ctx, name: str, user: discord.Member = None):
         """Create a new character
@@ -219,7 +223,6 @@ class Characters(commands.Cog):
         await ctx.send(
             await _(ctx, "Character created!"))
 
-    @checks.no_pm()
     @character.command(aliases=["remove", "supprimer"])
     async def delete(self, ctx, *, name: str):
         """Delete a character of the given name (you must be the owner or be a Bot Mod / Bot Admin)"""
@@ -250,7 +253,6 @@ class Characters(commands.Cog):
                 await self.bot.di.remove_character(ctx.guild, name)
             await ctx.send(await _(ctx, "Character deleted"))
 
-    @checks.no_pm()
     @character.command()
     async def edit(self, ctx, name: str, attribute: str, *, value: str):
         """Edit a character
@@ -317,7 +319,6 @@ class Characters(commands.Cog):
             await self.bot.di.add_character(ctx.guild, Character(*character))
         await ctx.send(await _(ctx, "Character edited!"))
 
-    @checks.no_pm()
     @character.command()
     async def remattr(self, ctx, name: str, *, attribute: str):
         """Delete a character attribute
@@ -365,7 +366,6 @@ class Characters(commands.Cog):
     async def shutdown(self):
         pass
 
-    @checks.no_pm()
     @character.command()
     async def assume(self, ctx, name: str):
         """Assume a character. You will send messages with this character's icon and name. Necessary for some character inventory and economy commands. Lasts one day"""
@@ -399,7 +399,6 @@ class Characters(commands.Cog):
         await ctx.send((await _(ctx, "You are now {} for the next 24 hours")).format(name))
         self.bot.loop.create_task(self.unassume(ctx, name))
 
-    @checks.no_pm()
     @character.command(name="unassume")
     async def c_unassume(self, ctx, character: str):
         """Unassume a character"""
@@ -413,7 +412,6 @@ class Characters(commands.Cog):
         return char.ustats['items']
 
     @commands.group(invoke_without_command=True, aliases=['ci', 'cinv'])
-    @checks.no_pm()
     async def charinv(self, ctx, *, name: str = None):
         """Check your or another character's inventory. Example: rp!cinv Name or just rp!ci"""
         dest = ctx.channel
@@ -484,7 +482,6 @@ class Characters(commands.Cog):
 
     @checks.mod_or_permissions()
     @charinv.command(aliases=["take"])
-    @checks.no_pm()
     async def takeitem(self, ctx, item: str, num: IntConverter, *names: str):
         """Remove an item from a character's inventory"""
 
@@ -507,7 +504,6 @@ class Characters(commands.Cog):
 
     @checks.mod_or_permissions()
     @charinv.command()
-    @checks.no_pm()
     async def giveitem(self, ctx, item: str, num: IntConverter, *names: str):
         """Give an item to a character (Not out of your inventory)
         Example: rp!ci giveitem Banana 32 Char1 Char2 Char3"""
@@ -525,7 +521,6 @@ class Characters(commands.Cog):
         await ctx.send(await _(ctx, "Items given!"))
 
     @charinv.command()
-    @checks.no_pm()
     async def give(self, ctx, other: str, *items: str):
         """Give items ({item}x{#}) to a character; ie: rp!ci give Name Pokeballx3"""
         fitems = []
@@ -550,7 +545,6 @@ class Characters(commands.Cog):
                 await ctx.send(await _(ctx, "You do not have enough to give away!"))
 
     @charinv.command()
-    @checks.no_pm()
     async def use(self, ctx, item, number: int = 1):
         """Use an item. Example `rp!use Banana` or `rp!use Banana 5`
         To make an item usable, you must put the key `used: <message>` when you are adding additional information for an item
@@ -582,7 +576,6 @@ class Characters(commands.Cog):
             await ctx.send((await _(ctx, "Used {} {}s")).format(number, item))
 
     @charinv.command()
-    @checks.no_pm()
     async def craft(self, ctx, number: int, *, name: str):
         """Craft a recipe with a given name from the available server recipes; e.g. rp!craft 5 Apple Pie"""
 
@@ -622,7 +615,6 @@ class Characters(commands.Cog):
 
         return char.ustats['money'], char.ustats['bank']
 
-    @checks.no_pm()
     @commands.group(aliases=["ceco", "ce", "cbal"], invoke_without_command=True)
     async def chareco(self, ctx, *, name: str = None):
         """Check your or another character's balance"""
@@ -688,7 +680,6 @@ Total:\t\t {} dollars
 
         await self.bot.di.add_character(guild, char)
 
-    @checks.no_pm()
     @checks.mod_or_permissions()
     @chareco.command(aliases=["set"])
     async def setbalance(self, ctx, amount: NumberConverter, *names: str):
@@ -729,7 +720,6 @@ Total:\t\t {} dollars
 
         await self.bot.di.add_character(guild, char)
 
-    @checks.no_pm()
     @checks.mod_or_permissions()
     @chareco.command()
     async def givemoney(self, ctx, amount: NumberConverter, *names: str):
@@ -741,7 +731,6 @@ Total:\t\t {} dollars
 
             await ctx.send(await _(ctx, "Money given"))
 
-    @checks.no_pm()
     @checks.mod_or_permissions()
     @chareco.command()
     async def takemoney(self, ctx, amount: NumberConverter, *names: str):
@@ -760,7 +749,6 @@ Total:\t\t {} dollars
         if succ:
             await ctx.send(await _(ctx, "Money taken"))
 
-    @checks.no_pm()
     @chareco.command()
     async def pay(self, ctx, amount: NumberConverter, other: str):
         """Pay another character money"""
@@ -784,7 +772,6 @@ Total:\t\t {} dollars
             await ctx.send((await _(ctx, "Successfully paid {} dollars to {}")).format(amount, other))
 
     @character.command()
-    @checks.no_pm()
     async def alias(self, ctx, alias_name: str, *, character_name: str):
         """Create an alias for a character.
         Example: rp!c alias Tom Tom Hanks
@@ -809,7 +796,6 @@ Total:\t\t {} dollars
         await ctx.send((await _(ctx, "Created a new alias {0} for character {1}")).format(alias_name, character_name))
 
     @character.command()
-    @checks.no_pm()
     async def removealias(self, ctx, alias_name: str):
         """Remove an alias
         Example: rp!c removealias Tom
