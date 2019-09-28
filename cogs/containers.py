@@ -5,7 +5,15 @@ from .utils import checks
 containers = dict()
 
 class Containers:
+    def cog_check(self, ctx):
+        def predicate(ctx):
+            if ctx.guild is None:
+                raise commands.NoPrivateMessage()
+            return True
+
+        return commands.check(predicate(ctx))
+
+
     @commands.command()
-    @checks.no_pm()
     async def create(self, type):
         pass

@@ -16,6 +16,14 @@ class Mapping(commands.Cog):
         """Server map utilities"""
         self.bot = bot
 
+    def cog_check(self, ctx):
+        def predicate(ctx):
+            if ctx.guild is None:
+                raise commands.NoPrivateMessage()
+            return True
+
+        return commands.check(predicate(ctx))
+
     def generate_map(self, *, xsize: int, ysize: int, randoms: list):
         if xsize > 64 or ysize > 64 or xsize < 2 or ysize < 2:
             raise ValueError("x or y cannot exceed 64 and must be at least 2!")
@@ -28,7 +36,6 @@ class Mapping(commands.Cog):
                    [xsize // 2, ysize // 2], xsize, ysize)
 
     @commands.group(invoke_without_command=True, aliases=["carte"])
-    @checks.no_pm()
     async def map(self, ctx, name: str):
         """See the server map"""
         #
@@ -43,7 +50,6 @@ class Mapping(commands.Cog):
     # "maps": {"Default": (0,0), "Moon": (32, 16)}
 
     @map.command()
-    @checks.no_pm()
     async def create(self, ctx, mapname: str, xmax: int, ymax: int):
         """Create a map that will generate as it is explored. Set xmax and ymax to -1 for an infinite map
         ($5 Patrons only)
@@ -143,7 +149,6 @@ class Mapping(commands.Cog):
 
     @checks.admin_or_permissions()
     @map.command(aliases=["creer", "new", "nouvelle"])
-    @checks.no_pm()
     async def generate(self, ctx, name: str, xsize: int, ysize: int):
         """Create a custom map for the guild.
         Usage: `rp!map create Earth 64 64`
@@ -219,7 +224,6 @@ class Mapping(commands.Cog):
         await ctx.send(await _(ctx, "Map created!"))
 
     @map.command(aliases=["supprimer"])
-    @checks.no_pm()
     @checks.admin_or_permissions()
     async def delete(self, ctx, *, name: str):
         """Delete a map"""
@@ -227,7 +231,6 @@ class Mapping(commands.Cog):
         await ctx.send((await _(ctx, "Map {} successfully deleted.")).format(name))
 
     @map.command(aliases=["north", "nord"])
-    @checks.no_pm()
     async def up(self, ctx, mapname, character):
         """Move North on a map"""
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
@@ -299,7 +302,6 @@ class Mapping(commands.Cog):
         await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
 
     @map.command(aliases=["south", "sud"])
-    @checks.no_pm()
     async def down(self, ctx, mapname: str, character: str):
         """Move south on a map"""
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
@@ -370,7 +372,6 @@ class Mapping(commands.Cog):
         await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
 
     @map.command(aliases=["west", "ouest", "gauche"])
-    @checks.no_pm()
     async def left(self, ctx, mapname: str, character: str):
         """Move West on a map"""
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
@@ -444,7 +445,6 @@ class Mapping(commands.Cog):
         await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
 
     @map.command(aliases=["east", "est", "droit"])
-    @checks.no_pm()
     async def right(self, ctx, mapname: str, character: str):
         """Move East on a map"""
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
@@ -532,7 +532,6 @@ class Mapping(commands.Cog):
                         f"\n{it}: {ni}" for it, ni in sp["shop"].items()))
 
     @map.command()
-    @checks.no_pm()
     async def buy(self, ctx, mapname: str, character: str, amount: int, itemname: str):
         """Buy an item from the shop on the current tile"""
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
@@ -607,7 +606,6 @@ class Mapping(commands.Cog):
         return changed, spawned, tile
 
     @map.command(aliases=["look", "regarder", "inspect", "voir"])
-    @checks.no_pm()
     async def check(self, ctx, mapname: str, character: str):
         """Inspect the current tile a character is on"""
         try:
@@ -655,7 +653,6 @@ class Mapping(commands.Cog):
         return [e[slice(*ysl)] for e in l[slice(*xsl)]]
 
     @map.command(aliases=["upload"])
-    @checks.no_pm()
     @checks.admin_or_permissions()
     async def load(self, ctx, name: str):
         if not ctx.message.attachments:

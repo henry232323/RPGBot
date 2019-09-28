@@ -37,7 +37,14 @@ class Groups(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @checks.no_pm()
+    def cog_check(self, ctx):
+        def predicate(ctx):
+            if ctx.guild is None:
+                raise commands.NoPrivateMessage()
+            return True
+
+        return commands.check(predicate(ctx))
+
     @commands.group(aliases=["g"], invoke_without_command=True)
     async def guild(self, ctx, member: discord.Member = None):
         """Get info on a member's guild. Subcommands for guild management
@@ -92,7 +99,6 @@ class Groups(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @checks.no_pm()
     @commands.command()
     async def guilds(self, ctx):
         """List guilds"""
@@ -212,7 +218,6 @@ class Groups(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @checks.no_pm()
     @guild.command()
     async def create(self, ctx, *, name: str):
         """Create a new guild
@@ -321,7 +326,6 @@ class Groups(commands.Cog):
                     await ctx.send(await _(ctx, "Timed out! Try again"))
 
     @guild.command()
-    @checks.no_pm()
     async def join(self, ctx, *, name: str):
         """Join a guild. (if you have an invite for closed guilds)"""
         async with self.bot.di.rm.lock(ctx.author.id):
@@ -350,7 +354,6 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "Guild joined!"))
 
     @guild.command()
-    @checks.no_pm()
     async def leave(self, ctx):
         """Leave your guild. Will ask you to delete your guild if you are the owner."""
         async with self.bot.di.rm.lock(ctx.author.id):
@@ -394,7 +397,6 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "Guild left."))
 
     @guild.command()
-    @checks.no_pm()
     async def kick(self, ctx, *, user: discord.Member):
         """Kick a member from a guild."""
 
@@ -420,7 +422,6 @@ class Groups(commands.Cog):
                 await ctx.send(await _(ctx, "User kicked"))
 
     @guild.command()
-    @checks.no_pm()
     async def invite(self, ctx, user: discord.Member):
         """Invite a user your closed guild"""
 
@@ -441,7 +442,6 @@ class Groups(commands.Cog):
             await ctx.send((await _(ctx, "Sent a guild invite to {}")).format(user))
 
     @guild.command()
-    @checks.no_pm()
     async def delete(self, ctx, *, name: str = None):
         """Delete your guild.
         To delete a guild you do not own, you must have Bot Moderator or Bot Admin"""
@@ -481,7 +481,6 @@ class Groups(commands.Cog):
                 await ctx.send(await _(ctx, "Cancelling!"))
 
     @guild.command()
-    @checks.no_pm()
     async def deposit(self, ctx, amount: NumberConverter, guild_name: str = None):
         """Deposit an amount of money into the guild bank.
         To deposit into a guild are not a member of, you must have Bot Moderator or Bot Admin"""
@@ -518,7 +517,6 @@ class Groups(commands.Cog):
                 (await _(ctx, "Successfully deposited {} dollars into {}'s bank")).format(amount, guild_name))
 
     @guild.command()
-    @checks.no_pm()
     async def withdraw(self, ctx, amount: NumberConverter):
         """Take money from the guild bank (guild mods only)
         To withdraw from a guild you are not a member of, you must have Bot Moderator or Bot Admin"""
@@ -547,7 +545,6 @@ class Groups(commands.Cog):
             await ctx.send((await _(ctx, "Successfully withdrew {} dollars")).format(amount))
 
     @guild.command()
-    @checks.no_pm()
     async def setmod(self, ctx, *members: discord.Member):
         """Give the listed users mod for your guild (guild owner only)"""
 
@@ -572,7 +569,6 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "Successfully added mods!"))
 
     @guild.command()
-    @checks.no_pm()
     @checks.mod_or_permissions()
     async def give(self, ctx, name: str, *items: str):
         """Put items into the guild's storage, uses {item}x{#} notation. Does not take from inventory
@@ -600,7 +596,6 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "Successfully deposited items!"))
 
     @guild.command()
-    @checks.no_pm()
     @checks.mod_or_permissions()
     async def take(self, ctx, name: str, *items: str):
         """Take items from the guild. Does not take from inventory
@@ -635,7 +630,6 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "Successfully withdrew items"))
 
     @guild.command()
-    @checks.no_pm()
     @checks.mod_or_permissions()
     async def givemoney(self, ctx, guild_name: str, amount: NumberConverter):
         """Deposit an amount of money into the bank of a guild. Does not take from user's bank.
@@ -658,7 +652,6 @@ class Groups(commands.Cog):
                 (await _(ctx, "Successfully deposited {} dollars into {}'s bank")).format(amount, guild_name))
 
     @guild.command()
-    @checks.no_pm()
     @checks.mod_or_permissions()
     async def takemoney(self, ctx, guild_name: str, amount: NumberConverter):
         """Take money from the guild bank.
@@ -682,7 +675,6 @@ class Groups(commands.Cog):
             await ctx.send((await _(ctx, "Successfully withdrew {} dollars")).format(amount))
 
     @guild.command()
-    @checks.no_pm()
     async def deposititems(self, ctx, *items: str):
         """Deposit items into the guild's storage, uses {item}x{#} notation
         Example: rp!guild deposititems Bananax5 Orangex10
@@ -716,7 +708,6 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "Successfully deposited items!"))
 
     @guild.command()
-    @checks.no_pm()
     async def withdrawitems(self, ctx, *items: str):
         """Withdraw items from the guild (guild mods only)
         Example: rp!guild withdrawitems Bananax5 Orangex10
@@ -757,7 +748,6 @@ class Groups(commands.Cog):
         await ctx.send(await _(ctx, "Successfully withdrew items"))
 
     @guild.command()
-    @checks.no_pm()
     async def toggleopen(self, ctx):
         """Toggle the Guilds open state (guild owner only)"""
 
@@ -780,7 +770,6 @@ class Groups(commands.Cog):
                     await _(ctx, 'open') if guild.open else await _(ctx, 'closed')))
 
     @guild.command()
-    @checks.no_pm()
     async def seticon(self, ctx, url: str):
         """Set the guild's icon (guild mods only)"""
         async with self.bot.di.rm.lock(ctx.guild.id):
@@ -800,7 +789,6 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "Updated guild icon url!"))
 
     @guild.command()
-    @checks.no_pm()
     async def setimage(self, ctx, url: str):
         """Set the guild's image (guild mods only)"""
         async with self.bot.di.rm.lock(ctx.guild.id):
@@ -820,7 +808,6 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "Updated guild image url!"))
 
     @guild.command(aliases=["setdesc"])
-    @checks.no_pm()
     async def setdescription(self, ctx, *, description):
         """Set the guild's description (guild mods only)"""
         async with self.bot.di.rm.lock(ctx.guild.id):
@@ -840,7 +827,6 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "Updated guild's description!"))
 
     @guild.command()
-    @checks.no_pm()
     async def transfer(self, ctx, user: discord.Member):
         """Transfer ownership of a guild to someone else (guild owner only)"""
         async with self.bot.di.rm.lock(ctx.guild.id):
