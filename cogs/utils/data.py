@@ -56,7 +56,7 @@ class ContextManagerLockWrapper:
         await self.manager.acquire(self.resource)
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
-        await self.manager.release(self.resource)
+        self.manager.release(self.resource)
 
 
 class ResourceManager:
@@ -72,11 +72,11 @@ class ResourceManager:
             lock = self.locks[resource] = self._lock_factory()
             await lock.acquire()
 
-    async def release(self, resource):
+    def release(self, resource):
         if resource in self.locks:
             lock = self.locks[resource]
-            await lock.release()
-            if lock.holder is None:
+            lock.release()
+            if lock.locked():
                 del self.locks[resource]
         else:
             raise RuntimeError("This lock is not being held!")
