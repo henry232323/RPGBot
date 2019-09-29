@@ -34,7 +34,7 @@ class Database:
 
     async def connect(self):
         self._conn = await asyncpg.create_pool(user='root', password='root',
-                                  database='pokerpg', host='127.0.0.1')
+                                               database='pokerpg', host='127.0.0.1')
 
     # User functions
     ########################################################################
@@ -151,7 +151,7 @@ class Database:
         await self.guild_insert(guild, data)
 
     async def update_guild_data(self, guild, data, lock=False):
-        #await self.guild_insert(guild, data)
+        # await self.guild_insert(guild, data)
         if await self.guild_select(guild):
             await self.guild_update(guild, data)
         else:
@@ -164,7 +164,7 @@ class Database:
         else:
             await self.guild_insert(guild, self.bot.default_servdata)
             return copy.deepcopy(self.bot.default_servdata)
-            #return await self.get_guild_data(guild)
+            # return await self.get_guild_data(guild)
 
     async def guild_item(self, guild, name: str):
         req = f"""SELECT info ->> '{name}' FROM servdata WHERE UUID = {guild.id}"""
