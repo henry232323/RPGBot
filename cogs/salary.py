@@ -80,8 +80,15 @@ class Salary(commands.Cog):
                 finally:
                     await asyncio.sleep(86400)
 
+    def cog_check(self, ctx):
+        def predicate(ctx):
+            if ctx.guild is None:
+                raise commands.NoPrivateMessage()
+            return True
+
+        return commands.check(predicate(ctx))
+
     @commands.command()
-    @checks.no_pm()
     async def salaries(self, ctx):
         """See server salaries"""
         embed = discord.Embed(color=randint(0, 0xFFFFFF), )
@@ -113,7 +120,6 @@ class Salary(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.group(invoke_without_command=True, aliases=["sal"])
-    @checks.no_pm()
     async def salary(self, ctx, role: discord.Role):
         """Get a role's salary. Also includes salary subcommands"""
         salary = (await self.bot.di.get_salaries(ctx.guild)).get(str(role.id), None)
@@ -123,7 +129,6 @@ class Salary(commands.Cog):
             await ctx.send((await _(ctx, "{} has a daily salary of {}")).format(role, salary))
 
     @salary.command()
-    @checks.no_pm()
     @checks.mod_or_permissions()
     async def create(self, ctx, role: discord.Role, interval: NumberConverter, *items_or_number: data.ItemOrNumber):
         """Create a daily salary for a user with the given role.
@@ -144,7 +149,6 @@ class Salary(commands.Cog):
         await ctx.send((await _(ctx, "Successfully created a daily salary of {} for {}")).format(items_or_number, role))
 
     @salary.command()
-    @checks.no_pm()
     @checks.mod_or_permissions()
     async def delete(self, ctx, *, role: discord.Role):
         """Remove a created salary
@@ -158,7 +162,6 @@ class Salary(commands.Cog):
             await ctx.send(await _(ctx, "That role has no salaries!"))
 
     @salary.command()
-    @checks.no_pm()
     @checks.mod_or_permissions()
     async def payout(self, ctx, role: discord.Role = None):
         """Manually pay out salaries for a role or all roles
@@ -206,7 +209,6 @@ class Salary(commands.Cog):
         await ctx.send(await _(ctx, "Salaries payed out"))
 
     @salary.command()
-    @checks.no_pm()
     async def collect(self, ctx: commands.Context):
         """Collect your salary for all available roles"""
         salaries = await self.bot.di.get_salaries(ctx.guild)

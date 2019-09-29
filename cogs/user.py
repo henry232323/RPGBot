@@ -35,8 +35,15 @@ class User(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    def cog_check(self, ctx):
+        def predicate(ctx):
+            if ctx.guild is None:
+                raise commands.NoPrivateMessage()
+            return True
+
+        return commands.check(predicate(ctx))
+
     @commands.command(name="userinfo", aliases=["ui"])
-    @checks.no_pm()
     async def ui(self, ctx, *, user: discord.Member = None):
         """Get info on a user"""
         if user is None:
@@ -87,7 +94,6 @@ class User(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @checks.no_pm()
     @checks.mod_or_permissions()
     @commands.group(aliases=["exp"], invoke_without_command=True)
     async def experience(self, ctx, member: discord.Member = None):
@@ -104,7 +110,6 @@ class User(commands.Cog):
         embed.set_author(name=member.display_name, icon_url=member.avatar_url)
         await ctx.send(embed=embed)
 
-    @checks.no_pm()
     @checks.mod_or_permissions()
     @experience.command(aliases=["set"])
     async def setlevel(self, ctx, level: data.IntConverter, *members: data.MemberConverter):
@@ -114,7 +119,6 @@ class User(commands.Cog):
             await self.bot.di.set_level(member, level, 0)
         await ctx.send(await _(ctx, "Set level for members"))
 
-    @checks.no_pm()
     @checks.mod_or_inv()
     @experience.command()
     async def add(self, ctx, amount: data.IntConverter, *members: data.MemberConverter):
@@ -125,7 +129,6 @@ class User(commands.Cog):
 
         await ctx.send(await _(ctx, "Gave experience to members"))
 
-    @checks.no_pm()
     @experience.command()
     @checks.mod_or_permissions()
     async def enable(self, ctx):
@@ -133,7 +136,6 @@ class User(commands.Cog):
         await self.bot.di.set_exp_enabled(ctx.guild, True)
         await ctx.send(await _(ctx, "Successfully changed EXP setting"))
 
-    @checks.no_pm()
     @experience.command()
     @checks.mod_or_permissions()
     async def disable(self, ctx):
