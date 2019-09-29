@@ -75,8 +75,8 @@ class ResourceManager:
     async def release(self, resource):
         if resource in self.locks:
             lock = self.locks[resource]
-            await lock.release()
-            if lock.holder is None:
+            lock.release()
+            if not lock.locked():
                 del self.locks[resource]
         else:
             raise RuntimeError("This lock is not being held!")
@@ -85,9 +85,8 @@ class ResourceManager:
         return ContextManagerLockWrapper(self, resource)
 
 
-
 class Character(tuple):
-    'Character(name, owner, description, level, team, meta)'
+    """Character(name, owner, description, level, team, meta)"""
     __slots__ = ()
     _fields = ('name', 'owner', 'description', 'level', 'team', 'meta', 'ustats')
 
@@ -99,14 +98,14 @@ class Character(tuple):
 
     @classmethod
     def _make(cls, iterable, new=tuple.__new__, len=len):
-        'Make a new Character object from a sequence or iterable'
+        """Make a new Character object from a sequence or iterable"""
         result = new(cls, iterable)
         if len(result) != 6:
             raise TypeError('Expected 6 arguments, got %d' % len(result))
         return result
 
     def _replace(_self, **kwds):
-        'Return a new Character object replacing specified fields with new values'
+        """Return a new Character object replacing specified fields with new values"""
         result = _self._make(map(kwds.pop, ('name', 'owner', 'description', 'level', 'team', 'meta'), _self))
         if kwds:
             raise ValueError('Got unexpected field names: %r' % list(kwds))

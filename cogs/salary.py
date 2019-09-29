@@ -102,8 +102,8 @@ class Salary(commands.Cog):
                     amount = amount['val']
                 embed.add_field(name=f"{roleobj.name} - {interval}s",
                                 value="\n".join(
-                                ("{} {}".format(item, currency)
-                                 if isinstance(item, (int, float)) else "{}x{}".format(*item)) for item in amount)
+                                    ("{} {}".format(item, currency)
+                                     if isinstance(item, (int, float)) else "{}x{}".format(*item)) for item in amount)
                                 )
             for d in dels:
                 del sals[d]
