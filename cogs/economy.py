@@ -46,7 +46,14 @@ class Economy(commands.Cog):
         with open("resources/lotteries.json", 'w') as lf:
             lf.write(json.dumps(self.bot.lotteries))
 
-    @checks.no_pm()
+    def cog_check(self, ctx):
+        def predicate(ctx):
+            if ctx.guild is None:
+                raise commands.NoPrivateMessage()
+            return True
+
+        return commands.check(predicate(ctx))
+
     @commands.group(aliases=["bal", "balance", "eco", "e"], invoke_without_command=True)
     async def economy(self, ctx, *, member: discord.Member = None):
         """Check your or another users balance.
@@ -91,7 +98,6 @@ Total:\t\t {} dollars
         embed.set_thumbnail(url="https://opengameart.org/sites/default/files/styles/medium/public/gold_pile_0.png")
         await dest.send(embed=embed)
 
-    @checks.no_pm()
     @checks.mod_or_permissions()
     @commands.command(aliases=["set"])
     async def setbalance(self, ctx, amount: NumberConverter, *members: MemberConverter):
@@ -107,7 +113,6 @@ Total:\t\t {} dollars
 
         await ctx.send(await _(ctx, "Balances changed"))
 
-    @checks.no_pm()
     @checks.mod_or_permissions()
     @commands.command()
     async def givemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
@@ -123,7 +128,6 @@ Total:\t\t {} dollars
 
         await ctx.send(await _(ctx, "Money given"))
 
-    @checks.no_pm()
     @checks.mod_or_permissions()
     @commands.command()
     async def takemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
@@ -144,7 +148,6 @@ Total:\t\t {} dollars
         if succ:
             await ctx.send(await _(ctx, "Money taken"))
 
-    @checks.no_pm()
     @commands.command()
     async def pay(self, ctx, amount: NumberConverter, member: discord.Member):
         """Pay another user money
@@ -156,7 +159,6 @@ Total:\t\t {} dollars
             await self.bot.di.add_eco(member, amount)
         await ctx.send((await _(ctx, "Successfully paid {} dollars to {}")).format(amount, member))
 
-    @checks.no_pm()
     @commands.group(aliases=["m", "pm"], invoke_without_command=True)
     async def market(self, ctx):
         """View the current market listings"""
@@ -285,7 +287,6 @@ Total:\t\t {} dollars
             except:
                 pass
 
-    @checks.no_pm()
     @market.command(aliases=["createlisting", "new", "listitem", "list"])
     async def create(self, ctx, cost: NumberConverter, amount: IntConverter, *, item: str):
         """Create a new market listing. The listing will return a unique identifier for the item.
@@ -312,7 +313,6 @@ Total:\t\t {} dollars
 
         await ctx.send((await _(ctx, "Item listed with ID {}")).format(id))
 
-    @checks.no_pm()
     @market.command(aliases=["purchase", "acheter"])
     async def buy(self, ctx, id: str):
         """Buy a listing from the player market.
@@ -352,7 +352,6 @@ Total:\t\t {} dollars
                                       "{} bought {} {} from you for {} dollars with ID {} on server {}")).format(
                 ctx.author, item["item"], item["amount"], item['cost'], id, ctx.guild.name))
 
-    @checks.no_pm()
     @market.command()
     async def search(self, ctx, *, item: str):
         """Search the market for an item.
@@ -481,7 +480,6 @@ Total:\t\t {} dollars
             except:
                 pass
 
-    @checks.no_pm()
     @market.command(aliases=["rm"], name="remove")
     async def _market_remove(self, ctx, id: str):
         """Remove an item from the market"""
@@ -500,7 +498,6 @@ Total:\t\t {} dollars
             else:
                 await ctx.send(await _(ctx, "This is not your item to remove!"))
 
-    @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=['lottery'])
     async def lotto(self, ctx):
         """List the currently running lottos."""
@@ -522,7 +519,6 @@ Total:\t\t {} dollars
         else:
             await ctx.send(await _(ctx, "No lotteries currently running!"))
 
-    @checks.no_pm()
     @checks.mod_or_permissions()
     @lotto.command(aliases=["delete"])
     async def cancel(self, ctx, name: str):
@@ -534,7 +530,6 @@ Total:\t\t {} dollars
         except KeyError:
             await ctx.send(await _(ctx, "There is no lottery of that name!"))
 
-    @checks.no_pm()
     @checks.mod_or_permissions()
     @lotto.command(aliases=["create"])
     async def new(self, ctx, name: str, jackpot: NumberConverter, time: NumberConverter):
@@ -564,7 +559,6 @@ Total:\t\t {} dollars
                 await ctx.send((await _(ctx, "Nobody entered {}! Its over now.")).format(name))
             del self.bot.lotteries[ctx.guild.id][name]
 
-    @checks.no_pm()
     @lotto.command(aliases=["join"])
     async def enter(self, ctx, *, name: str):
         """Enter the lottery with the given name.
@@ -581,7 +575,6 @@ Total:\t\t {} dollars
         else:
             await ctx.send(await _(ctx, "This server has no lottos currently running!"))
 
-    @checks.no_pm()
     @commands.group(invoke_without_command=True)
     async def shop(self, ctx):
         """Get all items currently listed on the server shop"""
@@ -613,7 +606,6 @@ Total:\t\t {} dollars
         await create_pages(ctx, shop, lfmt, description=desc, title=title,
                            author=author, author_url=author_url)
 
-    @checks.no_pm()
     @shop.command(aliases=["add"])
     @checks.mod_or_permissions()
     async def additem(self, ctx, *, name: str):
@@ -685,7 +677,6 @@ Total:\t\t {} dollars
             await self.bot.di.update_guild_shop(ctx.guild, shop)
             await ctx.send(await _(ctx, "Guild shop updated"))
 
-    @checks.no_pm()
     @shop.command(aliases=["remove"])
     @checks.mod_or_permissions()
     async def removeitem(self, ctx, *, name: str):
@@ -703,7 +694,6 @@ Total:\t\t {} dollars
             await self.bot.di.update_guild_shop(ctx.guild, shop)
             await ctx.send(await _(ctx, "Successfully removed item"))
 
-    @checks.no_pm()
     @shop.command(name="buy")
     async def _buy(self, ctx, item: str, amount: IntConverter):
         """Buy an item from the shop"""
@@ -730,7 +720,6 @@ Total:\t\t {} dollars
             await self.bot.di.give_items(ctx.author, (item, amount))
         await ctx.send((await _(ctx, "Successfully bought {} {}s")).format(amount, item))
 
-    @checks.no_pm()
     @shop.command(name="sell")
     async def _sell(self, ctx, item: str, amount: IntConverter):
         """Sell an item to the shop
@@ -753,7 +742,6 @@ Total:\t\t {} dollars
             await self.bot.di.add_eco(ctx.author, iobj["sell"] * amount)
         await ctx.send((await _(ctx, "Successfully sold {} {}s")).format(amount, item))
 
-    @checks.no_pm()
     @commands.command()
     async def startbid(self, ctx, item: str, amount: NumberConverter, startbid: NumberConverter):
         """Start a bid for an item
@@ -823,12 +811,10 @@ Total:\t\t {} dollars
 
         self.bids.remove(ctx.channel.id)
 
-    @checks.no_pm()
     @commands.command()
     async def bid(self, ctx):
         """Place a bid on the current bidding item in the channel. `rp!bid 5`"""
 
-    @checks.no_pm()
     @commands.command()
     async def baltop(self, ctx):
         """Get the top 10 server balances"""
@@ -845,7 +831,6 @@ Total:\t\t {} dollars
         msg = "\n".join(f"{x}: {y[0]} {y[1]} {currency}" for x, y in zip(range(1, 11), users))
         await ctx.send(f"```\n{msg}\n```")
 
-    @checks.no_pm()
     @commands.group(aliases=["banc"], invoke_without_command=True)
     async def bank(self, ctx):
         bal = (await self.bot.di.get_all_balances(ctx.author))[1]
@@ -854,7 +839,6 @@ Total:\t\t {} dollars
             (await _(ctx, "You have {} dollars in the bank")).format(int(bal) if int(bal) == bal else bal)
         )
 
-    @checks.no_pm()
     @bank.command()
     async def deposit(self, ctx, amount: float):
         """Deposit `amount` into the bank.
@@ -873,7 +857,6 @@ Total:\t\t {} dollars
                     amount,
                     bal[1] + amount))
 
-    @checks.no_pm()
     @bank.command()
     async def withdraw(self, ctx, amount: float):
         """Withdraw `amount` from the bank

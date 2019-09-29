@@ -32,8 +32,15 @@ class Team(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    def cog_check(self, ctx):
+        def predicate(ctx):
+            if ctx.guild is None:
+                raise commands.NoPrivateMessage()
+            return True
+
+        return commands.check(predicate(ctx))
+
     @commands.group(invoke_without_command=True)
-    @checks.no_pm()
     async def team(self, ctx, *, character: str):
         """Check a character's team"""
 
@@ -60,7 +67,6 @@ class Team(commands.Cog):
         await ctx.send(embed=embed)
 
     @team.command(aliases=["addmember"])
-    @checks.no_pm()
     async def add(self, ctx, character: str, id: int):
         """Add a Pet to a character's team"""
         try:
@@ -77,7 +83,6 @@ class Team(commands.Cog):
             await ctx.send("That character does not exist!")
 
     @team.command(aliases=["removemember"])
-    @checks.no_pm()
     async def remove(self, ctx, character: str, id: int):
         """Remove a Pet from a character's team"""
         try:

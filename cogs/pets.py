@@ -32,8 +32,15 @@ class Pets(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    def cog_check(self, ctx):
+        def predicate(ctx):
+            if ctx.guild is None:
+                raise commands.NoPrivateMessage()
+            return True
+
+        return commands.check(predicate(ctx))
+
     @commands.command()
-    @checks.no_pm()
     async def box(self, ctx, member: discord.Member = None):
         """Check the pet in your box"""
         if member is None:
@@ -48,7 +55,6 @@ class Pets(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.group(aliases=["p"], invoke_without_command=True)
-    @checks.no_pm()
     async def pet(self, ctx, member: discord.Member = None):
         """Subcommands for Pet management, see rp!help pet
         Same use as rp!box"""
@@ -64,7 +70,6 @@ class Pets(commands.Cog):
         await ctx.send(embed=embed)
 
     @pet.command()
-    @checks.no_pm()
     async def edit(self, ctx, pet_id: int, attribute: str, *, value: str):
         """Edit a pet
                 Usage: rp!pet edit 5 description John likes bananas!
@@ -110,7 +115,6 @@ class Pets(commands.Cog):
         await ctx.send(await _(ctx, "Pet edited!"))
 
     @pet.command(aliases=["new"])
-    @checks.no_pm()
     async def create(self, ctx):
         """Create a new Pet to add to your box"""
         try:
@@ -204,7 +208,6 @@ class Pets(commands.Cog):
             traceback.print_exc()
 
     @pet.command()
-    @checks.no_pm()
     async def info(self, ctx, id: data.IntConverter):
         """Get info on a Pet"""
         pet = await self.bot.di.get_pet(ctx.author, id)
@@ -223,14 +226,12 @@ class Pets(commands.Cog):
         await ctx.send(embed=embed)
 
     @pet.command(aliases=["delete", "rm", "remove"])
-    @checks.no_pm()
     async def release(self, ctx, id: data.IntConverter):
         """Release a Pet from your box"""
         pk = await self.bot.di.remove_pet(ctx.author, id)
         await ctx.send((await _(ctx, "This Pet has been released! Goodbye {}!")).format(pk.name))
 
     @pet.command()
-    @checks.no_pm()
     async def trade(self, ctx, your_id: data.IntConverter, their_id: data.IntConverter, other: discord.Member):
         """Offer a trade to a user.
         `your_id` is the ID of the Pet you want to give, `their_id` is the Pet you want from them.

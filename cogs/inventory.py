@@ -35,8 +35,15 @@ class Inventory(commands.Cog):
         self.bot = bot
         self.trades = {}
 
+    def cog_check(self, ctx):
+        def predicate(ctx):
+            if ctx.guild is None:
+                raise commands.NoPrivateMessage()
+            return True
+
+        return commands.check(predicate(ctx))
+
     @commands.command(aliases=['i', 'inv'])
-    @checks.no_pm()
     async def inventory(self, ctx, *, member: discord.Member = None):
         """Check your or another users inventory.
         Example: rp!inventory @Henry#6174 or just rp!inventory"""
@@ -77,7 +84,6 @@ class Inventory(commands.Cog):
 
     @checks.mod_or_permissions()
     @commands.command(aliases=["take"])
-    @checks.no_pm()
     async def takeitem(self, ctx, item: str, num: IntConverter, *members: MemberConverter):
         """Remove an item from a person's inventory
         Example: rp!takeitem Banana 5 @Henry#6174 @JohnDoe#0001
@@ -95,7 +101,6 @@ class Inventory(commands.Cog):
 
     @checks.mod_or_permissions()
     @commands.command()
-    @checks.no_pm()
     async def giveitem(self, ctx, item: str, num: IntConverter, *members: MemberConverter):
         """Give an item to a person (Not out of your inventory)
         Example: rp!giveitem Banana 32 @Henry#6174 @RPGBot#8700 @JoeShmoe#3012
@@ -114,7 +119,6 @@ class Inventory(commands.Cog):
         await ctx.send(await _(ctx, "Items given!"))
 
     @commands.command()
-    @checks.no_pm()
     async def give(self, ctx, other: discord.Member, *items: str):
         """Give items ({item}x{#}) to a member
         Example: rp!give @Henry#6174 Pokeballx3 Orangex5"""
@@ -132,7 +136,6 @@ class Inventory(commands.Cog):
             await ctx.send(await _(ctx, "You do not have enough to give away!"))
 
     @commands.command()
-    @checks.no_pm()
     @checks.admin_or_permissions()
     async def wipeinv(self, ctx, *members: MemberConverter):
         """Wipe all listed inventories. Must be administrator. To wipe ALL inventories do `rp!wipeinv everyone`"""
@@ -147,7 +150,6 @@ class Inventory(commands.Cog):
         await ctx.send((await _(ctx, "Wiped {} users' inventories")).format(len(list(members))))
 
     @commands.command()
-    @checks.no_pm()
     async def use(self, ctx, item, number: int = 1):
         """Use an item. Example: `rp!use Banana` or `rp!use Banana 5`
         To make an item usable, you must put the key `used: <message>` when you are adding additional information for an item.
@@ -182,7 +184,6 @@ class Inventory(commands.Cog):
                                   channel=ctx.channel))
         await ctx.send((await _(ctx, "Used {} {}s")).format(number, item))
 
-    @checks.no_pm()
     @commands.group(invoke_without_command=True, aliases=['lb'])
     async def lootbox(self, ctx, name: str = None):
         """List the current lootboxes"""
@@ -224,7 +225,6 @@ class Inventory(commands.Cog):
         else:
             await ctx.send(await _(ctx, "No current lootboxes"))
 
-    @checks.no_pm()
     @checks.mod_or_permissions()
     @lootbox.command(name="create", aliases=["new"])
     async def _create(self, ctx, name: str, cost: ItemOrNumber, *items: str):
@@ -274,7 +274,6 @@ class Inventory(commands.Cog):
                 (await _(ctx, "Lootbox {} successfully created and requires {} dollars to open")).format(name, cost))
         await self.bot.di.update_guild_lootboxes(ctx.guild, boxes)
 
-    @checks.no_pm()
     @lootbox.command(name="buy")
     async def _lootbox_buy(self, ctx, *, name: str):
         """Buy a lootbox of the given name
@@ -309,7 +308,6 @@ class Inventory(commands.Cog):
         await self.bot.di.give_items(ctx.author, (result, 1))
         await ctx.send((await _(ctx, "You won a(n) {}")).format(result))
 
-    @checks.no_pm()
     @lootbox.command(name="delete", aliases=["remove"])
     @checks.mod_or_permissions()
     async def _lootbox_delete(self, ctx, *, name: str):
@@ -325,7 +323,6 @@ class Inventory(commands.Cog):
             await ctx.send(await _(ctx, "Invalid loot box"))
 
     @commands.group(invoke_without_command=True)
-    @checks.no_pm()
     async def trade(self, ctx, other: discord.Member, *items: str):
         """Send a trade offer to another user.
         Example: rp!trade @Henry Bananax3 Applex1 --Format items as {item}x{#}"""
@@ -336,7 +333,6 @@ class Inventory(commands.Cog):
             await ctx.send((await _(ctx, "{} failed to respond")).format(other))
 
     @trade.command()
-    @checks.no_pm()
     async def respond(self, ctx, other: discord.Member, *items: str):
         """Respond to a trade offer by another user.
         Example: rp!inventory respond @Henry Grapex8 Applex1
@@ -447,7 +443,6 @@ class Inventory(commands.Cog):
             del self.trades[sender]
 
     @commands.command()
-    @checks.no_pm()
     async def craft(self, ctx, number: int, *, name: str):
         """Craft a recipe with a given name from the available server recipes;
          Example: rp!craft 5 Apple Pie"""
@@ -471,7 +466,6 @@ class Inventory(commands.Cog):
         await ctx.send((await _(ctx, "Successfully crafted {} {}")).format(number, name))
 
     @commands.command()
-    @checks.no_pm()
     async def recipes(self, ctx):
         """List all the available server recipes"""
         recipes = await ctx.bot.di.get_guild_recipes(ctx.guild)
@@ -498,7 +492,6 @@ class Inventory(commands.Cog):
             await ctx.send(await _(ctx, "No current recipes"))
 
     @commands.group(invoke_without_command=True)
-    @checks.no_pm()
     async def recipe(self, ctx, *, name: str):
         """See data on a specific recipe; Example: rp!recipe Banana"""
         recipes = await ctx.bot.di.get_guild_recipes(ctx.guild)
@@ -529,7 +522,6 @@ class Inventory(commands.Cog):
             await ctx.send(await _(ctx, "No current recipes"))
 
     @recipe.command()
-    @checks.no_pm()
     @checks.mod_or_permissions()
     async def create(self, ctx, *, name: str):
         """Create a new recipe;
@@ -592,7 +584,6 @@ class Inventory(commands.Cog):
         await ctx.send(await _(ctx, "Successfully created new recipe!"))
 
     @recipe.command()
-    @checks.no_pm()
     @checks.mod_or_permissions()
     async def delete(self, ctx, *, name: str):
         """Delete the recipe with the given name; Example: rp!recipe delete Apple Pie
