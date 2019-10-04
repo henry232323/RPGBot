@@ -814,6 +814,15 @@ class DataInteraction(object):
         gd["lang"] = language
         await self.db.update_guild_data(guild, gd)
 
+    async def set_default_map(self, guild, value):
+        gd = await self.db.get_guild_data(guild)
+        gd["default_map"] = value
+        await self.db.update_guild_data(guild, gd)
+
+    async def get_default_map(self, guild):
+        gd = await self.db.get_guild_data(guild)
+        return gd.get("default_map")
+
     async def set_currency(self, guild, currency):
         if len(currency) > 30:
             raise ValueError("Currency prefix too long!")
