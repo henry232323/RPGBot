@@ -58,7 +58,7 @@ class Settings(commands.Cog):
                         value="{} {}".format(len(settings['characters']), await _(ctx, "characters")))
         embed.add_field(name=await _(ctx, "Maps"),
                         value=await _(ctx, "None") if not settings.get("maps") else "\n".join(
-                            settings["maps"]))
+                            (x if x != settings.get("default_map") else f"**{x}**") for x in settings["maps"]))
         embed.add_field(name=await _(ctx, "Currency"), value=f"{settings.get('currency', 'dollars')}")
         embed.add_field(name=await _(ctx, "Language"), value=f"{settings.get('language', 'en')}")
         embed.add_field(name=await _(ctx, "Experience Enabled"), value=f"{settings.get('exp', True)}")
@@ -388,6 +388,17 @@ class Settings(commands.Cog):
 
     @commands.command()
     @checks.admin_or_permissions()
+    async def setdefaultmap(self, ctx, value: str):
+        """Set the server's custom prefix. The default prefix will continue to work.
+        Example:
+            rp!setprefix ! --> !setprefix rp!
+
+        Requires Bot Moderator or Bot Admin"""
+        self.bot.di.set_default_map(ctx.guild, value)
+        await ctx.send(await _(ctx, "Updated default map"))
+
+    @commands.command()
+    @checks.admin_or_permissions()
     async def setprefix(self, ctx, value: str):
         """Set the server's custom prefix. The default prefix will continue to work.
         Example:
@@ -405,7 +416,7 @@ class Settings(commands.Cog):
         prefix = self.bot.prefixes.get(str(ctx.guild.id))
         await ctx.send(prefix)
 
-    @commands.command()
+    @commands.command(disabled=True)
     @checks.admin_or_permissions()
     async def setcmdprefix(self, ctx, cmdpath: str, *, value: str):
         """Set a custom prefix for a command. The default prefix will continue to work.
@@ -418,7 +429,7 @@ class Settings(commands.Cog):
         await self.bot.di.set_cmd_prefixes(ctx.guild, cmdpath, value)
         await ctx.send(await _(ctx, "Updated command prefix"))
 
-    @commands.command()
+    @commands.command(disabled=True)
     async def prefixes(self, ctx):
         """View the current custom command prefixes for the server
 

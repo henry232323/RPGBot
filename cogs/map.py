@@ -256,7 +256,13 @@ class Mapping(commands.Cog):
             return
 
         char = await self.bot.di.get_character(ctx.guild, name)
-        mapname = char.meta["map"]
+        mapname = char.meta.get("map")
+        if mapname is None:
+            mapname = await self.bot.di.get_default_map(ctx.guild)
+            if mapname is None:
+                await ctx.send(await _(ctx,
+                                       "This server does not have a default map set, set one with `rp!setdefaultmap <value>`"))
+                return
 
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
         if char is None:
@@ -343,7 +349,13 @@ class Mapping(commands.Cog):
             return
 
         char = await self.bot.di.get_character(ctx.guild, name)
-        mapname = char.meta["map"]
+        mapname = char.meta.get("map")
+        if mapname is None:
+            mapname = await self.bot.di.get_default_map(ctx.guild)
+            if mapname is None:
+                await ctx.send(await _(ctx,
+                                       "This server does not have a default map set, set one with `rp!setdefaultmap <value>`"))
+                return
 
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
         if char is None:
@@ -428,7 +440,13 @@ class Mapping(commands.Cog):
             return
 
         char = await self.bot.di.get_character(ctx.guild, name)
-        mapname = char.meta["map"]
+        mapname = char.meta.get("map")
+        if mapname is None:
+            mapname = await self.bot.di.get_default_map(ctx.guild)
+            if mapname is None:
+                await ctx.send(await _(ctx,
+                                       "This server does not have a default map set, set one with `rp!setdefaultmap <value>`"))
+                return
 
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
         if char is None:
@@ -516,7 +534,13 @@ class Mapping(commands.Cog):
             return
 
         char = await self.bot.di.get_character(ctx.guild, name)
-        mapname = char.meta["map"]
+        mapname = char.meta.get("map")
+        if mapname is None:
+            mapname = await self.bot.di.get_default_map(ctx.guild)
+            if mapname is None:
+                await ctx.send(await _(ctx,
+                                       "This server does not have a default map set, set one with `rp!setdefaultmap <value>`"))
+                return
 
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
         if char is None:
@@ -609,10 +633,40 @@ class Mapping(commands.Cog):
                     await self.bot.di.add_character(ctx.guild, char)
 
     @map.command()
-    async def buy(self, ctx, mapname: str, character: str, amount: int, itemname: str):
+    async def buy(self, ctx, amount: int, itemname: str, charname: str = None):
         """Buy an item from the shop on the current tile"""
+        if charname is None:
+            charname = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        try:
+            is_mod = checks.role_or_permissions(ctx,
+                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
+
+        hide = gd.get("hideinv", False)
+
+        if not is_mod and hide:
+            charname = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+
+        if charname is None:
+            await ctx.send(await _(ctx,
+                                   "You are not currently a character! "
+                                   "Use the command again with the name of the character to check "
+                                   "or use `rp!char assume` to assume a character"))
+            return
+
+        char = await self.bot.di.get_character(ctx.guild, charname)
+        mapname = char.meta.get("map")
+        if mapname is None:
+            mapname = await self.bot.di.get_default_map(ctx.guild)
+            if mapname is None:
+                await ctx.send(await _(ctx,
+                                       "This server does not have a default map set, set one with `rp!setdefaultmap <value>`"))
+                return
+
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
-        char = await self.bot.di.get_character(ctx.guild, character)
         if char is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
@@ -683,11 +737,41 @@ class Mapping(commands.Cog):
         return changed, spawned, tile
 
     @map.command(aliases=["look", "regarder", "inspect", "voir"])
-    async def check(self, ctx, mapname: str, character: str):
+    async def check(self, ctx, name: str=None):
         """Inspect the current tile a character is on"""
         try:
+            if name is None:
+                name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+            gd = await self.bot.db.get_guild_data(ctx.guild)
+            try:
+                is_mod = checks.role_or_permissions(ctx,
+                                                    lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                    manage_server=True)
+            except:
+                is_mod = False
+
+            hide = gd.get("hideinv", False)
+
+            if not is_mod and hide:
+                name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+
+            if name is None:
+                await ctx.send(await _(ctx,
+                                       "You are not currently a character! "
+                                       "Use the command again with the name of the character to check "
+                                       "or use `rp!char assume` to assume a character"))
+                return
+
+            char = await self.bot.di.get_character(ctx.guild, name)
+            mapname = char.meta.get("map")
+            if mapname is None:
+                mapname = await self.bot.di.get_default_map(ctx.guild)
+                if mapname is None:
+                    await ctx.send(await _(ctx,
+                                           "This server does not have a default map set, set one with `rp!setdefaultmap <value>`"))
+                    return
+
             mapo = await self.bot.di.get_map(ctx.guild, mapname)
-            char = await self.bot.di.get_character(ctx.guild, character)
             if char is None:
                 await ctx.send(await _(ctx, "That character doesn't exist!"))
                 return
