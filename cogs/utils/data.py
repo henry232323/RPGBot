@@ -309,10 +309,10 @@ async def create_pages(ctx, items, lfmt,
 
     items = {k: lfmt(v) for k, v in items}
     ctr = 0
-    while any(len(v) > 500 for v in items.values()) and ctr < 10:
+    while any(len(v) > 500 for v in items.values()) and ctr < 20:
         additions = {}
         for k, v in items.items():
-            if len(v) > 500:
+            if len(v) > 750:
                 count = 0
                 start = ""
                 end = ""
