@@ -3,8 +3,8 @@
 2222200011111111111111
 2222222000001111111111
 2222222003333333333111
-4444433333333333333311
-4444444333333333333333
+444443333333AA33333311
+444444444444AA33333333
 4444443333333333332222
 4442222222222211111111
 
@@ -15,6 +15,7 @@ generators:
   2: town
   3: desert
   4: marshland
+  A: teleporter
 
 spawn: [0, 0]
 
@@ -39,6 +40,10 @@ spawners:
     shopkeeper,
     alchemist,
     smith
+  ]
+
+  teleporter: [
+    teleporter
   ]
 
   "*": [
@@ -88,3 +93,6 @@ spawnables:
     buy:
       silk: 40
       porcelain: 50
+
+  teleporter:
+    teleport: ["Map2", [15, 15]]
