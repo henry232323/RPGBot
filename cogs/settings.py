@@ -415,7 +415,7 @@ class Settings(commands.Cog):
         Requires Bot Moderator or Bot Admin"""
         prefix = self.bot.prefixes.get(str(ctx.guild.id))
         if len(prefix) == 0:
-            await ctx.send("You have not set a prefix yet")
+            await ctx.send("You have not set a custom prefix yet")
         else:
             await ctx.send(prefix)
 
