@@ -50,7 +50,7 @@ except ImportError:
 
 if os.name == "nt":
     sys.argv.append("debug")
-elif os.getcwd().endswith("rpgtest"):
+if os.getcwd().endswith("rpgtest"):
     sys.argv.append("debug")
 
 
@@ -93,8 +93,9 @@ class Bot(commands.AutoShardedBot):
         with open("resources/starwars.json", 'r') as swf:
             self.switems = json.loads(swf.read())
 
-        self.httpserver = server.API(self)
-        self.loop.create_task(self.httpserver.host())
+        if 'debug' not in sys.argv:
+            self.httpserver = server.API(self)
+            self.loop.create_task(self.httpserver.host())
 
         self.db: db.Database = db.Database(self)
         self.di: data.DataInteraction = data.DataInteraction(self)
@@ -391,6 +392,9 @@ handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='a'
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 """
+
+if "debug" in sys.argv:
+    prefix = "rp$"
 
 prp = Bot(command_prefix=prefix, description=description, pm_help=True, shard_count=7)
 prp.run(_auth[0])

@@ -231,10 +231,40 @@ class Mapping(commands.Cog):
         await ctx.send((await _(ctx, "Map {} successfully deleted.")).format(name))
 
     @map.command(aliases=["north", "nord"])
-    async def up(self, ctx, mapname, character):
+    async def up(self, ctx, name: str = None):
         """Move North on a map"""
+        if name is None:
+            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        try:
+            is_mod = checks.role_or_permissions(ctx,
+                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
+
+        hide = gd.get("hideinv", False)
+
+        if not is_mod and hide:
+            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+
+        if name is None:
+            await ctx.send(await _(ctx,
+                                   "You are not currently a character! "
+                                   "Use the command again with the name of the character to check "
+                                   "or use `rp!char assume` to assume a character"))
+            return
+
+        char = await self.bot.di.get_character(ctx.guild, name)
+        mapname = char.meta.get("map")
+        if mapname is None:
+            mapname = await self.bot.di.get_default_map(ctx.guild)
+            if mapname is None:
+                await ctx.send(await _(ctx,
+                                       "This server does not have a default map set, set one with `rp!setdefaultmap <value>`"))
+                return
+
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
-        char = await self.bot.di.get_character(ctx.guild, character)
         if char is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
@@ -291,21 +321,43 @@ class Mapping(commands.Cog):
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
 
-        if isinstance(mapo.generators, list):
-            tstring = mapo.generators[int(tile)]
-            if tstring is None:
-                tstring = mapo.generators[tile]
-        else:
-            tstring = mapo.generators.get(int(tile))
-            if tstring is None:
-                tstring = mapo.generators.get(tile)
-        await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
+        await self.process_tile(ctx, mapo, changed, spawned, tile, char, mapname)
 
     @map.command(aliases=["south", "sud"])
-    async def down(self, ctx, mapname: str, character: str):
+    async def down(self, ctx, name: str = None):
         """Move south on a map"""
+        if name is None:
+            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        try:
+            is_mod = checks.role_or_permissions(ctx,
+                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
+
+        hide = gd.get("hideinv", False)
+
+        if not is_mod and hide:
+            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+
+        if name is None:
+            await ctx.send(await _(ctx,
+                                   "You are not currently a character! "
+                                   "Use the command again with the name of the character to check "
+                                   "or use `rp!char assume` to assume a character"))
+            return
+
+        char = await self.bot.di.get_character(ctx.guild, name)
+        mapname = char.meta.get("map")
+        if mapname is None:
+            mapname = await self.bot.di.get_default_map(ctx.guild)
+            if mapname is None:
+                await ctx.send(await _(ctx,
+                                       "This server does not have a default map set, set one with `rp!setdefaultmap <value>`"))
+                return
+
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
-        char = await self.bot.di.get_character(ctx.guild, character)
         if char is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
@@ -360,22 +412,43 @@ class Mapping(commands.Cog):
         if changed or change:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
-
-        if isinstance(mapo.generators, list):
-            tstring = mapo.generators[int(tile)]
-            if tstring is None:
-                tstring = mapo.generators[tile]
-        else:
-            tstring = mapo.generators.get(int(tile))
-            if tstring is None:
-                tstring = mapo.generators.get(tile)
-        await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
+        await self.process_tile(ctx, mapo, changed, spawned, tile, char, mapname)
 
     @map.command(aliases=["west", "ouest", "gauche"])
-    async def left(self, ctx, mapname: str, character: str):
+    async def left(self, ctx, name: str = None):
         """Move West on a map"""
+        if name is None:
+            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        try:
+            is_mod = checks.role_or_permissions(ctx,
+                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
+
+        hide = gd.get("hideinv", False)
+
+        if not is_mod and hide:
+            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+
+        if name is None:
+            await ctx.send(await _(ctx,
+                                   "You are not currently a character! "
+                                   "Use the command again with the name of the character to check "
+                                   "or use `rp!char assume` to assume a character"))
+            return
+
+        char = await self.bot.di.get_character(ctx.guild, name)
+        mapname = char.meta.get("map")
+        if mapname is None:
+            mapname = await self.bot.di.get_default_map(ctx.guild)
+            if mapname is None:
+                await ctx.send(await _(ctx,
+                                       "This server does not have a default map set, set one with `rp!setdefaultmap <value>`"))
+                return
+
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
-        char = await self.bot.di.get_character(ctx.guild, character)
         if char is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
@@ -433,22 +506,43 @@ class Mapping(commands.Cog):
         if changed or change:
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
-
-        if isinstance(mapo.generators, list):
-            tstring = mapo.generators[int(tile)]
-            if tstring is None:
-                tstring = mapo.generators[tile]
-        else:
-            tstring = mapo.generators.get(int(tile))
-            if tstring is None:
-                tstring = mapo.generators.get(tile)
-        await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
+        await self.process_tile(ctx, mapo, changed, spawned, tile, char, mapname)
 
     @map.command(aliases=["east", "est", "droit"])
-    async def right(self, ctx, mapname: str, character: str):
+    async def right(self, ctx, name: str = None):
         """Move East on a map"""
+        if name is None:
+            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        try:
+            is_mod = checks.role_or_permissions(ctx,
+                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
+
+        hide = gd.get("hideinv", False)
+
+        if not is_mod and hide:
+            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+
+        if name is None:
+            await ctx.send(await _(ctx,
+                                   "You are not currently a character! "
+                                   "Use the command again with the name of the character to check "
+                                   "or use `rp!char assume` to assume a character"))
+            return
+
+        char = await self.bot.di.get_character(ctx.guild, name)
+        mapname = char.meta.get("map")
+        if mapname is None:
+            mapname = await self.bot.di.get_default_map(ctx.guild)
+            if mapname is None:
+                await ctx.send(await _(ctx,
+                                       "This server does not have a default map set, set one with `rp!setdefaultmap <value>`"))
+                return
+
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
-        char = await self.bot.di.get_character(ctx.guild, character)
         if char is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
@@ -507,12 +601,15 @@ class Mapping(commands.Cog):
             await self.bot.di.set_map(ctx.guild, mapname, mapo)
         await self.bot.di.add_character(ctx.guild, char)
 
+        await self.process_tile(ctx, mapo, changed, spawned, tile, char, mapname)
+
+    async def process_tile(self, ctx, mapo, changed, spawned, tile, char, mapname):
         if isinstance(mapo.generators, list):
-            tstring = mapo.generators[int(tile)]
+            tstring = mapo.generators[tile]
             if tstring is None:
                 tstring = mapo.generators[tile]
         else:
-            tstring = mapo.generators.get(int(tile))
+            tstring = mapo.generators.get(tile)
             if tstring is None:
                 tstring = mapo.generators.get(tile)
         await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
@@ -530,12 +627,46 @@ class Mapping(commands.Cog):
                     await ctx.send((await _(ctx,
                                             "This tile has a shop that sells: {}")).format(
                         f"\n{it}: {ni}" for it, ni in sp["shop"].items()))
+                if "teleport" in sp:
+                    char.meta["maps"][mapname] = [int(x) for x in sp["teleport"][1]]
+                    char.meta["map"] = sp["teleport"][0]
+                    await self.bot.di.add_character(ctx.guild, char)
 
     @map.command()
-    async def buy(self, ctx, mapname: str, character: str, amount: int, itemname: str):
+    async def buy(self, ctx, amount: int, itemname: str, charname: str = None):
         """Buy an item from the shop on the current tile"""
+        if charname is None:
+            charname = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        try:
+            is_mod = checks.role_or_permissions(ctx,
+                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
+
+        hide = gd.get("hideinv", False)
+
+        if not is_mod and hide:
+            charname = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+
+        if charname is None:
+            await ctx.send(await _(ctx,
+                                   "You are not currently a character! "
+                                   "Use the command again with the name of the character to check "
+                                   "or use `rp!char assume` to assume a character"))
+            return
+
+        char = await self.bot.di.get_character(ctx.guild, charname)
+        mapname = char.meta.get("map")
+        if mapname is None:
+            mapname = await self.bot.di.get_default_map(ctx.guild)
+            if mapname is None:
+                await ctx.send(await _(ctx,
+                                       "This server does not have a default map set, set one with `rp!setdefaultmap <value>`"))
+                return
+
         mapo = await self.bot.di.get_map(ctx.guild, mapname)
-        char = await self.bot.di.get_character(ctx.guild, character)
         if char is None:
             await ctx.send(await _(ctx, "That character doesn't exist!"))
             return
@@ -550,9 +681,9 @@ class Mapping(commands.Cog):
             await ctx.send(await _(ctx, "There is no shop on this tile! (This map does not support shops!)"))
 
         spawn = mapo.spawn
-        if not char.meta.get("maps"):
+        if not (char.meta.get("maps") and isinstance(char.meta["maps"], dict)):
             char.meta["maps"] = {}
-        if not char.meta["maps"].get(mapname):
+        if not (char.meta["maps"].get(mapname) and isinstance(char.meta["maps"][mapname], (tuple, list))):
             char.meta["maps"][mapname] = [0, 0]
         pos = char.meta["maps"][mapname]
         y = spawn[1] + pos[1]
@@ -606,11 +737,41 @@ class Mapping(commands.Cog):
         return changed, spawned, tile
 
     @map.command(aliases=["look", "regarder", "inspect", "voir"])
-    async def check(self, ctx, mapname: str, character: str):
+    async def check(self, ctx, name: str=None):
         """Inspect the current tile a character is on"""
         try:
+            if name is None:
+                name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+            gd = await self.bot.db.get_guild_data(ctx.guild)
+            try:
+                is_mod = checks.role_or_permissions(ctx,
+                                                    lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                    manage_server=True)
+            except:
+                is_mod = False
+
+            hide = gd.get("hideinv", False)
+
+            if not is_mod and hide:
+                name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+
+            if name is None:
+                await ctx.send(await _(ctx,
+                                       "You are not currently a character! "
+                                       "Use the command again with the name of the character to check "
+                                       "or use `rp!char assume` to assume a character"))
+                return
+
+            char = await self.bot.di.get_character(ctx.guild, name)
+            mapname = char.meta.get("map")
+            if mapname is None:
+                mapname = await self.bot.di.get_default_map(ctx.guild)
+                if mapname is None:
+                    await ctx.send(await _(ctx,
+                                           "This server does not have a default map set, set one with `rp!setdefaultmap <value>`"))
+                    return
+
             mapo = await self.bot.di.get_map(ctx.guild, mapname)
-            char = await self.bot.di.get_character(ctx.guild, character)
             if char is None:
                 await ctx.send(await _(ctx, "That character doesn't exist!"))
                 return

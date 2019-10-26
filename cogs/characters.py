@@ -99,8 +99,8 @@ class Characters(commands.Cog):
             embed.add_field(name=await _(ctx, "Owner"), value=str(owner))
             if char.level is not None:
                 embed.add_field(name=await _(ctx, "Level"), value=char.level)
-            #team = await self.bot.di.get_team(ctx.guild, char.name)
-            #if team:
+            # team = await self.bot.di.get_team(ctx.guild, char.name)
+            # if team:
             #    tfmt = "\n".join(f"{p.name} ({p.type})" for p in team)
             #    embed.add_field(name=await _(ctx, "Team"), value=tfmt)
             mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items() if x not in ("icon", "image"))
@@ -116,8 +116,8 @@ class Characters(commands.Cog):
             embed.add_field(name=await _(ctx, "Owner"), value=str(owner))
             if char.level is not None:
                 embed.add_field(name=await _(ctx, "Level"), value=char.level)
-            #team = await self.bot.di.get_team(ctx.guild, char.name)
-            #if team:
+            # team = await self.bot.di.get_team(ctx.guild, char.name)
+            # if team:
             #    tfmt = "\n".join(f"{p.name} ({p.type})" for p in team)
             #    embed.add_field(name=await _(ctx, "Team"), value=tfmt)
             mfmt = "\n".join(f"**{x}:** {y}" for x, y in char.meta.items())
@@ -306,14 +306,13 @@ class Characters(commands.Cog):
                     key, value = val.split(": ")
                     key = key.strip()
                     value = value.strip()
-                    if key != "maps":
+                    if key not in ("maps", "map"):
                         character[5][key] = value
             except:
                 await ctx.send(await _(ctx, "Invalid formatting! Try again"))
                 return
         else:
             character[5][attribute] = value
-
 
         async with self.bot.di.rm.lock(ctx.guild.id):
             await self.bot.di.add_character(ctx.guild, Character(*character))
@@ -366,7 +365,7 @@ class Characters(commands.Cog):
     async def shutdown(self):
         pass
 
-    @character.command()
+    @character.command(aliases=["a"])
     async def assume(self, ctx, name: str):
         """Assume a character. You will send messages with this character's icon and name. Necessary for some character inventory and economy commands. Lasts one day"""
         data = await self.bot.db.get_guild_data(ctx.guild)
@@ -399,7 +398,7 @@ class Characters(commands.Cog):
         await ctx.send((await _(ctx, "You are now {} for the next 24 hours")).format(name))
         self.bot.loop.create_task(self.unassume(ctx, name))
 
-    @character.command(name="unassume")
+    @character.command(name="unassume", aliases=["ua"])
     async def c_unassume(self, ctx, character: str):
         """Unassume a character"""
         await self.unassume(ctx, character, 0)
@@ -471,7 +470,7 @@ class Characters(commands.Cog):
         char.ustats["items"] = Counter(char.ustats["items"])
         char.ustats["items"].subtract(dict(items))
 
-        #print(char.ustats["items"])
+        # print(char.ustats["items"])
         for item, value in list(char.ustats["items"].items()):
             if value < 0:
                 raise ValueError(f"Cannot take more items than {name} has!")
@@ -535,7 +534,6 @@ class Characters(commands.Cog):
             split, num = "x".join(split[:-1]), abs(int(split[-1]))
             fitems.append((split, num))
 
-
         async with self.bot.di.rm.lock(ctx.guild.id):
             try:
                 await self.c_takeitem(ctx.guild, name, *fitems)
@@ -591,7 +589,6 @@ class Characters(commands.Cog):
                 await ctx.send(await _(ctx,
                                        "You are not currently a character! Use `rp!char assume` to assume a character"))
                 return
-
 
             uinv = await self.c_inventory(ctx.guild, uname)
             for item, n in recipe[0].items():

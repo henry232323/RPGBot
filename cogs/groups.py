@@ -680,7 +680,7 @@ class Groups(commands.Cog):
         Example: rp!guild deposititems Bananax5 Orangex10
         To deposit into a guild you are not a member of, you must have Bot Moderator or Bot Admin"""
 
-        async with self.bot.di.rm.lock(ctx.author.id):
+        async with self.bot.di.rm.lock(ctx.guild.id):
             ug = await self.bot.di.get_user_guild(ctx.author)
             if ug is None:
                 await ctx.send(await _(ctx, "You aren't in a guild!"))
