@@ -243,7 +243,7 @@ class Settings(commands.Cog):
     @commands.command()
     @checks.admin_or_permissions()
     async def loadstarwars(self, ctx):
-        """This command will pre-load all D&D items and make them available to give
+        """This command will pre-load all Star Wars items and make them available to give
         Requires Bot Moderator or Bot Admin"""
         await self.bot.di.new_items(ctx.guild, (ServerItem(**item) for item in self.bot.switems.values()))
         await ctx.send(await _(ctx, "Successfully added all Star Wars items!"))
@@ -394,7 +394,7 @@ class Settings(commands.Cog):
             rp!setprefix ! --> !setprefix rp!
 
         Requires Bot Moderator or Bot Admin"""
-        self.bot.di.set_default_map(ctx.guild, value)
+        await self.bot.di.set_default_map(ctx.guild, value)
         await ctx.send(await _(ctx, "Updated default map"))
 
     @commands.command()
@@ -413,10 +413,10 @@ class Settings(commands.Cog):
         """View the current custom prefix for the server
 
         Requires Bot Moderator or Bot Admin"""
-        prefix = self.bot.prefixes.get(str(ctx.guild.id))
+        prefix = self.bot.prefixes.get(str(ctx.guild.id), "rp!")
         await ctx.send(prefix)
 
-    @commands.command(disabled=True)
+    @commands.command(disabled=True, hidden=True)
     @checks.admin_or_permissions()
     async def setcmdprefix(self, ctx, cmdpath: str, *, value: str):
         """Set a custom prefix for a command. The default prefix will continue to work.
@@ -429,13 +429,13 @@ class Settings(commands.Cog):
         await self.bot.di.set_cmd_prefixes(ctx.guild, cmdpath, value)
         await ctx.send(await _(ctx, "Updated command prefix"))
 
-    @commands.command(disabled=True)
+    @commands.command(disabled=True, hidden=True)
     async def prefixes(self, ctx):
         """View the current custom command prefixes for the server
 
         Requires Bot Moderator or Bot Admin"""
         prefixes = await self.bot.di.get_cmd_prefixes(ctx.guild)
-        await ctx.send("\n".join(f"{k}: {v}" for k, v in prefixes.items()))
+        await ctx.send("\n".join(f"{k}: {v}" for k, v in prefixes.items()) or "rp!")
 
     @commands.command()
     @checks.admin_or_permissions()

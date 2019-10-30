@@ -737,7 +737,7 @@ class Mapping(commands.Cog):
         return changed, spawned, tile
 
     @map.command(aliases=["look", "regarder", "inspect", "voir"])
-    async def check(self, ctx, name: str=None):
+    async def check(self, ctx, name: str = None):
         """Inspect the current tile a character is on"""
         try:
             if name is None:

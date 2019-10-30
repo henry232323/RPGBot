@@ -30,6 +30,7 @@ Made by [@henry#8966](https://discordapp.com/channels/@me/122739797646245899)
 
 ### Contributors
 - [@terabix#1770](https://discordapp.com/channels/@me/141211057485119488)
+- [@Potzerus#3950](https://discordapp.com/channels/@me/125660719323676672) https://github.com/Potzerus
 
 ### Art Credits
 - All bot icons used were made by [@MOSE-FR#5388](https://discordapp.com/channels/@me/249894348567740416)
