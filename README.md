@@ -39,12 +39,9 @@ Made by [@henry#8966](https://discordapp.com/channels/@me/122739797646245899)
 
 
 
-# Commands
-
 
 
 # Commands
-
 - [Characters Commands](#characters-commands)
   - [allchars](#allchars)
   - [character](#character)
@@ -183,8 +180,7 @@ Made by [@henry#8966](https://discordapp.com/channels/@me/122739797646245899)
   - [loadstarwars](#loadstarwars)
   - [loadstarwarsshop](#loadstarwarsshop)
   - [prefix](#prefix)
-  - [prefixes](#prefixes)
-  - [setcmdprefix](#setcmdprefix)
+  - [setdefaultmap](#setdefaultmap)
   - [setprefix](#setprefix)
   - [setstart](#setstart)
   - [settings](#settings)
@@ -806,12 +802,12 @@ Example:
 #### map buy
 >**Description:** Buy an item from the shop on the current tile
 
->**Usage:** `rp!<mapname> <character> <amount> <itemname>`
+>**Usage:** `rp!<amount> <itemname> [charname]`
 
 #### map check
 >**Description:** Inspect the current tile a character is on
 
->**Usage:** `rp!<mapname> <character>`
+>**Usage:** `rp![name]`
 
 #### map create
 >**Description:** Create a map that will generate as it is explored. Set xmax and ymax to -1 for an infinite map
@@ -1053,7 +1049,7 @@ Requires Bot Moderator or Bot Admin
 >**Usage:** `rp!`
 
 #### loadstarwars
->**Description:** This command will pre-load all D&D items and make them available to give
+>**Description:** This command will pre-load all Star Wars items and make them available to give
 Requires Bot Moderator or Bot Admin
 
 >**Usage:** `rp!`
@@ -1070,21 +1066,13 @@ Requires Bot Moderator or Bot Admin
 
 >**Usage:** `rp!`
 
-#### prefixes
->**Description:** View the current custom command prefixes for the server
->Requires Bot Moderator or Bot Admin
-
->**Usage:** `rp!`
-
-#### setcmdprefix
->**Description:** Set a custom prefix for a command. The default prefix will continue to work.
+#### setdefaultmap
+>**Description:** Set the server's custom prefix. The default prefix will continue to work.
 Example:
-    Henry: rp!setcmdprefix rtd /
-    Henry: /1d20
-    RPGBot: Henry rolled Roll 9 ([9])
+    rp!setprefix ! --> !setprefix rp!
 >Requires Bot Moderator or Bot Admin
 
->**Usage:** `rp!<cmdpath> <value>`
+>**Usage:** `rp!<value>`
 
 #### setprefix
 >**Description:** Set the server's custom prefix. The default prefix will continue to work.
@@ -1151,7 +1139,7 @@ Example:
 
 >**Usage:** `rp!<value>`
 
-## Team Commands -- DEPRECATED
+## Team Commands
 
 #### team
 >**Description:** Check a character's team
