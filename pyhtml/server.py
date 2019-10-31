@@ -128,7 +128,7 @@ class API(web.Application):
     async def get_serverdata(self, snowflake: int):
         async with self.pool.acquire() as connection:
             response = await connection.fetchval(
-                f"""SELECT info FROM servdata WHERE UUID={snowflake};"""
+                f"""SELECT info FROM guilddata WHERE UUID={snowflake};"""
             )
 
         return json.loads(response)
@@ -353,7 +353,7 @@ class API(web.Application):
     # @server.route("/guild/<int:guild>/", methods=["GET"])
     async def getguild(self, request: web.Request):
         guild = int(request.match_info['guild'])
-        req = f"""SELECT info FROM servdata WHERE UUID = {guild}"""
+        req = f"""SELECT info FROM guilddata WHERE UUID = {guild}"""
         async with self.bot.db._conn.acquire() as connection:
             response = await connection.fetchval(req)
         if response:
