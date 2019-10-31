@@ -148,26 +148,24 @@ class Database:
 
     async def update_guild_data(self, guild, data):
         # await self.guild_insert(guild, data)
-        #upsert
+        # upsert
         jd = self.dump(data)
-        req = f"""
-        INSERT INTO servdata (UUID, info)
+        req = f"""INSERT INTO servdata (UUID, info)
         VALUES (
             {guild.id},
             '{jd}'
         )
-        ON CONFLICT (UUID)
+        ON CONFLICT (UUID) 
         DO 
-            UPDATE servdata
-            SET info = '{jd}'
-            WHERE UUID = {guild.id}
+            UPDATE
+            SET info = '{jd}';
         """
         async with self._conn.acquire() as connection:
             await connection.execute(req)
 
-        #if await self.guild_select(guild):
+        # if await self.guild_select(guild):
         #    await self.guild_update(guild, data)
-        #else:
+        # else:
         #    await self.guild_insert(guild, data)
 
     async def get_guild_data(self, guild):
@@ -183,7 +181,7 @@ class Database:
         req = f"""SELECT info ->> '{name}' FROM servdata WHERE UUID = {guild.id}"""
         async with self._conn.acquire() as connection:
             response = await connection.fetchval(req)
-        return response if response else copy.copy(self.bot.default_servdata[name])
+        return response if response else copy.deepcopy(self.bot.default_servdata[name])
 
     async def user_item(self, member, name: str):
         req = f"""SELECT info -> '{member.guild.id}' ->> '{name}' FROM userdata WHERE UUID = {member.id}"""
