@@ -43,8 +43,7 @@ class Database:
         jd = self.dump({member.guild.id: data})
         req = f"""INSERT INTO userdata (UUID, info) VALUES ({member.id}, '{jd}')"""
         async with self._conn.acquire() as connection:
-            response = await connection.fetchval(req)
-            return json.loads(response) if response else response
+            await connection.execute(req)
 
     async def user_select(self, member):
         """Select a user's data for a specified server"""
@@ -67,8 +66,7 @@ class Database:
         SET info = '{jd}'
         WHERE UUID = {member.id}"""
         async with self._conn.acquire() as connection:
-            response = await connection.fetchval(req)
-        return json.loads(response) if response else response
+            await connection.execute(req)
 
     async def user_exists(self, member):
         """Check if a user has an entry in the db"""
@@ -119,8 +117,7 @@ class Database:
         jd = self.dump(data)
         req = f"""INSERT INTO servdata (UUID, info) VALUES ({guild.id}, '{jd}')"""
         async with self._conn.acquire() as connection:
-            response = await connection.fetchval(req)
-        return json.loads(response) if response else response
+            await connection.execute(req)
 
     async def guild_select(self, guild):
         """Get a guild from the db"""
@@ -136,8 +133,7 @@ class Database:
         SET info = '{jd}'
         WHERE UUID = {guild.id}"""
         async with self._conn.acquire() as connection:
-            response = await connection.fetchval(req)
-        return json.loads(response) if response else response
+            await connection.execute(req)
 
     async def add_guild(self, guild, data=None):
         """Add a guild to the db"""
@@ -150,12 +146,29 @@ class Database:
 
         await self.guild_insert(guild, data)
 
-    async def update_guild_data(self, guild, data, lock=False):
+    async def update_guild_data(self, guild, data):
         # await self.guild_insert(guild, data)
-        if await self.guild_select(guild):
-            await self.guild_update(guild, data)
-        else:
-            await self.guild_insert(guild, data)
+        #upsert
+        jd = self.dump(data)
+        req = f"""
+        INSERT INTO servdata (UUID, info)
+        VALUES (
+            {guild.id},
+            '{jd}'
+        )
+        ON CONFLICT (UUID)
+        DO 
+            UPDATE servdata
+            SET info = '{jd}'
+            WHERE UUID = {guild.id}
+        """
+        async with self._conn.acquire() as connection:
+            await connection.execute(req)
+
+        #if await self.guild_select(guild):
+        #    await self.guild_update(guild, data)
+        #else:
+        #    await self.guild_insert(guild, data)
 
     async def get_guild_data(self, guild):
         values = await self.guild_select(guild)
