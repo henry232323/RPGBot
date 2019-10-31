@@ -36,11 +36,6 @@ Made by [@henry#8966](https://discordapp.com/channels/@me/122739797646245899)
 - All bot icons used were made by [@MOSE-FR#5388](https://discordapp.com/channels/@me/249894348567740416)
 - Also thanks to [@Volgrim Evrazasvae#5252](https://discordapp.com/channels/@me/335604493192396801)
 
-
-
-
-
-
 # Commands
 - [Characters Commands](#characters-commands)
   - [allchars](#allchars)

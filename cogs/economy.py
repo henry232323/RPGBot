@@ -638,6 +638,7 @@ Total:\t\t {} dollars
                     except ValueError:
                         if resp.content.lower() == "cancel":
                             await ctx.send(await _(ctx, "Cancelling!"))
+                            return
                         await ctx.send(await _(ctx, "That is not a valid number!"))
                         continue
                     break
@@ -650,6 +651,7 @@ Total:\t\t {} dollars
                     except ValueError:
                         if resp.content.lower() == "cancel":
                             await ctx.send(await _(ctx, "Cancelling!"))
+                            return
                         await ctx.send(await _(ctx, "That is not a valid number!"))
                         continue
                     break
@@ -662,6 +664,7 @@ Total:\t\t {} dollars
                     except ValueError:
                         if resp.content.lower() == "cancel":
                             await ctx.send(await _(ctx, "Cancelling!"))
+                            return
                         await ctx.send(await _(ctx, "That is not a valid number!"))
                         continue
                     break
