@@ -300,7 +300,7 @@ Only character owners may remove the aliases of their characters.
 >**Usage:** `rp!<amount> <other>`
 
 #### chareco setbalance
->**Description:** Set the balance of the given members to an amount
+>**Description:** Set the balance of the given members to an amount (Moderators)
 
 >**Usage:** `rp!<amount> [names...]`
 
@@ -325,13 +325,13 @@ Only character owners may remove the aliases of their characters.
 >**Usage:** `rp!<other> [items...]`
 
 #### charinv giveitem
->**Description:** Give an item to a character (Not out of your inventory)
+>**Description:** Give an item to a character (Not out of your inventory) (Moderators)
 Example: rp!ci giveitem Banana 32 Char1 Char2 Char3
 
 >**Usage:** `rp!<item> <num> [names...]`
 
 #### charinv takeitem
->**Description:** Remove an item from a character's inventory
+>**Description:** Remove an item from a character's inventory (Moderators)
 
 >**Usage:** `rp!<item> <num> [names...]`
 
