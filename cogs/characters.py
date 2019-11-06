@@ -482,7 +482,7 @@ class Characters(commands.Cog):
     @checks.mod_or_permissions()
     @charinv.command(aliases=["take"])
     async def takeitem(self, ctx, item: str, num: IntConverter, *names: str):
-        """Remove an item from a character's inventory"""
+        """Remove an item from a character's inventory (Moderators)"""
 
         async with self.bot.di.rm.lock(ctx.guild.id):
             num = abs(num)
@@ -504,7 +504,7 @@ class Characters(commands.Cog):
     @checks.mod_or_permissions()
     @charinv.command()
     async def giveitem(self, ctx, item: str, num: IntConverter, *names: str):
-        """Give an item to a character (Not out of your inventory)
+        """Give an item to a character (Not out of your inventory) (Moderators)
         Example: rp!ci giveitem Banana 32 Char1 Char2 Char3"""
 
         async with self.bot.di.rm.lock(ctx.guild.id):
@@ -680,7 +680,7 @@ Total:\t\t {} dollars
     @checks.mod_or_permissions()
     @chareco.command(aliases=["set"])
     async def setbalance(self, ctx, amount: NumberConverter, *names: str):
-        """Set the balance of the given members to an amount"""
+        """Set the balance of the given members to an amount  (Moderators)"""
 
         async with self.bot.di.rm.lock(ctx.guild.id):
             for name in names:
