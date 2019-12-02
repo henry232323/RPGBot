@@ -31,6 +31,9 @@ import asyncio
 from random import randint
 
 from .translation import _
+from builtins import property as _property, tuple as _tuple
+from operator import itemgetter as _itemgetter
+from collections import OrderedDict
 
 Pet = namedtuple("Pet", ["id", "name", "type", "stats", "meta"])
 ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
@@ -41,10 +44,6 @@ gc = namedtuple("Guild",
                  "mods"])
 Map = namedtuple("Map", ["tiles", "generators", "spawners", "spawn", "maxx", "maxy"])
 AdvancedMap = namedtuple("AdvancedMap", ["tiles", "generators", "spawners", "spawnables", "spawn", "type"])
-
-from builtins import property as _property, tuple as _tuple
-from operator import itemgetter as _itemgetter
-from collections import OrderedDict
 
 
 class ContextManagerLockWrapper:

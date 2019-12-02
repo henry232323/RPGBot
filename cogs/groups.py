@@ -399,7 +399,8 @@ class Groups(commands.Cog):
     @guild.command()
     async def kick(self, ctx, *, user: discord.Member):
         """Kick a member from a guild."""
-
+        if user == ctx.author:
+            return
         async with self.bot.di.rm.lock(ctx.author.id):
             async with self.bot.di.rm.lock(user.id):
                 ug = await self.bot.di.get_user_guild(ctx.author)
