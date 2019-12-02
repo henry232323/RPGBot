@@ -80,7 +80,8 @@ class User(commands.Cog):
             embed.add_field(name=await _(ctx, "Balance"), value=f"{ud['money']} {gd.get('currency', 'dollars')}")
             if user == ctx.author:
                 embed.add_field(name=await _(ctx, "Bank"), value=f"{ud.get('bank', 0)} {gd.get('currency', 'dollars')}")
-                embed.add_field(name=await _(ctx, "Total Money"), value=f"{ud.get('bank', 0) + ud['money']} {gd.get('currency', 'dollars')}")
+                embed.add_field(name=await _(ctx, "Total Money"),
+                                value=f"{ud.get('bank', 0) + ud['money']} {gd.get('currency', 'dollars')}")
 
         embed.add_field(name=await _(ctx, "Guild"), value=ud.get("guild", await _(ctx, "None")))
         embed.add_field(name=await _(ctx, "Box"), value=boxitems) if boxitems else None
@@ -90,7 +91,6 @@ class User(commands.Cog):
                                                                                         ud.get('exp', 0),
                                                                                         self.bot.get_exp(
                                                                                             ud.get('level', 1))))
-
 
         await ctx.send(embed=embed)
 
