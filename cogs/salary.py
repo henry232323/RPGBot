@@ -91,13 +91,13 @@ class Salary(commands.Cog):
     @commands.command()
     async def salaries(self, ctx):
         """See server salaries"""
-        embed = discord.Embed(color=randint(0, 0xFFFFFF), )
         currency = await ctx.bot.di.get_currency(ctx.guild)
         sals = await self.bot.di.get_salaries(ctx.guild)
         if not sals:
             await ctx.send(await _(ctx, "There are no current salaries on this server"))
         else:
             dels = []
+            cdata = {}
             for role, amount in sals.items():
                 roleobj = discord.utils.get(ctx.guild.roles, id=int(role))
                 if roleobj is None:
@@ -107,17 +107,16 @@ class Salary(commands.Cog):
                 if isinstance(amount, dict):
                     interval = amount['int']
                     amount = amount['val']
-                embed.add_field(name=f"{roleobj.name} - {interval}s",
-                                value="\n".join(
-                                    ("{} {}".format(item, currency)
-                                     if isinstance(item, (int, float)) else "{}x{}".format(*item)) for item in amount)
-                                )
+                cdata[f"{roleobj.name} - {interval}s"] = "\n".join(
+                    ("{} {}".format(item, currency)
+                     if isinstance(item, (int, float)) else "{}x{}".format(*item)) for item in amount)
             for d in dels:
                 del sals[d]
             if dels:
                 await self.bot.di.update_salaries(ctx.guild, sals)
-            embed.set_author(name=await _(ctx, "Guild Salaries"), icon_url=ctx.guild.icon_url)
-            await ctx.send(embed=embed)
+
+            await data.create_pages(ctx, cdata, lambda x: x, author=await _(ctx, "Guild Salaries"),
+                                    author_url=ctx.guild.icon_url)
 
     @commands.group(invoke_without_command=True, aliases=["sal"])
     async def salary(self, ctx, role: discord.Role):
@@ -140,6 +139,9 @@ class Salary(commands.Cog):
 
         Requires Bot Moderator or Bot Admin
         """
+        if not items_or_number:
+            await ctx.send(await _(ctx, "Missing argument, see rp!help salary create"))
+
         sals = await self.bot.di.get_salaries(ctx.guild)
         if len(items_or_number) == 1 and isinstance(items_or_number[0], int):
             items_or_number = items_or_number[0]
