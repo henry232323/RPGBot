@@ -130,6 +130,7 @@ class Bot(commands.AutoShardedBot):
             cogs.user.User(self),
             cogs.salary.Salary(self),
             cogs.map.Mapping(self),
+            cogs.backups.Backups(self),
         ]
         for cog in icogs:
             self.add_cog(cog)
