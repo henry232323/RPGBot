@@ -95,7 +95,7 @@ class Backups(commands.Cog):
 
     @commands.command()
     @checks.admin_or_permissions()
-    async def loaditems(self, ctx, *, arguments: str):
+    async def loaditems(self, ctx, *, arguments: str=""):
         """This command load all the items in the attached file.
         See an example file here: https://github.com/henry232323/RPGBot/blob/master/tutorial.md
         Requires Bot Moderator or Bot Admin."""
@@ -138,7 +138,7 @@ class Backups(commands.Cog):
                 shop_items[row["name"]] = dict(buy=float(row.get("buyprice", 0)), sell=float(row.get("sellprice", 0)),
                                                level=0)
 
-        if arguments == "replace":
+        if "replace" in arguments:
             await self.bot.di.update_guild_shop(ctx.guild, shop_items)
             await self.bot.di.update_guild_items(ctx.guild, (ServerItem(**item) for item in items))
             await ctx.send(await _(ctx, "Successfully loaded and replaced all items!"))

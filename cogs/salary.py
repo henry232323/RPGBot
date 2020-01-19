@@ -115,7 +115,7 @@ class Salary(commands.Cog):
             if dels:
                 await self.bot.di.update_salaries(ctx.guild, sals)
 
-            await data.create_pages(ctx, cdata, lambda x: x, author=await _(ctx, "Guild Salaries"),
+            await data.create_pages(ctx, cdata.items(), lambda x: x, author=await _(ctx, "Guild Salaries"),
                                     author_url=ctx.guild.icon_url)
 
     @commands.group(invoke_without_command=True, aliases=["sal"])
