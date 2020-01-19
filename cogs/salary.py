@@ -141,6 +141,7 @@ class Salary(commands.Cog):
         """
         if not items_or_number:
             await ctx.send(await _(ctx, "Missing argument, see rp!help salary create"))
+            return
 
         sals = await self.bot.di.get_salaries(ctx.guild)
         if len(items_or_number) == 1 and isinstance(items_or_number[0], int):

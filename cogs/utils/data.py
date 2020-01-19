@@ -343,7 +343,7 @@ async def create_pages(ctx, items, lfmt,
         chunks.append(items[j:j + chunk])
 
     for item, value in chunks[i]:
-        embed.add_field(name=item, value=ditems[item])
+        embed.add_field(name=item, value=ditems[item].strip() or "None")
 
     end = len(chunks) - 1
 
@@ -376,7 +376,7 @@ async def create_pages(ctx, items, lfmt,
                 embed.clear_fields()
                 i -= 1
                 for item, value in chunks[i]:
-                    embed.add_field(name=item, value=ditems[item])
+                    embed.add_field(name=item, value=ditems[item].strip() or "None")
 
                 await msg.edit(embed=embed)
 
@@ -387,7 +387,7 @@ async def create_pages(ctx, items, lfmt,
                 embed.clear_fields()
                 i += 1
                 for item, value in chunks[i]:
-                    embed.add_field(name=item, value=ditems[item])
+                    embed.add_field(name=item, value=ditems[item].strip() or "None")
 
                 await msg.edit(embed=embed)
         else:
