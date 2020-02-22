@@ -118,6 +118,23 @@ class Inventory(commands.Cog):
 
         await ctx.send(await _(ctx, "Items given!"))
 
+    @checks.mod_or_inv()
+    @commands.command()
+    async def addinv(self, ctx, num: IntConverter, *, item: str):
+        """Give an item to yourself
+        Example: rp!addinv 32 Apple Pie
+        Requires Bot Moderator or Bot Inventory roles"""
+
+        items = await self.bot.di.get_guild_items(ctx.guild)
+        if item not in items:
+            await ctx.send(await _(ctx, "That is not a valid item!"))
+            return
+
+        num = abs(num)
+        await self.bot.di.give_items(ctx.author, (item, num))
+
+        await ctx.send(await _(ctx, "Items given!"))
+
     @commands.command()
     async def give(self, ctx, other: discord.Member, *items: str):
         """Give items ({item}x{#}) to a member
