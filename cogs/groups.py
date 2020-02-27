@@ -195,12 +195,14 @@ class Groups(commands.Cog):
             return
 
         members = "\n".join([discord.utils.get(ctx.guild.members, id=x).mention for x in
-                             (guild.members if len(guild.members) <= 20 else ctx.members[20:])])
+                             (guild.members if len(guild.members) >= 20 else ctx.members[20:])])
         if len(guild.members) > 20:
             members = members + (await _(ctx, "\nAnd {} more...")).format(guild.members - 20)
 
-        litems = guild.items.items() if len(guild.items) < 20 else list(guild.items.items())[20:]
-        items = "\n".join(f"{x} x{y}" for x, y in litems)
+        items = "\n".join([f"{x} x{y}" for x, y in
+                           (guild.items.items() if len(guild.items) >= 20 else list(guild.items.items())[20:])])
+        if len(guild.items) > 20:
+            items = items + (await _(ctx, "\nAnd {} more...")).format(len(guild.items) - 20)
 
         embed = discord.Embed(description=guild.description or await _(ctx, "This guild doesn't have a description"),
                               color=randint(0, 0xFFFFFF))
@@ -399,7 +401,8 @@ class Groups(commands.Cog):
     @guild.command()
     async def kick(self, ctx, *, user: discord.Member):
         """Kick a member from a guild."""
-
+        if user == ctx.author:
+            return
         async with self.bot.di.rm.lock(ctx.author.id):
             async with self.bot.di.rm.lock(user.id):
                 ug = await self.bot.di.get_user_guild(ctx.author)

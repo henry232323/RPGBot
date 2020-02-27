@@ -116,7 +116,6 @@ class Bot(commands.AutoShardedBot):
         with open("savedata/prefixes.json") as prf:
             self.prefixes = json.loads(prf.read())
 
-
         icogs = [
             cogs.admin.Admin(self),
             cogs.team.Team(self),
@@ -130,6 +129,7 @@ class Bot(commands.AutoShardedBot):
             cogs.user.User(self),
             cogs.salary.Salary(self),
             cogs.map.Mapping(self),
+            cogs.backups.Backups(self),
         ]
         for cog in icogs:
             self.add_cog(cog)
@@ -150,7 +150,6 @@ class Bot(commands.AutoShardedBot):
         if self._first:
             self.loop.create_task(self.update_stats())
             self._first = False
-
 
     async def on_message(self, msg):
         if msg.author.id not in self.blacklist:
@@ -376,7 +375,7 @@ with open("resources/auth") as af:
 
 async def prefix(bot, msg):
     if msg.guild:
-        #prefix = await bot.db.guild_item(msg.guild, "prefix")
+        # prefix = await bot.db.guild_item(msg.guild, "prefix")
         prefix = bot.prefixes.get(str(msg.guild.id), [])
         if isinstance(prefix, str):
             return prefixes + [prefix]
@@ -384,6 +383,7 @@ async def prefix(bot, msg):
             return prefixes + prefix
     else:
         return prefixes
+
 
 """
 logger = logging.getLogger('discord')

@@ -80,17 +80,16 @@ class User(commands.Cog):
             embed.add_field(name=await _(ctx, "Balance"), value=f"{ud['money']} {gd.get('currency', 'dollars')}")
             if user == ctx.author:
                 embed.add_field(name=await _(ctx, "Bank"), value=f"{ud.get('bank', 0)} {gd.get('currency', 'dollars')}")
-                embed.add_field(name=await _(ctx, "Total Money"), value=f"{ud.get('bank', 0) + ud['money']} {gd.get('currency', 'dollars')}")
+                embed.add_field(name=await _(ctx, "Total Money"),
+                                value=f"{ud.get('bank', 0) + ud['money']} {gd.get('currency', 'dollars')}")
 
         embed.add_field(name=await _(ctx, "Guild"), value=ud.get("guild", await _(ctx, "None")))
         embed.add_field(name=await _(ctx, "Box"), value=boxitems) if boxitems else None
-        if gd.get('exp', True):
-            embed.add_field(name=await _(ctx, "Experience"),
-                            value=(await _(ctx, "Level: {}\nExperience: {}/{}")).format(ud.get('level', 1),
-                                                                                        ud.get('exp', 0),
-                                                                                        self.bot.get_exp(
-                                                                                            ud.get('level', 1))))
-
+        embed.add_field(name=await _(ctx, "Experience"),
+                        value=(await _(ctx, "Level: {}\nExperience: {}/{}")).format(ud.get('level', 1),
+                                                                                    ud.get('exp', 0),
+                                                                                    self.bot.get_exp(
+                                                                                        ud.get('level', 1))))
 
         await ctx.send(embed=embed)
 
@@ -119,15 +118,32 @@ class User(commands.Cog):
             await self.bot.di.set_level(member, level, 0)
         await ctx.send(await _(ctx, "Set level for members"))
 
-    @checks.mod_or_inv()
+    @checks.mod_or_permissions()
     @experience.command()
     async def add(self, ctx, amount: data.IntConverter, *members: data.MemberConverter):
         """Give the given members an amount of experience"""
+        amount = abs(amount)
         members = chain(members)
         for member in members:
             await self.bot.di.add_exp(member, amount)
 
         await ctx.send(await _(ctx, "Gave experience to members"))
+
+    @checks.mod_or_inv()
+    @commands.command()
+    async def giveexp(self, ctx, amount: data.IntConverter):
+        """Give the yourself an amount of experience"""
+        amount = abs(amount)
+        await self.bot.di.add_exp(ctx.author, amount)
+
+        await ctx.send(await _(ctx, "Experience given!"))
+
+    @checks.mod_or_inv()
+    @commands.command()
+    async def givelevel(self, ctx, level: data.IntConverter):
+        """Set yourself to a certain level"""
+        await self.bot.di.set_level(ctx.author, level, 0)
+        await ctx.send(await _(ctx, "Level set!"))
 
     @experience.command()
     @checks.mod_or_permissions()
