@@ -150,11 +150,7 @@ class Database:
         # await self.guild_insert(guild, data)
         # upsert
         jd = self.dump(data)
-<<<<<<< HEAD
         req = f"""INSERT INTO guilddata (UUID, info)
-=======
-        req = f"""INSERT INTO servdata (UUID, info)
->>>>>>> origin/master
         VALUES (
             {guild.id},
             '{jd}'

@@ -37,15 +37,6 @@ Entering the `rp!character` command will give you details on that character. Cha
   - rp!deleteafter <time>
   - rp!hideinv <value>
   - rp!language [language]
-  - rp!loaddnd
-  - rp!loaddndmagic
-  - rp!loaddndshop
-  - rp!loadmagicshop
-  - rp!loadpokemon
-  - rp!loadstarwars
-  - rp!loadstarwarsshop
-  - rp!unload <name>
-  - rp!loaditems
   
 For players wishing to use the inventory system, there are a number of ways to get started. The most important command 
 for adding items manually is rp!settings additem. This command is used to manually begin creating an item which may be given 
@@ -53,7 +44,7 @@ to players. Alternatively, all commands listed above beginning with "load" are c
 to add a number of premade items from popular games such as D&D and Pokemon. If you wish to add your own commands en masse, 
 you may also create a spreadsheet of all the items and export it to CSV, which the bot can read and load items from.
 
-### Loading Items
+### Loading Items - Backups
 
 The rp!loaditems command requires a file (or several) to be attached, which it will then read and use to create the new
 items.
@@ -69,6 +60,18 @@ When creating items, the columns should be named with the following specificatio
   - buyprice: this is the buy price that will be used for the item in the shop. Set to 0 to make this unbuyable
   - sellprice: this is the sell price that will be used for the item in the shop. Set to 0 to make this unsellable. If both buyprice and sellprice are 0 it will not be listed in the shop
   - Any other attributes will be listed as "Additional Info." To exclude an attribute from an item, leave the value in that column blank
+
+    You may optionally include the "replace" argument when loading items to have it replace all server items, meaning only the newly added items will exist. `rp!loaditems replace` (with the file attached)
+
+  - rp!loaddnd
+  - rp!loaddndmagic
+  - rp!loaddndshop
+  - rp!loadmagicshop
+  - rp!loadpokemon
+  - rp!loadstarwars
+  - rp!loadstarwarsshop
+  - rp!unload <name>
+  - rp!loaditems
 
 ## Guilds
 

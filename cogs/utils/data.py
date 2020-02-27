@@ -24,6 +24,7 @@ import discord
 from discord.ext import commands
 from recordclass import recordclass as namedtuple
 import ujson as json
+from async_timeout import timeout
 
 from collections import Counter
 import re
@@ -31,6 +32,9 @@ import asyncio
 from random import randint
 
 from .translation import _
+from builtins import property as _property, tuple as _tuple
+from operator import itemgetter as _itemgetter
+from collections import OrderedDict
 
 Pet = namedtuple("Pet", ["id", "name", "type", "stats", "meta"])
 ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
@@ -42,10 +46,6 @@ gc = namedtuple("Guild",
 Map = namedtuple("Map", ["tiles", "generators", "spawners", "spawn", "maxx", "maxy"])
 AdvancedMap = namedtuple("AdvancedMap", ["tiles", "generators", "spawners", "spawnables", "spawn", "type"])
 
-from builtins import property as _property, tuple as _tuple
-from operator import itemgetter as _itemgetter
-from collections import OrderedDict
-
 
 class ContextManagerLockWrapper:
     def __init__(self, manager, resource):
@@ -53,17 +53,23 @@ class ContextManagerLockWrapper:
         self.resource = resource
 
     async def __aenter__(self):
-        await self.manager.acquire(self.resource)
+        try:
+            async with timeout(10 * 60):
+                await self.manager.acquire(self.resource)
+        except asyncio.TimeoutError:
+            self.manager.release(self.resource)
+            await self.manager.bot.get_user(self.manager.bot.owner_id)
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         self.manager.release(self.resource)
 
 
 class ResourceManager:
-    def __init__(self, lock_factory=asyncio.Lock):
+    def __init__(self, bot, lock_factory=asyncio.Lock):
         """A class for managing multiple locks on arbitrary resources."""
         self.locks = {}
         self._lock_factory = lock_factory
+        self.bot = bot
 
     async def acquire(self, resource):
         if resource in self.locks:
@@ -337,7 +343,7 @@ async def create_pages(ctx, items, lfmt,
         chunks.append(items[j:j + chunk])
 
     for item, value in chunks[i]:
-        embed.add_field(name=item, value=ditems[item])
+        embed.add_field(name=item, value=ditems[item].strip() or "None")
 
     end = len(chunks) - 1
 
@@ -370,7 +376,7 @@ async def create_pages(ctx, items, lfmt,
                 embed.clear_fields()
                 i -= 1
                 for item, value in chunks[i]:
-                    embed.add_field(name=item, value=ditems[item])
+                    embed.add_field(name=item, value=ditems[item].strip() or "None")
 
                 await msg.edit(embed=embed)
 
@@ -381,7 +387,7 @@ async def create_pages(ctx, items, lfmt,
                 embed.clear_fields()
                 i += 1
                 for item, value in chunks[i]:
-                    embed.add_field(name=item, value=ditems[item])
+                    embed.add_field(name=item, value=ditems[item].strip() or "None")
 
                 await msg.edit(embed=embed)
         else:
@@ -510,7 +516,7 @@ class DataInteraction(object):
     def __init__(self, bot):
         self.bot = bot
         self.db = self.bot.db
-        self.rm = ResourceManager()
+        self.rm = ResourceManager(bot)
 
     async def get_team(self, guild, character):
         gd = await self.db.get_guild_data(guild)
@@ -540,7 +546,7 @@ class DataInteraction(object):
     async def get_inventory(self, member):
         """Get user's inventory"""
         ui = await self.db.user_item(member, "items")
-        return json.loads(ui)
+        return json.loads(ui) if ui else {}
 
     async def get_salary_ctime(self, member):
         """Get user's inventory"""
@@ -693,6 +699,14 @@ class DataInteraction(object):
     async def new_items(self, guild, serveritems):
         """Create a new server item"""
         gd = await self.db.get_guild_data(guild)
+        for item in serveritems:
+            gd["items"][item.name] = item
+        await self.db.update_guild_data(guild, gd)
+
+    async def update_guild_items(self, guild, serveritems):
+        """Create a new server item"""
+        gd = await self.db.get_guild_data(guild)
+        gd["items"] = dict()
         for item in serveritems:
             gd["items"][item.name] = item
         await self.db.update_guild_data(guild, gd)
@@ -965,13 +979,13 @@ class DataInteraction(object):
         return await self.db.update_guild_data(guild, gd)
 
     async def update_guild_shop(self, guild, data):
-        """Update a server's market"""
+        """Update a server's shop"""
         gd = await self.db.get_guild_data(guild)
         gd["shop_items"] = data
         return await self.db.update_guild_data(guild, gd)
 
     async def add_shop_items(self, guild, data):
-        """Update a server's market"""
+        """Update a server's shop"""
         gd = await self.db.get_guild_data(guild)
         gd["shop_items"].update(data)
         return await self.db.update_guild_data(guild, gd)
