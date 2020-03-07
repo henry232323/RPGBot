@@ -317,7 +317,9 @@ async def create_pages(ctx, items, lfmt,
     ctr = 0
     while any(len(v) > 500 for v in items.values()) and ctr < 20:
         additions = {}
+        counter = 0
         for k, v in items.items():
+            counter += 1
             if len(v) > 750:
                 count = 0
                 start = ""
@@ -330,7 +332,7 @@ async def create_pages(ctx, items, lfmt,
                         count += len(item) + 1
                 additions[k] = start.strip()
                 if end.strip():
-                    additions[k + " continued"] = end.strip()
+                    additions[k[0] + " " + counter] = end.strip()
         items.update(additions)
         ctr += 1
     i = 0
