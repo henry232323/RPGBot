@@ -329,7 +329,7 @@ async def create_pages(ctx, items, lfmt,
                         start += item + "\n"
                         count += len(item) + 1
                 additions[k] = start.strip()
-                if end.strip() and not " continued" in k:
+                if end.strip():
                     additions[k + " continued"] = end.strip()
         items.update(additions)
         ctr += 1
