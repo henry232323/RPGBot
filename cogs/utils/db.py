@@ -121,9 +121,9 @@ class Database:
 
     async def guild_select(self, guild):
         """Get a guild from the db"""
-        req = f"""SELECT info FROM guilddata WHERE UUID = {guild.id}"""
+        req = f"""SELECT info FROM guilddata WHERE UUID = $1"""
         async with self._conn.acquire() as connection:
-            response = await connection.fetchval(req)
+            response = await connection.fetchval(req, guild.id)
         return json.loads(response) if response else response
 
     async def guild_update(self, guild, data):
@@ -173,9 +173,9 @@ class Database:
         if values:
             return values
         else:
-            req = f"""SELECT info FROM servdata WHERE UUID = {guild.id}"""
+            req = f"""SELECT info FROM servdata WHERE UUID = $1"""
             async with self._conn.acquire() as connection:
-                response = await connection.fetchval(req)
+                response = await connection.fetchval(req, guild.id)
             data = json.loads(response) if response else response
             if data:
                 await self.update_guild_data(guild, data)
