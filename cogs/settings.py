@@ -182,6 +182,9 @@ class Settings(commands.Cog):
                             item["meta"][key] = value
                         else:
                             break
+                    except asyncio.TimeoutError:
+                        await ctx.send("If you are seeing this message, please report this to the bot author immediately.")
+                        return
                     except:
                         await ctx.send(await _(ctx, "Invalid syntax, try again."))
             await self.bot.di.new_item(ctx.guild, ServerItem(**item))

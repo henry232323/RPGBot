@@ -546,7 +546,7 @@ class DataInteraction(object):
     async def get_inventory(self, member):
         """Get user's inventory"""
         ui = await self.db.user_item(member, "items")
-        return json.loads(ui)
+        return json.loads(ui) if ui else {}
 
     async def get_salary_ctime(self, member):
         """Get user's inventory"""
