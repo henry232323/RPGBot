@@ -529,6 +529,11 @@ class Characters(commands.Cog):
                                    "You are not currently a character! Use `rp!char assume` to assume a character"))
             return
 
+        ochar = await self.bot.di.get_character(ctx.guild, other)
+        if ochar is None:
+            await ctx.send("That character does not exist!")
+            return
+
         for item in items:
             split = item.split('x')
             split, num = "x".join(split[:-1]), abs(int(split[-1]))
@@ -540,6 +545,29 @@ class Characters(commands.Cog):
                 await self.c_giveitem(ctx.guild, other, *fitems)
                 await ctx.send((await _(ctx, "Successfully gave {} {}")).format(other, items))
             except:
+                await ctx.send(await _(ctx, "You do not have enough to give away!"))
+
+    @charinv.command()
+    async def givemember(self, ctx, other: discord.Member, *items: str):
+        """Give items ({item}x{#}) to a user from your characters inventory; ie: rp!ci givemember Name Pokeballx3"""
+        fitems = []
+        name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
+        if name is None:
+            await ctx.send(await _(ctx,
+                                   "You are not currently a character! Use `rp!char assume` to assume a character"))
+            return
+
+        for item in items:
+            split = item.split('x')
+            split, num = "x".join(split[:-1]), abs(int(split[-1]))
+            fitems.append((split, num))
+
+        async with self.bot.di.rm.lock(ctx.guild.id):
+            try:
+                await self.c_takeitem(ctx.guild, name, *fitems)
+                await self.bot.di.give_items(other, *fitems)
+                await ctx.send((await _(ctx, "Successfully gave {} {}")).format(other, items))
+            except Exception as e:
                 await ctx.send(await _(ctx, "You do not have enough to give away!"))
 
     @charinv.command()
