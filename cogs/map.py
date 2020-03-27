@@ -94,18 +94,11 @@ class Mapping(commands.Cog):
                                                "You can only make one Infinite Map at this Patron level! Upgrade to make a second"
                                                ))
                         return
-                    elif ninfmaps >= 2:
-                        await ctx.send(await _(ctx,
-                                               "You cannot make more than 2 infinite maps! (Ask Henry if you really want it)"))
 
         if len(maps) >= 3:
             level = self.bot.patrons.get(ctx.guild.id, 0)
             if len(maps) >= 5:
-                if len(maps) >= 10:
-                    await ctx.send(
-                        await _(ctx, "You cannot make more than 10 maps as of now! (Ask Henry if you really want it)"))
-                    return
-                elif level < 5:
+                if level < 5:
                     await ctx.send(
                         await _(ctx, "You cannot make more than 5 maps unless you are a higher level Patron!"))
                     return
