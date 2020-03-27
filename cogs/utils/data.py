@@ -358,7 +358,10 @@ async def create_pages(ctx, items, lfmt,
             r, u = await ctx.bot.wait_for("reaction_add", check=lambda r, u: r.message.id == msg.id, timeout=80)
         except asyncio.TimeoutError:
             await ctx.send(await _(ctx, "Timed out! Try again"))
-            await msg.delete()
+            try:
+                await msg.delete()
+            except:
+                pass
             return
 
         if u == ctx.guild.me:
@@ -393,7 +396,10 @@ async def create_pages(ctx, items, lfmt,
 
                 await msg.edit(embed=embed)
         else:
-            await msg.delete()
+            try:
+                await msg.delete()
+            except:
+                pass
             await ctx.send(await _(ctx, "Closing"))
             return
 
