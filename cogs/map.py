@@ -71,7 +71,7 @@ class Mapping(commands.Cog):
             elif level > 0:
                 if xmax > 256 or ymax > 256:
                     if level > 5:
-                        if xmax > 512 or ymax > 512:
+                        if xmax > 2048 or ymax > 2048:
                             await ctx.send(
                                 await _(ctx, "You may not make maps greater than 512x512 unless they are infinite!"))
                             return
