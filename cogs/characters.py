@@ -145,6 +145,7 @@ class Characters(commands.Cog):
                     icon: https://vignette.wikia.nocookie.net/kingofthehill/images/c/c7/Bobby.png/revision/latest?cb=20150524012917
 
             RPGBot      Character created!"""
+        ouser = user
         if user is None or user == ctx.author:
             user = ctx.author
         else:
@@ -217,6 +218,16 @@ class Characters(commands.Cog):
                     continue
 
         character["level"] = character["meta"].pop("level", None)
+        if (len(ctx.message.mentions) > 0 and ouser is None) or (len(ctx.message.mentions) > 1 and ouser is not None):
+            newname = character["name"].replace("!", "")
+            data = await self.bot.db.get_guild_data(ctx.guild)
+            if "caliases" not in data:
+                data["caliases"] = {}
+
+            if newname not in data["characters"]:
+                data["caliases"][newname] = character["name"]
+
+            await self.bot.db.update_guild_data(ctx.guild, data)
 
         async with self.bot.di.rm.lock(ctx.guild.id):
             await self.bot.di.add_character(ctx.guild, Character(**character))
