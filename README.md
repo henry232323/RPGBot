@@ -196,6 +196,9 @@ Made by [@henry#8966](https://discordapp.com/channels/@me/122739797646245899)
   - [experience enable](#experience-enable)
   - [experience setlevel](#experience-setlevel)
   - [userinfo](#userinfo)
+  
+<argument> = a neccesary argument
+[argument] = an optional argument
 
 ## Admin Commands
 
