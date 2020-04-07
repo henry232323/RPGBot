@@ -216,6 +216,13 @@ class Settings(commands.Cog):
     @checks.admin_or_permissions()
     async def language(self, ctx, language: str = None):
         """Set the guild language or check the language
+        English = en
+        German = de
+        Spanish = es
+        Portugese = pt
+        Russian = ru
+        (if something appears in english despite your
+        settings theres no translation for it yet, you can help write those if you want)
         Requires Bot Moderator or Bot Admin"""
         if language is None:
             lang = await self.bot.di.get_language(ctx.guild)
@@ -245,24 +252,21 @@ class Settings(commands.Cog):
 
     @commands.command()
     @checks.admin_or_permissions()
-    async def setdefaultmap(self, ctx, value: str):
-        """Set the server's custom prefix. The default prefix will continue to work.
-        Example:
-            rp!setprefix ! --> !setprefix rp!
-
+    async def setdefaultmap(self, ctx, mapname: str):
+        """Set the server's default map.
         Requires Bot Moderator or Bot Admin"""
-        await self.bot.di.set_default_map(ctx.guild, value)
+        await self.bot.di.set_default_map(ctx.guild, mapname)
         await ctx.send(await _(ctx, "Updated default map"))
 
     @commands.command()
     @checks.admin_or_permissions()
-    async def setprefix(self, ctx, value: str):
+    async def setprefix(self, ctx, new_prefix: str):
         """Set the server's custom prefix. The default prefix will continue to work.
         Example:
             rp!setprefix ! --> !setprefix rp!
 
         Requires Bot Moderator or Bot Admin"""
-        self.bot.prefixes[str(ctx.guild.id)] = value
+        self.bot.prefixes[str(ctx.guild.id)] = new_prefix
         await ctx.send(await _(ctx, "Updated server prefix"))
 
     @commands.command()
@@ -298,8 +302,7 @@ class Settings(commands.Cog):
     @checks.admin_or_permissions()
     async def wipeonleave(self, ctx, value: str):
         """Set the server's setting for what to do when a player leaves. Set to true to wipe player data.
-        Example:
-            rp!setprefix ! --> !setprefix rp!
+        Values are True and False
 
         Requires Bot Moderator or Bot Admin"""
         await self.bot.di.set_leave_setting(ctx.guild, value)
@@ -309,6 +312,7 @@ class Settings(commands.Cog):
     @checks.admin_or_permissions()
     async def hideinv(self, ctx, value: bool):
         """Set whether or not user inventories are hidden. If enabled, inventories will be sent via DMs.
+        Values are True/False
         Requires Bot Moderator or Bot Admin"""
         gd = await self.bot.db.get_guild_data(ctx.guild)
         gd["hideinv"] = value
