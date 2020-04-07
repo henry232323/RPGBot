@@ -45,7 +45,7 @@ class Characters(commands.Cog):
 
     @commands.command(aliases=["chars", "personnages"])
     async def characters(self, ctx, user: discord.Member = None):
-        """List all your characters"""
+        """List all characters of the user. If no user is given lists your own characters."""
         if user is None:
             user = ctx.author
         characters = await self.bot.di.get_guild_characters(ctx.guild)
@@ -423,7 +423,7 @@ class Characters(commands.Cog):
 
     @commands.group(invoke_without_command=True, aliases=['ci', 'cinv'])
     async def charinv(self, ctx, *, name: str = None):
-        """Check your or another character's inventory. Example: rp!cinv Name or just rp!ci"""
+        """Check your or another character's inventory."""
         dest = ctx.channel
         if name is None:
             name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
@@ -585,6 +585,7 @@ class Characters(commands.Cog):
     async def use(self, ctx, item, number: int = 1):
         """Use an item. Example `rp!use Banana` or `rp!use Banana 5`
         To make an item usable, you must put the key `used: <message>` when you are adding additional information for an item
+        If you dont input a number of items you will use one by default.
         """
 
         async with self.bot.di.rm.lock(ctx.guild.id):
