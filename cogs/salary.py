@@ -252,7 +252,7 @@ class Salary(commands.Cog):
                 else:
                     delta = datetime.timedelta(seconds=interval) - (
                         datetime.timedelta(seconds=time.time() - spayments[str(role.id)]))
-                    await ctx.send((await _(ctx, "{} cannot be collected for another {}")).format(role, delta))
+                    await ctx.send((await _(ctx, "{} cannot be collected for another {}")).format(role.name, delta))
 
         if collected:
             await ctx.send(await _(ctx, "Successfully collected salaries"))
