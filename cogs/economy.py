@@ -657,7 +657,8 @@ Total:\t\t {} dollars
                     break
 
                 while True:
-                    await ctx.send(await _(ctx, "What is the minimum level a user must be for this item? 0 for no minimum"))
+                    await ctx.send(
+                        await _(ctx, "What is the minimum level a user must be for this item? 0 for no minimum"))
                     resp = await self.bot.wait_for("message", check=check)
                     try:
                         item["level"] = int(resp.content)
@@ -670,7 +671,8 @@ Total:\t\t {} dollars
                     break
 
                 if not sum(item.values()):
-                    await ctx.send(await _(ctx, "You can't make an item with 0 for every value! Cancelling, try again."))
+                    await ctx.send(
+                        await _(ctx, "You can't make an item with 0 for every value! Cancelling, try again."))
                     return
 
             except asyncio.TimeoutError:
@@ -733,7 +735,6 @@ Total:\t\t {} dollars
         if not iobj["sell"]:
             await ctx.send(await _(ctx, "This item cannot be sold!"))
             return
-
 
         async with self.bot.di.rm.lock(ctx.author.id):
             try:

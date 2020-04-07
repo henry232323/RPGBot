@@ -3,9 +3,8 @@ import logging
 import secrets
 from urllib.parse import urlencode, unquote
 
-import discord
 import aiohttp
-
+import discord
 from aiohttp import web
 
 try:
@@ -112,7 +111,7 @@ class API(web.Application):
     async def get_botdata(self, snowflake: int):
         async with self.pool.acquire() as connection:
             response = await connection.fetch(
-                f"""SELECT * FROM botdata WHERE UUID = {snowflake};"""
+                f"""SELECT * FROM botdata WHERE UUID = $1""", snowflake
             )
 
         return response
@@ -120,7 +119,7 @@ class API(web.Application):
     async def get_userdata(self, snowflake: int):
         async with self.pool.acquire() as connection:
             response = await connection.fetchval(
-                f"""SELECT info FROM userdata WHERE UUID={snowflake};"""
+                f"""SELECT info FROM userdata WHERE UUID= $1""", snowflake
             )
 
         return json.loads(response)
@@ -128,7 +127,7 @@ class API(web.Application):
     async def get_serverdata(self, snowflake: int):
         async with self.pool.acquire() as connection:
             response = await connection.fetchval(
-                f"""SELECT info FROM guilddata WHERE UUID={snowflake};"""
+                f"""SELECT info FROM guilddata WHERE UUID = $1""", snowflake
             )
 
         return json.loads(response)
@@ -353,23 +352,24 @@ class API(web.Application):
     # @server.route("/guild/<int:guild>/", methods=["GET"])
     async def getguild(self, request: web.Request):
         guild = int(request.match_info['guild'])
-        req = f"""SELECT info FROM guilddata WHERE UUID = {guild}"""
+        req = f"""SELECT info FROM guilddata WHERE UUID = $1"""
         async with self.bot.db._conn.acquire() as connection:
-            response = await connection.fetchval(req)
+            response = await connection.fetchval(req, guild)
         if response:
             data = json.loads(response)
 
             fdata = data
-            for item in request.match_info['tail'].split("/"):
-                if not item:
-                    continue
-                try:
-                    key = unquote(item)
-                    if isinstance(fdata, list):
-                        key = int(key)
-                    fdata = fdata[key]
-                except:
-                    raise web.HTTPNotFound()
+            if request.match_info['tail']:
+                for item in request.match_info['tail'].split("/"):
+                    if not item:
+                        continue
+                    try:
+                        key = unquote(item)
+                        if isinstance(fdata, list):
+                            key = int(key)
+                        fdata = fdata[key]
+                    except:
+                        raise web.HTTPNotFound()
 
             return web.json_response(fdata)
         raise web.HTTPForbidden()

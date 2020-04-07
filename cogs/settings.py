@@ -77,6 +77,15 @@ class Settings(commands.Cog):
         await self.bot.di.set_start(ctx.guild, amount)
         await ctx.send((await _(ctx, "Starting amount changed to {} dollars")).format(amount))
 
+
+    # @checks.mod_or_permissions()
+    # @commands.command()
+    # async def setmapchars(self, ctx, choice: bool):
+    #     """Set the map to give items etc to characters instead
+    #     Requires Bot Moderator or Bot Admin"""
+    #     await self.bot.di.set_map_chars(ctx.guild, choice)
+    #     await ctx.send((await _(ctx, "Use chars for maps set to: {}")).format(choice))
+
     @commands.command()
     @checks.admin_or_permissions()
     async def language(self, ctx, language: str = None):

@@ -153,6 +153,28 @@ class Inventory(commands.Cog):
             await ctx.send(await _(ctx, "You do not have enough to give away!"))
 
     @commands.command()
+    async def givechar(self, ctx, other: str, *items: str):
+        """Give items ({item}x{#}) to a character from your inventory
+        Example: rp!give @Henry#6174 Pokeballx3 Orangex5"""
+        fitems = []
+        for item in items:
+            split = item.split('x')
+            split, num = "x".join(split[:-1]), abs(int(split[-1]))
+            fitems.append((split, num))
+
+        ochar = await self.bot.di.get_character(ctx.guild, other)
+        if ochar is None:
+            await ctx.send("That character does not exist!")
+            return
+
+        try:
+            await self.bot.di.take_items(ctx.author, *fitems)
+            await self.bot.get_cog("Characters").c_giveitem(ctx.guild, other, *fitems)
+            await ctx.send((await _(ctx, "Successfully gave {} {}")).format(other, items))
+        except Exception as e:
+            await ctx.send(await _(ctx, "You do not have enough to give away!"))
+
+    @commands.command()
     @checks.admin_or_permissions()
     async def wipeinv(self, ctx, *members: MemberConverter):
         """Wipe all listed inventories. Must be administrator. To wipe ALL inventories do `rp!wipeinv everyone`"""
@@ -344,7 +366,9 @@ class Inventory(commands.Cog):
         """Send a trade offer to another user.
         Example: rp!trade @Henry Bananax3 Applex1 --Format items as {item}x{#}"""
         self.trades[other] = (ctx, items)
-        await ctx.send((await _(ctx, "{} has 5 minutes to respond to this request using rp!trade respond. See rp!help trade respond for details")).format(other))
+        await ctx.send((await _(ctx,
+                                "{} has 5 minutes to respond to this request using rp!trade respond. See rp!help trade respond for details")).format(
+            other))
         await asyncio.sleep(300)
         if self.trades.pop(other) is None:
             await ctx.send((await _(ctx, "{} failed to respond")).format(other))
