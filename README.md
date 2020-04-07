@@ -1077,7 +1077,7 @@ Requires Bot Moderator or Bot Admin
 >**Description:** Set the server's default map.
 >Requires Bot Moderator or Bot Admin
 
->**Usage:** `rp! <mapname>`
+>**Usage:** `rp!setdefaultmap <mapname>`
 
 #### setprefix
 >**Description:** Set the server's custom prefix. The default prefix will continue to work.
