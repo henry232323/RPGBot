@@ -1,13 +1,13 @@
-from random import randint, choices, choice
 from collections import Counter
-from discord.ext import commands
-from typing import Union
 from io import BytesIO
+from random import randint, choices, choice
+from typing import Union
 
 import yaml
+from discord.ext import commands
 
-from .utils.data import Map, AdvancedMap
 from .utils import checks
+from .utils.data import Map, AdvancedMap
 from .utils.translation import _
 
 
@@ -228,18 +228,6 @@ class Mapping(commands.Cog):
         """Move North on a map"""
         if name is None:
             name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
-        gd = await self.bot.db.get_guild_data(ctx.guild)
-        try:
-            is_mod = checks.role_or_permissions(ctx,
-                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
-                                                manage_server=True)
-        except:
-            is_mod = False
-
-        hide = gd.get("hideinv", False)
-
-        if not is_mod and hide:
-            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
 
         if name is None:
             await ctx.send(await _(ctx,
@@ -249,6 +237,18 @@ class Mapping(commands.Cog):
             return
 
         char = await self.bot.di.get_character(ctx.guild, name)
+        if char.owner != ctx.author.id:
+            try:
+                is_mod = checks.role_or_permissions(ctx,
+                                                    lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                    manage_server=True)
+            except:
+                is_mod = False
+
+            if not is_mod:
+                await ctx.send("You must be a Bot Admin to control other people's characters.")
+                return
+
         mapname = char.meta.get("map")
         if mapname is None:
             mapname = await self.bot.di.get_default_map(ctx.guild)
@@ -321,18 +321,6 @@ class Mapping(commands.Cog):
         """Move south on a map"""
         if name is None:
             name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
-        gd = await self.bot.db.get_guild_data(ctx.guild)
-        try:
-            is_mod = checks.role_or_permissions(ctx,
-                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
-                                                manage_server=True)
-        except:
-            is_mod = False
-
-        hide = gd.get("hideinv", False)
-
-        if not is_mod and hide:
-            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
 
         if name is None:
             await ctx.send(await _(ctx,
@@ -342,6 +330,18 @@ class Mapping(commands.Cog):
             return
 
         char = await self.bot.di.get_character(ctx.guild, name)
+        if char.owner != ctx.author.id:
+            try:
+                is_mod = checks.role_or_permissions(ctx,
+                                                    lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                    manage_server=True)
+            except:
+                is_mod = False
+
+            if not is_mod:
+                await ctx.send("You must be a Bot Admin to control other people's characters.")
+                return
+
         mapname = char.meta.get("map")
         if mapname is None:
             mapname = await self.bot.di.get_default_map(ctx.guild)
@@ -412,18 +412,6 @@ class Mapping(commands.Cog):
         """Move West on a map"""
         if name is None:
             name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
-        gd = await self.bot.db.get_guild_data(ctx.guild)
-        try:
-            is_mod = checks.role_or_permissions(ctx,
-                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
-                                                manage_server=True)
-        except:
-            is_mod = False
-
-        hide = gd.get("hideinv", False)
-
-        if not is_mod and hide:
-            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
 
         if name is None:
             await ctx.send(await _(ctx,
@@ -433,6 +421,18 @@ class Mapping(commands.Cog):
             return
 
         char = await self.bot.di.get_character(ctx.guild, name)
+        if char.owner != ctx.author.id:
+            try:
+                is_mod = checks.role_or_permissions(ctx,
+                                                    lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                    manage_server=True)
+            except:
+                is_mod = False
+
+            if not is_mod:
+                await ctx.send("You must be a Bot Admin to control other people's characters.")
+                return
+
         mapname = char.meta.get("map")
         if mapname is None:
             mapname = await self.bot.di.get_default_map(ctx.guild)
@@ -506,18 +506,6 @@ class Mapping(commands.Cog):
         """Move East on a map"""
         if name is None:
             name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
-        gd = await self.bot.db.get_guild_data(ctx.guild)
-        try:
-            is_mod = checks.role_or_permissions(ctx,
-                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
-                                                manage_server=True)
-        except:
-            is_mod = False
-
-        hide = gd.get("hideinv", False)
-
-        if not is_mod and hide:
-            name = self.bot.in_character[ctx.guild.id].get(ctx.author.id)
 
         if name is None:
             await ctx.send(await _(ctx,
@@ -527,6 +515,18 @@ class Mapping(commands.Cog):
             return
 
         char = await self.bot.di.get_character(ctx.guild, name)
+        if char.owner != ctx.author.id:
+            try:
+                is_mod = checks.role_or_permissions(ctx,
+                                                    lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                    manage_server=True)
+            except:
+                is_mod = False
+
+            if not is_mod:
+                await ctx.send("You must be a Bot Admin to control other people's characters.")
+                return
+
         mapname = char.meta.get("map")
         if mapname is None:
             mapname = await self.bot.di.get_default_map(ctx.guild)
@@ -613,7 +613,11 @@ class Mapping(commands.Cog):
                 if "say" in sp:
                     await ctx.send(choice(sp["say"]).replace("{player}", str(ctx.author)))
                 if "give" in sp:
-                    await self.bot.di.give_items(ctx.author, *sp["give"])
+                    if isinstance(sp["give"], dict):
+                        items = sp['give'].items()
+                    else:
+                        items = sp["give"]
+                    await self.bot.get_cog("Characters").c_giveitem(ctx.guild, char, *items)
                     await ctx.send((await _(ctx, "You acquired {}")).format(
                         ", ".join(f"{it}x{ni}" for it, ni in sp["give"].items())))
                 if "shop" in sp:
@@ -686,8 +690,8 @@ class Mapping(commands.Cog):
         sp = mapo.spawnables.get(spawned)
         if sp and "shop" in sp:
             try:
-                await self.bot.di.add_eco(ctx.author, -sp[itemname] * amount)
-                await self.bot.di.give_items(ctx.author, (itemname, amount))
+                await self.bot.get_cog("Characters").c_addeco(ctx.guild, char, -sp[itemname] * amount)
+                await self.bot.get_cog("Characters").c_giveitem(ctx.guild, char, (itemname, amount))
                 await ctx.send((await _(ctx, "Successfully bought {} {}s")).format(amount, itemname))
             except ValueError:
                 await ctx.send(await _(ctx, "You can't afford this many!"))

@@ -474,7 +474,10 @@ class Characters(commands.Cog):
                 await dest.send(chunk)
 
     async def c_takeitem(self, guild, name, *items):
-        char = await self.bot.di.get_character(guild, name)
+        if isinstance(name, str):
+            char = await self.bot.di.get_character(guild, name)
+        else:
+            char = name
         if 'items' not in char.ustats:
             char.ustats['items'] = {}
 
@@ -503,7 +506,10 @@ class Characters(commands.Cog):
         await ctx.send(await _(ctx, "Items taken!"))
 
     async def c_giveitem(self, guild, name, *items):
-        char = await self.bot.di.get_character(guild, name)
+        if isinstance(name, str):
+            char = await self.bot.di.get_character(guild, name)
+        else:
+            char = name
         if 'items' not in char.ustats:
             char.ustats['items'] = {}
 
@@ -729,7 +735,10 @@ Total:\t\t {} dollars
         await ctx.send(await _(ctx, "Balances changed"))
 
     async def c_addeco(self, guild, name, amount):
-        char = await self.bot.di.get_character(guild, name)
+        if isinstance(name, str):
+            char = await self.bot.di.get_character(guild, name)
+        else:
+            char = name
         if 'money' not in char.ustats:
             char.ustats['money'] = 0
         if 'bank' not in char.ustats:
@@ -742,7 +751,10 @@ Total:\t\t {} dollars
         await self.bot.di.add_character(guild, char)
 
     async def c_takeeco(self, guild, name, amount):
-        char = await self.bot.di.get_character(guild, name)
+        if isinstance(name, str):
+            char = await self.bot.di.get_character(guild, name)
+        else:
+            char = name
         if 'money' not in char.ustats:
             char.ustats['money'] = 0
         if 'bank' not in char.ustats:
