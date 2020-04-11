@@ -24,6 +24,8 @@ import datetime
 import logging
 import os
 import sys
+import traceback
+
 import ujson as json
 from io import BytesIO
 from collections import Counter, defaultdict
@@ -264,6 +266,9 @@ class Bot(commands.AutoShardedBot):
     async def on_command_error(self, ctx, exception):
         self.stats.increment("RPGBot.errors", tags=["RPGBot:errors"], host="scw-8112e8")
         logging.info(f"Exception in {ctx.command} {ctx.guild}:{ctx.channel} {exception}")
+        exception = getattr(exception, "original", exception)
+        traceback.print_tb(exception.__traceback__)
+        print(exception)
         try:
             if isinstance(exception, commands.MissingRequiredArgument):
                 await ctx.send(f"```{exception}```")
@@ -374,6 +379,8 @@ with open("resources/auth") as af:
 
 
 async def prefix(bot, msg):
+    if "debug" in sys.argv:
+        return ["rp$"]
     if msg.guild:
         # prefix = await bot.db.guild_item(msg.guild, "prefix")
         prefix = bot.prefixes.get(str(msg.guild.id), [])
