@@ -822,18 +822,20 @@ class Mapping(commands.Cog):
     @checks.mod_or_permissions()
     async def setpos(self, ctx, character: str, x: int, y: int):
         """Set the position of a character on that character's current map. If this is out of bounds the character will be stuck"""
-        char = await self.bot.di.get_character(character)
+        char = await self.bot.di.get_character(ctx.guild, character)
         mapname = char.meta.get("map")
         char.meta[mapname] = x, y
         await self.bot.di.add_character(ctx.guild, char)
+        await ctx.send("Updated character position!")
 
     @map.command()
     @checks.mod_or_permissions()
     async def setmap(self, ctx, character: str, mapname):
         """Set the current map of a character, will set to default if the map doesn't exist"""
-        char = await self.bot.di.get_character(character)
+        char = await self.bot.di.get_character(ctx.guild, character)
         char.meta['map'] = mapname
         await self.bot.di.add_character(ctx.guild, char)
+        await ctx.send("Updated character map!")
 
     @map.command(aliases=["upload"])
     @checks.admin_or_permissions()
