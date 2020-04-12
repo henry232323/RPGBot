@@ -829,7 +829,7 @@ class Mapping(commands.Cog):
 
     @map.command()
     @checks.mod_or_permissions()
-    async def setpos(self, ctx, character: str, mapname):
+    async def setmap(self, ctx, character: str, mapname):
         """Set the current map of a character, will set to default if the map doesn't exist"""
         char = await self.bot.di.get_character(character)
         char.meta['map'] = mapname
