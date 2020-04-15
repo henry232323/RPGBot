@@ -1,0 +1,557 @@
+000000000000A00011111
+000000000000000011111
+222222222211111111111
+222222222222211111111
+33333333333P333333333
+333333333333333333333
+4444E4444444444444444
+444444444444333311122
+
+
+generators:
+  0: The_lost_woods
+  1: The_skull_cavern
+  2: Skull_graveyard
+  3: Skullmon_town
+  4: Machine_village
+  T: Teleporter
+  A: Alchemist
+  P: Pokemon_center
+  E: Emil_Shop
+
+spawn: [0, 0]
+
+spawners:
+  The_lost_woods: [
+    nothing, nothing, nothing, nothing,
+    wood, wood, wood, wood, wood, wood, wood, wood, wood, wood,
+    chicken, chicken, chicken, chicken, chicken, chicken, chicken, chicken, chicken, chicken, chicken, chicken, chicken, chicken, chicken, chicken, chicken, chicken, chicken, chicken,
+    apple, apple, apple, apple, apple, apple, apple, apple, apple, apple,
+    feather, feather, feather, feather,
+    fairy_field, fairy_field,
+    the_boss_key,
+    phoenix_down
+  ]
+
+  The_skull_cavern: [
+    nothing, nothing, nothing, nothing,
+    iron_ore, iron_ore, iron_ore, iron_ore, iron_ore, iron_ore, iron_ore, iron_ore, iron_ore, iron_ore,
+    amythest, amythest, amythest, amythest, amythest,
+    coal, coal, coal, coal, coal, coal, coal, coal, coal, coal, coal,
+    stone, stone, stone, stone, stone, stone, stone, stone, stone, stone, stone, stone,
+    gold_ore, gold_ore, gold_ore, gold_ore, gold_ore, gold_ore,
+    quartz, quartz, quartz, quartz, quartz,
+    ruby, ruby, ruby, ruby, ruby,
+    flint, flint, flint,
+    fire_orb, fire_orb, fire_orb,
+    topaz, topaz,
+    meteoric_iron, magical_rune,
+    diamond
+  ]
+
+  Skull_graveyard: [
+    nothing, nothing, nothing, nothing,
+    broca_area, broca_area, broca_area, broca_area, broca_area,
+    frontal_lobe, frontal_lobe, frontal_lobe, frontal_lobe, frontal_lobe,
+    motor_strip, motor_strip, motor_strip, motor_strip, motor_strip,
+    parietal_lobe, parietal_lobe, parietal_lobe, parietal_lobe, parietal_lobe, parietal_lobe,
+    wernicke_area, wernicke_area, wernicke_area, wernicke_area, wernicke_area, wernicke_area,
+    temporal_lobe, temporal_lobe, temporal_lobe, temporal_lobe, temporal_lobe,
+    occipital_lobe, occipital_lobe, occipital_lobe, occipital_lobe, occipital_lobe,
+    cerebellum, cerebellum, cerebellum, cerebellum, cerebellum,
+    brainstem, brainstem, brainstem, brainstem, brainstem,
+    hypothalamus, hypothalamus, hypothalamus, hypothalamus, hypothalamus,
+    pituitary_gland, pituitary_gland, pituitary_gland, pituitary_gland, pituitary_gland,
+    pineal_gland, pineal_gland, pineal_gland, pineal_gland, pineal_gland,
+    thalamus, thalamus, thalamus, thalamus, thalamus,
+    basal_ganglia, basal_ganglia, basal_ganglia, basal_ganglia, basal_ganglia,
+    cingulate_gyri, cingulate_gyri, cingulate_gyri, cingulate_gyri, cingulate_gyri,
+    amygdala, amygdala, amygdala, amygdala, amygdala,
+    hippocampus, hippocampus, hippocampus, hippocampus, hippocampus,
+    bones, bones, bones, bones, bones, bones, bones, bones, bones, bones, bones, bones,
+    human_toenail, human_toenail, human_toenail, human_toenail, human_toenail, human_toenail,
+    cloth, cloth, cloth, cloth, cloth, cloth, cloth,
+    random_traveller,
+    soul
+  ]
+
+  Skullmon_town: [
+    nothing, nothing, nothing, nothing,
+    bidoof, bidoof, bidoof, bidoof, bidoof, bidoof, bidoof,
+    pichu, pichu, pichu, pichu, pichu, pichu, pichu,
+    mimikyu, mimikyu, mimikyu, mimikyu, mimikyu, mimikyu, mimikyu,
+    charmander, charmander, charmander,
+    eevee, eevee, eevee, eevee,
+    igglybuff, igglybuff, igglybuff, igglybuff, igglybuff,
+    caterpie, caterpie, caterpie, caterpie, caterpie, caterpie, caterpie, caterpie,
+    squirtle, squirtle, squirtle,
+    chikorita, chikorita,
+    vulpix, vulpix,
+    articuno,
+    munchlax, munchlax,
+    mew,
+    peanut_butter,
+    aloha_valpix,
+    sun_shard, sun_shard,
+    ice_rock, ice_rock,
+    moon_stone, moon_stone,
+    friendship_stone, friendship_stone,
+    trainer
+  ]
+
+  Machine_village: [
+    nothing, nothing, nothing, nothing,
+    lunar_tear, lunar_tear, lunar_tear, lunar_tear, lunar_tear, lunar_tear, lunar_tear, lunar_tear, lunar_tear, lunar_tear,
+    dirty_bunny_doll, dirty_bunny_doll,
+    wies, wires, wires, wires, wires, wires, wires, wires, wires, wires,
+    metal_scraps, metal_scraps, metal_scraps, metal_scraps, metal_scraps, metal_scraps, metal_scraps
+  ]
+
+  Teleporter: [
+    Teleporter
+  ]
+
+  Alchemist: [
+    alchemist
+  ]
+
+  Pokemon_center: [
+    pokemon_center
+  ]
+
+  Emil_Shop: [
+    emil_shop
+  ]
+
+  "*": [
+    baby_fox
+  ]
+
+spawnables:
+  wood:
+    give: [
+    [wood, 1]
+    ]
+    say: [You find a chopped tree in the middle of the woods. Weird, but you take the wood anyway!]
+
+  chicken:
+    give: [
+    [egg, 1],
+    [chicken_meat, 1]
+    ]
+    say: [A chicken was screaming and running. You grab it from its legs and kill it!]
+
+  apple:
+    give: [
+    [apple, 2]
+    ]
+    say: [You find an apple tree. It looks fresh and when you shake the tree, two apple land on  your head!]
+
+  feather:
+    give: [
+    [feather, 1]
+    ]
+    say: [You notice a feather on the ground. It looks different and beautiful. It might be useful for something so you keep it.]
+
+  fairy_field:
+    give: [
+    [fairy_honey, 1]
+    ]
+    say: [There's a huge field full of beautiful flowers and plants you've never seen. There's honey you can collect too, it looks magical and unique. You grab a jar]
+
+  baby_fox:
+    give: [
+    [baby_fox, 1]
+    ]
+    say: [There's a baby fox jumping around you. It's the most adorable thing you saw today. You take it with you, maybe you'll take care of it, maybe it'll be useful.]
+
+  the_boss_key:
+    give: [
+    [the_boss_key, 1]
+    ]
+    say: [In an empty place sarrounded by trees, you find a key. You heard rumors that this key, with 14 hearts can unlock the master sword]
+
+  phoenix_down:
+    give: [
+    [phoenix_down, 1]
+    ]
+    say: [It looks magical, out of some kinda game. You keep it. You'd be a fool not to]
+
+  iron_ore:
+    give: [
+    [iron_ore, 2]
+    ]
+    say: [You mined some iron ore!]
+
+  gold_ore:
+    give: [
+    [gold_ore, 1]
+    ]
+    say: [You mined some gold ore!]
+
+  coal:
+    give: [
+    [coal, 2]
+    ]
+    say: [You find some coal, maybe it can make it useful.. hmmm... ]
+
+  stone:
+    give: [
+    [stone, 3]
+    ]
+    say: ["You find stones.. Good for you? ... is it good though?"]
+
+  amythyst:
+    give: [
+    [amythyst, 1]
+    ]
+    say: [It looks beautiful! and worth a lot too. Lucky you!]
+
+  quartz:
+    give: [
+    [quartz, 1]
+    ]
+    say: [You find some quartz, it makes you slightly happier.]
+
+  ruby:
+    give: [
+    [ruby, 1]
+    ]
+    say: [You find a familiar beautiful stone, you recognize it as Ruby!]
+
+  flint:
+    give: [
+    [flint, 1]
+    ]
+    say: [You mined flint. It's rare and should be useful for something.]
+
+  topaz:
+    give: [
+    [topaz, 1]
+    ]
+    say: [You find topaz while mining. It must be rare and valuable!]
+
+  meteoric_iron:
+    give: [
+    [meteoric_iron, 1]
+    ]
+    say: [While mining for iron, you find a rarer type of it. This could forge so many great things!]
+
+  fire_orb:
+    give: [
+    [fire_orb, 1]
+    ]
+    say: ["While going through the cave, you find a strange fire floating. It looks almost alive. You can't help but approach and .. waoh, you can catch it!"]
+
+  diamond:
+    give: [
+    [diamond, 1]
+    ]
+    say: [You find a diamon! Holy shit, you think, this thing is worth so much, you're rich!]
+
+  broca_area:
+    give: [
+    [broca_area, 1]
+    ]
+    say: [You find a part of the brain, you're not sure what you can use it for but it's pretty fresh.]
+
+  frontal_lobe:
+    give: [
+    [frontal_lobe, 1]
+    ]
+    say: [The frontal lobe you find looks useful, but you can't help but wonder how they died this death.]
+
+  motor_strip:
+    give: [
+    [motor_strip, 1]
+    ]
+    say: [Another part of the brain, why not just take it too at this point... ]
+
+  parietal_lobe:
+    give: [
+    [parietal_lobe, 1]
+    ]
+    say: [You find a dead body, they look rotten but you have to try and loot it anyway.]
+
+  wernicke_area:
+    give: [
+    [wernicke_area, 1]
+    ]
+    say: [You try and loot another body. Their pockets, their body, their head, whatever you can find.]
+
+  temporal_lobe:
+    give: [
+    [temporal_lobe, 1]
+    ]
+    say: [This body seems to have died to blunt force to the head, you wonder why but it doesn't stop you from looting their brain.]
+
+  occipital_lobe:
+    give: [
+    [occipital_lobe, 1]
+    ]
+    say: [You're starting to seriously wonder how all these people died here. All shot or blunt force to the head, weird. You loot them regardless.]
+
+  cerebellum:
+    give: [
+    [cerebellum, 1]
+    ]
+    say: [One more brain part for you to gather. I'm sure it can be useful for ... something.]
+
+  brainstem:
+    give: [
+    [brainstem, 1]
+    ]
+    say: [You find this in a bag, kept in a safe. You take it and don't ask questions.]
+
+  hypothalamus:
+    give: [
+    [hypothalamus, 1]
+    ]
+    say: [You find a brain part to keep. You want to question it but your head hurts.]
+
+  pituitary_gland:
+    give: [
+    [pituitary_gland, 1]
+    ]
+    say: ["Could this make a whole brain if you stitch them together? What? this isn't how the brain works? Maybe..."]
+
+  pineal_gland:
+    give: [
+    [pineal_gland, 1]
+    ]
+    say: [It's labeled as pineal gland, you don't know what that is but you throw it in the bag.]
+
+  thalamus:
+    give: [
+    [thalamus, 1]
+    ]
+    say: [You find it spilling from a guy's brain. You take it and feel disgusted.]
+
+  basal_ganglia:
+    give: [
+    [basal_ganglia, 1]
+    ]
+    say: ["You see a dead woman's brain open with this part remaining intact. Is this worth it? You can't answer."]
+
+  cingulate_gyri:
+    give: [
+    [cingulate_gyri, 1]
+    ]
+    say: [You find this, spilling on the floor. It reminds you of the walking dead, fear the walking dead, and the other hundred shows about zombies. You take it.]
+
+  amygdala:
+    give: [
+    [amygdala, 1]
+    ]
+    say: [It looks disgusting. You don't want to take it, you really don't but you also have an addiction to collecting things.]
+
+  hippocampus:
+    give: [
+    [hippocampus, 1]
+    ]
+    say: ["Too much brains, too much fucking brain parts. You keep taking them though, so who's fault is it?"]
+
+  bones:
+    give: [
+    [bones, 1]
+    ]
+    say: [It looks neat and clean actually, you take it.]
+
+  human_toenail:
+    give: [
+    [human_toenail, 1]
+    ]
+    say: [You find .. a human toenail on the ground. You don't want to take it, you almost throw up. But you can use anything you can get.]
+
+  cloth:
+    give: [
+    [cloth, 1]
+    ]
+    say: [It's a good quality cloth, you take it happily. It'll be put to good use once cleaned.]
+
+  soul:
+    give: [
+    [soul, 1]
+    ]
+    say: ["You find a light coming from one of the bodies. While approaching, you can see them barely breathing, their soul almost leaving. You catch it instead and pull it painfully from their chest. They were gonna die anyway, right?"]
+
+  lunar_tear:
+    give: [
+    [lunar_tear, 1]
+    ]
+    say: [You find a flower slightly glowing. It looks so beautiful, you pick it up.]
+
+  dirty_bunny_doll:
+    give: [
+    [dirty_bunny_doll, 1]
+    ]
+    say: [You find a bunny doll on the ground. It looks old but adorable. You keep it.]
+
+  wires:
+    give: [
+    [wires, 2]
+    ]
+    say: [You find random wires that look like they're in a good shape. You take them and wonder why these exist here.]
+
+  metal_scraps:
+    give: [
+    [metal_scraps, 1]
+    ]
+    say: [You find metal scraps on the ground, you take them. They're probably useful.]
+
+  bidoof:
+    give: [
+    [bidoof, 1]
+    ]
+    say: [You find a wild bidoof. You get excited and throw a pokeball! You catch it!]
+
+  pichu:
+    give: [
+    [pichu, 1]
+    ]
+    say: [You encouter the infemous pichu. Maybe it can turn into a pikachu, or remain this cute! You throw a pokeball and catch it!]
+
+  mimikyu:
+    give: [
+    [mimikyu, 1]
+    ]
+    say: [You find mimikyu in the wilderness. You get slightly scared and throw a pokeball quickly, you catch it successfully!]
+
+  charmander:
+    give: [
+    [charmander, 1]
+    ]
+    say: [You encouter a charmander! feeling excited, you try to catch it for hours when you finally catch it!]
+
+  eevee:
+    give: [
+    [eevee, 1]
+    ]
+    say: [You see an Eeevee! You think of all the evolutions that can happen and feel lucky. You throw a pokeball and catch it!]
+
+  igglybuff:
+    give: [
+    [igglybuff, 1]
+    ]
+    say: [It's an igglybuff! You can finally force members to sleep. You throw a pokeball and catch it!]
+
+  caterpie:
+    give: [
+    [caterpie, 1]
+    ]
+    say: [You find a caterpie, maybe it'll evolve into something beautiful! You catch it with your pokeball.]
+
+  squirtle:
+    give: [
+    [squirtle, 1]
+    ]
+    say: [You find a squirtle, It's very uncommon, you get lucky and catch it!]
+
+  chikorita:
+    give: [
+    [chikorita, 1]
+    ]
+    say: [A wild chikorita appears! Maybe you can take care of it and evolve it into a Bayleaf!]
+
+  vulpix:
+    give: [
+    [vulpix, 1]
+    ]
+    say: [You find a beautiful looking vulpix. You catch it with your pokeball!]
+
+  articuno:
+    give: [
+    [articuno, 1]
+    ]
+    say: [While going through the green grass, you witness a miracle! It's the rarest pokemon, Articuno! You quickly throw your pokeball, you don't have time! You get super extra lucky and catch it. Holy shit this is your best day!]
+
+  munchlax:
+    give: [
+    [munchlax, 1]
+    ]
+    say: [A munchlax appears in the wilderness, he looks hungry and sleepy. You easily catch it. ]
+
+  mew:
+    give: [
+    [mew, 1]
+    ]
+    say: [While going through the unnaturally long grass, a pokemon you never thought you'd encounter approaches you. It's a Mew! and It won't leave you alone. It hides in your inventory!]
+
+  peanut_butter:
+    give: [
+    [peanut_butter, 1]
+    ]
+    say: [It's the perfect pokemon! Mel told you so much about this! You throw the ball quickly and catch it! Good work, trainer]
+
+  aloha_valpix:
+    give: [
+    [aloha_valpix, 1]
+    ]
+    say: [This vulpix is white and even more beautiful. You apprach it and pet it and it makes an adorable sound. You decide to adopt it.]
+
+  sun_shard:
+    give: [
+    [sun_shard, 1]
+    ]
+    say: [You find a weird looking stone, It'll probably help with evolving certain pokemons!]
+
+  ice_rock:
+    give: [
+    [ice_rock, 1]
+    ]
+    say: [An iced rock is on the ground. You take it with you, it's probably helpful with some pokemons.]
+
+  moon_stone:
+    give: [
+    [moon_stone, 1]
+    ]
+    say: [You find a stone shining when you hold it to the moon. It might be the stone Kaito kid is looking for, or a moon stone to evolve pokemons, who knows!]
+
+  friendship_stone:
+    give: [
+    [friendship_stone, 1]
+    ]
+    say: [You find a friendship stone! It only works on pokemons if you love them enough!]
+
+  trainer:
+    say: ["Hello, fellow trainer! Here to catch pokemons too?", "Did you know you can find pokemons by walking in the grass?", "I heard you can find stones in the grass, those stones can help you evolve your pokemons!", "You can evolve your pokemons through the recipes in your local town","Each pokemon needs a unique stone to evolve", "There are common pokemons, like pichu and extremely rare ones like Mew. I personally wish to find an Eevee, though it's uncommon."]
+
+  Foreign_Merchant:
+    say: ["Did you know you can use items you find in the wild to make other things? Check the recipes in your local town", "There are several lootboxes you can buy in your local town. But some of them can only be bought with certain items", "The more valuable chest you can buy is the master sword, no one has been able to before", "Did you forget to gather your salary today? I forget some days."]
+
+  pokemon_center:
+    say: ["Hello, trainer! Did you find some interesting pokemons? Buy what you need to take care of them,"]
+    buy:
+      thunder_stone: 250000
+      pokeball: 50
+      evolution_stone: 50000
+      mega_evolution_stone: 100000
+      water_stone: 250000
+      fire_stone: 250000
+      leaf_stone: 250000
+      ice_stone: 250000
+      moon_stone: 400000
+      friendship_stone: 35000
+
+  emil_shop:
+    say: ["My name is Emil and this is my shop. What's that? You want to know where I live? I live deep deep underground, picture something deep then go deeper! Why would I live there you ask? I think it was a home for ... well I don't remember. My memories are fragmented, I'm afraid. What's that? You would like to help me?"]
+    buy:
+      EmilQuest: 1500
+      LED: 15000
+      wires: 1500
+      metal_scraps: 850
+
+  random_traveller:
+    say: ["I've been coming here for a year now. I pray for these poor souls.", "Everytime I come here, there's more death but I never see whose done it.", "I found some people stealing from these poor dead people the other day, you wouldn't be the same, would you?", "I heard a rumor that you can a human from gathering these parts. What possesses people to create such rumors?"]
+
+  alchemist:
+    say: ["Welcome to my shop, maybe you can find something you want?"]
+    buy:
+      tears: 2200
+      rose_petal: 50
+      star_anise: 7700
+      orris_root: 5200
+      magical_rune: 200000
+
+    teleporter:
+      teleport: ["Map1", [15, 15]]
