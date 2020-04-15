@@ -1,7 +1,7 @@
 A RPG bot, with a working inventory, market and economy, team setups and characters aswell. Each user has a server unique inventory and balance. Players may list items on a market for other users to buy. Users may create characters with teams from Pet in their storage box. Server administrators may add and give items to the server and its users.
 Pet boxes and server configurations. 
 
-Made by [@henry#8966](https://discordapp.com/channels/@me/122739797646245899)
+Made by [@Henry#8808](https://discordapp.com/channels/@me/122739797646245899)
 
 [Tutorial](https://github.com/henry232323/RPGBot/blob/master/tutorial.md)
 
@@ -14,7 +14,7 @@ Made by [@henry#8966](https://discordapp.com/channels/@me/122739797646245899)
 ### Translators
 #### French
 - [@wRadion#5043](https://discordapp.com/channels/@me/98073537113247744) https://github.com/wRadion
-- [@henry#8966](https://discordapp.com/channels/@me/122739797646245899) (Me) https://github.com/henry232323
+- [@Henry#8808](https://discordapp.com/channels/@me/122739797646245899) (Me) https://github.com/henry232323
 - https://github.com/youqad
 - https://github.com/Philip-Nicolas
 #### Russian
