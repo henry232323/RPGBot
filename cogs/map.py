@@ -623,7 +623,7 @@ class Mapping(commands.Cog):
                         items = sp["give"]
                     await self.bot.get_cog("Characters").c_giveitem(ctx.guild, char, *items)
                     await ctx.send((await _(ctx, "You acquired {}")).format(
-                        ", ".join(f"{it}x{ni}" for it, ni in sp["give"].items())))
+                        ", ".join(f"{it}x{ni}" for it, ni in items)))
                 if "shop" in sp:
                     await ctx.send((await _(ctx,
                                             "This tile has a shop that sells: {}")).format(
