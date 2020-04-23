@@ -323,12 +323,12 @@
     "ru": "На этом сервере нет активных лото!"
   },
   "No items in the shop to display.": {
-    "fr": "Il n'y a aucun item dans le shop",
+    "fr": "Il n'y a aucun item dans le magasin",
     "de": "Der Laden hat keine Items",
     "ru": "Нет предметов в магазине"
   },
   "Server Shop": {
-    "fr": "Shop du serveur",
+    "fr": "Magasin du serveur",
     "de": "Server Laden",
     "ru": "Магазин сервера"
   },
@@ -368,7 +368,7 @@
     "ru": "Время вышло!"
   },
   "Guild shop updated": {
-    "fr": "Shop actualisée",
+    "fr": "Magasin de Guilde actualisée",
     "de": "Gilden-Laden aktualisiert",
     "ru": "Магазин гильдии обновлен"
   },
@@ -408,7 +408,7 @@
     "ru": "Этот предмет не может быть продан!"
   },
   "You don't have enough to sell": {
-    "fr": "Vous n'avez pas assez à vendre",
+    "fr": "Vous n'avez pas assez pour vendre",
     "de": "Du hast nicht genug um zu verkaufen!",
     "ru": "У вас не хватает предметов для продажи!"
   },
@@ -457,7 +457,7 @@
     "ru": "Такой гильдии не существует!"
   },
   "\nAnd {} more...": {
-    "fr": "\nEt {} plus...",
+    "fr": "\net {} plus...",
     "de": "\nund noch {} weitere...",
     "ru": "\nИ еще {}..."
   },
@@ -606,7 +606,7 @@
     "ru": "Пользователь не состоит в этой гильдии!"
   },
   "User kicked": {
-    "fr": "Utilisateur kické",
+    "fr": "Utilisateur expulsé",
     "de": "Nutzer entfernt",
     "ru": "Пользователь был выгнан."
   },
@@ -1181,7 +1181,7 @@
     "ru": "Каким будет его прозвище (никнейм)?"
   },
   "What species of Pet is it?": {
-    "fr": "De quel espèce de Pet est-il ?",
+    "fr": "Quelle espèce Animal est-il ?",
     "de": "Welche Pet Spezies ist es?",
     "ru": "Что это за животное?"
   },
@@ -1211,12 +1211,12 @@
     "ru": "защита"
   },
   "spatk": {
-    "fr": "atkspé",
+    "fr": "attaque spécial",
     "de": "Spezialattacke",
     "ru": "специальная атака"
   },
   "spdef": {
-    "fr": "defspé",
+    "fr": "défence spécial",
     "de": "Spezialverteidigung",
     "ru": "специальная защита"
   },
@@ -1231,12 +1231,12 @@
     "ru": "{} - недействительный показатель! Попробуй заново"
   },
   "Any additional data? (Format like the above, for example nature: hasty, color: brown)": {
-    "fr": "Des informations supplémentaires ? (Par exemple: nature: précipité, color: marron)",
+    "fr": "Des informations supplémentaires ? (Par exemple: nature: précipité, couleur: marron)",
     "de": "Irgendwelche zusätzlichen Informationen? (Selbes Format wie oben z.B. nature: scheu, color: braun)",
     "ru": "Может, вы хотите что-нибудь добавить? (Например: \"Веселый, цвет кожи: темный, цвет волос: рыжий\")"
   },
   "Finished! Pet has been added to box with ID {}": {
-    "fr": "Fini ! Le Pet a été créé et ajouté à la boîte d'ID {}",
+    "fr": "Fini ! L'Animal de Compagnie a été créé et ajouté à la boîte d'ID {}",
     "de": "Fertig! Pet wurde in die Box mit der ID {} abgelegt!",
     "ru": "Завершено! Питомец был добавлен в коробку с ID {}"
   },
@@ -1256,7 +1256,7 @@
     "ru": "Характеристики"
   },
   "This Pet has been released! Goodbye {}!": {
-    "fr": "Ce Pet a été libéré ! Adieu, {} !",
+    "fr": "Cet Animal de Compagnie a été libéré ! Adieu, {} !",
     "de": "Dieses Pet wurde freigelessan! Lebwohl {} !",
     "ru": "Питомец был выпущен! Прощай, {}!"
   },
@@ -1391,7 +1391,7 @@
     "ru": "ID: {}\nХар-ки: {}\nСтатистика: {}\nДопольнительная информация:\n\t{} "
   },
   "That Pet is already a part of the team!": {
-    "fr": "Ce Pet fait déjà parti de l'équipe !",
+    "fr": "Cet Animal de Compagnie fait déjà parti de l'équipe !",
     "de": "Dieses Pet ist schon in deinem Team!",
     "ru": "Этот питомец уже является частью команды!"
   },
@@ -1406,7 +1406,7 @@
     "ru": "Этот персонаж не существует!"
   },
   "Successfully removed Pet!": {
-    "fr": "Le Pet a été supprimé avec succès !",
+    "fr": "L'Animal de Compagnie a été supprimé avec succès !",
     "de": "Pet erfolgreich entfernt!",
     "ru": "Питомец успешно удален!"
   },
@@ -1441,7 +1441,7 @@
     "ru": "Выдал опыт участникам"
   },
   "{0} is now level {1}!": {
-    "fr": "{0} maintenant a le niveau de {1} !",
+    "fr": "{0} est maintenant niveau {1} !",
     "de": "{0} hat Level {1} erreicht!",
     "ru": "{0} достиг {1} уровня!"
   },
@@ -1456,7 +1456,7 @@
     "ru": "Нет предметов"
   },
   "\nand {} more...": {
-    "fr": "\nEt {} plus...",
+    "fr": "\net {} plus...",
     "de": "\nund {} weitere...",
     "ru": "и еще {} штук..."
   },
@@ -1486,7 +1486,7 @@
     "ru": "В сделке отказано."
   },
   "Response two received!": {
-    "fr": "La premiere reponse est reçue",
+    "fr": "La deuxième reponse a été reçue",
     "de": "Zweite Antwort erhalten!",
     "ru": "Второй ответ получен!"
   },
@@ -1496,7 +1496,7 @@
     "ru": "Неверное значение номера {} из {}"
   },
   "{} does not have enough {} to trade! Trade cancelled!": {
-    "fr": "{} n'a pas assez {} pour echanger! L'echange est annulle",
+    "fr": "{} n'a pas assez {} pour échanger! L'eéhange est annullé",
     "de": "{} hat nicht genug {} um zu handeln! Handel abgebrochen!",
     "ru": "У {} недостаточно {} для обмена!"
   },
@@ -1506,7 +1506,7 @@
     "ru": "Обмен предметами"
   },
   "Trade complete!": {
-    "fr": "L'échange est complet",
+    "fr": "L'échange est reussi",
     "de": "Handel abgeschlossen!",
     "ru": "Обмен успешно выполнен!"
   }
