@@ -731,8 +731,8 @@ Total:\t\t {} dollars
         Example: rp!shop sell Apple 5"""
         amount = abs(amount)
         shop = await self.bot.di.get_guild_shop(ctx.guild)
-        iobj = shop[item]
-        if not iobj["sell"]:
+        iobj = shop.get(item)
+        if not iobj or not iobj["sell"]:
             await ctx.send(await _(ctx, "This item cannot be sold!"))
             return
 
