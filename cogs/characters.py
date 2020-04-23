@@ -839,6 +839,9 @@ Total:\t\t {} dollars
                 await ctx.send(await _(ctx, "An alias with this name already exists!"))
                 return
 
+            if character_name not in data["characters"]:
+                await ctx.send((await _(ctx, "Character {0} does not exist!")).format(character_name))
+                return
             data["caliases"][alias_name] = character_name
 
             await ctx.bot.db.update_guild_data(ctx.guild, data)
@@ -859,8 +862,11 @@ Total:\t\t {} dollars
                 await ctx.send(await _(ctx, "This alias doesn't exist!"))
                 return
 
-            if data["characters"][data["caliases"][alias_name]][1] != ctx.author:
-                await ctx.send(await _(ctx, "You cannot delete other people's aliases!"))
+            if data["caliases"][alias_name] in data["characters"]:
+
+                if data["characters"][data["caliases"][alias_name]][1] != ctx.author:
+                    await ctx.send(await _(ctx, "You cannot delete other people's aliases!"))
+                    return
 
             del data["caliases"][alias_name]
 
