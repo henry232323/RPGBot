@@ -132,7 +132,7 @@ Total:\t\t {} dollars
     @commands.command()
     async def takemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
         """Take the member's money
-        Example: rp!givemoney 5000 @Henry#6174
+        Example: rp!takemoney 5000 @Henry#6174
         Requires Bot Moderator or Bot Admin"""
         members = chain(members)
         succ = False
