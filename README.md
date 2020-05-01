@@ -1103,6 +1103,7 @@ Requires Bot Moderator or Bot Admin
  Custom keys that can be used for special additions:
     `image` Setting this to a URL will give that item a special thumbnail when info is viewed for it
     `used` A message for when the item is used
+
 >Henry: rp!settings additem Example
 
 >RPGBot: Describe the item (a description for the item)
