@@ -1104,11 +1104,17 @@ Requires Bot Moderator or Bot Admin
     `image` Setting this to a URL will give that item a special thumbnail when info is viewed for it
     `used` A message for when the item is used
 >Henry: rp!settings additem Example
-RPGBot: Describe the item (a description for the item)
-Henry: This is an example item
-RPGBot: Additional information? (Attributes formatted in a list i.e color: 400, value: 200 Set an image for this item with the image key i.e. image: http://example.com/image.png Set this item as usable by adding used key i.e. used: You open the jar and the bird flies away
-Henry: used: You used this item!, image: http://www.sourcecertain.com/img/Example.png
-RPGBot:  Item successfully created
+
+>RPGBot: Describe the item (a description for the item)
+
+>Henry: This is an example item
+
+>RPGBot: Additional information? (Attributes formatted in a list i.e color: 400, value: 200 Set an image for this item with the image key i.e. image: http://example.com/image.png Set this item as usable by adding used key i.e. used: You open the jar and the bird flies away
+
+>Henry: used: You used this item!, image: http://www.sourcecertain.com/img/Example.png
+
+>RPGBot:  Item successfully created
+
 >Requires Bot Moderator or Bot Admin
     
 
