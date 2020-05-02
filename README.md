@@ -1128,8 +1128,9 @@ Requires Bot Moderator or Bot Admin
 
 #### settings items
 >**Description:** See all items for a server
+The letter is optional
 
->**Usage:** `rp!items [letter]`
+>**Usage:** `rp!settings items [letter]`
 
 #### settings removeitem
 >**Description:** Remove a custom item
