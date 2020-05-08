@@ -47,6 +47,7 @@ class Misc(commands.Cog):
         Optional Additions:
             Test for success by adding a >/<#
             Grab the top n rolls by adding ^n
+            Grab the bottom n rolls by adding _n
             Add to the final roll by just adding a number (pos or neg)
             
             Examples of all:
@@ -96,8 +97,8 @@ class Misc(commands.Cog):
                                 await ctx.send((await _(ctx, "{} is too big a number!")).format(_cur))
                                 return
                             pp = int(_cur)
-                        elif die.startswith("v"):
-                            _cur = die.strip("v")
+                        elif die.startswith("_"):
+                            _cur = die.strip("_")
                             if len(_cur) > 5:
                                 await ctx.send((await _(ctx, "{} is too big a number!")).format(_cur))
                                 return
