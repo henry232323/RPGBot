@@ -59,6 +59,7 @@ class Misc(commands.Cog):
             add = []
             rel = None
             pp = None
+            pp2 = None
 
             for die in dice:
                 try:
@@ -95,6 +96,12 @@ class Misc(commands.Cog):
                                 await ctx.send((await _(ctx, "{} is too big a number!")).format(_cur))
                                 return
                             pp = int(_cur)
+                        elif die.startswith("v"):
+                            _cur = die.strip("v")
+                            if len(_cur) > 5:
+                                await ctx.send((await _(ctx, "{} is too big a number!")).format(_cur))
+                                return
+                            pp2 = int(_cur)
 
             if pp:
                 s = list(chain(*rolls.values()))
@@ -104,6 +111,15 @@ class Misc(commands.Cog):
                     mx = max(s)
                     s.remove(mx)
                     rolls[0].append(mx)
+
+            if pp2:
+                s = list(chain(*rolls.values()))
+                rolls.clear()
+                rolls[0] = list()
+                for d in range(pp2):
+                    mn = min(s)
+                    s.remove(mn)
+                    rolls[0].append(mn)
 
             total = sum(sum(x) for x in rolls.values()) + sum(add)
 
