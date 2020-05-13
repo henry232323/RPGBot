@@ -152,6 +152,9 @@ Total:\t\t {} dollars
     async def pay(self, ctx, amount: NumberConverter, member: discord.Member):
         """Pay another user money
         Example: rp!pay 500 @Henry#6174"""
+        if ctx.author.bot:
+            await ctx.send(await _(ctx, "Bots don't have money to pay other people! Use rp!givemoney instead of rp!pay"))
+            return
         amount = abs(amount)
         async with self.bot.di.rm.lock(ctx.author.id):
             await self.bot.di.add_eco(ctx.author, -amount)
