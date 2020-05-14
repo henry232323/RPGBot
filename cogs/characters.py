@@ -865,7 +865,7 @@ Total:\t\t {} dollars
             if data["caliases"][alias_name] in data["characters"]:
 
                 if data["characters"][data["caliases"][alias_name]][
-                    1] != ctx.author.id or not checks.role_or_permissions(ctx,
+                    1] != ctx.author.id and not checks.role_or_permissions(ctx,
                                                                           lambda r: r.name in (
                                                                                   'Bot Mod', 'Bot Admin',
                                                                                   'Bot Moderator'),
