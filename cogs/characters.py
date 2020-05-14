@@ -864,7 +864,7 @@ Total:\t\t {} dollars
 
             if data["caliases"][alias_name] in data["characters"]:
 
-                if data["characters"][data["caliases"][alias_name]][1] != ctx.author:
+                if data["characters"][data["caliases"][alias_name]]["owner"] != ctx.author.id:
                     await ctx.send(await _(ctx, "You cannot delete other people's aliases!"))
                     return
 
