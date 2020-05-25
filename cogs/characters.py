@@ -179,7 +179,7 @@ class Characters(commands.Cog):
                 break
             else:
                 if len(content) + len(response.content) > 3500:
-                    await ctx.send(await _("Can't create a description of over 3500 characters"))
+                    await ctx.send(await _(ctx, "Can't create a description of over 3500 characters"))
                 else:
                     content += response.content + "\n"
         character["description"] = content
@@ -189,6 +189,7 @@ class Characters(commands.Cog):
                     " use the icon keyword to give the character an icon. Formats use regular syntax e.g. "
                     "`image: http://example.com/image.jpg, hair_color: blond, nickname: Kevin` (Separate keys with commas or newlines)"
                     ))
+        count = 0
         while True:
             response = await self.bot.wait_for("message", check=check, timeout=300)
             if response.content.lower() == "cancel":
@@ -215,6 +216,10 @@ class Characters(commands.Cog):
                         break
                 except:
                     await ctx.send(await _(ctx, "Invalid formatting! Try again"))
+                    count += 1
+                    if count >= 3:
+                        await ctx.send(await _(ctx, "Too many failed attempts, cancelling!"))
+                        return
                     continue
 
         character["level"] = character["meta"].pop("level", None)
