@@ -222,12 +222,12 @@ class Bot(commands.AutoShardedBot):
             self.server_commands[ctx.guild.id] += 1
             if ctx.guild.id not in self.patrons:
                 if (self.server_commands[ctx.guild.id] % 50) == 0:
-                    await ctx.send(await _(ctx,
-                                           "This bot costs $300/yr to run. If you like the utilities it provides,"
-                                           " consider buying me a coffee <https://ko-fi.com/henrys>"
-                                           " or subscribe as a Patron <https://www.patreon.com/henry232323>"
-                                           " Also consider upvoting the bot to help us grow <https://discordbots.org/bot/305177429612298242>"
-                                           ))
+                    await ctx.send(discord.Embed(description=await _(ctx,
+                                                                     "This bot costs $300/yr to run. If you like the utilities it provides,"
+                                                                     " consider buying me a [coffee](https://ko-fi.com/henrys)"
+                                                                     " or subscribe as a [Patron](https://www.patreon.com/henry232323)"
+                                                                     " We've also recently released a new version of the bot, get it [here](https://discord.com/oauth2/authorize?client_id=673737213959208980&scope=bot&permissions=805596240) "
+                                                                     )))
 
             if await self.di.get_exp_enabled(ctx.guild):
                 add = choice([0, 0, 0, 0, 0, 1, 1, 2, 3])
@@ -368,6 +368,7 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
               " Players may list items on a market for other users to buy." \
               " Users may create characters with teams from pets. " \
               "Server administrators may add and give items to the server and its users.```\n" \
+              "**RPGBot V2 is out! Get it here!** <https://discord.com/oauth2/authorize?client_id=673737213959208980&scope=bot&permissions=805596240>" \
               f"**Add to your server**: <{invlink}>\n" \
               f"**Support Server**: {servinv}\n" \
               f"**Command List**: <{sourcelink}>\n" \
