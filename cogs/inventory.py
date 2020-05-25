@@ -594,6 +594,8 @@ class Inventory(commands.Cog):
         """
         await ctx.send(await _(ctx, "What items must be consumed to follow this recipe? e.g. "
                                     "Applex5 Breadx2"))
+
+        count = 0
         while True:
             try:
                 inmsg = await ctx.bot.wait_for("message",
@@ -614,9 +616,14 @@ class Inventory(commands.Cog):
                 if isinstance(e, TimeoutError):
                     raise
                 await ctx.send(await _(ctx, "Invalid formatting! Try again!"))
+                count += 1
+                if count >= 3:
+                    await ctx.send(await _(ctx, "Too many failed attempts, cancelling!"))
+                    return
 
         await ctx.send(await _(ctx, "What items will be given upon the completion of this recipe? e.g. "
                                     "\"Apple Piex1\""))
+        count = 0
         while True:
             try:
                 outmsg = await ctx.bot.wait_for("message",
@@ -638,6 +645,10 @@ class Inventory(commands.Cog):
                 if isinstance(e, TimeoutError):
                     raise
                 await ctx.send(await _(ctx, "Invalid formatting! Try again!"))
+                count += 1
+                if count >= 3:
+                    await ctx.send(await _(ctx, "Too many failed attempts, cancelling!"))
+                    return
 
         await ctx.bot.di.add_recipe(ctx.guild, name, dict(initems), dict(outitems))
         await ctx.send(await _(ctx, "Successfully created new recipe!"))
