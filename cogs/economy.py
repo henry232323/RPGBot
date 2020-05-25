@@ -132,7 +132,7 @@ Total:\t\t {} dollars
     @commands.command()
     async def takemoney(self, ctx, amount: NumberConverter, *members: MemberConverter):
         """Take the member's money
-        Example: rp!givemoney 5000 @Henry#6174
+        Example: rp!takemoney 5000 @Henry#6174
         Requires Bot Moderator or Bot Admin"""
         members = chain(members)
         succ = False
@@ -152,6 +152,9 @@ Total:\t\t {} dollars
     async def pay(self, ctx, amount: NumberConverter, member: discord.Member):
         """Pay another user money
         Example: rp!pay 500 @Henry#6174"""
+        if ctx.author.bot:
+            await ctx.send(await _(ctx, "Bots don't have money to pay other people! Use rp!givemoney instead of rp!pay"))
+            return
         amount = abs(amount)
         async with self.bot.di.rm.lock(ctx.author.id):
             await self.bot.di.add_eco(ctx.author, -amount)

@@ -118,6 +118,24 @@ class Inventory(commands.Cog):
 
         await ctx.send(await _(ctx, "Items given!"))
 
+    @checks.mod_or_permissions()
+    @commands.command()
+    async def giveitems(self, ctx, other: discord.Member, *items: str):
+        """Give items ({item}x{#}) to a member
+        Example: rp!giveitems @Henry#6174 Pokeballx3 Orangex5"""
+        fitems = []
+        item_list = await self.bot.di.get_guild_items(ctx.guild)
+        for item in items:
+            if item not in item_list:
+                await ctx.send(await _(ctx, "That is not a valid item!"))
+                return
+            split = item.split('x')
+            split, num = "x".join(split[:-1]), abs(int(split[-1]))
+            fitems.append((split, num))
+
+        await self.bot.di.give_items(other, *fitems)
+        await ctx.send(await _(ctx, "Items given!"))
+
     @checks.mod_or_inv()
     @commands.command()
     async def addinv(self, ctx, num: IntConverter, *, item: str):

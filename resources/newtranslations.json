@@ -1509,5 +1509,9 @@
     "fr": "L'échange est reussi",
     "de": "Handel abgeschlossen!",
     "ru": "Обмен успешно выполнен!"
+  },
+  "Bots don't have money to pay other people! Use rp!givemoney instead of rp!pay": {
+    "de": "Bots haben kein geld dass sie anderen leuten zahlen könnten! Verwend rp!givemoney statt rp!pay",
+    "es": "Bots no pueden tener dinero para dar a otra gente! Tienes que usar rp!givemoney"
   }
 }
