@@ -864,7 +864,12 @@ Total:\t\t {} dollars
 
             if data["caliases"][alias_name] in data["characters"]:
 
-                if data["characters"][data["caliases"][alias_name]][1] != ctx.author:
+                if data["characters"][data["caliases"][alias_name]][
+                    1] != ctx.author.id and not checks.role_or_permissions(ctx,
+                                                                          lambda r: r.name in (
+                                                                                  'Bot Mod', 'Bot Admin',
+                                                                                  'Bot Moderator'),
+                                                                          manage_server=True):
                     await ctx.send(await _(ctx, "You cannot delete other people's aliases!"))
                     return
 
