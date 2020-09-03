@@ -19,15 +19,15 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-from discord.ext import commands
-import discord
 import asyncio
-
-from .utils.data import MemberConverter, ItemOrNumber, chain, IntConverter, create_pages, parse_varargs, chunkn
-from .utils import checks
-from .utils.translation import _
-
 from random import choice, randint
+
+import discord
+from discord.ext import commands
+
+from .utils import checks
+from .utils.data import MemberConverter, ItemOrNumber, chain, IntConverter, create_pages, parse_varargs, chunkn
+from .utils.translation import _
 
 
 class Inventory(commands.Cog):
