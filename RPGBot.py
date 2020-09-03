@@ -254,6 +254,8 @@ class Bot(commands.AutoShardedBot):
                 await ctx.message.delete()
 
     async def on_member_join(self, member):
+        if await self.di.get_balance(member) != 0:
+            return
         amount = await self.di.get_guild_start(member.guild)
         if amount:
             await self.di.set_eco(member, amount)
