@@ -406,5 +406,5 @@ logger.addHandler(handler)
 if "debug" in sys.argv:
     prefix = "rp$"
 
-prp = Bot(command_prefix=prefix, description=description, pm_help=True, shard_count=7)
+prp = Bot(command_prefix=prefix, description=description, pm_help=True, shard_count=20)
 prp.run(_auth[0])

@@ -46,7 +46,7 @@ class Salary(commands.Cog):
                                 for role, amount in roles.items():
                                     rob = discord.utils.get(gob.roles, id=int(role))
                                     if rob:
-                                        for member in rob.members:
+                                        for member in await rob.fetch_members().flatten():
                                             if isinstance(amount, (int, float)):
                                                 try:
                                                     await self.bot.di.add_eco(member, amount)
