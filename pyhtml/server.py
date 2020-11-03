@@ -236,7 +236,7 @@ class API(web.Application):
         async with self.pool.acquire() as connection:
             resp = await connection.fetch(req)
 
-        users = [(discord.utils.get(guild.members, id=int(x["row"][0])), x["row"][1]) for x in resp if
+        users = [(discord.utils.get(await guild.fetch_members(None).flatten(), id=int(x["row"][0])), x["row"][1]) for x in resp if
                  (len(x["row"]) == 2) and (x["row"][1] is not None)]
         users = [x for x in users if x[0]]
         users.sort(key=lambda x: -float(x[1]))

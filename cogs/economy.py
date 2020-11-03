@@ -189,7 +189,7 @@ Total:\t\t {:.2f} dollars
 
         i = 0
         try:
-            users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
+            users = [await ctx.guild.fetch_member(x['user']) for x in chunks[i]]
         except Exception:
             br = []
             fr = dict()
