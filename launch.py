@@ -21,7 +21,7 @@ async def on_ready():
     print("Launcher Ready")
 
     if process is None:
-        process = sp.Popen(['python3.8', 'main.py'])
+        process = sp.Popen(['python3.8', 'RPGBot.py'])
 
 
 @bot.command()
@@ -32,7 +32,7 @@ async def rstart(ctx):
     if process is not None and process.poll() is None:
         await ctx.channel.send('It\'s already running!')
         return
-    process = sp.Popen(['python3.8', 'main.py'])
+    process = sp.Popen(['python3.8', 'RPGBot.py'])
     await ctx.channel.send("Starting!")
 
 
