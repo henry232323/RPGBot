@@ -700,9 +700,9 @@ class Characters(commands.Cog):
         bal = await self.c_balances(ctx.guild, name)
 
         data = """
-On you:\t\t {} dollars
-In the bank:\t {} dollars in the bank
-Total:\t\t {} dollars
+On you:\t\t {:.2f} dollars
+In the bank:\t {:.2f} dollars in the bank
+Total:\t\t {:.2f} dollars
         """
 
         embed = discord.Embed(

@@ -81,16 +81,17 @@ class Economy(commands.Cog):
         bal = await ctx.bot.di.get_all_balances(member)
 
         data = """
-On you:\t\t {} dollars
-In the bank:\t {} dollars in the bank
-Total:\t\t {} dollars
+On you:\t\t {:.2f} dollars
+In the bank:\t {:.2f} dollars in the bank
+Total:\t\t {:.2f} dollars
         """
 
         embed = discord.Embed(
-            description=(await _(ctx, data)).format(int(bal[0]) if int(bal[0]) == bal[0] else bal[0],
-                                                    int(bal[1]) if int(bal[1]) == bal[1] else bal[1],
-                                                    sum(bal)
-                                                    ),
+            description=(await _(ctx, data)).format(
+                int(bal[0]) if int(bal[0]) == bal[0] else bal[0],
+                int(bal[1]) if int(bal[1]) == bal[1] else bal[1],
+                sum(bal)
+            ),
             color=randint(0, 0xFFFFFF),
         )
 
@@ -153,7 +154,8 @@ Total:\t\t {} dollars
         """Pay another user money
         Example: rp!pay 500 @Henry#6174"""
         if ctx.author.bot:
-            await ctx.send(await _(ctx, "Bots don't have money to pay other people! Use rp!givemoney instead of rp!pay"))
+            await ctx.send(
+                await _(ctx, "Bots don't have money to pay other people! Use rp!givemoney instead of rp!pay"))
             return
         amount = abs(amount)
         async with self.bot.di.rm.lock(ctx.author.id):
