@@ -65,11 +65,11 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "That guild doesn't exist here!"))
             return
 
-        mobj = await guild.fetch_members(20)
+        mobj = [await ctx.guild.fetch_member(x) for x in guild.members[:20]]
 
         members = "\n".join([u.mention for u in mobj if u])
-        if guild.member_count > 20:
-            members = members + (await _(ctx, "\nAnd {} more...")).format(guild.member_count - 20)
+        if len(guild.members) > 20:
+            members = members + (await _(ctx, "\nAnd {} more...")).format(len(guild.members) - 20)
 
         litems = guild.items.items() if len(guild.items) < 20 else list(guild.items.items())[20:]
         items = "\n".join(f"{x} x{y}" for x, y in litems)
@@ -189,7 +189,7 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "That guild doesn't exist here!"))
             return
 
-        members = "\n".join([member.mention for member in await ctx.guild.fetch_members(20)])
+        members = "\n".join([(await ctx.guild.fetch_member(x)).mention for member in guild.members])
         if guild.member_count > 20:
             members = members + (await _(ctx, "\nAnd {} more...")).format(guild.members - 20)
 
