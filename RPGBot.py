@@ -406,5 +406,8 @@ logger.addHandler(handler)
 if "debug" in sys.argv:
     prefix = "rp$"
 
-prp = Bot(command_prefix=prefix, description=description, pm_help=True, shard_count=20)
+intents = discord.Intents.default()
+intents.members = True
+
+prp = Bot(command_prefix=prefix, description=description, pm_help=True, shard_count=20, intents=intents)
 prp.run(_auth[0])
