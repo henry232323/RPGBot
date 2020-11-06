@@ -444,7 +444,7 @@ class API(web.Application):
 
                     logging.info(f"Received request to convert {formdata['amount']} from {name} "
                                  f"to {formdata['to_bot']} on server {formdata['server_id']}")
-                    if type is 0:  # If using webhooks
+                    if type == 0:  # If using webhooks
                         try:
                             await self.session.post(url, json=dumped)  # Post the payload to the other bot's URL
                         except Exception as e:
