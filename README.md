@@ -1,3 +1,6 @@
+# Check out our newest version of the bot, RPGBot-V2, its better in every way
+[RPGBot-V2](https://top.gg/bot/673737213959208980)
+
 A RPG bot, with a working inventory, market and economy, team setups and characters aswell. Each user has a server unique inventory and balance. Players may list items on a market for other users to buy. Users may create characters with teams from Pet in their storage box. Server administrators may add and give items to the server and its users.
 Pet boxes and server configurations. 
 
