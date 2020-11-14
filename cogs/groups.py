@@ -65,16 +65,11 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "That guild doesn't exist here!"))
             return
 
-        if len(guild.members) <= 20:
-            cmem = guild.members
-        else:
-            cmem = guild.members[20:]
-
-        mobj = (discord.utils.get(ctx.guild.members, id=x) for x in cmem)
+        mobj = [await ctx.guild.fetch_member(x) for x in guild.members[:20]]
 
         members = "\n".join([u.mention for u in mobj if u])
         if len(guild.members) > 20:
-            members = members + (await _(ctx, "\nAnd {} more...")).format(guild.members - 20)
+            members = members + (await _(ctx, "\nAnd {} more...")).format(len(guild.members) - 20)
 
         litems = guild.items.items() if len(guild.items) < 20 else list(guild.items.items())[20:]
         items = "\n".join(f"{x} x{y}" for x, y in litems)
@@ -87,7 +82,7 @@ class Groups(commands.Cog):
         if guild.image is not None:
             embed.set_image(url=guild.image)
 
-        owner = discord.utils.get(ctx.guild.members, id=guild.owner)
+        owner = await ctx.guild.fetch_member(guild.owner)
         oment = owner.mention if owner else "Not in server"
         currency = await ctx.bot.di.get_currency(ctx.guild)
 
@@ -194,9 +189,8 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "That guild doesn't exist here!"))
             return
 
-        members = "\n".join([discord.utils.get(ctx.guild.members, id=x).mention for x in
-                             (guild.members if len(guild.members) >= 20 else ctx.members[20:])])
-        if len(guild.members) > 20:
+        members = "\n".join([(await ctx.guild.fetch_member(x)).mention for member in guild.members])
+        if guild.member_count > 20:
             members = members + (await _(ctx, "\nAnd {} more...")).format(guild.members - 20)
 
         items = "\n".join([f"{x} x{y}" for x, y in

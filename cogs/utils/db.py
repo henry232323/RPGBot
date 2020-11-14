@@ -173,7 +173,7 @@ class Database:
         if values:
             return values
         else:
-            req = f"""SELECT info FROM servdata WHERE UUID = $1"""
+            req = f"""SELECT info FROM guilddata WHERE UUID = $1"""
             async with self._conn.acquire() as connection:
                 response = await connection.fetchval(req, guild.id)
             data = json.loads(response) if response else response

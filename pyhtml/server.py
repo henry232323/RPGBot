@@ -236,7 +236,7 @@ class API(web.Application):
         async with self.pool.acquire() as connection:
             resp = await connection.fetch(req)
 
-        users = [(discord.utils.get(guild.members, id=int(x["row"][0])), x["row"][1]) for x in resp if
+        users = [(discord.utils.get(await guild.fetch_members(None).flatten(), id=int(x["row"][0])), x["row"][1]) for x in resp if
                  (len(x["row"]) == 2) and (x["row"][1] is not None)]
         users = [x for x in users if x[0]]
         users.sort(key=lambda x: -float(x[1]))
@@ -444,7 +444,7 @@ class API(web.Application):
 
                     logging.info(f"Received request to convert {formdata['amount']} from {name} "
                                  f"to {formdata['to_bot']} on server {formdata['server_id']}")
-                    if type is 0:  # If using webhooks
+                    if type == 0:  # If using webhooks
                         try:
                             await self.session.post(url, json=dumped)  # Post the payload to the other bot's URL
                         except Exception as e:

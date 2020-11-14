@@ -609,13 +609,20 @@ class Mapping(commands.Cog):
             tstring = mapo.generators.get(tile)
             if tstring is None:
                 tstring = mapo.generators.get(tile)
-        await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
 
         if isinstance(mapo, AdvancedMap):
             if spawned in mapo.spawnables:
                 sp = mapo.spawnables[spawned]
                 if "say" in sp:
-                    await ctx.send(choice(sp["say"]).replace("{player}", str(ctx.author)))
+                    await ctx.send(
+                        choice(sp["say"])
+                            .replace("{player}", str(ctx.author))
+                            .replace("{tile}", tstring)
+                            .replace("{spawned}", spawned)
+                            .replace("{character}", char.name)
+                    )
+                else:
+                    await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
                 if "give" in sp:
                     if isinstance(sp["give"], dict):
                         items = sp['give'].items()
@@ -632,6 +639,8 @@ class Mapping(commands.Cog):
                     char.meta["maps"][mapname] = [int(x) for x in sp["teleport"][1]]
                     char.meta["map"] = sp["teleport"][0]
                     await self.bot.di.add_character(ctx.guild, char)
+        else:
+            await ctx.send((await _(ctx, "You enter a {}. You see {}")).format(tstring, spawned))
 
     @map.command()
     async def buy(self, ctx, amount: int, itemname: str, name: str = None):
@@ -840,6 +849,8 @@ class Mapping(commands.Cog):
     @map.command(aliases=["upload"])
     @checks.admin_or_permissions()
     async def load(self, ctx, name: str):
+        """See the example for load in the tutorial. Inside messages like "say" you can insert {player}, {tile}, and \
+        {spawned} to substitute for the names."""
         if not ctx.message.attachments:
             await ctx.send(await _(ctx, "This command needs to have a file attached!"))
             return
