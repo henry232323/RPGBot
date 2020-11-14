@@ -796,7 +796,7 @@ class DataInteraction(object):
     async def add_eco(self, member, amount):
         """Give (or take) a user('s) money"""
         ud = await self.db.get_user_data(member)
-        if ud["money"] + amount < 0 and ud["money"] > 0:
+        if ud["money"] + amount < 0 and (ud["money"] >= 0 or amount < 0):
             raise ValueError("Cannot take more than user has!")
         ud["money"] += amount
         await self.db.update_user_data(member, ud)
