@@ -143,6 +143,7 @@ class Pets(commands.Cog):
                              " Type 'skip' to skip."))
 
             pet["stats"] = dict()
+            count = 0
             while True:
                 response = await self.bot.wait_for("message", check=check, timeout=120)
                 if response.content.lower() == "cancel":
@@ -166,13 +167,17 @@ class Pets(commands.Cog):
                             break
                     except:
                         await ctx.send(await _(ctx, "Invalid formatting! Try again"))
+                        count += 1
+                        if count >= 3:
+                            await ctx.send(await _(ctx, "Too many failed attempts, cancelling!"))
+                            return
                         continue
                     continue
 
             pet["meta"] = dict()
             await ctx.send(await _(ctx, "Any additional data? (Format like the above, for example "
                                         "nature: hasty, color: brown)"))
-
+            count = 0
             while True:
                 response = await self.bot.wait_for("message", check=check, timeout=120)
                 if response.content.lower() == "cancel":
@@ -196,6 +201,10 @@ class Pets(commands.Cog):
                             break
                     except:
                         await ctx.send(await _(ctx, "Invalid formatting! Try again"))
+                        count += 1
+                        if count >= 3:
+                            await ctx.send(await _(ctx, "Too many failed attempts, cancelling!"))
+                            return
                         continue
 
             id = await self.bot.di.add_pet(ctx.author, pet)
