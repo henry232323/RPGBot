@@ -189,7 +189,7 @@ class Groups(commands.Cog):
             await ctx.send(await _(ctx, "That guild doesn't exist here!"))
             return
 
-        members = "\n".join([(await ctx.guild.fetch_member(x)).mention for member in guild.members])
+        members = "\n".join([(await ctx.guild.fetch_member(member)).mention for member in guild.members])
         if guild.member_count > 20:
             members = members + (await _(ctx, "\nAnd {} more...")).format(guild.members - 20)
 
