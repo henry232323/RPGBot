@@ -46,8 +46,24 @@ class User(commands.Cog):
     @commands.command(name="userinfo", aliases=["ui"])
     async def ui(self, ctx, *, user: discord.Member = None):
         """Get info on a user"""
+        dest = ctx.channel
         if user is None:
             user = ctx.author
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        try:
+            is_mod = checks.role_or_permissions(ctx,
+                                                lambda r: r.name in ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
+                                                manage_server=True)
+        except:
+            is_mod = False
+
+        hide = gd.get("hideinv", False)
+
+        if not is_mod and hide:
+            user = ctx.author
+
+        if hide:
+            dest = ctx.author
 
         embed = discord.Embed(color=randint(0, 0xFFFFFF))
         embed.set_author(name=user.display_name, icon_url=user.avatar_url)
@@ -90,11 +106,6 @@ class User(commands.Cog):
                                                                                     ud.get('exp', 0),
                                                                                     self.bot.get_exp(
                                                                                         ud.get('level', 1))))
-
-        if hide:
-            dest = ctx.author
-        else:
-            dest = ctx.channel
 
         await dest.send(embed=embed)
 
