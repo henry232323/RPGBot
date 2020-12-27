@@ -91,7 +91,12 @@ class User(commands.Cog):
                                                                                     self.bot.get_exp(
                                                                                         ud.get('level', 1))))
 
-        await ctx.send(embed=embed)
+        if hide:
+            dest = ctx.author
+        else:
+            dest = ctx.channel
+
+        await dest.send(embed=embed)
 
     @checks.mod_or_permissions()
     @commands.group(aliases=["exp"], invoke_without_command=True)
