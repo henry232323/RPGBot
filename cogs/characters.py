@@ -234,8 +234,7 @@ class Characters(commands.Cog):
 
             await self.bot.db.update_guild_data(ctx.guild, data)
 
-        async with self.bot.di.rm.lock(ctx.guild.id):
-            await self.bot.di.add_character(ctx.guild, Character(**character))
+        await self.bot.di.add_character(ctx.guild, Character(**character))
         await ctx.send(
             await _(ctx, "Character created!"))
 
