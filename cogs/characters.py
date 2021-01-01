@@ -94,7 +94,7 @@ class Characters(commands.Cog):
             embed = discord.Embed(description=char.description)
             embed.set_author(name=char.name, icon_url=owner.avatar_url)
             if char.meta.get("image"):
-                embed.set_thumbnail(url=char.meta["image"])
+                embed.set_image(url=char.meta["image"])
             embed.add_field(name=await _(ctx, "Name"), value=char.name)
             embed.add_field(name=await _(ctx, "Owner"), value=str(owner))
             if char.level is not None:
