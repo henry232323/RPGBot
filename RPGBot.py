@@ -20,6 +20,7 @@
 # DEALINGS IN THE SOFTWARE.
 
 import asyncio
+import atexit
 import datetime
 import logging
 import os
@@ -117,6 +118,8 @@ class Bot(commands.AutoShardedBot):
 
         with open("savedata/prefixes.json") as prf:
             self.prefixes = json.loads(prf.read())
+
+        atexit.register(lambda: json.dump(self.prefixes, open("savedata/prefixes.json", 'w')))
 
         icogs = [
             cogs.admin.Admin(self),
