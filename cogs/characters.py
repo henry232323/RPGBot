@@ -168,7 +168,7 @@ class Characters(commands.Cog):
             await ctx.send(await _(ctx, "A character with this name already exists!"))
             return
 
-        check = lambda x: x.channel is ctx.channel and x.author is ctx.author
+        check = lambda x: x.channel == ctx.channel and x.author == ctx.author
         character = dict(name=name, owner=user.id, meta=dict(), team=list())
         await ctx.send(
             await _(ctx, "Describe the character (Relevant character sheet) (Say `done` when you're done describing)"))
