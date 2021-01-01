@@ -621,71 +621,70 @@ Total:\t\t {:.2f} dollars
         Can be sold for 10 and cannot be bought. Must be an existing item (Use rp!settings additem first)!
           Requires Bot Moderator or Admin"""
 
-        async with self.bot.di.rm.lock(ctx.guild.id):
-            gd = await self.bot.db.get_guild_data(ctx.guild)
-            if name not in gd["items"]:
+        gd = await self.bot.db.get_guild_data(ctx.guild)
+        if name not in gd["items"]:
+            await ctx.send(
+                await _(ctx, "This item doesn't exist! Try creating the item first with `rp!settings additem`"))
+            return
+
+        shop = gd.get("shop_items", dict())
+        item = dict(buy=0, sell=0, level=0)
+        shop[name] = item
+        check = lambda x: x.author is ctx.author and x.channel is ctx.channel
+
+        await ctx.send(await _(ctx, "Say 'cancel' to cancel or 'skip' to skip a step"))
+        try:
+            while True:
+                await ctx.send(await _(ctx, "How much should this be buyable for? 0 for not buyable"))
+                resp = await self.bot.wait_for("message", check=check)
+                try:
+                    item["buy"] = float(resp.content)
+                except ValueError:
+                    if resp.content.lower() == "cancel":
+                        await ctx.send(await _(ctx, "Cancelling!"))
+                        return
+                    await ctx.send(await _(ctx, "That is not a valid number!"))
+                    continue
+                break
+
+            while True:
+                await ctx.send(await _(ctx, "How much should this be sellable for? 0 for not sellable"))
+                resp = await self.bot.wait_for("message", check=check)
+                try:
+                    item["sell"] = float(resp.content)
+                except ValueError:
+                    if resp.content.lower() == "cancel":
+                        await ctx.send(await _(ctx, "Cancelling!"))
+                        return
+                    await ctx.send(await _(ctx, "That is not a valid number!"))
+                    continue
+                break
+
+            while True:
                 await ctx.send(
-                    await _(ctx, "This item doesn't exist! Try creating the item first with `rp!settings additem`"))
+                    await _(ctx, "What is the minimum level a user must be for this item? 0 for no minimum"))
+                resp = await self.bot.wait_for("message", check=check)
+                try:
+                    item["level"] = int(resp.content)
+                except ValueError:
+                    if resp.content.lower() == "cancel":
+                        await ctx.send(await _(ctx, "Cancelling!"))
+                        return
+                    await ctx.send(await _(ctx, "That is not a valid number!"))
+                    continue
+                break
+
+            if not sum(item.values()):
+                await ctx.send(
+                    await _(ctx, "You can't make an item with 0 for every value! Cancelling, try again."))
                 return
 
-            shop = gd.get("shop_items", dict())
-            item = dict(buy=0, sell=0, level=0)
-            shop[name] = item
-            check = lambda x: x.author is ctx.author and x.channel is ctx.channel
+        except asyncio.TimeoutError:
+            await ctx.send(await _(ctx, "Timed out! Cancelling"))
+            return
 
-            await ctx.send(await _(ctx, "Say 'cancel' to cancel or 'skip' to skip a step"))
-            try:
-                while True:
-                    await ctx.send(await _(ctx, "How much should this be buyable for? 0 for not buyable"))
-                    resp = await self.bot.wait_for("message", check=check)
-                    try:
-                        item["buy"] = float(resp.content)
-                    except ValueError:
-                        if resp.content.lower() == "cancel":
-                            await ctx.send(await _(ctx, "Cancelling!"))
-                            return
-                        await ctx.send(await _(ctx, "That is not a valid number!"))
-                        continue
-                    break
-
-                while True:
-                    await ctx.send(await _(ctx, "How much should this be sellable for? 0 for not sellable"))
-                    resp = await self.bot.wait_for("message", check=check)
-                    try:
-                        item["sell"] = float(resp.content)
-                    except ValueError:
-                        if resp.content.lower() == "cancel":
-                            await ctx.send(await _(ctx, "Cancelling!"))
-                            return
-                        await ctx.send(await _(ctx, "That is not a valid number!"))
-                        continue
-                    break
-
-                while True:
-                    await ctx.send(
-                        await _(ctx, "What is the minimum level a user must be for this item? 0 for no minimum"))
-                    resp = await self.bot.wait_for("message", check=check)
-                    try:
-                        item["level"] = int(resp.content)
-                    except ValueError:
-                        if resp.content.lower() == "cancel":
-                            await ctx.send(await _(ctx, "Cancelling!"))
-                            return
-                        await ctx.send(await _(ctx, "That is not a valid number!"))
-                        continue
-                    break
-
-                if not sum(item.values()):
-                    await ctx.send(
-                        await _(ctx, "You can't make an item with 0 for every value! Cancelling, try again."))
-                    return
-
-            except asyncio.TimeoutError:
-                await ctx.send(await _(ctx, "Timed out! Cancelling"))
-                return
-
-            await self.bot.di.update_guild_shop(ctx.guild, shop)
-            await ctx.send(await _(ctx, "Guild shop updated"))
+        await self.bot.di.update_guild_shop(ctx.guild, shop)
+        await ctx.send(await _(ctx, "Guild shop updated"))
 
     @shop.command(aliases=["remove"])
     @checks.mod_or_permissions()
@@ -694,15 +693,14 @@ Total:\t\t {:.2f} dollars
         Example: `rp!shop remove Pokeball`
         Requires Bot Moderator or Bot Admin"""
 
-        async with self.bot.di.rm.lock(ctx.guild.id):
-            shop = await self.bot.di.get_guild_shop(ctx.guild)
-            try:
-                del shop[name]
-            except KeyError:
-                await ctx.send(await _(ctx, "That item isn't listed!"))
-                return
-            await self.bot.di.update_guild_shop(ctx.guild, shop)
-            await ctx.send(await _(ctx, "Successfully removed item"))
+        shop = await self.bot.di.get_guild_shop(ctx.guild)
+        try:
+            del shop[name]
+        except KeyError:
+            await ctx.send(await _(ctx, "That item isn't listed!"))
+            return
+        await self.bot.di.update_guild_shop(ctx.guild, shop)
+        await ctx.send(await _(ctx, "Successfully removed item"))
 
     @shop.command(name="buy")
     async def _buy(self, ctx, item: str, amount: IntConverter):
