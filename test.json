@@ -1,0 +1,2288 @@
+{
+  "start": 0,
+  "items": {
+    "Empu\u00f1adura-sable-laser": [
+      "Empu\u00f1adura-sable-laser",
+      "La empu\u00f1adura del sable de luz es la parte fundamental de un sable de luz, conten\u00eda todos los elementos b\u00e1sicos que permit\u00edan al arma producir el sable de energ\u00eda l\u00e1ser, la matriz emisora, el cristal del sable, la celda de energ\u00eda, entre otros.\nTanto los Jedi como la Orden Sith consideraban la construcci\u00f3n de una empu\u00f1adura de sable de luz como una etapa importante en el desarrollo de su entrenamiento, tan importante que significa que un Padawan o aprendiz Sith estaba listo para ascender al siguiente nivel.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/0\/07\/Lightsabers_negwt.jpg\/revision\/latest\/scale-to-width-down\/200?cb=20090131231500"
+      }
+    ],
+    "Placa-de-activaci\u00f3n": [
+      "Placa-de-activaci\u00f3n",
+      "La placa de activaci\u00f3n es uno de los multiple componentes del sable laser, la funci\u00f3n de esta es activar el mecanismo energ\u00e9tico de la espada en cuesti\u00f3n, activando por ende el sable laser.",
+      {}
+    ],
+    "Interruptor-de-seguridad": [
+      "Interruptor-de-seguridad",
+      "Se trataba de una parte del sable laser id\u00e9ntica a la Placa de activaci\u00f3n, este estaba con el fin de que en caso de que dicha placa fallase, poder accionar el sable laser con esta pieza.",
+      {}
+    ],
+    "Matriz-emisora": [
+      "Matriz-emisora",
+      "La matriz emisora es una de las partes mas importantes del sable laser, es en esta matriz donde se genera la energ\u00eda, que alimenta al cristal lo que hace que este emita el rayo laser propiamente dicho.",
+      {}
+    ],
+    "Ensamble-de-lente": [
+      "Ensamble-de-lente",
+      "Es la parte del sable laser que da la forma al rayo laser, esta se puede ajustar de tal manera que el rayo sea mas o menos largo y ese tipo de cosas.",
+      {}
+    ],
+    "Celda-de-energia": [
+      "Celda-de-energia",
+      "Es una parte del sable laser y dentro de este es la parte que da energ\u00eda a la matriz emisora, la cual a su vez genera el rayo laser.",
+      {}
+    ],
+    "Cristal-de-enfoque": [
+      "Cristal-de-enfoque",
+      "Un cristal del sable de luz es un t\u00e9rmino usado para definir un gran n\u00famero de cristales, gemas, piedras, y otros objetos usados como el foco en la construcci\u00f3n de un sable de luz.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/9\/90\/Crystal_Cave_SWGTCG.jpg\/revision\/latest\/scale-to-width-down\/200?cb=20090829152253"
+      }
+    ],
+    "Aro-de-cintur\u00f3n": [
+      "Aro-de-cintur\u00f3n",
+      "Es una parte opcional del sable laser, esta es puesta en la base del mismo con el fin de que se pueda enganchar a un cintur\u00f3n, es opcional ya que algunos jedi llevaban sus sables laser en la espalda o en otras posiciones distintas al cintur\u00f3n.",
+      {}
+    ],
+    "Interceptor-sith": [
+      "Interceptor-sith",
+      "El interceptor Sith era un caza estelar de origen ambiguo que form\u00f3 la mayor parte de las fuerzas espaciales de Darth Revan y Darth Malak",
+      {}
+    ],
+    "Fragata-DP20": [
+      "Fragata-DP20",
+      "La fragata DP20 fue una de los pocos dise\u00f1os dedicados de naves de guerra producidos por la Corporaci\u00f3n Corelliana de Ingenier\u00eda, y fue el miembro m\u00e1s com\u00fan en la l\u00ednea de ca\u00f1oneras corellianas.",
+      {}
+    ],
+    "Ca\u00f1onera-M22-T-Krayt": [
+      "Ca\u00f1onera-M22-T-Krayt",
+      "La mayor l\u00ednea de naves de combate espacial de MandalMotors, la M22-T Krayt Gunship, fiel a su nombre, el drag\u00f3n krayt, era un gigante en el campo de batalla.",
+      {}
+    ],
+    "Delta-7-jedi": [
+      "Delta-7-jedi",
+      "El Interceptor ligero Delta-7 clase Aethersprite, tambi\u00e9n conocido como el caza estelares Delta-7 Jedi o interceptor Jedi Delta-7, y com\u00fanmente conocido como el caza estelar Jedi, era un modelo de caza estelar dise\u00f1ado por Sistemas de Ingenier\u00eda Kuat y era utilizado por la Orden Jedi",
+      {}
+    ],
+    "Eta-2-jedi": [
+      "Eta-2-jedi",
+      "El Interceptor ligero Eta-2 clase Actis, tambi\u00e9n conocido como el caza estelar Jedi o interceptor Jedi, era un caza estelar utilizado por los Jedi",
+      {}
+    ],
+    "Carabela-seltiss-2": [
+      "Carabela-seltiss-2",
+      "La carabela Seltiss-2 era una embarcaci\u00f3n de recreo fabricada por Ubrikkian Industries y utilizada com\u00fanmente por los Hutts.",
+      {}
+    ],
+    "Destructor-estelar-clase-terminus": [
+      "Destructor-estelar-clase-terminus",
+      "El destructor clase Terminus, tambi\u00e9n conocido como un destructor de la clase C , era una Nave Capital utilizado por el Imperio Sith",
+      {}
+    ],
+    "Corbeta-ligera-clase-defensor": [
+      "Corbeta-ligera-clase-defensor",
+      "La Corbeta ligera clase Defensor era una corbeta ligera especializada construida para la Orden Jedi por la Corporaci\u00f3n de Veh\u00edculos Rendili",
+      {}
+    ],
+    "Pistola-blaster-DC-17": [
+      "Pistola-blaster-DC-17",
+      "La pistola de mano DC-17, tambi\u00e9n conocida como la pistola bl\u00e1ster DC-17,[1][2] era una pistola bl\u00e1ster pesada utilizada por los soldados clon del Gran Ej\u00e9rcito de la Rep\u00fablica Gal\u00e1ctica",
+      {}
+    ],
+    "Arma-de-mano-DC-15S": [
+      "Arma-de-mano-DC-15S",
+      "El DC-15S era la variante carabina bl\u00e1ster del rifle bl\u00e1ster DC-15A de BlasTech. Esta arma era llevada por los soldados clon de la Rep\u00fablica Gal\u00e1ctica",
+      {}
+    ],
+    "Rifle-precisi\u00f3n-DC-15X": [
+      "Rifle-precisi\u00f3n-DC-15X",
+      "El rifle de francotirador DC-15x era un rifle de francotirador fabricado para los francotiradores clon de la Rep\u00fablica Gal\u00e1ctica a trav\u00e9s de extensas modificaciones del rifle bl\u00e1ster DC-15A est\u00e1ndar.",
+      {}
+    ],
+    "Ca\u00f1on-blaster-Z-6": [
+      "Ca\u00f1on-blaster-Z-6",
+      "El ca\u00f1\u00f3n blaster rotatorio Z-6 era un ca\u00f1\u00f3n bl\u00e1ster utilizado por la Rep\u00fablica Gal\u00e1ctica[1] y la Alianza Separatista[2] durante las Guerras Clon.",
+      {}
+    ],
+    "Carguero-comercial": [
+      "Carguero-comercial",
+      "carguero de transporte producido por Motores Hoersch-Kessel, Inc.",
+      {}
+    ],
+    "Yate-espacial-clase-juglar": [
+      "Yate-espacial-clase-juglar",
+      "El yate espacial clase Juglar, tambi\u00e9n conocido como el yate espacial de lujo de Industrias Ubrikkian, era un gran yate producido por Industrias Ubrikkian.",
+      {}
+    ],
+    "Sable-laser-Obi-Wan": [
+      "Sable-laser-Obi-Wan",
+      "Es un sable laser bastante normal, sin adornos ni piezas llamativas, un simple laser util y poderoso que cumple su funci\u00f3n, es de color azul.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/d\/d5\/KenobiEpIIISaber-MR.jpg\/revision\/latest\/scale-to-width-down\/350?cb=20200104231210"
+      }
+    ],
+    "Sable-laser-Conde-Dooku": [
+      "Sable-laser-Conde-Dooku",
+      "Este sable pose\u00eda una empu\u00f1adura curva \u00fanica, hecha a mano por el mism\u00edsimo Conde Dooku, esta curva le otorgaba un mayor abanico de movimientos con la espada, haciendo que sus ataques fuesen menos predecibles y fuesen complicados de contrarrestar, es de color rojo.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/8\/85\/DookuSaber-MR.jpg\/revision\/latest\/scale-to-width-down\/350?cb=20100609142827"
+      }
+    ],
+    "Sable-laser-Palpatine": [
+      "Sable-laser-Palpatine",
+      "Este era un sable de aspecto \u00fanico, el sable l\u00e1ser estaba adornado con acabados de electrum un material raro y dif\u00edcil de encontrar que anta\u00f1o usaban los emperadores Sith en sus sables de luz, es de color rojo.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/a\/af\/Darth_Sidious_lightsaber_-_SW_Card_Trader.png\/revision\/latest?cb=20181212005527"
+      }
+    ],
+    "Sable-laser-Anakin": [
+      "Sable-laser-Anakin",
+      "Este al igual que el sable de Obi Wan era un sable de aspecto normal y corriente sin piezas o formas llamativas, es de color azul.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/8\/8e\/Lightsaber_anakin_rots.jpg\/revision\/latest?cb=20070122013637"
+      }
+    ],
+    "Sable-laser-Yoda": [
+      "Sable-laser-Yoda",
+      "El sable de luz de Yoda es el sable de luz personal de estilo shoto de Yoda, el Gran Maestro del Alto Consejo Jedi. De acuerdo con la estatura de su propietario, el arma ten\u00eda una empu\u00f1adura m\u00e1s corta que la est\u00e1ndar y una hoja m\u00e1s corta, similar a un shoto, es de color verde.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/a\/aa\/Yoda_SableLaser.jpg\/revision\/latest?cb=20131220034644"
+      }
+    ],
+    "Esposas": [
+      "Esposas",
+      "Esposas de energ\u00eda para capturar a alguien y transportarlo con facilidad",
+      {}
+    ],
+    "Sable-laser-Kit-Fisto": [
+      "Sable-laser-Kit-Fisto",
+      "Es un sable l\u00e1ser de aspecto muy com\u00fan y normal, como \u00fanica caracter\u00edstica remarcable es la capacidad de este sable de ser introducido bajo el agua y seguir funcionando de forma optima, es de color verde.",
+      {
+        "image": "https:\/\/cdn.wallapop.com\/images\/10420\/79\/y4\/__\/c10420p439972131\/i1150591869.jpg?pictureSize=W640"
+      }
+    ],
+    "Sable-laser-Plo-Koon": [
+      "Sable-laser-Plo-Koon",
+      "Es un sable l\u00e1ser muy normal y corriente, no posee ninguna caracter\u00edstica o detalle remarcable, es de color azul.",
+      {
+        "image": "https:\/\/images2.wikia.nocookie.net\/__cb20070813204361\/es.starwars\/images\/9\/96\/Ep2plokoonsaber.jpg"
+      }
+    ],
+    "Sable-laser-Grievous-1": [
+      "Sable-laser-Grievous-1",
+      "Es un sable laser normal y corriente de color azul, fu\u00e9 robado a un Jedi por Grievous en una de sus cazas de Jedi",
+      {
+        "image": "https:\/\/cdn.shopify.com\/s\/files\/1\/1440\/9434\/products\/avenger-v1-4_740x.jpg?v=1556595329"
+      }
+    ],
+    "Sable-laser-Grievous-2": [
+      "Sable-laser-Grievous-2",
+      "Es un sable laser normal y corriente de color azul, fu\u00e9 robado a un Jedi por Grievous en una de sus cazas de Jedi",
+      {
+        "image": "https:\/\/cdn.shopify.com\/s\/files\/1\/1440\/9434\/products\/pathfinder-3_740x.jpg?v=1556601930"
+      }
+    ],
+    "Sable-laser-Grievous-3": [
+      "Sable-laser-Grievous-3",
+      "Es un sable laser normal y corriente de color verde, fu\u00e9 robado a un Jedi por Grievous en una de sus cazas de Jedi",
+      {
+        "image": "https:\/\/cdn.shopify.com\/s\/files\/1\/1440\/9434\/products\/phoenix-1_740x.jpg?v=1556602221"
+      }
+    ],
+    "Sable-laser-Grievous-4": [
+      "Sable-laser-Grievous-4",
+      "Es un sable laser normal y corriente de color verde, fu\u00e9 robado a un Jedi por Grievous en una de sus cazas de Jedi",
+      {
+        "image": "https:\/\/cdn.shopify.com\/s\/files\/1\/1440\/9434\/products\/eknight-1_740x.jpg?v=1556597254"
+      }
+    ],
+    "Detonador-termal": [
+      "Detonador-termal",
+      "Los detonadores termales, o detonadores t\u00e9rmicos, eran dispositivos esf\u00e9ricos, del tama\u00f1o de la palma de la mano, que se usaban como armas explosivas extremadamente letales. Adem\u00e1s de ser sorprendentemente poderosos para su tama\u00f1o, solo pod\u00edan ser apagadas por quien las encend\u00eda. Y se disparar\u00edan solo cuando se activaran, por lo tanto eran muy resistentes y seguras al transportarlas.",
+      {
+        "image": "https:\/\/www.google.com\/url?sa=i&url=https%3A%2F%2Fstarwars.fandom.com%2Fes%2Fwiki%2FDetonador_termal&psig=AOvVaw39U0zMJL1530RlfMsmTWqd&ust=1584549478474000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPjYhfn4oegCFQAAAAAdAAAAABAD"
+      }
+    ],
+    "Sistema-de-Arma-Intercambiable-DC-17m": [
+      "Sistema-de-Arma-Intercambiable-DC-17m",
+      "El Sistema de Arma Intercambiable DC-17m (SAI DC-17m) era un sistema configurable de armas de combate utilizado por los comandos clon de la Rep\u00fablica Gal\u00e1ctica. Dise\u00f1ado por Industrias BlasTech para satisfacer las demandas de los soldados de las fuerzas especiales de \u00e9lite del Gran Ej\u00e9rcito de la Rep\u00fablica, el DC-17m se convirti\u00f3 en el arma \u00fanica de los comandos de la Rep\u00fablica durante las Guerras Clon. Siendo un arma adaptable, el DC-17m era capaz de cumplir m\u00faltiples funciones de combate debido a su capacidad para reconfigurarse en un rifle de asalto bl\u00e1ster est\u00e1ndar, un rifle de francotirador compacto o un lanzagranadas antiblindaje, seg\u00fan las necesidades del usuario. Estos rasgos hicieron que el DC-17m fuera invaluable para sus propietarios comandos clon, y el DC-17 demostr\u00f3 ser un arma peligrosa contra la Confederaci\u00f3n de Sistemas Independientes en innumerables campos de batalla en toda la galaxia, desde los desiertos de Geonosis hasta el paisaje urbano de Coruscant y los bosques de Kashyyyk.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/6\/6e\/DC17mbasic.jpg\/revision\/latest?cb=20180810224751"
+      }
+    ],
+    "Rifle-bl\u00e1ster-WESTAR-M5": [
+      "Rifle-bl\u00e1ster-WESTAR-M5",
+      "El rifle bl\u00e1ster WESTAR-M5 era un rifle bl\u00e1ster utilizado durante las Guerras Clon por el Gran Ej\u00e9rcito de la Rep\u00fablica . Fueron utilizados principalmente por Comandos de Reconocimiento Avanzado y Marines Gal\u00e1cticos durante los \u00faltimos a\u00f1os del conflicto.\n\nEl rifle bl\u00e1ster podr\u00eda calibrarse para disparar en modos semiautom\u00e1tico, autom\u00e1tico y de r\u00e1faga de fuego, y podr\u00eda equiparse con una variedad de accesorios, incluido un lanzagranadas debajo del ca\u00f1\u00f3n que podr\u00eda usarse contra enemigos blindados.",
+      {
+        "image": "https:\/\/i.pinimg.com\/originals\/16\/8c\/b7\/168cb750ac0d5c15f264b79b233f5d06.jpg"
+      }
+    ],
+    "Vibrohoja-Espada": [
+      "Vibrohoja-Espada",
+      "Las vibrohojas o vibrocuchillos eran un tipo de arma blanca que usaban vibraciones para incrementar la efectividad del corte. Espadas, picas, cuchillos y hachas ten\u00edan el mismo dise\u00f1o b\u00e1sico: el mango del arma usualmente ten\u00eda un generador ultras\u00f3nico compacto que ocasionara que la hoja vibrara a una velocidad incre\u00edble, con lo que el toque m\u00e1s leve abr\u00eda una grave herida. Pod\u00eda ser mejorada con cortosis, permiti\u00e9ndole detener los golpes de sables de luz.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/f\/f9\/Vibrosword-GI.jpg\/revision\/latest?cb=20100507185414"
+      }
+    ],
+    "Vibrohoja-Cuchillo": [
+      "Vibrohoja-Cuchillo",
+      "Las vibrohojas o vibrocuchillos eran un tipo de arma blanca que usaban vibraciones para incrementar la efectividad del corte. Espadas, picas, cuchillos y hachas ten\u00edan el mismo dise\u00f1o b\u00e1sico: el mango del arma usualmente ten\u00eda un generador ultras\u00f3nico compacto que ocasionara que la hoja vibrara a una velocidad incre\u00edble, con lo que el toque m\u00e1s leve abr\u00eda una grave herida. Pod\u00eda ser mejorada con cortosis, permiti\u00e9ndole detener los golpes de sables de luz.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/e\/e5\/Vibroblade_negwt.jpg\/revision\/latest\/scale-to-width-down\/250?cb=20080608225346"
+      }
+    ],
+    "Vibrohacha": [
+      "Vibrohacha",
+      "Las vibrohojas o vibrocuchillos eran un tipo de arma blanca que usaban vibraciones para incrementar la efectividad del corte. Espadas, picas, cuchillos y hachas ten\u00edan el mismo dise\u00f1o b\u00e1sico: el mango del arma usualmente ten\u00eda un generador ultras\u00f3nico compacto que ocasionara que la hoja vibrara a una velocidad incre\u00edble, con lo que el toque m\u00e1s leve abr\u00eda una grave herida. Pod\u00eda ser mejorada con cortosis, permiti\u00e9ndole detener los golpes de sables de luz.",
+      {
+        "image": "https:\/\/mortisdraco.com\/wp-content\/uploads\/2019\/11\/403524.jpg"
+      }
+    ],
+    "Jetpack": [
+      "Jetpack",
+      "Las mochilas propulsoras o jetpack eran dispositivos personales de transporte a\u00e9reo que permit\u00edan al operador volar hacia y por el aire con gran movilidad. La armadura mandaloriana estaba equipada con mochilas propulsoras y era utilizada por algunos soldados clon en el Gran Ej\u00e9rcito de la Rep\u00fablica durante las Guerras Clon.",
+      {
+        "image": "https:\/\/img1.cgtrader.com\/items\/2213413\/6a41d0daba\/mandalorian-jetpack-stl-for-3d-print-3d-model-obj-stl.jpg"
+      }
+    ],
+    "Lanzallamas-Mandaloriano": [
+      "Lanzallamas-Mandaloriano",
+      "Los lanzallamas eran armas que disparaban arroyos o r\u00e1fagas de fuego. Aunque a menudo se usaban como un arma antipersonal, como en el caso del lanzallamas montado en la mu\u00f1eca de algunos mandalorianos.",
+      {
+        "image": "https:\/\/i.ytimg.com\/vi\/kklMOr5TuAA\/maxresdefault.jpg"
+      }
+    ],
+    "Aves-Silbantes": [
+      "Aves-Silbantes",
+      "Un ave silbante era un tipo de arma usada por mandalorianos. Hecha de hierro beskar, eran peque\u00f1as municiones dirigidas puestas en los brazaletes mandalorianos, los cuales, al ser desplegados, volaban por el aire, mientras hac\u00edan un ruido de silbido antes de chocar contra el objetivo y matarlo con una peque\u00f1a explosi\u00f3n.",
+      {
+        "image": "https:\/\/blogdesuperheroes.es\/wp-content\/plugins\/BdSGallery\/BdSGaleria\/89228.jpg"
+      }
+    ],
+    "Rifle-bl\u00e1ster-A280": [
+      "Rifle-bl\u00e1ster-A280",
+      "El rifle bl\u00e1ster A280 era un tipo de rifle bl\u00e1ster utilizado principalmente por los soldados de la Alianza Rebelde y los soldados de la Nueva Rep\u00fablica . Exist\u00edan dos variantes del blaster A280, el A280C y el A280-CFE , ambos favorecidos por los comandos de la Alianza Rebelde",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/c\/c1\/A280_blaster_rifle.jpg\/revision\/latest?cb=20180728003214"
+      }
+    ],
+    "Pistola-bl\u00e1ster-pesada-CR-2": [
+      "Pistola-bl\u00e1ster-pesada-CR-2",
+      "La pistola desintegradora pesada CR-2 era un b\u00e1sico y duradero pesada pistola Blaster utilizado por las Fuerzas de Seguridad Real de Naboo . Eran famosos por poder desviar ciertas superficies y penetrar la armadura .",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/1\/19\/CR-2_blaster_pistol_-_SW_Card_Trader.png\/revision\/latest?cb=20160709220753"
+      }
+    ],
+    "Pistola-bl\u00e1ster-pesada-S-5": [
+      "Pistola-bl\u00e1ster-pesada-S-5",
+      "El Security S-5 era una pistola bl\u00e1ster pesada producida por Theed Arms para las Royal Naboo Security Forces . Esta arma fue utilizada com\u00fanmente por miembros del Cuerpo de Oficiales de Seguridad .",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/8\/8e\/SE-5_blaster_pistol.jpg\/revision\/latest?cb=20151105234308"
+      }
+    ],
+    "Pistola-bl\u00e1ster-Blurrg-1120": [
+      "Pistola-bl\u00e1ster-Blurrg-1120",
+      "El Blurrg-1120 retenci\u00f3n pistola era un tipo de retenci\u00f3n pistola desintegradora fabricado por Eirriss Ryloth Defensa Tech . Llevaba 9 modos de disparo \u00fanicos, incluido el disparo est\u00e1ndar simple y doble. Adem\u00e1s de esto, el Blurrg-1120 tambi\u00e9n era personalizable, ya que pod\u00eda modificarse para disparar rayos explosivos. La pistola fue favorecida por la rebelde twi'lek Hera Syndulla .",
+      {
+        "image": "https:\/\/i.pinimg.com\/originals\/c6\/e2\/78\/c6e2784f0ca9672d8cbdab3379b2297d.jpg"
+      }
+    ],
+    "Pistola-bl\u00e1ster-DL-18": [
+      "Pistola-bl\u00e1ster-DL-18",
+      "La pistola bl\u00e1ster DL-18 era un modelo de pistola bl\u00e1ster com\u00fanmente utilizada en toda la galaxia , particularmente por los cazarrecompensas y los contrabandistas . El blaster, fabricado por BlasTech Industries , era econ\u00f3mico y permit\u00eda una f\u00e1cil personalizaci\u00f3n. El ex padawan Jedi y el sobreviviente de la Orden 66 Kanan Jarrus usaron un DL-18 despu\u00e9s de la ca\u00edda de la Orden Jedi .",
+      {
+        "image": "https:\/\/netrinoimages.s3.eu-west-2.amazonaws.com\/2017\/10\/20\/473218\/279302\/blaster_pistol_dl18_from_star_wars_return_of_the_jedi_3d_model_c4d_max_obj_fbx_ma_lwo_3ds_3dm_stl_2924410_o.jpg"
+      }
+    ],
+    "Rifle-de-francotirador-Valken-38x": [
+      "Rifle-de-francotirador-Valken-38x",
+      "El Valken-38x fue un modelo de Longblaster que fue fabricado para alta precisi\u00f3n y potencia en grandes distancias. Fue utilizado por la Rep\u00fablica Gal\u00e1ctica durante las Guerras Clon .",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/e\/e7\/Valken-38x_BF2.png\/revision\/latest?cb=20180310055609"
+      }
+    ],
+    "Rifle-de-francotirador-IQA-11": [
+      "Rifle-de-francotirador-IQA-11",
+      "El IQA-11 era un rifle de francotirador elegante y econ\u00f3mico en dise\u00f1o, y como tal lo convirti\u00f3 en un arma de elecci\u00f3n para muchos mercenarios y cazadores de recompensas que buscaban confiabilidad a distancias m\u00e1s largas.",
+      {
+        "image": "https:\/\/guides.gamepressure.com\/star_wars_battlefront_2\/gfx\/word\/541617515.jpg"
+      }
+    ],
+    "Rifle-de-francotirador-A280-CFE": [
+      "Rifle-de-francotirador-A280-CFE",
+      "Presentaba una pistola de n\u00facleo que pod\u00eda reconfigurarse en un rifle de asalto o un rifle de francotirador .",
+      {
+        "image": "https:\/\/slm-assets.secondlife.com\/assets\/18397517\/view_large\/CFE_004.jpg?1505871946"
+      }
+    ],
+    "Rifle-bl\u00e1ster-E-5": [
+      "Rifle-bl\u00e1ster-E-5",
+      "El rifle bl\u00e1ster E-5 era el armamento est\u00e1ndar de los droides de batalla OOM y B1 y el comando de droides de \u00e9lite de la serie BX . El rifle bl\u00e1ster E-5 era un arma poderosa, ligera, pero algo imprecisa.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/d\/d3\/E-5_blaster_rifle_-_SW_Card_Trader.png\/revision\/latest?cb=20180618011411"
+      }
+    ],
+    "Rifle-bl\u00e1ster-pesado-DLT-19": [
+      "Rifle-bl\u00e1ster-pesado-DLT-19",
+      "El rifle bl\u00e1ster pesado DLT-19 era un modelo de rifle bl\u00e1ster fabricado por Industrias BlasTech. Presentaba una alta cadencia de fuego y pod\u00eda infligir grandes da\u00f1os a distancias largas, y se usaba m\u00e1s com\u00fanmente para inmovilizar tropas y eliminar grandes grupos de enemigos.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/8\/8e\/DLT-19_DICE.png\/revision\/latest\/scale-to-width-down\/349?cb=20180807001129"
+      }
+    ],
+    "Rifle-blaster-pesado-DC-15A": [
+      "Rifle-blaster-pesado-DC-15A",
+      "El rifle bl\u00e1ster DC-15A era una de las armas est\u00e1ndar para los soldados clon. Llevaba un cartucho de gas tibanna que transportaba suficiente gas como para realizar hasta 500 disparos, dependiendo de la configuraci\u00f3n de potencia del arma",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/0\/0e\/DC-15a_Blaster_Rifle.jpg\/revision\/latest\/scale-to-width-down\/350?cb=20090810194630"
+      }
+    ],
+    "Rifle-blaster-DC-15S": [
+      "Rifle-blaster-DC-15S",
+      "El DC-15S era la variante carabina bl\u00e1ster del rifle bl\u00e1ster DC-15A de BlasTech. Esta arma era llevada por los soldados clon de la Rep\u00fablica Gal\u00e1ctica durante las Guerras Clon.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/b\/bb\/Dva0516.jpg\/revision\/latest\/scale-to-width-down\/350?cb=20090710212448"
+      }
+    ],
+    "contrato-0001": [
+      "contrato-0001",
+      "Un holograma con informaci\u00f3n sobre el objetivo.",
+      {
+        "used": "*Aparece un texto en un holograma* El objetivo es Gran'z Yern. Toydariano huido de la justicia hace mucho. Se rumorea que ahora vive escondido en Tatooine. Si lo encuentra y lo entrega a las autoridades locales le dar\u00e1n una buena suma. Ya sabe que hacer."
+      }
+    ],
+    "Paquete": [
+      "Paquete",
+      "Un paquete misterioso",
+      {}
+    ],
+    "Piezas-de-repuesto": [
+      "Piezas-de-repuesto",
+      "Piezas de repuesto",
+      {}
+    ],
+    "Empu\u00f1adura Sable Laser": [
+      "Empu\u00f1adura Sable Laser",
+      "Una empu\u00f1adura para crear un sable laser",
+      {}
+    ],
+    "Empu\u00f1adura-Sable-Laser": [
+      "Empu\u00f1adura-Sable-Laser",
+      "Empu\u00f1adura para el sable laser",
+      {}
+    ],
+    "Detonador-T\u00e9rmico": [
+      "Detonador-T\u00e9rmico",
+      "Una granada muy explosiva de reducido tama\u00f1o",
+      {}
+    ],
+    "Caja-Mercancia": [
+      "Caja-Mercancia",
+      "Una caja est\u00e1ndar que contiene algo dentro",
+      {}
+    ],
+    "Medalla": [
+      "Medalla",
+      "Una medalla creada para la heroe Ahsoka Tano",
+      {}
+    ],
+    "Cristal-Kyber-Amarillo": [
+      "Cristal-Kyber-Amarillo",
+      "Un precioso cristal kyber amarillo usualmente usado para la creaci\u00f3n de sables de luz",
+      {}
+    ],
+    "Caza-estelar-Dianoga": [
+      "Caza-estelar-Dianoga",
+      "Un viejo caza de una epoca antes de las guerras clon",
+      {}
+    ],
+    "Sable-laser-Aayla-Secura": [
+      "Sable-laser-Aayla-Secura",
+      "Un sable de luz con forma cilindrica usada por la caballero jed Aayla Secura, pose\u00eda un cristal de un tono azul.",
+      {
+        "image": "https:\/\/i.pinimg.com\/originals\/d2\/c1\/82\/d2c1820b6a6640f4393227a1946d99fb.jpg"
+      }
+    ],
+    "Sable-laser-Rahm-Kota": [
+      "Sable-laser-Rahm-Kota",
+      "Un Sable L\u00e1ser usado por el Maestro Jedi Rahm Kota. Tiene una bonita empu\u00f1adura de madera acabado en un cil\u00edndro circular. Conten\u00eda una hora de color verde.",
+      {
+        "image": "https:\/\/i.pinimg.com\/originals\/33\/d9\/49\/33d94989df1a58b29c6752baf8941fc4.jpg"
+      }
+    ],
+    "Sable-laser-Mace-Windu": [
+      "Sable-laser-Mace-Windu",
+      "La hoja de la espada era de un color morado distinto a los comunes verdes y azules de la Orden, esto debido a que Windu se consideraba m\u00e1s una mezcla de los lados Oscuro y Luminoso entre los cuales prefer\u00eda el Luminoso y luchaba contra la tentaci\u00f3n del Oscuro mediante su autocontrol. Adem\u00e1s el mango ten\u00eda un acabado de electrum que simbolizaba su pertenencia al Alto Consejo Jedi. El dise\u00f1o de la empu\u00f1adura es muy particular, combinando el blanco y negro con el dorado de algunas zonas. Dicha empu\u00f1adura es larga pero lo suficientemente peque\u00f1a como para ser manejable a una mano.",
+      {
+        "image": "https:\/\/pm1.narvii.com\/6588\/b8e35d74e6cf4fe4a28e73b88f33496cc9359de2_hq.jpg"
+      }
+    ],
+    "Sable-laser-Ahsoka-Tano": [
+      "Sable-laser-Ahsoka-Tano",
+      "Ahsoka Tano pose\u00eda un sable de luz de hoja verde durante las Guerras Clon. Construido bajo la tutela del antiguo droide Profesor Huyang cuando era una padawan muy joven, despu\u00e9s de regresar de asegurar su cristal adegano en Ilum. La hoja del sable de luz era de un verde brillante. Era notable en que ella, a diferencia de la mayor\u00eda de los otros Jedi, lo manejaba en un agarre inverso al estilo Shien.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/1\/17\/Ahsoka_Tano_Lightsaber_DB.png\/revision\/latest?cb=20200101040842"
+      }
+    ],
+    "Caja-detonadores-t\u00e9rmicos": [
+      "Caja-detonadores-t\u00e9rmicos",
+      "Una caja con varios detonares t\u00e9rmicos. Muy explosivo",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/4\/4c\/Thermal_detonator_DICE.png\/revision\/latest\/top-crop\/width\/360\/height\/450?cb=20180721232309"
+      }
+    ],
+    "Sable-laser-Naa'leth": [
+      "Sable-laser-Naa'leth",
+      "Sable l\u00e1ser de Naa'leth. Naa'leth fusion\u00f3 su sable l\u00e1ser con el sable individual que Darth Maul le otorg\u00f3, construyendo as\u00ed su sable de doble hoja de color rojo.",
+      {}
+    ],
+    "Sable-entrenamiento": [
+      "Sable-entrenamiento",
+      "Sable de entrenamiento. Es otorgado por los Maestros Jedi o Sith a sus aprendices. Dado de ataque 1d8 defensa 1d5",
+      {}
+    ],
+    "Granada-aturdidora": [
+      "Granada-aturdidora",
+      "Una granada aturdidora para dejar paralizado a cualquier enemigo",
+      {}
+    ],
+    "Holograma-Ubicaciones": [
+      "Holograma-Ubicaciones",
+      "Holograma que indicar\u00e1 las misiones de los piratas",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/2\/20\/Starmap2.jpg\/revision\/latest?cb=20071007182103"
+      }
+    ],
+    "Bomba-Dioxis": [
+      "Bomba-Dioxis",
+      "Afecta a las personas cercanas a ella disminuyendo parte de su vida por dos turnos",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/5\/57\/StarCardBig_DioxisGrenade_01-181c062a.png\/revision\/latest\/top-crop\/width\/360\/height\/450?cb=20180730203446"
+      }
+    ],
+    "Bomba-Iones": [
+      "Bomba-Iones",
+      "Desconecta la energ\u00eda de una nave por tres turnos",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/1\/1e\/StarCardBig_ShockGrenade_01-91546fd6.png\/revision\/latest\/top-crop\/width\/360\/height\/450?cb=20160817235937"
+      }
+    ],
+    "Bomba-Humo": [
+      "Bomba-Humo",
+      "Afecta a las personas cercanos a ella empeorando su precisi\u00f3n al disparar por dos turnos",
+      {
+        "image": "https:\/\/vignette1.wikia.nocookie.net\/theassassinscreed\/images\/9\/91\/BH_Smoke_Bomb.png\/revision\/latest?cb=20120704023359&path-prefix=es"
+      }
+    ],
+    "M\u00e1scara-Ox\u00edgeno": [
+      "M\u00e1scara-Ox\u00edgeno",
+      "te hace inmune a los efectos de la bomba de dioxis por dos turnos",
+      {
+        "image": "https:\/\/www.rkcomercial.com.pe\/wp-content\/uploads\/2016\/09\/MASCARA-DE-OXIGENO-VENTURI.jpg"
+      }
+    ],
+    "Gafas-T\u00e9rmicas": [
+      "Gafas-T\u00e9rmicas",
+      "Te hace inmune a los efectos de la bomba de humo por dos turnos (este item se mejora por medio de un ingeniero)",
+      {
+        "image": "https:\/\/www.propside.com\/819-thickbox_default\/gafas-termicas-y-de-vision-nocturna-de-vallon-patrick-garrow-y-sus-secuaces.jpg"
+      }
+    ],
+    "Droide-Remoto": [
+      "Droide-Remoto",
+      "Un droide peque\u00f1o con c\u00e1mara que manejas por control remoto en tres turnos (se mejora con ingeniero)",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/b\/ba\/MSE-6-G735Y_ANH.png\/revision\/latest?cb=20190327035030"
+      }
+    ],
+    "Planos-T\u00faneles": [
+      "Planos-T\u00faneles",
+      "Planos que te ayudan a llegar a objetivos de misiones intermedias",
+      {
+        "image": "https:\/\/i.pinimg.com\/originals\/94\/26\/eb\/9426eb6ce6c9577dffecebbdfa26ebd6.jpg"
+      }
+    ],
+    "Trampa-Personas": [
+      "Trampa-Personas",
+      "Un dispositivo desplegable que hace que una persona caiga y quede atrapada",
+      {
+        "image": "https:\/\/image.freepik.com\/foto-gratis\/trampa-osos_103577-2620.jpg"
+      }
+    ],
+    "Bomba-Dioxis-Mejorada": [
+      "Bomba-Dioxis-Mejorada",
+      "Ahora dura 4 turnos su efecto",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/5\/57\/StarCardBig_DioxisGrenade_01-181c062a.png\/revision\/latest\/top-crop\/width\/360\/height\/450?cb=20180730203446"
+      }
+    ],
+    "Bomba-Iones-Mejorada": [
+      "Bomba-Iones-Mejorada",
+      "Se puede usar en estructuras grandes y dura cinco turnos",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/1\/1e\/StarCardBig_ShockGrenade_01-91546fd6.png\/revision\/latest\/top-crop\/width\/360\/height\/450?cb=20160817235937"
+      }
+    ],
+    "Boma-Humo-Mejorada": [
+      "Boma-Humo-Mejorada",
+      "Ahora dura 4 turnos su efecto",
+      {
+        "image": "https:\/\/vignette1.wikia.nocookie.net\/theassassinscreed\/images\/9\/91\/BH_Smoke_Bomb.png\/revision\/latest?cb=20120704023359&path-prefix=es"
+      }
+    ],
+    "Droide-Trampa": [
+      "Droide-Trampa",
+      "Ahora puedes implantar un dispositivo explosivo, o de alguna bomba en un droide a control remoto, se usa en tres turnos",
+      {
+        "image": "https:\/\/lh3.googleusercontent.com\/proxy\/SmTudB-EZc__u5_RYHNsfyni1KzELb1zlOBAQA3sUqkQx0tj47pVSAP4p11rW_XN_DpJYKCEYZe2wxcIjMKN7afJfEoP7ZQroNNMCUXxkF34ZDWL94EHdKPZc4_HAv7psdWAleZuyKzxiOxdVxLRmhX4_MXuEvxYNZPxzxRRYOj3"
+      }
+    ],
+    "Planos-T\u00faneles-Mejorados": [
+      "Planos-T\u00faneles-Mejorados",
+      "Planos que te ayudan a llegar a objetivos de misiones dif\u00edciles",
+      {
+        "image": "https:\/\/i.pinimg.com\/originals\/39\/11\/c0\/3911c0d7fd1bcf8575acc42834ac94fb.jpg"
+      }
+    ],
+    "Datos-Acceso-Facciones": [
+      "Datos-Acceso-Facciones",
+      "Son planos de estructuras \u00fanicas que te ayudar\u00e1n a llegar a objetivos de misiones clase \"Big one\"",
+      {
+        "image": "https:\/\/i.pinimg.com\/originals\/96\/de\/05\/96de05f87835fe89c197f387b8e02667.jpg"
+      }
+    ],
+    "conocimientos-historia-sith-I": [
+      "conocimientos-historia-sith-I",
+      "Aprendizaje del cap\u00edtulo uno de los conocimientos sobre las historias Sith",
+      {}
+    ],
+    "conocimientos-historia-sith-II": [
+      "conocimientos-historia-sith-II",
+      "Aprendizaje del cap\u00edtulo II de los conocimientos sobre las historias Sith",
+      {}
+    ],
+    "conocimientos-historia-sith-III": [
+      "conocimientos-historia-sith-III",
+      "Aprendizaje del cap\u00edtulo III de los conocimientos sobre las historias Sith",
+      {}
+    ],
+    "conocimientos-historia-sith-IV": [
+      "conocimientos-historia-sith-IV",
+      "Aprendizaje del cap\u00edtulo IV de los conocimientos sobre las historias Sith",
+      {}
+    ],
+    "Sable-laser-doble-Jaro-Tapal": [
+      "Sable-laser-doble-Jaro-Tapal",
+      "Sable utilizado por el Caballero Jedi Jaro Tapal. Estar\u00eda compuesto de una empu\u00f1adura cil\u00edndrica y emisor cuadrado. Desprender\u00eda un color de tonalidad azul.",
+      {
+        "image": "https:\/\/media.discordapp.net\/attachments\/676479828911849497\/710697853974216704\/Jaro.png"
+      }
+    ],
+    "Mira-de-arma": [
+      "Mira-de-arma",
+      "Una parte esencial en el uso de un arma, pues la mira te ofrece una mejora significante en la precisi\u00f3n de los disparos",
+      {
+        "image": "https:\/\/media.discordapp.net\/attachments\/676479806661197824\/710936240937107526\/Mira.png"
+      }
+    ],
+    "Gatillo-de-arma": [
+      "Gatillo-de-arma",
+      "Un gatillo m\u00e1s funcional para tu arma, lo que te permitir\u00e1 accionar la opci\u00f3n del disparo con m\u00e1s comodidad y velocidad",
+      {
+        "image": "https:\/\/media.discordapp.net\/attachments\/676479806661197824\/710958075074314350\/unknown.png"
+      }
+    ],
+    "Boca-de-ca\u00f1on": [
+      "Boca-de-ca\u00f1on",
+      "Una parte fundamental para un arma que se aprecie. Sirva para reducir el retroceso de los disparos",
+      {
+        "image": "https:\/\/media.discordapp.net\/attachments\/676479806661197824\/710959200641089637\/pngflow.com.png"
+      }
+    ],
+    "Culata-de-arma": [
+      "Culata-de-arma",
+      "Un accesorio que facilita tu movimiento con el arma mientras disparas",
+      {
+        "image": "https:\/\/lh3.googleusercontent.com\/proxy\/AuVTIXdfDPQG1LOLmZBnHcJwG4faFHXJccErqhEakDTjpjDgmdpYO020ur6pXka926KjqBmtSjuyTOoLSnEkFrFB1Pgg2nr0qUA9G3cyyySLgrB4ueeYP1hAAhGNJnXec8ECq1fhDWHknMLAQ_URLGigMuOMPv7VH3Fe4dso-cLupByS61tmW3_NpcrDnb7zHg"
+      }
+    ],
+    "Empu\u00f1adura-de-arma": [
+      "Empu\u00f1adura-de-arma",
+      "Un accesorio que te ofrece un mayor agarre a la hora de disparar tu arma",
+      {
+        "image": "https:\/\/www.bestshot.hu\/fotky21430\/fotos\/_vyr_92MAG522_BLK_1.png"
+      }
+    ],
+    "Pistola-blaster-LL30-Cad-Bane-1": [
+      "Pistola-blaster-LL30-Cad-Bane-1",
+      "El LL-30 era una pistola bl\u00e1ster fabricada por BlasTech Industries . Se sab\u00eda que este desintegrador era utilizado por el cazarrecompensas Cad Bane. El bl\u00e1ster ten\u00eda un ca\u00f1\u00f3n delgado y un accesorio de alcance de francotirador en la parte superior. Ten\u00eda una alta velocidad de disparo, similar a la de la pistola bl\u00e1ster WESTAR-34",
+      {
+        "image": "https:\/\/files.cults3d.com\/uploaders\/4701378\/illustration-file\/066a5484-42f8-4f73-9a9c-46fe5e1263d2\/l1.jpg"
+      }
+    ],
+    "Pistola-blaster-LL30-Cad-Bane-2": [
+      "Pistola-blaster-LL30-Cad-Bane-2",
+      "El LL-30 era una pistola bl\u00e1ster fabricada por BlasTech Industries . Se sab\u00eda que este desintegrador era utilizado por el cazarrecompensas Cad Bane. El bl\u00e1ster ten\u00eda un ca\u00f1\u00f3n delgado y un accesorio de alcance de francotirador en la parte superior. Ten\u00eda una alta velocidad de disparo, similar a la de la pistola bl\u00e1ster WESTAR-34",
+      {
+        "image": "https:\/\/files.cults3d.com\/uploaders\/4701378\/illustration-file\/066a5484-42f8-4f73-9a9c-46fe5e1263d2\/l1.jpg"
+      }
+    ],
+    "Caza-estelar-Porax-38": [
+      "Caza-estelar-Porax-38",
+      "El Porax-38 era el principal caza estelar de Utapau, un caza resistente, equipado con hipermotor de largo alcance, dise\u00f1ado por y para pilotos utai y capaz de prolongar las patrullas interestelares hasta veinte d\u00edas. Este caza no necesitaba de una unidad astron\u00f3mica gracias a que su ordenador de navegaci\u00f3n hab\u00eda sido mejorada. En su interior el piloto se ve\u00eda obligado a utilizar una m\u00e1scara que le permitiese respirar. Era el t\u00edpico caza de Cad Bane.",
+      {
+        "image": "https:\/\/lh3.googleusercontent.com\/proxy\/f0YjNQBfAX7B826YqWnhqykqKydM7Vk0DfuS9p8yulDjCa1J5A07spU_ATQOhh-G8Yr_0LBxISMq3T_gdB7QEsVeXHeUkoK3mAEL9v8f9C9xWhQUIMOVekJM"
+      }
+    ],
+    "Sable-laser-Shares": [
+      "Sable-laser-Shares",
+      "El sable l\u00e1ser de Shares Vestswe",
+      {
+        "image": "https:\/\/cdn.discordapp.com\/attachments\/676479806661197824\/724842251590828092\/image0.jpg"
+      }
+    ],
+    "Speeder-74-Z": [
+      "Speeder-74-Z",
+      "Moto deslizadora modelo 74-Z",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/4\/47\/Speeder_Bike_DICE.png\/revision\/latest?cb=20180107121637"
+      }
+    ],
+    "\"Lanzallamas\"": [
+      "\"Lanzallamas\"",
+      "Lanzallamas que puede usarse  cuerpo a cuerpo en un duelo PvP. Aplica 1d5 a tu tirada cuerpo a cuerpo. S\u00f3lo tiene 1 carga de munici\u00f3n. $2000 Cr\u00e9ditos en mercado negro.",
+      {}
+    ],
+    "Misil-de-mu\u00f1eca": [
+      "Misil-de-mu\u00f1eca",
+      "Una carga de misil en la mu\u00f1eca elegida.",
+      {}
+    ],
+    "Armadura-completa-beskar": [
+      "Armadura-completa-beskar",
+      "Una armadura al completo, hecha de Beskar.",
+      {}
+    ],
+    "Traje-de-combate": [
+      "Traje-de-combate",
+      "Un traje ligero y b\u00e1sico.",
+      {}
+    ],
+    "Traje-de-combate-Zabrak": [
+      "Traje-de-combate-Zabrak",
+      "Un traje protector utilizado normalmente por Zabraks en sus combates.",
+      {}
+    ],
+    "Armadura-de-Fibra-Echani": [
+      "Armadura-de-Fibra-Echani",
+      "Una armadura m\u00e1s resistente que sus anteriores, utiliza fibra de Echani.",
+      {}
+    ],
+    "Traje-militar": [
+      "Traje-militar",
+      "Un traje protector utilizado normalmente en la militarizaci\u00f3n.",
+      {}
+    ],
+    "Armadura-de-batalla-Echani": [
+      "Armadura-de-batalla-Echani",
+      "Una armadura bastante resistente, con telas y fibra Echani.",
+      {}
+    ],
+    "Armadura-de-fibra-Verpine": [
+      "Armadura-de-fibra-Verpine",
+      "Una armadura algo m\u00e1s pesada, utiliza como material la fibra de Verpine.",
+      {}
+    ],
+    "Armadura-pesada-Durasteel": [
+      "Armadura-pesada-Durasteel",
+      "Una armadura pesada y protectora de Durasteel.",
+      {}
+    ],
+    "Armadura-parcial-de-Beskar": [
+      "Armadura-parcial-de-Beskar",
+      "Diversas partes de una armadura de Beskar.",
+      {}
+    ],
+    "Ropa-abrigada": [
+      "Ropa-abrigada",
+      "Como su nombre indica, es un tipo de ropa eficaz contra el fr\u00edo. Con esta ropa se puede llevar a cabo el trabajo sin ning\u00fan problema de fr\u00edo. No morir\u00e1s congelado!",
+      {
+        "image": "https:\/\/www.turopalaboral.com\/16544-thickbox_default\/chaqueta-ryan-men-02108-abrigada-e-impermeable-sols.jpg"
+      }
+    ],
+    "Ropa-protectora": [
+      "Ropa-protectora",
+      "Ropa usualmente llevada en los \u00e1ridos desiertos. \u00datiles para todo tipo de situaciones, para cubrirse de las tormentas de arena, para ser m\u00e1s \u00e1gil a la hora de escalar e incluso disponen de una peque\u00f1a linterna para enfocar en lugares oscuros",
+      {
+        "image": "https:\/\/cde.laprensa.e3.pe\/ima\/0\/0\/1\/2\/3\/123145.jpg"
+      }
+    ],
+    "Ropa-ligera": [
+      "Ropa-ligera",
+      "Ropa sumamente ligera para los climas calurosos. Sirve especialmente para el calor est\u00e1ndar, no para tormentas. Adem\u00e1s hace que tu movimiento sea m\u00e1s \u00e1gil por la ligera carga que esta conlleva",
+      {
+        "image": "https:\/\/i.pinimg.com\/originals\/d8\/a2\/df\/d8a2df2d91fea999739adbe5204f356d.png"
+      }
+    ],
+    "Cuerda-enganche": [
+      "Cuerda-enganche",
+      "Una cuerda de varios metros de largo, muy resistente. Aguanta aproximadamente hasta unos 200kg.",
+      {}
+    ],
+    "Speeder-de-carga": [
+      "Speeder-de-carga",
+      "Son Speeder menos convencionales por su reducida velocidad y carencia de potencia de fuego. Son usados para a\u00f1adirles unos compartimentos laterales debido al gran grosor de la carcasa, lo que aumenta el tama\u00f1o de carga que puede llevar un chatarrero.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/d\/d6\/Reys_speeder.jpg\/revision\/latest?cb=20160509014603"
+      }
+    ],
+    "Soldador": [
+      "Soldador",
+      "Item que te facilita la vida a la hora de cortar ciertas zonas met\u00e1licas sobretodo. Lo suelen usar los chatarreros en su b\u00fasqueda de piezas.",
+      {
+        "image": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/4\/49\/Soldador.png"
+      }
+    ],
+    "Repetidor-pesado-TL-50": [
+      "Repetidor-pesado-TL-50",
+      "El TL-50 era un modelo de rifle bl\u00e1ster pesado que se fabricaba para las fuerzas especiales del Imperio Gal\u00e1ctico. Adem\u00e1s de enviar tormentas de rayos l\u00e1ser desde sus m\u00faltiples ca\u00f1ones , el rifle podr\u00eda reunir su energ\u00eda en una poderosa explosi\u00f3n de conmoci\u00f3n cerebral. Tambi\u00e9n podr\u00eda modificarse con un barril extendido para reducir la propagaci\u00f3n y con una celda de potencia para aumentar la potencia de enfriamiento.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/c\/ce\/TL-50_heavy_repeater.png\/revision\/latest?cb=20180617163541"
+      }
+    ],
+    "Pistola-blaster-DH-17": [
+      "Pistola-blaster-DH-17",
+      "La pistola bl\u00e1ster DH-17 era un arma a distancia producida por Industrias BlasTech utilizada principalmente para el combate a bordo de naves estelares. Siendo un arma de combate de alcance medio, el DH-17 ten\u00eda un alcance \u00f3ptimo de treinta metros, pero sus rayos l\u00e1ser que perforaban la armadura segu\u00edan siendo efectivos, aunque algo menos precisos hasta cuatro veces esa distancia. Un arma semiautom\u00e1tica, tambi\u00e9n se pod\u00eda modificar para disparar en r\u00e1fagas cortas y ten\u00eda una configuraci\u00f3n de aturdimiento de baja potencia, capaz de noquear a un humano por hasta diez minutos. Sin embargo, establecer el arma en fuego completamente autom\u00e1tico drenaba el paquete de energ\u00eda en menos de veinte segundos, y el portador corr\u00eda el riesgo de sobrecalentar los componentes internos y causar una sobrecarga explosiva.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/9\/9f\/DH-17_Blaster_DICE.png\/revision\/latest?cb=20180722011039"
+      }
+    ],
+    "Pistola-Bryar-K-16": [
+      "Pistola-Bryar-K-16",
+      "La pistola Bryar era un rifle Bryar modificado con el mango y la boca del ca\u00f1\u00f3n recortados. Era un bl\u00e1ster de alta precisi\u00f3n, aunque no era muy potente. El arma ten\u00eda la interesante capacidad de \u201ccargarse\u201d y disparar una gran explosi\u00f3n a expensas de su munici\u00f3n.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/a\/a2\/K-16_Bryar_pistol.png\/revision\/latest?cb=20180729215924"
+      }
+    ],
+    "Rifle-blaster-DLT-20A": [
+      "Rifle-blaster-DLT-20A",
+      "El rifle bl\u00e1ster BlasTech DLT-20A era un rifle de ca\u00f1\u00f3n largo con un tel\u00e9metro montado en la parte superior y mira electr\u00f3nica. Ten\u00eda ajustes autom\u00e1ticos y semiautom\u00e1ticos y una velocidad de disparo muy cercana a la del rifle bl\u00e1ster DC-15A y otros de largo alcance. Este fue uno de los pocos modelos de bl\u00e1ster producidos con un agarre de adhesi\u00f3n magnat\u00f3mica, manteniendo el arma firmemente en el agarre del portador y haci\u00e9ndolo m\u00e1s dif\u00edcil de desarmar. [4] Con anillos colimadores adicionales y conductos m\u00e1s largos de circuitos galven , estos rifles han mejorado la consistencia en sus disparos.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/8\/8e\/DTL20-A_Pulse_Cannon_DICE.png\/revision\/latest?cb=20151106043833"
+      }
+    ],
+    "Rifle-blaster-E11": [
+      "Rifle-blaster-E11",
+      "Era el rifle bl\u00e1ster est\u00e1ndar de los soldados de asalto Imperiales. Siendo un arma poderosa, ligera y compacta, el E-11 se us\u00f3 ampliamente a trav\u00e9s de la galaxia. Convirti\u00e9ndose en el arma est\u00e1ndar de los soldados de asalto Imperiales despu\u00e9s de la Declaraci\u00f3n de un Nuevo Orden, el E-11 pod\u00eda alternar entre configuraci\u00f3n semiautom\u00e1tica, totalmente autom\u00e1tica y de pulso, y estaba dise\u00f1ado para usar una variedad de municiones, incluidas granadas, dardos y bengalas. Un alcance mejorado por computadora compensaba las condiciones oscuras, borrosas o con humo, mientras que una computadora adicional permit\u00eda que el alcance mostrar\u00e1 datos espec\u00edficos del modo de operaci\u00f3n actual del arma. El largo ca\u00f1\u00f3n del E-11 produc\u00eda un haz de part\u00edculas muy poderoso y enfocado, y ten\u00eda un alcance m\u00e1ximo de trescientos metros y un rango \u00f3ptimo de cien metros. Debido a esto, se consider\u00f3 como el arma m\u00e1s adecuado para los combates cuerpo a cuerpo, en particular en los estrechos confines de las instalaciones enemigas y los corredores de las naves estelares.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/es.starwars\/images\/3\/3a\/E-11_blaster_rifle_FF.png\/revision\/latest?cb=20180728151415"
+      }
+    ],
+    "Rifle-blaster-E22": [
+      "Rifle-blaster-E22",
+      "El rifle l\u00e1ser S-22 fue un arma alternativa, de doble ca\u00f1\u00f3n desintegrador que era m\u00e1s grande y m\u00e1s potente que el est\u00e1ndar rifle l\u00e1ser E-11.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/4\/4a\/E22BlasterRifle-TITSWE.png\/revision\/latest?cb=20200711031720"
+      }
+    ],
+    "Rifle-francotirador-NT-242": [
+      "Rifle-francotirador-NT-242",
+      "El NT-242 era un tipo de rifle de francotirador . El NT-242 fue considerado un destructor de tanques por muchos usuarios y fue uno de los m\u00e1s largos . El NT-242 era poderoso a distancia, y pod\u00eda modificarse para tener un disparo disruptivo que podr\u00eda atacar a los veh\u00edculos. El NT-242 tambi\u00e9n podr\u00eda modificarse con un macroscopio que permit\u00eda dos niveles de aumento, as\u00ed como una celda de energ\u00eda que aumentaba en gran medida el tiempo que se pod\u00eda disparar el desintegrador antes de que se requiriera enfriar.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/4\/45\/NT-242.png\/revision\/latest?cb=20180324115522"
+      }
+    ],
+    "Sable-laser-Myra-Burke": [
+      "Sable-laser-Myra-Burke",
+      "Sable l\u00e1ser de la padawan Myra Burke. Dise\u00f1ado con piezas provenientes de lo que una vez fue el Templo Jedi, piezas con cierta vejez pero totalmente funcionales. Tendr\u00eda una empu\u00f1adura negra, ba\u00f1ado por un precioso metal dorado a su alrededor. El color de la hoja ser\u00eda un bonito verde esmeralda.",
+      {
+        "image": "https:\/\/www.blendswap.com\/blend_previews\/16892\/0\/0"
+      }
+    ],
+    "Sable-laser-Darth-Vader": [
+      "Sable-laser-Darth-Vader",
+      "El sable de luz de Darth Vader era el sable de luz personal de doble fase. Debido a las modificaciones que Vader hizo a su sable de luz a lo largo de los a\u00f1os, su exterior tambi\u00e9n cambi\u00f3, de alguna manera, en apariencia. Fue alimentado inicialmente por un cristal sintetizador carmes\u00ed. Intent\u00f3 crear un arma m\u00e1s personalizada. Deseoso de impresionar a Palpatine, Vader trat\u00f3 de crear un nuevo dise\u00f1o, pero el arma resultante fue una aleaci\u00f3n negra de su primer sable de luz Jedi.",
+      {
+        "image": "https:\/\/preview.free3d.com\/img\/2015\/11\/2162652513948402837\/9ou3v5c0-900.jpg"
+      }
+    ],
+    "Caja-material": [
+      "Caja-material",
+      "Equivale a un cargarmento de materiales. Con estos materiales es con lo que se construyen los distintos edificios, f\u00e1bricas, infraestructuras, etc... Un material b\u00e1sico para la construcci\u00f3n.",
+      {
+        "image": "https:\/\/www.uokpl.rs\/fpng\/f\/412-4122194_pieza-de-lego.png"
+      }
+    ],
+    "Cuerda-de-enganche": [
+      "Cuerda-de-enganche",
+      "Item que facilita la escalda en zonas accidentadas. Otro item t\u00edpico que suelen comprar los chatarreros para la escalada de naves accidentadas de tama\u00f1o colosal, como destructores o cargueros.",
+      {
+        "image": "https:\/\/www.dakotariggers.com\/assets\/images\/L-0558-18-2.png"
+      }
+    ],
+    "Armadura-entera-Cortosis": [
+      "Armadura-entera-Cortosis",
+      "Una armadura completamente armada de Cortosis. Una armadura no tan resistente ante hojas afiladas pero si bastante resistente contra sables de luz o disparos l\u00e1ser.",
+      {}
+    ],
+    "Pistola-bl\u00e1ster-WESTAR-35": [
+      "Pistola-bl\u00e1ster-WESTAR-35",
+      "La pistola bl\u00e1ster WESTAR-35 era un modelo de pistola bl\u00e1ster de la serie WESTAR de bl\u00e1sters. Capaz de disparar rayos de plasma amarillos o azules, la WESTAR-35 era el arma favorita de varios Mandalorianos. Es un arma potente y de alta calidad.",
+      {
+        "image": "https:\/\/i.pinimg.com\/originals\/4a\/0c\/9f\/4a0c9fdcb4df6d9f733a040617d15355.png"
+      }
+    ],
+    "Rifle-Bl\u00e1ster-A280-ECE": [
+      "Rifle-Bl\u00e1ster-A280-ECE",
+      "El bl\u00e1ster A280-ECE (edici\u00f3n de campo encubierto), tambi\u00e9n conocido como bl\u00e1ster A280-CFE, fue una versi\u00f3n modular del rifle bl\u00e1ster A280. Conten\u00eda una pistola de n\u00facleo que pod\u00eda ser reconfigurada en un rifle de asalto o un rifle de francotirador.",
+      {
+        "image": "https:\/\/images-ext-1.discordapp.net\/external\/fhAn-jD7qy-Ei4dg4-wrlHnJdxFsyyQYP811WPM8IJM\/https\/images-ext-1.discordapp.net\/external\/c_XXmZMEYt5iCSLYeFawO_9QZDd12_TC2J2-OhZ2wG4\/https\/images-ext-1.discordapp.net\/external\/96H9u1v8x_9Mj8E_ywqBKRu2Cyj2KbUGZFaHbfe3la8\/%25253Fwidth%25253D759%252526height%25253D598\/https\/media.discordapp.net\/attachments\/676479806661197824\/740258150619545640\/png-transparent-star-wars-battlefront-ii-star-wars-jedi-starfighter-blaster-cassian-andor-star-wars-.png"
+      }
+    ],
+    "Municion-lanzallamas": [
+      "Municion-lanzallamas",
+      "Cartucho de munici\u00f3n de un lanzallamas mandaloriano.",
+      {}
+    ],
+    "Pistola-blaster-Hera-Syndulla": [
+      "Pistola-blaster-Hera-Syndulla",
+      "Era un tipo de retenci\u00f3n pistola desintegradora fabricado por Eirriss Ryloth Defensa Tech . Ten\u00eda 9 modos de disparo \u00fanicos, incluido el disparo simple y doble est\u00e1ndar. Adem\u00e1s de esto, el Blurrg-1120 tambi\u00e9n era personalizable, ya que pod\u00eda modificarse para disparar pernos explosivos. La pistola fue favorecida por la rebelde twi'lek Hera Syndulla .\n\nEl arma lleva el nombre del difuminado , una criatura nativa de Ryloth , el hogar de su fabricante.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/7\/70\/Blurrg-1120_SWRTVG.png\/revision\/latest\/scale-to-width-down\/499?cb=20171015042921"
+      }
+    ],
+    "Fusil-Bo-AB-75": [
+      "Fusil-Bo-AB-75",
+      "El rifle bo AB-75 era un modelo de rifle bo fabricado por Lasan-Malamut Firearms Corporation . Los rifles de rifle ten\u00edan una larga tradici\u00f3n en la cultura Lasat y eran utilizados exclusivamente por la Guardia de Honor Superior de Lasan . Desde la destrucci\u00f3n de Lasan por el Imperio , raras veces se ve\u00edan rifles en ninguna parte de la galaxia . Se parec\u00edan mucho a las electro varillas cuando estaban en estado extendido. Los rifles AB-75 pod\u00edan cambiar de un rifle bl\u00e1ster a un electrobarra en 1,36 segundos.",
+      {
+        "image": "https:\/\/i.ebayimg.com\/images\/g\/SOQAAOSw-xVaA8Lc\/s-l400.jpg"
+      }
+    ],
+    "Carta+1-Pazaak(1)": [
+      "Carta+1-Pazaak(1)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta suma un punto a tu mesa",
+      {}
+    ],
+    "Carta+2-Pazaak(2)": [
+      "Carta+2-Pazaak(2)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta suma dos puntos a tu mesa",
+      {}
+    ],
+    "Carta+3-Pazaak(3)": [
+      "Carta+3-Pazaak(3)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta suma tres puntos a tu mesa",
+      {}
+    ],
+    "Carta+4-Pazaak(4)": [
+      "Carta+4-Pazaak(4)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta suma cuatro puntos a tu mesa",
+      {}
+    ],
+    "Carta+5-Pazaak(5)": [
+      "Carta+5-Pazaak(5)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta suma cinco puntos a tu mesa",
+      {}
+    ],
+    "Carta+6-Pazaak(6)": [
+      "Carta+6-Pazaak(6)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta suma seis puntos a tu mesa",
+      {}
+    ],
+    "Carta-1-Pazaak(1)": [
+      "Carta-1-Pazaak(1)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta resta un punto a tu mesa",
+      {}
+    ],
+    "Carta-2-Pazaak(2)": [
+      "Carta-2-Pazaak(2)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta resta dos puntos a tu mesa",
+      {}
+    ],
+    "Carta-3-Pazaak(3)": [
+      "Carta-3-Pazaak(3)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta resta tres puntos a tu mesa",
+      {}
+    ],
+    "Carta-4-Pazaak(4)": [
+      "Carta-4-Pazaak(4)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta resta cuatro puntos a tu mesa",
+      {}
+    ],
+    "Carta-5-Pazaak(5)": [
+      "Carta-5-Pazaak(5)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta resta cinco puntos a tu mesa",
+      {}
+    ],
+    "Carta-6-Pazaak(6)": [
+      "Carta-6-Pazaak(6)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta resta seis puntos a tu mesa",
+      {}
+    ],
+    "Carta+\/\u22121-Pazaak(1)": [
+      "Carta+\/\u22121-Pazaak(1)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta suma \/ resta un punto a tu mesa",
+      {}
+    ],
+    "Carta+\/\u22122-Pazaak(2)": [
+      "Carta+\/\u22122-Pazaak(2)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta suma \/ resta dos puntos a tu mesa",
+      {}
+    ],
+    "Carta+\/\u22123-Pazaak(3)": [
+      "Carta+\/\u22123-Pazaak(3)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta suma \/ resta tres puntos a tu mesa",
+      {}
+    ],
+    "Carta+\/\u22124-Pazaak(4)": [
+      "Carta+\/\u22124-Pazaak(4)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta suma \/ resta cuatro puntos a tu mesa",
+      {}
+    ],
+    "Carta+\/\u22125-Pazaak(5)": [
+      "Carta+\/\u22125-Pazaak(5)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta suma \/ resta cinco puntos a tu mesa",
+      {}
+    ],
+    "Carta+\/\u22126-Pazaak(6)": [
+      "Carta+\/\u22126-Pazaak(6)",
+      "Carta t\u00edpica del famoso juego Pazaak. Esta carta suma \/ resta seis puntos a tu mesa",
+      {}
+    ],
+    "Carta-doble-Pazaak(7)": [
+      "Carta-doble-Pazaak(7)",
+      "Carta rara del famoso juego Pazaak. Esta carta duplica el valor de la \u00faltima carta jugada",
+      {}
+    ],
+    "Pack-cartas-normales": [
+      "Pack-cartas-normales",
+      "Un pack de 10 cartas del famoso juego del Pazaak. Este pack contiene una carta +1,+2,+3,+4,+5 y una carta -1,-2,-3,-4,-5.",
+      {}
+    ],
+    "Pistola-bl\u00e1ster-DT-12": [
+      "Pistola-bl\u00e1ster-DT-12",
+      "La pistola bl\u00e1ster pesada DT-12 era una pistola bl\u00e1ster pesada dise\u00f1ada para especies con dedos largos como los rodianos. Los humanoides no humanos prefieren estos blasters, debido a su guardamonte m\u00e1s ancho y su mango m\u00e1s grueso, lo que permite que manos y dedos m\u00e1s grandes operen con un blaster de tama\u00f1o convencional. Por no decir que no fue \u00fatil entre los humanos; simplemente fue utilizado por no humanos con m\u00e1s frecuencia.",
+      {
+        "image": "https:\/\/pedrobattlefront.files.wordpress.com\/2016\/05\/weapondt-12_big-625c17bd.png?w=1000"
+      }
+    ],
+    "Pistola-blaster-EC-17": [
+      "Pistola-blaster-EC-17",
+      "Este blaster compacto de una mano estaba equipado con un visor de orientaci\u00f3n de montaje lateral y un amplificador de fase, y presentaba una celda de gas en miniatura en la parte trasera. El arma ten\u00eda un ca\u00f1\u00f3n de corto alcance .",
+      {
+        "image": "https:\/\/i1.wp.com\/theforce.pe\/files\/2009\/08\/blaster_de_explorador.png?fit=300%2C400"
+      }
+    ],
+    "Pistola-blaster-RSKF-44": [
+      "Pistola-blaster-RSKF-44",
+      "El bl\u00e1ster pesado RSKF-44 era un modelo de pistola bl\u00e1ster pesada producida por BlasTech Industries que ten\u00eda un dise\u00f1o de bl\u00e1ster de dos ca\u00f1ones, disparando dos rayos bl\u00e1ster por disparo.",
+      {
+        "image": "https:\/\/lh3.googleusercontent.com\/proxy\/mAbalZqAGG8b37HWKymn6egv1erdp6jqgzupjt9bi9i-ZoucAznq6gE8o8Hek-tV_KS0lLzttAA2i2zOtyWkzdgCkV86jiCQ1Zrm9Sh7Dyfd88_LnZHHra6_6QFILHH2FinGghIOePfAxZEGD3MgD0pidw"
+      }
+    ],
+    "Pistola-blaster-A180": [
+      "Pistola-blaster-A180",
+      "El blaster A-180 era un blaster modular fabricado por BlasTech Industries . Era un dise\u00f1o muy vers\u00e1til que pod\u00eda reconfigurarse f\u00e1cilmente en un rifle bl\u00e1ster , un rifle de francotirador o un lanzador de iones seg\u00fan la situaci\u00f3n.",
+      {
+        "image": "https:\/\/i.etsystatic.com\/9643202\/r\/il\/93a11b\/1147396333\/il_570xN.1147396333_6y1e.jpg"
+      }
+    ],
+    "Pistola-bl\u00e1ster-DE-10": [
+      "Pistola-bl\u00e1ster-DE-10",
+      "La pistola bl\u00e1ster DE-10 disparaba rayos l\u00e1ser azules distintivos y su gran peso le daba la sensaci\u00f3n de ser un arma formidable en manos entrenadas . La mayor parte del cuerpo del arma era de color gris plateado con empu\u00f1adura negra. Ten\u00eda un alcance m\u00e1ximo de sesenta y cinco metros .",
+      {
+        "image": "https:\/\/pm1.narvii.com\/6562\/442c60e50d90226841fb2b75da531a58f5dd3545_00.jpg"
+      }
+    ],
+    "Vibro-pu\u00f1o": [
+      "Vibro-pu\u00f1o",
+      "Un pu\u00f1o totalmente met\u00e1lico que hac\u00eda gran da\u00f1o al contacto f\u00edsico pero que imposibilitaba cualquier defensa con \u00e9l.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/fallout\/images\/c\/c0\/BallisticFist.png\/revision\/latest?cb=20110209054932"
+      }
+    ],
+    "Latigo-electrico": [
+      "Latigo-electrico",
+      "Como el sable de luz, el l\u00e1tigo de luz emit\u00eda un rayo coherente de energ\u00eda; sin embargo, la hoja era larga y flexible y ten\u00eda las propiedades de un l\u00e1tigo. En algunas cosas era menos eficiente que los sables de luz.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/esstarwars\/images\/6\/62\/Lightwhip_negwt.jpg\/revision\/latest\/scale-to-width-down\/350?cb=20090313002736"
+      }
+    ],
+    "Baston-electrico": [
+      "Baston-electrico",
+      "Eran armas resistentes a las descargas de energ\u00eda de un sable de luz, las varas de aleaci\u00f3n phrik eran armas potentes, equipadas con puntas de generaci\u00f3n de impulsos-electromagn\u00e9ticas",
+      {
+        "image": "https:\/\/i.pinimg.com\/originals\/f7\/0e\/81\/f70e81dc070c4e2d7b1279d82fc1b1fd.png"
+      }
+    ],
+    "Rifle-francotirador-E-5s": [
+      "Rifle-francotirador-E-5s",
+      "El rifle de francotirador E-5s fue una de cuatro disparos del rifle producido por Baktoid Taller de Armaduras y usada por el droide de batalla asesinos de la Federaci\u00f3n de Comercio y el separatista Ej\u00e9rcito de Droid . Cuando el p\u00edcaro geonosiano Gizor Dellso reactiv\u00f3 un ej\u00e9rcito , el rifle de francotirador fue utilizado por sus droides de batalla .",
+      {
+        "image": "https:\/\/images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com\/f\/b3bbd0ff-655b-40e6-b3cb-7d6d7fd39087\/dd1ws3x-1f3946d7-e9fc-4afa-88a3-f9bf765b1601.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvYjNiYmQwZmYtNjU1Yi00MGU2LWIzY2ItN2Q2ZDdmZDM5MDg3XC9kZDF3czN4LTFmMzk0NmQ3LWU5ZmMtNGFmYS04OGEzLWY5YmY3NjViMTYwMS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.d4j4mC53ibQtZzza6AUsvJZHFHmngTR52AwjrXoYYE8"
+      }
+    ],
+    "Rifle-francontirador-de-ciclos": [
+      "Rifle-francontirador-de-ciclos",
+      "El Rifle de Ciclos era el arma de proyectiles est\u00e1ndar utilizada por los Tusken Raiders de Tatooine en combate a distancia. El ciclador era un dise\u00f1o m\u00e1s antiguo de rifle y encajaba en la clase de lanzador de proyectiles, disparando disparos s\u00f3lidos envueltos en energ\u00eda, no rayos bl\u00e1ster . El arma emit\u00eda un sonido \u00fanico cuando se disparaba, m\u00e1s bien como un cruce entre un bl\u00e1ster y un mosquete .",
+      {
+        "image": "https:\/\/cdn.wallapop.com\/images\/10420\/67\/5s\/__\/c10420p374824018\/i903534984.jpg?pictureSize=W640"
+      }
+    ],
+    "Rifle-bl\u00e1ster-MK-II-Paladin": [
+      "Rifle-bl\u00e1ster-MK-II-Paladin",
+      "Encargado por el Senado gal\u00e1ctico para el uso de la Guardia del Senado , el Mk II Paladin fue fabricado por SoroSuub Corporation . Esta distintiva arma negra y plateada era poderosa y muy precisa en las manos adecuadas, y todos los guardias estaban entrenados en el dominio del rifle como nuevos reclutas. El blaster tambi\u00e9n ten\u00eda una configuraci\u00f3n de aturdimiento y una picana de aturdimiento \u00fatil para situaciones de control de masas. Aunque designados como armas \"ceremoniales\", estos rifles vieron un uso cada vez mayor durante las \u00faltimas d\u00e9cadas del gobierno de la Rep\u00fablica. Capaces tanto de disparo simple como r\u00e1pido, estaban equipados con culatas plegables.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/f\/ff\/Senate_Guard_ceremonial_blaster_rifle_-_SW_Card_Trader.png\/revision\/latest?cb=20160709232322"
+      }
+    ],
+    "Rifle-pesado-LS-150": [
+      "Rifle-pesado-LS-150",
+      "Visto principalmente en manos de las \u00e9lites trandoshanas , el LS-150 era un poco m\u00e1s port\u00e1til que una torreta de una nave estelar. Arakyd Industries fabric\u00f3 este arma. La LS-150 usaba un cargador de 200 rondas y masticaba rondas r\u00e1pidamente, y estos paquetes de munici\u00f3n eran grandes y voluminosos. , permitiendo que un humano t\u00edpico solo lleve uno en reserva.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/5\/56\/Heavy_ACP_repeater.JPG\/revision\/latest?cb=20061025031020"
+      }
+    ],
+    "Escopeta-Scatterblaster-SX-21": [
+      "Escopeta-Scatterblaster-SX-21",
+      "El scatterblaster SX-21 , [2] tambi\u00e9n conocido como el rifle bl\u00e1ster SX-21 , era un modelo de rifle bl\u00e1ster de acci\u00f3n de bombeo fabricado por Merr-Sonn Munitions",
+      {
+        "image": "https:\/\/i.pinimg.com\/736x\/ce\/44\/c4\/ce44c4e7110e4df8d4ae16f7966ed415.jpg"
+      }
+    ],
+    "Escopeta-ACP": [
+      "Escopeta-ACP",
+      "El ca\u00f1\u00f3n ACP era m\u00e1s adecuado para el combate cuerpo a cuerpo donde se necesitaba una fuerza de explosi\u00f3n extrema. Como todas las armas ACP, la Array Gun fue m\u00e1s efectiva contra objetivos org\u00e1nicos que contra los droides . La pistola pod\u00eda contener hasta ocho cartuchos a la vez en su cargador, aunque el usuario pod\u00eda llevar m\u00e1s cartuchos y era necesario amartillar manualmente para mover la siguiente ronda a la rec\u00e1mara.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/starwars\/images\/6\/60\/ACP_array_gun.jpg\/revision\/latest?cb=20060312185821"
+      }
+    ],
+    "Escopeta DP-23": [
+      "Escopeta DP-23",
+      "La escopeta DP-23 era un tipo de bl\u00e1ster dise\u00f1ado a corta distancia. En alg\u00fan momento despu\u00e9s del 0 ABY , Pletus Croix le dio uno a un espaciador en Mustafar , por ayudarlo con una serie de tareas. La culata era similar a la del DC-15A",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/battlefront\/images\/5\/5e\/DP-23_Full.PNG\/revision\/latest?cb=20111025210238"
+      }
+    ],
+    "Lanzacohetes-MPL-57": [
+      "Lanzacohetes-MPL-57",
+      "El MPL-57 pod\u00eda disparar tres granadas con un fusible de retardo corto en r\u00e1pida sucesi\u00f3n, lo que lo hac\u00eda \u00fatil para enfrentamientos de infanter\u00eda. Adem\u00e1s de su uso como lanzagranadas, hubo dos modificaciones comunes del MPL-57 utilizadas durante la Guerra Civil Gal\u00e1ctica. La primera variaci\u00f3n reinstalado el lanzador al fuego torpedos de iones , y ten\u00eda la vista de la hoja reemplazado con una orientaci\u00f3n electr\u00f3nica alcance para bloquear a objetivos de veh\u00edculos y armas estacionarias. La segunda variaci\u00f3n reacondicion\u00f3 el lanzador para disparar misiles autoguiados y agreg\u00f3 un alcance de orientaci\u00f3n que se fijar\u00eda en firmas org\u00e1nicas, como los soldados enemigos.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/esstarwars\/images\/4\/44\/Multi-Purpose_Launcher_BF.png\/revision\/latest?cb=20190202181143"
+      }
+    ],
+    "Lanzacohetes-E-60R": [
+      "Lanzacohetes-E-60R",
+      "E-60R eran proyectiles antiblindaje utilizados por los droides de batalla de asalto . Dispararon un misil y los droides de asalto llevaban 6 de reserva. Se puede utilizar una variedad de municiones con el lanzador. En una medida de reducci\u00f3n de costos, los lanzadores estaban equipados con visores adicionales, lo que obligaba a los droides a apuntar manualmente. Los cohetes eran capaces de apuntar a un objetivo a corta distancia.",
+      {
+        "image": "https:\/\/cdna.artstation.com\/p\/assets\/covers\/images\/019\/957\/940\/large\/artur-rosario-thumbs.jpg?1565739075"
+      }
+    ],
+    "Lanzacohetes-RPS-6": [
+      "Lanzacohetes-RPS-6",
+      "El lanzacohetes RPS-6, tambi\u00e9n conocido como misil Sienar portable, fue un modelo de lanzamisiles fabricado por Sistemas de Flotas Sienar. Fueron el modelo principal de lanzamisiles portable de infanter\u00eda usado en el Gran Ej\u00e9rcito de la Rep\u00fablica durante las Guerras Clon.",
+      {
+        "image": "https:\/\/i.pinimg.com\/originals\/81\/ec\/a9\/81eca96d17f08cdcc3501bdeff561b6a.jpg"
+      }
+    ],
+    "Granada-Cegadora": [
+      "Granada-Cegadora",
+      "Una Granada que emite un flash que ciega a los que lo miran, afecta a la vision del afectado (Tu tambi\u00e9n te puedes cegar con tu Granada).",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/fallout\/images\/4\/4e\/Flash_bang.png\/revision\/latest\/scale-to-width-down\/340?cb=20110921030022"
+      }
+    ],
+    "Matriz-disfraz-hologr\u00e1fico": [
+      "Matriz-disfraz-hologr\u00e1fico",
+      "Permite al portador generar la imagen hologr\u00e1fica de alguien, independientemente de raza y forma y al hacerte pasar por esa persona, si cualquiera te toca de ver\u00e1 que es un holograma, por lo que mantened una distancias de seguridad por vuestro bien y el de vuestros compa\u00f1eros",
+      {}
+    ],
+    "Botas-magn\u00e9ticas": [
+      "Botas-magn\u00e9ticas",
+      "Re permiten mantenerte unido a piezas met\u00e1licas si estas en el espacio o en una nave con la gravedad desactivada, as\u00ed como si estas en un planeta, o escalar por un superficie sin caerte.",
+      {}
+    ],
+    "Clave-de-codificaci\u00f3n": [
+      "Clave-de-codificaci\u00f3n",
+      "Objetos de un Hacker para tener un sistema codificador, sirve para cualquier descodificar (o codificarlo) un sistema de seguridad normal o baja",
+      {}
+    ],
+    "Cortador-fusi\u00f3n": [
+      "Cortador-fusi\u00f3n",
+      "Herramienta avanzada. Sirve para cortar chapas met\u00e1licas gruesas, materiales delicados o cualquier cosa resistente al soldador (Tiene la potencia casi igual que un sable laser).",
+      {}
+    ],
+    "Gancho-de-agarre": [
+      "Gancho-de-agarre",
+      "Sirve para escalar edificios, naves o evitar caerte de estos, tambi\u00e9n se pueden usar por ejemplo en huecos de ascensor",
+      {}
+    ],
+    "Macrobinoculares": [
+      "Macrobinoculares",
+      "Prism\u00e1ticos para observar tu objetivo desde la distancia",
+      {}
+    ],
+    "Gafas-visi\u00f3n-nocturna": [
+      "Gafas-visi\u00f3n-nocturna",
+      "Sirve para... Ver en la oscuridad (que esperabas) si lanzan una Granada cegadora eres immune a estas",
+      {}
+    ],
+    "Unidad-BD": [
+      "Unidad-BD",
+      "Peque\u00f1o amigo que te ayudar\u00e1 a explorar zonas peque\u00f1as o tener a alguien con quien charlar, pueden cargar con informaci\u00f3n en su memoria, cuentan tambi\u00e9n con un Holoproyector.  Solo se pueden comprar las piezas pues te las debe montar un ingeniero.",
+      {}
+    ],
+    "Emulador-vocal": [
+      "Emulador-vocal",
+      "Sirve para que emular la voz de alguien, para ello tienes que registrar la voz del sujeto con el objeto y luego tragartelo, duraci\u00f3n ilimitada hasta que lo necesites.",
+      {}
+    ],
+    "Kit-Arque\u00f3logo": [
+      "Kit-Arque\u00f3logo",
+      "El kit necesario para cualquier arque\u00f3logo,raspeta, escobilla, cepillo, pala, libreta, cincel...",
+      {}
+    ],
+    "Kit-Ladr\u00f3n": [
+      "Kit-Ladr\u00f3n",
+      "El kit para cualquier ladr\u00f3n que se precie, Ganzuas, destornillador, alicates, cortadores de cristal...",
+      {}
+    ],
+    "Droide-esp\u00eda": [
+      "Droide-esp\u00eda",
+      "Un peque\u00f1o droide modular (o terrestre o volador) con el tama\u00f1o que entra en tu mano y puedes colocarlo en sitios para espiar a gente o conversaciones. Solo se pueden comprar las piezas pues te las debe montar un ingeniero.",
+      {}
+    ],
+    "Brazalete-de-pelea": [
+      "Brazalete-de-pelea",
+      "Un brazalete de cuero o metal barato que llevas en un brazo, tiene comunicador y un accesorio.",
+      {}
+    ],
+    "Guantes-de-combate": [
+      "Guantes-de-combate",
+      "Guanteletes de metal de calidad que llevas en ambos brazos, te permiten un accesorio por mu\u00f1eca",
+      {}
+    ],
+    "Guanteletes-Mandalorianos": [
+      "Guanteletes-Mandalorianos",
+      "Guanteletes de Beskar, te permiten llevar hasta 2 accesorio por mu\u00f1eca. Solo para Mandalorianos o comprarlo en Mandalore.",
+      {}
+    ],
+    "Blaster-de-mu\u00f1eca": [
+      "Blaster-de-mu\u00f1eca",
+      "Un peque\u00f1o blaster de mu\u00f1eca",
+      {}
+    ],
+    "Lanzador-de-dardos": [
+      "Lanzador-de-dardos",
+      "Un ca\u00f1on que lanza dardos aturdidos, igual que el misil de mu\u00f1eca",
+      {}
+    ],
+    "Emisor-escudo-peque\u00f1o": [
+      "Emisor-escudo-peque\u00f1o",
+      "(escudo de plasma peque\u00f1o tipo Death Watch) emite un peque\u00f1o escudo que puede bloquear algunos disparos",
+      {}
+    ],
+    "Lanzacables": [
+      "Lanzacables",
+      "Te permite lanzar un cable con el que agarrarte a algo, o atrapar a alguien como un lazo vaquero, solo puedes usar uno de los dos tipos.",
+      {}
+    ],
+    "Sable-laser-Kanan-Jarrus": [
+      "Sable-laser-Kanan-Jarrus",
+      "El sable l\u00e1ser de Kanan era un sable de luz de dos piezas perteneciente a Kanan Jarrus, un Padawan que sobrevivi\u00f3 a la destrucci\u00f3n de la Orden Jedi. Despu\u00e9s de la ejecuci\u00f3n de la Orden 66, Jarrus pas\u00f3 a la clandestinidad y mantuvo su sable de luz oculto para que no se le pudiera identificar como Jedi y evitar as\u00ed ser asesinado. Sin embargo, en secreto se lo llevaba con \u00e9l a cualquier sitio al que iba",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/esstarwars\/images\/a\/ad\/Kanans_Lightsaber_hilt.png\/revision\/latest?cb=20171205035213"
+      }
+    ],
+    "Espada-magica": [
+      "Espada-magica",
+      "Una espada hecho a partir de la magia de la Madre Talzin. La usaba para combatir cuerpo a cuerpo a sus rivales",
+      {}
+    ],
+    "Rifle-blaster-EE3": [
+      "Rifle-blaster-EE3",
+      "La carabina bl\u00e1ster EE-3 fue un modelo de Carabina bl\u00e1ster creado por las Industrias BlasTech. Fue usado por los Cazarrecompensas Sugi durante las Guerras Clon y Boba Fett durante la Guerra Civil Gal\u00e1ctica. Se trataba de un rifle de blaster \u00f3pticamente ajustado capaz de disparar tres rondas a intervalos largos, pero ten\u00eda menor precisi\u00f3n y poder de frenado en comparaci\u00f3n con los rifles largos.",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/esstarwars\/images\/1\/11\/EE-3_Blaster_DICE.png\/revision\/latest?cb=20170412071459"
+      }
+    ],
+    "Eslavo-I": [
+      "Eslavo-I",
+      "Slave I era una nave de ataque y patrulla de clase Firespray-31 modificada y utilizada por el infame cazarrecompensas Jango Fett antes de las Guerras Clon y m\u00e1s tarde su hijo clonado inalterado Boba Fett justo antes de la Ca\u00edda de la Rep\u00fablica y durante el reinado de el Imperio Gal\u00e1ctico . La nave en su forma original fue producida por una compa\u00f1\u00eda subsidiaria de Kuat Drive Yards , con base en el planeta Kuat .",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/esstarwars\/images\/b\/ba\/Slave_I_DICE.png\/revision\/latest?cb=20171112170357"
+      }
+    ],
+    "Ballesta-wookie": [
+      "Ballesta-wookie",
+      "Esta arma es como una\u00a0ballesta\u00a0de la\u00a0Edad Media, pero de estilo futur\u00edstico empleada por los\u00a0Wookiees. Es la evoluci\u00f3n de una versi\u00f3n hecha sin componentes met\u00e1licos que lanzaba proyectiles de madera. Adem\u00e1s, cada ballesta estaba decorada con emblemas del clan al que pertenec\u00eda cada wookie.\nSe basa en un principio de aceleraci\u00f3n magn\u00e9tica: los extremos del arco de la ballesta hay unos polarizadores que cargan de energ\u00eda la cuerda met\u00e1lica, \u00e9sta, al ser disparada, libera la energ\u00eda en forma de rayo que puede da\u00f1ar y puede ser confundido con un rayo de\u00a0blaster. Se necesita mucha fuerza para utilizar este tipo de ballesta. Funciona con un cargador de energ\u00eda limitada.\nAlgunas versiones mejoradas son autom\u00e1ticas, de manera que no se debe colocar cada vez la cuerda y se pueden desmontar y montar con facilidad, de modo que son m\u00e1s f\u00e1ciles de transportar.",
+      {}
+    ],
+    "puntos": [
+      "puntos",
+      "Felicidades has invitado amigos, toma una galleta",
+      {
+        "value": "Mira recompensas en <#742426050058911784>"
+      }
+    ],
+    "Sable-de-luz-Taikeer": [
+      "Sable-de-luz-Taikeer",
+      "Tiene una hoja de color verde, la empu\u00f1adura es totalmente recta, el mango tiene un tipo tela que cubre el mango amarrado con una cuerdas, el metal es de un tono m\u00e1s oscuro acabada en punta, adem\u00e1s, tiene una cadena que esta media suelta de extremo a otro extremo y de la otra punta saldria las puntas del nudo de las cuerdas que salen del mango",
+      {
+        "image": "https:\/\/cdn.discordapp.com\/attachments\/676479654168756236\/757951928402706452\/unknown.png"
+      }
+    ],
+    "Sables-de-luz-Kiinmar": [
+      "Sables-de-luz-Kiinmar",
+      "Hojas de Kiinmar, estos sables le acompa\u00f1an en sus aventuras, el sable morado prueba f\u00e9rrea del camino que ha tomado kiinmar en el limbo del lado oscuro y el lado luminoso fue su primer sable, con el escudo de la orden en el mango y blanco demuestra ser el sable de un jedi de facto, el segundo sable de color \u00e1mbar casi dorado siendo la muestra que aun tiene luz dentro del interior del joven cazarrecompensas.",
+      {
+        "image": "https:\/\/cdn.discordapp.com\/attachments\/757791773136388247\/757984646951731210\/unknown.png"
+      }
+    ],
+    "Sable-laser-falon-grey": [
+      "Sable-laser-falon-grey",
+      "El sable l\u00e1ser del Caballero Jedi Falon Grey fue creado en sus inicios como un sable de luz c\u00edan com\u00fan en Ilum. Despu\u00e9s de la orden 66 Falon se escondi\u00f3 y llev\u00f3 su sable con el en todo momento. Tras un tiempo visit\u00f3 el Enclave Jedi en Dantooine donde consigui\u00f3 una empu\u00f1adura de un viejo sable jedi. Tiempo m\u00e1s tarde obtuvo un Kyber en Jedha, una vez con todas las piezas necesarias para la creaci\u00f3n de su nuevo sable lo hizo. Un sable doble con la capacidad de s\u00f3lo encender una hoja o dos, tambi\u00e9n podr\u00eda separarse para ser usado como sables duales.",
+      {
+        "image": "https:\/\/cdn.discordapp.com\/attachments\/740937646720680047\/758009512459239609\/7cff81ced937f1f007319f67962f104b4a6a5cb6_hq.png"
+      }
+    ],
+    "Sable-de-luz-Darcon-Neida": [
+      "Sable-de-luz-Darcon-Neida",
+      "Un sable de luz creado a partir del sable de luz de Aiden Conrad, este fue modificado corrompiendo el cristal Kyber del antiguo Padawan. El Cristal Kyber tras ser corrompido se rompi\u00f3 liberando su poder completo haciendo que el propio sable no pudiera contener el poder que emanaba tras meses de uso, y por ello Darcon decidi\u00f3 personalizarlo y agregar dos ca\u00f1ones de l\u00e1ser a sus lados para que disiparan un poco la energ\u00eda que emanaba del Arma.",
+      {
+        "image": "https:\/\/www.google.com\/imgres?imgurl=http%3A%2F%2Fpm1.narvii.com%2F6714%2F30f69d7fa98743d28fd67fdac41376a2849d9f07_00.jpg&imgrefurl=https%3A%2F%2Faminoapps.com%2Fc%2Fstar-wars-espanol%2Fpage%2Fitem%2Fsable-laser-de-kylo-ren%2Fg0d1_xdxsKIQVpPPklRErNPjWqWldNr8LMg&tbnid=GljCKzOxIsHIAM&vet=1&docid=YRr7ioDelw2MQM&w=512&h=384&hl=es-ES&source=sh%2Fx%2Fim"
+      }
+    ],
+    "Sable-Laser-Side-Conrad": [
+      "Sable-Laser-Side-Conrad",
+      "El sable de color rojo \"Normal\"  que rob\u00f3 a un inquisidor cuando el dorm\u00eda.",
+      {}
+    ],
+    "Sable-laser-Adra": [
+      "Sable-laser-Adra",
+      "Adra: Un sable de un material negrusco como la noche, su carcaza es de un color negro con finas l\u00edneas grises en las extremidades y bordes, a lo largo de ella puedes ver runas en un idioma olvidado. Su haz de luz posee un rojo sangre intenso que encandila a todo aquel que lo ve y intimida a quienes se enfrenta a los portadores de Adra; El Sable laser parece antiguo y lo es, nadie que lo haya portado sabe qui\u00e9n fue el primero en portarlo y que tan antiguo es, pues Adra parece ser tan antiguo con la propia Antigua Rep\u00fablica. Pero de madre a hija  a pasado y ahora su nueva portadora, una primerisa de nombre Ty'rhek pretende usarlo para conseguir su anciada venganza contra el mundo que le ha robado todo lo que ha pose\u00eddo o amado.",
+      {}
+    ],
+    "Sable-laser-Aerl": [
+      "Sable-laser-Aerl",
+      "Es un hermoso sable de colores rojos y dorados y plateados, el cual es bastante compacto a pesar de que el tama\u00f1o de su hoja puede ser bastante largo.\nOriginalmente su cristal fue un adegano de pontita, ahora sangrante y carmes\u00ed despu\u00e9s de ser separado de su due\u00f1o original...\n\nSe le considera una reliquia por su due\u00f1o, como la cadena de oro que un viejo puede llevar entre sus recuerdos. A pesar de estar totalmente funcional.\nSu hoja es estable y pocas veces se escuchan sus crujidos, adem\u00e1s de ser fina y potente. En definitiva es una exelente arma y decoraci\u00f3n... Pero decorarte con el es una mala idea.",
+      {
+        "image": "https:\/\/media.discordapp.net\/attachments\/713832957759979591\/760561867185455114\/b239979223e9896f4852bab821b1650d.jpg"
+      }
+    ],
+    "Sable-laser-Octavio": [
+      "Sable-laser-Octavio",
+      "Sable doble de Octavio, creado por principio por las ense\u00f1anza del lado oscuro y luminoso, ense\u00f1anzas de darth vader por el lado oscuro y de su ex maestro jedi, esos dos camino forj\u00f3 el sable con su odio y compasi\u00f3n. Este sable ser\u00eda el principio uno de los camino de Farr.",
+      {}
+    ],
+    "Sable-de-luz-Reira": [
+      "Sable-de-luz-Reira",
+      "\"No sabia que existia un Sable asi \u00bfcomo lo hiciste?\" Serian las palabras que diria el Maestro Aldaar cuando llego a recoger a la joven Reira en Illum luego de que esta forjara su Sable, el Sable de luz en cruz con el caracteristico color Amarillo habia sido hecho por Reira a partir de un cristal kyber, que lamentable se fragmento por la falta de experiencia de Reira, a pesar de esto, gracias a sus conocimientos en Ingenieria y su dominio en la fuerza lograria volverlo a juntar, pero el calor que emanaba este cristal obligaria a la Joven Padawan a hacer dos aberturas en su sable haciendolo un Sable en Cruz.\"",
+      {
+        "image": "https:\/\/cdn.discordapp.com\/attachments\/762433225368141855\/762653855711232020\/unknown.png"
+      }
+    ],
+    "Sables-de-luz-Ashla-Skymoon": [
+      "Sables-de-luz-Ashla-Skymoon",
+      "Los sables (porq son dos) son dos sables curvos, uno cuenta con un cristal Kyber de Ilum y otro cuenta con un cristal del templo de sagrado de Jedha.\nEl sable representa la elegancia que es el Makashii, con empu\u00f1aduras curvas cada cual, la finura es algo que le acompa\u00f1a ya que se refleja en su forma de vestir. Cada sable representa una dualidad en la fuerza, siendo su sable derecho uno mas oscuro poro con toques de blanco y siendo el izquierdo uno mas claro con toques en negro. El emisor de luz de cada sable son dos hojas de metal finas, que cubren a la luz que emana del sable, puesto que esto es un simbolismo a su familia. Representando cada hoja de metal a sus padres abrazando la luz, que vendria a ser ella. Ya que ella, seg\u00fan sus padres, a sido su luz durante toda sus vidas.",
+      {
+        "image": "https:\/\/cdn.discordapp.com\/attachments\/737042965754675370\/763540898079703060\/Sable-1-y-2.gif"
+      }
+    ],
+    "Sable-de-luz-Rek-Kondak": [
+      "Sable-de-luz-Rek-Kondak",
+      "B\u00e1sicamente el sable de Rek estar\u00e1 hecho de esa manera para dejar en claro su estilo de combate el cual es el makashi pero pronto tendr\u00e1 que aprender el soresu para as\u00ed llegar al shien y hacer sus maestr\u00edas en cada una esas formas m\u00e1s ese sable es m\u00e1s liviano que cualquier otro sin llegar a ser una pluma pero es m\u00e1s liviano lo cual le ayuda en sus movimientos para hacerlos m\u00e1s r\u00e1pidos y tener mayor fluidez en ellos y el sable es elegante y algo moderno lo que significa que a Rek le gusta batallar con sus pensamientos en el lado oscuro pero este siempre es preciso y elegante a la hora de usar un sable de luz y por eso se hizo curvo",
+      {
+        "image": "https:\/\/cdn.discordapp.com\/attachments\/763197554909118485\/763847074206318602\/image1.png"
+      }
+    ],
+    "Pistola-blaster-Westar-35": [
+      "Pistola-blaster-Westar-35",
+      "La pistola blaster WESTAR-35 fue ampliamente favorecido por los humanos de herencia mandaloriana, que muy a menudo los empu\u00f1aban con dos armas en combate. Adem\u00e1s de su designaci\u00f3n oficial, tambi\u00e9n se le conoc\u00eda como un \"modelo MandalTech Jai'galaar\". La pistola presentaba una configuraci\u00f3n de aturdimiento y una construcci\u00f3n sellada de bajo mantenimiento",
+      {
+        "image": "https:\/\/vignette.wikia.nocookie.net\/esstarwars\/images\/5\/50\/WESTAR35BlasterPistol-CON.png\/revision\/latest?cb=20130720161610"
+      }
+    ],
+    "Sable-de-luz-Jasmine-Tylar": [
+      "Sable-de-luz-Jasmine-Tylar",
+      "El sable de Jasmine Tylar lo hizo pensando en su color de cristal que es verde de sabidur\u00eda ella lo hizo as\u00ed pensando que hiba a aprender sobre muchas formas de combate ella lo hizo pensando en ataques laterales y horizontales tales como lo es la forma Shi-cho ella lo uso siempre de est\u00e1 forma la cu\u00e1l no lo ten\u00eda muy aprendida pero siempre lo uso as\u00ed haciendole el sable de una forma ligera y no tan largo para maniobrar r\u00e1pido de har\u00eda bien a ella ya que en el ataque era muy precipitada",
+      {
+        "image": "https:\/\/cdn.discordapp.com\/attachments\/676479828911849497\/766072856068489256\/Screenshot_20201014_104416.png"
+      }
+    ],
+    "Sable-laser-Aemon-Targaryen": [
+      "Sable-laser-Aemon-Targaryen",
+      "Sable de Luz  con una empu\u00f1adura con una postergaci\u00f3n de hierro, una empu\u00f1adura curva tambi\u00e9n de hierro, con un agarre que parec\u00eda madera con un cilindro con el aro para colgar el sable, un Kyber rojo, una matriz emisora y una celda de energ\u00eda que lo contuviera, el ca\u00f1\u00f3n, lo que hac\u00eda salir la hoja con otra postergaci\u00f3n de Hierro, con un tornillo de color amarillento, con varios toques negros y cromados.",
+      {
+        "image": "https:\/\/cdn.discordapp.com\/attachments\/729703109303205908\/766992565466955796\/Darth_Banes_Lightsaber_by_Madcow-Genesis_on_DeviantArt.jpeg"
+      }
+    ],
+    "Sable-de-luz-Random": [
+      "Sable-de-luz-Random",
+      "El sable de luz tambi\u00e9n se convirti\u00f3 en sin\u00f3nimo con los valores de la Orden Jedi de mantener la paz y la justicia por la galaxia. Esta percepci\u00f3n se mantuvo, a pesar de muchos conflictos con los Sith y los Jedis Oscuros.\nEra una hoja de energ\u00eda de plasma puro suspendida en un campo de fuerza contenedor que imped\u00eda que las personas sintieran el calor del plasma. El plasma era emitido de una empu\u00f1adura que casi siempre era creada por el usuario para satisfacer sus propias necesidades, preferencias y estilo.",
+      {}
+    ],
+    "Sable-l\u00e1ser-Gacrima-Kaanapu": [
+      "Sable-l\u00e1ser-Gacrima-Kaanapu",
+      "El sable que Gacrima Kaanapu le quit\u00f3 a su padre despu\u00e9s de que el Sith le cortara el cuello a su padre",
+      {}
+    ],
+    "Sable-Lase-Ren-Darklight": [
+      "Sable-Lase-Ren-Darklight",
+      "Similar al del maestro Obi-Wan Kenobi exceptuando algunas modificaciones personales que el realiz\u00f3 personalmente y el color de las piezas puesto que estas eran negras y plateadas a excepci\u00f3n del interruptor que seria color rojo",
+      {
+        "image": "https:\/\/cdn.discordapp.com\/attachments\/729703109303205908\/770676459571773490\/ee50a01c-03f6-4abc-90aa-d98988452d4f.jpeg"
+      }
+    ],
+    "Frasco-ligero": [
+      "Frasco-ligero",
+      "Frasco que permite contener una dosis b\u00e1sica de estimulantes, facil de llevar y bastante peque\u00f1ito",
+      {
+        "value": "100",
+        "used": "Has usado un frasco para crear una d\u00f3sis b\u00e1sica"
+      }
+    ],
+    "Ingredientes-basicos": [
+      "Ingredientes-basicos",
+      "Ingredientes necesarios para crear una d\u00f3sis b\u00e1sica, solo los m\u00e9dicos saben como usarlos correctamente para crear una buena dosis de estimulante",
+      {
+        "value": "900",
+        "key": "Has mezclado estos ingredientes para crear una dosis b\u00e1sica"
+      }
+    ],
+    "Frasco-resistente": [
+      "Frasco-resistente",
+      "Frasco m\u00e1s resistente que los frascos ligeros para contener dosis avanzadas de estimulantes",
+      {
+        "valued": "1000",
+        "used": "Has usado un frasco resistente para crear una dosis avanzada"
+      }
+    ],
+    "Ingredientes-avanzados": [
+      "Ingredientes-avanzados",
+      "Ingredientes potencialmente peligrosos y nocivos para la salud en malas manos, pero que un m\u00e9dico puede usar correctamente para crear dosis de estimulantes avanzados.",
+      {
+        "value": "3500",
+        "used": "Has combinado ingredientes avanzados para crear una dosis avanzada"
+      }
+    ],
+    "libro-ter\u00e4s-k\u00e4si": [
+      "libro-ter\u00e4s-k\u00e4si",
+      "Libro Ter\u00e4s K\u00e4si . \nTer\u00e4s K\u00e4si era una forma de combate mano a mano. Sus practicantes se clasificaron en principiantes, adeptos o maestros de acuerdo con su nivel de habilidades, y vest\u00edan trajes distintivos.\n\nQi'ra, una\u00a0teniente\u00a0del\u00a0Alba Escarlata, era h\u00e1bil en esta forma de combate, habiendo sido entrenado por su empleador\u00a0Dryden Vos\u00a0y lo us\u00f3 para derribar a\u00a0Quay Tolsite\u00a0del\u00a0Sindicato Pyke.Los\u00a0Guardias Pretorianos de \u00c9lite\u00a0fueron entrenados en Ter\u00e4s K\u00e4si, junto con otras artes marciales",
+      {
+        "value": "12500"
+      }
+    ]
+  },
+  "characters": {},
+  "market_items": {},
+  "loot_boxes": {},
+  "guilds": {},
+  "shop_items": {
+    "Armadura-completa-beskar": {
+      "buy": 25000.0,
+      "sell": 12500.0,
+      "level": 0
+    },
+    "Armadura-de-Fibra-Echani": {
+      "buy": 6000.0,
+      "sell": 3000.0,
+      "level": 0
+    },
+    "Armadura-de-batalla-Echani": {
+      "buy": 8000.0,
+      "sell": 4000.0,
+      "level": 0
+    },
+    "Armadura-de-fibra-Verpine": {
+      "buy": 9000.0,
+      "sell": 4500.0,
+      "level": 0
+    },
+    "Armadura-parcial-de-Beskar": {
+      "buy": 20000.0,
+      "sell": 10000.0,
+      "level": 0
+    },
+    "Armadura-pesada-Durasteel": {
+      "buy": 12000.0,
+      "sell": 6000.0,
+      "level": 0
+    },
+    "Aves-Silbantes": {
+      "buy": 1250.0,
+      "sell": 600.0,
+      "level": 0
+    },
+    "Boca-de-ca\u00f1on": {
+      "buy": 1500.0,
+      "sell": 750.0,
+      "level": 0
+    },
+    "Boma-Humo-Mejorada": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Bomba-Dioxis": {
+      "buy": 800.0,
+      "sell": 400.0,
+      "level": 0
+    },
+    "Bomba-Dioxis-Mejorada": {
+      "buy": 1600.0,
+      "sell": 800.0,
+      "level": 0
+    },
+    "Bomba-Humo": {
+      "buy": 500.0,
+      "sell": 250.0,
+      "level": 0
+    },
+    "Bomba-Iones": {
+      "buy": 750.0,
+      "sell": 350.0,
+      "level": 0
+    },
+    "Bomba-Iones-Mejorada": {
+      "buy": 1500.0,
+      "sell": 750.0,
+      "level": 0
+    },
+    "Caja-detonadores-t\u00e9rmicos": {
+      "buy": 2500.0,
+      "sell": 1250.0,
+      "level": 0
+    },
+    "Carabela-seltiss-2": {
+      "buy": 15000.0,
+      "sell": 7500.0,
+      "level": 0
+    },
+    "Carguero-comercial": {
+      "buy": 800.0,
+      "sell": 400.0,
+      "level": 0
+    },
+    "Caza-estelar-Dianoga": {
+      "buy": 5000.0,
+      "sell": 2500.0,
+      "level": 0
+    },
+    "Caza-estelar-Porax-38": {
+      "buy": 7000.0,
+      "sell": 3500.0,
+      "level": 0
+    },
+    "Ca\u00f1onera-M22-T-Krayt": {
+      "buy": 3500.0,
+      "sell": 1750.0,
+      "level": 0
+    },
+    "Corbeta-ligera-clase-defensor": {
+      "buy": 15000.0,
+      "sell": 7500.0,
+      "level": 0
+    },
+    "Culata-de-arma": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Datos-Acceso-Facciones": {
+      "buy": 3000.0,
+      "sell": 1500.0,
+      "level": 0
+    },
+    "Delta-7-jedi": {
+      "buy": 5000.0,
+      "sell": 2500.0,
+      "level": 0
+    },
+    "Destructor-estelar-clase-terminus": {
+      "buy": 3000000.0,
+      "sell": 1500000.0,
+      "level": 0
+    },
+    "Detonador-T\u00e9rmico": {
+      "buy": 500.0,
+      "sell": 250.0,
+      "level": 0
+    },
+    "Droide-Remoto": {
+      "buy": 1500.0,
+      "sell": 750.0,
+      "level": 0
+    },
+    "Droide-Trampa": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Fragata-DP20": {
+      "buy": 100000.0,
+      "sell": 50000.0,
+      "level": 0
+    },
+    "Gafas-T\u00e9rmicas": {
+      "buy": 2000.0,
+      "sell": 1000.0,
+      "level": 0
+    },
+    "Granada-aturdidora": {
+      "buy": 700.0,
+      "sell": 350.0,
+      "level": 0
+    },
+    "Jetpack": {
+      "buy": 12000.0,
+      "sell": 6000.0,
+      "level": 0
+    },
+    "Lanzallamas-Mandaloriano": {
+      "buy": 5000.0,
+      "sell": 2500.0,
+      "level": 0
+    },
+    "Mira-de-arma": {
+      "buy": 2000.0,
+      "sell": 1000.0,
+      "level": 0
+    },
+    "Misil-de-mu\u00f1eca": {
+      "buy": 4000.0,
+      "sell": 2000.0,
+      "level": 0
+    },
+    "M\u00e1scara-Ox\u00edgeno": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Pistola-blaster-DC-17": {
+      "buy": 500.0,
+      "sell": 250.0,
+      "level": 0
+    },
+    "Pistola-bl\u00e1ster-DL-18": {
+      "buy": 2000.0,
+      "sell": 1000.0,
+      "level": 0
+    },
+    "Pistola-bl\u00e1ster-pesada-CR-2": {
+      "buy": 1500.0,
+      "sell": 750.0,
+      "level": 0
+    },
+    "Pistola-bl\u00e1ster-pesada-S-5": {
+      "buy": 1700.0,
+      "sell": 850.0,
+      "level": 0
+    },
+    "Planos-T\u00faneles": {
+      "buy": 850.0,
+      "sell": 425.0,
+      "level": 0
+    },
+    "Planos-T\u00faneles-Mejorados": {
+      "buy": 1500.0,
+      "sell": 750.0,
+      "level": 0
+    },
+    "Rifle-blaster-DC-15S": {
+      "buy": 1200.0,
+      "sell": 600.0,
+      "level": 0
+    },
+    "Rifle-blaster-pesado-DC-15A": {
+      "buy": 2500.0,
+      "sell": 1250.0,
+      "level": 0
+    },
+    "Rifle-bl\u00e1ster-A280": {
+      "buy": 2200.0,
+      "sell": 1100.0,
+      "level": 0
+    },
+    "Rifle-bl\u00e1ster-E-5": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Rifle-bl\u00e1ster-WESTAR-M5": {
+      "buy": 3500.0,
+      "sell": 1750.0,
+      "level": 0
+    },
+    "Rifle-bl\u00e1ster-pesado-DLT-19": {
+      "buy": 3000.0,
+      "sell": 1500.0,
+      "level": 0
+    },
+    "Rifle-de-francotirador-IQA-11": {
+      "buy": 7500.0,
+      "sell": 3750.0,
+      "level": 0
+    },
+    "Rifle-de-francotirador-Valken-38x": {
+      "buy": 9000.0,
+      "sell": 4500.0,
+      "level": 0
+    },
+    "Rifle-precisi\u00f3n-DC-15X": {
+      "buy": 6000.0,
+      "sell": 3000.0,
+      "level": 0
+    },
+    "Sistema-de-Arma-Intercambiable-DC-17m": {
+      "buy": 5000.0,
+      "sell": 2500.0,
+      "level": 0
+    },
+    "Speeder-74-Z": {
+      "buy": 8000.0,
+      "sell": 4000.0,
+      "level": 0
+    },
+    "Traje-de-combate": {
+      "buy": 4000.0,
+      "sell": 2000.0,
+      "level": 0
+    },
+    "Traje-de-combate-Zabrak": {
+      "buy": 5000.0,
+      "sell": 2500.0,
+      "level": 0
+    },
+    "Traje-militar": {
+      "buy": 7000.0,
+      "sell": 3500.0,
+      "level": 0
+    },
+    "Trampa-Personas": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Vibrohacha": {
+      "buy": 2000.0,
+      "sell": 1000.0,
+      "level": 0
+    },
+    "Vibrohoja-Cuchillo": {
+      "buy": 900.0,
+      "sell": 450.0,
+      "level": 0
+    },
+    "Vibrohoja-Espada": {
+      "buy": 1700.0,
+      "sell": 850.0,
+      "level": 0
+    },
+    "Yate-espacial-clase-juglar": {
+      "buy": 100000.0,
+      "sell": 50000.0,
+      "level": 0
+    },
+    "Empu\u00f1adura-de-arma": {
+      "buy": 800.0,
+      "sell": 400.0,
+      "level": 0
+    },
+    "Pistola-Bryar-K-16": {
+      "buy": 850.0,
+      "sell": 425.0,
+      "level": 0
+    },
+    "Pistola-blaster-DH-17": {
+      "buy": 1150.0,
+      "sell": 575.0,
+      "level": 0
+    },
+    "Rifle-blaster-E11": {
+      "buy": 1850.0,
+      "sell": 925.0,
+      "level": 0
+    },
+    "Rifle-blaster-DLT-20A": {
+      "buy": 2800.0,
+      "sell": 1400.0,
+      "level": 0
+    },
+    "Rifle-blaster-E22": {
+      "buy": 3000.0,
+      "sell": 1500.0,
+      "level": 0
+    },
+    "Rifle-francotirador-NT-242": {
+      "buy": 10500.0,
+      "sell": 5250.0,
+      "level": 0
+    },
+    "Soldador": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Cuerda-de-enganche": {
+      "buy": 2000.0,
+      "sell": 1000.0,
+      "level": 0
+    },
+    "Speeder-de-carga": {
+      "buy": 800.0,
+      "sell": 400.0,
+      "level": 0
+    },
+    "Ropa-abrigada": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Ropa-protectora": {
+      "buy": 2000.0,
+      "sell": 1000.0,
+      "level": 0
+    },
+    "Ropa-ligera": {
+      "buy": 1500.0,
+      "sell": 750.0,
+      "level": 0
+    },
+    "Rifle-Bl\u00e1ster-A280-ECE": {
+      "buy": 3200.0,
+      "sell": 1600.0,
+      "level": 0
+    },
+    "Municion-lanzallamas": {
+      "buy": 3000.0,
+      "sell": 1500.0,
+      "level": 0
+    },
+    "Carta+1-Pazaak(1)": {
+      "buy": 250.0,
+      "sell": 125.0,
+      "level": 0
+    },
+    "Carta+2-Pazaak(2)": {
+      "buy": 250.0,
+      "sell": 125.0,
+      "level": 0
+    },
+    "Carta+3-Pazaak(3)": {
+      "buy": 250.0,
+      "sell": 125.0,
+      "level": 0
+    },
+    "Carta+4-Pazaak(4)": {
+      "buy": 250.0,
+      "sell": 125.0,
+      "level": 0
+    },
+    "Carta+5-Pazaak(5)": {
+      "buy": 250.0,
+      "sell": 125.0,
+      "level": 0
+    },
+    "Carta+6-Pazaak(6)": {
+      "buy": 250.0,
+      "sell": 125.0,
+      "level": 0
+    },
+    "Carta-1-Pazaak(1)": {
+      "buy": 250.0,
+      "sell": 125.0,
+      "level": 0
+    },
+    "Carta-2-Pazaak(2)": {
+      "buy": 250.0,
+      "sell": 125.0,
+      "level": 0
+    },
+    "Carta-3-Pazaak(3)": {
+      "buy": 250.0,
+      "sell": 125.0,
+      "level": 0
+    },
+    "Carta-4-Pazaak(4)": {
+      "buy": 250.0,
+      "sell": 125.0,
+      "level": 0
+    },
+    "Carta-5-Pazaak(5)": {
+      "buy": 250.0,
+      "sell": 125.0,
+      "level": 0
+    },
+    "Carta-6-Pazaak(6)": {
+      "buy": 250.0,
+      "sell": 125.0,
+      "level": 0
+    },
+    "Carta+\/\u22121-Pazaak(1)": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Carta+\/\u22122-Pazaak(2)": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Carta+\/\u22123-Pazaak(3)": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Carta+\/\u22124-Pazaak(4)": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Carta+\/\u22125-Pazaak(5)": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Carta+\/\u22126-Pazaak(6)": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Carta-doble-Pazaak(7)": {
+      "buy": 2500.0,
+      "sell": 1250.0,
+      "level": 0
+    },
+    "Pack-cartas-normales": {
+      "buy": 2000.0,
+      "sell": 1000.0,
+      "level": 0
+    },
+    "Pistola-bl\u00e1ster-DT-12": {
+      "buy": 900.0,
+      "sell": 450.0,
+      "level": 0
+    },
+    "Pistola-blaster-EC-17": {
+      "buy": 950.0,
+      "sell": 475.0,
+      "level": 0
+    },
+    "Pistola-blaster-RSKF-44": {
+      "buy": 1200.0,
+      "sell": 600.0,
+      "level": 0
+    },
+    "Pistola-blaster-A180": {
+      "buy": 1150.0,
+      "sell": 575.0,
+      "level": 0
+    },
+    "Pistola-bl\u00e1ster-DE-10": {
+      "buy": 2100.0,
+      "sell": 1050.0,
+      "level": 0
+    },
+    "Vibro-pu\u00f1o": {
+      "buy": 1250.0,
+      "sell": 625.0,
+      "level": 0
+    },
+    "Latigo-electrico": {
+      "buy": 7500.0,
+      "sell": 3750.0,
+      "level": 0
+    },
+    "Baston-electrico": {
+      "buy": 8500.0,
+      "sell": 4250.0,
+      "level": 0
+    },
+    "Rifle-francotirador-E-5s": {
+      "buy": 7700.0,
+      "sell": 3850.0,
+      "level": 0
+    },
+    "Rifle-francontirador-de-ciclos": {
+      "buy": 6500.0,
+      "sell": 3250.0,
+      "level": 0
+    },
+    "Rifle-bl\u00e1ster-MK-II-Paladin": {
+      "buy": 3700.0,
+      "sell": 1850.0,
+      "level": 0
+    },
+    "Rifle-pesado-LS-150": {
+      "buy": 5200.0,
+      "sell": 2600.0,
+      "level": 0
+    },
+    "Escopeta-Scatterblaster-SX-21": {
+      "buy": 6000.0,
+      "sell": 3000.0,
+      "level": 0
+    },
+    "Escopeta-ACP": {
+      "buy": 7500.0,
+      "sell": 3750.0,
+      "level": 0
+    },
+    "Escopeta DP-23": {
+      "buy": 8500.0,
+      "sell": 4250.0,
+      "level": 0
+    },
+    "Lanzacohetes-MPL-57": {
+      "buy": 7500.0,
+      "sell": 3750.0,
+      "level": 0
+    },
+    "Lanzacohetes-E-60R": {
+      "buy": 9000.0,
+      "sell": 4500.0,
+      "level": 0
+    },
+    "Lanzacohetes-RPS-6": {
+      "buy": 11000.0,
+      "sell": 5500.0,
+      "level": 0
+    },
+    "Granada-Cegadora": {
+      "buy": 800.0,
+      "sell": 400.0,
+      "level": 0
+    },
+    "Matriz-disfraz-hologr\u00e1fico": {
+      "buy": 8000.0,
+      "sell": 4000.0,
+      "level": 0
+    },
+    "Botas-magn\u00e9ticas": {
+      "buy": 3000.0,
+      "sell": 1500.0,
+      "level": 0
+    },
+    "Clave-de-codificaci\u00f3n": {
+      "buy": 1500.0,
+      "sell": 750.0,
+      "level": 0
+    },
+    "Cortador-fusi\u00f3n": {
+      "buy": 3000.0,
+      "sell": 1500.0,
+      "level": 0
+    },
+    "Gancho-de-agarre": {
+      "buy": 1500.0,
+      "sell": 750.0,
+      "level": 0
+    },
+    "Macrobinoculares": {
+      "buy": 800.0,
+      "sell": 400.0,
+      "level": 0
+    },
+    "Gafas-visi\u00f3n-nocturna": {
+      "buy": 3500.0,
+      "sell": 1750.0,
+      "level": 0
+    },
+    "Unidad-BD": {
+      "buy": 2500.0,
+      "sell": 1750.0,
+      "level": 0
+    },
+    "Emulador-vocal": {
+      "buy": 5000.0,
+      "sell": 2500.0,
+      "level": 0
+    },
+    "Kit-Arque\u00f3logo": {
+      "buy": 800.0,
+      "sell": 400.0,
+      "level": 0
+    },
+    "Kit-Ladr\u00f3n": {
+      "buy": 800.0,
+      "sell": 400.0,
+      "level": 0
+    },
+    "Droide-esp\u00eda": {
+      "buy": 1000.0,
+      "sell": 500.0,
+      "level": 0
+    },
+    "Brazalete-de-pelea": {
+      "buy": 800.0,
+      "sell": 400.0,
+      "level": 0
+    },
+    "Guantes-de-combate": {
+      "buy": 1500.0,
+      "sell": 750.0,
+      "level": 0
+    },
+    "Guanteletes-Mandalorianos": {
+      "buy": 2500.0,
+      "sell": 1250.0,
+      "level": 0
+    },
+    "Blaster-de-mu\u00f1eca": {
+      "buy": 3000.0,
+      "sell": 1500.0,
+      "level": 0
+    },
+    "Lanzador-de-dardos": {
+      "buy": 6500.0,
+      "sell": 3250.0,
+      "level": 0
+    },
+    "Emisor-escudo-peque\u00f1o": {
+      "buy": 6500.0,
+      "sell": 3250.0,
+      "level": 0
+    },
+    "Lanzacables": {
+      "buy": 2500.0,
+      "sell": 1250.0,
+      "level": 0
+    },
+    "Pistola-blaster-Westar-35": {
+      "buy": 1250.0,
+      "sell": 625.0,
+      "level": 0
+    },
+    "Frasco-ligero": {
+      "buy": 100.0,
+      "sell": 50.0,
+      "level": 0
+    },
+    "Ingredientes-basicos": {
+      "buy": 900.0,
+      "sell": 450.0,
+      "level": 0
+    },
+    "libro-ter\u00e4s-k\u00e4si": {
+      "buy": 12500.0,
+      "sell": 6250.0,
+      "level": 0
+    }
+  },
+  "recipes": {},
+  "prefix": [
+    "rp!",
+    "pb!",
+    "<@305177429612298242> ",
+    "Rp!"
+  ],
+  "cmdprefixes": {},
+  "lang": "es",
+  "hideinv": true,
+  "salaries": {
+    "678263133428514826": {
+      "int": 86400.0,
+      "val": [
+        800.0
+      ]
+    },
+    "678263320079368212": {
+      "int": 86400.0,
+      "val": [
+        875.0
+      ]
+    },
+    "678263771315306498": {
+      "int": 86400.0,
+      "val": [
+        750.0
+      ]
+    },
+    "678263583561482261": {
+      "int": 86400.0,
+      "val": [
+        575.0
+      ]
+    },
+    "677606371574808606": {
+      "int": 86400.0,
+      "val": [
+        2500.0
+      ]
+    },
+    "678633318110986240": {
+      "int": 86400.0,
+      "val": [
+        1600.0
+      ]
+    },
+    "677605846334570506": {
+      "int": 86400.0,
+      "val": [
+        1500.0
+      ]
+    },
+    "677606674240110622": {
+      "int": 86400.0,
+      "val": [
+        1400.0
+      ]
+    },
+    "677606841592578050": {
+      "int": 86400.0,
+      "val": [
+        950.0
+      ]
+    },
+    "677606787939303425": {
+      "int": 86400.0,
+      "val": [
+        850.0
+      ]
+    },
+    "677606925847756850": {
+      "int": 86400.0,
+      "val": [
+        700.0
+      ]
+    },
+    "734485278034624623": {
+      "int": 86400.0,
+      "val": [
+        500.0
+      ]
+    },
+    "734489734360989697": {
+      "int": 86400.0,
+      "val": [
+        1300.0
+      ]
+    },
+    "733884033502806099": {
+      "int": 86400.0,
+      "val": [
+        425.0
+      ]
+    },
+    "677603010926608435": {
+      "int": 86400.0,
+      "val": [
+        10000.0
+      ]
+    },
+    "677604111134228566": {
+      "int": 86400.0,
+      "val": [
+        4250.0
+      ]
+    },
+    "685848597019099234": {
+      "int": 86400.0,
+      "val": [
+        3750.0
+      ]
+    },
+    "677603135308431390": {
+      "int": 86400.0,
+      "val": [
+        3500.0
+      ]
+    },
+    "723871400326332496": {
+      "int": 86400.0,
+      "val": [
+        3500.0
+      ]
+    },
+    "695338852747051028": {
+      "int": 86400.0,
+      "val": [
+        3000.0
+      ]
+    },
+    "677604291460202556": {
+      "int": 86400.0,
+      "val": [
+        3000.0
+      ]
+    },
+    "737851562512220211": {
+      "int": 86400.0,
+      "val": [
+        2500.0
+      ]
+    },
+    "677605856937771010": {
+      "int": 86400.0,
+      "val": [
+        1250.0
+      ]
+    },
+    "677603860633747480": {
+      "int": 86400.0,
+      "val": [
+        1250.0
+      ]
+    },
+    "686996732751642635": {
+      "int": 86400.0,
+      "val": [
+        950.0
+      ]
+    },
+    "699026913985036338": {
+      "int": 86400.0,
+      "val": [
+        1500.0
+      ]
+    },
+    "686978646719987773": {
+      "int": 86400.0,
+      "val": [
+        2200.0
+      ]
+    },
+    "686996734832148523": {
+      "int": 86400.0,
+      "val": [
+        1500.0
+      ]
+    },
+    "687002589526491176": {
+      "int": 86400.0,
+      "val": [
+        1000.0
+      ]
+    },
+    "729774287065579520": {
+      "int": 86400.0,
+      "val": [
+        2500.0
+      ]
+    },
+    "740382228311310356": {
+      "int": 86400.0,
+      "val": [
+        2300.0
+      ]
+    },
+    "740382224079257750": {
+      "int": 86400.0,
+      "val": [
+        1800.0
+      ]
+    },
+    "774501154641018892": {
+      "int": 86400.0,
+      "val": [
+        1800.0
+      ]
+    },
+    "695338852747051028": {
+      "int": 86400.0,
+      "val": [
+        2250.0
+      ]
+    }
+  }
+}

@@ -367,6 +367,7 @@ invlink = "https://discordapp.com/oauth2/authorize?client_id=305177429612298242&
 servinv = "https://discord.gg/UYJb8fQ"
 sourcelink = "https://github.com/henry232323/RPGBot"
 tutoriallink = "https://github.com/henry232323/RPGBot/blob/master/tutorial.md"
+votelink = "https://top.gg/bot/305177429612298242/vote"
 description = f"A Bot for assisting with RPG made by Henry#6174," \
               " with a working inventory, market and economy," \
               " team setups and characters as well. Each user has a server unique inventory and balance." \
@@ -378,6 +379,7 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
               f"**Support Server**: {servinv}\n" \
               f"**Command List**: <{sourcelink}>\n" \
               f"**Tutorial**: <{tutoriallink}>\n" \
+              f"**Vote**: <{votelink}>\n" \
               "**Support Me on Patreon**: <https://www.patreon.com/henry232323>\n```"
 
 with open("resources/auth") as af:
