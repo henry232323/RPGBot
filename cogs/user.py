@@ -109,7 +109,6 @@ class User(commands.Cog):
 
         await dest.send(embed=embed)
 
-    @checks.mod_or_permissions()
     @commands.group(aliases=["exp"], invoke_without_command=True)
     async def experience(self, ctx, member: discord.Member = None):
         """Get your or another user's level information. Help on this command for experience subcommands

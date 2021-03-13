@@ -126,7 +126,7 @@ class Inventory(commands.Cog):
         fitems = []
         item_list = await self.bot.di.get_guild_items(ctx.guild)
         for item in items:
-            if item not in item_list:
+            if item[:item.rfind('x')] not in item_list:
                 await ctx.send(await _(ctx, "That is not a valid item!"))
                 return
             split = item.split('x')
