@@ -148,7 +148,7 @@ class Misc(commands.Cog):
             if pp:
                 msg += (await _(ctx, " (Grabbed top {} out of {})")).format(pp, len(s) + pp)
 
-            await ctx.send(f"{ctx.author.display_name} rolled {msg}")
+            await ctx.send(f"<@{ctx.author.id}> rolled {msg}")
         except:
             from traceback import print_exc
             print_exc()
