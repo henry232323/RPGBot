@@ -103,7 +103,7 @@ class Inventory(commands.Cog):
     @commands.command()
     async def giveitem(self, ctx, item: str, num: IntConverter, *members: MemberConverter):
         """Give an item to a person (Not out of your inventory)
-        Example: rp!giveitem Banana 32 @Henry#6174 @RPGBot#8700 @JoeShmoe#3012
+        Example: !Koks
         Requires Bot Moderator or Bot Admin"""
         members = chain(members)
 
@@ -114,7 +114,7 @@ class Inventory(commands.Cog):
 
         num = abs(num)
         for member in members:
-            await self.bot.di.give_items(member, (item, num))
+            await self.bot.di.give_items(member, (item, 1)
 
         await ctx.send(await _(ctx, "Items given!"))
 
