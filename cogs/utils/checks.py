@@ -1,5 +1,6 @@
 from discord.ext import commands
 import discord.utils
+from discord.ext.commands.errors import CheckFailure
 
 
 def is_owner_check(message):
@@ -78,9 +79,9 @@ def mod_or_permissions(**perms):
         result = role_or_permissions(ctx, ('Bot Mod', 'Bot Admin', 'Bot Moderator'),
                                      manage_server=True, **perms)
         if not result:
-            await ctx.send("You need permission to use this command! "
-                           "You need a Discord role with the name `Bot Admin` or the manage server permission to use "
-                           "this command!")
+            raise CheckFailure("You need permission to use this command! "
+                               "You need a Discord role with the name `Bot Admin` or the manage server permission to use "
+                               "this command!")
 
         return result
 
