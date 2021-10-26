@@ -3,235 +3,274 @@
     "fr": "Impossible de supprimer plus de 100 messages.",
     "de": "Kann nicht mehr als 100 Nachrichten auf einmal löschen",
     "ru": "Нельзя удалить более 100 сообщений!",
-    "es": "No se pueden eliminar más de 100 mensajes."
+    "es": "No se pueden eliminar más de 100 mensajes.",  
+    "pt": "Não se pode eliminar mais de 100 mensagens"
   },
   "{} has no characters to display": {
     "fr": "{} n'a aucun personnage à afficher",
     "de": "{} hat keine anzeigbaren Charaktere",
     "ru": "У {} нет персонажей",
-    "es": "{} no tiene personajes"
+    "es": "{} no tiene personajes",
+    "pt": "{} não há personagens"
   },
   "No characters to display": {
     "fr": "Aucun personnage à afficher",
     "de": "Keine Charaktere zum Anzeigen verfügbar",
     "ru": "Персонажи отсутствуют",
-    "es": "No hay personajes personajes a mostrar"
+    "es": "No hay personajes personajes a mostrar",
+    "pt": "Não há personagens a se visualizar"
   },
   "Character {} does not exist!": {
     "fr": "Le personnage {} n'existe pas",
     "de": "Charakter {} existiert nicht",
     "ru": "Персонаж {} не существует",
-    "es": "El personaje {} no existe"
+    "es": "El personaje {} no existe",
+    "pt": "O personagem {} não existe"
   },
   "Name": {
     "fr": "Nom",
     "de": "Name",
     "ru": "Имя",
-    "es": "Nombre"
+    "es": "Nombre",
+    "pt": "Nome"
   },
   "Owner": {
     "fr": "Propriétaire",
     "de": "Besitzer",
     "ru": "Владелец",
-    "es": "Propietario"
+    "es": "Propietario",
+    "pt": "Propietário"
   },
   "Level": {
     "fr": "Niveau",
     "de": "Level",
     "ru": "Уровень",
-    "es": "Nivel"
+    "es": "Nivel",
+    "pt": "Nível"
   },
   "Empty": {
     "fr": "Vide",
     "de": "Leer",
     "ru": "Пусто",
-    "es": "Vacío"
+    "es": "Vacío",
+    "pt": "Vazio"
   },
   "Team": {
     "fr": "Équipe",
     "de": "Team",
     "ru": "Команда",
-    "es": "Equipo"
+    "es": "Equipo",
+    "pt": "Equipe"
   },
   "Additional Info": {
     "fr": "Informations supplémentaires",
     "de": "Zusätzliche Informationen",
     "ru": "Дополнительная информация",
-    "es": "Información adicional"
+    "es": "Información adicional",
+    "pt": "Informação adicional"
   },
   "Only Bot Mods/Bot Admins may make characters for other players!": {
     "fr": "Il faut etre `Bot Mod` ou `Bot Admin` pour créer un personnage pour les autres",
     "de": "Nur Bot Mods/Bot Admins dürfen Charaktere für andere Spieler erstellen",
     "ru": "Только Bot Mods/Bot Admins может создавать персонажей для других игроков",
-    "es": "Solo Bot Mods/Bot Admins pueden crear personajes para otros jugadores"
+    "es": "Solo Bot Mods/Bot Admins pueden crear personajes para otros jugadores",
+    "pt": "Apenas Mods/Bot Admins podem criar personagens para outros jogadores"
   },
   "A character with this name already exists!": {
     "fr": "Un personnage a déjà ce nom",
     "de": "Dieser Charaktername ist schon vergeben",
     "ru": "Персонаж с таким именем уже существует",
-    "es": "Ya existe un personaje con este nombre"
+    "es": "Ya existe un personaje con este nombre",
+    "pt": "Já existe um personagem com este nome"
   },
   "Describe the character (Relevant character sheet) (Say `done` when you're done describing)": {
     "fr": "Décrivez le personnage (Fiche associée du personnage) (Tapez `done` quand vous avez fini)",
     "de": "Beschreibe deinen Charakter(Relevantes Charakter-Blatt) (Schreib `done` when du fertig bist)",
     "ru": "Опишите персонажа (Внешность, характер) (Скажите `done` , когда закончите)",
-    "es": "Describe el personaje (Personaje asociado a la ficha) (Escriba `done`cuando haya acabado de escribir"
+    "es": "Describe el personaje (Personaje asociado a la ficha) (Escriba `done`cuando haya acabado de escribir",
+    "pt": "Descreva o personagem (Personagem asociado a ficha) (Escreva `done` quando estiver acabado de descrever"
   },
   "What level is the character?": {
     "fr": "Quel est le niveau du personnage ?",
     "de": "Welchen Level hat der Charakter?",
     "ru": "Какого уровня выш персонаж?",
-    "es": "¿Cuál es el nivel del personaje?"
+    "es": "¿Cuál es el nivel del personaje?",
+    "pt": "Qual é o nível do personagem?"
   },
   "Any additional info? (Add a character image using the image keyword. Formats use regular syntax e.g.  (Separate keys with commas or newlines)": {
     "fr": "Des informations supplémentaires ? (Ajouter une image au personnage avec le mot-clé `image`, comme ceci : `image: http://example.com/image.jpg, cheveux: bruns` (Separer les mot-clés avec des virgules ou des retours à la ligne)",
     "de": "Irgendwelche zusätzlichen Informationen? (Durch das Hinzufügen von Schlüsselwörtern kannst du zusätzliche Information hinzufügen. Zum Beispiel `image: https://example.com/image.jpg,` fügt ein Bild für den Charakter ein. Einzelne Schlüsselwörter müssen mit Komma oder Umschalt+Eingabe getrennt werden)",
     "ru": "Дополнительная информация. (Добавьте персонажу картинку используя атрибуты: `image: http://example.com/image.jpg, hair_color:Темные волосы, nickname:Кевин` (Разделяйте атрибуты запятыми)",
-    "es": "¿Alguna información adicional? (Añade una imágen al personaje  usango la palabra clave image. El formato debe seguir la sintaxis regular p.e. `image: http://example.com/image.jpg, hair_color: blond, nickname: Kevin`(Separe las claves con comas u otra línea))"
+    "es": "¿Alguna información adicional? (Añade una imágen al personaje  usango la palabra clave image. El formato debe seguir la sintaxis regular p.e. `image: http://example.com/image.jpg, hair_color: blond, nickname: Kevin`(Separe las claves con comas u otra línea))",
+    "pt": "Alguma informação adicional? (Adicione uma imagem ao personagem usando a palavra chave da imagem. O formato deve seguir a sintaxe regular p.e. `image: http://example.com/image.jpg, hair_color: blond, nickname: Kevin`(Separe as chaves com vírgulas ou outra linha))"
   },
   "Cancelling!": {
     "fr": "Commande annulée !",
     "de": "Breche ab!",
     "ru": "Закрыто!",
-    "es": "¡Cancelado!"
+    "es": "¡Cancelado!",
+    "pt": "Cancelando!"
   },
   "Skipping!": {
     "fr": "Étape sautée !",
     "de": "Überspringe!",
     "ru": "Пропущено!",
-    "es": "¡Saltando!"
+    "es": "¡Saltando!",
+    "pt": "Pulando!"
   },
   "Character created! rp!team addmember to add Pet (optional) to your character's team!": {
     "fr": "Personnage créé ! Tapez `rp!team addmember` pour ajouter des Pets (optionel) à votre équipe !",
     "de": "Charakter erstellt! Durch `rp!team addmember`kannst du sogar Pet hinzufügen falls du möchtest",
     "ru": "Персонаж создан! Если хотите добавить персонажа в команду, используете `rp!team addmember`",
-    "es": "¡Personaje creado! rp!team addmembet para añadir un Pet (opcional) al equipo de tu personaje"
+    "es": "¡Personaje creado! rp!team addmember para añadir un Pet (opcional) al equipo de tu personaje",
+    "pt": "Personagem criado! rp!team addmember para adicionar um Pet (opcional) para a equipe do seu personagem"
   },
   "That character doesn't exist!": {
     "fr": "Ce personnage n'existe pas !",
     "de": "Dieser Charakter existiert nicht!",
     "ru": "Персонаж не существует!",
-    "es": "El personaje no existe"
+    "es": "El personaje no existe",
+    "pt": "O personagem não existe"
   },
   "You do not own this character!": {
     "fr": "Vous n'êtes pas le propriétaire de ce personnage !",
     "de": "Dieser Charakter gehört dir nicht!",
     "ru": "Вы не владелец этого персонажа!",
-    "es": "No eres el propietario del personaje"
+    "es": "No eres el propietario del personaje",
+    "pt": "Não é o propietário do personagem"
   },
   "Character deleted": {
     "fr": "Personnage supprimé",
     "de": "Charakter gelöscht",
     "ru": "Персонаж удален",
-    "es": "Personaje borrado"
+    "es": "Personaje borrado",
+    "pt": "Personagem deletado"
   },
   "Invalid formatting! Try again": {
     "fr": "Syntaxe invalide !",
     "de": "Falsches Format! Probiers nochmal",
     "ru": "Неправильный формат, попробуй снова",
-    "es": "Formato no válido"
+    "es": "Formato no válido",
+    "pt": "Formato inválido"
   },
   "That is not a valid item! Try again": {
     "fr": "Cet item n'existe pas !",
     "de": "Das ist kein gültiger Gegenstand!",
     "ru": "Этот предмет не действителен! Попробуй еще",
-    "es": "¡Este no es un item válido! Vuelve a intentarlo"
+    "es": "¡Este no es un item válido! Vuelve a intentarlo",
+    "pt": "Este não é um item válido! Tente novamente"
   },
   "Character edited!": {
     "fr": "Personnage modifié",
     "de": "Character erfolgreich modifiziert!",
     "ru": "Персонаж изменен!",
-    "es": "Personaje editado"
+    "es": "Personaje editado",
+    "pt": "Personagem editado"
   },
   "{} has {} dollars": {
     "fr": "{} a {} dollars",
     "de": "{} hat {} dollars",
     "ru": "У {} сейчас {} dollars",
-    "es": "{} tiene {} dollars"
+    "es": "{} tiene {} dollars",
+    "pt": "{} tem {} dollars"
   },
   "Balances changed": {
     "fr": "Solde changé",
     "de": "Balance erfolgreich verändert",
     "ru": "Баланс изменен",
-    "es": "Balance cambiado"
+    "es": "Balance cambiado",
+    "pt": "Saldo alterado"
   },
   "Money given": {
     "fr": "Argent donné",
     "de": "Geld erfolgreich ausgegeben!",
     "ru": "Деньги выданы",
-    "es": "Dinero dado"
+    "es": "Dinero dado",
+    "pt": "Dinheiro dado"
   },
   "Successfully paid {} dollars to {}": {
     "fr": "Payé {} dollars à {} avec succès",
     "de": "{} hat erfolgreich {} bezahlt",
     "ru": "Успешно выплачено {} dollars {}",
-    "es": "Pago de {} dollars a {} satisfactorio"
+    "es": "Pago de {} dollars a {} satisfactorio",
+    "pt": "Pago {} dollars com sucesso a {}"
   },
   "\u27A1 to see the next page\n\u2B05 to go back\n\u274C to exit": {
     "fr": "\n        \u27A1 pour voir la page suivante\n        \u2B05 pour retourner\n        \u274C pour quitter\n        ",
     "de": "\n        \u27A1 um die nächste Seite zu sehen\n        \u2B05 um die vorherige Seite zu sehen\n        \u274C um das Menü zu verlassen\n        ",
     "ru": "\n        \u27A1 переход на следующую страницу\n        \u2B05 возврат\n        \u274C выход\n        ",
-    "es": "\n        \u27A1 para ver la siguente página\n        \u2B05 para volver\n        \u274C para salir\n        "
+    "es": "\n        \u27A1 para ver la siguente página\n        \u2B05 para volver\n        \u274C para salir\n        ",
+    "pt": "\n        \u27A1 para ver a página seguinte\n        \u2B05 para voltar\n        \u274C para sair\n        "
   },
   "No items on the market to display.": {
     "fr": "Aucun item sur le marché",
     "de": "Der Markt hat keine Gegenstände",
     "ru": "Предметы в магазине отсутствуют.",
-    "es": "No hay items en el mercado"
+    "es": "No hay items en el mercado",
+    "pt": "Não há itens a mostra no mercado"
   },
   "Player Market": {
     "fr": "Marché des joueurs",
     "de": "Spieler Markt",
     "ru": "Игровой магазин",
-    "es": "Mercado de jugadores"
+    "es": "Mercado de jugadores",
+    "pt": "Mercado de jogadores"
   },
   "ID": {
     "fr": "ID",
     "de": "ID",
     "ru": "ID",
-    "es": "ID"
+    "es": "ID",
+    "pt": "ID"
   },
   "COST": {
     "fr": "COÛT",
     "de": "Preis",
     "ru": "Стоимость",
-    "es": "Costo"
+    "es": "Costo",
+    "pt": "Custo"
   },
   "NUMBER": {
     "fr": "NOMBRE",
     "de": "Nummer",
     "ru": "Число",
-    "es": "Número"
+    "es": "Número",
+    "pt": "Número"
   },
   "ITEM": {
     "fr": "ITEM",
     "de": "Gegenstand",
     "ru": "Предмет",
-    "es": "ITEM"
+    "es": "ITEM",
+    "pt": "ITEM"
   },
   "SELLER": {
     "fr": "VENDEUR",
     "de": "Verkäufer",
     "ru": "Продавец",
-    "es": "VENDEDOR"
+    "es": "VENDEDOR",
+    "pt": "VENDEDOR"
   },
   "Timed out! Try again": {
     "fr": "Fin du temps ! Réessayez",
     "de": "Zeit abgelaufen! Versuchs nochmal",
     "ru": "Время вышло! Попробуй еще раз",
-    "es": "¡Tiempo agotado! Vualva a intentarlo"
+    "es": "¡Tiempo agotado! Vualva a intentarlo",
+    "pt": "Tempo esgotado! Tente novamente"
   },
   "You don't have enough of these to sell!": {
     "fr": "Vous n'en avez pas assez pour en vendre !",
     "de": "Du hast nicht genug davon um es zu verkaufen !",
     "ru": "Вам не хватает предметов для продажи!",
-    "es": "No tienes suficientes items de estos para vender"
+    "es": "No tienes suficientes items de estos para vender",
+    "pt": "Você não tem o suficiente disso para vender"
   },
   "Item listed!": {
     "fr": "Item listé !",
     "de": "Gegenstände aufgelistet!",
     "ru": "Перечень товаров",
-    "es": "Items listados"
+    "es": "Items listados",
+    "pt": "Itens listados"
   },
   "That is not a valid ID!": {
     "fr": "Ce n'est pas un ID valide !",
@@ -243,114 +282,134 @@
     "fr": "Vous ne pouvez pas acheter cet item !",
     "de": "Du kannst dir diesen Gegenstand nicht leisten!",
     "ru": "Вы не можете позволить купить себе этот товар!",
-    "es": "No puedes permitirte comprar este item"
+    "es": "No puedes permitirte comprar este item",
+    "pt": "Você não pode comprar este item"
   },
   "Items successfully bought": {
     "fr": "Items achetés avec succès",
     "de": "Gegenstand erfolgreich gekauft!",
     "ru": "Предмет успешно куплен",
-    "es": "Item comprado"
+    "es": "Item comprado",
+    "pt": "Itens comprados"
   },
   "{} bought {} {} from you for {} dollars with ID {} on server {}": {
     "fr": "{} a acheté {} {} de vous pour {} dollars avec l'ID {} sur le serveur {}",
     "de": "{0} hat dir {1} {2} auf dem Server {5} , mit der Transaktions ID {4} für {3} dollars abgekauft",
     "ru": "{} купил {} {} у вас за {} dollars. Его ID {} на сервере: {}",
-    "es": "{} ha comprado {} {} de ti {} dollars con ID {} del servidor {}"
+    "es": "{} ha comprado {} {} de ti {} dollars con ID {} del servidor {}",
+    "pt": "{} comprou {} {} de você por {} dollars com ID {} do servidor {}"
   },
   "This is not your item to remove!": {
     "fr": "Ce n'est pas à vous de supprimer cet item !",
     "de": "Dieser Gegenstand gehört dir nicht, du kannst ihn nicht entfernen!",
     "ru": "Это не ваш предмет! Вы не можете его удалить!",
-    "es": "Este objeto no es tuyo a eliminar"
+    "es": "Este objeto no es tuyo a eliminar",
+    "pt": "Este objeto não é seu para remover"
   },
   "Jackpot: {} dollars\n{} players entered": {
     "fr": "Cagnotte: {} dollars\n{} joueurs participent",
     "de": "Jackpot: {} dollars\n{} spieler haben teilgenommen",
     "ru": "Джекпот: {} dollars\n{} игроков вошло",
-    "es": "Lotería: {} dollars\n{} jugadores han entrado"
+    "es": "Lotería: {} dollars\n{} jugadores han entrado",
+    "pt": "Loteria: {} dollars\n{} jogadores participando"
   },
   "No lotteries currently running!": {
     "fr": "Aucune loterie n'a été lancée !",
     "de": "Im Moment laufen keine Lotterien",
     "ru": "В данный момент нет лотерей!",
-    "es": "No hay loterías disponibles ahora mismo"
+    "es": "No hay loterías disponibles ahora mismo",
+    "pt": "Não há loterias disponíveis no momento"
   },
   "A lottery of that name already exists!": {
     "fr": "Une loterie avec ce nom existe déjà !",
     "de": "Eine Lotterie mit diesem Namen existiert schon!",
     "ru": "Лотерея с таким именем уже существует!",
-    "es": "Ya existe una lotería con este nombre"
+    "es": "Ya existe una lotería con este nombre",
+    "pt": "Já existe uma loteria com este nome"
   },
   "Lottery created!": {
     "fr": "Loterie créée !",
     "de": "Lotterie erstellt!",
     "ru": "Лотерея создана!",
-    "es": "Lotería creada"
+    "es": "Lotería creada",
+    "pt": "Loteria criada"
   },
   "Lottery {} is now over!\n{} won {}! Congratulations!": {
     "fr": "La loterie {} est maintenant terminée !\n{} a gagné(e) {} ! Toutes nos félicitations !",
     "de": "Die Lotterie {} ist vorbei!\n{} hat {} gewonnen! Glückwunsch!",
     "ru": "Лотерея {} началачь!\n{} выиграл {}! Поздравляем!",
-    "es": "¡La lotería {} ha terminado!\n{} ¡Ha ganado {}! ¡Enhorabuena!"
+    "es": "¡La lotería {} ha terminado!\n{} ¡Ha ganado {}! ¡Enhorabuena!",
+    "pt": "A loteria {} terminou!\n{} Ganhou {}! Parabéns!"
   },
   "Nobody entered {}! Its over now.": {
     "fr": "Personne n'a participé à la loterie {} ! Elle est maintenant terminée.",
     "de": "{} ist vorbei! Niemand gewinnt weil Niemand teilgenommen hat.",
     "ru": "Никто не зашел в {}!",
-    "es": "Nadie ha entrado {}. Ha terminado ya."
+    "es": "Nadie ha entrado {}. Ha terminado ya.",
+    "pt": "Ninguém participou em {}. Então ele foi finalizado."
   },
   "Lotto entered!": {
     "fr": "Vous êtes entré dans la loterie !",
     "de": "Erfolgreich teilgenommen!",
     "ru": "Кто-то присоединился к лото!",
-    "es": "Has entrado a la lotría"
+    "es": "Has entrado a la lotría",
+    "pt": "Você entrou na loteria"
   },
   "You're already in this lotto!": {
     "fr": "Vous êtes déjà dans cette loterie !",
     "de": "Du bist schon in dieser Lotterie!",
     "ru": "Вы уже в этом лото!",
-    "es": "Ya has entrado en esta lotría"
+    "es": "Ya has entrado en esta lotría",
+    "pt": "Você já entrou nessa loteria"
   },
   "This server has no lotto by that name! See rp!lotto": {
     "fr": "Ce serveur n'a aucune loterie avec ce nom ! Pour voir la liste des loteries, tapez rp!lotto",
     "de": "Dieser Server hat keine Lotterie mit diesem namen! Probier `rp!lotto`",
     "ru": "На этом сервере нет лото с таким именем! Напиши `rp!lotto`",
-    "es": "Este Server no tiene lotría con ese nombre! Prueba `rp!lotto`"
+    "es": "Este Server no tiene lotría con ese nombre! Prueba `rp!lotto`",
+    "pt": "Este Server não tem loteria com esse nome! Escreva `rp!lotto`"
   },
   "This server has no lottos currently running!": {
     "fr": "Il n'y a aucune loterie en cours sur ce serveur !",
     "de": "In diesem Server laufen gerade keine Lotterien!",
-    "ru": "На этом сервере нет активных лото!"
+    "ru": "На этом сервере нет активных лото!",
+    "pt": "Este Server não tem loterias no momento!"
   },
   "No items in the shop to display.": {
     "fr": "Il n'y a aucun item dans le magasin",
     "de": "Der Laden hat keine Items",
-    "ru": "Нет предметов в магазине"
+    "ru": "Нет предметов в магазине",
+    "pt": "Nenhum item na loja a se mostrar."
   },
   "Server Shop": {
     "fr": "Magasin du serveur",
     "de": "Server Laden",
-    "ru": "Магазин сервера"
+    "ru": "Магазин сервера",
+    "pt": "Loja do Server"
   },
   "Say 'cancel' to cancel or 'skip' to skip a step": {
     "fr": "Tapez 'cancel' pour annuler, ou 'skip' pour sauter une étape",
     "de": "Sag 'cancel' um abzubrechen oder 'skip' um einen Schritt zu überspringen",
-    "ru": "Напиши `cancel` для отмены или 'skip', чтобы пропустить этот шаг"
+    "ru": "Напиши `cancel` для отмены или 'skip', чтобы пропустить этот шаг",
+    "pt": "Escreva 'cancel' para cancelar ou 'skip' para pular essa etapa"
   },
   "How much should this be buyable for? 0 for not buyable": {
     "fr": "Pour combien devrait-il être acheté ? (0 pour non-achetable)",
     "de": "Wieviel sollte es Kosten das zu kaufen? (0 um es unkaufbar zu machen)",
-    "ru": "За сколько это можно купить? Укажите `0` если нельзя купить"
+    "ru": "За сколько это можно купить? Укажите `0` если нельзя купить",
+    "pt": "Quanto disso deve ser comprável ? (0 para não comprável)"
   },
   "That is not a valid number!": {
     "fr": "Ce n'est pas un nombre valide !",
     "de": "Das ist keine gültige Nummer!",
-    "ru": "Это не число!"
+    "ru": "Это не число!",
+    "pt": "Não é um número válido!"
   },
   "How much should this be sellable for? 0 for not sellable": {
     "fr": "Pour combien devrait-il être vendu ? (0 pour non-vendable)",
     "de": "Um Wieviel Geld sollte das verkaufbar sein? (0 um es unverkaufbar zu machen)",
-    "ru": "За сколько эт можно продать? Укажите `0`, если его нельзя продать"
+    "ru": "За сколько эт можно продать? Укажите `0`, если его нельзя продать",
+    "pt": "Quanto disso deve ser vendivel ? (0 para não vendivel)"
   },
   "What is the minimum level a user must be for this item? 0 for no minimum": {
     "fr": "Quel est le niveau minimum pour acheter cet item ? 0 pour aucun minimum",
@@ -469,37 +528,44 @@
   "Open": {
     "fr": "Ouvert",
     "de": "Offen",
-    "ru": "Открыто"
+    "ru": "Открыто",
+    "pt": "Aberto"
   },
   "Bank Balance": {
     "fr": "Solde Bancaire",
     "de": "Bankkontostand",
-    "ru": "Денежный счет"
+    "ru": "Денежный счет",
+    "pt": "Saldo Bancário"
   },
   "Members": {
     "fr": "Membres",
     "de": "Mitglieder",
-    "ru": "Участники"
+    "ru": "Участники",
+    "pt": "Membros"
   },
   "Items": {
     "fr": "Items",
     "de": "Gegenstände",
-    "ru": "Предметы"
+    "ru": "Предметы",
+    "pt": "Itens"
   },
   "None": {
     "fr": "Aucun",
     "de": "Keine",
-    "ru": "Никто"
+    "ru": "Никто",
+    "pt": "Nenhum"
   },
   "No guilds to display.": {
     "fr": "Aucune guilde à afficher.",
     "de": "Keine Gilden vorhanden.",
-    "ru": "Гильдии отсутствуют"
+    "ru": "Гильдии отсутствуют",
+    "pt": "Nenhuma guilda a se mostrar."
   },
   "Server Guilds": {
     "fr": "Guildes du serveur",
     "de": "Server Gilden",
-    "ru": "Гильдии сервера"
+    "ru": "Гильдии сервера",
+    "pt": "Guildas do server"
   },
   "Owner: {}\nMembers: {}\nOpen: {}": {
     "fr": "Propriétaire : {}\nMembres : {}\nOuvert : {}",
@@ -519,7 +585,8 @@
   "You already own a guild!": {
     "fr": "Vous avez déjà une guilde !",
     "de": "Du besitzt bereits eine Gilde!",
-    "ru": "Вы уже владеете гильдией!"
+    "ru": "Вы уже владеете гильдией!",
+    "pt": "Você já tem uma guilda!"
   },
   "'cancel' or 'skip' to cancel creation or skip a step": {
     "fr": "'cancel' ou 'skip' pour annuler ou sauter une étape",
@@ -588,12 +655,14 @@
   "Deleting!": {
     "fr": "Supprimée !",
     "de": "Lösche!",
-    "ru": "Удаление!"
+    "ru": "Удаление!",
+    "pt": "Deletando!"
   },
   "Guild left.": {
     "fr": "Vous avez quitté la guilde.",
     "de": "Gilde verlassen.",
-    "ru": "Гильдия покинута."
+    "ru": "Гильдия покинута.",
+    "pt": "Você saiu da guilda."
   },
   "You do not own this guild!": {
     "fr": "Vous ne possédez pas cette guilde !",
@@ -708,12 +777,14 @@
   "open": {
     "fr": "ouverte",
     "de": "offen",
-    "ru": "открыто"
+    "ru": "открыто",
+    "pt": "aberto"
   },
   "closed": {
     "fr": "fermée",
     "de": "geschlossen",
-    "ru": "закрыто"
+    "ru": "закрыто",
+    "pt": "fechado"
   },
   "Only guild mods may set this!": {
     "fr": "Seuls les modérateurs peuvent changer ça !",
@@ -743,12 +814,14 @@
   "yes": {
     "fr": "oui",
     "de": "ja",
-    "ru": "да"
+    "ru": "да",
+    "pt": "sim"
   },
   "no": {
     "fr": "non",
     "de": "nein",
-    "ru": "нет"
+    "ru": "нет",
+    "pt": "não"
   },
   "This inventory is empty!": {
     "fr": "Cet inventaire est vide !",
@@ -1018,12 +1091,14 @@
   "suceeded": {
     "fr": "a réussi !",
     "de": "geschafft",
-    "ru": "успех"
+    "ru": "успех",
+    "pt": "sucedido"
   },
   "failed": {
     "fr": "a échoué",
     "de": "gescheitert",
-    "ru": "провал"
+    "ru": "провал",
+    "pt": "fracassado"
   },
   " (Grabbed top {} out of {})": {
     "fr": " (Pris le top {} sur {})",
@@ -1038,22 +1113,26 @@
   "Author": {
     "fr": "Auteur",
     "de": "Author",
-    "ru": "Автор"
+    "ru": "Автор",
+    "pt": "Autor"
   },
   "Library": {
     "fr": "Bibliothèque",
     "de": "Bibliothek",
-    "ru": "Библиотека"
+    "ru": "Библиотека",
+    "pt": "Biblioteca"
   },
   "Uptime": {
     "fr": "Uptime",
     "de": "Uptime",
-    "ru": "Время работы"
+    "ru": "Время работы",
+    "pt": "Tempo de atividade"
   },
   "Servers": {
     "fr": "Serveurs",
     "de": "Server",
-    "ru": "Сервера"
+    "ru": "Сервера",
+    "pt": "Servers"
   },
   "Commands Run": {
     "fr": "Commandes exécutées",
@@ -1063,32 +1142,38 @@
   "{} servers": {
     "fr": "{} serveurs",
     "de": "{} server",
-    "ru": "{} серверов"
+    "ru": "{} серверов",
+    "pt": "{} servers"
   },
   "{} commands": {
     "fr": "{} commandes",
     "de": "{} Kommandos",
-    "ru": "{} команд"
+    "ru": "{} команд",
+    "pt": "{} comandos"
   },
   "Total Members": {
     "fr": "Membres (total)",
     "de": "Mitglieder (insgesamt)",
-    "ru": "Всего участников"
+    "ru": "Всего участников",
+    "pt": "Membros (total)"
   },
   "Unique Members": {
     "fr": "Membres (uniques)",
     "de": "Mitglieder (einzigartig)",
-    "ru": "Уникальных участников"
+    "ru": "Уникальных участников",
+    "pt": "Membros (únicos)"
   },
   "{} ({} online)": {
     "fr": "{} ({} en ligne)",
     "de": "{} ({} online)",
-    "ru": "{} ({} онлайн)"
+    "ru": "{} ({} онлайн)",
+    "pt": "{} ({} online)"
   },
   "Channels": {
     "fr": "Channels",
     "de": "Kanäle",
-    "ru": "Каналы"
+    "ru": "Каналы",
+    "pt": "Canais"
   },
   "{} text channels, {} voice channels": {
     "fr": "{} channels (texte), {} channels vocaux",
@@ -1123,7 +1208,8 @@
   "Ping": {
     "fr": "Ping",
     "de": "Ping",
-    "ru": "Пинг"
+    "ru": "Пинг",
+    "pt": "Ping"
   },
   "Source": {
     "fr": "Source",
@@ -1153,17 +1239,20 @@
   "That is not a valid language!": {
     "fr": "Ce n'est pas une langue valide !",
     "de": "Das ist keine gültige Sprache!",
-    "ru": "Это недействительный язык!"
+    "ru": "Это недействительный язык!",
+    "pt": "Esse idioma não é valido!"
   },
   "Language successfully set!": {
     "fr": "Langue définie avec succis !",
     "de": "Sprache erfolgreich gesetzt!",
-    "ru": "Язык успешно установлен!"
+    "ru": "Язык успешно установлен!",
+    "pt": "Idioma definido com sucesso!"
   },
   "The guild language is set to {}": {
     "fr": "La langue de la guilde est {}",
     "de": "Die Gildensprache ist momentan {}",
-    "ru": "Язык гильдии установлен на {}"
+    "ru": "Язык гильдии установлен на {}",
+    "pt": "O idioma da guilda foi alterado para {}"
   },
   "Currency successfully set!": {
     "fr": "Devise définie avec succis !",
@@ -1193,17 +1282,20 @@
   "level": {
     "fr": "niveau",
     "de": "Level",
-    "ru": "уровень"
+    "ru": "уровень",
+    "pt": "nível"
   },
   "health": {
     "fr": "points de vie",
     "de": "Lebenspunkte",
-    "ru": "здоровье"
+    "ru": "здоровье",
+    "pt": "vida"
   },
   "attack": {
     "fr": "attaque",
     "de": "Attacke",
-    "ru": "атака"
+    "ru": "атака",
+    "pt": "ataque"
   },
   "defense": {
     "fr": "defense",
@@ -1213,17 +1305,20 @@
   "spatk": {
     "fr": "attaque spécial",
     "de": "Spezialattacke",
-    "ru": "специальная атака"
+    "ru": "специальная атака",
+    "pt": "ataque especial"
   },
   "spdef": {
     "fr": "défence spécial",
     "de": "Spezialverteidigung",
-    "ru": "специальная защита"
+    "ru": "специальная защита",
+    "pt": "defesa especial"
   },
   "speed": {
     "fr": "vitesse",
     "de": "Initiative",
-    "ru": "скорость"
+    "ru": "скорость",
+    "pt": "velocidade"
   },
   "{} is not a valid stat! Try again": {
     "fr": "{} n'est pas une stat valide ! Réessayez !",
@@ -1243,17 +1338,20 @@
   "Nickname": {
     "fr": "Surnom",
     "de": "Spitzname",
-    "ru": "Прозвище (никнейм)"
+    "ru": "Прозвище (никнейм)",
+    "pt": "Apelido"
   },
   "Species": {
     "fr": "Espèce",
     "de": "Spezies",
-    "ru": "Порода"
+    "ru": "Порода",
+    "pt": "Espécies"
   },
   "Stats": {
     "fr": "Stats",
     "de": "Attribute",
-    "ru": "Характеристики"
+    "ru": "Характеристики",
+    "pt": "Status"
   },
   "This Pet has been released! Goodbye {}!": {
     "fr": "Cet Animal de Compagnie a été libéré ! Adieu, {} !",
@@ -1323,22 +1421,26 @@
   "Starting Money": {
     "fr": "Argent de base",
     "de": "Startkapital",
-    "ru": "Начальный счет"
+    "ru": "Начальный счет",
+    "pt": "Dinheiro Inicial"
   },
   "Characters": {
     "fr": "Personnages",
     "de": "Charaktere",
-    "ru": "Персонажи"
+    "ru": "Персонажи",
+    "pt": "Personagens"
   },
   "Maps": {
     "fr": "Cartes",
     "de": "Karten",
-    "ru": "Карты"
+    "ru": "Карты",
+    "pt": "Mapas"
   },
   "characters": {
     "fr": "Personnages",
     "de": "Charaktere",
-    "ru": "персонажи"
+    "ru": "персонажи",
+    "pt": "personagens"
   },
   "Item doesnt exist!": {
     "fr": "Cet item n'existe pas !",
@@ -1348,7 +1450,8 @@
   "No items to display": {
     "fr": "Aucun item à afficher",
     "de": "Keine Gegenstände vorhanden!",
-    "ru": "Предметы, которые можно посмотреть, отсутствуют"
+    "ru": "Предметы, которые можно посмотреть, отсутствуют",
+    "pt": "Nenhum item a se mostrar."
   },
   "Describe the item (a description for the item)": {
     "fr": "Decrivez l'item (une description pour l'item)",
@@ -1383,7 +1486,8 @@
   "items": {
     "fr": "items",
     "de": "Gegenstände",
-    "ru": "предметы"
+    "ru": "предметы",
+    "pt": "itens"
   },
   "ID: {}\nSpecies: {}\nStats:\n\t{}\nAdditional Info:\n\t{}": {
     "fr": "ID: {}\nEspèce: {}\nStats:\n\t{}\nInformations Supplimentaires:\n\t{}",
@@ -1413,17 +1517,20 @@
   "Balance": {
     "fr": "Solde Bancaire",
     "de": "Finanzstand",
-    "ru": "Баланс"
+    "ru": "Баланс",
+    "pt": "Saldo"
   },
   "Box": {
     "fr": "Boîte",
     "de": "Box",
-    "ru": "Коробка"
+    "ru": "Коробка",
+    "pt": "Caixa"
   },
   "Experience": {
     "fr": "Expérience",
     "de": "Erfahrung",
-    "ru": "Опыт"
+    "ru": "Опыт",
+    "pt": "Experiência"
   },
   "Level: {}\nExperience: {}/{}": {
     "fr": "Niveau: {}\nExpérience: {}/{}",
@@ -1453,7 +1560,8 @@
   "No Items": {
     "fr": "Aucun item",
     "de": "Keine Gegenstände",
-    "ru": "Нет предметов"
+    "ru": "Нет предметов",
+    "pt": "Não há itens"
   },
   "\nand {} more...": {
     "fr": "\net {} plus...",
