@@ -173,15 +173,21 @@ class Salary(commands.Cog):
         roles = await self.bot.di.get_salaries(ctx.guild)
         try:
             if role is not None:
-                roles = {role.id: roles[str(role.id)]}
+                roles = {role.id: roles[str(role.id)]} # role.id: salary
         except KeyError:
             await ctx.send(await _(ctx, "That role doesn't have a salary!"))
             return
 
-        for role, amount in roles.items():
-            rob = discord.utils.get(ctx.guild.roles, id=int(role))
+        members = []
+        async for m in ctx.guild.fetch_members():
+            members.append(m)
+
+        for roleid, amount in roles.items():
+            rob = ctx.guild.get_role(int(roleid))
             if rob:
-                for member in rob.members:
+                for member in rob.members or members:
+                    if rob not in member.roles:
+                        continue
                     if isinstance(amount, (int, float)):
                         try:
                             await self.bot.di.add_eco(member, amount)
