@@ -176,6 +176,8 @@ class Salary(commands.Cog):
                 roles = {role.id: roles[str(role.id)]}
         except KeyError:
             await ctx.send(await _(ctx, "That role doesn't have a salary!"))
+            return
+
         for role, amount in roles.items():
             rob = discord.utils.get(ctx.guild.roles, id=int(role))
             if rob:
@@ -189,9 +191,10 @@ class Salary(commands.Cog):
                         if isinstance(amount, dict):
                             amount = amount["val"]
 
-                        payamount, giveamount = sum(
-                            filter(lambda x: isinstance(x, (int, float)), amount)), tuple(filter(
-                            lambda x: isinstance(x, (list, tuple)), amount))
+                        payamount, giveamount = (
+                            sum(filter(lambda x: isinstance(x, (int, float)), amount)),
+                            tuple(filter(lambda x: isinstance(x, (list, tuple)), amount))
+                        )
                         if payamount:
                             try:
                                 await self.bot.di.add_eco(member, payamount)
