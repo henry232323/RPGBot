@@ -1,4 +1,4 @@
-import json
+import ujson as json
 
 import discord
 from discord.ext import commands
