@@ -22,7 +22,7 @@
 import asyncio
 from collections import Counter
 from random import choice, randint
-import json
+import ujson as json
 from recordclass import recordclass
 
 import discord

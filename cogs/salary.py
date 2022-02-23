@@ -1,7 +1,7 @@
 import datetime
 import time
 import asyncio
-import json
+import ujson as json
 from collections import defaultdict
 
 import discord
@@ -173,7 +173,7 @@ class Salary(commands.Cog):
         roles = await self.bot.di.get_salaries(ctx.guild)
         try:
             if role is not None:
-                roles = {role.id: roles[str(role.id)]} # role.id: salary
+                roles = {role.id: roles[str(role.id)]}  # role.id: salary
         except KeyError:
             await ctx.send(await _(ctx, "That role doesn't have a salary!"))
             return
