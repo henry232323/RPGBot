@@ -413,15 +413,13 @@ logger.addHandler(handler)
 if "debug" in sys.argv:
     prefix = "rp$"
 
-intents = discord.Intents.default()
-intents.members = True
-intents.messages = True
-intents.message_content = True
-
-
 async def start():
+    intents = discord.Intents.default()
+    intents.members = True
+    intents.messages = True
+    intents.message_content = True
+
     prp = Bot(command_prefix=prefix, description=description, pm_help=True, shard_count=20, intents=intents)
     await prp.start(_auth[0])
-
 
 asyncio.run(start())
