@@ -76,7 +76,7 @@ class Groups(commands.Cog):
 
         embed = discord.Embed(description=guild.description or await _(ctx, "This guild doesn't have a description"),
                               color=randint(0, 0xFFFFFF))
-        embed.set_author(name=guild.name, icon_url=guild.icon or ctx.guild.icon_url)
+        embed.set_author(name=guild.name, icon_url=guild.icon or ctx.guild.icon.url)
         if guild.icon is not None:
             embed.set_thumbnail(url=guild.icon)
         if guild.image is not None:
@@ -99,7 +99,7 @@ class Groups(commands.Cog):
         """List guilds"""
         guilds = list((await self.bot.di.get_guild_guilds(ctx.guild)).items())
         embed = discord.Embed(color=randint(0, 0xFFFFFF))
-        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon.url)
 
         if not guilds:
             await ctx.send(await _(ctx, "No guilds to display."))
@@ -113,7 +113,7 @@ class Groups(commands.Cog):
 
         emotes = ("\u2B05", "\u27A1", "\u274C")
         embed = discord.Embed(description=desc, title="Server Guilds", color=randint(0, 0xFFFFFF))
-        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon.url)
 
         chunks = []
         for i in range(0, len(guilds), 25):
@@ -200,7 +200,7 @@ class Groups(commands.Cog):
 
         embed = discord.Embed(description=guild.description or await _(ctx, "This guild doesn't have a description"),
                               color=randint(0, 0xFFFFFF))
-        embed.set_author(name=guild.name, icon_url=guild.icon or ctx.guild.icon_url)
+        embed.set_author(name=guild.name, icon_url=guild.icon or ctx.guild.icon.url)
         if guild.icon is not None:
             embed.set_thumbnail(url=guild.icon)
         if guild.image is not None:

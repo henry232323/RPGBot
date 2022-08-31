@@ -50,7 +50,7 @@ class Settings(commands.Cog):
         """Get the current server settings"""
         settings = await self.bot.db.get_guild_data(ctx.guild)
         embed = discord.Embed(color=randint(0, 0xFFFFFF),)
-        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon.url)
         embed.add_field(name=await _(ctx, "Starting Money"),
                         value=f"{settings['start']} {settings.get('currency', 'dollars')}")
         embed.add_field(name=await _(ctx, "Items"), value="{} {}".format(len(settings['items']), await _(ctx, "items")))
@@ -82,7 +82,7 @@ class Settings(commands.Cog):
         else:
             embed = discord.Embed(title=item.name, color=randint(0, 0xFFFFFF),)
 
-        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon.url)
         embed.add_field(name=await _(ctx, "Name"), value=item.name)
         img = item.meta.get("image")
         embed.set_thumbnail(url=str(img)) if img else None
@@ -123,7 +123,7 @@ class Settings(commands.Cog):
             return "\n".join(v)
 
         await create_pages(ctx, list(words.items()), lfmt, description=desc, title=await _(ctx, "Server Items"),
-                           author=ctx.guild.name, author_url=ctx.guild.icon_url,
+                           author=ctx.guild.name, author_url=ctx.guild.icon.url,
                            thumbnail="https://mir-s3-cdn-cf.behance.net/project_modules/disp/196b9d18843737.562d0472d523f.png",
                            footer=str(ctx.message.created_at), chunk=4)
 

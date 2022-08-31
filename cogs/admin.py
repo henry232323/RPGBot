@@ -23,7 +23,7 @@ import io
 import os
 import sys
 import copy
-import psutil
+# import psutil
 import asyncio
 import discord
 from textwrap import indent

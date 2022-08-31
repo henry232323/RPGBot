@@ -19,7 +19,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-import psutil
+# import psutil
 import discord
 from discord.ext import commands
 
@@ -199,7 +199,7 @@ class Misc(commands.Cog):
         # b = monotonic()
         # ping = "{:.3f}ms".format((b - a) * 1000)
 
-        embed.add_field(name=await _(ctx, "CPU Percentage"), value="{}%".format(psutil.cpu_percent()))
+        # embed.add_field(name=await _(ctx, "CPU Percentage"), value="{}%".format(psutil.cpu_percent()))
         embed.add_field(name=await _(ctx, "Memory Usage"), value=self.bot.get_ram())
         embed.add_field(name=await _(ctx, "Observed Events"), value=sum(self.bot.socket_stats.values()))
         # embed.add_field(name=await _(ctx, "Ping"), value=ping)
