@@ -78,7 +78,7 @@ class Bot(commands.AutoShardedBot):
         self.handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
         self.logger.addHandler(self.handler)
 
-        self.session = aiohttp.ClientSession(loop=self.loop)
+        self.session = aiohttp.ClientSession()
         self.shutdowns.append(self.shutdown)
 
         with open("resources/auth") as af:
@@ -98,7 +98,7 @@ class Bot(commands.AutoShardedBot):
 
         if 'debug' not in sys.argv:
             self.httpserver = server.API(self)
-            self.loop.create_task(self.httpserver.host())
+            asyncio.create_task(self.httpserver.host())
 
         self.db: db.Database = db.Database(self)
         self.di: data.DataInteraction = data.DataInteraction(self)
@@ -153,7 +153,7 @@ class Bot(commands.AutoShardedBot):
         print(self.user.id)
         print('------')
         if self._first:
-            self.loop.create_task(self.update_stats())
+            asyncio.create_task(self.update_stats())
             self._first = False
 
     async def on_message(self, msg):

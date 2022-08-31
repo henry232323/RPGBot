@@ -775,7 +775,7 @@ Total:\t\t {:.2f} dollars
         cb = Counter()
 
         try:
-            with timeout(60, loop=self.bot.loop):
+            async with timeout(60):
                 while True:
                     resp = await self.bot.wait_for("message", check=lambda x: x.content.startswith(
                         "rp!bid") and x.channel == ctx.channel)

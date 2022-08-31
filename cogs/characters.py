@@ -413,7 +413,7 @@ class Characters(commands.Cog):
             await ctx.channel.create_webhook(name=name)
 
         await ctx.send((await _(ctx, "You are now {} for the next 24 hours")).format(name))
-        self.bot.loop.create_task(self.unassume(ctx, name))
+        asyncio.create_task(self.unassume(ctx, name))
 
     @character.command(name="unassume", aliases=["ua"])
     async def c_unassume(self, ctx, character: str):
