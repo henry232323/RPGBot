@@ -78,7 +78,7 @@ class Characters(commands.Cog):
             if value:
                 embed.add_field(name=key.upper(), value="\n".join(value))
 
-        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon.url)
         await ctx.send(embed=embed)
 
     @commands.group(invoke_without_command=True, aliases=["c", "char", "personnage"])

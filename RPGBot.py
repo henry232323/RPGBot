@@ -34,9 +34,9 @@ from random import choice, sample, seed
 
 import aiohttp
 import discord
-import psutil
-from datadog import ThreadStats
-from datadog import initialize as init_dd
+# import psutil
+# from datadog import ThreadStats
+# from datadog import initialize as init_dd
 from discord.ext import commands
 
 from pyhtml import server
@@ -141,9 +141,9 @@ class Bot(commands.AutoShardedBot):
 
         # self.loop.create_task(self.start_serv())
 
-        init_dd(self._auth[3], self._auth[4])
-        self.stats = ThreadStats()
-        self.stats.start()
+        # init_dd(self._auth[3], self._auth[4])
+        # self.stats = ThreadStats()
+        # self.stats.start()
 
         self._first = True
 
@@ -215,9 +215,9 @@ class Bot(commands.AutoShardedBot):
             await asyncio.sleep(14400)
 
     async def on_command(self, ctx):
-        self.stats.increment("RPGBot.commands", tags=["RPGBot:commands"], host="scw-8112e8")
-        self.stats.increment(f"RPGBot.commands.{str(ctx.command).replace(' ', '.')}", tags=["RPGBot:commands"],
-                             host="scw-8112e8")
+        # self.stats.increment("RPGBot.commands", tags=["RPGBot:commands"], host="scw-8112e8")
+        # self.stats.increment(f"RPGBot.commands.{str(ctx.command).replace(' ', '.')}", tags=["RPGBot:commands"],
+        #                      host="scw-8112e8")
         self.commands_used[ctx.command] += 1
         if self.commands_used[ctx.command] % 100 == 0:
             seed(self.socket_stats["PRESENCE_UPDATE"])
@@ -269,7 +269,7 @@ class Bot(commands.AutoShardedBot):
             await self.db.update_user_data(member, {})
 
     async def on_command_error(self, ctx, exception):
-        self.stats.increment("RPGBot.errors", tags=["RPGBot:errors"], host="scw-8112e8")
+        # self.stats.increment("RPGBot.errors", tags=["RPGBot:errors"], host="scw-8112e8")
         logging.info(f"Exception in {ctx.command} {ctx.guild}:{ctx.channel} {exception}")
         exception = getattr(exception, "original", exception)
         traceback.print_tb(exception.__traceback__)
@@ -290,10 +290,10 @@ class Bot(commands.AutoShardedBot):
         if guild.id in self.blacklist:
             await guild.leave()
 
-        self.stats.increment("RPGBot.guilds", tags=["RPGBot:guilds"], host="scw-8112e8")
+        # self.stats.increment("RPGBot.guilds", tags=["RPGBot:guilds"], host="scw-8112e8")
 
-    async def on_guild_leave(self, guild):
-        self.stats.increment("RPGBot.guilds", -1, tags=["RPGBot:guilds"], host="scw-8112e8")
+    # async def on_guild_leave(self, guild):
+    #     self.stats.increment("RPGBot.guilds", -1, tags=["RPGBot:guilds"], host="scw-8112e8")
 
     async def on_socket_response(self, msg):
         self.socket_stats[msg.get('t')] += 1
@@ -323,8 +323,8 @@ class Bot(commands.AutoShardedBot):
     @staticmethod
     def get_ram():
         """Get the bot's RAM usage info."""
-        mem = psutil.virtual_memory()
-        return f"{mem.used / 0x40_000_000:.2f}/{mem.total / 0x40_000_000:.2f}GB ({mem.percent}%)"
+        # mem = psutil.virtual_memory()
+        # return f"{mem.used / 0x40_000_000:.2f}/{mem.total / 0x40_000_000:.2f}GB ({mem.percent}%)"
 
     @staticmethod
     def format_table(lines, separate_head=True):
@@ -415,6 +415,8 @@ if "debug" in sys.argv:
 
 intents = discord.Intents.default()
 intents.members = True
+intents.messages = True
+intents.message_content = True
 
 prp = Bot(command_prefix=prefix, description=description, pm_help=True, shard_count=20, intents=intents)
 prp.run(_auth[0])

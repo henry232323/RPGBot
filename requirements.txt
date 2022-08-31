@@ -2,6 +2,6 @@ discord.py
 aiohttp
 ujson~=1.35
 recordclass~=0.17.2
-datadog
 uvloop
-psutil
+asyncpg
+pyyaml
