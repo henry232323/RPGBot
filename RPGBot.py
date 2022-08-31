@@ -137,7 +137,7 @@ class Bot(commands.AutoShardedBot):
             cogs.backups.Backups(self),
         ]
         for cog in icogs:
-            self.add_cog(cog)
+            await self.add_cog(cog)
 
         # self.loop.create_task(self.start_serv())
 
