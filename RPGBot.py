@@ -121,7 +121,7 @@ class Bot(commands.AutoShardedBot):
 
         atexit.register(lambda: json.dump(self.prefixes, open("savedata/prefixes.json", 'w')))
 
-        icogs = [
+        self.icogs = [
             cogs.admin.Admin(self),
             cogs.team.Team(self),
             cogs.economy.Economy(self),
@@ -136,8 +136,6 @@ class Bot(commands.AutoShardedBot):
             cogs.map.Mapping(self),
             cogs.backups.Backups(self),
         ]
-        for cog in icogs:
-            await self.add_cog(cog)
 
         # self.loop.create_task(self.start_serv())
 
@@ -146,6 +144,10 @@ class Bot(commands.AutoShardedBot):
         # self.stats.start()
 
         self._first = True
+
+    async def setup_hook(self) -> None:
+        for cog in self.icogs:
+            await self.add_cog(cog)
 
     async def on_ready(self):
         print('Logged in as')
