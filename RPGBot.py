@@ -418,5 +418,10 @@ intents.members = True
 intents.messages = True
 intents.message_content = True
 
-prp = Bot(command_prefix=prefix, description=description, pm_help=True, shard_count=20, intents=intents)
-prp.run(_auth[0])
+
+async def start():
+    prp = Bot(command_prefix=prefix, description=description, pm_help=True, shard_count=20, intents=intents)
+    await prp.start(_auth[0])
+
+
+asyncio.run(start())
