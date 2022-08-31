@@ -96,9 +96,9 @@ class Bot(commands.AutoShardedBot):
         with open("resources/starwars.json", 'r') as swf:
             self.switems = json.loads(swf.read())
 
-        if 'debug' not in sys.argv:
-            self.httpserver = server.API(self)
-            asyncio.create_task(self.httpserver.host())
+        # if 'debug' not in sys.argv:
+        #     self.httpserver = server.API(self)
+        #     asyncio.create_task(self.httpserver.host())
 
         self.db: db.Database = db.Database(self)
         self.di: data.DataInteraction = data.DataInteraction(self)
