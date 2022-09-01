@@ -95,7 +95,7 @@ Total:\t\t {:.2f} dollars
             color=randint(0, 0xFFFFFF),
         )
 
-        embed.set_author(name=member.display_name, icon_url=member.avatar_url)
+        embed.set_author(name=member.display_name, icon_url=member.avatar.url)
         embed.set_thumbnail(url="https://opengameart.org/sites/default/files/styles/medium/public/gold_pile_0.png")
         await dest.send(embed=embed)
 
