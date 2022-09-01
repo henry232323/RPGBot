@@ -76,7 +76,7 @@ class Inventory(commands.Cog):
         chunks = chunkn(fmt, 2000)  # [("Items: ", v) for v in chunkn(fmt, 400)]
         for chunk in chunks:
             embed = discord.Embed(description="\n".join(chunk), color=randint(0, 0xFFFFFF))
-            embed.set_author(name=member.display_name, icon_url=member.avatar_url)
+            embed.set_author(name=member.display_name, icon_url=member.avatar.url)
             try:
                 await dest.send(embed=embed)
             except discord.Forbidden:
