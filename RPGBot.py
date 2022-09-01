@@ -196,7 +196,7 @@ class Bot(commands.AutoShardedBot):
                             hook = await msg.channel.create_webhook(name=char)
                         await msg.delete()
                         url = (await self.di.get_character(ctx.guild, char)).meta.get("icon")
-                        await hook.send(content, avatar.url=url,
+                        await hook.send(content, avatar_url=url,
                                         files=dfiles, embeds=embeds)
 
     async def update_stats(self):
