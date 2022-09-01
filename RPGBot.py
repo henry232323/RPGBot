@@ -146,6 +146,7 @@ class Bot(commands.AutoShardedBot):
         self._first = True
 
     async def setup_hook(self) -> None:
+        await self.db.connect()
         for cog in self.icogs:
             await self.add_cog(cog)
 
