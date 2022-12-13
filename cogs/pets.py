@@ -50,7 +50,7 @@ class Pets(commands.Cog):
         pet = [f"{x.id}: **{x.name}**" for x in box]
         description = "\n".join(pet)
         embed = discord.Embed(description=description, title=f"{member.display_name} Pet", color=randint(0, 0xFFFFFF))
-        embed.set_author(name=member.display_name, icon_url=member.avatar.url)
+        embed.set_author(name=member.display_name, icon_url=member.display_avatar.url)
 
         await ctx.send(embed=embed)
 
@@ -65,7 +65,7 @@ class Pets(commands.Cog):
         pet = [f"{x.id}: **{x.name}**" for x in box]
         description = "\n".join(pet)
         embed = discord.Embed(description=description, title=f"{member.display_name} Pet", color=randint(0, 0xFFFFFF))
-        embed.set_author(name=member.display_name, icon_url=member.avatar.url)
+        embed.set_author(name=member.display_name, icon_url=member.display_avatar.url)
 
         await ctx.send(embed=embed)
 
@@ -222,7 +222,7 @@ class Pets(commands.Cog):
         pet = await self.bot.di.get_pet(ctx.author, id)
 
         embed = discord.Embed(title=f"{pet.name}", color=randint(0, 0xFFFFFF))
-        embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+        embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
 
         embed.add_field(name=await _(ctx, "Nickname"), value=pet.name)
         embed.add_field(name=await _(ctx, "Species"), value=pet.type)
