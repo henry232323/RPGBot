@@ -275,7 +275,7 @@ class Inventory(commands.Cog):
                 return value
 
             await create_pages(ctx, boxes, lfmt, description=desc, title=await _(ctx, "Server Lootboxes"),
-                               author=ctx.guild.name, author_url=ctx.guild.icon.url,
+                               author=ctx.guild.name, author_url=ctx.guild.icon.url if ctx.guild.icon else None,
                                thumbnail="https://mir-s3-cdn-cf.behance.net/project_modules/disp/196b9d18843737.562d0472d523f.png",
                                footer=str(ctx.message.created_at), chunk=4)
 
@@ -543,7 +543,7 @@ class Inventory(commands.Cog):
                 return fmt.format(inputstr, outputstr)
 
             await create_pages(ctx, boxes, lfmt, description=desc, title=await _(ctx, "Server Recipes"),
-                               author=ctx.guild.name, author_url=ctx.guild.icon.url,
+                               author=ctx.guild.name, author_url=ctx.guild.icon.url if ctx.guild.icon else None,
                                thumbnail="http://chittagongit.com/images/scroll-icon-vector/scroll-icon-vector-0.jpg",
                                footer=str(ctx.message.created_at), chunk=4)
 
@@ -573,7 +573,7 @@ class Inventory(commands.Cog):
                 return fmt.format(inputstr, outputstr)
 
             await create_pages(ctx, recipes, lfmt, description=desc, title=await _(ctx, "Server Recipes"),
-                               author=ctx.guild.name, author_url=ctx.guild.icon.url,
+                               author=ctx.guild.name, author_url=ctx.guild.icon.url if ctx.guild.icon else None,
                                thumbnail="http://chittagongit.com/images/scroll-icon-vector/scroll-icon-vector-0.jpg",
                                footer=str(ctx.message.created_at), chunk=4)
 

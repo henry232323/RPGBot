@@ -116,7 +116,7 @@ class Salary(commands.Cog):
                 await self.bot.di.update_salaries(ctx.guild, sals)
 
             await data.create_pages(ctx, cdata.items(), lambda x: x, author=await _(ctx, "Guild Salaries"),
-                                    author_url=ctx.guild.icon.url)
+                                    author_url=ctx.guild.icon.url if ctx.guild.icon else None)
 
     @commands.group(invoke_without_command=True, aliases=["sal"])
     async def salary(self, ctx, role: discord.Role):
