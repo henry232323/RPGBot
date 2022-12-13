@@ -66,8 +66,8 @@ class User(commands.Cog):
             dest = ctx.author
 
         embed = discord.Embed(color=randint(0, 0xFFFFFF))
-        embed.set_author(name=user.display_name, icon_url=user.avatar.url)
-        embed.set_thumbnail(url=user.avatar.url)
+        embed.set_author(name=user.display_name, icon_url=user.display_avatar.url)
+        embed.set_thumbnail(url=user.display_avatar.url)
 
         ud = await self.bot.db.get_user_data(user)
         gd = await self.bot.db.get_guild_data(ctx.guild)
@@ -121,7 +121,7 @@ class User(commands.Cog):
         embed = discord.Embed(
             description=(await _(ctx, "Level: {}\nExperience: {}/{}")).format(ulvl, uexp, self.bot.get_exp(ulvl)),
             color=randint(0, 0xFFFFFF), )
-        embed.set_author(name=member.display_name, icon_url=member.avatar.url)
+        embed.set_author(name=member.display_name, icon_url=member.display_avatar.url)
         await ctx.send(embed=embed)
 
     @checks.mod_or_permissions()
