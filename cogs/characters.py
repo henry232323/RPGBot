@@ -55,7 +55,7 @@ class Characters(commands.Cog):
             return
 
         embed = discord.Embed(description="\n".join(characters), color=randint(0, 0xFFFFFF), )
-        embed.set_author(name=user.display_name, icon_url=user.avatar.url)
+        embed.set_author(name=user.display_name, icon_url=user.display_avatar.url)
         await ctx.send(embed=embed)
 
     @commands.command()
@@ -78,7 +78,7 @@ class Characters(commands.Cog):
             if value:
                 embed.add_field(name=key.upper(), value="\n".join(value))
 
-        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon.url)
+        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon.url if ctx.guild.icon else None)
         await ctx.send(embed=embed)
 
     @commands.group(invoke_without_command=True, aliases=["c", "char", "personnage"])
@@ -92,7 +92,7 @@ class Characters(commands.Cog):
         try:
             owner = await ctx.bot.fetch_user(char.owner)
             embed = discord.Embed(description=char.description)
-            embed.set_author(name=char.name, icon_url=owner.avatar.url)
+            embed.set_author(name=char.name, icon_url=owner.display_avatar.url)
             if char.meta.get("image"):
                 embed.set_image(url=char.meta["image"])
             if char.meta.get("icon"):
@@ -113,7 +113,7 @@ class Characters(commands.Cog):
         except:
             owner = await ctx.bot.fetch_user(char.owner)
             embed = discord.Embed(description=char.description)
-            embed.set_author(name=char.name, icon_url=owner.avatar.url)
+            embed.set_author(name=char.name, icon_url=owner.display_avatar.url)
             embed.add_field(name=await _(ctx, "Name"), value=char.name)
             embed.add_field(name=await _(ctx, "Owner"), value=str(owner))
             if char.level is not None:
@@ -473,7 +473,7 @@ class Characters(commands.Cog):
             if char.meta.get("icon"):
                 embed.set_author(name=name, icon_url=char.meta["icon"])
             else:
-                embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.avatar.url)
+                embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
             try:
                 await dest.send(embed=embed)
             except discord.Forbidden:

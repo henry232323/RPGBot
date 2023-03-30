@@ -95,7 +95,7 @@ Total:\t\t {:.2f} dollars
             color=randint(0, 0xFFFFFF),
         )
 
-        embed.set_author(name=member.display_name, icon_url=member.avatar.url)
+        embed.set_author(name=member.display_name, icon_url=member.display_avatar.url)
         embed.set_thumbnail(url="https://opengameart.org/sites/default/files/styles/medium/public/gold_pile_0.png")
         await dest.send(embed=embed)
 
@@ -180,7 +180,7 @@ Total:\t\t {:.2f} dollars
 
         emotes = ("\u2B05", "\u27A1", "\u274C")
         embed = discord.Embed(description=desc, title=await _(ctx, "Player Market"), color=randint(0, 0xFFFFFF), )
-        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon.url)
+        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon.url if ctx.guild.icon else None)
 
         chunks = []
         clen = 10
@@ -374,7 +374,7 @@ Total:\t\t {:.2f} dollars
 
         emotes = ("\u2B05", "\u27A1", "\u274C")
         embed = discord.Embed(description=desc, title=await _(ctx, "Player Market"), color=randint(0, 0xFFFFFF), )
-        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon.url)
+        embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon.url if ctx.guild.icon else None)
 
         chunks = []
         for i in range(0, len(market), 25):
@@ -508,7 +508,7 @@ Total:\t\t {:.2f} dollars
         """List the currently running lottos."""
         if ctx.guild.id in self.bot.lotteries:
             embed = discord.Embed(color=randint(0, 0xFFFFFF))
-            embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon.url)
+            embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon.url if ctx.guild.icon else None)
             embed.set_thumbnail(
                 url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/196b9d18843737.562d0472d523f.png"
             )
@@ -595,7 +595,7 @@ Total:\t\t {:.2f} dollars
 
         title = await _(ctx, "Server Shop")
         author = ctx.guild.name
-        author_url = ctx.guild.icon.url
+        author_url = ctx.guild.icon.url if ctx.guild.icon else None
 
         def lfmt(v):
             d = ""

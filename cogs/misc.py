@@ -170,7 +170,7 @@ class Misc(commands.Cog):
         me = self.bot.user if not ctx.guild else ctx.guild.me
         appinfo = await self.bot.application_info()
         embed = discord.Embed(color=randint(0, 0xFFFFFF), )
-        embed.set_author(name=me.display_name, icon_url=appinfo.owner.avatar.url,
+        embed.set_author(name=me.display_name, icon_url=appinfo.owner.display_avatar.url,
                          url="https://github.com/henry232323/RPGBot")
         embed.add_field(name=await _(ctx, "Author"), value='Henry#6174 (Discord ID: 122739797646245899)')
         embed.add_field(name=await _(ctx, "Library"), value='discord.py (Python)')
@@ -207,14 +207,14 @@ class Misc(commands.Cog):
         embed.add_field(name=await _(ctx, "Source"), value="[Github](https://github.com/henry232323/RPGBot)")
 
         embed.set_footer(text=await _(ctx, 'Made with discord.py'), icon_url='http://i.imgur.com/5BFecvA.png')
-        embed.set_thumbnail(url=self.bot.user.avatar.url)
+        embed.set_thumbnail(url=self.bot.user.display_avatar.url)
         await ctx.send(delete_after=60, embed=embed)
 
     @commands.command()
     async def totalcmds(self, ctx):
         """Get totals of commands and their number of uses"""
         embed = discord.Embed(color=randint(0, 0xFFFFFF), )
-        embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+        embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.display_avatar.url)
         for val in self.bot.commands_used.most_common(25):
             embed.add_field(name=val[0], value=val[1])
         embed.set_footer(text=str(ctx.message.created_at))
