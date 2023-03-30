@@ -184,8 +184,8 @@ Total:\t\t {:.2f} dollars
 
         chunks = []
         clen = 10
-        for i in range(0, len(market), clen):
-            chunks.append(market[i:i + clen])
+        for k in range(0, len(market), clen):
+            chunks.append(market[k:k + clen])
 
         i = 0
         try:
@@ -201,15 +201,15 @@ Total:\t\t {:.2f} dollars
                                       amount=datum['amount'])
                 br.append(listing)
 
-            for i in br:
-                del um[i]
+            for k in br:
+                del um[k]
             um.update(fr)
 
             await self.bot.di.update_guild_market(ctx.guild, um)
             market = list(um.items())
             chunks = []
-            for i in range(0, len(market), clen):
-                chunks.append(market[i:i + clen])
+            for k in range(0, len(market), clen):
+                chunks.append(market[k:k + clen])
 
             users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
 
