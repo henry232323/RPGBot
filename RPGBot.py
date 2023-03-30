@@ -378,7 +378,7 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
               " Players may list items on a market for other users to buy." \
               " Users may create characters with teams from pets. " \
               "Server administrators may add and give items to the server and its users.```\n" \
-              "**RPGBot V2 is out! Get it here!** <https://discord.com/oauth2/authorize?client_id=673737213959208980&scope=bot&permissions=805596240>" \
+              "**RPGBot V2 is out! Get it here!** <https://discord.com/oauth2/authorize?client_id=673737213959208980&scope=bot&permissions=805596240>\n" \
               f"**Add to your server**: <{invlink}>\n" \
               f"**Support Server**: {servinv}\n" \
               f"**Command List**: <{sourcelink}>\n" \
