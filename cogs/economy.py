@@ -201,12 +201,14 @@ Total:\t\t {:.2f} dollars
                                 fr[id] = dict(id=id, item=listing, user=ctx.author.id, cost=datum['cost'],
                                               amount=datum['amount'])
                         br.append(listing)
-                    else:
+                    elif isinstance(data, dict):
                         if 'item' not in listing:
                             id = self.bot.randsample()
-                            fr[id] = dict(id=id, item=listing['item'], user=ctx.author.id, cost=listing['cost'],
-                                          amount=listing['amount'])
-                        br.append(listing['item'])
+                            fr[id] = dict(id=id, item=data['item'], user=ctx.author.id, cost=data['cost'],
+                                          amount=data['amount'])
+                        br.append(listing)
+                    else:
+                        raise Exception("Invalid state, server data corrupt?")
 
                 for k in br:
                     del um[k]
