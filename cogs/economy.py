@@ -194,12 +194,19 @@ Total:\t\t {:.2f} dollars
                 br = []
                 fr = dict()
                 for listing, data in um.items():
-                    for datum in data:
+                    if isinstance(data, list):
+                        for datum in data:
+                            if 'item' not in listing:
+                                id = self.bot.randsample()
+                                fr[id] = dict(id=id, item=listing, user=ctx.author.id, cost=datum['cost'],
+                                              amount=datum['amount'])
+                        br.append(listing)
+                    else:
                         if 'item' not in listing:
                             id = self.bot.randsample()
-                            fr[id] = dict(id=id, item=listing, user=ctx.author.id, cost=datum['cost'],
-                                          amount=datum['amount'])
-                    br.append(listing)
+                            fr[id] = dict(id=id, item=listing['item'], user=ctx.author.id, cost=listing['cost'],
+                                          amount=listing['amount'])
+                        br.append(listing['item'])
 
                 for k in br:
                     del um[k]
