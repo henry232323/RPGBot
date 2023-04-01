@@ -220,6 +220,7 @@ Total:\t\t {:.2f} dollars
                 for k in range(0, len(market), clen):
                     chunks.append(market[k:k + clen])
 
+                print(chunks[i])
                 users = get(ctx.guild.members, id=[x['user'] for x in chunks[i]])
 
             currency = await ctx.bot.di.get_currency(ctx.guild)
