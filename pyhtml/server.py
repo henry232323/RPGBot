@@ -99,6 +99,7 @@ class API(web.Application):
         runner = web.AppRunner(self)
         await runner.setup()
         site = web.TCPSite(runner, '0.0.0.0', 6667)
+        print("Starting webserver")
         await site.start()
 
     async def connect(self):

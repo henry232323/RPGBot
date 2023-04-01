@@ -22,10 +22,9 @@
 import asyncio
 from collections import Counter
 from random import choice, randint
-import ujson as json
-from recordclass import recordclass
 
 import discord
+import ujson as json
 from async_timeout import timeout
 from discord.ext import commands
 
@@ -233,7 +232,8 @@ Total:\t\t {:.2f} dollars
 
             while True:
                 try:
-                    r, u = await self.bot.wait_for("reaction_add", check=lambda r, u: r.message.id == msg.id, timeout=80)
+                    r, u = await self.bot.wait_for("reaction_add", check=lambda r, u: r.message.id == msg.id,
+                                                   timeout=80)
                 except asyncio.TimeoutError:
                     await ctx.send(await _(ctx, "Timed out! Try again"))
                     await msg.delete()
@@ -293,7 +293,8 @@ Total:\t\t {:.2f} dollars
                 except:
                     pass
         except:
-            import traceback; traceback.print_exc()
+            import traceback;
+            traceback.print_exc()
 
     @market.command(aliases=["createlisting", "new", "listitem", "list"])
     async def create(self, ctx, cost: NumberConverter, amount: IntConverter, *, item: str):
