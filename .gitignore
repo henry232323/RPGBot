@@ -106,3 +106,4 @@ discord.py-rewrite.zip
 postgresql2/
 backups/
 resources/beta_auth
+resources/.env
