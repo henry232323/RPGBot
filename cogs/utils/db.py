@@ -18,6 +18,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
+import os
 
 import ujson as json
 import asyncpg
@@ -33,8 +34,13 @@ class Database:
         return json.dumps(data).replace("'", "''")
 
     async def connect(self):
-        self._conn = await asyncpg.create_pool(user='root', password='root',
-                                               database='pokerpg', host='127.0.0.1')
+        self._conn = await asyncpg.create_pool(
+            user=os.environ.get("DATABASE_USER"),
+            password=os.environ.get("DATABASE_PASSWORD"),
+            database="pokerpg",
+            host=os.environ.get("DATABASE_HOST"),
+            port=os.environ.get("DATABASE_PORT"),
+        )
 
     # User functions
     ########################################################################
