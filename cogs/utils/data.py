@@ -18,11 +18,10 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
-
+import dataclasses
 
 import discord
 from discord.ext import commands
-from recordclass import recordclass as namedtuple
 import ujson as json
 from async_timeout import timeout
 
@@ -36,15 +35,64 @@ from builtins import property as _property, tuple as _tuple
 from operator import itemgetter as _itemgetter
 from collections import OrderedDict
 
-Pet = namedtuple("Pet", ["id", "name", "type", "stats", "meta"])
-ServerItem = namedtuple("ServerItem", ["name", "description", "meta"])
-# Character = namedtuple("Character", ["name", "owner", "description", "level", "team", "meta"])
+@dataclasses.dataclass
+class Pet:
+    id: int
+    name: str
+    type: str
+    stats: dict
+    meta: dict
 
-gc = namedtuple("Guild",
-                ["name", "owner", "description", "members", "bank", "items", "open", "image", "icon", "invites",
-                 "mods"])
-Map = namedtuple("Map", ["tiles", "generators", "spawners", "spawn", "maxx", "maxy"])
-AdvancedMap = namedtuple("AdvancedMap", ["tiles", "generators", "spawners", "spawnables", "spawn", "type"])
+@dataclasses.dataclass
+class ServerItem:
+    name: str
+    description: str
+    meta: dict
+
+@dataclasses.dataclass
+class gc:
+    name: str
+    owner: int
+    description: str
+    members: set
+    bank: int
+    items: dict
+    open: bool
+    invites: set
+    image: str
+    icon: str
+    mods: set
+
+example_map = {
+    "tiles": "01233212313132312\n12312312381231231\n",
+    "generators": ["grass", "desert", "dungeon"],
+    "spawners": {
+        "grass": {"dog": 1},
+        "dungeon": {"swordsman": 12},
+        "*": {
+            "horse": 12,
+            "cow": 3
+        }
+    }
+}
+
+@dataclasses.dataclass
+class Map:
+    tiles: str
+    generators: list
+    spawners: dict
+    spawn: list
+    maxx: int
+    maxy: int
+
+@dataclasses.dataclass
+class AdvancedMap:
+    tiles: str
+    generators: list
+    spawners: dict
+    spawnables: dict
+    spawn: list
+    type: str
 
 
 class ContextManagerLockWrapper:
