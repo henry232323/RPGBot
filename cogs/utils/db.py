@@ -37,7 +37,7 @@ class Database:
         self._conn = await asyncpg.create_pool(
             user=os.environ.get("DATABASE_USER"),
             password=os.environ.get("DATABASE_PASSWORD"),
-            database="pokerpg",
+            database="pokerpg-new",
             host=os.environ.get("DATABASE_HOST"),
             port=os.environ.get("DATABASE_PORT"),
         )
