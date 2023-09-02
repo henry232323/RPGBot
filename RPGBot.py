@@ -26,23 +26,22 @@ import logging
 import os
 import sys
 import traceback
-
-import ujson as json
-from io import BytesIO
 from collections import Counter, defaultdict
+from io import BytesIO
 from random import choice, sample, seed
 
 import aiohttp
 import discord
+import ujson as json
 # import psutil
 # from datadog import ThreadStats
 # from datadog import initialize as init_dd
 from discord.ext import commands
 
-from pyhtml import server
 import cogs
 from cogs.utils import db, data
 from cogs.utils.translation import _
+from pyhtml import server
 
 try:
     import uvloop
@@ -96,10 +95,6 @@ class Bot(commands.AutoShardedBot):
         with open("resources/starwars.json", 'r') as swf:
             self.switems = json.loads(swf.read())
 
-        # if 'debug' not in sys.argv:
-        #     self.httpserver = server.API(self)
-        #     asyncio.create_task(self.httpserver.host())
-
         self.db: db.Database = db.Database(self)
         self.di: data.DataInteraction = data.DataInteraction(self)
         self.default_udata = data.default_user
@@ -147,6 +142,11 @@ class Bot(commands.AutoShardedBot):
 
     async def setup_hook(self) -> None:
         await self.db.connect()
+
+        if 'debug' not in sys.argv:
+            self.httpserver = server.API(self)
+            asyncio.create_task(self.httpserver.host())
+
         for cog in self.icogs:
             await self.add_cog(cog)
 
@@ -378,7 +378,7 @@ description = f"A Bot for assisting with RPG made by Henry#6174," \
               " Players may list items on a market for other users to buy." \
               " Users may create characters with teams from pets. " \
               "Server administrators may add and give items to the server and its users.```\n" \
-              "**RPGBot V2 is out! Get it here!** <https://discord.com/oauth2/authorize?client_id=673737213959208980&scope=bot&permissions=805596240>" \
+              "**RPGBot V2 is out! Get it here!** <https://discord.com/oauth2/authorize?client_id=673737213959208980&scope=bot&permissions=805596240>\n" \
               f"**Add to your server**: <{invlink}>\n" \
               f"**Support Server**: {servinv}\n" \
               f"**Command List**: <{sourcelink}>\n" \
@@ -416,6 +416,7 @@ logger.addHandler(handler)
 if "debug" in sys.argv:
     prefix = "rp$"
 
+
 async def start():
     intents = discord.Intents.default()
     intents.members = True
@@ -424,5 +425,6 @@ async def start():
 
     prp = Bot(command_prefix=prefix, description=description, pm_help=True, shard_count=20, intents=intents)
     await prp.start(_auth[0])
+
 
 asyncio.run(start())
