@@ -1022,7 +1022,7 @@ class DataInteraction(object):
         """Update a server's guilds"""
         gd = await self.db.get_guild_data(guild)
         gd["guilds"] = data
-        print(gd)
+        print(data)
         return await self.db.update_guild_data(guild, gd)
 
     async def remove_guild(self, guild, name):
