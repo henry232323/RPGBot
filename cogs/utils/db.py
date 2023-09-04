@@ -77,8 +77,8 @@ class Database:
         """Update a user's data for a specific server"""
         jd = self.dump(data)
         req = """UPDATE userdata
-        SET info = $2
-        WHERE UUID = $1"""
+        SET info = $1
+        WHERE UUID = $2"""
         async with self._conn.acquire() as connection:
             await connection.execute(req, jd, member.id)
 
