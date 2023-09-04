@@ -77,7 +77,6 @@ class Groups(commands.Cog):
         embed = discord.Embed(description=guild.description or await _(ctx, "This guild doesn't have a description"),
                               color=randint(0, 0xFFFFFF))
         embed.set_author(name=guild.name, icon_url=guild.icon or ctx.guild.icon.url if ctx.guild.icon else None)
-        print(guild.icon, guild)
         if guild.icon:
             embed.set_thumbnail(url=guild.icon)
         if guild.image:
