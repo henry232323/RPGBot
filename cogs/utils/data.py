@@ -18,22 +18,22 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
-import dataclasses
-
-import discord
-from discord.ext import commands
-import ujson as json
-from async_timeout import timeout
-
-from collections import Counter
-import re
 import asyncio
+import dataclasses
+import re
+from builtins import property as _property, tuple as _tuple
+from collections import Counter
+from collections import OrderedDict
+from operator import itemgetter as _itemgetter
 from random import randint
 
+import discord
+import ujson as json
+from async_timeout import timeout
+from discord.ext import commands
+
 from .translation import _
-from builtins import property as _property, tuple as _tuple
-from operator import itemgetter as _itemgetter
-from collections import OrderedDict
+
 
 @dataclasses.dataclass
 class Pet:
@@ -43,11 +43,13 @@ class Pet:
     stats: dict
     meta: dict
 
+
 @dataclasses.dataclass
 class ServerItem:
     name: str
     description: str
     meta: dict
+
 
 @dataclasses.dataclass
 class gc:
@@ -55,13 +57,14 @@ class gc:
     owner: int
     description: str
     members: set
-    bank: int
+    bank: float
     items: dict
     open: bool
     image: str
     icon: str
     invites: set
     mods: set
+
 
 example_map = {
     "tiles": "01233212313132312\n12312312381231231\n",
@@ -76,6 +79,7 @@ example_map = {
     }
 }
 
+
 @dataclasses.dataclass
 class Map:
     tiles: str
@@ -84,6 +88,7 @@ class Map:
     spawn: list
     maxx: int
     maxy: int
+
 
 @dataclasses.dataclass
 class AdvancedMap:
@@ -221,10 +226,8 @@ def chain(l):
 
 
 class Guild(gc):
-    __slots__ = ()
-
     def __init__(self, name, owner, description="", members=None, bank=0, items=None, open=False, image=None, icon=None,
-                invites=None, mods=None):
+                 invites=None, mods=None):
         if members is None:
             members = set()
         if items is None:
@@ -1022,7 +1025,6 @@ class DataInteraction(object):
         """Update a server's guilds"""
         gd = await self.db.get_guild_data(guild)
         gd["guilds"] = data
-        print(data)
         return await self.db.update_guild_data(guild, gd)
 
     async def remove_guild(self, guild, name):
