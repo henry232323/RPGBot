@@ -31,7 +31,7 @@ class EnhancedJSONEncoder(json.JSONEncoder):
         if dataclasses.is_dataclass(o):
             return dataclasses.asdict(o)
         elif isinstance(o, set):
-            return super().default(list(o))
+            return list(o)
         return super().default(o)
 
 
