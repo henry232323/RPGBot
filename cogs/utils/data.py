@@ -223,7 +223,7 @@ def chain(l):
 class Guild(gc):
     __slots__ = ()
 
-    def __init__(cls, name, owner, description="", members=None, bank=0, items=None, open=False, image=None, icon=None,
+    def __init__(self, name, owner, description="", members=None, bank=0, items=None, open=False, image=None, icon=None,
                 invites=None, mods=None):
         if members is None:
             members = set()
@@ -233,7 +233,7 @@ class Guild(gc):
             invites = set()
         if mods is None:
             mods = set()
-        super().__init__(cls, name, owner, description, members, bank, items, open, image, icon, invites, mods)
+        super().__init__(name, owner, description, members, bank, items, open, image, icon, invites, mods)
 
 
 class MemberConverter(commands.MemberConverter):

@@ -8,6 +8,7 @@ from io import StringIO, BytesIO
 
 from .utils import checks
 from .utils.data import ServerItem
+from .utils.db import EnhancedJSONEncoder
 from .utils.translation import _
 
 
@@ -184,7 +185,7 @@ class Backups(commands.Cog):
         if subsection != None:
             data = data[subsection]
 
-        await self.send_as_file(ctx.author, json.dumps(data),
+        await self.send_as_file(ctx.author, json.dumps(data, cls=EnhancedJSONEncoder),
                                 name="{}.json".format(subsection if subsection else ctx.guild.name))
 
     @commands.command()

@@ -18,11 +18,19 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
+import copy
+import dataclasses
 import os
 
-import ujson as json
 import asyncpg
-import copy
+import ujson as json
+
+
+class EnhancedJSONEncoder(json.JSONEncoder):
+    def default(self, o):
+        if dataclasses.is_dataclass(o):
+            return dataclasses.asdict(o)
+        return super().default(o)
 
 
 class Database:
@@ -31,7 +39,7 @@ class Database:
 
     @staticmethod
     def dump(data):
-        return json.dumps(data).replace("'", "''")
+        return json.dumps(data, cls=EnhancedJSONEncoder)
 
     async def connect(self):
         self._conn = await asyncpg.create_pool(
@@ -47,38 +55,38 @@ class Database:
     async def user_insert(self, member, data):
         """Create a new user entry with the given data"""
         jd = self.dump({member.guild.id: data})
-        req = f"""INSERT INTO userdata (UUID, info) VALUES ({member.id}, '{jd}')"""
+        req = """INSERT INTO userdata (UUID, info) VALUES ($1, $2)"""
         async with self._conn.acquire() as connection:
-            await connection.execute(req)
+            await connection.execute(req, member.id, jd)
 
     async def user_select(self, member):
         """Select a user's data for a specified server"""
-        req = f"""SELECT info -> '{member.guild.id}' FROM userdata WHERE UUID = {member.id}"""
+        req = """SELECT info -> $2 FROM userdata WHERE UUID = $1"""
         async with self._conn.acquire() as connection:
-            response = await connection.fetchval(req)
+            response = await connection.fetchval(req, member.id, str(member.guild.id))
         return json.loads(response) if response else response
 
     async def user_full_select(self, member):
         """Select a user's data for a specified server"""
-        req = f"""SELECT info FROM userdata WHERE UUID = {member.id}"""
+        req = """SELECT info FROM userdata WHERE UUID = $1"""
         async with self._conn.acquire() as connection:
-            response = await connection.fetchval(req)
+            response = await connection.fetchval(req, member.id)
         return json.loads(response) if response else response
 
     async def user_update(self, member, data):
         """Update a user's data for a specific server"""
         jd = self.dump(data)
-        req = f"""UPDATE userdata
-        SET info = '{jd}'
-        WHERE UUID = {member.id}"""
+        req = """UPDATE userdata
+        SET info = $2
+        WHERE UUID = $1"""
         async with self._conn.acquire() as connection:
-            await connection.execute(req)
+            await connection.execute(req, jd, member.id)
 
     async def user_exists(self, member):
         """Check if a user has an entry in the db"""
-        req = f"""SELECT info FROM userdata WHERE UUID = {member.id}"""
+        req = """SELECT info FROM userdata WHERE UUID = $1"""
         async with self._conn.acquire() as connection:
-            return bool(await connection.fetchval(req))
+            return bool(await connection.fetchval(req, member.id))
 
     async def add_user(self, member, data=None):
         """Add a server to the users json, if the user doesnt exist user_insert to make one"""
@@ -111,9 +119,9 @@ class Database:
 
     async def get_all_user_data(self, member):
         """Get a user's data for all servers"""
-        req = f"""SELECT info FROM userdata WHERE UUID = {member.id}"""
+        req = """SELECT info FROM userdata WHERE UUID = $1"""
         async with self._conn.acquire() as connection:
-            response = await connection.fetchval(req)
+            response = await connection.fetchval(req, member.id)
         return json.loads(response) if response else response
 
     # Server functions
@@ -121,13 +129,13 @@ class Database:
     async def guild_insert(self, guild, data):
         """Add a new guild to the db"""
         jd = self.dump(data)
-        req = f"""INSERT INTO guilddata (UUID, info) VALUES ({guild.id}, '{jd}')"""
+        req = """INSERT INTO guilddata (UUID, info) VALUES ($1, $2)"""
         async with self._conn.acquire() as connection:
-            await connection.execute(req)
+            await connection.execute(req, guild.id, jd)
 
     async def guild_select(self, guild):
         """Get a guild from the db"""
-        req = f"""SELECT info FROM guilddata WHERE UUID = $1"""
+        req = """SELECT info FROM guilddata WHERE UUID = $1"""
         async with self._conn.acquire() as connection:
             response = await connection.fetchval(req, guild.id)
         return json.loads(response) if response else response
@@ -135,11 +143,11 @@ class Database:
     async def guild_update(self, guild, data):
         """Update a guild"""
         jd = self.dump(data)
-        req = f"""UPDATE guilddata
-        SET info = '{jd}'
-        WHERE UUID = {guild.id}"""
+        req = """UPDATE guilddata
+        SET info = $1
+        WHERE UUID = $2"""
         async with self._conn.acquire() as connection:
-            await connection.execute(req)
+            await connection.execute(req, jd, guild.id)
 
     async def add_guild(self, guild, data=None):
         """Add a guild to the db"""
@@ -156,18 +164,18 @@ class Database:
         # await self.guild_insert(guild, data)
         # upsert
         jd = self.dump(data)
-        req = f"""INSERT INTO guilddata (UUID, info)
+        req = """INSERT INTO guilddata (UUID, info)
         VALUES (
-            {guild.id},
-            '{jd}'
+            $1
+            $2
         )
         ON CONFLICT (UUID) 
         DO 
             UPDATE
-            SET info = '{jd}';
+            SET info = $2;
         """
         async with self._conn.acquire() as connection:
-            await connection.execute(req)
+            await connection.execute(req, guild.id, jd)
 
         # if await self.guild_select(guild):
         #    await self.guild_update(guild, data)
@@ -179,7 +187,7 @@ class Database:
         if values:
             return values
         else:
-            req = f"""SELECT info FROM guilddata WHERE UUID = $1"""
+            req = """SELECT info FROM guilddata WHERE UUID = $1"""
             async with self._conn.acquire() as connection:
                 response = await connection.fetchval(req, guild.id)
             data = json.loads(response) if response else response
@@ -192,13 +200,13 @@ class Database:
             # return await self.get_guild_data(guild)
 
     async def guild_item(self, guild, name: str):
-        req = f"""SELECT info ->> '{name}' FROM guilddata WHERE UUID = {guild.id}"""
+        req = """SELECT info ->> $1 FROM guilddata WHERE UUID = $2"""
         async with self._conn.acquire() as connection:
-            response = await connection.fetchval(req)
+            response = await connection.fetchval(req, name, guild.id)
         return response if response else copy.deepcopy(self.bot.default_servdata[name])
 
     async def user_item(self, member, name: str):
-        req = f"""SELECT info -> '{member.guild.id}' ->> '{name}' FROM userdata WHERE UUID = {member.id}"""
+        req = """SELECT info -> $1 ->> $2 FROM userdata WHERE UUID = $3"""
         async with self._conn.acquire() as connection:
-            response = await connection.fetchval(req)
+            response = await connection.fetchval(req, str(member.guild.id), name, member.id)
         return response if response else copy.copy(self.bot.default_udata[name])
