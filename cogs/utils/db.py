@@ -21,6 +21,7 @@
 import copy
 import dataclasses
 import os
+from collections import Counter
 
 import asyncpg
 # import ujson as json
@@ -32,6 +33,8 @@ class EnhancedJSONEncoder(json.JSONEncoder):
             return dataclasses.asdict(o)
         elif isinstance(o, set):
             return list(o)
+        elif isinstance(o, Counter):
+            return dict(o)
         return super().default(o)
 
 
