@@ -19,15 +19,15 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-from discord.ext import commands
-import discord
-
 import asyncio
 from collections import Counter
 from random import randint
 
-from .utils.data import Guild, NumberConverter, validate_url, Object
+import discord
+from discord.ext import commands
+
 from .utils import checks
+from .utils.data import Guild, NumberConverter, validate_url, Object
 from .utils.translation import _
 
 
@@ -248,15 +248,17 @@ class Groups(commands.Cog):
                     return
                 try:
                     check = lambda x: x.channel is ctx.channel and x.author is ctx.author
-                    guild = dict(name=name,
-                                 owner=ctx.author.id,
-                                 description="",
-                                 members=set(),
-                                 bank=0,
-                                 items=dict(),
-                                 open=False,
-                                 image=None,
-                                 invites=set())
+                    guild = dict(
+                        name=name,
+                        owner=ctx.author.id,
+                        description="",
+                        members=set(),
+                        bank=0,
+                        items=dict(),
+                        open=False,
+                        image=None,
+                        invites=set()
+                    )
                     await ctx.send(await _(ctx, "'cancel' or 'skip' to cancel creation or skip a step"))
                     await ctx.send(await _(ctx, "Describe the Guild (guild description)"))
                     response = await self.bot.wait_for("message", check=check, timeout=120)
