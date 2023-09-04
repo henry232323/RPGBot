@@ -58,9 +58,9 @@ class gc:
     bank: int
     items: dict
     open: bool
-    invites: set
     image: str
     icon: str
+    invites: set
     mods: set
 
 example_map = {
@@ -580,14 +580,14 @@ class DataInteraction(object):
         owner = discord.utils.get(guild.members, id=character.owner)
         ud = await self.db.get_user_data(owner)
 
-        pet = [Pet(*x) for x in ud["box"] if x[0] in character.team]
+        pet = [Pet(*x) if isinstance(x, list) else Pet(**x) for x in ud["box"] if x[0] in character.team]
 
         return pet
 
     async def get_box(self, member):
         """Get user's Pet box"""
         ub = await self.db.user_item(member, "box")
-        return [Pet(*x) for x in json.loads(ub)]
+        return [Pet(*x) if isinstance(x, list) else Pet(**x) for x in json.loads(ub)]
 
     async def get_balance(self, member):
         """Get user's balance"""
@@ -639,7 +639,7 @@ class DataInteraction(object):
     async def get_guild_items(self, guild):
         """Get all the items available in a server"""
         gd = await self.db.get_guild_data(guild)
-        return {y: ServerItem(*x) for y, x in gd["items"].items()}
+        return {y: ServerItem(*x) if isinstance(x, list) else ServerItem(**x) for y, x in gd["items"].items()}
 
     async def get_guild_lootboxes(self, guild):
         """Get a server's lootboxes"""
@@ -659,11 +659,11 @@ class DataInteraction(object):
     async def get_guild_characters(self, guild):
         """Get all the characters for a server"""
         gd = await self.db.get_guild_data(guild)
-        return {y: Character(*x) for y, x in gd["characters"].items()}
+        return {y: Character(*x) if isinstance(x, list) else Character(**x) for y, x in gd["characters"].items()}
 
     async def get_character(self, guild, name):
         data = await self.db.get_guild_data(guild)
-        chrs = {y: Character(*x) for y, x in data["characters"].items()}
+        chrs = {y: Character(*x) if isinstance(x, list) else Character(**x) for y, x in data["characters"].items()}
         if "caliases" not in data:
             data["caliases"] = {}
         if name in data["caliases"]:
@@ -713,7 +713,7 @@ class DataInteraction(object):
     async def get_guild_guilds(self, guild):
         """Get a server's guilds"""
         gd = await self.db.get_guild_data(guild)
-        gobj = {y: Guild(*x) for y, x in gd.get("guilds", dict()).items()}
+        gobj = {y: Guild(*x) if isinstance(x, list) else Guild(**x) for y, x in gd.get("guilds", dict()).items()}
         return gobj
 
     async def add_pet(self, owner, pet):
@@ -744,7 +744,7 @@ class DataInteraction(object):
             raise ValueError("This is not a valid ID!")
         ud["box"].remove(x)
         await self.db.update_user_data(owner, ud)
-        return Pet(*x)
+        return Pet(*x) if isinstance(x) else Pet(**x)
 
     async def new_item(self, guild, serveritem):
         """Create a new server item"""
@@ -1022,6 +1022,7 @@ class DataInteraction(object):
         """Update a server's guilds"""
         gd = await self.db.get_guild_data(guild)
         gd["guilds"] = data
+        print(gd)
         return await self.db.update_guild_data(guild, gd)
 
     async def remove_guild(self, guild, name):
