@@ -166,7 +166,7 @@ class Database:
         jd = self.dump(data)
         req = """INSERT INTO guilddata (UUID, info)
         VALUES (
-            $1
+            $1,
             $2
         )
         ON CONFLICT (UUID) 
