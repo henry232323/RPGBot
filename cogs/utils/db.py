@@ -89,7 +89,7 @@ class Database:
             return bool(await connection.fetchval(req, member.id))
 
     async def add_user(self, member, data=None):
-        """Add a server to the users json, if the user doesnt exist user_insert to make one"""
+        """Add a server to the users json, if the user doesn't exist user_insert to make one"""
         if not data:
             data = {member.guild.id: self.bot.default_udata}
 
