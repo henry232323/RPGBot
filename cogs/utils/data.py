@@ -800,6 +800,7 @@ class DataInteraction(object):
         ud = await self.db.get_user_data(member)
         ud["items"] = Counter(ud["items"])
         ud["items"].update(dict(items))
+        ud["items"] = dict(ud["items"])
         await self.db.update_user_data(member, ud)
         return ud["items"]
 
@@ -808,6 +809,7 @@ class DataInteraction(object):
         ud = await self.db.get_user_data(member)
         ud["items"] = Counter(ud["items"])
         ud["items"].subtract(dict(items))
+        ud["items"] = dict(ud["items"])
 
         for item, value in list(ud["items"].items()):
             if value < 0:
@@ -823,6 +825,7 @@ class DataInteraction(object):
         ud = await self.db.get_user_data(member)
         ud["items"] = Counter(ud["items"])
         ud["items"].subtract(dict(items))
+        ud["items"] = dict(ud["items"])
 
         for item, value in list(ud["items"].items()):
             if value <= 0:
@@ -836,6 +839,7 @@ class DataInteraction(object):
         ud = await self.db.get_user_data(member)
         ud["items"] = Counter(ud["items"])
         ud["items"].update(dict(items))
+        ud["items"] = dict(ud["items"])
 
         for item, value in list(ud["items"].items()):
             if value <= 0:

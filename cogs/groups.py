@@ -589,7 +589,8 @@ class Groups(commands.Cog):
                 fitems.append((split, num))
 
             guild.items = Counter(guild.items)
-            guild.items.update(dict(fitems))
+            guild.items += dict(fitems)
+            guild.items = dict(guild.items)
 
             await self.bot.di.update_guild_guilds(ctx.guild, guilds)
             await ctx.send(await _(ctx, "Successfully deposited items!"))
@@ -616,7 +617,8 @@ class Groups(commands.Cog):
                 fitems.append((split, num))
 
             guild.items = Counter(guild.items)
-            guild.items.subtract(dict(fitems))
+            guild.items -= dict(fitems)
+            guild.items = dict(guild.items)
 
             for item, value in list(guild.items.items()):
                 if value < 0:
@@ -702,6 +704,7 @@ class Groups(commands.Cog):
 
             guild.items = Counter(guild.items)
             guild.items += dict(fitems)
+            guild.items = dict(guild.items)
 
             await self.bot.di.update_guild_guilds(ctx.guild, guilds)
             await ctx.send(await _(ctx, "Successfully deposited items!"))
@@ -732,6 +735,7 @@ class Groups(commands.Cog):
 
             guild.items = Counter(guild.items)
             guild.items -= dict(fitems)
+            guild.items = dict(guild.items)
 
             for item, value in list(guild.items.items()):
                 if value < 0:
