@@ -489,6 +489,7 @@ class Characters(commands.Cog):
 
         char.ustats["items"] = Counter(char.ustats["items"])
         char.ustats["items"].subtract(dict(items))
+        char.ustats["items"] = dict(char.ustats["items"])
 
         # print(char.ustats["items"])
         for item, value in list(char.ustats["items"].items()):
@@ -522,6 +523,8 @@ class Characters(commands.Cog):
         ud = char.ustats
         ud["items"] = Counter(ud["items"])
         ud["items"].update(dict(items))
+        ud["items"] = dict(ud["items"])
+
         await self.bot.di.add_character(guild, char)
 
     @checks.mod_or_permissions()
