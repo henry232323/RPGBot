@@ -66,7 +66,7 @@ class Settings(commands.Cog):
         embed.add_field(name=await _(ctx, "Hide Inventories"), value=f"{settings.get('hideinv', False)}")
         embed.add_field(name=await _(ctx, "Wipe Userdata on Leave"), value=f"{settings.get('wipeonleave', False)}")
         time = settings.get('msgdel', 0)
-        embed.add_field(name=await _(ctx, "Message Auto Delete Time"), value=f"{time if time is not 0 else 'Never'}")
+        embed.add_field(name=await _(ctx, "Message Auto Delete Time"), value=f"{time if time != 0 else 'Never'}")
         await ctx.send(embed=embed)
 
     @settings.command()
