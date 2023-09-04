@@ -708,7 +708,7 @@ class DataInteraction(object):
     async def get_delete_time(self, guild):
         gd = await self.db.get_guild_data(guild)
         t = gd.get("msgdel", None)
-        return t if t is not 0 else None
+        return t if t != 0 else None
 
     async def get_guild_guilds(self, guild):
         """Get a server's guilds"""
