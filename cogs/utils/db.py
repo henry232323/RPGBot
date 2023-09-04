@@ -23,8 +23,8 @@ import dataclasses
 import os
 
 import asyncpg
-import ujson as json
-
+# import ujson as json
+import json
 
 class EnhancedJSONEncoder(json.JSONEncoder):
     def default(self, o):
