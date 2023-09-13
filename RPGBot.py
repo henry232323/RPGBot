@@ -422,7 +422,7 @@ if "debug" in sys.argv:
 async def start():
     with SSHTunnelForwarder(
             (os.environ.get("SSH_HOST"), 22),
-            remote_bind_address=('localhost', os.environ.get("DATABASE_PORT"))
+            remote_bind_address=('localhost', int(os.environ.get("DATABASE_PORT", 0)))
     ) as tunnel:
         intents = discord.Intents.default()
         intents.members = True
