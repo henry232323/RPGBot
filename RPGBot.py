@@ -37,6 +37,7 @@ import ujson as json
 # from datadog import ThreadStats
 # from datadog import initialize as init_dd
 from discord.ext import commands
+from sshtunnel import SSHTunnelForwarder
 
 import cogs
 from cogs.utils import db, data
@@ -57,7 +58,7 @@ if os.getcwd().endswith("rpgtest"):
 
 
 class Bot(commands.AutoShardedBot):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, tunnel=None, *args, **kwargs):
         super().__init__(*args, game=discord.Game(name="rp!help for help!"), **kwargs)
         self.prefixes = {}
         self.owner_id = 122739797646245899
@@ -69,6 +70,7 @@ class Bot(commands.AutoShardedBot):
         self.shutdowns = []
         self.lotteries = dict()
         self.in_character = defaultdict(lambda: defaultdict(str))
+        self.tunnel = tunnel
 
         self.logger = logging.getLogger('discord')  # Discord Logging
         self.logger.setLevel(logging.INFO)
@@ -418,13 +420,25 @@ if "debug" in sys.argv:
 
 
 async def start():
-    intents = discord.Intents.default()
-    intents.members = True
-    intents.messages = True
-    intents.message_content = True
+    with SSHTunnelForwarder(
+            (os.environ.get("SSH_HOST"), 22),
+            remote_bind_address=('localhost', os.environ.get("DATABASE_PORT"))
+    ) as tunnel:
+        intents = discord.Intents.default()
+        intents.members = True
+        intents.messages = True
+        intents.message_content = True
 
-    prp = Bot(command_prefix=prefix, description=description, pm_help=True, shard_count=20, intents=intents)
-    await prp.start(_auth[0])
+        prp = Bot(
+            command_prefix=prefix,
+            description=description,
+            pm_help=True,
+            shard_count=20,
+            intents=intents,
+            tunnel=tunnel
+        )
+
+        await prp.start(_auth[0])
 
 
 asyncio.run(start())

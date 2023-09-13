@@ -52,7 +52,7 @@ class Database:
             password=os.environ.get("DATABASE_PASSWORD"),
             database="pokerpg-new",
             host=os.environ.get("DATABASE_HOST"),
-            port=os.environ.get("DATABASE_PORT"),
+            port=self.bot.tunnel.local_bind_port,
         )
 
     # User functions
