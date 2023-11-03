@@ -4,7 +4,7 @@ It is with mixed emotions that I write to you today to announce an important upd
 
 The RPGBot has been a fantastic journey and a labor of love, serving as an invaluable tool for gamers and RPG enthusiasts around the world. However, to provide a more enhanced and seamless user experience, we will continue to provide RPGBot-V2, the latest iteration of our beloved software.
 
-RPGBot-V2 comes with a myriad of new features, improvements, and an overall smoother interface designed to cater to all your RPG needs. With a user-friendly design and enhanced functionalities, RPGBot-V2 promises to take your gaming experience to a whole new level.
+RPGBot-V2 comes with a myriad of new features, improvements, and an overall smoother interface designed to cater to all your RPG needs. With a user-friendly design and enhanced functionalities, RPGBot-V2 promises to make for a better RPG experience.
 
 What does this mean for RPGBot (Version 1) users?
 
