@@ -157,6 +157,7 @@ class Bot(commands.AutoShardedBot):
         print(self.user.name)
         print(self.user.id)
         print('------')
+        await self.change_presence(activity=discord.Game(name="RPGBot will be deprecated January 1st, 2024. Read more about how you can switch to RPGBot-V2 [here](https://github.com/henry232323/RPGBot/blob/master/deprecation_notice.md)"))
         if self._first:
             asyncio.create_task(self.update_stats())
             self._first = False
