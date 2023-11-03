@@ -13,7 +13,7 @@ As of today, RPGBot (Version 1) is officially deprecated. While the existing RPG
 How to transition to RPGBot-V2:
 
 - Use [this link](https://discord.com/oauth2/authorize?client_id=673737213959208980&scope=bot&permissions=805596240) to add RPGBot-V2.
--  For existing RPGBot (Version 1) users, your data and preferences will not automatically transfer. To transfer certain data from RPGBot (V1), use the `rp!recover` command. If there is some piece of data you want that you cannot transfer with this command, please ask us and we may be able to add it.
+-  For existing RPGBot (Version 1) users, your data and preferences will not automatically transfer. To transfer certain data from RPGBot (V1), use the `rp!recover` command in RPGBot-V2. If there is some piece of data you want that you cannot transfer with this command, please ask us and we may be able to add it.
 
 I understand that change can sometimes be challenging, but I am confident that the transition to RPGBot-V2 will bring about a more enjoyable and enriched gaming experience for all of our users.
 
