@@ -88,6 +88,7 @@ class API(web.Application):
             web.get('/bots/{snowflake:\d+}/', self.convert),
             web.post('/bots/{snowflake:\d+}/', self.convert),
             web.get('/user/{guild:\d+}/{user:\d+}{tail:.*}', self.getuser),
+            web.get('/user/{guild:\d+}/users', self.getusers),
             web.get('/guild/{guild:\d+}{tail:.*}', self.getguild),
         ])
 
@@ -345,6 +346,18 @@ class API(web.Application):
                     raise web.HTTPNotFound()
 
             return web.json_response(fdata)
+
+        raise web.HTTPForbidden()
+
+    async def getusers(self, request: web.Request):
+        guild = int(request.match_info['guild'])
+
+        req = f"""SELECT (UUID, info->$1) FROM userdata WHERE CAST (info->$1 AS json) is not NULL"""
+        async with self.bot.db._conn.acquire() as connection:
+            response = await connection.fetchval(req, guild)
+        if response:
+            data = json.loads(response)
+            return web.json_response(data)
 
         raise web.HTTPForbidden()
 
