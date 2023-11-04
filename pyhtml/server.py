@@ -354,12 +354,13 @@ class API(web.Application):
 
         req = f"""SELECT (UUID, info->$1) FROM userdata WHERE CAST (info->$1 AS json) is not NULL"""
         async with self.bot.db._conn.acquire() as connection:
-            response = await connection.fetchval(req, str(guild))
-        if response:
-            data = json.loads(response)
-            return web.json_response(data)
+            response = await connection.fetch(req, str(guild))
 
-        raise web.HTTPForbidden()
+        results = {}
+        for row in response:
+            results[row[0][0]] = json.loads(row[0][1])
+
+        return web.json_response(results)
 
     # @server.route("/guild/<int:guild>/", methods=["GET"])
     async def getguild(self, request: web.Request):
