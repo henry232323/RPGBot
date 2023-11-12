@@ -327,9 +327,9 @@ class API(web.Application):
         guild = int(request.match_info['guild'])
         user = int(request.match_info['user'])
 
-        req = f"""SELECT info FROM userdata WHERE UUID = {user}"""
+        req = f"""SELECT info FROM userdata WHERE UUID = $1"""
         async with self.bot.db._conn.acquire() as connection:
-            response = await connection.fetchval(req)
+            response = await connection.fetchval(req, user)
         if response:
             data = json.loads(response)[str(int(guild))]
 
@@ -352,13 +352,13 @@ class API(web.Application):
     async def getusers(self, request: web.Request):
         guild = int(request.match_info['guild'])
 
-        req = f"""SELECT (UUID, info->$1) FROM userdata WHERE CAST (info->$1 AS json) is not NULL"""
+        req = f"""SELECT UUID, info->$1 FROM userdata WHERE CAST (info->$1 AS json) is not NULL"""
         async with self.bot.db._conn.acquire() as connection:
             response = await connection.fetch(req, str(guild))
 
         results = {}
         for row in response:
-            results[row[0][0]] = json.loads(row[0][1])
+            results[row[0]] = json.loads(row[1])
 
         return web.json_response(results)
 
