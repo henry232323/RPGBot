@@ -26,7 +26,7 @@ example_post = {
 
 bot_db = {
     'id': 305177429612298242,
-    'url': "http://api.typheus.me",
+    'url': "http://localhost:8080",
     'name': "RPGBot",
     'type': 0
 }
@@ -139,7 +139,7 @@ class API(web.Application):
         data = {
             "code": code,
             "grant_type": "authorization_code",
-            "redirect_uri": "http://api.typheus.me/hub",
+            "redirect_uri": "http://localhost:8080/hub",
             "client_id": self.client_id,
             "client_secret": self.client_secret,
             "scope": 'identify guilds'
